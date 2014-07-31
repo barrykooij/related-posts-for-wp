@@ -8,9 +8,7 @@ class SRP_Installer {
 	public function create_db_table_related() {
 		global $wpdb;
 
-		$related_word_manager = new SRP_Related_Word_Manager();
-
-		$sql = "CREATE TABLE IF NOT EXISTS `" . $related_word_manager->get_database_table() . "` (
+		$sql = "CREATE TABLE IF NOT EXISTS `" . SRP_Related_Word_Manager::get_database_table() . "` (
   `post_id` bigint(20) unsigned NOT NULL,
   `word` varchar(255) CHARACTER SET utf8 NOT NULL,
   `weight` float unsigned NOT NULL,

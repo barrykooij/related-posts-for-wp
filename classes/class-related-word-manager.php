@@ -13,7 +13,7 @@ class SRP_Related_Word_Manager {
 	 *
 	 * @return string
 	 */
-	public function get_database_table() {
+	public static function get_database_table() {
 		global $wpdb;
 
 		return $wpdb->prefix . self::DB_TABLE;
@@ -326,7 +326,7 @@ class SRP_Related_Word_Manager {
 
 				// Insert word row
 				$wpdb->insert(
-					$this->get_database_table(),
+					self::get_database_table(),
 					array(
 						'post_id'   => $post_id,
 						'word'      => $word,
@@ -402,7 +402,7 @@ class SRP_Related_Word_Manager {
 	public function get_word_count() {
 		global $wpdb;
 
-		return $wpdb->get_var( "SELECT COUNT(word) FROM `" . $this->get_database_table() . "` WHERE `post_type` = 'post'" );
+		return $wpdb->get_var( "SELECT COUNT(word) FROM `" . self::get_database_table() . "` WHERE `post_type` = 'post'" );
 	}
 
 	/**
@@ -413,7 +413,7 @@ class SRP_Related_Word_Manager {
 	public function delete_words( $post_id ) {
 		global $wpdb;
 
-		$wpdb->delete( $wpdb->prefix . self::DB_TABLE, array( 'post_id' => $post_id ), array( '%d' ) );
+		$wpdb->delete( self::get_database_table(), array( 'post_id' => $post_id ), array( '%d' ) );
 	}
 
 }

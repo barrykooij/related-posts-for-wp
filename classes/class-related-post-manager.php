@@ -17,8 +17,8 @@ class SRP_Related_Post_Manager {
 		// Build SQl
 		$sql = "
 		SELECT O.`word`, P.`ID`, P.`post_title`, SUM( R.`weight` ) AS `related_weight`
-		FROM `" . $this->get_database_table() . "` O
-		INNER JOIN `" . $this->get_database_table() . "` R ON R.`word` = O.`word`
+		FROM `" . SRP_Related_Word_Manager::get_database_table() . "` O
+		INNER JOIN `" . SRP_Related_Word_Manager::get_database_table() . "` R ON R.`word` = O.`word`
 		INNER JOIN `" . $wpdb->posts . "` P ON P.`ID` = R.`post_id`
 		WHERE 1=1
 		AND O.`post_id` = %d
