@@ -1,6 +1,6 @@
 jQuery(document).ready(function ($) {
 
-	var step = $('.step').attr('rel');
+	var step = $('.src_step').attr('rel');
 
 	if (1 == step) {
 		srp_install_cache();
@@ -14,18 +14,21 @@ jQuery(document).ready(function ($) {
 
 		this.do_request = function () {
 			var instance = this;
-			$.post(ajaxurl, {'action': 'srp_install_save_words', 'req_nr': 0}, function (response) {
-
-				// Increase the request nr
-				instance.req_nr++;
-
-				// Do Progressbar
-				instance.do_progressbar();
+			$.post(ajaxurl, {'action': 'srp_install_save_words' }, function (response) {
 
 				// What next?
-				if ('next' == response) {
+				if ('more' == response) {
+					// Increase the request nr
+					instance.req_nr++;
+
+					// Do Progressbar
+					instance.do_progressbar();
+
+					// Do request
 					instance.do_request();
+
 				} else {
+					// Done
 					instance.done();
 				}
 
@@ -33,7 +36,12 @@ jQuery(document).ready(function ($) {
 		};
 
 		this.done = function () {
-			console.info("YOU'RE DONE!! :)");
+
+			// Update progressbar
+			$('#progressbar').progressbar({value: 100});
+
+			// etc.
+			window.location = $('#sre_admin_url').val() + '?page=srp_install&step=2';
 		};
 
 		this.do_progressbar = function() {
@@ -43,7 +51,6 @@ jQuery(document).ready(function ($) {
 		this.init = function () {
 			$('#progressbar').progressbar({value: false});
 			this.total_posts = $('#sre_total_posts').val();
-			console.info(this.total_posts);
 			this.do_request();
 		};
 

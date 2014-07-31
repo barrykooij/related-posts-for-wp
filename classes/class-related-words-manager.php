@@ -309,8 +309,10 @@ class SRP_Related_Words_Manager {
 	public function save_words_of_post( $post_id ) {
 		global $wpdb;
 
+		// Get words
 		$words = $this->get_words_of_post( $post_id );
 
+		// Check words
 		if ( is_array( $words ) && count( $words ) > 0 ) {
 
 			// Get post type
@@ -319,6 +321,7 @@ class SRP_Related_Words_Manager {
 			// Delete all currents words of post
 			$this->delete_words( $post_id );
 
+			// Loop words
 			foreach ( $words as $word => $amount ) {
 
 				// Insert word row
@@ -342,38 +345,51 @@ class SRP_Related_Words_Manager {
 
 		}
 
+		// Update this post as cached
+		update_post_meta( $post_id, SRP_Constants::PM_CACHED, 1 );
+
+	}
+
+	/**
+	 * Get uncached posts
+	 *
+	 * @param int $limit
+	 *
+	 * @return array
+	 */
+	public function get_uncached_posts( $limit = - 1 ) {
+		// Get Posts without 'cached' PM
+		return get_posts( array(
+			'post_type'      => 'post',
+			'posts_per_page' => $limit,
+			'post_status'    => 'publish',
+			'meta_query'     => array(
+				array(
+					'key'     => SRP_Constants::PM_CACHED,
+					'compare' => 'NOT EXISTS',
+					'value'   => ''
+				),
+			)
+		) );
 	}
 
 	/**
 	 * Save all words of posts
 	 */
-	public function save_all_words() {
+	public function save_all_words( $limit = - 1 ) {
 		global $wpdb;
 
-		$posts = get_posts(array(
-			'post_type' => 'post',
-			'meta_query' => array(
-				array(
-					'key' => 'colors',
-					'compare' => 'NOT EXISTS', // works!
-					'value' => '' // This is ignored, but is necessary...
-				),
-			)
-		));
+		// Get uncached posts
+		$posts = $this->get_uncached_posts(200);
 
-
-
-		// Get highest ID in related_cache table with post type $post_type
-		$max_id = $wpdb->get_var( "SELECT MAX(`post_id`) AS `max_id` FROM `" . $this->get_database_table() . "` WHERE `post_type` = 'post'" );
-
-		// Fetch all posts higher or equal to ID $max_id
-		$posts = $wpdb->get_results( $wpdb->prepare( "SELECT `ID` FROM `{$wpdb->posts}` WHERE `post_type` = 'post' AND `ID` >= %d ORDER BY `ID` ASC", $max_id ) );
-		if ( is_array( $posts ) && count( $posts ) > 0 ) {
+		// Check & Loop
+		if ( count( $posts ) > 0 ) {
 			foreach ( $posts as $post ) {
 				$this->save_words_of_post( $post->ID );
 			}
 		}
 
+		// Done
 		return true;
 	}
 

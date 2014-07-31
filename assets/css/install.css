@@ -1,17 +1,37 @@
-.install_steps {
+.install-steps {
 
 }
 
-.install_steps li {
-	width: 200px;
+.install-steps li {
+	width: 33%;
 	padding: 10px 15px;
-	margin: 0 10px;
-	border: 1px solid grey;
+	font-weight: bold;
+	color: #eee;
+	background: #222222;
 	float: left;
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 }
-.install_steps li:first-child {
+
+.install-steps li.step-bar-active {
+	background: #0074a2;
+}
+
+.install-steps li:first-child {
 	margin-left: 0;
+}
+
+.src-install-link-box {
+	display: inline;
+	padding: 15px;
+	border: 1px solid #0074a2;
+}
+
+.src-step .src-install-link-box label {
+	padding-right: 20px;
+}
+
+.src-step .src-install-link-box a.srp-link-now-btn {
+	margin-left: 20px;
 }

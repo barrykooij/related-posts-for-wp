@@ -57,6 +57,10 @@ class Simple_Related_Posts {
 		$installer = new SRP_Installer();
 		$installer->install();
 
+		// Redirect to installation wizard
+		add_site_option( SRP_Constants::OPTION_DO_INSTALL, true );
+
+
 		/*
 		// Load Cron Schedules Filter
 		$manager_filter = new SP_Manager_Filter( self::get_premium_dir() . 'classes/filters/' );
@@ -96,6 +100,17 @@ class Simple_Related_Posts {
 
 		// Setup the autolaoder
 		self::setup_autoloader();
+
+		// Check if we need to run the installer
+		if ( get_site_option( SRP_Constants::OPTION_DO_INSTALL, false ) ) {
+
+			// Delete site option
+			delete_site_option( SRP_Constants::OPTION_DO_INSTALL );
+
+			// Redirect to installation wizard
+			wp_redirect( admin_url() . '?page=srp_install', 301 );
+			exit;
+		}
 
 		// Filters
 		$manager_filter = new SRP_Manager_Filter( plugin_dir_path( __FILE__ ) . 'classes/filters/' );
