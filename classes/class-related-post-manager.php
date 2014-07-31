@@ -9,7 +9,7 @@ class SRP_Related_Post_Manager {
 	 *
 	 * @return array
 	 */
-	public function get_related_posts( $post_id, $limit=-1 ) {
+	public function get_related_posts( $post_id, $limit = - 1 ) {
 		global $wpdb;
 
 		$related_posts = array();
@@ -30,18 +30,13 @@ class SRP_Related_Post_Manager {
 		";
 
 		// Check & Add Limit
-		if(-1 != $limit) {
+		if ( - 1 != $limit ) {
 			$sql .= "
 			LIMIT 0,%d";
 		};
 
 		// Prepare SQL
-		$sql = $wpdb->prepare( $sql , $post_id, $post_id );
-
-		// Replace limit
-		if(-1 != $limit) {
-			$sql = $wpdb->prepare( $sql , $limit );
-		}
+		$sql = $wpdb->prepare( $sql, $post_id, $post_id, $limit );
 
 		// Get post from related cache
 		$rposts = $wpdb->get_results( $sql );
@@ -85,24 +80,39 @@ class SRP_Related_Post_Manager {
 	 *
 	 * @param $post_id
 	 * @param $amount
+	 *
+	 * @return boolean
 	 */
 	public function link_related_post( $post_id, $amount ) {
-		$posts = $this->get_related_posts( $post_id, $amount );
-		echo '<pre>';
-		print_r($posts);
-		exit;
+		$related_posts = $this->get_related_posts( $post_id, $amount );
+
+		if ( count( $related_posts ) > 0 ) {
+
+			$post_link_manager = new SRP_Post_Link_Manager();
+
+			foreach ( $related_posts as $related_post ) {
+				$post_link_manager->add( $post_id, $related_post->ID );
+			}
+		}
+
+		update_post_meta( $post_id, SRP_Constants::PM_AUTO_LINKED, 1);
+
+		return true;
 	}
 
 	/**
 	 * Link x related posts to y not already linked posts
 	 *
-	 * @param int $amount
+	 * @param int $rel_amount
+	 * @param int $post_amount
+	 *
+	 * @return boolean
 	 */
-	public function link_related_posts( $rel_amount, $post_amount=-1 ) {
+	public function link_related_posts( $rel_amount, $post_amount = - 1 ) {
 		global $wpdb;
 
 		// Get uncached posts
-		$posts = $this->get_not_auto_linked_posts($post_amount);
+		$posts = $this->get_not_auto_linked_posts( $post_amount );
 
 		// Check & Loop
 		if ( count( $posts ) > 0 ) {

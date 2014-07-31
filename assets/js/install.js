@@ -22,13 +22,16 @@ jQuery(document).ready(function ($) {
 
 		this.step = step;
 		this.total_posts = 0;
-		this.ppr = 200;
+		this.ppr = null;
 		this.req_nr = 0;
 		this.action = null;
 
 		this.do_request = function () {
 			var instance = this;
-			$.post(ajaxurl, {'action': this.action, 'rel_amount': $('#srp_related_posts_amount').val()}, function (response) {
+			$.post(ajaxurl, {
+				'action'    : this.action,
+				'rel_amount': $('#srp_related_posts_amount').val()
+			}, function (response) {
 
 				// What next?
 				if ('more' == response) {
@@ -73,9 +76,11 @@ jQuery(document).ready(function ($) {
 			// Set the correct action
 			switch (this.step) {
 				case 1:
+					this.ppr = 200;
 					this.action = 'srp_install_save_words';
 					break;
 				case 2:
+					this.ppr = 50;
 					this.action = 'srp_install_link_posts';
 					break;
 			}

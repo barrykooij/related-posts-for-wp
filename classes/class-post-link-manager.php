@@ -85,6 +85,7 @@ class SRP_Post_Link_Manager {
 
 		// Create post link
 		$link_id = wp_insert_post( array(
+			'post_title'  => 'Simple Related Posts Link',
 			'post_type'   => SRP_Constants::LINK_PT,
 			'post_status' => 'publish',
 			'menu_order'  => $this->get_link_count( $parent_id ),
@@ -128,8 +129,8 @@ class SRP_Post_Link_Manager {
 	 *
 	 * @access public
 	 *
-	 * @param int    $parent_id
-	 * @param array  $extra_args
+	 * @param int   $parent_id
+	 * @param array $extra_args
 	 *
 	 * @return array
 	 */
