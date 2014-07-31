@@ -59,17 +59,6 @@ class Simple_Related_Posts {
 
 		// Redirect to installation wizard
 		add_site_option( SRP_Constants::OPTION_DO_INSTALL, true );
-
-
-		/*
-		// Load Cron Schedules Filter
-		$manager_filter = new SP_Manager_Filter( self::get_premium_dir() . 'classes/filters/' );
-		$manager_filter->load_filter( 'class-filter-cron-schedules' );
-
-		// Setup Cron
-		$cron_manager = new SRP_Cron_Manager();
-		$cron_manager->setup_cron();
-		*/
 	}
 
 	/**

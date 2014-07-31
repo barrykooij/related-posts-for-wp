@@ -28,7 +28,7 @@ jQuery(document).ready(function ($) {
 
 		this.do_request = function () {
 			var instance = this;
-			$.post(ajaxurl, {'action': this.action, 'rel_amount': $('#srp_related_posts_amount')}, function (response) {
+			$.post(ajaxurl, {'action': this.action, 'rel_amount': $('#srp_related_posts_amount').val()}, function (response) {
 
 				// What next?
 				if ('more' == response) {
@@ -55,7 +55,7 @@ jQuery(document).ready(function ($) {
 			$('#progressbar').progressbar({value: 100});
 
 			// Redirect to next step
-			window.location = $('#srp_admin_url').val() + '?page=srp_install&step=' + ( this.step + 1 );
+			//window.location = $('#srp_admin_url').val() + '?page=srp_install&step=' + ( this.step + 1 );
 		};
 
 		this.do_progressbar = function () {

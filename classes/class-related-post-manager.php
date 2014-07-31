@@ -90,6 +90,7 @@ class SRP_Related_Post_Manager {
 		$posts = $this->get_related_posts( $post_id, $amount );
 		echo '<pre>';
 		print_r($posts);
+		exit;
 	}
 
 	/**

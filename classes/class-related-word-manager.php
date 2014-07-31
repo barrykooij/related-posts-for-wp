@@ -4,7 +4,7 @@ if ( !defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
-class SRP_Related_Words_Manager {
+class SRP_Related_Word_Manager {
 
 	const DB_TABLE = 'srp_cache';
 

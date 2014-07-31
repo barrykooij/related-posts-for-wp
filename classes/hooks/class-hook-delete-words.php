@@ -16,8 +16,8 @@ class SRP_Hook_Delete_Words extends SRP_Hook {
 		}
 
 		// Related Post Manager
-		$related_words_manager = new SRP_Related_Words_Manager();
-		$related_words_manager->delete_words( $post_id );
+		$related_word_manager = new SRP_Related_Word_Manager();
+		$related_word_manager->delete_words( $post_id );
 
 	}
 }

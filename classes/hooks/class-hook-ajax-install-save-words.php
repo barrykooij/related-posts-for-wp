@@ -10,7 +10,7 @@ class SRP_Hook_Ajax_Install_Save_Words extends SRP_Hook {
 	public function run() {
 
 		// Related Post Manager
-		$related_word_manager = new SRP_Related_Words_Manager();
+		$related_word_manager = new SRP_Related_Word_Manager();
 
 		// Save 200 words
 		if ( true === $related_word_manager->save_all_words( 200 ) ) {

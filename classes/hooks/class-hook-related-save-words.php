@@ -26,8 +26,8 @@ class SRP_Hook_Related_Save_Words extends SRP_Hook {
 		}
 
 		// Save Words
-		$related_words_manager = new SRP_Related_Words_Manager();
-		$related_words_manager->save_words_of_post( $post_id );
+		$related_word_manager = new SRP_Related_Word_Manager();
+		$related_word_manager->save_words_of_post( $post_id );
 
 	}
 }
