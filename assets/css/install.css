@@ -1,0 +1,17 @@
+.install_steps {
+
+}
+
+.install_steps li {
+	width: 200px;
+	padding: 10px 15px;
+	margin: 0 10px;
+	border: 1px solid grey;
+	float: left;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.install_steps li:first-child {
+	margin-left: 0;
+}
