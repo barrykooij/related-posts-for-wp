@@ -16,7 +16,7 @@ class SRP_Hook_Ajax_Install_Link_Posts extends SRP_Hook {
 		$related_post_manager = new SRP_Related_Post_Manager();
 
 		// Link 200 posts
-		if ( true === $related_post_manager->link_related_posts( $rel_amount, 50 ) ) {
+		if ( true === $related_post_manager->link_related_posts( $rel_amount, 5 ) ) {
 
 			// Check if we're done
 			if ( 0 == count( $related_post_manager->get_not_auto_linked_posts( 1 ) ) ) {

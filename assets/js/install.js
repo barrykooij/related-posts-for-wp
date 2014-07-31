@@ -44,9 +44,11 @@ jQuery(document).ready(function ($) {
 					// Do request
 					instance.do_request();
 
-				} else {
+				} else if( 'done' == response ) {
 					// Done
 					instance.done();
+				}else {
+					alert( "Woops! Something went wrong while linking.\n\nResponse:\n\n" + response );
 				}
 
 			});
@@ -58,7 +60,7 @@ jQuery(document).ready(function ($) {
 			$('#progressbar').progressbar({value: 100});
 
 			// Redirect to next step
-			//window.location = $('#srp_admin_url').val() + '?page=srp_install&step=' + ( this.step + 1 );
+			window.location = $('#srp_admin_url').val() + '?page=srp_install&step=' + ( this.step + 1 );
 		};
 
 		this.do_progressbar = function () {
@@ -80,7 +82,7 @@ jQuery(document).ready(function ($) {
 					this.action = 'srp_install_save_words';
 					break;
 				case 2:
-					this.ppr = 50;
+					this.ppr = 5;
 					this.action = 'srp_install_link_posts';
 					break;
 			}
