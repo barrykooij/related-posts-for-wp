@@ -1,6 +1,6 @@
 jQuery(document).ready(function ($) {
 
-	var step = $('.src_step').attr('rel');
+	var step = $('.src-step').attr('rel');
 
 	if (1 == step) {
 		srp_install_cache();

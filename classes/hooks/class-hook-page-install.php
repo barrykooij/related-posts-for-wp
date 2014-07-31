@@ -48,6 +48,8 @@ class SRP_Hook_Page_Install extends SRP_Hook {
 			</ul>
 			<br class="clear" />
 
+			<h3><?php echo $steps[$cur_step]; ?></h3>
+
 			<?php
 			$cur_step = isset( $_GET['step'] ) ? $_GET['step'] : 1;
 			echo "<div class='src-step' rel='" . $cur_step . "'>";
@@ -72,11 +74,15 @@ class SRP_Hook_Page_Install extends SRP_Hook {
 				<p class="src-install-link-box">
 					<label for="srp_related_posts_amount">Amount of related posts per post:</label><input class="form-input-tip" type="text" id="srp_related_posts_amount" value="5" />
 					<a href="javascript:;" class="button button-primary button-large srp-link-now-btn">Link now</a>
+					<a href="<?php echo admin_url(); ?>?page=srp_install&step=3" class="button">Skip linking</a>
 				</p>
 				<br class="clear" />
 			<?php
 			} elseif ( 3 == $cur_step ) {
-
+				?>
+				<p>That's it, you're good to go!</p>
+				<p>Thanks again for using Simple Related Posts and if you have any questions be sure to ask them at the <a href="http://wordpress.org/support/plugin/simple-related-posts">WordPress.org forums.</a></p>
+			<?php
 			}
 			?>
 		</div>
