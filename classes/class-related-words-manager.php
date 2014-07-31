@@ -380,7 +380,7 @@ class SRP_Related_Words_Manager {
 		global $wpdb;
 
 		// Get uncached posts
-		$posts = $this->get_uncached_posts(200);
+		$posts = $this->get_uncached_posts( $limit );
 
 		// Check & Loop
 		if ( count( $posts ) > 0 ) {
@@ -394,51 +394,8 @@ class SRP_Related_Words_Manager {
 	}
 
 	/**
-	 * Get related posts by post id and post type
-	 *
-	 * @param $post_id
-	 * @param $post_type
-	 *
-	 * @return array
-	 */
-	public function get_related_posts( $post_id ) {
-		global $wpdb;
-
-		$related_posts = array();
-
-		// Get post from related cache
-		$sql = $wpdb->prepare( "
-		SELECT O.`word`, P.`ID`, P.`post_title`, SUM( R.`weight` ) AS `related_weight`
-		FROM `" . $this->get_database_table() . "` O
-		INNER JOIN `" . $this->get_database_table() . "` R ON R.`word` = O.`word`
-		INNER JOIN `" . $wpdb->posts . "` P ON P.`ID` = R.`post_id`
-		WHERE 1=1
-		AND O.`post_id` = %d
-		AND R.`post_type` = 'post'
-		AND R.`post_id` != %d
-		AND P.`post_status` = 'publish'
-		GROUP BY P.`id`
-		ORDER BY `related_weight` DESC
-		", $post_id, $post_id );
-
-		$rposts = $wpdb->get_results( $sql );
-
-		if ( count( $rposts ) > 0 ) {
-			foreach ( $rposts as $rpost ) {
-				if ( !isset( $related_posts[$rpost->ID] ) ) {
-					$related_posts[] = $rpost;
-				}
-
-			}
-		}
-
-		return $related_posts;
-	}
-
-	/**
 	 * Get the amount of words of a post
 	 *
-	 * @param string $post_type
 	 *
 	 * @return int
 	 */
