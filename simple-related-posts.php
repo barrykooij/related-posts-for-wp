@@ -69,9 +69,7 @@ class Simple_Related_Posts {
 		// Setup autoloader
 		self::setup_autoloader();
 
-		// Clear cronjobs
-		$cron_manager = new SRP_Cron_Manager();
-		$cron_manager->remove_cron();
+		// Remove database table
 
 	}
 
