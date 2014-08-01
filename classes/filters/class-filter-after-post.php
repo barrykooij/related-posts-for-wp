@@ -17,12 +17,12 @@ class SRP_Filter_After_Post extends SRP_Filter {
 	 *
 	 * @return string
 	 */
-	private function create_post_list( $slug, $title, $posts, $display_excerpt, $display_image ) {
+	private function create_post_list( $posts, $display_excerpt, $display_image ) {
 
-		$content = "<div class='pc-post-list pc-{$slug}'>\n";
+		$content = "<div class='srp-related-posts'>\n";
 
 		// Output the relation title
-		$content .= "<h3>" . $title . "</h3> \n";
+		$content .= "<h3>" . __( 'Related Posts', 'simple-related-posts' ) . "</h3> \n";
 
 		// Open the list
 		$content .= "<ul>\n";
@@ -45,17 +45,22 @@ class SRP_Filter_After_Post extends SRP_Filter {
 					 */
 					$thumb_size = apply_filters( 'pc_apdc_thumbnail_size', 'post-thumbnail' );
 
+					$content .= "<div class='srp-related-post-image'>" . PHP_EOL;
 					$content .= "<a href='" . get_permalink( $pc_post->ID ) . "'>";
 					$content .= get_the_post_thumbnail( $pc_post->ID, $thumb_size );
 					$content .= "</a>";
+					$content .= "</div>" . PHP_EOL;
 				}
 			}
 
+			$content .= "<div class='srp-related-post-content'>" . PHP_EOL;
 			$content .= "<a href='" . get_permalink( $pc_post->ID ) . "'>" . $pc_post->post_title . "</a>";
 
 			if ( '1' == $display_excerpt ) {
 				$content .= "<p>" . get_the_excerpt() . "</p>";
 			}
+
+			$content .= "</div>" . PHP_EOL;
 
 			$content .= "</li>\n";
 
@@ -91,102 +96,16 @@ class SRP_Filter_After_Post extends SRP_Filter {
 			return $content;
 		}
 
-		$ptl_manager = new SP_Connection_Manager();
+		// Post Link Manager
+		$pl_manager = new SRP_Post_Link_Manager();
 
-		// Add a meta query so we only get relations that have the PM_PTL_APDC or PM_PTL_APDP set to true (1)
-		$args = array(
-			'meta_query' => array(
-				'relation' => 'OR',
-				array(
-					'key'   => SP_Constants::PM_PTL_APDC,
-					'value' => '1'
-				),
-				array(
-					'key'   => SP_Constants::PM_PTL_APDP,
-					'value' => '1'
-				)
-			)
-		);
+		// Get the linked posts
+		$related_posts = $pl_manager->get_children( $id );
 
-		// Get the connections
-		$relations = $ptl_manager->get_connections( $args );
-
-		// Check relations
-		if ( count( $relations ) > 0 ) {
-
-			// Store children and parents
-			$children_relations = array();
-			$parent_relations   = array();
-
-			// Post Link Manager
-			$pl_manager = new SP_Post_Link_Manager();
-
-			// Current post ID
-			$post_id = get_the_ID();
-
-			// Loop relations
-			foreach ( $relations as $relation ) {
-
-				// Check if this relation allows children links to show
-				if ( '1' === $relation->get_after_post_display_children() ) {
-					$children_relations[] = $relation;
-				}
-
-				// Check if this relation allows parents links to show
-				if ( '1' === $relation->get_after_post_display_parents() ) {
-					$parent_relations[] = $relation;
-				}
-
-			}
-
-			// Are the relations that want to show linked child posts
-			if ( count( $children_relations ) > 0 ) {
-
-				// Opening the wrapper div
-				$content .= "<div class='pc-post-children'>\n";
-
-				foreach ( $children_relations as $children_relation ) {
-
-					// Get the linked posts
-					$pc_posts = $pl_manager->get_children( $children_relation->get_slug(), $post_id );
-
-					if ( count( $pc_posts ) > 0 ) {
-
-						$content .= $this->create_post_list( $children_relation->get_slug(), $children_relation->get_title(), $pc_posts, $children_relation->get_after_post_display_children_excerpt(), $children_relation->get_after_post_display_children_image() );
-
-					}
-
-				}
-
-				// Close the wrapper div
-				$content .= "</div>\n";
-
-			}
-
-			// Are the relations that want to show linked parent posts
-			if ( count( $parent_relations ) > 0 ) {
-
-				// Opening the wrapper div
-				$content .= "<div class='pc-post-parents'>\n";
-
-				foreach ( $parent_relations as $parent_relation ) {
-
-					// Get the linked posts
-					$pc_posts = $pl_manager->get_parents( $parent_relation->get_slug(), $post_id );
-
-					if ( count( $pc_posts ) > 0 ) {
-
-						$content .= $this->create_post_list( $parent_relation->get_slug(), $parent_relation->get_title(), $pc_posts, false, false );
-
-					}
-
-				}
-
-				// Close the wrapper div
-				$content .= "</div>\n";
-
-			}
-
+		// Count
+		if ( count( $related_posts ) > 0 ) {
+			// Create Post List
+			$content .= $this->create_post_list( $related_posts, true, true );
 		}
 
 		return $content;
