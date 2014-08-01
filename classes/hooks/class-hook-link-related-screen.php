@@ -145,7 +145,7 @@ class SRP_Hook_Link_Related_Screen extends SRP_Hook {
 				$list_table->prepare_items();
 
 				// Add the search box
-				$list_table->search_box( __( 'Search', 'post-connector' ), 'sp-search' );
+				$list_table->search_box( __( 'Search', 'simple-related-posts' ), 'sp-search' );
 
 				// Display the table
 				$list_table->display();
