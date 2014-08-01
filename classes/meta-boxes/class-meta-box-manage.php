@@ -62,7 +62,7 @@ class SRP_Meta_Box_Manage {
 		echo "<div class='srp_button_holder'>\n";
 
 
-		// Build the Post Connector link existing post URL
+		// Build the related post link
 		$url = get_admin_url() . "admin.php?page=srp_link_related&amp;srp_parent=" . $post->ID;
 
 		// WPML check
