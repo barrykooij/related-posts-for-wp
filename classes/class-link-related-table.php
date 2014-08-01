@@ -140,7 +140,7 @@ class SRP_Link_Related_Table extends WP_List_Table {
 		} else {
 			$rpm    = new SRP_Related_Post_Manager();
 			$parent = $_GET['srp_parent'];
-			$posts  = $rpm->get_related_posts( $parent, $this->post_type );
+			$posts  = $rpm->get_related_posts( $parent );
 		}
 
 		// Format data for table

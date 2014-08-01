@@ -67,10 +67,10 @@ class SRP_Hook_Link_Related_Screen extends SRP_Hook {
 	 */
 	private function handle_bulk_link() {
 
-		if ( isset( $_POST['srp_view'] ) && isset( $_GET['sp_parent'] ) ) {
+		if ( isset( $_POST['srp_bulk'] ) && isset( $_GET['srp_parent'] ) ) {
 
 			// Get parent
-			$parent = $_GET['sp_parent'];
+			$parent = $_GET['srp_parent'];
 
 			// Check if user is allowed to do this
 			if ( !current_user_can( 'edit_posts' ) ) {
@@ -80,8 +80,8 @@ class SRP_Hook_Link_Related_Screen extends SRP_Hook {
 			// Post Link Manager
 			$post_link_manager = new SRP_Post_Link_Manager();
 
-			if ( count( $_POST['srp_view'] ) > 0 ) {
-				foreach ( $_POST['srp_view'] as $bulk_post ) {
+			if ( count( $_POST['srp_bulk'] ) > 0 ) {
+				foreach ( $_POST['srp_bulk'] as $bulk_post ) {
 
 					// Create link
 					$post_link_manager->add( $parent, $bulk_post );

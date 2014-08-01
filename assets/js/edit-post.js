@@ -23,7 +23,7 @@ function SRP_Related_Manager(tgt) {
 
 	this.bind = function() {
 		var instance = this;
-		jQuery(this.container).find('.pt_table_manage .trash a').bind('click', function(){instance.delete_child(this);});
+		jQuery(this.container).find('.srp_table_manage .trash a').bind('click', function(){instance.delete_child(this);});
 	};
 
 	this.fix_helper = function(e, ui) {
@@ -41,11 +41,8 @@ function SRP_Related_Manager(tgt) {
 			helper: instance.fix_helper,
 			update: function(event, ui) {
 
-				// Fire sp_sorting_childs hook
-				jQuery('body').trigger('sp_sorting_childs', [ sortable_table.sortable('toArray').toString() ]);
-
 				jQuery(instance.container).parent().parent().find('h3').eq(0).append(
-						jQuery('<img>').attr('src', jQuery('#srp-dir-img').val()+'ajax-loader.gif').addClass('sp_ajaxloader')
+						jQuery('<img>').attr('src', jQuery('#srp-dir-img').val()+'ajax-loader.gif').addClass('srp_ajaxloader')
 				);
 
 				opts = {
@@ -76,10 +73,7 @@ function SRP_Related_Manager(tgt) {
 
 	this.delete_child = function(tgt) {
 
-		// Fire sp_delete_child hook
-		jQuery('body').trigger('sp_delete_child', [ jQuery(tgt).closest('tr').attr('id') ]);
-
-		var confirm_delete = confirm( sp_js.confirm_delete_child );
+		var confirm_delete = confirm( 'Are you sure you want to delete this related post?' );
 		if(!confirm_delete) {
 			return;
 		}
@@ -98,10 +92,6 @@ function SRP_Related_Manager(tgt) {
 				nonce: jQuery(instance.container).find('#srp-ajax-nonce').val()
 			},
 			success: function(response) {
-
-				// Fire sp_child_deleted hook
-				jQuery('body').trigger('sp_child_deleted', [ jQuery(tgt).closest('tr').attr('id') ]);
-
 				jQuery(tgt).closest('tr').fadeTo('fast', 0).slideUp(function() {
 					jQuery(this).remove();
 				});

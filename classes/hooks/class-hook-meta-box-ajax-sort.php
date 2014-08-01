@@ -4,7 +4,7 @@ if ( !defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
-class SP_Hook_Meta_Box_AJAX_Sort extends SP_Hook {
+class SRP_Hook_Meta_Box_AJAX_Sort extends SRP_Hook {
 	protected $tag = 'wp_ajax_srp_related_sort';
 
 	public function run() {
