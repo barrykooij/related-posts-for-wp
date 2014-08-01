@@ -18,7 +18,7 @@ class SRP_Hook_Link_Related_Screen extends SRP_Hook {
 	}
 
 	/**
-	 * Check if the current user is allowed to create an existing link for this connection
+	 * Check if the current user is allowed to create related posts
 	 */
 	private function check_if_allowed() {
 		if ( !current_user_can( 'edit_posts' ) ) {
