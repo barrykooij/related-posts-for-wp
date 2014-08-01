@@ -45,17 +45,13 @@ class SRP_Meta_Box_Manage {
 	 * @return void
 	 */
 	public function callback( $post ) {
-		echo "<div class='sp_mb_manage'>\n";
+		echo "<div class='srp_mb_manage'>\n";
 
 		// Add nonce
-		echo "<input type='hidden' name='sp-ajax-nonce' id='sp-ajax-nonce' value='" . wp_create_nonce( 'post-connector-ajax-nonce-omgrandomword' ) . "' />\n";
+		echo "<input type='hidden' name='srp-ajax-nonce' id='srp-ajax-nonce' value='" . wp_create_nonce( 'srp-ajax-nonce-omgrandomword' ) . "' />\n";
 
 		// Output plugin URL in hidden val
-		echo "<input type='hidden' name='sp-dir-img' id='sp-dir-img' value='" . plugins_url( '/assets/images/', Simple_Related_Posts::get_plugin_file() ) . "' />\n";
-
-		// Setup vars
-		$sp_parent  = ( ( isset( $_GET['sp_parent'] ) ) ? $_GET['sp_parent'] : '' );
-		$sp_pt_link = ( ( isset( $_GET['sp_pt_link'] ) ) ? $_GET['sp_pt_link'] : '' );
+		echo "<input type='hidden' name='srp-dir-img' id='srp-dir-img' value='" . plugins_url( '/assets/images/', Simple_Related_Posts::get_plugin_file() ) . "' />\n";
 
 		// Create a Post Link Manager object
 		$post_link_manager = new SRP_Post_Link_Manager();
@@ -63,9 +59,7 @@ class SRP_Meta_Box_Manage {
 		// Get the children
 		$children = $post_link_manager->get_children( $post->ID );
 
-		var_dump( $children );
-
-		echo "<div class='pt_button_holder'>\n";
+		echo "<div class='srp_button_holder'>\n";
 
 
 		// Build the Post Connector link existing post URL
@@ -87,36 +81,25 @@ class SRP_Meta_Box_Manage {
 
 		if ( count( $children ) > 0 ) {
 
-			$table_classes = 'wp-list-table widefat fixed pages pt_table_manage';
-
-			/**
-			 * Action: 'pc_meta_box_manage_table_classes' - Allow adjusting meta box manage table classes
-			 *
-			 * @api string $table_classes The table classes
-			 *
-			 * @param SP_Connection $connection The connection
-			 */
-			$table_classes = apply_filters( 'pc_meta_box_manage_table_classes', $table_classes, $this->connection );
-
 			// Managet table
-			echo "<table class='" . $table_classes . "'>\n";
+			echo "<table class='wp-list-table widefat fixed pages srp_table_manage sortable'>\n";
 
 			echo "<tbody>\n";
 			$i = 0;
 			foreach ( $children as $link_id => $child ) {
 				$child_id = $child->ID;
 
-				$edit_url = get_admin_url() . "post.php?post={$child_id}&amp;action=edit&amp;sp_parent=" . SP_Parent_Param::generate_sp_parent_param( $post->ID, $sp_pt_link, $sp_parent, 0 ) . "&sp_pt_link=" . $this->connection->get_id();
+				$edit_url = get_admin_url() . "post.php?post={$child_id}&amp;action=edit&amp;srp_parent={$post->ID}";
 
 				echo "<tr id='{$link_id}'>\n";
 				echo "<td>";
 				echo "<strong><a href='{$edit_url}' class='row-title' title='{$child->post_title}'>{$child->post_title}</a></strong>\n";
 				echo "<div class='row-actions'>\n";
-				echo "<span class='edit'><a href='{$edit_url}' title='" . __( 'Edit this item', 'post-connector' ) . "'>";
-				_e( 'Edit', 'post-connector' );
+				echo "<span class='edit'><a href='{$edit_url}' title='" . __( 'Edit this item', 'simple-related-posts' ) . "'>";
+				_e( 'Edit Post', 'simple-related-posts' );
 				echo "</a> | </span>";
-				echo "<span class='trash'><a class='submitdelete' title='" . __( 'Delete this item', 'post-connector' ) . "' href='javascript:;'>";
-				_e( 'Delete', 'post-connector' );
+				echo "<span class='trash'><a class='submitdelete' title='" . __( 'Delete this item', 'simple-related-posts' ) . "' href='javascript:;'>";
+				_e( 'Delete Post', 'simple-related-posts' );
 				echo "</a></span>";
 				echo "</div>\n";
 				echo "</td>\n";

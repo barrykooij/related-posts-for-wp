@@ -221,7 +221,7 @@ class SRP_Link_Related_Table extends WP_List_Table {
 	public function column_title( $item ) {
 		$actions = array(
 			'link' => sprintf(
-				'<a href="?page=%s&sp_parent=%s">' . __( 'Link Post', 'simple-related-posts' ) . '</a>',
+				'<a href="?page=%s&amp;srp_parent=%s&amp;srp_create_link=%s">' . __( 'Link Post', 'simple-related-posts' ) . '</a>',
 				$_REQUEST['page'],
 				$_GET['srp_parent'],
 				$item['ID']

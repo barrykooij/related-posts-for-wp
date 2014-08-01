@@ -170,7 +170,7 @@ class SRP_Post_Link_Manager {
 		// @todo remove the usage of get_the_id()
 		$child_ids = array();
 		while ( $link_query->have_posts() ) : $link_query->the_post();
-			$child_ids[get_the_id()] = get_post_meta( get_the_id(), SP_Constants::PM_CHILD, true );
+			$child_ids[get_the_id()] = get_post_meta( get_the_id(), SRP_Constants::PM_CHILD, true );
 		endwhile;
 
 		// Get children with custom args

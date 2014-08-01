@@ -32,45 +32,28 @@ class SRP_Hook_Link_Related_Screen extends SRP_Hook {
 	private function handle_create_link() {
 
 		// Check if link is chosen
-		if ( isset( $_GET['sp_post_link'] ) ) {
-
-			// Check if all vars are set
-			if ( !isset( $_GET['sp_pt_link'] ) || !isset( $_GET['sp_parent'] ) || !isset( $_GET['sp_post_link'] ) ) {
-				return;
-			}
+		if ( isset( $_GET['srp_create_link'] ) && isset( $_GET['srp_parent'] ) ) {
 
 			// Check if user is allowed to do this
-			if ( !current_user_can( SP_Cap_Manager::get_capability( $_GET['sp_post_link'] ) ) ) {
+			if ( !current_user_can( 'edit_posts' ) ) {
 				return;
 			}
 
 			// Get parent
-			$parent = SP_Parent_Param::get_current_parent( $_GET['sp_parent'] );
+			$parent = $_GET['srp_parent'];
 
 			// Create link
-			$post_link_manager = new SP_Post_Link_Manager();
+			$post_link_manager = new SRP_Post_Link_Manager();
 
-			// Check what way we're linking
-			if ( 1 == $parent[2] ) {
-				// Create a 'backwards' child < parent link
-				$post_link_manager->add( $_GET['sp_pt_link'], $_GET['sp_post_link'], $parent[0] );
-			} else {
-				// Create a 'normal' parent > child link
-				$post_link_manager->add( $_GET['sp_pt_link'], $parent[0], $_GET['sp_post_link'] );
-			}
+			// Create link
+			$post_link_manager->add( $parent, $_GET['srp_create_link'] );
 
 			// Send back
-			$redirect_url = get_admin_url() . "post.php?post={$parent[0]}&action=edit";
+			$redirect_url = get_admin_url() . "post.php?post={$parent}&action=edit";
 
-			// Check if parent as a ptl
-			if ( isset( $parent[1] ) && $parent[1] != '' ) {
-				$redirect_url .= '&sp_pt_link=' . $parent[1];
-			}
-
-			// Check if there are any parents left
-			$sp_parent_rest = SP_Parent_Param::strip_sp_parent_parent( $_GET['sp_parent'] );
-			if ( $sp_parent_rest != '' ) {
-				$redirect_url .= '&sp_parent=' . $sp_parent_rest;
+			// WPML check
+			if ( isset( $_GET['lang'] ) ) {
+				$redirect_url .= "&amp;lang=" . $_GET['lang'];
 			}
 
 			wp_redirect( $redirect_url );
@@ -84,46 +67,34 @@ class SRP_Hook_Link_Related_Screen extends SRP_Hook {
 	 */
 	private function handle_bulk_link() {
 
-		if ( isset( $_POST['srp_view'] ) ) {
+		if ( isset( $_POST['srp_view'] ) && isset( $_GET['sp_parent'] ) ) {
 
 			// Get parent
-			$parent = SP_Parent_Param::get_current_parent( $_GET['sp_parent'] );
+			$parent = $_GET['sp_parent'];
 
 			// Check if user is allowed to do this
-			if ( !current_user_can( SP_Cap_Manager::get_capability( $parent ) ) ) {
+			if ( !current_user_can( 'edit_posts' ) ) {
 				return;
 			}
 
 			// Post Link Manager
-			$post_link_manager = new SP_Post_Link_Manager();
+			$post_link_manager = new SRP_Post_Link_Manager();
 
 			if ( count( $_POST['srp_view'] ) > 0 ) {
 				foreach ( $_POST['srp_view'] as $bulk_post ) {
 
-					// Check what way we're linking
-					if ( 1 == $parent[2] ) {
-						// Create a 'backwards' child < parent link
-						$post_link_manager->add( $_GET['sp_pt_link'], $bulk_post, $parent[0] );
-					} else {
-						// Create a 'normal' parent > child link
-						$post_link_manager->add( $_GET['sp_pt_link'], $parent[0], $bulk_post );
-					}
+					// Create link
+					$post_link_manager->add( $parent, $bulk_post );
 
 				}
 			}
 
 			// Send back
-			$redirect_url = get_admin_url() . "post.php?post={$parent[0]}&action=edit";
+			$redirect_url = get_admin_url() . "post.php?post={$parent}&action=edit";
 
-			// Check if parent as a ptl
-			if ( isset( $parent[1] ) && $parent[1] != '' ) {
-				$redirect_url .= '&sp_pt_link=' . $parent[1];
-			}
-
-			// Check if there are any parents left
-			$sp_parent_rest = SP_Parent_Param::strip_sp_parent_parent( $_GET['sp_parent'] );
-			if ( $sp_parent_rest != '' ) {
-				$redirect_url .= '&sp_parent=' . $sp_parent_rest;
+			// WPML check
+			if ( isset( $_GET['lang'] ) ) {
+				$redirect_url .= "&amp;lang=" . $_GET['lang'];
 			}
 
 			wp_redirect( $redirect_url );
