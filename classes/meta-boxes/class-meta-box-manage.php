@@ -1,21 +1,17 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
+if ( !defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
-class SP_Meta_Box_Manage {
-	private $connection;
+class SRP_Meta_Box_Manage {
 
-	public function __construct( $connection ) {
+	public function __construct() {
 
 		// Check if we're in the admin/backend
-		if ( ! is_admin() ) {
+		if ( !is_admin() ) {
 			return;
 		}
-
-		// Set variables
-		$this->connection = $connection;
 
 		// Add meta boxes
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_box' ) );
@@ -32,12 +28,12 @@ class SP_Meta_Box_Manage {
 
 		// Add meta box to parent
 		add_meta_box(
-				'sp_metabox_manage_' . $this->connection->get_slug(),
-				$this->connection->get_title(),
-				array( $this, 'callback' ),
-				$this->connection->get_parent(),
-				'normal',
-				'core'
+			'srp_metabox_related_posts',
+			__( 'Related Posts', 'simple-related-posts' ),
+			array( $this, 'callback' ),
+			'post',
+			'normal',
+			'core'
 		);
 
 	}
@@ -55,65 +51,37 @@ class SP_Meta_Box_Manage {
 		echo "<input type='hidden' name='sp-ajax-nonce' id='sp-ajax-nonce' value='" . wp_create_nonce( 'post-connector-ajax-nonce-omgrandomword' ) . "' />\n";
 
 		// Output plugin URL in hidden val
-		echo "<input type='hidden' name='sp-dir-img' id='sp-dir-img' value='" . plugins_url( '/core/assets/images/', Post_Connector::get_plugin_file() ) . "' />\n";
+		echo "<input type='hidden' name='sp-dir-img' id='sp-dir-img' value='" . plugins_url( '/assets/images/', Simple_Related_Posts::get_plugin_file() ) . "' />\n";
 
 		// Setup vars
-		$sp_parent       = ( ( isset( $_GET['sp_parent'] ) ) ? $_GET['sp_parent'] : '' );
-		$sp_pt_link      = ( ( isset( $_GET['sp_pt_link'] ) ) ? $_GET['sp_pt_link'] : '' );
+		$sp_parent  = ( ( isset( $_GET['sp_parent'] ) ) ? $_GET['sp_parent'] : '' );
+		$sp_pt_link = ( ( isset( $_GET['sp_pt_link'] ) ) ? $_GET['sp_pt_link'] : '' );
 
 		// Create a Post Link Manager object
-		$post_link_manager = new SP_Post_Link_Manager();
+		$post_link_manager = new SRP_Post_Link_Manager();
 
 		// Get the children
-		$children        = $post_link_manager->get_children( $this->connection->get_slug(), $post->ID );
-		$child_post_type = get_post_type_object( $this->connection->get_child() );
+		$children = $post_link_manager->get_children( $post->ID );
 
+		var_dump( $children );
 
 		echo "<div class='pt_button_holder'>\n";
 
-		// Check if user is allowed to add new children
-		if ( $this->connection->get_add_new() == '1' ) {
 
-			// Build the Post Connector link existing post URL
-			$url = get_admin_url() . "post-new.php?post_type=" . $this->connection->get_child() . "&amp;sp_parent=" . SP_Parent_Param::generate_sp_parent_param( $post->ID, $sp_pt_link, $sp_parent, 0 ) . "&amp;sp_pt_link=" . $this->connection->get_id();
+		// Build the Post Connector link existing post URL
+		$url = get_admin_url() . "admin.php?page=srp_link_related&amp;srp_parent=" . $post->ID;
 
-			// WPML check
-			if ( isset( $_GET['lang'] ) ) {
-				$url .= "&lang=" . $_GET['lang'];
-			}
-
-			echo "<span id='view-post-btn'>";
-			echo "<a href='" . $url . "' class='button'>";
-			printf( __( 'Add new %s', 'post-connector' ), $child_post_type->labels->singular_name );
-			echo "</a>";
-			echo "</span>\n";
+		// WPML check
+		if ( isset( $_GET['lang'] ) ) {
+			$url .= "&amp;lang=" . $_GET['lang'];
 		}
 
-		// Check if user is allowed to add existing children
-		if ( $this->connection->get_add_existing() == '1' ) {
+		echo "<span id='view-post-btn'>";
+		echo "<a href='" . $url . "' class='button button-primary'>";
+		_e( 'Add Related Posts', 'simple-related-posts' );
+		echo "</a>";
+		echo "</span>\n";
 
-			// Build the Post Connector link existing post URL
-			$url = get_admin_url() . "admin.php?page=link_post_screen&amp;sp_parent=" . SP_Parent_Param::generate_sp_parent_param( $post->ID, $sp_pt_link, $sp_parent, 0 ) . "&amp;sp_pt_link=" . $this->connection->get_id();
-
-			// WPML check
-			if ( isset( $_GET['lang'] ) ) {
-				$url .= "&amp;lang=" . $_GET['lang'];
-			}
-
-			/**
-			 * Action: 'pc_meta_box_manage_add_existing_url' - Allow adjusting of 'add existing' URL
-			 *
-			 * @api string $url The URL
-			 * @param SP_Connection $connection The connection
-			 */
-			$url = apply_filters( 'pc_meta_box_manage_add_existing_url', $url, $this->connection );
-
-			echo "<span id='view-post-btn'>";
-			echo "<a href='" . $url . "' class='button'>";
-			printf( __( 'Add existing %s', 'post-connector' ), $child_post_type->labels->singular_name );
-			echo "</a>";
-			echo "</span>\n";
-		}
 
 		echo "</div>\n";
 
@@ -125,12 +93,13 @@ class SP_Meta_Box_Manage {
 			 * Action: 'pc_meta_box_manage_table_classes' - Allow adjusting meta box manage table classes
 			 *
 			 * @api string $table_classes The table classes
+			 *
 			 * @param SP_Connection $connection The connection
 			 */
 			$table_classes = apply_filters( 'pc_meta_box_manage_table_classes', $table_classes, $this->connection );
 
 			// Managet table
-			echo "<table class='".$table_classes."'>\n";
+			echo "<table class='" . $table_classes . "'>\n";
 
 			echo "<tbody>\n";
 			$i = 0;
@@ -160,7 +129,7 @@ class SP_Meta_Box_Manage {
 		} else {
 
 			echo '<br/>';
-			printf( __( 'No %s found.', 'post-connector' ), $child_post_type->labels->name );
+			_e( 'No related posts found.', 'simple-related-posts' );
 		}
 
 		// Reset Post Data

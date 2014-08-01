@@ -42,6 +42,8 @@ class SRP_Autoloader {
 				$file_path .= 'hooks/';
 			} elseif ( strpos( $class_name, 'srp_filter' ) === 0 ) {
 				$file_path .= 'filters/';
+			} elseif ( strpos( $class_name, 'srp_meta_box' ) === 0 ) {
+				$file_path .= 'meta-boxes/';
 			} elseif ( strpos( $class_name, 'yoast_' ) === 0 ) {
 				$file_path .= 'license-manager/';
 			}
