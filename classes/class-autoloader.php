@@ -4,7 +4,7 @@ if ( !defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
-class SRP_Autoloader {
+class RP4WP_Autoloader {
 
 	private $path;
 
@@ -26,23 +26,23 @@ class SRP_Autoloader {
 	public function load( $class_name ) {
 
 		// Only autoload WooCommerce Sales Report Email classes
-		if ( 0 === strpos( $class_name, 'SRP_' ) ) {
+		if ( 0 === strpos( $class_name, 'RP4WP_' ) ) {
 
 			// String to lower
 			$class_name = strtolower( $class_name );
 
 			// Format file name
-			$file_name = 'class-' . str_ireplace( '_', '-', str_ireplace( 'SRP_', '', $class_name ) ) . '.php';
+			$file_name = 'class-' . str_ireplace( '_', '-', str_ireplace( 'RP4WP_', '', $class_name ) ) . '.php';
 
 			// Setup the file path
 			$file_path = $this->path;
 
 			// Check if we need to extend the class path
-			if ( strpos( $class_name, 'srp_hook' ) === 0 ) {
+			if ( strpos( $class_name, 'rp4wp_hook' ) === 0 ) {
 				$file_path .= 'hooks/';
-			} elseif ( strpos( $class_name, 'srp_filter' ) === 0 ) {
+			} elseif ( strpos( $class_name, 'rp4wp_filter' ) === 0 ) {
 				$file_path .= 'filters/';
-			} elseif ( strpos( $class_name, 'srp_meta_box' ) === 0 ) {
+			} elseif ( strpos( $class_name, 'rp4wp_meta_box' ) === 0 ) {
 				$file_path .= 'meta-boxes/';
 			}
 

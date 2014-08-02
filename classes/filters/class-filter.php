@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
-abstract class SRP_Filter {
+abstract class RP4WP_Filter {
 	protected $tag = null;
 	protected $priority = 10;
 	protected $args = 1;

@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
-class SRP_Hook_Delete_Words extends SRP_Hook {
+class RP4WP_Hook_Delete_Words extends RP4WP_Hook {
 	protected $tag = 'delete_post';
 	protected $args = 1;
 
@@ -16,7 +16,7 @@ class SRP_Hook_Delete_Words extends SRP_Hook {
 		}
 
 		// Related Post Manager
-		$related_word_manager = new SRP_Related_Word_Manager();
+		$related_word_manager = new RP4WP_Related_Word_Manager();
 		$related_word_manager->delete_words( $post_id );
 
 	}

@@ -1,10 +1,10 @@
 <?php
 
 /*
-	Plugin Name: Simple Related Posts
+	Plugin Name: Related Posts for WordPress
 	Plugin URI: http://www.barrykooij.com/
-	Description: Simple Related Posts description
-	Version: 1.0 
+	Description: Related Posts for WordPress, related posts that perform!
+	Version: 1.0.0
 	Author: Barry Kooij
 	Author URI: http://www.barrykooij.com/
 	License: GPL v3
@@ -23,7 +23,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-class Simple_Related_Posts {
+class RP4WP {
 
 	/**
 	 * Get the plugin file
@@ -41,7 +41,7 @@ class Simple_Related_Posts {
 	 */
 	private static function setup_autoloader() {
 		require_once( plugin_dir_path( self::get_plugin_file() ) . '/classes/class-autoloader.php' );
-		$autoloader = new SRP_Autoloader( plugin_dir_path( self::get_plugin_file() ) . 'classes/' );
+		$autoloader = new RP4WP_Autoloader( plugin_dir_path( self::get_plugin_file() ) . 'classes/' );
 		spl_autoload_register( array( $autoloader, 'load' ) );
 	}
 
@@ -54,23 +54,11 @@ class Simple_Related_Posts {
 		self::setup_autoloader();
 
 		// Run the installer
-		$installer = new SRP_Installer();
+		$installer = new RP4WP_Installer();
 		$installer->install();
 
 		// Redirect to installation wizard
-		add_site_option( SRP_Constants::OPTION_DO_INSTALL, true );
-	}
-
-	/**
-	 * This method runs on deactivation
-	 */
-	public static function deactivation() {
-
-		// Setup autoloader
-		self::setup_autoloader();
-
-		// Remove database table
-
+		add_site_option( RP4WP_Constants::OPTION_DO_INSTALL, true );
 	}
 
 	/**
@@ -89,36 +77,33 @@ class Simple_Related_Posts {
 		self::setup_autoloader();
 
 		// Check if we need to run the installer
-		if ( get_site_option( SRP_Constants::OPTION_DO_INSTALL, false ) ) {
+		if ( get_site_option( RP4WP_Constants::OPTION_DO_INSTALL, false ) ) {
 
 			// Delete site option
-			delete_site_option( SRP_Constants::OPTION_DO_INSTALL );
+			delete_site_option( RP4WP_Constants::OPTION_DO_INSTALL );
 
 			// Redirect to installation wizard
-			wp_redirect( admin_url() . '?page=srp_install', 301 );
+			wp_redirect( admin_url() . '?page=rp4wp_install', 301 );
 			exit;
 		}
 
 		// Filters
-		$manager_filter = new SRP_Manager_Filter( plugin_dir_path( __FILE__ ) . 'classes/filters/' );
+		$manager_filter = new RP4WP_Manager_Filter( plugin_dir_path( __FILE__ ) . 'classes/filters/' );
 		$manager_filter->load_filters();
 
 		// Hooks
-		$manager_hook = new SRP_Manager_Hook( plugin_dir_path( __FILE__ ) . 'classes/hooks/' );
+		$manager_hook = new RP4WP_Manager_Hook( plugin_dir_path( __FILE__ ) . 'classes/hooks/' );
 		$manager_hook->load_hooks();
 	}
 
 }
 
-function __simple_related_posts_main() {
-	new Simple_Related_Posts();
+function __rp4wp_main() {
+	new RP4WP();
 }
 
 // Create object - Plugin init
-add_action( 'plugins_loaded', '__simple_related_posts_main' );
+add_action( 'plugins_loaded', '__rp4wp_main' );
 
 // Activation hook
-register_activation_hook( __FILE__, array( 'Simple_Related_Posts', 'activation' ) );
-
-// Deactivation hook
-register_deactivation_hook( __FILE__, array( 'Simple_Related_Posts', 'deactivation' ) );
+register_activation_hook( __FILE__, array( 'RP4WP', 'activation' ) );

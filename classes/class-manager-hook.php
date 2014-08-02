@@ -2,7 +2,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class SRP_Manager_Hook {
+class RP4WP_Manager_Hook {
 
 	private $hook_dir;
 	private static $hooks;
@@ -25,8 +25,8 @@ class SRP_Manager_Hook {
 
 			if ( ! $file->isDir() && ( strpos( $file->getFileName(), '.' ) !== 0 ) ) {
 
-				$class = SRP_Class_Manager::format_class_name( $file->getFileName() );
-				if ( 'SRP_Hook' != $class ) {
+				$class = RP4WP_Class_Manager::format_class_name( $file->getFileName() );
+				if ( 'RP4WP_Hook' != $class ) {
 					self::$hooks[$class] = new $class;
 				}
 

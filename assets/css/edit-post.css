@@ -1,37 +1,37 @@
-.srp_table_manage.sortable tr {
+.rp4wp_table_manage.sortable tr {
 	cursor: move;
 }
 
-.srp_table_manage td {
+.rp4wp_table_manage td {
 	padding-bottom: 11px;
 }
 
-.srp_table_manage.sortable td {
+.rp4wp_table_manage.sortable td {
 	background-position: 98% 50%;
 	background-image: url('../images/grabber.png');
 	background-repeat: no-repeat;
 }
 
-.srp_table_manage tr:nth-child(odd),
+.rp4wp_table_manage tr:nth-child(odd),
 .sp_pt_links_overview tr:nth-child(odd) {
 	background-color: #FCFCFC;
 }
 
-.srp_button_holder {
+.rp4wp_button_holder {
 	padding: 10px 0;
 	float: right;
 }
 
-.srp_button_holder span {
+.rp4wp_button_holder span {
 	margin-left: 10px;
 	float: left;
 }
 
-.srp_save_button {
+.rp4wp_save_button {
 	float: right;
 }
 
-.srp_ajaxloader {
+.rp4wp_ajaxloader {
 	height: 13px;
 	margin-left: 10px;
 }

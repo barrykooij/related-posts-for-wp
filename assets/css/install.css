@@ -22,26 +22,26 @@
 	margin-left: 0;
 }
 
-.srp-install-link-box {
+.rp4wp-install-link-box {
 	display: inline;
 	padding: 15px;
 	border: 1px solid #0074a2;
 }
 
-.srp-step .srp-install-link-box label {
+.rp4wp-step .rp4wp-install-link-box label {
 	padding-right: 20px;
 }
 
-.srp-step .srp-install-link-box input {
+.rp4wp-step .rp4wp-install-link-box input {
 	width: 40px;
 	text-align: center;
 }
 
-.srp-step .srp-install-link-box a.srp-link-now-btn {
+.rp4wp-step .rp4wp-install-link-box a.rp4wp-link-now-btn {
 	margin-left: 20px;
 	margin-right: 10px;
 }
 
-.srp-step-2 #progressbar {
+.rp4wp-step-2 #progressbar {
 	margin-top: 30px;
 }

@@ -2,7 +2,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class SRP_Class_Manager {
+class RP4WP_Class_Manager {
 
 	/**
 	 * Uppercase the character after the underscore, used as callback by SP_Class_Manager::format_class_name.
@@ -23,7 +23,7 @@ class SRP_Class_Manager {
 	 * @return string
 	 */
 	public static function format_class_name( $file_name ) {
-		return preg_replace_callback( "/(_[a-z])/", array( 'SRP_Class_Manager', 'capitalize_part' ), 'SRP_' . str_ireplace( '-', '_', str_ireplace( array( 'class-', '.php' ), "", $file_name ) ) );
+		return preg_replace_callback( "/(_[a-z])/", array( 'RP4WP_Class_Manager', 'capitalize_part' ), 'RP4WP_' . str_ireplace( '-', '_', str_ireplace( array( 'class-', '.php' ), "", $file_name ) ) );
 	}
 
 }

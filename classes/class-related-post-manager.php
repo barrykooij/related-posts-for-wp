@@ -1,6 +1,6 @@
 <?php
 
-class SRP_Related_Post_Manager {
+class RP4WP_Related_Post_Manager {
 
 	/**
 	 * Get related posts by post id and post type
@@ -17,8 +17,8 @@ class SRP_Related_Post_Manager {
 		// Build SQl
 		$sql = "
 		SELECT O.`word`, P.`ID`, P.`post_title`, SUM( R.`weight` ) AS `related_weight`
-		FROM `" . SRP_Related_Word_Manager::get_database_table() . "` O
-		INNER JOIN `" . SRP_Related_Word_Manager::get_database_table() . "` R ON R.`word` = O.`word`
+		FROM `" . RP4WP_Related_Word_Manager::get_database_table() . "` O
+		INNER JOIN `" . RP4WP_Related_Word_Manager::get_database_table() . "` R ON R.`word` = O.`word`
 		INNER JOIN `" . $wpdb->posts . "` P ON P.`ID` = R.`post_id`
 		WHERE 1=1
 		AND O.`post_id` = %d
@@ -67,7 +67,7 @@ class SRP_Related_Post_Manager {
 			'post_status'    => 'publish',
 			'meta_query'     => array(
 				array(
-					'key'     => SRP_Constants::PM_AUTO_LINKED,
+					'key'     => RP4WP_Constants::PM_AUTO_LINKED,
 					'compare' => 'NOT EXISTS',
 					'value'   => ''
 				),
@@ -88,14 +88,14 @@ class SRP_Related_Post_Manager {
 
 		if ( count( $related_posts ) > 0 ) {
 
-			$post_link_manager = new SRP_Post_Link_Manager();
+			$post_link_manager = new RP4WP_Post_Link_Manager();
 
 			foreach ( $related_posts as $related_post ) {
 				$post_link_manager->add( $post_id, $related_post->ID );
 			}
 		}
 
-		update_post_meta( $post_id, SRP_Constants::PM_AUTO_LINKED, 1);
+		update_post_meta( $post_id, RP4WP_Constants::PM_AUTO_LINKED, 1);
 
 		return true;
 	}

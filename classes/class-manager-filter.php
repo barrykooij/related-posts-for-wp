@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
-class SRP_Manager_Filter {
+class RP4WP_Manager_Filter {
 
 	private $filter_dir;
 	private static $filters;
@@ -20,8 +20,8 @@ class SRP_Manager_Filter {
 	 * @param $file_name
 	 */
 	public function load_filter( $file_name ) {
-		$class = SRP_Class_Manager::format_class_name( $file_name );
-		if ( 'SRP_Filter' != $class ) {
+		$class = RP4WP_Class_Manager::format_class_name( $file_name );
+		if ( 'RP4WP_Filter' != $class ) {
 			self::$filters[$class] = new $class;
 		}
 	}
@@ -40,8 +40,8 @@ class SRP_Manager_Filter {
 
 			if ( ! $file->isDir() && ( strpos( $file->getFileName(), '.' ) !== 0 ) ) {
 
-				$class = SRP_Class_Manager::format_class_name( $file->getFileName() );
-				if ( 'SRP_Filter' != $class ) {
+				$class = RP4WP_Class_Manager::format_class_name( $file->getFileName() );
+				if ( 'RP4WP_Filter' != $class ) {
 					self::$filters[$class] = new $class;
 				}
 

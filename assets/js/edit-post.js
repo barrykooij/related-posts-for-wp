@@ -2,8 +2,8 @@
  * Used on the post screen
  */
 jQuery(function($) {
-	$.each($('.srp_mb_manage'), function(k,v) {
-		new SRP_Related_Manager(v);
+	$.each($('.rp4wp_mb_manage'), function(k,v) {
+		new RP4WP_Related_Manager(v);
 	});
 });
 
@@ -13,7 +13,7 @@ jQuery(function($) {
  * @param tgt
  * @constructor
  */
-function SRP_Related_Manager(tgt) {
+function RP4WP_Related_Manager(tgt) {
 	this.container 	= tgt;
 
 	this.init = function() {
@@ -23,7 +23,7 @@ function SRP_Related_Manager(tgt) {
 
 	this.bind = function() {
 		var instance = this;
-		jQuery(this.container).find('.srp_table_manage .trash a').bind('click', function(){instance.delete_child(this);});
+		jQuery(this.container).find('.rp4wp_table_manage .trash a').bind('click', function(){instance.delete_child(this);});
 	};
 
 	this.fix_helper = function(e, ui) {
@@ -42,7 +42,7 @@ function SRP_Related_Manager(tgt) {
 			update: function(event, ui) {
 
 				jQuery(instance.container).parent().parent().find('h3').eq(0).append(
-						jQuery('<img>').attr('src', jQuery('#srp-dir-img').val()+'ajax-loader.gif').addClass('srp_ajaxloader')
+						jQuery('<img>').attr('src', jQuery('#rp4wp-dir-img').val()+'ajax-loader.gif').addClass('rp4wp_ajaxloader')
 				);
 
 				opts = {
@@ -52,16 +52,16 @@ function SRP_Related_Manager(tgt) {
 					cache: false,
 					dataType: 'json',
 					data:{
-						action: 'srp_related_sort',
-						srp_items: sortable_table.sortable('toArray').toString(),
-						nonce: jQuery(instance.container).find('#srp-ajax-nonce').val()
+						action: 'rp4wp_related_sort',
+						rp4wp_items: sortable_table.sortable('toArray').toString(),
+						nonce: jQuery(instance.container).find('#rp4wp-ajax-nonce').val()
 					},
 					success: function(response) {
-						jQuery('.srp_ajaxloader').remove();
+						jQuery('.rp4wp_ajaxloader').remove();
 						return;
 					},
 					error: function(xhr,textStatus,e) {
-						jQuery('.srp_ajaxloader').remove();
+						jQuery('.rp4wp_ajaxloader').remove();
 						return;
 					}
 				};
@@ -87,9 +87,9 @@ function SRP_Related_Manager(tgt) {
 			cache: false,
 			dataType: 'json',
 			data:{
-				action: 'srp_delete_link',
+				action: 'rp4wp_delete_link',
 				id: jQuery(tgt).closest('tr').attr('id'),
-				nonce: jQuery(instance.container).find('#srp-ajax-nonce').val()
+				nonce: jQuery(instance.container).find('#rp4wp-ajax-nonce').val()
 			},
 			success: function(response) {
 				jQuery(tgt).closest('tr').fadeTo('fast', 0).slideUp(function() {

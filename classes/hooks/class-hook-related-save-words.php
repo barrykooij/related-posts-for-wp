@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
-class SRP_Hook_Related_Save_Words extends SRP_Hook {
+class RP4WP_Hook_Related_Save_Words extends RP4WP_Hook {
 	protected $tag = 'save_post';
 	protected $args = 2;
 
@@ -26,7 +26,7 @@ class SRP_Hook_Related_Save_Words extends SRP_Hook {
 		}
 
 		// Save Words
-		$related_word_manager = new SRP_Related_Word_Manager();
+		$related_word_manager = new RP4WP_Related_Word_Manager();
 		$related_word_manager->save_words_of_post( $post_id );
 
 	}

@@ -2,7 +2,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class SRP_Cap_Manager {
+class RP4WP_Cap_Manager {
 
 	/**
 	 * Get custom post type capabilities

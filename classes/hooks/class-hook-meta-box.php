@@ -4,10 +4,10 @@ if ( !defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
-class SRP_Hook_Meta_Box extends SRP_Hook {
+class RP4WP_Hook_Meta_Box extends RP4WP_Hook {
 	protected $tag = 'admin_init';
 
 	public function run() {
-		new SRP_Meta_Box_Manage();
+		new RP4WP_Meta_Box_Manage();
 	}
 }

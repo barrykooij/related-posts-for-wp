@@ -2,7 +2,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-abstract class SRP_Hook {
+abstract class RP4WP_Hook {
 	protected $tag = null;
 	protected $priority = 10;
 	protected $args = 1;

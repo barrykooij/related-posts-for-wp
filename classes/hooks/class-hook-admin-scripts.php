@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
-class SRP_Hook_Admin_Scripts extends SRP_Hook {
+class RP4WP_Hook_Admin_Scripts extends RP4WP_Hook {
 	protected $tag = 'admin_enqueue_scripts';
 
 	public function run() {
@@ -15,19 +15,19 @@ class SRP_Hook_Admin_Scripts extends SRP_Hook {
 
 			// Load PL JS
 			wp_enqueue_script(
-				'srp_edit_post_js',
-				plugins_url( '/assets/js/edit-post.js', Simple_Related_Posts::get_plugin_file() ),
+				'rp4wp_edit_post_js',
+				plugins_url( '/assets/js/edit-post.js', RP4WP::get_plugin_file() ),
 				array( 'jquery', 'jquery-ui-sortable' )
 			);
 
 			// Make PL JavaScript strings translatable
 			// @todo add JS translation
-			//wp_localize_script( 'srp_edit_post_js', 'srp_js', SRP_Javascript_Strings::get() );
+			//wp_localize_script( 'rp4wp_edit_post_js', 'rp4wp_js', RP4WP_Javascript_Strings::get() );
 
 			// CSS
 			wp_enqueue_style(
-				'srp_edit_post_css',
-				plugins_url( '/assets/css/edit-post.css', Simple_Related_Posts::get_plugin_file() )
+				'rp4wp_edit_post_css',
+				plugins_url( '/assets/css/edit-post.css', RP4WP::get_plugin_file() )
 			);
 		}
 

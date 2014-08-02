@@ -4,9 +4,9 @@ if ( !defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
-class SRP_Related_Word_Manager {
+class RP4WP_Related_Word_Manager {
 
-	const DB_TABLE = 'srp_cache';
+	const DB_TABLE = 'rp4wp_cache';
 
 	/**
 	 * Get the database table
@@ -206,9 +206,9 @@ class SRP_Related_Word_Manager {
 
 		$post = get_post( $post_id );
 
-		$title_weight = apply_filters( 'srp_weight_title', 80 );
-		$tag_weight   = apply_filters( 'srp_weight_tag', 10 );
-		$cat_weight   = apply_filters( 'srp_weight_cat', 20 );
+		$title_weight = apply_filters( 'rp4wp_weight_title', 80 );
+		$tag_weight   = apply_filters( 'rp4wp_weight_tag', 10 );
+		$cat_weight   = apply_filters( 'rp4wp_weight_cat', 20 );
 
 		// Get words from content
 		$raw_words = $this->get_content_words( $post );
@@ -346,7 +346,7 @@ class SRP_Related_Word_Manager {
 		}
 
 		// Update this post as cached
-		update_post_meta( $post_id, SRP_Constants::PM_CACHED, 1 );
+		update_post_meta( $post_id, RP4WP_Constants::PM_CACHED, 1 );
 
 	}
 
@@ -365,7 +365,7 @@ class SRP_Related_Word_Manager {
 			'post_status'    => 'publish',
 			'meta_query'     => array(
 				array(
-					'key'     => SRP_Constants::PM_CACHED,
+					'key'     => RP4WP_Constants::PM_CACHED,
 					'compare' => 'NOT EXISTS',
 					'value'   => ''
 				),

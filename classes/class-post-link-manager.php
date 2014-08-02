@@ -4,7 +4,7 @@ if ( !defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
-class SRP_Post_Link_Manager {
+class RP4WP_Post_Link_Manager {
 
 	private $temp_child_order;
 
@@ -23,7 +23,7 @@ class SRP_Post_Link_Manager {
 	 */
 	private function create_link_args( $meta_key, $post_id ) {
 		$args = array(
-			'post_type'      => SRP_Constants::LINK_PT,
+			'post_type'      => RP4WP_Constants::LINK_PT,
 			'posts_per_page' => - 1,
 			'orderby'        => 'menu_order',
 			'order'          => 'ASC',
@@ -51,13 +51,13 @@ class SRP_Post_Link_Manager {
 	private function get_link_count( $parent_id ) {
 		$link_query = new WP_Query(
 			array(
-				'post_type'      => SRP_Constants::LINK_PT,
+				'post_type'      => RP4WP_Constants::LINK_PT,
 				'posts_per_page' => - 1,
 				'orderby'        => 'menu_order',
 				'order'          => 'ASC',
 				'meta_query'     => array(
 					array(
-						'key'     => SRP_Constants::PM_PARENT,
+						'key'     => RP4WP_Constants::PM_PARENT,
 						'value'   => $parent_id,
 						'compare' => '=',
 					),
@@ -85,17 +85,17 @@ class SRP_Post_Link_Manager {
 
 		// Create post link
 		$link_id = wp_insert_post( array(
-			'post_title'  => 'Simple Related Posts Link',
-			'post_type'   => SRP_Constants::LINK_PT,
+			'post_title'  => 'Related Posts for WordPress Link',
+			'post_type'   => RP4WP_Constants::LINK_PT,
 			'post_status' => 'publish',
 			'menu_order'  => $this->get_link_count( $parent_id ),
 		) );
 
 		// Create post meta
-		add_post_meta( $link_id, SRP_Constants::PM_PARENT, $parent_id );
-		add_post_meta( $link_id, SRP_Constants::PM_CHILD, $child_id );
+		add_post_meta( $link_id, RP4WP_Constants::PM_PARENT, $parent_id );
+		add_post_meta( $link_id, RP4WP_Constants::PM_CHILD, $child_id );
 
-		do_action( 'srp_after_link_add', $link_id );
+		do_action( 'rp4wp_after_link_add', $link_id );
 
 		// Return link id
 		return $link_id;
@@ -112,13 +112,13 @@ class SRP_Post_Link_Manager {
 	 */
 	public function delete( $link_id ) {
 		// Action
-		do_action( 'srp_before_link_delete', $link_id );
+		do_action( 'rp4wp_before_link_delete', $link_id );
 
 		// Delete link
 		wp_delete_post( $link_id, true );
 
 		// Action
-		do_action( 'srp_after_link_delete', $link_id );
+		do_action( 'rp4wp_after_link_delete', $link_id );
 
 		return;
 	}
@@ -141,7 +141,7 @@ class SRP_Post_Link_Manager {
 		$o_post = $post;
 
 		// Do WP_Query
-		$link_args = $this->create_link_args( SRP_Constants::PM_PARENT, $parent_id );
+		$link_args = $this->create_link_args( RP4WP_Constants::PM_PARENT, $parent_id );
 
 		/*
 		 * Check $extra_args for `posts_per_page`.
@@ -170,7 +170,7 @@ class SRP_Post_Link_Manager {
 		// @todo remove the usage of get_the_id()
 		$child_ids = array();
 		while ( $link_query->have_posts() ) : $link_query->the_post();
-			$child_ids[get_the_id()] = get_post_meta( get_the_id(), SRP_Constants::PM_CHILD, true );
+			$child_ids[get_the_id()] = get_post_meta( get_the_id(), RP4WP_Constants::PM_CHILD, true );
 		endwhile;
 
 		// Get children with custom args
@@ -252,17 +252,17 @@ class SRP_Post_Link_Manager {
 	 */
 	public function delete_links_related_to( $post_id ) {
 		$involved_query = new WP_Query( array(
-			'post_type'      => SRP_Constants::LINK_PT,
+			'post_type'      => RP4WP_Constants::LINK_PT,
 			'posts_per_page' => - 1,
 			'meta_query'     => array(
 				'relation' => 'OR',
 				array(
-					'key'     => SRP_Constants::PM_PARENT,
+					'key'     => RP4WP_Constants::PM_PARENT,
 					'value'   => $post_id,
 					'compare' => '=',
 				),
 				array(
-					'key'     => SRP_Constants::PM_CHILD,
+					'key'     => RP4WP_Constants::PM_CHILD,
 					'value'   => $post_id,
 					'compare' => '=',
 				)
@@ -296,12 +296,12 @@ class SRP_Post_Link_Manager {
 		$return = "";
 
 		if ( count( $children ) > 0 ) {
-			$return .= "<div class='srp-related-posts'>\n";
+			$return .= "<div class='rp4wp-related-posts'>\n";
 
 			$return .= "<ul>\n";
 			foreach ( $children as $child ) {
 
-				$return .= "<li class='srp-post-{$child->ID}'>";
+				$return .= "<li class='rp4wp-post-{$child->ID}'>";
 				$return .= "<{$header_tag}>";
 				if ( $link == 'true' ) {
 					$return .= "<a href='" . get_permalink( $child->ID ) . "'>";

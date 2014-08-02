@@ -4,7 +4,7 @@ if ( !defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
-class SRP_Hook_Link_Related_Screen extends SRP_Hook {
+class RP4WP_Hook_Link_Related_Screen extends RP4WP_Hook {
 	protected $tag = 'admin_menu';
 
 	public function run() {
@@ -14,7 +14,7 @@ class SRP_Hook_Link_Related_Screen extends SRP_Hook {
 		$this->handle_bulk_link();
 
 		// Add Page
-		add_submenu_page( null, 'Link_Related_Screen', 'Link_Related_Screen', 'edit_posts', 'srp_link_related', array( $this, 'content' ) );
+		add_submenu_page( null, 'Link_Related_Screen', 'Link_Related_Screen', 'edit_posts', 'rp4wp_link_related', array( $this, 'content' ) );
 	}
 
 	/**
@@ -32,7 +32,7 @@ class SRP_Hook_Link_Related_Screen extends SRP_Hook {
 	private function handle_create_link() {
 
 		// Check if link is chosen
-		if ( isset( $_GET['srp_create_link'] ) && isset( $_GET['srp_parent'] ) ) {
+		if ( isset( $_GET['rp4wp_create_link'] ) && isset( $_GET['rp4wp_parent'] ) ) {
 
 			// Check if user is allowed to do this
 			if ( !current_user_can( 'edit_posts' ) ) {
@@ -40,13 +40,13 @@ class SRP_Hook_Link_Related_Screen extends SRP_Hook {
 			}
 
 			// Get parent
-			$parent = $_GET['srp_parent'];
+			$parent = $_GET['rp4wp_parent'];
 
 			// Create link
-			$post_link_manager = new SRP_Post_Link_Manager();
+			$post_link_manager = new RP4WP_Post_Link_Manager();
 
 			// Create link
-			$post_link_manager->add( $parent, $_GET['srp_create_link'] );
+			$post_link_manager->add( $parent, $_GET['rp4wp_create_link'] );
 
 			// Send back
 			$redirect_url = get_admin_url() . "post.php?post={$parent}&action=edit";
@@ -67,10 +67,10 @@ class SRP_Hook_Link_Related_Screen extends SRP_Hook {
 	 */
 	private function handle_bulk_link() {
 
-		if ( isset( $_POST['srp_bulk'] ) && isset( $_GET['srp_parent'] ) ) {
+		if ( isset( $_POST['rp4wp_bulk'] ) && isset( $_GET['rp4wp_parent'] ) ) {
 
 			// Get parent
-			$parent = $_GET['srp_parent'];
+			$parent = $_GET['rp4wp_parent'];
 
 			// Check if user is allowed to do this
 			if ( !current_user_can( 'edit_posts' ) ) {
@@ -78,10 +78,10 @@ class SRP_Hook_Link_Related_Screen extends SRP_Hook {
 			}
 
 			// Post Link Manager
-			$post_link_manager = new SRP_Post_Link_Manager();
+			$post_link_manager = new RP4WP_Post_Link_Manager();
 
-			if ( count( $_POST['srp_bulk'] ) > 0 ) {
-				foreach ( $_POST['srp_bulk'] as $bulk_post ) {
+			if ( count( $_POST['rp4wp_bulk'] ) > 0 ) {
+				foreach ( $_POST['rp4wp_bulk'] as $bulk_post ) {
 
 					// Create link
 					$post_link_manager->add( $parent, $bulk_post );
@@ -109,12 +109,12 @@ class SRP_Hook_Link_Related_Screen extends SRP_Hook {
 	 */
 	public function content() {
 
-		if ( !isset( $_GET['srp_parent'] ) ) {
+		if ( !isset( $_GET['rp4wp_parent'] ) ) {
 			wp_die( "Can't load page, no parent set. Please contact support and provide them this message" );
 		}
 
 		// Parent
-		$parent = $_GET['srp_parent'];
+		$parent = $_GET['rp4wp_parent'];
 
 		// Setup cancel URL
 		$cancel_url = get_admin_url() . "post.php?post={$parent}&action=edit";
@@ -128,15 +128,15 @@ class SRP_Hook_Link_Related_Screen extends SRP_Hook {
 		?>
 		<div class="wrap">
 			<h2>
-				<?php _e( 'Posts', 'simple-related-posts' ); ?>
-				<a href="<?php echo $cancel_url; ?>" class="add-new-h2"><?php _e( 'Cancel linking', 'simple-related-posts' ); ?></a>
+				<?php _e( 'Posts', 'related-posts-for-wp' ); ?>
+				<a href="<?php echo $cancel_url; ?>" class="add-new-h2"><?php _e( 'Cancel linking', 'related-posts-for-wp' ); ?></a>
 			</h2>
 
 			<form id="sp-list-table-form" method="post">
 				<input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>" />
 				<?php
 				// Create the link table
-				$list_table = new SRP_Link_Related_Table();
+				$list_table = new RP4WP_Link_Related_Table();
 
 				// Set the search
 				$list_table->set_search( $search );
@@ -145,7 +145,7 @@ class SRP_Hook_Link_Related_Screen extends SRP_Hook {
 				$list_table->prepare_items();
 
 				// Add the search box
-				$list_table->search_box( __( 'Search', 'simple-related-posts' ), 'sp-search' );
+				$list_table->search_box( __( 'Search', 'related-posts-for-wp' ), 'sp-search' );
 
 				// Display the table
 				$list_table->display();

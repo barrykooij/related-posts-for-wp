@@ -8,7 +8,7 @@ if ( !class_exists( 'WP_List_Table' ) ) {
 	require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 }
 
-class SRP_Link_Related_Table extends WP_List_Table {
+class RP4WP_Link_Related_Table extends WP_List_Table {
 
 	private $post_type;
 	private $data;
@@ -28,7 +28,7 @@ class SRP_Link_Related_Table extends WP_List_Table {
 	 * @return string
 	 */
 	private function get_current_view() {
-		return ( isset ( $_GET['srp_view'] ) ? $_GET['srp_view'] : 'related' );
+		return ( isset ( $_GET['rp4wp_view'] ) ? $_GET['rp4wp_view'] : 'related' );
 	}
 
 	/**
@@ -44,15 +44,15 @@ class SRP_Link_Related_Table extends WP_List_Table {
 		$current = $this->get_current_view();
 
 		$views_arr = array(
-			'related' => __( 'Related Posts', 'simple-related-posts' ),
-			'all'     => __( 'All Posts', 'simple-related-posts' ),
+			'related' => __( 'Related Posts', 'related-posts-for-wp' ),
+			'all'     => __( 'All Posts', 'related-posts-for-wp' ),
 		);
 
 		$new_views = array();
 
 		foreach ( $views_arr as $key => $val ) {
 			$new_views[$key] = "<a href='" . add_query_arg( array(
-					'srp_view' => $key,
+					'rp4wp_view' => $key,
 					'paged'   => 1
 				) ) . "'" . ( ( $current == $key ) ? " class='current'" : "" ) . ">{$val}</a>";
 		}
@@ -94,7 +94,7 @@ class SRP_Link_Related_Table extends WP_List_Table {
 	public function get_columns() {
 		$columns = array(
 			'cb'    => '<input type="checkbox" />',
-			'title' => __( 'Title', 'simple-related-posts' ),
+			'title' => __( 'Title', 'related-posts-for-wp' ),
 		);
 
 		return $columns;
@@ -138,8 +138,8 @@ class SRP_Link_Related_Table extends WP_List_Table {
 				'suppress_filters' => false
 			) );
 		} else {
-			$rpm    = new SRP_Related_Post_Manager();
-			$parent = $_GET['srp_parent'];
+			$rpm    = new RP4WP_Related_Post_Manager();
+			$parent = $_GET['rp4wp_parent'];
 			$posts  = $rpm->get_related_posts( $parent );
 		}
 
@@ -207,7 +207,7 @@ class SRP_Link_Related_Table extends WP_List_Table {
 	 */
 	public function column_cb( $item ) {
 		return sprintf(
-			'<input type="checkbox" name="srp_bulk[]" value="%s" />', $item['ID']
+			'<input type="checkbox" name="rp4wp_bulk[]" value="%s" />', $item['ID']
 		);
 	}
 
@@ -221,9 +221,9 @@ class SRP_Link_Related_Table extends WP_List_Table {
 	public function column_title( $item ) {
 		$actions = array(
 			'link' => sprintf(
-				'<a href="?page=%s&amp;srp_parent=%s&amp;srp_create_link=%s">' . __( 'Link Post', 'simple-related-posts' ) . '</a>',
+				'<a href="?page=%s&amp;rp4wp_parent=%s&amp;rp4wp_create_link=%s">' . __( 'Link Post', 'related-posts-for-wp' ) . '</a>',
 				$_REQUEST['page'],
-				$_GET['srp_parent'],
+				$_GET['rp4wp_parent'],
 				$item['ID']
 			),
 		);
@@ -253,7 +253,7 @@ class SRP_Link_Related_Table extends WP_List_Table {
 	 */
 	public function get_bulk_actions() {
 		$actions = array(
-			'link' => __( 'Link Posts', 'simple-related-posts' )
+			'link' => __( 'Link Posts', 'related-posts-for-wp' )
 		);
 
 		return $actions;

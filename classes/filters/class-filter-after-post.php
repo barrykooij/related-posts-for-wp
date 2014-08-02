@@ -4,7 +4,7 @@ if ( !defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
-class SRP_Filter_After_Post extends SRP_Filter {
+class RP4WP_Filter_After_Post extends RP4WP_Filter {
 	protected $tag = 'the_content';
 	protected $priority = 99;
 
@@ -19,10 +19,10 @@ class SRP_Filter_After_Post extends SRP_Filter {
 	 */
 	private function create_post_list( $posts, $display_excerpt, $display_image ) {
 
-		$content = "<div class='srp-related-posts'>\n";
+		$content = "<div class='rp4wp-related-posts'>\n";
 
 		// Output the relation title
-		$content .= "<h3>" . __( 'Related Posts', 'simple-related-posts' ) . "</h3> \n";
+		$content .= "<h3>" . __( 'Related Posts', 'related-posts-for-wp' ) . "</h3> \n";
 
 		// Open the list
 		$content .= "<ul>\n";
@@ -45,7 +45,7 @@ class SRP_Filter_After_Post extends SRP_Filter {
 					 */
 					$thumb_size = apply_filters( 'pc_apdc_thumbnail_size', 'post-thumbnail' );
 
-					$content .= "<div class='srp-related-post-image'>" . PHP_EOL;
+					$content .= "<div class='rp4wp-related-post-image'>" . PHP_EOL;
 					$content .= "<a href='" . get_permalink( $pc_post->ID ) . "'>";
 					$content .= get_the_post_thumbnail( $pc_post->ID, $thumb_size );
 					$content .= "</a>";
@@ -53,7 +53,7 @@ class SRP_Filter_After_Post extends SRP_Filter {
 				}
 			}
 
-			$content .= "<div class='srp-related-post-content'>" . PHP_EOL;
+			$content .= "<div class='rp4wp-related-post-content'>" . PHP_EOL;
 			$content .= "<a href='" . get_permalink( $pc_post->ID ) . "'>" . $pc_post->post_title . "</a>";
 
 			if ( '1' == $display_excerpt ) {
@@ -97,7 +97,7 @@ class SRP_Filter_After_Post extends SRP_Filter {
 		}
 
 		// Post Link Manager
-		$pl_manager = new SRP_Post_Link_Manager();
+		$pl_manager = new RP4WP_Post_Link_Manager();
 
 		// Get the linked posts
 		$related_posts = $pl_manager->get_children( $id );
