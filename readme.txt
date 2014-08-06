@@ -50,8 +50,11 @@ We're not sure about their feelings for us, but we do love WPML. That's why we m
 Soon to come!
 
 == Screenshots ==
-
-Soon to come!
+1. After activating Related Posts for WordPress, our wizard will automatically start. The first step is indexing and caching your posts.
+2. The second step of the wizard is linking related posts for your existing content! You can of course also skip this step.
+3. That's it! With one click you are good to go!
+4. A new meta box is added to your post edit screens allowing you to link related posts, we will sort them on what we think is related (where top is most related).
+5. Related posts are automatically added below your posts!
 
 == Changelog ==
 
