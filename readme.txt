@@ -58,5 +58,5 @@ Soon to come!
 
 == Changelog ==
 
-= 1.0.0 - July 13, 2014 =
+= 1.0.0 - August 7, 2014 =
 * Initial version
