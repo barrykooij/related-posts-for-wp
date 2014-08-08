@@ -4,7 +4,7 @@ Donate link: http://www.barrykooij.com/
 Tags: related posts for wordpress, related posts for wp, simple related posts, easy related posts, related posts, related, relations, internal links, seo
 Requires at least: 3.6
 Tested up to: 3.9.2
-Stable tag: 1.0.1
+Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
