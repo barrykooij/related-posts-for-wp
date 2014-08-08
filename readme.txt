@@ -1,9 +1,9 @@
 === Related Posts for WordPress ===
 Contributors: barrykooij
-Donate link: https://www.barrykooij.com/
+Donate link: http://www.barrykooij.com/
 Tags: related posts for wordpress, related posts for wp, simple related posts, easy related posts, related posts, related, relations, internal links, seo
 Requires at least: 3.6
-Tested up to: 3.9.1
+Tested up to: 3.9.2
 Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -47,7 +47,17 @@ We love love WPML, that's why we made Related Posts for WordPress fully compatib
 
 == Frequently Asked Questions ==
 
-Soon to come!
+= Where's the settings screen? =
+Nowhere, there's no settings screen.
+
+= Is there any way to custom CSS ? =
+Not yet via the plugin, this will be added in future versions. Elements do have classes so you can style them in your own/theme CSS.
+
+= Is there a theme function so I can output this list anywhere in my theme I want? =
+Not yet, we're working on this and this will be added soon!
+
+= Does the plugin uses it's own database table ? =
+There is one custom table created for the post cache, this table will however not be used at the frontend of your website. Related Posts are fetched with normal WP_Query objects.
 
 == Screenshots ==
 1. After activating Related Posts for WordPress, our wizard will automatically start. The first step is indexing and caching your posts.
