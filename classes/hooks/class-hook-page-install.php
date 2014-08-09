@@ -14,6 +14,12 @@ class RP4WP_Hook_Page_Install extends RP4WP_Hook {
 		add_action( 'load-' . $menu_hook, array( $this, 'enqueue_install_assets' ) );
 	}
 
+	/**
+	 * Enqueue install assets
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 */
 	public function enqueue_install_assets() {
 		global $wp_scripts;
 		wp_enqueue_style( 'rp4wp-install-css', plugins_url( '/assets/css/install.css', RP4WP::get_plugin_file() ) );
