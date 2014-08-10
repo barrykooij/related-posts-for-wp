@@ -43,7 +43,7 @@ class RP4WP_Hook_Settings_Page extends RP4WP_Hook {
 		<div class="rp4wp-sidebar">
 
 			<div class="rp4wp-box">
-				<div class="sidebar-header">
+				<div class="rp4wp-sidebar-header">
 					<h3>Related Posts for WordPress</h3>
 				</div>
 
