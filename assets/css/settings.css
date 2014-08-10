@@ -17,21 +17,15 @@
 	margin-bottom: 20px;
 }
 
-.rp4wp-box-upgrade {
-	background: #222;
-	color: #ddd;
-	padding: 20px;
-	-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
-}
-
-.rp4wp-box-upgrade h3 {
-	color: #fff;
-	border: 0;
-	padding: 0;
-	margin: 0;
-}
-
-.sidebar-header {
+.rp4wp-sidebar-header {
 	line-height: 0;
 	border-bottom: 2px solid #005592;
+}
+
+.rp4wp-description {
+	display: block;
+	margin: 5px 0;
+	line-height: 1.4em;
+	color: #666;
+	font-style: italic;
 }
