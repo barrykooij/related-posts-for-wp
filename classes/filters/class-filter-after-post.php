@@ -43,7 +43,7 @@ class RP4WP_Filter_After_Post extends RP4WP_Filter {
 					 *
 					 * @api String $thumbnail_size The current/default thumbnail size.
 					 */
-					$thumb_size = apply_filters( 'pc_apdc_thumbnail_size', 'post-thumbnail' );
+					$thumb_size = apply_filters( 'rp4wp_thumbnail_size', 'post-thumbnail' );
 
 					$content .= "<div class='rp4wp-related-post-image'>" . PHP_EOL;
 					$content .= "<a href='" . get_permalink( $pc_post->ID ) . "'>";

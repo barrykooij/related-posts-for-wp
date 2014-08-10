@@ -92,7 +92,7 @@ class RP4WP_Related_Word_Manager {
 		}
 
 		// Words to ignore
-		return apply_filters( 'pc_ignored_words', $ignored_words );
+		return apply_filters( 'rp4wp_ignored_words', $ignored_words );
 	}
 
 	/**
