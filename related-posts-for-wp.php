@@ -1,5 +1,4 @@
 <?php
-
 /*
 	Plugin Name: Related Posts for WordPress
 	Plugin URI: http://www.barrykooij.com/
@@ -25,9 +24,26 @@
 
 class RP4WP {
 
+	private static $instance = null;
+
 	const VERSION = '1.1.0-beta';
 
-	private $settings = null;
+	public $settings = null;
+
+	/**
+	 * Singleton get method
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 *
+	 * @return RP4WP
+	 */
+	public static function get() {
+		if(null == self::$instance) {
+			self::$instance = new self();
+		}
+		return self::$instance;
+	}
 
 	/**
 	 * Get the plugin file
@@ -68,7 +84,7 @@ class RP4WP {
 	/**
 	 * The constructor
 	 */
-	public function __construct() {
+	private function __construct() {
 		$this->init();
 	}
 
@@ -107,8 +123,12 @@ class RP4WP {
 
 }
 
+function RP4WP() {
+	return RP4WP::get();
+}
+
 function __rp4wp_main() {
-	new RP4WP();
+	RP4WP();
 }
 
 // Create object - Plugin init
