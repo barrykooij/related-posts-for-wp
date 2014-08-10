@@ -25,6 +25,10 @@
 
 class RP4WP {
 
+	const VERSION = '1.1.0-beta';
+
+	private $settings = null;
+
 	/**
 	 * Get the plugin file
 	 *
@@ -85,6 +89,11 @@ class RP4WP {
 			// Redirect to installation wizard
 			wp_redirect( admin_url() . '?page=rp4wp_install', 301 );
 			exit;
+		}
+
+		// Setup settings
+		if ( is_admin() ) {
+			$this->settings = new RP4WP_Settings();
 		}
 
 		// Filters
