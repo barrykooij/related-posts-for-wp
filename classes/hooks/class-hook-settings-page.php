@@ -47,9 +47,7 @@ class RP4WP_Hook_Settings_Page extends RP4WP_Hook {
 					<h3>Related Posts for WordPress</h3>
 				</div>
 
-				<p><?php _e( 'Plugin version', 'related-posts-for-wp' ); ?>: 1.0.0</p>
-
-				<p><?php _e( 'PHP version:', 'related-posts-for-wp' ); ?> <?php echo phpversion(); ?></p>
+				<p><?php _e( 'Plugin version', 'related-posts-for-wp' ); ?>: <?php echo RP4WP::VERSION; ?></p>
 			</div>
 
 			<div class="rp4wp-box">
@@ -61,7 +59,7 @@ class RP4WP_Hook_Settings_Page extends RP4WP_Hook {
 
 				<p><?php printf( __( "<a href='%s'>Give us a review</a>", 'related-posts-for-wp' ), 'http://wordpress.org/support/view/plugin-reviews/related-posts-for-wp' ); ?></p>
 
-				<p><?php printf( __( "<a href='%s'>Release blog post</a>", 'related-posts-for-wp' ), 'http://www.barrykooij.com/related-posts-wordpress/' ); ?></p>
+				<p><?php printf( __( "<a href='%s'>Release blog post</a>", 'related-posts-for-wp' ), 'http://www.barrykooij.com/related-posts-wordpress/?utm_source=plugin&utm_medium=link&utm_campaign=sidebar' ); ?></p>
 			</div>
 
 			<div class="rp4wp-box">
