@@ -15,7 +15,7 @@ class RP4WP_Hook_Ajax_Install_Link_Posts extends RP4WP_Hook {
 		// Related Post Manager object
 		$related_post_manager = new RP4WP_Related_Post_Manager();
 
-		// Link 200 posts
+		// Link 5 posts
 		if ( true === $related_post_manager->link_related_posts( $rel_amount, 5 ) ) {
 
 			// Check if we're done
