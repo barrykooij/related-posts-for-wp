@@ -4,7 +4,7 @@ Donate link: http://www.barrykooij.com/
 Tags: related posts for wordpress, related posts for wp, simple related posts, easy related posts, related posts, related, relations, internal links, seo
 Requires at least: 3.6
 Tested up to: 3.9.2
-Stable tag: 1.0.0	
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -67,6 +67,13 @@ There is one custom table created for the post cache, this table will however no
 5. Related posts are automatically added below your posts!
 
 == Changelog ==
+
+= 1.1.0 - August 11, 2014 =
+* Added option screen.
+* Added to option to automatically link related posts on new posts, enabled by default.
+* Added 'rp4wp_ignored_words' filter.
+* Added 'rp4wp_thumbnail_size' filter.
+* Added missing ABSPATH checks.
 
 = 1.0.0 - August 7, 2014 =
 * Initial version
