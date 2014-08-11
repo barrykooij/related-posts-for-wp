@@ -28,6 +28,9 @@ class RP4WP {
 
 	const VERSION = '1.1.0-beta';
 
+	/**
+	 * @var RP4WP_Settings
+	 */
 	public $settings = null;
 
 	/**
