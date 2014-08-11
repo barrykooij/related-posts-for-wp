@@ -80,7 +80,7 @@ class RP4WP_Hook_Page_Install extends RP4WP_Hook {
 				<p style="font-weight: bold;">Do NOT close this window if you click the "Link now" button, wait for this process to finish and this wizard to take you to the next step.</p>
 				<br class="clear" />
 				<p class="rp4wp-install-link-box">
-					<label for="rp4wp_related_posts_amount">Amount of related posts per post:</label><input class="form-input-tip" type="text" id="rp4wp_related_posts_amount" value="5" />
+					<label for="rp4wp_related_posts_amount">Amount of related posts per post:</label><input class="form-input-tip" type="text" id="rp4wp_related_posts_amount" value="3" />
 					<a href="javascript:;" class="button button-primary button-large rp4wp-link-now-btn" id="rp4wp-link-now">Link now</a>
 					<a href="<?php echo admin_url(); ?>?page=rp4wp_install&step=3" class="button">Skip linking</a>
 				</p>

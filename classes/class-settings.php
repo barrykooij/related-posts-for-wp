@@ -37,7 +37,7 @@ class RP4WP_Settings {
 						'label'       => __( 'Amount of Posts', 'related-posts-for-wp' ),
 						'description' => __( 'The amount of automatically linked post', 'related-posts-for-wp' ),
 						'type'        => 'text',
-						'default'     => '',
+						'default'     => '3',
 					)
 				) )
 		);
