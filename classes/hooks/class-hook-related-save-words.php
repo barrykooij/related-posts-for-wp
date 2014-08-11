@@ -25,6 +25,11 @@ class RP4WP_Hook_Related_Save_Words extends RP4WP_Hook {
 			return;
 		}
 
+		// Post status must be publish
+		if ( 'publsh' != $post->post_status ) {
+			return;
+		}
+
 		// Save Words
 		$related_word_manager = new RP4WP_Related_Word_Manager();
 		$related_word_manager->save_words_of_post( $post_id );
