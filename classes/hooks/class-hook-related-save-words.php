@@ -26,7 +26,7 @@ class RP4WP_Hook_Related_Save_Words extends RP4WP_Hook {
 		}
 
 		// Post status must be publish
-		if ( 'publsh' != $post->post_status ) {
+		if ( 'publish' != $post->post_status ) {
 			return;
 		}
 
