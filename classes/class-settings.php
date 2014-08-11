@@ -89,7 +89,7 @@ class RP4WP_Settings {
 
 
 			// Register section setting
-			register_setting( self::PAGE, self::PAGE );
+			register_setting( self::PAGE, self::PAGE, array( $this, 'sanitize_option' ) );
 		}
 	}
 
@@ -110,7 +110,7 @@ class RP4WP_Settings {
 	 *
 	 * @param $field
 	 *
-	 * @since  1.0.0
+	 * @since  1.1.0
 	 * @access public
 	 */
 	public function do_field( $field ) {
@@ -132,6 +132,33 @@ class RP4WP_Settings {
 
 		// End of line
 		echo PHP_EOL;
+
+	}
+
+	/**
+	 * Sanitize the option value
+	 *
+	 * @param array $post_data
+	 *
+	 * @since  1.1.0
+	 * @access public
+	 *
+	 * @return array
+	 */
+	public function sanitize_option( $post_data ) {
+
+		// Unset automatic_linking if not post
+		if ( !isset( $post_data['automatic_linking'] ) ) {
+			$post_data['automatic_linking'] = 0;
+		}
+
+		// automatic_linking must be an integer
+		$post_data['automatic_linking'] = intval($post_data['automatic_linking']);
+
+		// automatic_linking_post_amount must be an integer
+		$post_data['automatic_linking_post_amount'] = intval($post_data['automatic_linking_post_amount']);
+
+		return $post_data;
 
 	}
 
