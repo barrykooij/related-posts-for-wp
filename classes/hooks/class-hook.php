@@ -1,6 +1,8 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( !defined( 'ABSPATH' ) ) {
+	exit;
+} // Exit if accessed directly
 
 abstract class RP4WP_Hook {
 	protected $tag = null;

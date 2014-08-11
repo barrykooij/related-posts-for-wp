@@ -1,5 +1,9 @@
 <?php
 
+if ( !defined( 'ABSPATH' ) ) {
+	exit;
+} // Exit if accessed directly
+
 class RP4WP_Hook_Post_Type extends RP4WP_Hook {
 	protected $tag = 'init';
 
