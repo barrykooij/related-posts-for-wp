@@ -1,0 +1,28 @@
+{
+  "name": "related-posts-for-wp",
+  "title": "Related Posts for WordPress",
+  "version": "1.1.0",
+  "homepage": "http://wordpress.org/plugins/related-posts-for-wp/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/barrykooij/related-posts-for-wp.git"
+  },
+  "main": "Gruntfile.js",
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-uglify": "~0.5.1",
+    "grunt-contrib-less": "~0.11.4",
+    "grunt-contrib-cssmin": "~0.10.0",
+    "grunt-shell": "~0.7.0",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-contrib-clean": "~0.6.0",
+    "grunt-checktextdomain": "^0.1.1",
+    "grunt-wp-i18n": "^0.4.6",
+    "grunt-contrib-jshint": "^0.10.0"
+  },
+  "engines": {
+    "node": ">=0.8.0",
+    "npm": ">=1.1.0"
+  }
+}
