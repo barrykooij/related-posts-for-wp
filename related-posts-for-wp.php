@@ -111,9 +111,7 @@ class RP4WP {
 		}
 
 		// Setup settings
-		if ( is_admin() ) {
-			$this->settings = new RP4WP_Settings();
-		}
+		$this->settings = new RP4WP_Settings();
 
 		// Filters
 		$manager_filter = new RP4WP_Manager_Filter( plugin_dir_path( __FILE__ ) . 'classes/filters/' );
