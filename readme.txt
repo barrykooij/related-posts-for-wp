@@ -4,7 +4,7 @@ Donate link: http://www.barrykooij.com/
 Tags: related posts for wordpress, related posts for wp, simple related posts, easy related posts, related posts, related, relations, internal links, seo
 Requires at least: 3.6
 Tested up to: 3.9.2
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,7 +29,6 @@ Everyone makes mistakes, so do we. That's why you can easily modify all automati
 
 = WPML compatible =
 Related Posts for WordPress is fully compatible with WPML. You can automatically and manually link related posts in their own language.
-
 
 **More information**
 
@@ -74,19 +73,19 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
-= trunk ==
+= 1.2.0 : August 14, 2014 ==
 * Related Posts heading text is now a setting.
 * Amount of words in excerpt is now a setting.
 * Displaying images of related posts is now a setting.
 * Frontend CSS is now editable via settings.
 * Added 'rp4wp_heading' filter, allows filtering of complete related posts block heading.
 
-= 1.1.0 - August 11, 2014 =
+= 1.1.0 : August 11, 2014 =
 * Added settings screen.
 * Added to option to automatically link related posts on new posts, enabled by default.
 * Added 'rp4wp_ignored_words' filter.
 * Added 'rp4wp_thumbnail_size' filter.
 * Added missing ABSPATH checks.
 
-= 1.0.0 - August 7, 2014 =
+= 1.0.0 : August 7, 2014 =
 * Initial version
