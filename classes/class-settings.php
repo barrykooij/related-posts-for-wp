@@ -4,6 +4,11 @@ if ( !defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
+/**
+ * Class RP4WP_Settings
+ *
+ * @todo Make class for each input type with own sanitize method.
+ */
 class RP4WP_Settings {
 
 	const PREFIX = 'rp4wp_';
@@ -18,12 +23,19 @@ class RP4WP_Settings {
 	 */
 	public function __construct() {
 
+		// CSS default
+		$css_default_lines = array();
+		$css_default_lines[] = '.rp4wp-related-posts ul {padding:0;margin:0;float:left;}';
+		$css_default_lines[] = '.rp4wp-related-posts li{list-style:none;}';
+		$css_default_lines[] = '.rp4wp-related-post-image{width:35%;padding-right:25px;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;float:left;}';
+		$css_default_lines[] = '.rp4wp-related-post-content{width: 65%;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;float:left;}';
+
 		// The fields
 		$this->sections = array(
 			self::PREFIX . 'automatic_linking' => array(
 				'id'          => 'automatic_linking',
 				'label'       => __( 'Automatic post linking', 'related-posts-for-wp' ),
-				'description' => __( 'This is the automatic post link section.', 'related-posts-for-wp' ),
+				'description' => __( 'This section contains automatic post link related settings.', 'related-posts-for-wp' ),
 				'fields'      => array(
 					array(
 						'id'          => 'automatic_linking',
@@ -38,6 +50,40 @@ class RP4WP_Settings {
 						'description' => __( 'The amount of automatically linked post', 'related-posts-for-wp' ),
 						'type'        => 'text',
 						'default'     => '3',
+					)
+				) ),
+			self::PREFIX . 'css' => array(
+				'id'          => 'css',
+				'label'       => __( 'Frontend Settings', 'related-posts-for-wp' ),
+				'description' => __( 'This section contains frontend related settings.', 'related-posts-for-wp' ),
+				'fields'      => array(
+					array(
+						'id'          => 'heading_text',
+						'label'       => __( 'Heading text	', 'related-posts-for-wp' ),
+						'description' => __( 'The text that is displayed above the related posts. To disable, leave field empty.', 'related-posts-for-wp' ),
+						'type'        => 'text',
+						'default'     => 'Related Posts',
+					),
+					array(
+						'id'          => 'excerpt_length',
+						'label'       => __( 'Exceprt length', 'related-posts-for-wp' ),
+						'description' => __( 'The amount of characters to be displayed below the title on website. To disable, set value to 0.', 'related-posts-for-wp' ),
+						'type'        => 'text',
+						'default'     => '25',
+					),
+					array(
+						'id'          => 'display_image',
+						'label'       => __( 'Display Image', 'related-posts-for-wp' ),
+						'description' => __( 'Checking this will enable displaying featured images of related posts.', 'related-posts-for-wp' ),
+						'type'        => 'checkbox',
+						'default'     => 1,
+					),
+					array(
+						'id'          => 'css',
+						'label'       => __( 'CSS', 'related-posts-for-wp' ),
+						'description' => __( 'Warning! This is an advanced feature! An error here will break frontend display. To disable, leave field empty.', 'related-posts-for-wp' ),
+						'type'        => 'textarea',
+						'default'     => implode(PHP_EOL, $css_default_lines),
 					)
 				) )
 		);
@@ -127,6 +173,9 @@ class RP4WP_Settings {
 			case 'text':
 				echo '<input type="text" name="' . self::PAGE . '[' . $field['id'] . ']' . '" id="' . $field['id'] . '" value="' . $this->get_option( $field['id'] ) . '" />';
 				break;
+			case 'textarea':
+				echo '<textarea name="' . self::PAGE . '[' . $field['id'] . ']' . '" id="' . $field['id'] . '">' . $this->get_option( $field['id'] ) . '</textarea>';
+				break;
 		}
 
 		// Description
@@ -151,9 +200,14 @@ class RP4WP_Settings {
 	 */
 	public function sanitize_option( $post_data ) {
 
-		// Unset automatic_linking if not post
+		// Unset automatic_linking if not set in post
 		if ( !isset( $post_data['automatic_linking'] ) ) {
 			$post_data['automatic_linking'] = 0;
+		}
+
+		// Unset display_image if not set in post
+		if ( !isset( $post_data['display_image'] ) ) {
+			$post_data['display_image'] = 0;
 		}
 
 		// automatic_linking must be an integer
@@ -161,6 +215,9 @@ class RP4WP_Settings {
 
 		// automatic_linking_post_amount must be an integer
 		$post_data['automatic_linking_post_amount'] = intval($post_data['automatic_linking_post_amount']);
+
+		// Excerpt length must be an integer
+		$post_data['excerpt_length'] = intval($post_data['excerpt_length']);
 
 		return $post_data;
 
