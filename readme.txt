@@ -4,7 +4,7 @@ Donate link: http://www.barrykooij.com/
 Tags: related posts for wordpress, related posts for wp, simple related posts, easy related posts, related posts, related, relations, internal links, seo
 Requires at least: 3.6
 Tested up to: 3.9.2
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -72,6 +72,9 @@ There is one custom table created for the post cache, this table will however no
 5. Related posts are automatically added below your posts!
 
 == Changelog ==
+
+= 1.2.1 : August 14, 2014 =
+* Fixed a small CSS default rule.
 
 = 1.2.0 : August 14, 2014 =
 * Related Posts heading text is now a setting.
