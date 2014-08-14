@@ -25,7 +25,7 @@ class RP4WP_Settings {
 
 		// CSS default
 		$css_default_lines = array();
-		$css_default_lines[] = '.rp4wp-related-posts ul {padding:0;margin:0;float:left;}';
+		$css_default_lines[] = '.rp4wp-related-posts ul {width:100%padding:0;margin:0;float:left;}';
 		$css_default_lines[] = '.rp4wp-related-posts li{list-style:none;padding-bottom:20px}';
 		$css_default_lines[] = '.rp4wp-related-posts li p {margin:0;padding:0}';
 		$css_default_lines[] = '.rp4wp-related-post-image{width:35%;padding-right:25px;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;float:left;}';
