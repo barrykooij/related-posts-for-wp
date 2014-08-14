@@ -73,7 +73,7 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
-= 1.2.0 : August 14, 2014 ==
+= 1.2.0 : August 14, 2014 =
 * Related Posts heading text is now a setting.
 * Amount of words in excerpt is now a setting.
 * Displaying images of related posts is now a setting.
@@ -89,3 +89,6 @@ There is one custom table created for the post cache, this table will however no
 
 = 1.0.0 : August 7, 2014 =
 * Initial version
+
+== Upgrade Notice ==
+This version is safe to upgrade.
