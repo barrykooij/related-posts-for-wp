@@ -3,7 +3,7 @@
 	Plugin Name: Related Posts for WordPress
 	Plugin URI: http://www.barrykooij.com/
 	Description: Related Posts for WordPress, related posts that perform!
-	Version: 1.2.1
+	Version: 1.2.2
 	Author: Barry Kooij
 	Author URI: http://www.barrykooij.com/
 	License: GPL v3
@@ -26,7 +26,7 @@ class RP4WP {
 
 	private static $instance = null;
 
-	const VERSION = '1.2.1';
+	const VERSION = '1.2.2';
 
 	/**
 	 * @var RP4WP_Settings
