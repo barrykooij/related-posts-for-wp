@@ -66,10 +66,10 @@ class RP4WP_Settings {
 					),
 					array(
 						'id'          => 'excerpt_length',
-						'label'       => __( 'Exceprt length', 'related-posts-for-wp' ),
-						'description' => __( 'The amount of characters to be displayed below the title on website. To disable, set value to 0.', 'related-posts-for-wp' ),
+						'label'       => __( 'Excerpt length', 'related-posts-for-wp' ),
+						'description' => __( 'The amount of words to be displayed below the title on website. To disable, set value to 0.', 'related-posts-for-wp' ),
 						'type'        => 'text',
-						'default'     => '25',
+						'default'     => '15',
 					),
 					array(
 						'id'          => 'display_image',

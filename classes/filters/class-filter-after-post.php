@@ -88,7 +88,7 @@ class RP4WP_Filter_After_Post extends RP4WP_Filter {
 
 				$excerpt_length = RP4WP::get()->settings->get_option( 'excerpt_length' );
 				if ( $excerpt_length > 0 ) {
-					$excerpt = ( ( '' != $rp4wp_post->post_excerpt ) ? $rp4wp_post->post_excerpt : wp_trim_words( $rp4wp_post->post_content, 15 ) );
+					$excerpt = ( ( '' != $rp4wp_post->post_excerpt ) ? $rp4wp_post->post_excerpt : wp_trim_words( $rp4wp_post->post_content, $excerpt_length ) );
 					$content .= "<p>" . $excerpt . "</p>";
 				}
 
