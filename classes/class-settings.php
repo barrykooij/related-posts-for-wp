@@ -171,7 +171,7 @@ class RP4WP_Settings {
 				echo '<input type="checkbox" name="' . self::PAGE . '[' . $field['id'] . ']' . '" id="' . $field['id'] . '" value="1" ' . checked( 1, $this->get_option( $field['id'] ), false ) . ' />';
 				break;
 			case 'text':
-				echo '<input type="text" name="' . self::PAGE . '[' . $field['id'] . ']' . '" id="' . $field['id'] . '" value="' . $this->get_option( $field['id'] ) . '" />';
+				echo '<input type="text" name="' . self::PAGE . '[' . $field['id'] . ']' . '" id="' . $field['id'] . '" value="' . $this->get_option( $field['id'] ) . '" class="rp4wp-input-text" />';
 				break;
 			case 'textarea':
 				echo '<textarea name="' . self::PAGE . '[' . $field['id'] . ']' . '" id="' . $field['id'] . '">' . $this->get_option( $field['id'] ) . '</textarea>';
