@@ -76,6 +76,7 @@ There is one custom table created for the post cache, this table will however no
 = 1.2.2 : August 16, 2014 =
 * Solved a conflict with the NextGen plugin (apply_filters recursion on same filter kills underlying call).
 * Excerpt length is now set in words instead of characters.
+* Small default CSS tweaks.
 
 = 1.2.1 : August 14, 2014 =
 * Fixed a small CSS default rule.
