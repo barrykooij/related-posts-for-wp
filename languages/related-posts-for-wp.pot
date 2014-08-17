@@ -1,0 +1,242 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Related Posts for WordPress\n"
+"POT-Creation-Date: 2014-08-17 23:35+0100\n"
+"PO-Revision-Date: 2014-08-17 23:35+0100\n"
+"Last-Translator: Barry Kooij <barry@cageworks.nl>\n"
+"Language-Team: Cageworks <barry@cageworks.nl>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.7\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: _e;__;_x\n"
+"X-Poedit-SearchPath-0: ../.\n"
+"X-Poedit-SearchPathExcluded-0: ../node_modules/.\n"
+
+#: .././classes/class-link-related-table.php:47
+#: .././classes/hooks/class-hook-settings-page.php:17
+#: .././classes/meta-boxes/class-meta-box-manage.php:32
+msgid "Related Posts"
+msgstr ""
+
+#: .././classes/class-link-related-table.php:48
+msgid "All Posts"
+msgstr ""
+
+#: .././classes/class-link-related-table.php:97
+msgid "Title"
+msgstr ""
+
+#: .././classes/class-link-related-table.php:224
+msgid "Link Post"
+msgstr ""
+
+#: .././classes/class-link-related-table.php:256
+msgid "Link Posts"
+msgstr ""
+
+#: .././classes/class-settings.php:37
+msgid "Automatic post linking"
+msgstr ""
+
+#: .././classes/class-settings.php:38
+msgid "This section contains automatic post link related settings."
+msgstr ""
+
+#: .././classes/class-settings.php:42
+msgid "Enable"
+msgstr ""
+
+#: .././classes/class-settings.php:43
+msgid "Checking this will enable automatically linking posts to new posts"
+msgstr ""
+
+#: .././classes/class-settings.php:49
+msgid "Amount of Posts"
+msgstr ""
+
+#: .././classes/class-settings.php:50
+msgid "The amount of automatically linked post"
+msgstr ""
+
+#: .././classes/class-settings.php:57
+msgid "Frontend Settings"
+msgstr ""
+
+#: .././classes/class-settings.php:58
+msgid "This section contains frontend related settings."
+msgstr ""
+
+#: .././classes/class-settings.php:62
+msgid "Heading text"
+msgstr ""
+
+#: .././classes/class-settings.php:63
+msgid ""
+"The text that is displayed above the related posts. To disable, leave field "
+"empty."
+msgstr ""
+
+#: .././classes/class-settings.php:69
+msgid "Excerpt length"
+msgstr ""
+
+#: .././classes/class-settings.php:70
+msgid ""
+"The amount of words to be displayed below the title on website. To disable, "
+"set value to 0."
+msgstr ""
+
+#: .././classes/class-settings.php:76
+msgid "Display Image"
+msgstr ""
+
+#: .././classes/class-settings.php:77
+msgid "Checking this will enable displaying featured images of related posts."
+msgstr ""
+
+#: .././classes/class-settings.php:83
+msgid "CSS"
+msgstr ""
+
+#: .././classes/class-settings.php:84
+msgid ""
+"Warning! This is an advanced feature! An error here will break frontend "
+"display. To disable, leave field empty."
+msgstr ""
+
+#: .././classes/hooks/class-hook-link-related-screen.php:131
+msgid "Posts"
+msgstr ""
+
+#: .././classes/hooks/class-hook-link-related-screen.php:132
+msgid "Cancel linking"
+msgstr ""
+
+#: .././classes/hooks/class-hook-link-related-screen.php:148
+msgid "Search"
+msgstr ""
+
+#: .././classes/hooks/class-hook-page-install.php:45
+msgid "Related Posts for WordPress Installation"
+msgstr ""
+
+#: .././classes/hooks/class-hook-settings-page.php:50
+msgid "Plugin version"
+msgstr ""
+
+#: .././classes/hooks/class-hook-settings-page.php:54
+msgid "More information"
+msgstr ""
+
+#: .././classes/hooks/class-hook-settings-page.php:56
+#, php-format
+msgid "<a href='%s'>FAQ</a>"
+msgstr ""
+
+#: .././classes/hooks/class-hook-settings-page.php:58
+#, php-format
+msgid "<a href='%s'>Change log</a>"
+msgstr ""
+
+#: .././classes/hooks/class-hook-settings-page.php:60
+#, php-format
+msgid "<a href='%s'>Give us a review</a>"
+msgstr ""
+
+#: .././classes/hooks/class-hook-settings-page.php:62
+#, php-format
+msgid "<a href='%s'>Release blog post</a>"
+msgstr ""
+
+#: .././classes/hooks/class-hook-settings-page.php:66
+msgid "About the developer"
+msgstr ""
+
+#: .././classes/hooks/class-hook-settings-page.php:68
+msgid ""
+"Barry is a WordPress developer that works on WooCommerce by WooThemes and is "
+"the author of various WordPress plugins that include Post Connector, Related "
+"Posts for WordPress and What The File."
+msgstr ""
+
+#: .././classes/hooks/class-hook-settings-page.php:70
+msgid ""
+"Barry likes contributing to opensource projects and visiting WordCamps and "
+"WordPress meetups. He’s the organizer of the WordPress meetup in Tilburg."
+msgstr ""
+
+#: .././classes/hooks/class-hook-settings-page.php:72
+#, php-format
+msgid "You can follow Barry on Twitter <a href='%s'>here</a>."
+msgstr ""
+
+#: .././classes/meta-boxes/class-meta-box-manage.php:75
+msgid "Add Related Posts"
+msgstr ""
+
+#: .././classes/meta-boxes/class-meta-box-manage.php:98
+msgid "Edit this item"
+msgstr ""
+
+#: .././classes/meta-boxes/class-meta-box-manage.php:99
+msgid "Edit Post"
+msgstr ""
+
+#: .././classes/meta-boxes/class-meta-box-manage.php:101
+msgid "Delete this item"
+msgstr ""
+
+#: .././classes/meta-boxes/class-meta-box-manage.php:102
+msgid "Delete Post"
+msgstr ""
+
+#: .././classes/meta-boxes/class-meta-box-manage.php:115
+msgid "No related posts found."
+msgstr ""
+
+#: .././node_modules/grunt-checktextdomain/test/expected/incorrect-domain-autocorrect.php:3
+#: .././node_modules/grunt-checktextdomain/test/expected/incorrect-domain-autocorrect.php:5
+#: .././node_modules/grunt-checktextdomain/test/expected/variable-domain-autocorrect.php:4
+#: .././node_modules/grunt-checktextdomain/test/expected/variable-domain-autocorrect.php:6
+#: .././node_modules/grunt-checktextdomain/test/fixtures/correct-domain.php:3
+#: .././node_modules/grunt-checktextdomain/test/fixtures/correct-domain.php:5
+#: .././node_modules/grunt-checktextdomain/test/fixtures/incorrect-domain-autocorrect.php:3
+#: .././node_modules/grunt-checktextdomain/test/fixtures/incorrect-domain-autocorrect.php:5
+#: .././node_modules/grunt-checktextdomain/test/fixtures/incorrect-domain.php:3
+#: .././node_modules/grunt-checktextdomain/test/fixtures/incorrect-domain.php:5
+#: .././node_modules/grunt-checktextdomain/test/fixtures/missing-domain.php:3
+#: .././node_modules/grunt-checktextdomain/test/fixtures/missing-domain.php:5
+#: .././node_modules/grunt-checktextdomain/test/fixtures/variable-domain-autocorrect.php:4
+#: .././node_modules/grunt-checktextdomain/test/fixtures/variable-domain-autocorrect.php:6
+msgid "Hello World"
+msgstr ""
+
+#: .././node_modules/grunt-checktextdomain/test/expected/incorrect-domain-autocorrect.php:4
+#: .././node_modules/grunt-checktextdomain/test/expected/variable-domain-autocorrect.php:5
+#: .././node_modules/grunt-checktextdomain/test/fixtures/correct-domain.php:4
+#: .././node_modules/grunt-checktextdomain/test/fixtures/incorrect-domain-autocorrect.php:4
+#: .././node_modules/grunt-checktextdomain/test/fixtures/incorrect-domain.php:4
+#: .././node_modules/grunt-checktextdomain/test/fixtures/missing-domain.php:4
+#: .././node_modules/grunt-checktextdomain/test/fixtures/variable-domain-autocorrect.php:5
+msgid "Post"
+msgstr ""
+
+#: .././node_modules/grunt-wp-i18n/test/fixtures/basic-theme/exclude/file.php:3
+#: .././node_modules/grunt-wp-i18n/test/fixtures/plugin-include/plugin-include.php:6
+msgid "Exclude"
+msgstr ""
+
+#: .././node_modules/grunt-wp-i18n/test/fixtures/plugin-include/include/file.php:2
+msgid "Include"
+msgstr ""
+
+#: .././node_modules/grunt-wp-i18n/test/fixtures/text-domains/add-domain.php:2
+#: .././node_modules/grunt-wp-i18n/test/fixtures/text-domains/update-domains.php:2
+#: .././node_modules/grunt-wp-i18n/test/fixtures/text-domains/update-domains.php:3
+msgid "String"
+msgstr ""
