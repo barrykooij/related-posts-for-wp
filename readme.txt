@@ -25,7 +25,7 @@ We don't think having related posts should slow down your website. That's why Re
 After installing the plugin you will be taking to a wizard that will analyze your posts and link them to each other based on what we think is related. This means you can install Related Posts for WordPress on your website that has thousands of posts and create related connections on the fly, without any manual work!
 
 = Manually add, edit or remove =
-Everyone makes mistakes, so do we. That's why you can easily modify all automatically created related posts. Simply navigate to the post that has incorrect related posts attached to it, edit it and your done.
+Everyone makes mistakes, so do we. That's why you can easily modify all automatically created related posts. Simply navigate to the post that has incorrect related posts attached to it, edit it and you're done.
 
 = WPML compatible =
 Related Posts for WordPress is fully compatible with WPML. You can automatically and manually link related posts in their own language.
