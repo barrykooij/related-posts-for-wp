@@ -73,6 +73,11 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
+= Trunk : xx =
+* Added 'rp4wp_children' template function.
+* Added pot translation template file.
+* Added Dutch translation.
+
 = 1.2.2 : August 16, 2014 =
 * Solved a conflict with the NextGen plugin (apply_filters recursion on same filter kills underlying call).
 * Excerpt length is now set in words instead of characters.
