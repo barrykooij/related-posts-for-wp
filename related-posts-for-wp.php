@@ -1,4 +1,5 @@
 <?php
+
 /*
 	Plugin Name: Related Posts for WordPress
 	Plugin URI: http://www.barrykooij.com/
@@ -42,9 +43,10 @@ class RP4WP {
 	 * @return RP4WP
 	 */
 	public static function get() {
-		if(null == self::$instance) {
+		if ( null == self::$instance ) {
 			self::$instance = new self();
 		}
+
 		return self::$instance;
 	}
 
@@ -96,7 +98,7 @@ class RP4WP {
 	 */
 	private function init() {
 
-		// Setup the autolaoder
+		// Setup the autoloader
 		self::setup_autoloader();
 
 		// Check if we need to run the installer
@@ -120,6 +122,11 @@ class RP4WP {
 		// Hooks
 		$manager_hook = new RP4WP_Manager_Hook( plugin_dir_path( __FILE__ ) . 'classes/hooks/' );
 		$manager_hook->load_hooks();
+
+		// Include template functions
+		if ( !is_admin() ) {
+			require_once( plugin_dir_path( self::get_plugin_file() ) . '/includes/template-functions.php' );
+		}
 	}
 
 }
