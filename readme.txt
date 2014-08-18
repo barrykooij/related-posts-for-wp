@@ -73,8 +73,9 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
-= Trunk : xx =
+= 1.3.0 : August 18, 2014 =
 * Added 'rp4wp_children' template function.
+* Added shortcode [rp4wp]
 * Added pot translation template file.
 * Added Dutch translation.
 * Added review request admin notice.
