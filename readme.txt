@@ -4,7 +4,7 @@ Donate link: http://www.barrykooij.com/
 Tags: related posts for wordpress, related posts for wp, simple related posts, easy related posts, related posts, related, relations, internal links, seo
 Requires at least: 3.6
 Tested up to: 3.9.2
-Stable tag: 1.2.2
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -60,6 +60,9 @@ Yes, clear the CSS field in the Related Posts for WordPress settings screen.
 
 = Is there a theme function so I can output this list anywhere in my theme I want? =
 Not yet, we're working on this and this will be added soon!
+
+= Is there a shortcode? =
+Yes, use [rp4wp]
 
 = Does the plugin uses it's own database table ? =
 There is one custom table created for the post cache, this table will however not be used at the frontend of your website. Related Posts are fetched with normal WP_Query objects.
