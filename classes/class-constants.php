@@ -20,4 +20,9 @@ abstract class RP4WP_Constants {
 	// Options
 	const OPTION_DO_INSTALL = 'rp4wp_do_install';
 
+	// Nag options
+	const OPTION_INSTALL_DATE = 'rp4wp-install-date';
+	const OPTION_ADMIN_NOTICE_KEY = 'rp4wp-hide-nag';
+
+
 }
