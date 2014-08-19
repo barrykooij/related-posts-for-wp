@@ -6,7 +6,10 @@ if ( !defined( 'ABSPATH' ) || !defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 }
 
 // Should we clean?
-if ( 1 == RP4WP::get()->settings->get_option( 'clean_on_uninstall' ) ) {
+$options = get_option( 'rp4wp', array() );
+if ( isset( $options['clean_on_uninstall'] ) && 1 == $options['clean_on_uninstall'] ) {
+
+	global $wpdb;
 
 	/**
 	 * Once upon a time I was relating posts
@@ -15,20 +18,29 @@ if ( 1 == RP4WP::get()->settings->get_option( 'clean_on_uninstall' ) ) {
 	 * A total eclipse of the heart
 	 */
 
-	// Delete all related posts links
-	$post_manager = new RP4WP_Post_Link_Manager();
-	$post_manager->delete_all_links();
+	// Get ID's of post links
+	$link_ids = get_posts(
+		array(
+			'post_type'      => 'rp4wp_link',
+			'fields'         => 'ids',
+			'posts_per_page' => - 1
+		)
+	);
 
+	// Delete all link posts
+	$wpdb->query( "DELETE FROM $wpdb->posts WHERE `ID` IN (" . implode( ",", $link_ids ) . ");" );
 
-	exit;
+	// Delete all link post meta
+	$wpdb->query( "DELETE FROM $wpdb->postmeta WHERE `post_id` IN (" . implode( ",", $link_ids ) . ");" );
+
 
 	// Delete the options
 	delete_option( 'rp4wp' );
-	delete_option( RP4WP_Constants::OPTION_DO_INSTALL );
-	delete_option( RP4WP_Constants::OPTION_INSTALL_DATE );
-	delete_option( RP4WP_Constants::OPTION_ADMIN_NOTICE_KEY );
+	delete_option( 'rp4wp_do_install' );
+	delete_option( 'rp4wp_install_date' );
+	delete_option( 'rp4wp_hide_nag' );
 
 	// Remove the post meta we attached to posts
-	$wpdb->query( "DELETE FROM $wpdb->post_meta WHERE `meta_key` = 'rp4wp_auto_linked' OR `meta_key` = 'rp4wp_cached' " );
+	$wpdb->query( "DELETE FROM $wpdb->postmeta WHERE `meta_key` = 'rp4wp_auto_linked' OR `meta_key` = 'rp4wp_cached' " );
 
 }
