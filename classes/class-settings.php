@@ -35,7 +35,7 @@ class RP4WP_Settings {
 			self::PREFIX . 'automatic_linking' => array(
 				'id'          => 'automatic_linking',
 				'label'       => __( 'Automatic post linking', 'related-posts-for-wp' ),
-				'description' => __( 'This section contains automatic post link related settings.', 'related-posts-for-wp' ),
+				'description' => __( 'The following options affect how related posts are automatically linked.', 'related-posts-for-wp' ),
 				'fields'      => array(
 					array(
 						'id'          => 'automatic_linking',
@@ -55,7 +55,7 @@ class RP4WP_Settings {
 			self::PREFIX . 'css' => array(
 			'id'          => 'css',
 			'label'       => __( 'Frontend Settings', 'related-posts-for-wp' ),
-			'description' => __( 'This section contains frontend related settings.', 'related-posts-for-wp' ),
+			'description' => __( 'The following options affect how related posts are displayed on the frontend.', 'related-posts-for-wp' ),
 			'fields'      => array(
 				array(
 					'id'          => 'heading_text',
