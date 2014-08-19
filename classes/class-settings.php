@@ -92,7 +92,7 @@ class RP4WP_Settings {
 				'description' => __( "A shelter for options that just don't fit in.", 'related-posts-for-wp' ),
 				'fields'      => array(
 					array(
-						'id'          => 'uninstall',
+						'id'          => 'clean_on_uninstall',
 						'label'       => __( 'Remove Data on Uninstall?', 'related-posts-for-wp' ),
 						'description' => __( 'Check this box if you would like to completely remove all of its data when the plugin is deleted.', 'related-posts-for-wp' ),
 						'type'        => 'checkbox',
