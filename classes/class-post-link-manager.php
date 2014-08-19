@@ -274,6 +274,24 @@ class RP4WP_Post_Link_Manager {
 	}
 
 	/**
+	 * Deletes all RP4WP links
+	 *
+	 * @since  1.4.0
+	 * @access public
+	 */
+	public function delete_all_links() {
+		$link_ids = get_posts(
+			array(
+				'post_type'      => RP4WP_Constants::LINK_PT,
+				'fields'         => 'ids',
+				'posts_per_page' => - 1
+			)
+		);
+
+		error_log( $link_ids, 1 );
+	}
+
+	/**
 	 * Generate the children list
 	 *
 	 * @param $id
