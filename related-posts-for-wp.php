@@ -1,4 +1,5 @@
 <?php
+
 /*
 	Plugin Name: Related Posts for WordPress
 	Plugin URI: http://www.barrykooij.com/
@@ -128,10 +129,11 @@ class RP4WP {
 		}
 
 		// Setup the nag
-		if(is_admin()) {
+		if ( is_admin() ) {
 			$nag_manager = new RP4WP_Nag_Manager();
 			$nag_manager->setup();
 		}
+
 	}
 
 }
