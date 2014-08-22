@@ -76,6 +76,10 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
+= trunk =
+* Fixed a default image size bug, props [Robert Neu](https://github.com/robneu).
+* Small default CSS tweaks, props [Jackie D'Elia](https://github.com/savvyjackie).
+
 = 1.3.2: August 22, 2014 =
 * Fixed a bug where ignored words where not properly loaded.
 
