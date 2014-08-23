@@ -8,7 +8,7 @@ Stable tag: 1.3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Related Posts for WordPress, related posts that perform!
+Display related posts without slowing down your website! Link all your existing content with only 1 click, get related posts for all your posts today!
 
 == Description ==
 
