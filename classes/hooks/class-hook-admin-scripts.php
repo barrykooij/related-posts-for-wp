@@ -20,9 +20,8 @@ class RP4WP_Hook_Admin_Scripts extends RP4WP_Hook {
 				array( 'jquery', 'jquery-ui-sortable' )
 			);
 
-			// Make PL JavaScript strings translatable
-			// @todo add JS translation
-			//wp_localize_script( 'rp4wp_edit_post_js', 'rp4wp_js', RP4WP_Javascript_Strings::get() );
+			// Make JavaScript strings translatable
+			wp_localize_script( 'rp4wp_edit_post_js', 'rp4wp_js', RP4WP_Javascript_Strings::get() );
 
 			// CSS
 			wp_enqueue_style(
