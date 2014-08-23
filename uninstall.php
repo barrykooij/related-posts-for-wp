@@ -43,4 +43,7 @@ if ( isset( $options['clean_on_uninstall'] ) && 1 == $options['clean_on_uninstal
 	// Remove the post meta we attached to posts
 	$wpdb->query( "DELETE FROM $wpdb->postmeta WHERE `meta_key` = 'rp4wp_auto_linked' OR `meta_key` = 'rp4wp_cached' " );
 
+	// Drop the word cache table
+	$wpdb->query( "DROP TABLE {$wpdb->prefix}rp4wp_cache ;" );
+
 }
