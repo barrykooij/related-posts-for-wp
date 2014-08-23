@@ -100,6 +100,9 @@ class RP4WP {
 		// Setup the autoloader
 		self::setup_autoloader();
 
+		// Load plugin text domain
+		load_plugin_textdomain( 'related-posts-for-wp', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+
 		// Check if we need to run the installer
 		if ( get_site_option( RP4WP_Constants::OPTION_DO_INSTALL, false ) ) {
 
