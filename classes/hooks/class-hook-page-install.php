@@ -9,7 +9,7 @@ class RP4WP_Hook_Page_Install extends RP4WP_Hook {
 
 	public function run() {
 
-		$menu_hook = add_submenu_page( null, 'SRPInstallation', 'SRPInstallation', 'edit_posts', 'rp4wp_install', array( $this, 'content' ) );
+		$menu_hook = add_submenu_page( null, 'RP4WPINSTALL', 'RP4WPINSTALL', 'edit_posts', 'rp4wp_install', array( $this, 'content' ) );
 
 		add_action( 'load-' . $menu_hook, array( $this, 'enqueue_install_assets' ) );
 	}
@@ -29,20 +29,23 @@ class RP4WP_Hook_Page_Install extends RP4WP_Hook {
 
 	/**
 	 * The screen content
+	 *
+	 * @since  1.0.0
+	 * @access public
 	 */
 	public function content() {
 
 		$steps = array(
-			1 => 'Caching Posts',
-			2 => 'Linking Posts',
-			3 => 'Finished',
+			1 => __( 'Caching Posts', 'related-posts-for-wp' ),
+			2 => __( 'Linking Posts', 'related-posts-for-wp' ),
+			3 => __( 'Finished', 'related-posts-for-wp' ),
 		);
 
 		$cur_step = isset( $_GET['step'] ) ? $_GET['step'] : 1;
 
 		?>
 		<div class="wrap">
-			<h2><?php _e( 'Related Posts for WordPress Installation', 'related-posts-for-wp' ); ?></h2>
+			<h2>Related Posts for WordPress <?php _e( 'Installation', 'related-posts-for-wp' ); ?></h2>
 
 			<ul class="install-steps">
 				<?php
@@ -65,33 +68,33 @@ class RP4WP_Hook_Page_Install extends RP4WP_Hook {
 
 			if ( 1 == $cur_step ) {
 				?>
-				<p>Thank you for choosing Related Posts for WordPress!<br /><br />Before you can start using Related Posts for WordPress we need to cache your current posts.<br />This is a one time process which might take some time now, depending on the amount of posts you have, but will ensure your website's performance when using the plugin.
-				</p>
+				<p><?php _e( 'Thank you for choosing Related Posts for WordPress!', 'related-posts-for-wp' ); ?></p>
+				<p><?php _e( 'Before you can start using Related Posts for WordPress we need to cache your current posts.', 'related-posts-for-wp' ); ?></p>
+				<p><?php _e( "This is a one time process which might take some time now, depending on the amount of posts you have, but will ensure your website's performance when using the plugin.", 'related-posts-for-wp' ); ?></p>
 
-				<p style="font-weight: bold;">Do NOT close this window, wait for this process to finish and this wizard to take you to the next step.</p>
+				<p style="font-weight: bold;"><?php _e( 'Do NOT close this window, wait for this process to finish and this wizard to take you to the next step.', 'related-posts-for-wp' ); ?></p>
 
 				<div id="progressbar"></div>
 			<?php
 			} elseif ( 2 == $cur_step ) {
 				?>
-				<p style="font-weight: bold;">Great! All your posts were succesfully cached!</p>
-				<p>You can let me link your posts, based on what I think is related, to each other. And don't worry, if I made a mistake at one of your posts you can easily correct this by editing it manually!</p>
-				<p>Want me to start linking posts to each other? Fill in the amount of related posts each post should have and click on the "Link now" button. Rather link your posts manually? Click "Skip linking".</p>
-				<p style="font-weight: bold;">Do NOT close this window if you click the "Link now" button, wait for this process to finish and this wizard to take you to the next step.</p>
+				<p style="font-weight: bold;"><?php _e( 'Great! All your posts were successfully cached!', 'related-posts-for-wp' ); ?></p>
+				<p><?php _e( "You can let me link your posts, based on what I think is related, to each other. And don't worry, if I made a mistake at one of your posts you can easily correct this by editing it manually!", 'related-posts-for-wp' ); ?></p>
+				<p><?php _e( 'Want me to start linking posts to each other? Fill in the amount of related posts each post should have and click on the "Link now" button. Rather link your posts manually? Click "Skip linking".', 'related-posts-for-wp' ); ?></p>
+				<p style="font-weight: bold;"><?php _e( 'Do NOT close this window if you click the "Link now" button, wait for this process to finish and this wizard to take you to the next step.', 'related-posts-for-wp' ); ?></p>
 				<br class="clear" />
 				<p class="rp4wp-install-link-box">
-					<label for="rp4wp_related_posts_amount">Amount of related posts per post:</label><input class="form-input-tip" type="text" id="rp4wp_related_posts_amount" value="3" />
-					<a href="javascript:;" class="button button-primary button-large rp4wp-link-now-btn" id="rp4wp-link-now">Link now</a>
-					<a href="<?php echo admin_url(); ?>?page=rp4wp_install&step=3" class="button">Skip linking</a>
+					<label for="rp4wp_related_posts_amount"><?php _e( 'Amount of related posts per post:', 'related-posts-for-wp' ); ?></label><input class="form-input-tip" type="text" id="rp4wp_related_posts_amount" value="3" />
+					<a href="javascript:;" class="button button-primary button-large rp4wp-link-now-btn" id="rp4wp-link-now"><?php _e( 'Link now', 'related-posts-for-wp' ); ?></a>
+					<a href="<?php echo admin_url(); ?>?page=rp4wp_install&step=3" class="button"><?php _e( 'Skip linking', 'related-posts-for-wp' ); ?></a>
 				</p>
 				<br class="clear" />
 				<div id="progressbar"></div>
 			<?php
 			} elseif ( 3 == $cur_step ) {
 				?>
-				<p>That's it, you're good to go!</p>
-				<p>Thanks again for using Related Posts for WordPress and if you have any questions be sure to ask them at the
-					<a href="http://wordpress.org/support/plugin/related-posts-for-wp">WordPress.org forums.</a></p>
+				<p><?php _e( "That's it, you're good to go!", 'related-posts-for-wp' ); ?></p>
+				<p><?php printf( __( 'Thanks again for using Related Posts for WordPress and if you have any questions be sure to ask them at the %sWordPress.org forums.%s', 'related-posts-for-wp' ), '<a href="http://wordpress.org/support/plugin/related-posts-for-wp" target="_blank">', '</a>' ); ?></p>
 			<?php
 			}
 			?>
