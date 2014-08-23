@@ -79,6 +79,8 @@ There is one custom table created for the post cache, this table will however no
 = trunk =
 * Fixed a default image size bug, props [Robert Neu](https://github.com/robneu).
 * Small default CSS tweaks, props [Jackie D'Elia](https://github.com/savvyjackie).
+* Complete plugin is now translatable.
+* Updated Dutch translation.
 
 = 1.3.2: August 22, 2014 =
 * Fixed a bug where ignored words where not properly loaded.
