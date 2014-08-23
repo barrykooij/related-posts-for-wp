@@ -77,10 +77,14 @@ There is one custom table created for the post cache, this table will however no
 == Changelog ==
 
 = trunk =
+* Created the possibility to restart the installation wizard. See settings page for this option.
+* Default values are now in site language, if available.
+* Only load frontend CSS on singles.
 * Fixed a default image size bug, props [Robert Neu](https://github.com/robneu).
 * Small default CSS tweaks, props [Jackie D'Elia](https://github.com/savvyjackie).
 * Complete plugin is now translatable.
 * Updated Dutch translation.
+* Uninstall script now also deletes the caching table.
 
 = 1.3.2: August 22, 2014 =
 * Fixed a bug where ignored words where not properly loaded.
