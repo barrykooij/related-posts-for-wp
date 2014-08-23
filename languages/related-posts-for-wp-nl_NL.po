@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
-"POT-Creation-Date: 2014-08-17 23:35+0100\n"
-"PO-Revision-Date: 2014-08-17 23:35+0100\n"
+"POT-Creation-Date: 2014-08-23 13:06+0100\n"
+"PO-Revision-Date: 2014-08-23 13:40+0100\n"
 "Last-Translator: Barry Kooij <barry@cageworks.nl>\n"
 "Language-Team: Cageworks <barry@cageworks.nl>\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.7\n"
+"X-Generator: Poedit 1.6.8\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -38,13 +38,30 @@ msgstr "Link Bericht"
 msgid "Link Posts"
 msgstr "Link Berichten"
 
+#: .././classes/class-nag-manager.php:105
+#, php-format
+msgid ""
+"You've been using %sRelated Posts for WordPress%s for some time now, could "
+"you please give it a review at wordpress.org?"
+msgstr ""
+"Je gebruikt %sRelated Posts for WordPress%s nu al best een tijdje, zou je "
+"ons alsjeblieft een review willen geven op wordpress.org?"
+
+#: .././classes/class-nag-manager.php:107
+#, php-format
+msgid "%sYes, take me there!%s - %sI've already done this!%s"
+msgstr "%sJa, ga er heen!%s - %sIk heb dit al gedaan!%s"
+
 #: .././classes/class-settings.php:37
 msgid "Automatic post linking"
 msgstr "Automatisch linken van berichten"
 
 #: .././classes/class-settings.php:38
-msgid "This section contains automatic post link related settings."
-msgstr "Dit gedeelte bevat instellingen van de automatisch gelinkte berichten."
+msgid ""
+"The following options affect how related posts are automatically linked."
+msgstr ""
+"Deze opties beïnvloeden hoe gerelateerde berichten automatisch gelinkt "
+"worden."
 
 #: .././classes/class-settings.php:42
 msgid "Enable"
@@ -69,8 +86,11 @@ msgid "Frontend Settings"
 msgstr "Frontend Instellingen"
 
 #: .././classes/class-settings.php:58
-msgid "This section contains frontend related settings."
-msgstr "Dit gedeelte bevat frontend gerelateerde instellingen."
+msgid ""
+"The following options affect how related posts are displayed on the frontend."
+msgstr ""
+"Deze opties beïnvloeden hoe gerelateerde berichten getoond worden op uw "
+"website."
 
 #: .././classes/class-settings.php:62
 msgid "Heading text"
@@ -117,6 +137,26 @@ msgstr ""
 "Waarschuwing! Dit is een geavanceerde functie! Een fout hier kan uw website "
 "incorrect laten tonen. Laat dit veld leeg om deze functie uit te schakelen."
 
+#: .././classes/class-settings.php:91
+msgid "Miscellaneous Settings"
+msgstr "Diversen Instellingen"
+
+#: .././classes/class-settings.php:92
+msgid "A shelter for options that just don't fit in."
+msgstr "Een opvang voor opties die nergens bijhoren."
+
+#: .././classes/class-settings.php:96
+msgid "Remove Data on Uninstall?"
+msgstr "Verwijder gegevens bij deïnstallatie?"
+
+#: .././classes/class-settings.php:97
+msgid ""
+"Check this box if you would like to completely remove all of its data when "
+"the plugin is deleted."
+msgstr ""
+"Door dit aan te vinken zullen alle plugin gegevens verwijderd worden waneer "
+"u de plugin verwijderd."
+
 #: .././classes/hooks/class-hook-link-related-screen.php:131
 msgid "Posts"
 msgstr "Berichten"
@@ -129,9 +169,110 @@ msgstr "Annuleer linken"
 msgid "Search"
 msgstr "Zoeken"
 
-#: .././classes/hooks/class-hook-page-install.php:45
-msgid "Related Posts for WordPress Installation"
-msgstr "Related Posts for WordPress installatie"
+#: .././classes/hooks/class-hook-page-install.php:39
+msgid "Caching Posts"
+msgstr "Cachen van berichten"
+
+#: .././classes/hooks/class-hook-page-install.php:40
+msgid "Linking Posts"
+msgstr "Linken van berichten"
+
+#: .././classes/hooks/class-hook-page-install.php:41
+msgid "Finished"
+msgstr "Klaar"
+
+#: .././classes/hooks/class-hook-page-install.php:48
+msgid "Installation"
+msgstr "Installatie"
+
+#: .././classes/hooks/class-hook-page-install.php:71
+msgid "Thank you for choosing Related Posts for WordPress!"
+msgstr "Bedankt voor het kiezen voor Related Posts for WordPress!"
+
+#: .././classes/hooks/class-hook-page-install.php:72
+msgid ""
+"Before you can start using Related Posts for WordPress we need to cache your "
+"current posts."
+msgstr ""
+"Voordat je Related Posts for WordPress kan gebruiken moeten we eerst je "
+"huidige berichten cachen."
+
+#: .././classes/hooks/class-hook-page-install.php:73
+msgid ""
+"This is a one time process which might take some time now, depending on the "
+"amount of posts you have, but will ensure your website's performance when "
+"using the plugin."
+msgstr ""
+"Dit is een eenmalig proces wat, afhankelijk van het aantal berichten dat je "
+"hebt, nu even kan duren maar wat er voor zorgt dat de prestatie van je "
+"website hoog blijft."
+
+#: .././classes/hooks/class-hook-page-install.php:75
+msgid ""
+"Do NOT close this window, wait for this process to finish and this wizard to "
+"take you to the next step."
+msgstr ""
+"Sluit dit venster NIET, wacht tot het proces klaar is en de wizard je naar "
+"de volgende stap stuurt."
+
+#: .././classes/hooks/class-hook-page-install.php:81
+msgid "Great! All your posts were successfully cached!"
+msgstr "Perfect! Al je berichten zijn succesvol gecached."
+
+#: .././classes/hooks/class-hook-page-install.php:82
+msgid ""
+"You can let me link your posts, based on what I think is related, to each "
+"other. And don't worry, if I made a mistake at one of your posts you can "
+"easily correct this by editing it manually!"
+msgstr ""
+"Je kan mij, op basis van wat ik denk dat gerelateerd is, je berichten aan "
+"elkaar laten koppelen. Maak je geen zorgen, als ik een fout gemaakt hebt kan "
+"je deze gemakkelijk later corrigeren!"
+
+#: .././classes/hooks/class-hook-page-install.php:83
+msgid ""
+"Want me to start linking posts to each other? Fill in the amount of related "
+"posts each post should have and click on the \"Link now\" button. Rather "
+"link your posts manually? Click \"Skip linking\"."
+msgstr ""
+"Wil je dat ik begin met het linken van gerelateerde berichten? Vul het "
+"aantal gerelateerde berichten in dat ieder bericht moet krijgen en klik op "
+"\"Nu linken\". Liever je berichten handmatig linken? Klik op \"Sla linken "
+"over\"."
+
+#: .././classes/hooks/class-hook-page-install.php:84
+msgid ""
+"Do NOT close this window if you click the \"Link now\" button, wait for this "
+"process to finish and this wizard to take you to the next step."
+msgstr ""
+"Sluit dit venster NIET wanneer je \"Nu linken\" hebt gekozen, wacht tot het "
+"proces klaar is en de wizard je naar de volgende stap stuurt."
+
+#: .././classes/hooks/class-hook-page-install.php:87
+msgid "Amount of related posts per post:"
+msgstr "Aantal gerelateerde berichten per bericht:"
+
+#: .././classes/hooks/class-hook-page-install.php:88
+msgid "Link now"
+msgstr "Nu linken"
+
+#: .././classes/hooks/class-hook-page-install.php:89
+msgid "Skip linking"
+msgstr "Sla linken over"
+
+#: .././classes/hooks/class-hook-page-install.php:96
+msgid "That's it, you're good to go!"
+msgstr ""
+"Super, de wizard is klaar en je hebt nu gerelateerde berichten op je website!"
+
+#: .././classes/hooks/class-hook-page-install.php:97
+#, php-format
+msgid ""
+"Thanks again for using Related Posts for WordPress and if you have any "
+"questions be sure to ask them at the %sWordPress.org forums.%s"
+msgstr ""
+"Nogmaals bedankt voor het kiezen voor Related Posts for WordPress en als je "
+"nog vragen hebt kan je deze stellen op %shet WordPress.org forum%s."
 
 #: .././classes/hooks/class-hook-settings-page.php:50
 msgid "Plugin version"
@@ -254,3 +395,13 @@ msgstr "Insluiten"
 #: .././node_modules/grunt-wp-i18n/test/fixtures/text-domains/update-domains.php:3
 msgid "String"
 msgstr "String"
+
+#~ msgid "This section contains automatic post link related settings."
+#~ msgstr ""
+#~ "Dit gedeelte bevat instellingen van de automatisch gelinkte berichten."
+
+#~ msgid "This section contains frontend related settings."
+#~ msgstr "Dit gedeelte bevat frontend gerelateerde instellingen."
+
+#~ msgid "Related Posts for WordPress Installation"
+#~ msgstr "Related Posts for WordPress installatie"
