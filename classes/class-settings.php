@@ -24,7 +24,7 @@ class RP4WP_Settings {
 	public function __construct() {
 
 		// CSS default
-		$css_default_lines = array();
+		$css_default_lines   = array();
 		$css_default_lines[] = '.rp4wp-related-posts ul{width:100%;padding:0;margin:0;float:left;}';
 		$css_default_lines[] = '.rp4wp-related-posts ul>li{list-style:none;padding:0;margin:0;padding-bottom:20px;clear:both;}';
 		$css_default_lines[] = '.rp4wp-related-posts ul>li>p{margin:0;padding:0;}';
@@ -52,41 +52,55 @@ class RP4WP_Settings {
 						'default'     => '3',
 					)
 				) ),
-			self::PREFIX . 'css' => array(
-			'id'          => 'css',
-			'label'       => __( 'Frontend Settings', 'related-posts-for-wp' ),
-			'description' => __( 'The following options affect how related posts are displayed on the frontend.', 'related-posts-for-wp' ),
-			'fields'      => array(
-				array(
-					'id'          => 'heading_text',
-					'label'       => __( 'Heading text', 'related-posts-for-wp' ),
-					'description' => __( 'The text that is displayed above the related posts. To disable, leave field empty.', 'related-posts-for-wp' ),
-					'type'        => 'text',
-					'default'     => __( 'Related Posts', 'related-posts-for-wp' ),
-				),
-				array(
-					'id'          => 'excerpt_length',
-					'label'       => __( 'Excerpt length', 'related-posts-for-wp' ),
-					'description' => __( 'The amount of words to be displayed below the title on website. To disable, set value to 0.', 'related-posts-for-wp' ),
-					'type'        => 'text',
-					'default'     => '15',
-				),
-				array(
-					'id'          => 'display_image',
-					'label'       => __( 'Display Image', 'related-posts-for-wp' ),
-					'description' => __( 'Checking this will enable displaying featured images of related posts.', 'related-posts-for-wp' ),
-					'type'        => 'checkbox',
-					'default'     => 0,
-				),
-				array(
-					'id'          => 'css',
-					'label'       => __( 'CSS', 'related-posts-for-wp' ),
-					'description' => __( 'Warning! This is an advanced feature! An error here will break frontend display. To disable, leave field empty.', 'related-posts-for-wp' ),
-					'type'        => 'textarea',
-					'default'     => implode(PHP_EOL, $css_default_lines),
-				)
-			) ),
-			self::PREFIX . 'misc' => array(
+			self::PREFIX . 'css'               => array(
+				'id'          => 'css',
+				'label'       => __( 'Frontend Settings', 'related-posts-for-wp' ),
+				'description' => __( 'The following options affect how related posts are displayed on the frontend.', 'related-posts-for-wp' ),
+				'fields'      => array(
+					array(
+						'id'          => 'heading_text',
+						'label'       => __( 'Heading text', 'related-posts-for-wp' ),
+						'description' => __( 'The text that is displayed above the related posts. To disable, leave field empty.', 'related-posts-for-wp' ),
+						'type'        => 'text',
+						'default'     => __( 'Related Posts', 'related-posts-for-wp' ),
+					),
+					array(
+						'id'          => 'excerpt_length',
+						'label'       => __( 'Excerpt length', 'related-posts-for-wp' ),
+						'description' => __( 'The amount of words to be displayed below the title on website. To disable, set value to 0.', 'related-posts-for-wp' ),
+						'type'        => 'text',
+						'default'     => '15',
+					),
+					array(
+						'id'          => 'display_image',
+						'label'       => __( 'Display Image', 'related-posts-for-wp' ),
+						'description' => __( 'Checking this will enable displaying featured images of related posts.', 'related-posts-for-wp' ),
+						'type'        => 'checkbox',
+						'default'     => 0,
+					),
+					array(
+						'id'          => 'css',
+						'label'       => __( 'CSS', 'related-posts-for-wp' ),
+						'description' => __( 'Warning! This is an advanced feature! An error here will break frontend display. To disable, leave field empty.', 'related-posts-for-wp' ),
+						'type'        => 'textarea',
+						'default'     => implode( PHP_EOL, $css_default_lines ),
+					)
+				) ),
+			self::PREFIX . 'restart_wizard'    => array(
+				'id'          => 'restart_wizard',
+				'label'       => __( 'Restart wizard', 'related-posts-for-wp' ),
+				'description' => __( "Remove the cache and all existing related post links and restart the wizard.", 'related-posts-for-wp' ),
+				'fields'      => array(
+					array(
+						'id'          => 'restart_wizard_button',
+						'label'       => __( 'Restart the wizard?', 'related-posts-for-wp' ),
+						'description' => __( "Click this button if you want to restart the wizard. Please note that this will delete all current related post links, also those you've manually added. Of course, we will never delete your actual posts.", 'related-posts-for-wp' ),
+						'type'        => 'button_link',
+						'href'        => admin_url( '?page=rp4wp_install&reinstall=1' ),
+						'default'     => __( 'Restart wizard', '' ),
+					),
+				) ),
+			self::PREFIX . 'misc'              => array(
 				'id'          => 'misc',
 				'label'       => __( 'Miscellaneous Settings', 'related-posts-for-wp' ),
 				'description' => __( "A shelter for options that just don't fit in.", 'related-posts-for-wp' ),
@@ -98,7 +112,7 @@ class RP4WP_Settings {
 						'type'        => 'checkbox',
 						'default'     => 0,
 					),
-				) )
+				) ),
 		);
 
 		// Set defaults
@@ -189,6 +203,9 @@ class RP4WP_Settings {
 			case 'textarea':
 				echo '<textarea name="' . self::PAGE . '[' . $field['id'] . ']' . '" id="' . $field['id'] . '">' . $this->get_option( $field['id'] ) . '</textarea>';
 				break;
+			case 'button_link':
+				echo '<a href="' . $field['href'] . '" class="button">' . $field['default'] . '</a>';
+				break;
 		}
 
 		// Description
@@ -224,13 +241,13 @@ class RP4WP_Settings {
 		}
 
 		// automatic_linking must be an integer
-		$post_data['automatic_linking'] = intval($post_data['automatic_linking']);
+		$post_data['automatic_linking'] = intval( $post_data['automatic_linking'] );
 
 		// automatic_linking_post_amount must be an integer
-		$post_data['automatic_linking_post_amount'] = intval($post_data['automatic_linking_post_amount']);
+		$post_data['automatic_linking_post_amount'] = intval( $post_data['automatic_linking_post_amount'] );
 
 		// Excerpt length must be an integer
-		$post_data['excerpt_length'] = intval($post_data['excerpt_length']);
+		$post_data['excerpt_length'] = intval( $post_data['excerpt_length'] );
 
 		return $post_data;
 

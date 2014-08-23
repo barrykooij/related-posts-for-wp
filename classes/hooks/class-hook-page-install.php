@@ -35,12 +35,41 @@ class RP4WP_Hook_Page_Install extends RP4WP_Hook {
 	 */
 	public function content() {
 
+		// Do we have a reinstall?
+		if ( isset( $_GET['reinstall'] ) ) {
+
+			global $wpdb;
+
+			// Get ID's of related post link posts
+			$link_ids = get_posts(
+				array(
+					'post_type'      => 'rp4wp_link',
+					'fields'         => 'ids',
+					'posts_per_page' => - 1
+				)
+			);
+
+			// Delete all link posts
+			$wpdb->query( "DELETE FROM $wpdb->posts WHERE `ID` IN (" . implode( ",", $link_ids ) . ");" );
+
+			// Delete all link post meta
+			$wpdb->query( "DELETE FROM $wpdb->postmeta WHERE `post_id` IN (" . implode( ",", $link_ids ) . ");" );
+
+			// Remove the post meta we attached to posts
+			$wpdb->query( "DELETE FROM $wpdb->postmeta WHERE `meta_key` = 'rp4wp_auto_linked' OR `meta_key` = 'rp4wp_cached' " );
+
+			// Empty word cache
+			$wpdb->query( "DELETE FROM " . RP4WP_Related_Word_Manager::get_database_table() . " WHERE 1=1" );
+		}
+
+		// The steps
 		$steps = array(
 			1 => __( 'Caching Posts', 'related-posts-for-wp' ),
 			2 => __( 'Linking Posts', 'related-posts-for-wp' ),
 			3 => __( 'Finished', 'related-posts-for-wp' ),
 		);
 
+		// What's the current step?
 		$cur_step = isset( $_GET['step'] ) ? $_GET['step'] : 1;
 
 		?>
