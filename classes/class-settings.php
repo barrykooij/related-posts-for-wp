@@ -62,7 +62,7 @@ class RP4WP_Settings {
 					'label'       => __( 'Heading text', 'related-posts-for-wp' ),
 					'description' => __( 'The text that is displayed above the related posts. To disable, leave field empty.', 'related-posts-for-wp' ),
 					'type'        => 'text',
-					'default'     => 'Related Posts',
+					'default'     => __( 'Related Posts', 'related-posts-for-wp' ),
 				),
 				array(
 					'id'          => 'excerpt_length',
