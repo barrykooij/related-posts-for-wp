@@ -4,7 +4,7 @@ Donate link: http://www.barrykooij.com/
 Tags: related posts for wordpress, related posts for wp, simple related posts, easy related posts, related posts, related, relations, internal links, seo
 Requires at least: 3.6
 Tested up to: 4.0
-Stable tag: 1.3.2
+Stable tag: 1.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -76,7 +76,7 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
-= trunk =
+= 1.4.0: August 24, 2014 =
 * Created the possibility to restart the installation wizard. See settings page for this option.
 * Added notice that allows resuming installation wizard that will be displayed if the installation wizard crashed.
 * Only load frontend CSS on singles.
