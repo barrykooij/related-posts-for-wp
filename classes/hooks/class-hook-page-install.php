@@ -49,11 +49,14 @@ class RP4WP_Hook_Page_Install extends RP4WP_Hook {
 				)
 			);
 
-			// Delete all link posts
-			$wpdb->query( "DELETE FROM $wpdb->posts WHERE `ID` IN (" . implode( ",", $link_ids ) . ");" );
+			// Only run queries if we have ID's
+			if(count($link_ids) > 0 ) {
+				// Delete all link posts
+				$wpdb->query( "DELETE FROM $wpdb->posts WHERE `ID` IN (" . implode( ",", $link_ids ) . ");" );
 
-			// Delete all link post meta
-			$wpdb->query( "DELETE FROM $wpdb->postmeta WHERE `post_id` IN (" . implode( ",", $link_ids ) . ");" );
+				// Delete all link post meta
+				$wpdb->query( "DELETE FROM $wpdb->postmeta WHERE `post_id` IN (" . implode( ",", $link_ids ) . ");" );
+			}
 
 			// Remove the post meta we attached to posts
 			$wpdb->query( "DELETE FROM $wpdb->postmeta WHERE `meta_key` = 'rp4wp_auto_linked' OR `meta_key` = 'rp4wp_cached' " );
@@ -71,6 +74,15 @@ class RP4WP_Hook_Page_Install extends RP4WP_Hook {
 
 		// What's the current step?
 		$cur_step = isset( $_GET['step'] ) ? $_GET['step'] : 1;
+
+		// Check installer resume options
+		if ( 1 == $cur_step ) {
+			// Add is installing site option
+			add_site_option( RP4WP_Constants::OPTION_IS_INSTALLING, true );
+		} elseif ( 3 == $cur_step ) {
+			// Installer is done, remove the option
+			delete_site_option( RP4WP_Constants::OPTION_IS_INSTALLING );
+		}
 
 		?>
 		<div class="wrap">

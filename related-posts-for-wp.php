@@ -1,4 +1,5 @@
 <?php
+
 /*
 	Plugin Name: Related Posts for WordPress
 	Plugin URI: http://www.barrykooij.com/
@@ -106,13 +107,17 @@ class RP4WP {
 		// Check if we need to run the installer
 		if ( get_site_option( RP4WP_Constants::OPTION_DO_INSTALL, false ) ) {
 
-			// Delete site option
+			// Delete do install site option
 			delete_site_option( RP4WP_Constants::OPTION_DO_INSTALL );
 
 			// Redirect to installation wizard
 			wp_redirect( admin_url() . '?page=rp4wp_install', 301 );
 			exit;
 		}
+
+		// Woah, we didn't finish the install notice
+		$is_installing_notice = new RP4WP_Is_Installing_Notice();
+		$is_installing_notice->check();
 
 		// Setup settings
 		$this->settings = new RP4WP_Settings();

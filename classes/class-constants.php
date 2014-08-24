@@ -19,6 +19,7 @@ abstract class RP4WP_Constants {
 
 	// Options
 	const OPTION_DO_INSTALL = 'rp4wp_do_install';
+	const OPTION_IS_INSTALLING = 'rp4wp_is_installing';
 
 	// Nag options
 	const OPTION_INSTALL_DATE = 'rp4wp_install_date';
