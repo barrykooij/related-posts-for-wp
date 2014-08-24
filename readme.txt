@@ -78,13 +78,15 @@ There is one custom table created for the post cache, this table will however no
 
 = trunk =
 * Created the possibility to restart the installation wizard. See settings page for this option.
-* Default values are now in site language, if available.
+* Added notice that allows resuming installation wizard that will be displayed if the installation wizard crashed.
 * Only load frontend CSS on singles.
 * Fixed a default image size bug, props [Robert Neu](https://github.com/robneu).
 * Small default CSS tweaks, props [Jackie D'Elia](https://github.com/savvyjackie).
 * Complete plugin is now translatable.
 * Updated Dutch translation.
+* Default values are now in site language, if available.
 * Uninstall script now also deletes the caching table.
+* Added 'settings' link to plugins links.
 
 = 1.3.2: August 22, 2014 =
 * Fixed a bug where ignored words where not properly loaded.
