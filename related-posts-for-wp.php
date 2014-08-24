@@ -115,7 +115,7 @@ class RP4WP {
 			exit;
 		}
 
-		// Woah, we didn't finish the install notice
+		// Check if we need to display an 'is installing' notice
 		$is_installing_notice = new RP4WP_Is_Installing_Notice();
 		$is_installing_notice->check();
 
