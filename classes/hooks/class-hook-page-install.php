@@ -50,7 +50,7 @@ class RP4WP_Hook_Page_Install extends RP4WP_Hook {
 			);
 
 			// Only run queries if we have ID's
-			if(count($link_ids) > 0 ) {
+			if ( count( $link_ids ) > 0 ) {
 				// Delete all link posts
 				$wpdb->query( "DELETE FROM $wpdb->posts WHERE `ID` IN (" . implode( ",", $link_ids ) . ");" );
 
