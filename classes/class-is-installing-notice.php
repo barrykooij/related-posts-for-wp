@@ -45,7 +45,7 @@ if ( !class_exists( 'RP4WP_Is_Installing_Notice' ) ) {
 			if ( get_site_option( RP4WP_Constants::OPTION_IS_INSTALLING, false ) && ( !isset( $_GET['page'] ) || 'rp4wp_install' != $_GET['page'] ) ) {
 				$this->display();
 			}
-			
+
 		}
 
 		/**
