@@ -102,9 +102,9 @@ if ( !class_exists( 'RP4WP_Nag_Manager' ) ) {
 			$query_string = '?' . http_build_query( array_merge( $query_params, array( RP4WP_Constants::OPTION_ADMIN_NOTICE_KEY => '1' ) ) );
 
 			echo '<div class="updated"><p>';
-			printf( __( "You've been using %sRelated Posts for WordPress%s for some time now, could you please give it a review at wordpress.org?" ), '<b>', '</b>' );
+			printf( __( "You've been using %sRelated Posts for WordPress%s for some time now, could you please give it a review at wordpress.org?", 'related-posts-for-wp' ), '<b>', '</b>' );
 			echo "<br /><br />";
-			printf( __( "%sYes, take me there!%s - %sI've already done this!%s" ), '<a href="http://wordpress.org/support/view/plugin-reviews/related-posts-for-wp" target="_blank">', '</a>', '<a href="' . $query_string . '">', '</a>' );
+			printf( __( "%sYes, take me there!%s - %sI've already done this!%s", 'related-posts-for-wp' ), '<a href="http://wordpress.org/support/view/plugin-reviews/related-posts-for-wp" target="_blank">', '</a>', '<a href="' . $query_string . '">', '</a>' );
 			echo "</p></div>";
 		}
 
