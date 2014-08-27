@@ -25,8 +25,7 @@ if ( !class_exists( 'RP4WP_Manager_Hook' ) ) {
 		public function load_hooks() {
 
 			foreach ( new DirectoryIterator( $this->hook_dir ) as $file ) {
-				$file_name = $file->getFileName();
-
+				
 				if ( !$file->isDir() && ( strpos( $file->getFileName(), '.' ) !== 0 ) ) {
 
 					$class = RP4WP_Class_Manager::format_class_name( $file->getFileName() );

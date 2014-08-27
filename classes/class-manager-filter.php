@@ -68,6 +68,6 @@ if ( !class_exists( 'RP4WP_Manager_Filter' ) ) {
 		}
 
 	}
-	
+
 }
 
