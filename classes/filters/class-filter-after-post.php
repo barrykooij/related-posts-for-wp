@@ -28,6 +28,11 @@ class RP4WP_Filter_After_Post extends RP4WP_Filter {
 			return $content;
 		}
 
+		// Allow disabling content filter
+		if( false === apply_filters( 'rp4wp_append_content', true ) ) {
+			return $content;
+		}
+
 		// Post Link Manager
 		$pl_manager = new RP4WP_Post_Link_Manager();
 
