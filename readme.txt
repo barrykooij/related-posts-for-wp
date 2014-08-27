@@ -28,7 +28,7 @@ After installing the plugin you will be taking to a wizard that will analyze you
 Everyone makes mistakes, so do we. That's why you can easily modify all automatically created related posts. Simply navigate to the post that has incorrect related posts attached to it, edit it and you're done.
 
 = WPML compatible =
-Related Posts for WordPress is fully compatible with WPML. You can automatically and manually link related posts in their own language.
+Related Posts for WordPress is fully compatible with WPML. You can automatically add manually link related posts in their own language.
 
 **More information**
 
