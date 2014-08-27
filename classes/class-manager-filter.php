@@ -38,7 +38,6 @@ if ( !class_exists( 'RP4WP_Manager_Filter' ) ) {
 		public function load_filters() {
 
 			foreach ( new DirectoryIterator( $this->filter_dir ) as $file ) {
-				$file_name = $file->getFileName();
 
 				if ( !$file->isDir() && ( strpos( $file->getFileName(), '.' ) !== 0 ) ) {
 
@@ -57,7 +56,7 @@ if ( !class_exists( 'RP4WP_Manager_Filter' ) ) {
 		 *
 		 * @param $class_name
 		 *
-		 * @return Hook
+		 * @return RP4WP_Filter
 		 */
 		public static function get_filter_instance( $class_name ) {
 			if ( isset( self::$filters[$class_name] ) ) {
