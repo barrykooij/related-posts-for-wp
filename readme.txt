@@ -76,6 +76,9 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
+= Trunk =
+* Added filter 'rp4wp_append_content' to allow disabling of related post append to content.
+
 = 1.4.0: August 24, 2014 =
 * Created the possibility to restart the installation wizard. See settings page for this option.
 * Added notice that allows resuming installation wizard that will be displayed if the installation wizard crashed.
