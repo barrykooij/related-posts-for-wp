@@ -57,9 +57,9 @@ class RP4WP_Manager_Filter {
 	 *
 	 * @return Hook
 	 */
-	public function get_hook_instance( $class_name ) {
-		if ( isset( self::$hooks[$class_name] ) ) {
-			return self::$hooks[$class_name];
+	public function get_filter_instance( $class_name ) {
+		if ( isset( self::$filters[$class_name] ) ) {
+			return self::$filters[$class_name];
 		}
 
 		return null;
