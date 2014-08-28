@@ -1,7 +1,7 @@
 <?php
 /*
 	Plugin Name: Related Posts for WordPress
-	Plugin URI: http://www.barrykooij.com/
+	Plugin URI: http://www.relatedpostsforwp.com/
 	Description: Related Posts for WordPress, related posts that perform!
 	Version: 1.4.0
 	Author: Barry Kooij
