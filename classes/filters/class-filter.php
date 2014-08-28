@@ -13,10 +13,6 @@ abstract class RP4WP_Filter {
 	 * Construct method. Set tag and register hook.
 	 *
 	 * @access public
-	 *
-	 * @param mixed $tag (default: null)
-	 *
-	 * @return void
 	 */
 	public function __construct() {
 		$this->register();
