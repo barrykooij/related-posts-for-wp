@@ -54,7 +54,7 @@ abstract class RP4WP_Filter {
 	/**
 	 * Get the tag
 	 *
-	 * @return null
+	 * @return string
 	 */
 	public function get_tag() {
 		return $this->tag;
