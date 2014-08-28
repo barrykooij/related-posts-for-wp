@@ -58,7 +58,7 @@ if ( !class_exists( 'RP4WP_Manager_Filter' ) ) {
 		 *
 		 * @return RP4WP_Filter
 		 */
-		public static function get_filter_instance( $class_name ) {
+		public static function get_filter_object( $class_name ) {
 			if ( isset( self::$filters[$class_name] ) ) {
 				return self::$filters[$class_name];
 			}

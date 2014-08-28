@@ -46,7 +46,7 @@ if ( !class_exists( 'RP4WP_Manager_Hook' ) ) {
 		 *
 		 * @return RP4WP_Hook
 		 */
-		public static function get_hook_instance( $class_name ) {
+		public static function get_hook_object( $class_name ) {
 			if ( isset( self::$hooks[$class_name] ) ) {
 				return self::$hooks[$class_name];
 			}
