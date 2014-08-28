@@ -1,6 +1,6 @@
 === Related Posts for WordPress ===
 Contributors: barrykooij
-Donate link: http://www.barrykooij.com/
+Donate link: http://www.relatedpostsforwp.com/
 Tags: related posts for wordpress, related posts for wp, simple related posts, easy related posts, related posts, related, relations, internal links, seo
 Requires at least: 3.6
 Tested up to: 4.0
@@ -46,26 +46,7 @@ Related Posts for WordPress is fully compatible with WPML. You can automatically
 
 == Frequently Asked Questions ==
 
-= Where's the settings screen? =
-Settings > Related Posts.
-
-= Can the displaying of excerpt be disabled? =
-Yes, set the excerpt length to 0 in the Related Posts for WordPress settings screen.
-
-= Is there any way to custom CSS ? =
-Yes, it's in the Related Posts for WordPress settings screen.
-
-= Can the automatically outputted CSS be disabled? =
-Yes, clear the CSS field in the Related Posts for WordPress settings screen.
-
-= Is there a theme function so I can output this list anywhere in my theme I want? =
-Not yet, we're working on this and this will be added soon!
-
-= Is there a shortcode? =
-Yes, use [rp4wp]
-
-= Does the plugin uses it's own database table ? =
-There is one custom table created for the post cache, this table will however not be used at the frontend of your website. Related Posts are fetched with normal WP_Query objects.
+Please see the [FAQ section at our website.](http://www.relatedpostsforwp.com/faq/)
 
 == Screenshots ==
 1. After activating Related Posts for WordPress, our wizard will automatically start. The first step is indexing and caching your posts.
