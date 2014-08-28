@@ -1,10 +1,10 @@
 === Related Posts for WordPress ===
 Contributors: barrykooij
 Donate link: http://www.relatedpostsforwp.com/
-Tags: related posts for wordpress, related posts for wp, simple related posts, easy related posts, related posts, related, relations, internal links, seo
+Tags: related posts for wordpress, related posts for wp, simple related posts, easy related posts, related posts, related, relations, internal links, seo, bounce rate
 Requires at least: 3.6
 Tested up to: 4.0
-Stable tag: 1.4.0
+Stable tag: 1.4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -57,8 +57,9 @@ Please see the [FAQ section at our website.](http://www.relatedpostsforwp.com/fa
 
 == Changelog ==
 
-= Trunk =
+= 1.4.1: August 29, 2014 =
 * Added filter 'rp4wp_append_content' to allow disabling of related post append to content.
+* Fixed various hook and filter class bugs.
 
 = 1.4.0: August 24, 2014 =
 * Created the possibility to restart the installation wizard. See settings page for this option.
