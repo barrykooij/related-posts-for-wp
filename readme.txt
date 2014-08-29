@@ -5,7 +5,7 @@ Tags: related posts for wordpress, related posts for wp, simple related posts, e
 Requires at least: 3.6
 Tested up to: 4.0
 Stable tag: 1.4.1
-License: GPLv2 or later
+License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Display related posts without slowing down your website! Link all your existing content with only 1 click, get related posts for all your posts today!
@@ -32,6 +32,7 @@ Related Posts for WordPress is fully compatible with WPML. You can automatically
 
 **More information**
 
+- Visit the [Related Posts for WordPress website](http://www.relatedpostsforwp.com/?utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=more-information)
 - Other [WordPress plugins](http://profiles.wordpress.org/barrykooij/) by [Barry Kooij](http://www.barrykooij.com/)
 - Contact Barry on Twitter: [@CageNL](http://twitter.com/CageNL)
 - If you're a dev, follow or contribute to the [Related Posts for WordPress plugin on GitHub](https://github.com/barrykooij/related-posts-for-wp)
@@ -46,7 +47,7 @@ Related Posts for WordPress is fully compatible with WPML. You can automatically
 
 == Frequently Asked Questions ==
 
-Please see the [FAQ section at our website.](http://www.relatedpostsforwp.com/faq/)
+Please see the [FAQ section at our website.](http://www.relatedpostsforwp.com/faq/?utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=faq)
 
 == Screenshots ==
 1. After activating Related Posts for WordPress, our wizard will automatically start. The first step is indexing and caching your posts.
