@@ -95,11 +95,11 @@ class RP4WP_Meta_Box_Manage {
 				echo "<td>";
 				echo "<strong><a href='{$edit_url}' class='row-title' title='{$child->post_title}'>{$child->post_title}</a></strong>\n";
 				echo "<div class='row-actions'>\n";
-				echo "<span class='edit'><a href='{$edit_url}' title='" . __( 'Edit this item', 'related-posts-for-wp' ) . "'>";
+				echo "<span class='edit'><a href='{$edit_url}' title='" . __( 'Edit Post', 'related-posts-for-wp' ) . "'>";
 				_e( 'Edit Post', 'related-posts-for-wp' );
 				echo "</a> | </span>";
-				echo "<span class='trash'><a class='submitdelete' title='" . __( 'Delete this item', 'related-posts-for-wp' ) . "' href='javascript:;'>";
-				_e( 'Delete Post', 'related-posts-for-wp' );
+				echo "<span class='trash'><a class='submitdelete' title='" . __( 'Unlink Related Post', 'related-posts-for-wp' ) . "' href='javascript:;'>";
+				_e( 'Unlink Related Post', 'related-posts-for-wp' );
 				echo "</a></span>";
 				echo "</div>\n";
 				echo "</td>\n";
