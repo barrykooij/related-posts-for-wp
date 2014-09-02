@@ -30,6 +30,9 @@ Everyone makes mistakes, so do we. That's why you can easily modify all automati
 = WPML compatible =
 Related Posts for WordPress is fully compatible with WPML. You can automatically add manually link related posts in their own language.
 
+= Shortcode =
+Related Posts for WordPress has a shortcode allowing you to display related posts on any position within your content.
+
 **More information**
 
 - Visit the [Related Posts for WordPress website](http://www.relatedpostsforwp.com/?utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=more-information)
