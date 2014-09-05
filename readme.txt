@@ -88,6 +88,7 @@ There is one custom table created for the post cache, this table will however no
 * Lowered amount of posts cached per request to increase feedback in wizard.
 * Various small wizard tweaks.
 * Added nonce check to wizard restart procedure.
+* Fixed a plugin activation redirect bug.
 
 = 1.4.1: August 29, 2014 =
 * Added filter 'rp4wp_append_content' to allow disabling of related post append to content.
