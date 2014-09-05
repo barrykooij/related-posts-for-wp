@@ -1,6 +1,6 @@
 <?php
 
-if ( !defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
@@ -59,7 +59,6 @@ abstract class RP4WP_Hook {
 	public function get_tag() {
 		return $this->tag;
 	}
-
 
 
 }

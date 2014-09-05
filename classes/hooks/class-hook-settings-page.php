@@ -1,6 +1,6 @@
 <?php
 
-if ( !defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
@@ -64,7 +64,7 @@ class RP4WP_Hook_Settings_Page extends RP4WP_Hook {
 
 			<div class="rp4wp-box">
 				<h3 class="rp4wp-title"><?php _e( 'About the developer', 'related-posts-for-wp' ); ?></h3>
-				
+
 				<p><?php _e( "Barry is a WordPress developer that works on WooCommerce by WooThemes and is the author of various WordPress plugins that include Post Connector, Related Posts for WordPress and What The File.", 'related-posts-for-wp' ); ?></p>
 
 				<p><?php _e( "Barry likes contributing to opensource projects and visiting WordCamps and WordPress meetups. He’s the organizer of the WordPress meetup in Tilburg.", 'related-posts-for-wp' ); ?></p>
@@ -87,14 +87,14 @@ class RP4WP_Hook_Settings_Page extends RP4WP_Hook {
 		<div class="wrap">
 			<h2>Related Posts for WordPress</h2>
 
-				<div class="rp4wp-content">
-					<form method="post" action="options.php">
-						<?php settings_fields( 'rp4wp' );	//pass slug name of page, also referred
-						//to in Settings API as option group name
-						do_settings_sections( 'rp4wp' ); 	//pass slug name of page
-						submit_button();
-						?>
-					</form>
+			<div class="rp4wp-content">
+				<form method="post" action="options.php">
+					<?php settings_fields( 'rp4wp' );    //pass slug name of page, also referred
+					//to in Settings API as option group name
+					do_settings_sections( 'rp4wp' );    //pass slug name of page
+					submit_button();
+					?>
+				</form>
 			</div>
 			<?php $this->sidebar(); ?>
 		</div>

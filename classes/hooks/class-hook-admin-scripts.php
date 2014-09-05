@@ -1,6 +1,6 @@
 <?php
 
-if ( !defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
@@ -16,7 +16,7 @@ class RP4WP_Hook_Admin_Scripts extends RP4WP_Hook {
 			// Load PL JS
 			wp_enqueue_script(
 				'rp4wp_edit_post_js',
-				plugins_url( '/assets/js/edit-post' . ( ( !SCRIPT_DEBUG ) ? '.min' : '' ) . '.js', RP4WP::get_plugin_file() ),
+				plugins_url( '/assets/js/edit-post' . ( ( ! SCRIPT_DEBUG ) ? '.min' : '' ) . '.js', RP4WP::get_plugin_file() ),
 				array( 'jquery', 'jquery-ui-sortable' )
 			);
 

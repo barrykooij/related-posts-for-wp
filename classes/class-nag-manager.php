@@ -1,10 +1,10 @@
 <?php
 
-if ( !defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
-if ( !class_exists( 'RP4WP_Nag_Manager' ) ) {
+if ( ! class_exists( 'RP4WP_Nag_Manager' ) ) {
 	class RP4WP_Nag_Manager {
 
 		/**
@@ -72,7 +72,7 @@ if ( !class_exists( 'RP4WP_Nag_Manager' ) ) {
 				$current_user = wp_get_current_user();
 
 				// Get user meta
-				$hide_notice  = get_user_meta( $current_user->ID, RP4WP_Constants::OPTION_ADMIN_NOTICE_KEY, true );
+				$hide_notice = get_user_meta( $current_user->ID, RP4WP_Constants::OPTION_ADMIN_NOTICE_KEY, true );
 
 				// Check if the notice is already dismissed
 				if ( '' == $hide_notice ) {

@@ -1,10 +1,10 @@
 <?php
 
-if ( !defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
-if ( !class_exists( 'RP4WP_Manager_Filter' ) ) {
+if ( ! class_exists( 'RP4WP_Manager_Filter' ) ) {
 
 	class RP4WP_Manager_Filter {
 
@@ -39,7 +39,7 @@ if ( !class_exists( 'RP4WP_Manager_Filter' ) ) {
 
 			foreach ( new DirectoryIterator( $this->filter_dir ) as $file ) {
 
-				if ( !$file->isDir() && ( strpos( $file->getFileName(), '.' ) !== 0 ) ) {
+				if ( ! $file->isDir() && ( strpos( $file->getFileName(), '.' ) !== 0 ) ) {
 
 					$class = RP4WP_Class_Manager::format_class_name( $file->getFileName() );
 					if ( 'RP4WP_Filter' != $class ) {

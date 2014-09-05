@@ -1,10 +1,10 @@
 <?php
 
-if ( !defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
-if ( !class_exists( 'WP_List_Table' ) ) {
+if ( ! class_exists( 'WP_List_Table' ) ) {
 	require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 }
 
@@ -53,7 +53,7 @@ class RP4WP_Link_Related_Table extends WP_List_Table {
 		foreach ( $views_arr as $key => $val ) {
 			$new_views[$key] = "<a href='" . add_query_arg( array(
 					'rp4wp_view' => $key,
-					'paged'   => 1
+					'paged'      => 1
 				) ) . "'" . ( ( $current == $key ) ? " class='current'" : "" ) . ">{$val}</a>";
 		}
 
@@ -154,7 +154,7 @@ class RP4WP_Link_Related_Table extends WP_List_Table {
 		remove_filter( 'posts_where', array( $this, 'filter_posts_where' ) );
 
 		// Sort
-		if ( !$this->is_related ) {
+		if ( ! $this->is_related ) {
 			if ( count( $this->data ) > 0 ) {
 				usort( $this->data, array( $this, 'custom_reorder' ) );
 			}
@@ -171,7 +171,7 @@ class RP4WP_Link_Related_Table extends WP_List_Table {
 	 */
 	public function get_sortable_columns() {
 		$sortable_columns = array();
-		if ( !$this->is_related ) {
+		if ( ! $this->is_related ) {
 			$sortable_columns['title'] = array( 'title', false );
 		}
 
@@ -188,9 +188,9 @@ class RP4WP_Link_Related_Table extends WP_List_Table {
 	 */
 	public function custom_reorder( $a, $b ) {
 		// If no sort, default to title
-		$orderby = ( !empty( $_GET['orderby'] ) ) ? $_GET['orderby'] : 'title';
+		$orderby = ( ! empty( $_GET['orderby'] ) ) ? $_GET['orderby'] : 'title';
 		// If no order, default to asc
-		$order = ( !empty( $_GET['order'] ) ) ? $_GET['order'] : 'asc';
+		$order = ( ! empty( $_GET['order'] ) ) ? $_GET['order'] : 'asc';
 		// Determine sort order
 		$result = strcmp( $a[$orderby], $b[$orderby] );
 

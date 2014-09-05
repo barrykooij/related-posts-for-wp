@@ -1,6 +1,6 @@
 <?php
 
-if ( !defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
@@ -47,7 +47,7 @@ class RP4WP_Related_Post_Manager {
 
 		if ( count( $rposts ) > 0 ) {
 			foreach ( $rposts as $rpost ) {
-				if ( !isset( $related_posts[$rpost->ID] ) ) {
+				if ( ! isset( $related_posts[$rpost->ID] ) ) {
 					$related_posts[] = $rpost;
 				}
 

@@ -1,10 +1,10 @@
 <?php
 
-if ( !defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
-if ( !class_exists( 'RP4WP_Javascript_Strings' ) ) {
+if ( ! class_exists( 'RP4WP_Javascript_Strings' ) ) {
 	class RP4WP_Javascript_Strings {
 
 		private static $value = null;

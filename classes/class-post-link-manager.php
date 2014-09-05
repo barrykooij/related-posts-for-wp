@@ -1,6 +1,6 @@
 <?php
 
-if ( !defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
@@ -158,7 +158,7 @@ class RP4WP_Post_Link_Manager {
 		 * Check $extra_args for `order`.
 		 * If 'order' is set without 'orderby', we should add it to the link arguments
 		 */
-		if ( isset( $extra_args['order'] ) && !isset( $extra_args['orderby'] ) ) {
+		if ( isset( $extra_args['order'] ) && ! isset( $extra_args['orderby'] ) ) {
 			$link_args['order'] = $extra_args['order'];
 			unset( $extra_args['order'] );
 		}
@@ -176,7 +176,7 @@ class RP4WP_Post_Link_Manager {
 		// Get children with custom args
 		if ( $extra_args !== null && count( $extra_args ) > 0 ) {
 
-			if ( !isset( $extra_args['orderby'] ) ) {
+			if ( ! isset( $extra_args['orderby'] ) ) {
 				$this->temp_child_order = array();
 				foreach ( $child_ids as $child_id ) {
 					$this->temp_child_order[] = $child_id;
@@ -208,7 +208,7 @@ class RP4WP_Post_Link_Manager {
 				endwhile;
 
 				// Fix sorting
-				if ( !isset( $extra_args['orderby'] ) ) {
+				if ( ! isset( $extra_args['orderby'] ) ) {
 					uasort( $children, array( $this, 'sort_get_children_children' ) );
 				}
 

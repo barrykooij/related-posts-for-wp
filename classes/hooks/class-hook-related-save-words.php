@@ -16,7 +16,7 @@ class RP4WP_Hook_Related_Save_Words extends RP4WP_Hook {
 		}
 
 		// Only count on post type 'post'
-		if( 'post' != $post->post_type) {
+		if ( 'post' != $post->post_type ) {
 			return;
 		}
 

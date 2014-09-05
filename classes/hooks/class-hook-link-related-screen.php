@@ -1,6 +1,6 @@
 <?php
 
-if ( !defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
@@ -21,7 +21,7 @@ class RP4WP_Hook_Link_Related_Screen extends RP4WP_Hook {
 	 * Check if the current user is allowed to create related posts
 	 */
 	private function check_if_allowed() {
-		if ( !current_user_can( 'edit_posts' ) ) {
+		if ( ! current_user_can( 'edit_posts' ) ) {
 			wp_die( 'There was a problem loading this page, you may not have the necessary permissions.' );
 		}
 	}
@@ -35,7 +35,7 @@ class RP4WP_Hook_Link_Related_Screen extends RP4WP_Hook {
 		if ( isset( $_GET['rp4wp_create_link'] ) && isset( $_GET['rp4wp_parent'] ) ) {
 
 			// Check if user is allowed to do this
-			if ( !current_user_can( 'edit_posts' ) ) {
+			if ( ! current_user_can( 'edit_posts' ) ) {
 				return;
 			}
 
@@ -73,7 +73,7 @@ class RP4WP_Hook_Link_Related_Screen extends RP4WP_Hook {
 			$parent = $_GET['rp4wp_parent'];
 
 			// Check if user is allowed to do this
-			if ( !current_user_can( 'edit_posts' ) ) {
+			if ( ! current_user_can( 'edit_posts' ) ) {
 				return;
 			}
 
@@ -109,7 +109,7 @@ class RP4WP_Hook_Link_Related_Screen extends RP4WP_Hook {
 	 */
 	public function content() {
 
-		if ( !isset( $_GET['rp4wp_parent'] ) ) {
+		if ( ! isset( $_GET['rp4wp_parent'] ) ) {
 			wp_die( "Can't load page, no parent set. Please contact support and provide them this message" );
 		}
 

@@ -1,6 +1,6 @@
 <?php
 
-if ( !defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
@@ -14,12 +14,12 @@ class RP4WP_Hook_Meta_Box_AJAX_Sort extends RP4WP_Hook {
 		check_ajax_referer( 'rp4wp-ajax-nonce-omgrandomword', 'nonce' );
 
 		// Check if user is allowed to do this
-		if ( !current_user_can( 'edit_posts' ) ) {
+		if ( ! current_user_can( 'edit_posts' ) ) {
 			return;
 		}
 
 		// Check if the items are set
-		if ( !isset( $_POST['rp4wp_items'] ) ) {
+		if ( ! isset( $_POST['rp4wp_items'] ) ) {
 			return;
 		}
 

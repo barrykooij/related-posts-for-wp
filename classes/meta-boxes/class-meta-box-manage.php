@@ -1,6 +1,6 @@
 <?php
 
-if ( !defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
@@ -9,7 +9,7 @@ class RP4WP_Meta_Box_Manage {
 	public function __construct() {
 
 		// Check if we're in the admin/backend
-		if ( !is_admin() ) {
+		if ( ! is_admin() ) {
 			return;
 		}
 

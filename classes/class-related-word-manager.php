@@ -1,6 +1,6 @@
 <?php
 
-if ( !defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
@@ -31,7 +31,7 @@ class RP4WP_Related_Word_Manager {
 		foreach ( $ignored_words as $word ) {
 
 			// Only add word if it's not already added
-			if ( !in_array( $word, $temp_words ) ) {
+			if ( ! in_array( $word, $temp_words ) ) {
 				if ( false !== strpos( $word, "Ã" ) ) {
 					continue;
 				}
@@ -79,7 +79,7 @@ class RP4WP_Related_Word_Manager {
 		$filename = dirname( __FILE__ ) . $relative_path;
 
 		// Check if file exists
-		if ( !file_exists( $filename ) ) {
+		if ( ! file_exists( $filename ) ) {
 			return array();
 		}
 
@@ -87,7 +87,7 @@ class RP4WP_Related_Word_Manager {
 		$ignored_words = require( $filename );
 
 		// Check if the the $ignored_words are set
-		if ( is_null( $ignored_words ) || !is_array( $ignored_words ) ) {
+		if ( is_null( $ignored_words ) || ! is_array( $ignored_words ) ) {
 			return array();
 		}
 
@@ -183,7 +183,7 @@ class RP4WP_Related_Word_Manager {
 	 */
 	private function add_words_from_array( array $base_words, $words, $weight = 1 ) {
 
-		if ( !is_array( $words ) ) {
+		if ( ! is_array( $words ) ) {
 			return $base_words;
 		}
 

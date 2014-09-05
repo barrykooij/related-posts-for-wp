@@ -1,10 +1,10 @@
 <?php
 
-if ( !defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
-if ( !class_exists( 'RP4WP_Filter_Plugin_Links' ) ) {
+if ( ! class_exists( 'RP4WP_Filter_Plugin_Links' ) ) {
 
 	class RP4WP_Filter_Plugin_Links extends RP4WP_Filter {
 		protected $tag = 'plugin_action_links_related-posts-for-wp/related-posts-for-wp.php';

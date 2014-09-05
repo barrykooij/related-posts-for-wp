@@ -1,6 +1,6 @@
 <?php
 
-if ( !defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
@@ -24,12 +24,12 @@ class RP4WP_Filter_After_Post extends RP4WP_Filter {
 		global $id;
 
 		// Only run on single
-		if ( !is_singular() || !is_main_query() || $id != get_queried_object_id() ) {
+		if ( ! is_singular() || ! is_main_query() || $id != get_queried_object_id() ) {
 			return $content;
 		}
 
 		// Allow disabling content filter
-		if( false === apply_filters( 'rp4wp_append_content', true ) ) {
+		if ( false === apply_filters( 'rp4wp_append_content', true ) ) {
 			return $content;
 		}
 

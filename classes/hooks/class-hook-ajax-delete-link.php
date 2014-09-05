@@ -1,6 +1,6 @@
 <?php
 
-if ( !defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
@@ -16,7 +16,7 @@ class RP4WP_Hook_Ajax_Delete_Link extends RP4WP_Hook {
 	public function run() {
 
 		// id,
-		if ( !isset( $_POST['id'] ) ) {
+		if ( ! isset( $_POST['id'] ) ) {
 			exit;
 		}
 
@@ -27,7 +27,7 @@ class RP4WP_Hook_Ajax_Delete_Link extends RP4WP_Hook {
 		check_ajax_referer( 'rp4wp-ajax-nonce-omgrandomword', 'nonce' );
 
 		// Check if user is allowed to do this
-		if ( !current_user_can( 'edit_posts' ) ) {
+		if ( ! current_user_can( 'edit_posts' ) ) {
 			return;
 		}
 
