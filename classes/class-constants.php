@@ -1,6 +1,6 @@
 <?php
 
-if ( !defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
@@ -24,6 +24,8 @@ abstract class RP4WP_Constants {
 	// Nag options
 	const OPTION_INSTALL_DATE = 'rp4wp_install_date';
 	const OPTION_ADMIN_NOTICE_KEY = 'rp4wp_hide_nag';
+
+	const NONCE_REINSTALL = 'rp4wp-reinstall-secret';
 
 
 }
