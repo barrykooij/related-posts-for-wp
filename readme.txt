@@ -82,7 +82,7 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
-= 1.5.0 =
+= 1.5.0: September 5, 2014 =
 * Added Related Posts widget.
 * Changed 'Delete Post' label to 'Unlink Related Post'.
 * Lowered amount of posts cached per request to increase feedback in wizard.
