@@ -1,6 +1,6 @@
 <?php
 
-if ( !defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
@@ -22,7 +22,7 @@ class RP4WP_Hook_Related_Auto_Link extends RP4WP_Hook {
 		}
 
 		// Check permission
-		if ( !current_user_can( 'edit_post', $post_id ) ) {
+		if ( ! current_user_can( 'edit_post', $post_id ) ) {
 			return;
 		}
 
@@ -32,7 +32,7 @@ class RP4WP_Hook_Related_Auto_Link extends RP4WP_Hook {
 		}
 
 		// Is automatic linking enabled?
-		if( 1 != RP4WP::get()->settings->get_option( 'automatic_linking' ) ) {
+		if ( 1 != RP4WP::get()->settings->get_option( 'automatic_linking' ) ) {
 			return;
 		}
 
