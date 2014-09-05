@@ -83,9 +83,9 @@ There is one custom table created for the post cache, this table will however no
 == Changelog ==
 
 = Trunk =
+* Added Related Posts widget.
 * Changed 'Delete Post' label to 'Unlink Related Post'.
 * Lowered amount of posts cached per request to increase feedback in wizard.
-
 
 = 1.4.1: August 29, 2014 =
 * Added filter 'rp4wp_append_content' to allow disabling of related post append to content.
