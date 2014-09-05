@@ -110,7 +110,7 @@ class RP4WP {
 			delete_site_option( RP4WP_Constants::OPTION_DO_INSTALL );
 
 			// Redirect to installation wizard
-			wp_redirect( admin_url() . '?page=rp4wp_install', 301 );
+			wp_redirect( admin_url() . '?page=rp4wp_install', 307 );
 			exit;
 		}
 
