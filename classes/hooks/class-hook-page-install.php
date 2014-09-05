@@ -43,7 +43,7 @@ class RP4WP_Hook_Page_Install extends RP4WP_Hook {
 			// Get ID's of related post link posts
 			$link_ids = get_posts(
 				array(
-					'post_type'      => 'rp4wp_link',
+					'post_type'      => RP4WP_Constants::LINK_PT,
 					'fields'         => 'ids',
 					'posts_per_page' => - 1
 				)
