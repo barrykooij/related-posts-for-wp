@@ -44,11 +44,11 @@ jQuery(document).ready(function ($) {
 					// Do request
 					instance.do_request();
 
-				} else if( 'done' == response ) {
+				} else if ('done' == response) {
 					// Done
 					instance.done();
-				}else {
-					alert( "Woops! Something went wrong while linking.\n\nResponse:\n\n" + response );
+				} else {
+					alert("Woops! Something went wrong while linking.\n\nResponse:\n\n" + response);
 				}
 
 			});
