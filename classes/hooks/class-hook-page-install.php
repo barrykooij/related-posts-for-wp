@@ -1,6 +1,6 @@
 <?php
 
-if ( !defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
@@ -23,7 +23,7 @@ class RP4WP_Hook_Page_Install extends RP4WP_Hook {
 	public function enqueue_install_assets() {
 		global $wp_scripts;
 		wp_enqueue_style( 'rp4wp-install-css', plugins_url( '/assets/css/install.css', RP4WP::get_plugin_file() ) );
-		wp_enqueue_script( 'rp4wp-install-js', plugins_url( '/assets/js/install' . ( ( !SCRIPT_DEBUG ) ? '.min' : '' ) . '.js', RP4WP::get_plugin_file() ), array( 'jquery', 'jquery-ui-core', 'jquery-ui-progressbar' ) );
+		wp_enqueue_script( 'rp4wp-install-js', plugins_url( '/assets/js/install' . ( ( ! SCRIPT_DEBUG ) ? '.min' : '' ) . '.js', RP4WP::get_plugin_file() ), array( 'jquery', 'jquery-ui-core', 'jquery-ui-progressbar' ) );
 		wp_enqueue_style( 'jquery-ui-smoothness', "http://ajax.googleapis.com/ajax/libs/jqueryui/" . $wp_scripts->query( 'jquery-ui-core' )->ver . "/themes/smoothness/jquery-ui.css", false, null );
 	}
 
@@ -92,7 +92,7 @@ class RP4WP_Hook_Page_Install extends RP4WP_Hook {
 				<?php
 
 				foreach ( $steps as $step => $label ) {
-					echo "<li id='step-bar-" . $step . "'" . ( ( $cur_step == $step ) ? " class='step-bar-active'" : "" ) . ">" . $label . "</li>" . PHP_EOL;
+					echo "<li id='step-bar-" . $step . "'" . ( ( $cur_step == $step ) ? " class='step-bar-active'" : "" ) . "><span>" . $step . '. ' . $label . "</span></li>" . PHP_EOL;
 				}
 				?>
 			</ul>
