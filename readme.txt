@@ -4,7 +4,7 @@ Donate link: http://www.relatedpostsforwp.com/
 Tags: related posts for wordpress, related posts for wp, simple related posts, easy related posts, related posts, related, relations, internal links, seo, bounce rate
 Requires at least: 3.6
 Tested up to: 4.0
-Stable tag: 1.4.1
+Stable tag: 1.5.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -82,7 +82,7 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
-= Trunk =
+= 1.5.0 =
 * Added Related Posts widget.
 * Changed 'Delete Post' label to 'Unlink Related Post'.
 * Lowered amount of posts cached per request to increase feedback in wizard.
