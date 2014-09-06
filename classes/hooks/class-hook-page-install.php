@@ -39,7 +39,6 @@ class RP4WP_Hook_Page_Install extends RP4WP_Hook {
 		if ( isset( $_GET['reinstall'] ) ) {
 
 			// Check nonce
-
 			if ( ! wp_verify_nonce( ( isset( $_GET['rp4wp_nonce'] ) ? $_GET['rp4wp_nonce'] : '' ), RP4WP_Constants::NONCE_REINSTALL ) ) {
 				wp_die( 'Woah! It looks like something else tried to run the Related Posts for WordPress installation wizard! We were able to stop them, nothing was lost. Please report this incident at <a href="http://wordpress.org/support/plugin/related-posts-for-wp" target="_blank">our forums.</a>' );
 			}
