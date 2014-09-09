@@ -16,11 +16,9 @@ class RP4WP_Related_Post_Manager {
 	public function get_related_posts( $post_id, $limit = - 1 ) {
 		global $wpdb;
 
-		$related_posts = array();
-
 		// Build SQl
 		$sql = "
-		SELECT O.`word`, P.`ID`, P.`post_title`, SUM( R.`weight` ) AS `related_weight`
+		SELECT P.`ID`
 		FROM `" . RP4WP_Related_Word_Manager::get_database_table() . "` O
 		INNER JOIN `" . RP4WP_Related_Word_Manager::get_database_table() . "` R ON R.`word` = O.`word`
 		INNER JOIN `" . $wpdb->posts . "` P ON P.`ID` = R.`post_id`
@@ -30,7 +28,7 @@ class RP4WP_Related_Post_Manager {
 		AND R.`post_id` != %d
 		AND P.`post_status` = 'publish'
 		GROUP BY P.`id`
-		ORDER BY `related_weight` DESC
+		ORDER BY SUM( R.`weight` ) DESC
 		";
 
 		// Check & Add Limit
@@ -43,18 +41,7 @@ class RP4WP_Related_Post_Manager {
 		$sql = $wpdb->prepare( $sql, $post_id, $post_id, $limit );
 
 		// Get post from related cache
-		$rposts = $wpdb->get_results( $sql );
-
-		if ( count( $rposts ) > 0 ) {
-			foreach ( $rposts as $rpost ) {
-				if ( ! isset( $related_posts[$rpost->ID] ) ) {
-					$related_posts[] = $rpost;
-				}
-
-			}
-		}
-
-		return $related_posts;
+		return $wpdb->get_results( $sql );
 	}
 
 	/**
@@ -64,8 +51,9 @@ class RP4WP_Related_Post_Manager {
 	 *
 	 * @return array
 	 */
-	public function get_not_auto_linked_posts( $limit ) {
+	public function get_not_auto_linked_posts_ids( $limit ) {
 		return get_posts( array(
+			'fields'         => 'ids',
 			'post_type'      => 'post',
 			'posts_per_page' => $limit,
 			'post_status'    => 'publish',
@@ -116,12 +104,12 @@ class RP4WP_Related_Post_Manager {
 		global $wpdb;
 
 		// Get uncached posts
-		$posts = $this->get_not_auto_linked_posts( $post_amount );
+		$post_ids = $this->get_not_auto_linked_posts_ids( $post_amount );
 
 		// Check & Loop
-		if ( count( $posts ) > 0 ) {
-			foreach ( $posts as $post ) {
-				$this->link_related_post( $post->ID, $rel_amount );
+		if ( count( $post_ids ) > 0 ) {
+			foreach ( $post_ids as $post_id ) {
+				$this->link_related_post( $post_id, $rel_amount );
 			}
 		}
 
