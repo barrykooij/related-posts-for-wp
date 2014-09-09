@@ -204,14 +204,19 @@ class RP4WP_Related_Word_Manager {
 	 */
 	public function get_words_of_post( $post_id ) {
 
+		setlocale( LC_CTYPE, 'en_US.UTF8' );
+
 		$post = get_post( $post_id );
 
 		$title_weight = apply_filters( 'rp4wp_weight_title', 80 );
 		$tag_weight   = apply_filters( 'rp4wp_weight_tag', 10 );
 		$cat_weight   = apply_filters( 'rp4wp_weight_cat', 20 );
 
+		// Base raw words
+		$raw_words = array();
+
 		// Get words from content
-		$raw_words = $this->get_content_words( $post );
+		$raw_words = $this->add_words_from_array( $raw_words, $this->get_content_words( $post ), $title_weight );
 
 		// Get words from title
 		$title_words = explode( ' ', $post->post_title );
