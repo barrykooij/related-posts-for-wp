@@ -1,7 +1,7 @@
 <?php
 
 // What is happening?
-if ( !defined( 'ABSPATH' ) || !defined( 'WP_UNINSTALL_PLUGIN' ) ) {
+if ( ! defined( 'ABSPATH' ) || ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit();
 }
 
@@ -27,11 +27,13 @@ if ( isset( $options['clean_on_uninstall'] ) && 1 == $options['clean_on_uninstal
 		)
 	);
 
-	// Delete all link posts
-	$wpdb->query( "DELETE FROM $wpdb->posts WHERE `ID` IN (" . implode( ",", $link_ids ) . ");" );
+	if ( count( $link_ids ) > 0 ) {
+		// Delete all link posts
+		$wpdb->query( "DELETE FROM $wpdb->posts WHERE `ID` IN (" . implode( ",", $link_ids ) . ");" );
 
-	// Delete all link post meta
-	$wpdb->query( "DELETE FROM $wpdb->postmeta WHERE `post_id` IN (" . implode( ",", $link_ids ) . ");" );
+		// Delete all link post meta
+		$wpdb->query( "DELETE FROM $wpdb->postmeta WHERE `post_id` IN (" . implode( ",", $link_ids ) . ");" );
+	}
 
 
 	// Delete the options
