@@ -362,9 +362,10 @@ class RP4WP_Related_Word_Manager {
 	 *
 	 * @return array
 	 */
-	public function get_uncached_posts( $limit = - 1 ) {
+	public function get_uncached_post_ids( $limit = - 1 ) {
 		// Get Posts without 'cached' PM
 		return get_posts( array(
+			'fields'         => 'ids',
 			'post_type'      => 'post',
 			'posts_per_page' => $limit,
 			'post_status'    => 'publish',
@@ -385,12 +386,12 @@ class RP4WP_Related_Word_Manager {
 		global $wpdb;
 
 		// Get uncached posts
-		$posts = $this->get_uncached_posts( $limit );
+		$post_ids = $this->get_uncached_post_ids( $limit );
 
 		// Check & Loop
-		if ( count( $posts ) > 0 ) {
-			foreach ( $posts as $post ) {
-				$this->save_words_of_post( $post->ID );
+		if ( count( $post_ids ) > 0 ) {
+			foreach ( $post_ids as $post_id ) {
+				$this->save_words_of_post( $post_id );
 			}
 		}
 
