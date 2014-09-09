@@ -188,7 +188,7 @@ class RP4WP_Related_Word_Manager {
 		}
 
 		foreach ( $words as $word ) {
-			$word_multiplied_by_weight = array_fill( 0, $weight, $word );
+			$word_multiplied_by_weight = array_fill( 0, $weight, iconv( "utf-8", "us-ascii//TRANSLIT", $word ) );
 			$base_words                = array_merge( $base_words, $word_multiplied_by_weight );
 		}
 
