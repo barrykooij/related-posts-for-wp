@@ -8,6 +8,8 @@ class RP4WP_Related_Word_Manager {
 
 	const DB_TABLE = 'rp4wp_cache';
 
+	private $ignored_words = null;
+
 	/**
 	 * Get the database table
 	 *
@@ -63,36 +65,40 @@ class RP4WP_Related_Word_Manager {
 	 */
 	private function get_ignored_words( $lang = '' ) {
 
-		// Set the language
-		if ( '' == $lang ) {
-			$lang = get_locale();
+		if ( null == $this->ignored_words ) {
+			// Set the language
+			if ( '' == $lang ) {
+				$lang = get_locale();
+			}
+
+			// Require the lang file
+			$relative_path = '/ignored-words/' . $lang . '.php';
+
+			// Validate the file path to prevent traversal attacks
+			if ( 0 !== validate_file( $relative_path ) ) {
+				return array();
+			}
+
+			$filename = dirname( __FILE__ ) . $relative_path;
+
+			// Check if file exists
+			if ( ! file_exists( $filename ) ) {
+				return array();
+			}
+
+			// Require the file
+			$ignored_words = require( $filename );
+
+			// Check if the the $ignored_words are set
+			if ( is_null( $ignored_words ) || ! is_array( $ignored_words ) ) {
+				return array();
+			}
+
+			// Words to ignore
+			$this->ignored_words = apply_filters( 'rp4wp_ignored_words', $ignored_words );
 		}
 
-		// Require the lang file
-		$relative_path = '/ignored-words/' . $lang . '.php';
-
-		// Validate the file path to prevent traversal attacks
-		if ( 0 !== validate_file( $relative_path ) ) {
-			return array();
-		}
-
-		$filename = dirname( __FILE__ ) . $relative_path;
-
-		// Check if file exists
-		if ( ! file_exists( $filename ) ) {
-			return array();
-		}
-
-		// Require the file
-		$ignored_words = require( $filename );
-
-		// Check if the the $ignored_words are set
-		if ( is_null( $ignored_words ) || ! is_array( $ignored_words ) ) {
-			return array();
-		}
-
-		// Words to ignore
-		return apply_filters( 'rp4wp_ignored_words', $ignored_words );
+		return $this->ignored_words;
 	}
 
 	/**
@@ -249,11 +255,6 @@ class RP4WP_Related_Word_Manager {
 				// Trim word
 				$word = strtolower( trim( $word ) );
 
-				// Skip empty words
-				if ( '' == $word ) {
-					continue;
-				}
-
 				// Only use words longer than 1 charecter
 				if ( strlen( $word ) < 2 ) {
 					continue;
@@ -274,11 +275,6 @@ class RP4WP_Related_Word_Manager {
 			}
 		}
 
-		// Sort words
-		arsort( $words );
-
-		// Only return words that occur more than X(3)
-
 		$new_words       = array();
 		$total_raw_words = count( $raw_words );
 		$length_weight   = 0.6;
@@ -286,7 +282,7 @@ class RP4WP_Related_Word_Manager {
 		foreach ( $words as $word => $amount ) {
 
 			if ( $amount < 3 ) {
-				break; // We can break because the array is already sorted
+				continue; // Don't add words that occur less than 3 times
 			}
 
 			// Add word and turn amount into weight (make it relative)
@@ -294,12 +290,7 @@ class RP4WP_Related_Word_Manager {
 
 		}
 
-		// Replace $words
-		$words = $new_words;
-
-		// Return words
-		return $words;
-
+		return $new_words;
 	}
 
 	/**
@@ -316,9 +307,6 @@ class RP4WP_Related_Word_Manager {
 		// Check words
 		if ( is_array( $words ) && count( $words ) > 0 ) {
 
-			// Get post type
-			$post_type = get_post_type( $post_id );
-
 			// Delete all currents words of post
 			$this->delete_words( $post_id );
 
@@ -332,7 +320,7 @@ class RP4WP_Related_Word_Manager {
 						'post_id'   => $post_id,
 						'word'      => $word,
 						'weight'    => $amount,
-						'post_type' => $post_type
+						'post_type' => 'post'
 					),
 					array(
 						'%d',
@@ -359,6 +347,7 @@ class RP4WP_Related_Word_Manager {
 	 * @return array
 	 */
 	public function get_uncached_post_ids( $limit = - 1 ) {
+
 		// Get Posts without 'cached' PM
 		return get_posts( array(
 			'fields'         => 'ids',
@@ -373,6 +362,7 @@ class RP4WP_Related_Word_Manager {
 				),
 			)
 		) );
+
 	}
 
 	/**
