@@ -30,6 +30,7 @@ jQuery(document).ready(function ($) {
 			var instance = this;
 			$.post(ajaxurl, {
 				'action'    : this.action,
+				'ppr'       : this.ppr,
 				'rel_amount': $('#rp4wp_related_posts_amount').val()
 			}, function (response) {
 
