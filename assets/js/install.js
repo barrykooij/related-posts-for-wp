@@ -78,7 +78,7 @@ jQuery(document).ready(function ($) {
 			// Set the correct action
 			switch (this.step) {
 				case 1:
-					this.ppr = 100;
+					this.ppr = 50;
 					this.action = 'rp4wp_install_save_words';
 					break;
 				case 2:
