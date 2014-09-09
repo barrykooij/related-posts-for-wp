@@ -17,7 +17,7 @@ class RP4WP_Installer {
   `word` varchar(255) CHARACTER SET utf8 NOT NULL,
   `weight` float unsigned NOT NULL,
   `post_type` varchar(20) CHARACTER SET utf8 NOT NULL,
-  PRIMARY KEY (`post_id`,`word`) );";
+  PRIMARY KEY (`post_id`,`word`) ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 
 		$wpdb->query( $sql );
 	}
