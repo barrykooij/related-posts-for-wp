@@ -136,12 +136,7 @@ class RP4WP_Related_Word_Manager {
 
 						// Check, Loop
 						if ( is_array( $title_words ) && count( $title_words ) > 0 ) {
-							foreach ( $title_words as $title_word ) {
-
-								$title_word_multiplied = array_fill( 0, 20, $title_word );
-								$linked_words          = array_merge( $linked_words, $title_word_multiplied );
-
-							}
+							$linked_words = $this->add_words_from_array( $linked_words, $title_words, 20 );
 						}
 					}
 
@@ -164,6 +159,10 @@ class RP4WP_Related_Word_Manager {
 
 		// Split string into words
 		$words = explode( ' ', $content );
+
+		foreach ( $words as $word_key => $word_val ) {
+			$words[$word_key] = iconv( "utf-8", "us-ascii//TRANSLIT", $word_val );
+		}
 
 		// Add the $linked_words
 		$words = array_merge( $words, $linked_words );
@@ -212,11 +211,8 @@ class RP4WP_Related_Word_Manager {
 		$tag_weight   = apply_filters( 'rp4wp_weight_tag', 10 );
 		$cat_weight   = apply_filters( 'rp4wp_weight_cat', 20 );
 
-		// Base raw words
-		$raw_words = array();
-
-		// Get words from content
-		$raw_words = $this->add_words_from_array( $raw_words, $this->get_content_words( $post ), $title_weight );
+		// Get raw words
+		$raw_words = $this->get_content_words( $post );
 
 		// Get words from title
 		$title_words = explode( ' ', $post->post_title );
