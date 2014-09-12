@@ -33,6 +33,9 @@ Related Posts for WordPress is fully compatible with WPML. You can automatically
 = Shortcode =
 Related Posts for WordPress has a shortcode allowing you to display related posts on any position within your content.
 
+= Widget =
+Related Posts for Wordpress has a widget allowing you to display related posts in any sidebar you'd like.
+
 **More information**
 
 - Visit the [Related Posts for WordPress website](http://www.relatedpostsforwp.com/?utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=more-information)
@@ -69,6 +72,9 @@ Not yet, we're working on this and this will be added soon!
 
 = Is there a shortcode? =
 Yes, use [rp4wp]
+
+= Is there a widget? =
+Yes there is!
 
 = Does Related Posts for WordPress uses it's own database table ? =
 There is one custom table created for the post cache, this table will however not be used at the frontend of your website. Related Posts are fetched with normal WP_Query objects.
