@@ -113,6 +113,11 @@ class RP4WP_Hook_Page_Install extends RP4WP_Hook {
 			echo "<input type='hidden' id='rp4wp_admin_url' value='" . admin_url() . "' />" . PHP_EOL;
 
 			if ( 1 == $cur_step ) {
+
+				// Echo current uncached posts
+				$related_word_manager = new RP4WP_Related_Word_Manager();
+				echo "<input type='hidden' id='rp4wp_uncached_posts' value='" . $related_word_manager->get_uncached_post_count() . "' />" . PHP_EOL;
+
 				?>
 				<p><?php _e( 'Thank you for choosing Related Posts for WordPress!', 'related-posts-for-wp' ); ?></p>
 				<p><?php _e( 'Before you can start using Related Posts for WordPress we need to cache your current posts.', 'related-posts-for-wp' ); ?></p>
@@ -123,6 +128,10 @@ class RP4WP_Hook_Page_Install extends RP4WP_Hook {
 				<div id="progressbar"></div>
 			<?php
 			} elseif ( 2 == $cur_step ) {
+
+				// Echo current uncached posts
+				$related_post_manager = new RP4WP_Related_Post_Manager();
+				echo "<input type='hidden' id='rp4wp_uncached_posts' value='" . $related_post_manager->get_uncached_post_count() . "' />" . PHP_EOL;
 				?>
 				<p style="font-weight: bold;"><?php _e( 'Great! All your posts were successfully cached!', 'related-posts-for-wp' ); ?></p>
 				<p><?php _e( "You can let me link your posts, based on what I think is related, to each other. And don't worry, if I made a mistake at one of your posts you can easily correct this by editing it manually!", 'related-posts-for-wp' ); ?></p>
@@ -130,7 +139,7 @@ class RP4WP_Hook_Page_Install extends RP4WP_Hook {
 				<p style="font-weight: bold;"><?php _e( 'Do NOT close this window if you click the "Link now" button, wait for this process to finish and this wizard to take you to the next step.', 'related-posts-for-wp' ); ?></p>
 				<br class="clear" />
 				<p class="rp4wp-install-link-box">
-					<label for="rp4wp_related_posts_amount"><?php _e( 'Amount of related posts per post:', 'related-posts-for-wp' ); ?></label><input class="form-input-tip" type="text" id="rp4wp_related_posts_amount" value="3" />
+					<label for="rp4wp_related_posts_amount"><?php _e( 'Amount of related posts per post:', 'related-posts-for-wp' ); ?></label><input class="form-input-tip" type="text" id="rp4wp_related_posts_amount" value="<?php echo RP4WP()->settings->get_option( 'automatic_linking_post_amount' ); ?>" />
 					<a href="javascript:;" class="button button-primary button-large rp4wp-link-now-btn" id="rp4wp-link-now"><?php _e( 'Link now', 'related-posts-for-wp' ); ?></a>
 					<a href="<?php echo admin_url(); ?>?page=rp4wp_install&step=3" class="button"><?php _e( 'Skip linking', 'related-posts-for-wp' ); ?></a>
 				</p>

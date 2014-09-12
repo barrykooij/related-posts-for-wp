@@ -23,8 +23,8 @@ jQuery(document).ready(function ($) {
 		this.step = step;
 		this.total_posts = 0;
 		this.ppr = null;
-		this.req_nr = 0;
 		this.action = null;
+		this.percentage_object = null;
 
 		this.do_request = function () {
 			var instance = this;
@@ -34,20 +34,28 @@ jQuery(document).ready(function ($) {
 				'rel_amount': $('#rp4wp_related_posts_amount').val()
 			}, function (response) {
 
-				// What next?
-				if ('more' == response) {
-					// Increase the request nr
-					instance.req_nr++;
+				// The RegExp
+				var response_regex = new RegExp("^[0-9]+$");
+
+				// Trim that string o/
+				response = response.trim();
+
+				// Test it
+				if (response_regex.test(response)) {
+
+					var posts_left = parseInt(response);
 
 					// Do Progressbar
-					instance.do_progressbar();
+					instance.do_progressbar(posts_left);
 
-					// Do request
-					instance.do_request();
+					if (posts_left > 0) {
+						// Do request
+						instance.do_request();
+					} else {
+						// Done
+						instance.done();
+					}
 
-				} else if ('done' == response) {
-					// Done
-					instance.done();
 				} else {
 					alert("Woops! Something went wrong while linking.\n\nResponse:\n\n" + response);
 				}
@@ -64,14 +72,25 @@ jQuery(document).ready(function ($) {
 			window.location = $('#rp4wp_admin_url').val() + '?page=rp4wp_install&step=' + ( this.step + 1 );
 		};
 
-		this.do_progressbar = function () {
-			$('#progressbar').progressbar({value: ((this.req_nr * this.ppr) / this.total_posts) * 100});
+		this.do_progressbar = function (posts_left) {
+			var progress = Math.round(( ( this.total_posts - posts_left ) / this.total_posts ) * 100);
+			if (progress > 0) {
+				this.percentage_object.html(progress + '%');
+				$('#progressbar').progressbar({value: progress});
+			}
 		};
 
 		this.init = function () {
 
 			// Setup the progressbar
 			$('#progressbar').progressbar({value: false});
+
+			// Create the span
+			this.percentage_object = jQuery('<span>');
+			$('#progressbar').find('div:first').append(this.percentage_object);
+
+			// Set the current progress
+			this.do_progressbar($('#rp4wp_uncached_posts').val());
 
 			// Get the total posts
 			this.total_posts = $('#rp4wp_total_posts').val();
