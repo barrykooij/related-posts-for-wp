@@ -82,6 +82,14 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
+= 1.6.0: September 12, 2014 =
+* We're now replacing 'special' characters with their 'normal' equivalent.
+* Save the wizard settings to options to improve defaults.
+* Added a percentage to the progressbar to improve progress clarity.
+* The wizard progress is now updated when returned to wizard.
+* Various caching tweaks.
+* Added utf8 charset to cache database table in installer.
+
 = 1.5.0: September 5, 2014 =
 * Added Related Posts widget.
 * Changed 'Delete Post' label to 'Unlink Related Post'.
