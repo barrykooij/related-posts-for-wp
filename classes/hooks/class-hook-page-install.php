@@ -132,6 +132,7 @@ class RP4WP_Hook_Page_Install extends RP4WP_Hook {
 				// Echo current uncached posts
 				$related_post_manager = new RP4WP_Related_Post_Manager();
 				echo "<input type='hidden' id='rp4wp_uncached_posts' value='" . $related_post_manager->get_uncached_post_count() . "' />" . PHP_EOL;
+
 				?>
 				<p style="font-weight: bold;"><?php _e( 'Great! All your posts were successfully cached!', 'related-posts-for-wp' ); ?></p>
 				<p><?php _e( "You can let me link your posts, based on what I think is related, to each other. And don't worry, if I made a mistake at one of your posts you can easily correct this by editing it manually!", 'related-posts-for-wp' ); ?></p>
