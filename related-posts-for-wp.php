@@ -1,4 +1,5 @@
 <?php
+
 /*
 	Plugin Name: Related Posts for WordPress
 	Plugin URI: http://www.relatedpostsforwp.com/
@@ -130,7 +131,7 @@ class RP4WP {
 		$manager_hook->load_hooks();
 
 		// Include template functions
-		if ( !is_admin() ) {
+		if ( ! is_admin() ) {
 			require_once( plugin_dir_path( self::get_plugin_file() ) . '/includes/template-functions.php' );
 		}
 
