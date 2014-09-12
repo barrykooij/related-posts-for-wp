@@ -160,4 +160,4 @@ There is one custom table created for the post cache, this table will however no
 * Initial version
 
 == Upgrade Notice ==
-This version is safe to upgrade.
+This version is safe to upgrade. If all of your related posts are linked automatically, we do recommend rerunning the wizard for better results.
