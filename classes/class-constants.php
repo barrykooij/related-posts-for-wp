@@ -25,7 +25,7 @@ abstract class RP4WP_Constants {
 	const OPTION_INSTALL_DATE = 'rp4wp_install_date';
 	const OPTION_ADMIN_NOTICE_KEY = 'rp4wp_hide_nag';
 
+	// Nonce
 	const NONCE_REINSTALL = 'rp4wp-reinstall-secret';
-
 
 }
