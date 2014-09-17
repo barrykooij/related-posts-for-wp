@@ -22,140 +22,28 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-class RP4WP {
 
-	private static $instance = null;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+} // Exit if accessed directly
 
-	const VERSION = '1.6.1';
+function rp4wp_load_plugin() {
 
-	/**
-	 * @var RP4WP_Settings
-	 */
-	public $settings = null;
-
-	/**
-	 * Singleton get method
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 *
-	 * @return RP4WP
-	 */
-	public static function get() {
-		if ( null == self::$instance ) {
-			self::$instance = new self();
-		}
-
-		return self::$instance;
+	if ( defined( 'RP4WP_PLUGIN_FILE' ) ) {
+		return false;
 	}
 
-	/**
-	 * Get the plugin file
-	 *
-	 * @access public
-	 * @static
-	 * @return String
-	 */
-	public static function get_plugin_file() {
-		return __FILE__;
-	}
+	// Define
+	define( 'RP4WP_PLUGIN_FILE', __FILE__ );
 
-	/**
-	 * A static method that will setup the autoloader
-	 */
-	private static function setup_autoloader() {
-		require_once( plugin_dir_path( self::get_plugin_file() ) . '/classes/class-autoloader.php' );
-		$autoloader = new RP4WP_Autoloader( plugin_dir_path( self::get_plugin_file() ) . 'classes/' );
-		spl_autoload_register( array( $autoloader, 'load' ) );
-	}
-
-	/**
-	 * This method runs on plugin activation
-	 */
-	public static function activation() {
-
-		// Setup autoloader
-		self::setup_autoloader();
-
-		// Run the installer
-		$installer = new RP4WP_Installer();
-		$installer->install();
-
-		// Redirect to installation wizard
-		add_site_option( RP4WP_Constants::OPTION_DO_INSTALL, true );
-	}
-
-	/**
-	 * The constructor
-	 */
-	private function __construct() {
-		$this->init();
-	}
-
-	/**
-	 * Initialize the plugin
-	 */
-	private function init() {
-
-		// Setup the autoloader
-		self::setup_autoloader();
-
-		// Load plugin text domain
-		load_plugin_textdomain( 'related-posts-for-wp', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
-
-		// Check if we need to run the installer
-		if ( is_admin() && get_site_option( RP4WP_Constants::OPTION_DO_INSTALL, false ) ) {
-
-			// Delete do install site option
-			delete_site_option( RP4WP_Constants::OPTION_DO_INSTALL );
-
-			// Redirect to installation wizard
-			wp_redirect( admin_url() . '?page=rp4wp_install', 307 );
-			exit;
-		}
-
-		if ( is_admin() ) {
-			// Check if we need to display an 'is installing' notice
-			$is_installing_notice = new RP4WP_Is_Installing_Notice();
-			$is_installing_notice->check();
-		}
-
-		// Setup settings
-		$this->settings = new RP4WP_Settings();
-
-		// Filters
-		$manager_filter = new RP4WP_Manager_Filter( plugin_dir_path( __FILE__ ) . 'classes/filters/' );
-		$manager_filter->load_filters();
-
-		// Hooks
-		$manager_hook = new RP4WP_Manager_Hook( plugin_dir_path( __FILE__ ) . 'classes/hooks/' );
-		$manager_hook->load_hooks();
-
-		// Include template functions
-		if ( ! is_admin() ) {
-			require_once( plugin_dir_path( self::get_plugin_file() ) . '/includes/template-functions.php' );
-		}
-
-		// Setup the nag
-		if ( is_admin() ) {
-			$nag_manager = new RP4WP_Nag_Manager();
-			$nag_manager->setup();
-		}
-
-	}
-
-}
-
-function RP4WP() {
-	return RP4WP::get();
-}
-
-function __rp4wp_main() {
+	// Load main plugin file
+	require_once plugin_dir_path( RP4WP_PLUGIN_FILE ) . 'classes/class-rp4wp.php';
 	RP4WP();
+
 }
 
 // Create object - Plugin init
-add_action( 'plugins_loaded', '__rp4wp_main' );
+add_action( 'plugins_loaded', 'rp4wp_load_plugin', 20 );
 
 // Activation hook
 register_activation_hook( __FILE__, array( 'RP4WP', 'activation' ) );
