@@ -4,7 +4,7 @@ Donate link: http://www.relatedpostsforwp.com/
 Tags: related posts for wordpress, related posts for wp, simple related posts, easy related posts, related posts, related, relations, internal links, seo, bounce rate
 Requires at least: 3.6
 Tested up to: 4.0
-Stable tag: 1.6.1
+Stable tag: 1.6.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -87,6 +87,10 @@ There is one custom table created for the post cache, this table will however no
 5. Related posts are automatically added below your posts!
 
 == Changelog ==
+
+= 1.6.2: September 17, 2014 =
+* Fixed a WSOD caused by wp_created_nonce being called before init hook.
+* Changed the way the plugin is bootstrapped.
 
 = 1.6.1: September 13, 2014 =
 * Fixed a bug that caused the manual post link table to be empty.
