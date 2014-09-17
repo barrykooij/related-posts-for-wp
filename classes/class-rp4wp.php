@@ -52,22 +52,6 @@ class RP4WP {
 	}
 
 	/**
-	 * This method runs on plugin activation
-	 */
-	public static function activation() {
-
-		// Setup autoloader
-		self::setup_autoloader();
-
-		// Run the installer
-		$installer = new RP4WP_Installer();
-		$installer->install();
-
-		// Redirect to installation wizard
-		add_site_option( RP4WP_Constants::OPTION_DO_INSTALL, true );
-	}
-
-	/**
 	 * The constructor
 	 */
 	private function __construct() {
