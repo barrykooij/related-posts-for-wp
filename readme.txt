@@ -88,6 +88,9 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
+= Trunk =
+* Fixed a shortcode bug.
+
 = 1.6.3: September 18, 2014 =
 * Fixed an install bug.
 
