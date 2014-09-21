@@ -26,6 +26,6 @@ class RP4WP_Hook_Shortcode extends RP4WP_Hook {
 		$pl_manager = new RP4WP_Post_Link_Manager();
 
 		// Generate the children list
-		echo $pl_manager->generate_children_list( $id );
+		return $pl_manager->generate_children_list( $id );
 	}
 }
