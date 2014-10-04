@@ -35,10 +35,12 @@ class RP4WP_Related_Post_Manager {
 		if ( - 1 != $limit ) {
 			$sql .= "
 			LIMIT 0,%d";
-		};
-
-		// Prepare SQL
-		$sql = $wpdb->prepare( $sql, $post_id, $post_id, $limit );
+			// Prepare SQL
+			$sql = $wpdb->prepare( $sql, $post_id, $post_type, $post_id, $limit );
+		} else {
+			// Prepare SQL
+			$sql = $wpdb->prepare( $sql, $post_id, $post_type, $post_id );
+		}
 
 		// Get post from related cache
 		return $wpdb->get_results( $sql );
@@ -100,16 +102,86 @@ class RP4WP_Related_Post_Manager {
 
 		if ( count( $related_posts ) > 0 ) {
 
+			global $wpdb;
+
 			$post_link_manager = new RP4WP_Post_Link_Manager();
 
+			$batch_data = array();
 			foreach ( $related_posts as $related_post ) {
-				$post_link_manager->add( $post_id, $related_post->ID );
+				$batch_data[] = $post_link_manager->add( $post_id, $related_post->ID, true );
 			}
+
+			// Do batch insert
+			$wpdb->query( "INSERT INTO `$wpdb->posts`
+						(`post_date`,`post_date_gmt`,`post_content`,`post_title`,`post_type`,`post_status`)
+						VALUES
+						" . implode( ',', array_map( array( $this, 'batch_data_get_post' ), $batch_data ) ) . "
+						" );
+
+			// Get the first post link insert ID
+			$pid = $wpdb->insert_id;
+
+			// Set the correct ID's for batch meta insert
+			foreach ( $batch_data as $bk => $bd ) {
+				$batch_data[$bk]['meta'] = array_map( array( $this, 'batch_data_set_pid' ), $bd['meta'], array_fill( 0, count( $bd['meta'] ), $pid ) );
+				$pid ++;
+			}
+
+			// Insert all the meta
+			$wpdb->query( "INSERT INTO `$wpdb->postmeta`
+				(`post_id`,`meta_key`,`meta_value`)
+				VALUES
+				" . implode( ',', array_map( array( $this, 'batch_data_get_meta' ), $batch_data ) ) . "
+				");
+
 		}
 
 		update_post_meta( $post_id, RP4WP_Constants::PM_POST_AUTO_LINKED, 1 );
 
 		return true;
+	}
+
+	/**
+	 * Get post batch data
+	 *
+	 * @param $batch
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 *
+	 * @return mixed
+	 */
+	public function batch_data_get_post( $batch ) {
+		return $batch['post'];
+	}
+
+	/**
+	 * Get meta batch data
+	 *
+	 * @param $batch
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 *
+	 * @return string
+	 */
+	public function batch_data_get_meta( $batch ) {
+		return implode(',',$batch['meta']);
+	}
+
+	/**
+	 * Set the post ID's in batch data
+	 *
+	 * @param $batch
+	 * @param $pid
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 *
+	 * @return string
+	 */
+	public function batch_data_set_pid( $batch, $pid ) {
+		return sprintf( $batch, $pid );
 	}
 
 	/**

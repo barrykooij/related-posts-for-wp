@@ -51,6 +51,7 @@ class RP4WP_Post_Link_Manager {
 	private function get_link_count( $parent_id ) {
 		$link_query = new WP_Query(
 			array(
+				'fields'         => 'ids',
 				'post_type'      => RP4WP_Constants::LINK_PT,
 				'posts_per_page' => - 1,
 				'orderby'        => 'menu_order',
@@ -78,23 +79,48 @@ class RP4WP_Post_Link_Manager {
 	 *
 	 * @param int $parent_id
 	 * @param int $child_id
+	 * @param boolean $batch
 	 *
 	 * @return int ($link_id)
 	 */
-	public function add( $parent_id, $child_id ) {
+	public function add( $parent_id, $child_id, $batch = false ) {
+		global $wpdb;
+
+		// Setup the insert data
+		$data = array(
+			'post' => "('" . current_time( 'mysql', 0 ) . "', '" . current_time( 'mysql', 1 ) . "','','Related Posts for WordPress Link','" . RP4WP_Constants::LINK_PT . "','publish')",
+			'meta' => array(
+				"(%d, '" . RP4WP_Constants::PM_PARENT . "', '$parent_id')",
+				"(%d, '" . RP4WP_Constants::PM_CHILD . "', '$child_id')",
+			)
+		);
+
+		// If this is a batch insert, return data
+		if ( true === $batch ) {
+			return $data;
+		}
 
 		// Create post link
-		$link_id = wp_insert_post( array(
-			'post_title'  => 'Related Posts for WordPress Link',
-			'post_type'   => RP4WP_Constants::LINK_PT,
-			'post_status' => 'publish',
-			'menu_order'  => $this->get_link_count( $parent_id ),
-		) );
+		$wpdb->query( "	INSERT INTO `$wpdb->posts`
+						(`post_date`,`post_date_gmt`,`post_content`,`post_title`,`post_type`,`post_status`)
+						VALUES
+						{$data['post']}
+						" );
+
+		$link_id = $wpdb->insert_id;
 
 		// Create post meta
-		add_post_meta( $link_id, RP4WP_Constants::PM_PARENT, $parent_id );
-		add_post_meta( $link_id, RP4WP_Constants::PM_CHILD, $child_id );
+		$wpdb->query(
+			$wpdb->prepare(
+				"INSERT INTO `$wpdb->postmeta`
+				(`post_id`,`meta_key`,`meta_value`)
+				VALUES
+				{$data['meta'][0]},
+				{$data['meta'][1]},
+				{$data['meta'][2]}
+				", $link_id, $link_id, $link_id ) );
 
+		// Do action rp4wp_after_link_add
 		do_action( 'rp4wp_after_link_add', $link_id );
 
 		// Return link id
