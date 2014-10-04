@@ -44,6 +44,10 @@ class RP4WP_Autoloader {
 				$file_path .= 'filters/';
 			} elseif ( strpos( $class_name, 'rp4wp_meta_box' ) === 0 ) {
 				$file_path .= 'meta-boxes/';
+			} elseif ( strpos( $class_name, 'rp4wp_settings' ) === 0 ) {
+				$file_path .= 'settings/';
+			} elseif ( strpos( $class_name, 'rp4wp_theme' ) === 0 ) {
+				$file_path .= 'themes/';
 			}
 
 			// Append file name to clas path
