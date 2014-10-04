@@ -10,6 +10,7 @@ abstract class RP4WP_Constants {
 	const LINK_PT = 'rp4wp_link';
 
 	// Linked meta
+	const PM_PT_PARENT = 'rp4wp_pt_parent';
 	const PM_PARENT = 'rp4wp_parent';
 	const PM_CHILD = 'rp4wp_child';
 
