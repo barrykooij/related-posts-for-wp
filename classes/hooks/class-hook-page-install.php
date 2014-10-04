@@ -39,7 +39,7 @@ class RP4WP_Hook_Page_Install extends RP4WP_Hook {
 		if ( isset( $_GET['reinstall'] ) ) {
 
 			// Check nonce
-			if ( ! wp_verify_nonce( ( isset( $_GET['rp4wp_nonce'] ) ? $_GET['rp4wp_nonce'] : '' ), RP4WP_Constants::NONCE_REINSTALL ) ) {
+			if ( ! wp_verify_nonce( ( isset( $_GET['rp4wp_nonce'] ) ? $_GET['rp4wp_nonce'] : '' ), RP4WP_Constants::NONCE_INSTALL ) ) {
 				wp_die( 'Woah! It looks like something else tried to run the Related Posts for WordPress installation wizard! We were able to stop them, nothing was lost. Please report this incident at <a href="http://wordpress.org/support/plugin/related-posts-for-wp" target="_blank">our forums.</a>' );
 			}
 
@@ -109,6 +109,7 @@ class RP4WP_Hook_Page_Install extends RP4WP_Hook {
 			$cur_step = isset( $_GET['step'] ) ? $_GET['step'] : 1;
 			echo "<div class='rp4wp-step rp4wp-step-" . $cur_step . "' rel='" . $cur_step . "'>";
 
+			// Hidden fields
 			echo "<input type='hidden' id='rp4wp_total_posts' value='" . wp_count_posts( 'post' )->publish . "' />" . PHP_EOL;
 			echo "<input type='hidden' id='rp4wp_admin_url' value='" . admin_url() . "' />" . PHP_EOL;
 
