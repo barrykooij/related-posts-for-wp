@@ -36,10 +36,10 @@ class RP4WP_Related_Post_Manager {
 			$sql .= "
 			LIMIT 0,%d";
 			// Prepare SQL
-			$sql = $wpdb->prepare( $sql, $post_id, $post_type, $post_id, $limit );
+			$sql = $wpdb->prepare( $sql, $post_id, $post_id, $limit );
 		} else {
 			// Prepare SQL
-			$sql = $wpdb->prepare( $sql, $post_id, $post_type, $post_id );
+			$sql = $wpdb->prepare( $sql, $post_id, $post_id );
 		}
 
 		// Get post from related cache
@@ -110,7 +110,7 @@ class RP4WP_Related_Post_Manager {
 			foreach ( $related_posts as $related_post ) {
 				$batch_data[] = $post_link_manager->add( $post_id, $related_post->ID, true );
 			}
-
+			
 			// Do batch insert
 			$wpdb->query( "INSERT INTO `$wpdb->posts`
 						(`post_date`,`post_date_gmt`,`post_content`,`post_title`,`post_type`,`post_status`)
