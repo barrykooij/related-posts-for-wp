@@ -48,28 +48,54 @@ class RP4WP_Hook_Settings_Page extends RP4WP_Hook {
 				</div>
 
 				<p><?php _e( 'Plugin version', 'related-posts-for-wp' ); ?>: <?php echo RP4WP::VERSION; ?></p>
+				<p><?php _e( 'Thank you for using Related Posts for WordPress!', 'related-posts-for-wp' ); ?></p>
+			</div>
+
+			<div class="rp4wp-box rp4wp-box-upgrade">
+				<h3 class="rp4wp-title"><?php _e( 'Related Posts for WordPress Premium', 'related-posts-for-wp' ); ?></h3>
+
+				<p><?php _e( "This plugin has an even better premium version, I am sure you will love it.", 'related-posts-for-wp' ); ?></p>
+				<p><?php _e( "Premium features include custom post type support, related post themes, custom taxonomy support and priority support.", 'related-posts-for-wp' ); ?></p>
+				<p><?php printf( __( "%sMore information about Related Posts for WP Premium »%s", 'related-posts-for-wp' ), '<a href="https://www.relatedpostsforwp.com/?utm_source=plugin&utm_medium=link&utm_campaign=upgrade-box" target="_blank">', '</a>' ); ?></p>
+			</div>
+
+			<div class="rp4wp-box">
+				<h3 class="rp4wp-title"><?php _e( 'Show a token of your appreciation', 'related-posts-for-wp' ); ?></h3>
+
+				<p><?php printf( __( "<a href='%s' target='_blank'>Leave a ★★★★★ plugin review on WordPress.org</a>", 'related-posts-for-wp' ), 'http://wordpress.org/support/view/plugin-reviews/related-posts-for-wp?rate=5#postform' ); ?></p>
+				<p><?php printf( __( "<a href='%s' target='_blank'>Tweet about Related Posts for WordPress</a>", 'related-posts-for-wp' ), 'https://twitter.com/intent/tweet?text=Showing%20my%20appreciation%20to%20%40CageNL%20for%20his%20WordPress%20plugin%3A%20Related%20Posts%20for%20WordPress%20-%20check%20it%20out!%20http%3A%2F%2Fwordpress.org%2Fplugins%2Frelated-posts-for-wp%2F' ); ?></p>
+				<p><?php printf( __( "Review the plugin on your blog and link to <a href='%s' target='_blank'>the plugin page</a>", 'related-posts-for-wp' ), 'https://www.relatedpostsforwp.com/?utm_source=plugin&utm_medium=link&utm_campaign=show-appreciation' ); ?></p>
+				<p><?php printf( __( "<a href='%s' target='_blank'>Vote 'works' on the WordPress.org plugin page</a>", 'related-posts-for-wp' ), 'http://wordpress.org/plugins/related-posts-for-wp/' ); ?></p>
+
+			</div>
+
+			<div class="rp4wp-box">
+				<h3 class="rp4wp-title"><?php _e( 'Looking for support?', 'related-posts-for-wp' ); ?></h3>
+
+				<p><?php printf( __( "For support please visit the <a href='%s' target='_blank'>WordPress.org forums</a>.", 'related-posts-for-wp' ), 'http://wordpress.org/support/plugin/related-posts-for-wp' ); ?></p>
+
+				<p style="color: green;font-weight: bold;"><?php printf( __( "Did you know that Related Posts for WordPress Premium clients get priority email support? %sClick here to upgrade.%s", 'related-posts-for-wp' ), '<a href="https://www.relatedpostsforwp.com/?utm_source=plugin&utm_medium=link&utm_campaign=support" target="_blank">', '</a>' ); ?></p>
 			</div>
 
 			<div class="rp4wp-box">
 				<h3 class="rp4wp-title"><?php _e( 'More information', 'related-posts-for-wp' ); ?></h3>
 
-				<p><?php printf( __( "<a href='%s'>FAQ</a>", 'related-posts-for-wp' ), 'http://wordpress.org/plugins/related-posts-for-wp/faq/' ); ?></p>
+				<p><?php printf( __( "<a href='%s' target='_blank'>FAQ</a>", 'related-posts-for-wp' ), 'https://wordpress.org/plugins/related-posts-for-wp/faq/' ); ?></p>
 
-				<p><?php printf( __( "<a href='%s'>Change log</a>", 'related-posts-for-wp' ), 'http://wordpress.org/support/plugin/related-posts-for-wp' ); ?></p>
+				<p><?php printf( __( "<a href='%s' target='_blank'>Changelog</a>", 'related-posts-for-wp' ), 'https://wordpress.org/plugins/related-posts-for-wp/changelog/' ); ?></p>
 
-				<p><?php printf( __( "<a href='%s'>Give us a review</a>", 'related-posts-for-wp' ), 'http://wordpress.org/support/view/plugin-reviews/related-posts-for-wp' ); ?></p>
+				<p><?php printf( __( "<a href='%s' target='_blank'>Website</a>", 'related-posts-for-wp' ), 'https://www.relatedpostsforwp.com/?utm_source=plugin&utm_medium=link&utm_campaign=more-information' ); ?></p>
 
-				<p><?php printf( __( "<a href='%s'>Release blog post</a>", 'related-posts-for-wp' ), 'http://www.barrykooij.com/related-posts-wordpress/?utm_source=plugin&utm_medium=link&utm_campaign=sidebar' ); ?></p>
 			</div>
 
 			<div class="rp4wp-box">
 				<h3 class="rp4wp-title"><?php _e( 'About the developer', 'related-posts-for-wp' ); ?></h3>
 
-				<p><?php _e( "Barry is a WordPress developer that works on WooCommerce by WooThemes and is the author of various WordPress plugins that include Post Connector, Related Posts for WordPress and What The File.", 'related-posts-for-wp' ); ?></p>
+				<p><?php _e( "Barry is a WordPress developer that works on WooCommerce by WooThemes and is the author of various WordPress plugins that include Related Posts for WordPress, Post Connector and What The File.", 'related-posts-for-wp' ); ?></p>
 
 				<p><?php _e( "Barry likes contributing to opensource projects and visiting WordCamps and WordPress meetups. He’s the organizer of the WordPress meetup in Tilburg.", 'related-posts-for-wp' ); ?></p>
 
-				<p><?php printf( __( "You can follow Barry on Twitter <a href='%s'>here</a>.", 'related-posts-for-wp' ), 'https://twitter.com/cageNL' ); ?></p>
+				<p><?php printf( __( "<a href='%s' target='_blank'>You can follow Barry on Twitter</a>", 'related-posts-for-wp' ), 'https://twitter.com/cageNL' ); ?></p>
 			</div>
 
 		</div>
