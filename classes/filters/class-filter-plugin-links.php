@@ -21,6 +21,7 @@ if ( ! class_exists( 'RP4WP_Filter_Plugin_Links' ) ) {
 		 */
 		public function run( $links ) {
 			array_unshift( $links, '<a href="' . admin_url( 'options-general.php?page=rp4wp' ) . '">' . __( 'Settings', 'related-posts-for-wp' ) . '</a>' );
+			array_unshift( $links, '<a href="https://www.relatedpostsforwp.com/?utm_source=plugin&utm_medium=link&utm_campaign=plugins-page" target="_blank" style="color:green;font-weight:bold;">' . __( 'Upgrade to Premium', 'related-posts-for-wp' ) . '</a>' );
 
 			return $links;
 		}
