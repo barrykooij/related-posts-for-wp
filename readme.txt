@@ -98,7 +98,10 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
-= 1.7.0 =
+= 1.7.1: October 17, 2014 =
+* Fixed a bug with manually creating links.
+
+= 1.7.0: October 14, 2014 =
 * Major performance improvements for post link creation.
 * Fixed a shortcode bug.
 * Changed NONCE_REINSTALL constant to NONCE_INSTALL.
