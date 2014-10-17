@@ -116,9 +116,8 @@ class RP4WP_Post_Link_Manager {
 				(`post_id`,`meta_key`,`meta_value`)
 				VALUES
 				{$data['meta'][0]},
-				{$data['meta'][1]},
-				{$data['meta'][2]}
-				", $link_id, $link_id, $link_id ) );
+				{$data['meta'][1]}
+				", $link_id, $link_id) );
 
 		// Do action rp4wp_after_link_add
 		do_action( 'rp4wp_after_link_add', $link_id );
