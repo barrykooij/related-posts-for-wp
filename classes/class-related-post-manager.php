@@ -18,7 +18,7 @@ class RP4WP_Related_Post_Manager {
 
 		// Build SQl
 		$sql = "
-		SELECT O.`word`, P.`ID`, P.`post_title`, SUM( R.`weight` ) AS `related_weight`
+		SELECT P.`ID`, P.`post_title`, SUM( R.`weight` ) AS `related_weight`
 		FROM `" . RP4WP_Related_Word_Manager::get_database_table() . "` O
 		INNER JOIN `" . RP4WP_Related_Word_Manager::get_database_table() . "` R ON R.`word` = O.`word`
 		INNER JOIN `" . $wpdb->posts . "` P ON P.`ID` = R.`post_id`
