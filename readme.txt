@@ -6,7 +6,7 @@ Requires at least: 3.6
 Tested up to: 4.0
 Stable tag: 1.7.1
 License: GPLv3 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 Display related posts without slowing down your website! Link all your existing content with only 1 click, get related posts for all your posts today!
 
@@ -63,7 +63,15 @@ Related Posts for Wordpress has a widget allowing you to display related posts i
 
 == Frequently Asked Questions ==
 
-Please see the [FAQ section at our website.](http://www.relatedpostsforwp.com/faq/?utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=faq)
+> #### Related Posts for WordPress Premium
+> There's an even better version of this plugin that comes with the following extra features:<br />
+>
+> - Custom Post Type Support<br />
+> - Related Post Themes<br />
+> - Custom Taxonomy Support<br />
+> - Priority Email Support<br />
+>
+> [More information](https://www.relatedpostsforwp.com/features/?utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=faq-info-link) | [Purchase >>](https://www.relatedpostsforwp.com/checkout/?utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=faq-purchase-link)
 
 = Where's the settings screen? =
 Settings > Related Posts.
@@ -78,10 +86,11 @@ Yes, it's in the Related Posts for WordPress settings screen.
 Yes, clear the CSS field in the Related Posts for WordPress settings screen.
 
 = Is there a theme function so I can output this list anywhere in my theme I want? =
-Not yet, we're working on this and this will be added soon!
+Yes, you can use `rp4wp_children();`.<br/>
+[More information on the theme function can be found here](https://www.relatedpostsforwp.com/documentation/theme-functions-to-display-related-posts/?utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=faq-item).
 
 = Is there a shortcode? =
-Yes, use [rp4wp]
+Yes. To display your related posts via a shortcode use: [rp4wp]
 
 = Is there a widget? =
 Yes there is!
