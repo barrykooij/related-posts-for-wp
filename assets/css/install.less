@@ -1,59 +1,81 @@
 .install-steps {
-	li {
-		width:              33%;
-		padding:            10px 15px;
-		font-weight:        bold;
-		color:              #eee;
-		background:         #222222;
-		float:              left;
-		-moz-box-sizing:    border-box;
-		-webkit-box-sizing: border-box;
-		box-sizing:         border-box;
+  li {
+    width: 33%;
+    padding: 10px 15px;
+    font-weight: bold;
+    color: #eee;
+    background: #222222;
+    float: left;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 
-		&.step-bar-active {
-			background: #0074a2;
-		}
+    &.step-bar-active {
+      background: #0074a2;
+    }
 
-		&:first-child {
-			margin-left: 0;
-		}
-	}
+    &:first-child {
+      margin-left: 0;
+    }
+  }
 }
 
 .rp4wp-step {
 
-	#progressbar {
-		span {
-			line-height: 28px;
-			display: block;
-			text-align: right;
-			padding-right: 10px;
-			color: #3B3B3B;
-		}
+  #progressbar {
+    span {
+      line-height: 28px;
+      display: block;
+      text-align: right;
+      padding-right: 10px;
+      color: #3B3B3B;
+    }
+  }
+
+  .rp4wp-install-link-box {
+    label {
+      padding-right: 20px;
+    }
+    input {
+      width: 40px;
+      text-align: center;
+    }
+    a.rp4wp-link-now-btn {
+      margin-left: 20px;
+      margin-right: 10px;
+    }
+  }
+
+  .rp4wp-box-upgrade {
+    background: #222;
+    color: #ddd;
+	margin: 25px 0 0;
+    padding: 20px 20px 10px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+
+	h3 {
+	  color: #fff;
+	  border: 0;
+	  padding: 0;
+	  margin: 0;
 	}
 
-	.rp4wp-install-link-box {
-		label {
-			padding-right: 20px;
-		}
-		input {
-			width:      40px;
-			text-align: center;
-		}
-		a.rp4wp-link-now-btn {
-			margin-left:  20px;
-			margin-right: 10px;
-		}
+	a {
+	  color: #2ea2cc;
+	  font-weight: bold;
 	}
+  }
 
 }
 
 .rp4wp-install-link-box {
-	display: inline;
-	padding: 15px;
-	border:  1px solid #0074a2;
+  display: inline;
+  padding: 15px;
+  border: 1px solid #0074a2;
 }
 
 .rp4wp-step-2 #progressbar {
-	margin-top: 30px;
+  margin-top: 30px;
 }
