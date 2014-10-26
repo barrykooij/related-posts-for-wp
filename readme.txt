@@ -107,8 +107,10 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
-= 1.7.2: October 26, 2014 =
+= 1.7.2: October 27, 2014 =
 * Fixed a bug where permission were checked to soon.
+* Removed an unused query var.
+* Updated Dutch, German, Serbian, Swedish.
 
 = 1.7.1: October 17, 2014 =
 * Fixed a bug with manually creating links.
