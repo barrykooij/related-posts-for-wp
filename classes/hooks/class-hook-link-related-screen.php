@@ -8,7 +8,6 @@ class RP4WP_Hook_Link_Related_Screen extends RP4WP_Hook {
 	protected $tag = 'admin_menu';
 
 	public function run() {
-		$this->check_if_allowed();
 
 		$this->handle_create_link();
 		$this->handle_bulk_link();
@@ -35,9 +34,7 @@ class RP4WP_Hook_Link_Related_Screen extends RP4WP_Hook {
 		if ( isset( $_GET['rp4wp_create_link'] ) && isset( $_GET['rp4wp_parent'] ) ) {
 
 			// Check if user is allowed to do this
-			if ( ! current_user_can( 'edit_posts' ) ) {
-				return;
-			}
+			$this->check_if_allowed();
 
 			// Get parent
 			$parent = $_GET['rp4wp_parent'];
@@ -73,9 +70,7 @@ class RP4WP_Hook_Link_Related_Screen extends RP4WP_Hook {
 			$parent = $_GET['rp4wp_parent'];
 
 			// Check if user is allowed to do this
-			if ( ! current_user_can( 'edit_posts' ) ) {
-				return;
-			}
+			$this->check_if_allowed();
 
 			// Post Link Manager
 			$post_link_manager = new RP4WP_Post_Link_Manager();
@@ -108,6 +103,9 @@ class RP4WP_Hook_Link_Related_Screen extends RP4WP_Hook {
 	 * The screen content
 	 */
 	public function content() {
+
+		// Check if user is allowed to do this
+		$this->check_if_allowed();
 
 		if ( ! isset( $_GET['rp4wp_parent'] ) ) {
 			wp_die( "Can't load page, no parent set. Please contact support and provide them this message" );
