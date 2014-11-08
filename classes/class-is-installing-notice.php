@@ -38,11 +38,11 @@ if ( ! class_exists( 'RP4WP_Is_Installing_Notice' ) ) {
 
 			// Check if we need to dismiss the notice
 			if ( isset( $_GET['rp4wp_hide_is_installing'] ) ) {
-				delete_site_option( RP4WP_Constants::OPTION_IS_INSTALLING );
+				delete_option( RP4WP_Constants::OPTION_IS_INSTALLING );
 			}
 
 			// Check if we are currently installing
-			if ( false != get_site_option( RP4WP_Constants::OPTION_IS_INSTALLING, false ) && ( ! isset( $_GET['page'] ) || 'rp4wp_install' != $_GET['page'] ) ) {
+			if ( false != get_option( RP4WP_Constants::OPTION_IS_INSTALLING, false ) && ( ! isset( $_GET['page'] ) || 'rp4wp_install' != $_GET['page'] ) ) {
 				$this->display();
 			}
 

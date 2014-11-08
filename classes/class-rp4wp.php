@@ -70,10 +70,10 @@ class RP4WP {
 		load_plugin_textdomain( 'related-posts-for-wp', false, dirname( plugin_basename( RP4WP_PLUGIN_FILE ) ) . '/languages/' );
 
 		// Check if we need to run the installer
-		if ( is_admin() && get_site_option( RP4WP_Constants::OPTION_DO_INSTALL, false ) ) {
+		if ( is_admin() && get_option( RP4WP_Constants::OPTION_DO_INSTALL, false ) ) {
 
 			// Delete do install site option
-			delete_site_option( RP4WP_Constants::OPTION_DO_INSTALL );
+			delete_option( RP4WP_Constants::OPTION_DO_INSTALL );
 
 			// Redirect to installation wizard
 			wp_redirect( admin_url() . '?page=rp4wp_install', 307 );
