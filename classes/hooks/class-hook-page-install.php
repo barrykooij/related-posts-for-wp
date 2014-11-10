@@ -90,10 +90,10 @@ class RP4WP_Hook_Page_Install extends RP4WP_Hook {
 		// Check installer resume options
 		if ( 1 == $cur_step ) {
 			// Add is installing site option
-			add_site_option( RP4WP_Constants::OPTION_IS_INSTALLING, true );
+			add_option( RP4WP_Constants::OPTION_IS_INSTALLING, true );
 		} elseif ( 3 == $cur_step ) {
 			// Installer is done, remove the option
-			delete_site_option( RP4WP_Constants::OPTION_IS_INSTALLING );
+			delete_option( RP4WP_Constants::OPTION_IS_INSTALLING );
 		}
 
 		?>

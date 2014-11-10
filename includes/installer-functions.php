@@ -13,5 +13,5 @@ function rp4wp_activate_plugin() {
 	$wpdb->query( $sql );
 
 	// Redirect to installation wizard
-	add_site_option( 'rp4wp_do_install', true );
+	add_option( 'rp4wp_do_install', true );
 }
