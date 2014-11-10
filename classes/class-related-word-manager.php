@@ -167,7 +167,7 @@ class RP4WP_Related_Word_Manager {
 		$words = explode( ' ', $content );
 
 		foreach ( $words as $word_key => $word_val ) {
-			$words[$word_key] = iconv( "utf-8", "us-ascii//TRANSLIT", $word_val );
+			$words[$word_key] = iconv( "utf-8", "us-ascii//TRANSLIT", utf8_encode( $word_val ) );
 		}
 
 		// Add the $linked_words
