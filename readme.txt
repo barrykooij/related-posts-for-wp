@@ -107,6 +107,9 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
+= 1.7.3: November 10, 2014 =
+* Fixed multisite/network compatibility
+
 = 1.7.2: October 27, 2014 =
 * Fixed a bug where permission were checked to soon.
 * Removed an unused query var.
