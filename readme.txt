@@ -107,6 +107,9 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
+= Trunk: November xx, 2014 =
+* Fixed a hardcoded database table bug.
+
 = 1.7.4: November 12, 2014 =
 * Fixed an UTF-8 - iconv bug.
 * Remove shortcodes from the related posts excerpt.
