@@ -163,12 +163,11 @@ class RP4WP_Related_Word_Manager {
 		// Remove everything but letters and numbers
 		// $content = preg_replace( '/[^a-z0-9]+/i', ' ', $content );
 
+		// UTF8 fix content
+		$content = iconv( "utf-8", "us-ascii//TRANSLIT", utf8_encode( $content ) );
+
 		// Split string into words
 		$words = explode( ' ', $content );
-
-		foreach ( $words as $word_key => $word_val ) {
-			$words[$word_key] = iconv( "utf-8", "us-ascii//TRANSLIT", $word_val );
-		}
 
 		// Add the $linked_words
 		$words = array_merge( $words, $linked_words );
