@@ -80,7 +80,7 @@ class RP4WP_Related_Post_Manager {
 	public function get_uncached_post_count() {
 		global $wpdb;
 
-		$post_count = $wpdb->get_var( "SELECT COUNT(P.ID) FROM " . $wpdb->posts . " P LEFT JOIN wp_postmeta PM ON (P.ID = PM.post_id AND PM.meta_key = '" . RP4WP_Constants::PM_POST_AUTO_LINKED . "') WHERE 1=1 AND P.post_type = 'post' AND P.post_status = 'publish' AND PM.post_id IS NULL GROUP BY P.post_status" );
+		$post_count = $wpdb->get_var( "SELECT COUNT(P.ID) FROM " . $wpdb->posts . " P LEFT JOIN ".$wpdb->postmeta." PM ON (P.ID = PM.post_id AND PM.meta_key = '" . RP4WP_Constants::PM_POST_AUTO_LINKED . "') WHERE 1=1 AND P.post_type = 'post' AND P.post_status = 'publish' AND PM.post_id IS NULL GROUP BY P.post_status" );
 
 		if ( ! is_numeric( $post_count ) ) {
 			$post_count = 0;
