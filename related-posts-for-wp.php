@@ -46,7 +46,7 @@ function rp4wp_load_plugin() {
 add_action( 'plugins_loaded', 'rp4wp_load_plugin', 20 );
 
 //
-if( is_admin() && ( false === defined( 'DOING_AJAX' ) || false === DOING_AJAX ) ) {
+if ( is_admin() && ! is_multisite() && ( false === defined( 'DOING_AJAX' ) || false === DOING_AJAX ) ) {
 
 	// Load installer functions
 	require_once plugin_dir_path( __FILE__ ) . 'includes/installer-functions.php';
