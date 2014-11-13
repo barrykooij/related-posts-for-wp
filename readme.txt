@@ -95,7 +95,10 @@ Yes. To display your related posts via a shortcode use: [rp4wp]
 = Is there a widget? =
 Yes there is!
 
-= Does Related Posts for WordPress uses it's own database table ? =
+= Does Related Posts for WordPress supports WordPress Network / Multisite websites? =
+No, the free version does not. [The premium version however does, get it here](https://www.relatedpostsforwp.com/checkout/?utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=faq-item).
+
+= Does Related Posts for WordPress uses it's own database table? =
 There is one custom table created for the post cache, this table will however not be used at the frontend of your website. Related Posts are fetched with normal WP_Query objects.
 
 == Screenshots ==
