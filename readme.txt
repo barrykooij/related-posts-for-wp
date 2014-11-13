@@ -24,6 +24,7 @@ Our installation wizard will do all the hard work for you, simply activate the p
 > - Custom Post Type Support<br />
 > - Related Post Themes<br />
 > - Custom Taxonomy Support<br />
+> - WordPress Network / Multisite support<br />
 > - Priority Email Support<br />
 >
 > [More information](https://www.relatedpostsforwp.com/features/?utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=after-features-info-link) | [Purchase >>](https://www.relatedpostsforwp.com/checkout/?utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=after-features-purchase-link)
@@ -69,6 +70,7 @@ Related Posts for Wordpress has a widget allowing you to display related posts i
 > - Custom Post Type Support<br />
 > - Related Post Themes<br />
 > - Custom Taxonomy Support<br />
+> - WordPress Network / Multisite support<br />
 > - Priority Email Support<br />
 >
 > [More information](https://www.relatedpostsforwp.com/features/?utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=faq-info-link) | [Purchase >>](https://www.relatedpostsforwp.com/checkout/?utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=faq-purchase-link)
