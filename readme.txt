@@ -4,7 +4,7 @@ Donate link: http://www.relatedpostsforwp.com/
 Tags: related posts for wordpress, related posts for wp, simple related posts, easy related posts, related posts, related, relations, internal links, seo, bounce rate
 Requires at least: 3.6
 Tested up to: 4.0
-Stable tag: 1.7.4
+Stable tag: 1.7.5
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -27,7 +27,7 @@ Our installation wizard will do all the hard work for you, simply activate the p
 > - WordPress Network / Multisite support<br />
 > - Priority Email Support<br />
 >
-> [More information](https://www.relatedpostsforwp.com/features/?utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=after-features-info-link) | [Purchase >>](https://www.relatedpostsforwp.com/checkout/?utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=after-features-purchase-link)
+> [More information](https://www.relatedpostsforwp.com/features/?utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=after-features-info-link) | [Upgrade >>](https://www.relatedpostsforwp.com/upgrade-premium/?utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=after-features-purchase-link)
 
 = Related Posts for WordPress won't lag your server! =
 We don't think having related posts should slow down your website. That's why Related Posts for WordPress creates its own cache and does all the heavy lifting in the admin panel, keeping your website fast as it should be!
@@ -73,7 +73,7 @@ Related Posts for Wordpress has a widget allowing you to display related posts i
 > - WordPress Network / Multisite support<br />
 > - Priority Email Support<br />
 >
-> [More information](https://www.relatedpostsforwp.com/features/?utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=faq-info-link) | [Purchase >>](https://www.relatedpostsforwp.com/checkout/?utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=faq-purchase-link)
+> [More information](https://www.relatedpostsforwp.com/features/?utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=faq-info-link) | [Upgrade >>](https://www.relatedpostsforwp.com/upgrade-premium/?utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=faq-purchase-link)
 
 = Where's the settings screen? =
 Settings > Related Posts.
@@ -112,7 +112,7 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
-= Trunk: November xx, 2014 =
+= 1.7.5: November 15, 2014 =
 * Fixed a hardcoded database table bug.
 * Display notice and don't load plugin on multisite.
 
