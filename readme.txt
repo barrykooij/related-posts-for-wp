@@ -114,6 +114,7 @@ There is one custom table created for the post cache, this table will however no
 
 = Trunk: November xx, 2014 =
 * Fixed a hardcoded database table bug.
+* Display notice and don't load plugin on multisite.
 
 = 1.7.4: November 12, 2014 =
 * Fixed an UTF-8 - iconv bug.
