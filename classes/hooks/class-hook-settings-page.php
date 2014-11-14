@@ -56,7 +56,7 @@ class RP4WP_Hook_Settings_Page extends RP4WP_Hook {
 
 				<p><?php _e( "This plugin has an even better premium version, I am sure you will love it.", 'related-posts-for-wp' ); ?></p>
 				<p><?php _e( "Premium features include custom post type support, related post themes, custom taxonomy support and priority support.", 'related-posts-for-wp' ); ?></p>
-				<p><?php printf( __( "%sMore information about Related Posts for WP Premium »%s", 'related-posts-for-wp' ), '<a href="https://www.relatedpostsforwp.com/?utm_source=plugin&utm_medium=link&utm_campaign=upgrade-box" target="_blank">', '</a>' ); ?></p>
+				<p><?php printf( __( "%sMore information about Related Posts for WP Premium »%s", 'related-posts-for-wp' ), '<a href="https://www.relatedpostsforwp.com/upgrade-premium/?utm_source=plugin&utm_medium=link&utm_campaign=upgrade-box" target="_blank">', '</a>' ); ?></p>
 			</div>
 
 			<div class="rp4wp-box">
@@ -74,7 +74,7 @@ class RP4WP_Hook_Settings_Page extends RP4WP_Hook {
 
 				<p><?php printf( __( "For support please visit the <a href='%s' target='_blank'>WordPress.org forums</a>.", 'related-posts-for-wp' ), 'http://wordpress.org/support/plugin/related-posts-for-wp' ); ?></p>
 
-				<p style="color: green;font-weight: bold;"><?php printf( __( "Did you know that Related Posts for WordPress Premium clients get priority email support? %sClick here to upgrade.%s", 'related-posts-for-wp' ), '<a href="https://www.relatedpostsforwp.com/?utm_source=plugin&utm_medium=link&utm_campaign=support" target="_blank">', '</a>' ); ?></p>
+				<p style="color: green;font-weight: bold;"><?php printf( __( "Did you know that Related Posts for WordPress Premium clients get priority email support? %sClick here to upgrade.%s", 'related-posts-for-wp' ), '<a href="https://www.relatedpostsforwp.com/upgrade-premium/?utm_source=plugin&utm_medium=link&utm_campaign=support" target="_blank">', '</a>' ); ?></p>
 			</div>
 
 			<div class="rp4wp-box">
@@ -95,7 +95,7 @@ class RP4WP_Hook_Settings_Page extends RP4WP_Hook {
 
 				<p><?php _e( "Barry likes contributing to opensource projects and visiting WordCamps and WordPress meetups. He’s the organizer of the WordPress meetup in Tilburg.", 'related-posts-for-wp' ); ?></p>
 
-				<p><?php printf( __( "<a href='%s' target='_blank'>You can follow Barry on Twitter</a>", 'related-posts-for-wp' ), 'https://twitter.com/cageNL' ); ?></p>
+				<p><?php printf( __( "<a href='%s' target='_blank'>Follow Barry on Twitter</a>", 'related-posts-for-wp' ), 'https://twitter.com/cageNL' ); ?></p>
 			</div>
 
 		</div>

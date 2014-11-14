@@ -177,7 +177,7 @@ class RP4WP_Hook_Page_Install extends RP4WP_Hook {
 
 					<p><?php _e( "Premium features include custom post type support, related post themes, custom taxonomy support and priority support.", 'related-posts-for-wp' ); ?></p>
 
-					<p><?php printf( __( "%sMore information about Related Posts for WP Premium (opens in new window) »%s", 'related-posts-for-wp' ), '<a href="https://www.relatedpostsforwp.com/?utm_source=plugin&utm_medium=link&utm_campaign=install" target="_blank">', '</a>' ); ?></p>
+					<p><?php printf( __( "%sMore information about Related Posts for WP Premium (opens in new window) »%s", 'related-posts-for-wp' ), '<a href="https://www.relatedpostsforwp.com/upgrade-premium/?utm_source=plugin&utm_medium=link&utm_campaign=install" target="_blank">', '</a>' ); ?></p>
 				</div>
 
 			</div>
