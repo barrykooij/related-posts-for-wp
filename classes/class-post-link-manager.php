@@ -371,7 +371,7 @@ class RP4WP_Post_Link_Manager {
 				$excerpt_length = RP4WP::get()->settings->get_option( 'excerpt_length' );
 				if ( $excerpt_length > 0 ) {
 					$excerpt = strip_shortcodes( ( ( '' != $rp4wp_post->post_excerpt ) ? $rp4wp_post->post_excerpt : wp_trim_words( $rp4wp_post->post_content, $excerpt_length ) ) );
-					$content .= "<p>" . $excerpt . "</p>";
+					$content .= "<p>" . apply_filters( 'rp4wp_post_excerpt', $excerpt, $rp4wp_post->ID ) . "</p>";
 				}
 
 				$content .= "</div>" . PHP_EOL;

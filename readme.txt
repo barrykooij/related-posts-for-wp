@@ -112,6 +112,9 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
+= Trunk
+* Added 'rp4wp_post_excerpt' filter.
+
 = 1.7.5: November 15, 2014 =
 * Fixed a hardcoded database table bug.
 * Display notice and don't load plugin on multisite.
