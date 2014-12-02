@@ -114,6 +114,7 @@ There is one custom table created for the post cache, this table will however no
 
 = Trunk
 * Added 'rp4wp_post_excerpt' filter.
+* Added RTL support.
 
 = 1.7.5: November 15, 2014 =
 * Fixed a hardcoded database table bug.

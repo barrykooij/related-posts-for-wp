@@ -30,6 +30,14 @@ class RP4WP_Settings {
 		$css_default_lines[] = '.rp4wp-related-posts ul>li>p{margin:0;padding:0;}';
 		$css_default_lines[] = '.rp4wp-related-post-image{width:35%;padding-right:25px;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;float:left;}';
 
+		if ( is_rtl() ) {
+			$css_default_lines   = array();
+			$css_default_lines[] = '.rp4wp-related-posts ul{width:100%;padding:0;margin:0;float:right;}';
+			$css_default_lines[] = '.rp4wp-related-posts ul>li{list-style:none;padding:0;margin:0;padding-bottom:20px;float:right;}';
+			$css_default_lines[] = '.rp4wp-related-posts ul>li>p{margin:0;padding:0;}';
+			$css_default_lines[] = '.rp4wp-related-post-image{width:35%;padding-left:25px;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;float:right;}';
+		}
+
 		// The fields
 		$this->sections = array(
 			self::PREFIX . 'automatic_linking' => array(
