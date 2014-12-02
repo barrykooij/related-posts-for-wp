@@ -5,10 +5,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 } // Exit if accessed directly
 
 class RP4WP_Hook_Related_Save_Words extends RP4WP_Hook {
-	protected $tag = 'save_post';
-	protected $args = 2;
+	protected $tag = 'transition_post_status';
+	protected $args = 3;
 
-	public function run( $post_id, $post ) {
+	public function run( $new_status, $old_status, $post ) {
 
 		// verify this is not an auto save routine.
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
@@ -20,19 +20,14 @@ class RP4WP_Hook_Related_Save_Words extends RP4WP_Hook {
 			return;
 		}
 
-		// Check permission
-		if ( ! current_user_can( 'edit_post', $post_id ) ) {
-			return;
-		}
-
 		// Post status must be publish
-		if ( 'publish' != $post->post_status ) {
+		if ( 'publish' != $new_status ) {
 			return;
 		}
 
 		// Save Words
 		$related_word_manager = new RP4WP_Related_Word_Manager();
-		$related_word_manager->save_words_of_post( $post_id );
+		$related_word_manager->save_words_of_post( $post->ID );
 
 	}
 }
