@@ -112,7 +112,7 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
-= 1.7.6: December 2, 2014
+= 1.7.6: December 2, 2014 =
 * Added 'rp4wp_post_excerpt' filter.
 * Added RTL support.
 * Fixed a scheduled post bug.
