@@ -3,7 +3,7 @@
 	Plugin Name: Related Posts for WordPress
 	Plugin URI: http://www.relatedpostsforwp.com/
 	Description: Related Posts for WordPress, the best way to display related posts in WordPress.
-	Version: 1.7.5
+	Version: 1.7.6
 	Author: Barry Kooij
 	Author URI: http://www.barrykooij.com/
 	License: GPL v3
