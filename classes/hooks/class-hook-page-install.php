@@ -25,12 +25,12 @@ class RP4WP_Hook_Page_Install extends RP4WP_Hook {
 	 */
 	public function enqueue_install_assets() {
 		global $wp_scripts;
-		wp_enqueue_style( 'rp4wp-install-css', plugins_url( '/assets/css/install.css', RP4WP::get_plugin_file() ) );
+		wp_enqueue_style( 'rp4wp-install-css', plugins_url( '/assets/css/install.css', RP4WP::get_plugin_file() ), array(), RP4WP::VERSION );
 		wp_enqueue_script( 'rp4wp-install-js', plugins_url( '/assets/js/install' . ( ( ! SCRIPT_DEBUG ) ? '.min' : '' ) . '.js', RP4WP::get_plugin_file() ), array(
 				'jquery',
 				'jquery-ui-core',
 				'jquery-ui-progressbar'
-			) );
+			), RP4WP::VERSION );
 		wp_enqueue_style( 'jquery-ui-smoothness', "http://ajax.googleapis.com/ajax/libs/jqueryui/" . $wp_scripts->query( 'jquery-ui-core' )->ver . "/themes/smoothness/jquery-ui.css", false, null );
 	}
 
@@ -42,13 +42,14 @@ class RP4WP_Hook_Page_Install extends RP4WP_Hook {
 	 */
 	public function content() {
 
+		// Check nonce
+		$installer_nonce = ( isset( $_GET['rp4wp_nonce'] ) ? $_GET['rp4wp_nonce'] : '' );
+		if ( ! wp_verify_nonce( $installer_nonce, RP4WP_Constants::NONCE_INSTALL ) ) {
+			wp_die( 'Woah! It looks like something else tried to run the Related Posts for WordPress installation wizard! We were able to stop them, nothing was lost. Please report this incident at <a href="http://wordpress.org/support/plugin/related-posts-for-wp" target="_blank">our forums.</a>' );
+		}
+
 		// Do we have a reinstall?
 		if ( isset( $_GET['reinstall'] ) ) {
-
-			// Check nonce
-			if ( ! wp_verify_nonce( ( isset( $_GET['rp4wp_nonce'] ) ? $_GET['rp4wp_nonce'] : '' ), RP4WP_Constants::NONCE_INSTALL ) ) {
-				wp_die( 'Woah! It looks like something else tried to run the Related Posts for WordPress installation wizard! We were able to stop them, nothing was lost. Please report this incident at <a href="http://wordpress.org/support/plugin/related-posts-for-wp" target="_blank">our forums.</a>' );
-			}
 
 			global $wpdb;
 
@@ -121,6 +122,14 @@ class RP4WP_Hook_Page_Install extends RP4WP_Hook {
 				// Hidden fields
 				echo "<input type='hidden' id='rp4wp_total_posts' value='" . wp_count_posts( 'post' )->publish . "' />" . PHP_EOL;
 				echo "<input type='hidden' id='rp4wp_admin_url' value='" . admin_url() . "' />" . PHP_EOL;
+
+				// Echo the nonce
+				if ( ! empty( $installer_nonce ) ) {
+					echo "<input type='hidden' id='rp4wp_nonce' value='" . $installer_nonce . "' />" . PHP_EOL;
+				}
+
+				// AJAX nonce
+				echo '<input type="hidden" name="rp4wp-ajax-nonce" id="rp4wp-ajax-nonce" value="' . wp_create_nonce( RP4WP_Constants::NONCE_AJAX ) . '" />';
 
 				if ( 1 == $cur_step ) {
 

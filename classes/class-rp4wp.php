@@ -8,7 +8,7 @@ class RP4WP {
 
 	private static $instance = null;
 
-	const VERSION = '1.7.6';
+	const VERSION = '1.8.0';
 
 	/**
 	 * @var RP4WP_Settings
@@ -83,7 +83,7 @@ class RP4WP {
 			delete_option( RP4WP_Constants::OPTION_DO_INSTALL );
 
 			// Redirect to installation wizard
-			wp_redirect( admin_url() . '?page=rp4wp_install', 307 );
+			wp_redirect( admin_url() . '?page=rp4wp_install&rp4wp_nonce=' . wp_create_nonce( RP4WP_Constants::NONCE_INSTALL ), 307 );
 			exit;
 		}
 

@@ -120,6 +120,13 @@ class RP4WP_Settings {
 						'type'        => 'checkbox',
 						'default'     => 0,
 					),
+					array(
+						'id'          => 'show_love',
+						'label'       => __( 'Show love?', 'related-posts-for-wp' ),
+						'description' => __( "Display a 'Powered by' line under your related posts. <strong>BEWARE! Only for the real fans.</strong>", 'related-posts-for-wp' ),
+						'type'        => 'checkbox',
+						'default'     => 0,
+					),
 				) ),
 		);
 
@@ -221,6 +228,11 @@ class RP4WP_Settings {
 			echo '<label class="rp4wp-description" for="' . $field['id'] . '">' . $field['description'] . '</label>';
 		}
 
+		// Check if this option is being filtered
+		if ( has_filter( 'rp4wp_' . $field['id'] ) ) {
+			echo '<small>This option is overwritten by a filter.</small>';
+		}
+
 		// End of line
 		echo PHP_EOL;
 
@@ -286,7 +298,7 @@ class RP4WP_Settings {
 	public function get_option( $option ) {
 		$options = $this->get_options();
 
-		return isset( $options[$option] ) ? $options[$option] : false;
+		return apply_filters( 'rp4wp_' . $option, isset( $options[ $option ] ) ? $options[ $option ] : false );
 	}
 
 }

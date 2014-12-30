@@ -4,7 +4,7 @@ Donate link: http://www.relatedpostsforwp.com/
 Tags: related posts for wordpress, related posts for wp, simple related posts, easy related posts, related posts, related, relations, internal links, seo, bounce rate
 Requires at least: 3.6
 Tested up to: 4.1
-Stable tag: 1.7.6
+Stable tag: 1.8.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -111,6 +111,20 @@ There is one custom table created for the post cache, this table will however no
 5. Related posts are automatically added below your posts!
 
 == Changelog ==
+
+= 1.8.0: December 30, 2014 =
+* Now preventing double form submitting in settings screen.
+* Added plugin version to enqueued scripts.
+* Added nonce checks to installer AJAX requests.
+* Check installer nonce every step of installer.
+* Added 'show love' option.
+* Added dynamic option filter.
+* Added warning on setting screen when an option is filtered.
+* Added 'rp4wp_post_title' filter to filter related post titles.
+* Added 'view post' link in manual link screen.
+* Made related Posts block title WPML string translatable.
+* Added translations: French, Italian, Portuguese, Portuguese (Brazil), Swedish.
+* Updated translations: Dutch, German, Serbian.
 
 = 1.7.6: December 2, 2014 =
 * Added 'rp4wp_post_excerpt' filter.

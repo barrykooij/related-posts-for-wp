@@ -51,7 +51,7 @@ class RP4WP_Link_Related_Table extends WP_List_Table {
 		$new_views = array();
 
 		foreach ( $views_arr as $key => $val ) {
-			$new_views[$key] = "<a href='" . add_query_arg( array(
+			$new_views[ $key ] = "<a href='" . add_query_arg( array(
 					'rp4wp_view' => $key,
 					'paged'      => 1
 				) ) . "'" . ( ( $current == $key ) ? " class='current'" : "" ) . ">{$val}</a>";
@@ -77,7 +77,7 @@ class RP4WP_Link_Related_Table extends WP_List_Table {
 	/**
 	 * Display the search box.
 	 *
-	 * @param string $text     The search button text
+	 * @param string $text The search button text
 	 * @param string $input_id The search input id
 	 */
 	public function search_box( $text, $input_id ) {
@@ -192,7 +192,7 @@ class RP4WP_Link_Related_Table extends WP_List_Table {
 		// If no order, default to asc
 		$order = ( ! empty( $_GET['order'] ) ) ? $_GET['order'] : 'asc';
 		// Determine sort order
-		$result = strcmp( $a[$orderby], $b[$orderby] );
+		$result = strcmp( $a[ $orderby ], $b[ $orderby ] );
 
 		// Send final sort direction to usort
 		return ( $order === 'asc' ) ? $result : - $result;
@@ -226,6 +226,11 @@ class RP4WP_Link_Related_Table extends WP_List_Table {
 				$_GET['rp4wp_parent'],
 				$item['ID']
 			),
+			'view' => sprintf(
+				'<a href="%s" target="_blank">%s</a>',
+				get_permalink( $item['ID'] ),
+				__( 'View Post' )
+			)
 		);
 
 		return sprintf( '%1$s %2$s', $item['title'], $this->row_actions( $actions ) );
@@ -242,7 +247,7 @@ class RP4WP_Link_Related_Table extends WP_List_Table {
 	public function column_default( $item, $column_name ) {
 		switch ( $column_name ) {
 			case 'title':
-				return $item[$column_name];
+				return $item[ $column_name ];
 		}
 	}
 

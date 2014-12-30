@@ -16,7 +16,7 @@ class RP4WP_Post_Link_Manager {
 	 *
 	 * @access private
 	 *
-	 * @param int    $post_id
+	 * @param int $post_id
 	 * @param string $meta_key
 	 *
 	 * @return array
@@ -117,7 +117,7 @@ class RP4WP_Post_Link_Manager {
 				VALUES
 				{$data['meta'][0]},
 				{$data['meta'][1]}
-				", $link_id, $link_id) );
+				", $link_id, $link_id ) );
 
 		// Do action rp4wp_after_link_add
 		do_action( 'rp4wp_after_link_add', $link_id );
@@ -154,7 +154,7 @@ class RP4WP_Post_Link_Manager {
 	 *
 	 * @access public
 	 *
-	 * @param int   $parent_id
+	 * @param int $parent_id
 	 * @param array $extra_args
 	 *
 	 * @return array
@@ -195,7 +195,7 @@ class RP4WP_Post_Link_Manager {
 		// @todo remove the usage of get_the_id()
 		$child_ids = array();
 		while ( $link_query->have_posts() ) : $link_query->the_post();
-			$child_ids[get_the_id()] = get_post_meta( get_the_id(), RP4WP_Constants::PM_CHILD, true );
+			$child_ids[ get_the_id() ] = get_post_meta( get_the_id(), RP4WP_Constants::PM_CHILD, true );
 		endwhile;
 
 		// Get children with custom args
@@ -229,7 +229,7 @@ class RP4WP_Post_Link_Manager {
 
 				while ( $child_query->have_posts() ) : $child_query->the_post();
 					// Add post to correct original sort key
-					$children[array_search( $child_query->post->ID, $child_ids )] = $child_query->post;
+					$children[ array_search( $child_query->post->ID, $child_ids ) ] = $child_query->post;
 				endwhile;
 
 				// Fix sorting
@@ -242,7 +242,7 @@ class RP4WP_Post_Link_Manager {
 			// No custom arguments found, get all objects of stored ID's
 			$children = array();
 			foreach ( $child_ids as $link_id => $child_id ) {
-				$children[$link_id] = get_post( $child_id );
+				$children[ $link_id ] = get_post( $child_id );
 			}
 		}
 
@@ -296,6 +296,38 @@ class RP4WP_Post_Link_Manager {
 		while ( $involved_query->have_posts() ) : $involved_query->the_post();
 			wp_delete_post( $involved_query->post->ID, true );
 		endwhile;
+	}
+
+	/**
+	 * Show some love
+	 */
+	private function show_love() {
+
+		if ( '1' != RP4WP::get()->settings->get_option( 'show_love' ) ) {
+			return;
+		}
+
+		// Base
+		$base_url     = "https://www.relatedpostsforwp.com";
+		$query_string = "?";
+
+		// Allow affiliates to add affiliate ID to Power By link
+		$ref = apply_filters( 'rp4wp_poweredby_affiliate_id', '' );
+		if ( '' !== $ref ) {
+			$ref = intval( $ref );
+			$query_string .= "ref=" . $ref . '&';
+		}
+
+		// The UTM campaign stuff
+		$query_string .= sprintf( "utm_source=%s&utm_medium=link&utm_campaign=poweredby", strtolower( preg_replace( "`[^A-z0-9\-.]+`i", '', str_ireplace( ' ', '-', html_entity_decode( get_bloginfo( 'name' ) ) ) ) ) );
+
+		// The URL
+		$url = $base_url . htmlentities( $query_string );
+
+		// Display
+
+		return '<small><a href="' . $url . '" target="_blank">Powered By Related Posts for WordPress</a></small>';
+
 	}
 
 	/**
@@ -366,7 +398,7 @@ class RP4WP_Post_Link_Manager {
 				}
 
 				$content .= "<div class='rp4wp-related-post-content'>" . PHP_EOL;
-				$content .= "<a href='" . get_permalink( $rp4wp_post->ID ) . "'>" . $rp4wp_post->post_title . "</a>";
+				$content .= "<a href='" . get_permalink( $rp4wp_post->ID ) . "'>" . apply_filters( 'rp4wp_post_title', $rp4wp_post->post_title, $rp4wp_post ) . "</a>";
 
 				$excerpt_length = RP4WP::get()->settings->get_option( 'excerpt_length' );
 				if ( $excerpt_length > 0 ) {
@@ -384,6 +416,9 @@ class RP4WP_Post_Link_Manager {
 
 			// Close the wrapper div
 			$content .= "</ul>\n";
+
+			$content .= $this->show_love();
+
 			$content .= "</div>\n";
 
 		}

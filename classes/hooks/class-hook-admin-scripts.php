@@ -17,7 +17,8 @@ class RP4WP_Hook_Admin_Scripts extends RP4WP_Hook {
 			wp_enqueue_script(
 				'rp4wp_edit_post_js',
 				plugins_url( '/assets/js/edit-post' . ( ( ! SCRIPT_DEBUG ) ? '.min' : '' ) . '.js', RP4WP::get_plugin_file() ),
-				array( 'jquery', 'jquery-ui-sortable' )
+				array( 'jquery', 'jquery-ui-sortable' ),
+				RP4WP::VERSION
 			);
 
 			// Make JavaScript strings translatable
@@ -26,8 +27,22 @@ class RP4WP_Hook_Admin_Scripts extends RP4WP_Hook {
 			// CSS
 			wp_enqueue_style(
 				'rp4wp_edit_post_css',
-				plugins_url( '/assets/css/edit-post.css', RP4WP::get_plugin_file() )
+				plugins_url( '/assets/css/edit-post.css', RP4WP::get_plugin_file() ),
+				array(),
+				RP4WP::VERSION
 			);
+		}
+
+		if ( 'options-general.php' == $pagenow && isset( $_GET['page'] ) && $_GET['page'] === 'rp4wp' ) {
+
+			// Main settings JS
+			wp_enqueue_script(
+				'rp4wp_settings_js',
+				plugins_url( '/assets/js/settings' . ( ( ! SCRIPT_DEBUG ) ? '.min' : '' ) . '.js', RP4WP::get_plugin_file() ),
+				array( 'jquery' ),
+				RP4WP::VERSION
+			);
+
 		}
 
 	}
