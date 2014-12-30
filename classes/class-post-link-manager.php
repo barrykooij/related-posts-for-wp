@@ -398,7 +398,7 @@ class RP4WP_Post_Link_Manager {
 				}
 
 				$content .= "<div class='rp4wp-related-post-content'>" . PHP_EOL;
-				$content .= "<a href='" . get_permalink( $rp4wp_post->ID ) . "'>" . $rp4wp_post->post_title . "</a>";
+				$content .= "<a href='" . get_permalink( $rp4wp_post->ID ) . "'>" . apply_filters( 'rp4wp_post_title', $rp4wp_post->post_title, $rp4wp_post ) . "</a>";
 
 				$excerpt_length = RP4WP::get()->settings->get_option( 'excerpt_length' );
 				if ( $excerpt_length > 0 ) {
