@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://github.com/barrykooij/related-posts-for-wp/issues\n"
-"POT-Creation-Date: 2014-10-16 08:27:55+00:00\n"
-"PO-Revision-Date: 2014-10-19 17:44+0000\n"
+"POT-Creation-Date: 2014-12-28 16:21:46+00:00\n"
+"PO-Revision-Date: 2014-12-28 16:22+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Norwegian (http://www.transifex.com/projects/p/related-posts-for-wordpress/language/no/)\n"
 "MIME-Version: 1.0\n"
@@ -31,31 +31,42 @@ msgstr ""
 msgid "Are you sure you want to delete this related post?"
 msgstr ""
 
-#: classes/class-link-related-table.php:47
+#: classes/class-link-related-table.php:45
 #: classes/hooks/class-hook-settings-page.php:20
 #: classes/meta-boxes/class-meta-box-manage.php:37
 #: classes/settings/class-settings-general.php:52
 msgid "Related Posts"
 msgstr ""
 
-#: classes/class-link-related-table.php:48
+#: classes/class-link-related-table.php:46
 msgid "All Posts"
 msgstr ""
 
-#: classes/class-link-related-table.php:97
+#: classes/class-link-related-table.php:95
+#: classes/settings/class-settings-weights.php:29
 msgid "Title"
 msgstr ""
 
-#: classes/class-link-related-table.php:224
+#: classes/class-link-related-table.php:96
+#: classes/hooks/class-hook-page-install.php:220
+#: classes/hooks/class-hook-settings-page.php:152
+msgid "Post Type"
+msgstr ""
+
+#: classes/class-link-related-table.php:235
 msgid "Link Post"
 msgstr ""
 
-#: classes/class-link-related-table.php:256
+#: classes/class-link-related-table.php:243
+msgid "View Post"
+msgstr ""
+
+#: classes/class-link-related-table.php:274
 msgid "Link Posts"
 msgstr ""
 
 #: classes/class-post-type-manager.php:21
-#: classes/hooks/class-hook-link-related-screen.php:131
+#: classes/hooks/class-hook-link-related-screen.php:138
 msgid "Posts"
 msgstr ""
 
@@ -75,46 +86,46 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: classes/hooks/class-hook-link-related-screen.php:132
+#: classes/hooks/class-hook-link-related-screen.php:139
 msgid "Cancel linking"
 msgstr ""
 
-#: classes/hooks/class-hook-link-related-screen.php:148
+#: classes/hooks/class-hook-link-related-screen.php:155
 msgid "Search"
 msgstr ""
 
-#: classes/hooks/class-hook-page-install.php:92
+#: classes/hooks/class-hook-page-install.php:109
 msgid "Welcome"
 msgstr ""
 
-#: classes/hooks/class-hook-page-install.php:93
+#: classes/hooks/class-hook-page-install.php:110
 msgid "Caching Posts"
 msgstr ""
 
-#: classes/hooks/class-hook-page-install.php:94
+#: classes/hooks/class-hook-page-install.php:111
 msgid "Linking Posts"
 msgstr ""
 
-#: classes/hooks/class-hook-page-install.php:95
+#: classes/hooks/class-hook-page-install.php:112
 msgid "Finished"
 msgstr ""
 
-#: classes/hooks/class-hook-page-install.php:106
+#: classes/hooks/class-hook-page-install.php:123
 msgid ""
 "Missing post type paramater, please report this incident via %sour "
 "website%s."
 msgstr ""
 
-#: classes/hooks/class-hook-page-install.php:127
+#: classes/hooks/class-hook-page-install.php:154
 msgid "Installation"
 msgstr ""
 
-#: classes/hooks/class-hook-page-install.php:161
-#: classes/hooks/class-hook-page-install.php:197
+#: classes/hooks/class-hook-page-install.php:201
+#: classes/hooks/class-hook-page-install.php:284
 msgid "Thank you for choosing Related Posts for WordPress!"
 msgstr ""
 
-#: classes/hooks/class-hook-page-install.php:162
+#: classes/hooks/class-hook-page-install.php:202
 msgid ""
 "Below you'll find your post types available for installation, by installing "
 "a post type we'll set up a cache and offer you the ability to automatic link"
@@ -122,84 +133,84 @@ msgid ""
 "Type' button."
 msgstr ""
 
-#: classes/hooks/class-hook-page-install.php:178
-msgid "Disable Relations for %s"
+#: classes/hooks/class-hook-page-install.php:221
+msgid "Related to Post Types"
 msgstr ""
 
-#: classes/hooks/class-hook-page-install.php:180
-msgid "Enable Relations for %s"
+#: classes/hooks/class-hook-page-install.php:256
+msgid "Edit"
 msgstr ""
 
-#: classes/hooks/class-hook-page-install.php:198
+#: classes/hooks/class-hook-page-install.php:285
 msgid ""
 "Before you can start using Related Posts for WordPress we need to cache your"
 " current posts."
 msgstr ""
 
-#: classes/hooks/class-hook-page-install.php:199
+#: classes/hooks/class-hook-page-install.php:286
 msgid ""
 "This is a one time process which might take some time now, depending on the "
 "amount of posts you have, but will ensure your website's performance when "
 "using the plugin."
 msgstr ""
 
-#: classes/hooks/class-hook-page-install.php:201
+#: classes/hooks/class-hook-page-install.php:288
 msgid ""
 "Do NOT close this window, wait for this process to finish and this wizard to"
 " take you to the next step."
 msgstr ""
 
-#: classes/hooks/class-hook-page-install.php:219
+#: classes/hooks/class-hook-page-install.php:306
 msgid "Great! All your posts were successfully cached!"
 msgstr ""
 
-#: classes/hooks/class-hook-page-install.php:220
+#: classes/hooks/class-hook-page-install.php:307
 msgid ""
 "You can let me link your posts, based on what I think is related, to each "
 "other. And don't worry, if I made a mistake at one of your posts you can "
 "easily correct this by editing it manually!"
 msgstr ""
 
-#: classes/hooks/class-hook-page-install.php:221
+#: classes/hooks/class-hook-page-install.php:308
 msgid ""
 "Want me to start linking posts to each other? Fill in the amount of related "
 "posts each post should have and click on the \"Link now\" button. Rather "
 "link your posts manually? Click \"Skip linking\"."
 msgstr ""
 
-#: classes/hooks/class-hook-page-install.php:222
+#: classes/hooks/class-hook-page-install.php:309
 msgid ""
 "Do NOT close this window if you click the \"Link now\" button, wait for this"
 " process to finish and this wizard to take you to the next step."
 msgstr ""
 
-#: classes/hooks/class-hook-page-install.php:225
+#: classes/hooks/class-hook-page-install.php:313
 msgid "Amount of related posts per post:"
 msgstr ""
 
-#: classes/hooks/class-hook-page-install.php:226
+#: classes/hooks/class-hook-page-install.php:317
 msgid "Link now"
 msgstr ""
 
-#: classes/hooks/class-hook-page-install.php:227
+#: classes/hooks/class-hook-page-install.php:319
 msgid "Skip linking"
 msgstr ""
 
-#: classes/hooks/class-hook-page-install.php:235
+#: classes/hooks/class-hook-page-install.php:327
 msgid "That's it, you're good to go!"
 msgstr ""
 
-#: classes/hooks/class-hook-page-install.php:236
+#: classes/hooks/class-hook-page-install.php:328
 msgid ""
 "Thanks again for using Related Posts for WordPress and if you have any "
 "questions be sure to ask them at the %sWordPress.org forums.%s"
 msgstr ""
 
-#: classes/hooks/class-hook-page-install.php:238
+#: classes/hooks/class-hook-page-install.php:331
 msgid "Click here to return to step 1"
 msgstr ""
 
-#: classes/hooks/class-hook-page-install.php:244
+#: classes/hooks/class-hook-page-install.php:337
 msgid "Click here to go to the settings page"
 msgstr ""
 
@@ -207,57 +218,56 @@ msgstr ""
 msgid "Plugin version"
 msgstr ""
 
-#: classes/hooks/class-hook-settings-page.php:61
-msgid "More information"
-msgstr ""
-
 #: classes/hooks/class-hook-settings-page.php:63
-msgid "<a href='%s'>FAQ</a>"
-msgstr ""
-
-#: classes/hooks/class-hook-settings-page.php:65
-msgid "<a href='%s'>Change log</a>"
+msgid ""
+"Got a question? Simply send us an email at "
+"%ssupport@relatedpostsforwp.com%s. Please note that support requires an "
+"active license."
 msgstr ""
 
 #: classes/hooks/class-hook-settings-page.php:67
-msgid "<a href='%s'>Give us a review</a>"
+msgid "More information"
 msgstr ""
 
 #: classes/hooks/class-hook-settings-page.php:69
-msgid "<a href='%s'>Release blog post</a>"
+msgid "<a href='%s'>Documentation</a>"
+msgstr ""
+
+#: classes/hooks/class-hook-settings-page.php:71
+msgid "<a href='%s'>Changelog</a>"
 msgstr ""
 
 #: classes/hooks/class-hook-settings-page.php:73
+msgid "<a href='%s'>Give us a review</a>"
+msgstr ""
+
+#: classes/hooks/class-hook-settings-page.php:78
 msgid "About the developer"
 msgstr ""
 
-#: classes/hooks/class-hook-settings-page.php:75
+#: classes/hooks/class-hook-settings-page.php:80
 msgid ""
-"Barry is a WordPress developer that works on WooCommerce by WooThemes and is"
-" the author of various WordPress plugins that include Post Connector, "
-"Related Posts for WordPress and What The File."
+"Barry is a WordPress developer that works on WooCommerce and is the author "
+"of various WordPress plugins that include Related Posts for WordPress, Post "
+"Connector and What The File."
 msgstr ""
 
-#: classes/hooks/class-hook-settings-page.php:77
+#: classes/hooks/class-hook-settings-page.php:82
 msgid ""
-"Barry likes contributing to opensource projects and visiting WordCamps and "
+"Barry likes contributing to open source projects and visiting WordCamps and "
 "WordPress meetups. He’s the organizer of the WordPress meetup in Tilburg."
 msgstr ""
 
-#: classes/hooks/class-hook-settings-page.php:79
-msgid "You can follow Barry on Twitter <a href='%s'>here</a>."
+#: classes/hooks/class-hook-settings-page.php:84
+msgid "%sFollow Barry on Twitter%s."
 msgstr ""
 
-#: classes/hooks/class-hook-settings-page.php:105
+#: classes/hooks/class-hook-settings-page.php:110
 msgid "General"
 msgstr ""
 
-#: classes/hooks/class-hook-settings-page.php:125
+#: classes/hooks/class-hook-settings-page.php:130
 msgid "Installer"
-msgstr ""
-
-#: classes/hooks/class-hook-settings-page.php:147
-msgid "Post Type"
 msgstr ""
 
 #: classes/meta-boxes/class-meta-box-manage.php:80
@@ -345,28 +355,61 @@ msgstr ""
 msgid "Checking this will enable displaying featured images of related %ss."
 msgstr ""
 
+#: classes/settings/class-settings-license.php:18
+msgid "License"
+msgstr ""
+
+#: classes/settings/class-settings-license.php:29
+msgid "License Status"
+msgstr ""
+
+#: classes/settings/class-settings-license.php:36
+msgid "License Key"
+msgstr ""
+
+#: classes/settings/class-settings-license.php:37
+msgid ""
+"Your license key. You can find your license key in your %sMy Account%s page."
+msgstr ""
+
+#: classes/settings/class-settings-license.php:44
+msgid "Activation Email"
+msgstr ""
+
+#: classes/settings/class-settings-license.php:45
+msgid ""
+"Your activation email address. You can find your activation email address in"
+" your %sMy Account%s page."
+msgstr ""
+
 #: classes/settings/class-settings-misc.php:18
 msgid "Misc"
 msgstr ""
 
-#: classes/settings/class-settings-misc.php:31
+#: classes/settings/class-settings-misc.php:24
 msgid "Miscellaneous Settings"
 msgstr ""
 
-#: classes/settings/class-settings-misc.php:32
+#: classes/settings/class-settings-misc.php:25
 msgid "A shelter for options that just don't fit in."
 msgstr ""
 
-#: classes/settings/class-settings-misc.php:36
-#: classes/settings/class-settings-weight.php:26
+#: classes/settings/class-settings-misc.php:29
 msgid "Remove Data on Uninstall?"
 msgstr ""
 
-#: classes/settings/class-settings-misc.php:37
-#: classes/settings/class-settings-weight.php:27
+#: classes/settings/class-settings-misc.php:30
 msgid ""
 "Check this box if you would like to completely remove all of its data when "
 "the plugin is deleted."
+msgstr ""
+
+#: classes/settings/class-settings-page.php:450
+msgid "ACTIVATED"
+msgstr ""
+
+#: classes/settings/class-settings-page.php:452
+msgid "NOT ACTIVE"
 msgstr ""
 
 #: classes/settings/class-settings-themes.php:18
@@ -378,7 +421,7 @@ msgid "Styling settings"
 msgstr ""
 
 #: classes/settings/class-settings-themes.php:32
-msgid "All settings related to frontend style your related posts."
+msgid "Control how your related posts are displayed on your website."
 msgstr ""
 
 #: classes/settings/class-settings-themes.php:36
@@ -401,12 +444,54 @@ msgid ""
 "error here will break frontend display. To disable, leave field empty."
 msgstr ""
 
-#: classes/settings/class-settings-weight.php:21
-msgid "Post Types"
+#: classes/settings/class-settings-weights.php:18
+msgid "Weights"
 msgstr ""
 
-#: classes/settings/class-settings-weight.php:22
-msgid "Check the post."
+#: classes/settings/class-settings-weights.php:24
+msgid "Weight settings"
+msgstr ""
+
+#: classes/settings/class-settings-weights.php:25
+msgid ""
+"Easily adjust the weights by using the sliders below. Please note that you "
+"need to rerun the installer after changing weights."
+msgstr ""
+
+#: classes/settings/class-settings-weights.php:30
+msgid "The weight of the title."
+msgstr ""
+
+#: classes/settings/class-settings-weights.php:36
+msgid "Links"
+msgstr ""
+
+#: classes/settings/class-settings-weights.php:37
+msgid "The weight of the links found in the content."
+msgstr ""
+
+#: classes/settings/class-settings-weights.php:43
+msgid "Categories"
+msgstr ""
+
+#: classes/settings/class-settings-weights.php:44
+msgid "The weight of the categories."
+msgstr ""
+
+#: classes/settings/class-settings-weights.php:50
+msgid "Tags"
+msgstr ""
+
+#: classes/settings/class-settings-weights.php:51
+msgid "The weight of the tags."
+msgstr ""
+
+#: classes/settings/class-settings-weights.php:57
+msgid "Custom Taxonomies"
+msgstr ""
+
+#: classes/settings/class-settings-weights.php:58
+msgid "The weight of custom taxonomies."
 msgstr ""
 
 #: classes/themes/class-theme-column-one.php:13
@@ -421,18 +506,8 @@ msgstr ""
 msgid "Two related post items per row."
 msgstr ""
 
-#: includes/updater/class-wpjm-updater.php:245
+#: includes/updater/class-rp4wp-updater.php:131
 msgid "Hide notice"
-msgstr ""
-
-#: includes/updater/class-wpjm-updater.php:284
-msgid "Licence"
-msgstr ""
-
-#: includes/updater/class-wpjm-updater.php:287
-msgid ""
-"Enter your licence key and email and hit return. A valid key is required for"
-" automatic updates."
 msgstr ""
 
 #. Plugin Name of the plugin/theme
