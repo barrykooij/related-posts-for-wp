@@ -83,7 +83,7 @@ class RP4WP {
 			delete_option( RP4WP_Constants::OPTION_DO_INSTALL );
 
 			// Redirect to installation wizard
-			wp_redirect( admin_url() . '?page=rp4wp_install', 307 );
+			wp_redirect( admin_url() . '?page=rp4wp_install&rp4wp_nonce=' . wp_create_nonce( RP4WP_Constants::NONCE_INSTALL ), 307 );
 			exit;
 		}
 
