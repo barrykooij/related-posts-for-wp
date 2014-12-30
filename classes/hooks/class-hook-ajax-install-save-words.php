@@ -9,6 +9,9 @@ class RP4WP_Hook_Ajax_Install_Save_Words extends RP4WP_Hook {
 
 	public function run() {
 
+		// Check nonce
+		check_ajax_referer( RP4WP_Constants::NONCE_AJAX, 'nonce' );
+
 		// Get the PPR
 		$ppr = isset( $_POST['ppr'] ) ? $_POST['ppr'] : 25;
 

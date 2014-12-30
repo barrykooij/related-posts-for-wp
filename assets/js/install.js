@@ -25,13 +25,15 @@ jQuery(document).ready(function ($) {
 		this.ppr = null;
 		this.action = null;
 		this.percentage_object = null;
+		this.nonce = null;
 
 		this.do_request = function () {
 			var instance = this;
 			$.post(ajaxurl, {
-				'action'    : this.action,
-				'ppr'       : this.ppr,
-				'rel_amount': $('#rp4wp_related_posts_amount').val()
+                action: this.action,
+                nonce: $( '#rp4wp-ajax-nonce' ).val(),
+                ppr: this.ppr,
+                rel_amount: $( '#rp4wp_related_posts_amount' ).val()
 			}, function (response) {
 
 				// The RegExp
@@ -69,7 +71,7 @@ jQuery(document).ready(function ($) {
 			$('#progressbar').progressbar({value: 100});
 
 			// Redirect to next step
-			window.location = $('#rp4wp_admin_url').val() + '?page=rp4wp_install&step=' + ( this.step + 1 );
+			window.location = $('#rp4wp_admin_url').val() + '?page=rp4wp_install&rp4wp_nonce=' + this.nonce + '&step=' + ( this.step + 1 );
 		};
 
 		this.do_progressbar = function (posts_left) {
@@ -94,6 +96,9 @@ jQuery(document).ready(function ($) {
 
 			// Get the total posts
 			this.total_posts = $('#rp4wp_total_posts').val();
+
+			// Set the Nonce
+			this.nonce = $( '#rp4wp_nonce' ).val();
 
 			// Set the correct action
 			switch (this.step) {

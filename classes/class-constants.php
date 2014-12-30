@@ -28,5 +28,6 @@ abstract class RP4WP_Constants {
 
 	// Nonce
 	const NONCE_INSTALL = 'rp4wp-install-secret';
+	const NONCE_AJAX = 'rp4wp-ajax-nonce-omgrandomword';
 
 }
