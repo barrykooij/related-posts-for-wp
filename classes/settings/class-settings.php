@@ -120,6 +120,13 @@ class RP4WP_Settings {
 						'type'        => 'checkbox',
 						'default'     => 0,
 					),
+					array(
+						'id'          => 'show_love',
+						'label'       => __( 'Show love?', 'related-posts-for-wp' ),
+						'description' => __( "Display a 'Powered by' line under your related posts. <strong>BEWARE! Only for the real fans.</strong>", 'related-posts-for-wp' ),
+						'type'        => 'checkbox',
+						'default'     => 0,
+					),
 				) ),
 		);
 
