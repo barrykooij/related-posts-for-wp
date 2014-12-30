@@ -226,6 +226,11 @@ class RP4WP_Link_Related_Table extends WP_List_Table {
 				$_GET['rp4wp_parent'],
 				$item['ID']
 			),
+			'view' => sprintf(
+				'<a href="%s" target="_blank">%s</a>',
+				get_permalink( $item['ID'] ),
+				__( 'View Post' )
+			)
 		);
 
 		return sprintf( '%1$s %2$s', $item['title'], $this->row_actions( $actions ) );
