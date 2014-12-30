@@ -112,6 +112,20 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
+= 1.8.0: December 30, 2014 =
+* Now preventing double form submitting in settings screen.
+* Added plugin version to enqueued scripts.
+* Added nonce checks to installer AJAX requests.
+* Check installer nonce every step of installer.
+* Added 'show love' option.
+* Added dynamic option filter.
+* Added warning on setting screen when an option is filtered.
+* Added 'rp4wp_post_title' filter to filter related post titles.
+* Added 'view post' link in manual link screen.
+* Made related Posts block title WPML string translatable.
+* Added translations: French, Italian, Portuguese, Portuguese (Brazil), Swedish.
+* Updated translations: Dutch, German, Serbian.
+
 = 1.7.6: December 2, 2014 =
 * Added 'rp4wp_post_excerpt' filter.
 * Added RTL support.
