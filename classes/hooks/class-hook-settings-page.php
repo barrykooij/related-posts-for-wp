@@ -29,7 +29,7 @@ class RP4WP_Hook_Settings_Page extends RP4WP_Hook {
 	 * @access public
 	 */
 	public function enqueue_assets() {
-		wp_enqueue_style( 'rp4wp-settings-css', plugins_url( '/assets/css/settings.css', RP4WP::get_plugin_file() ) );
+		wp_enqueue_style( 'rp4wp-settings-css', plugins_url( '/assets/css/settings.css', RP4WP::get_plugin_file() ), array(), RP4WP::VERSION );
 	}
 
 	/**
