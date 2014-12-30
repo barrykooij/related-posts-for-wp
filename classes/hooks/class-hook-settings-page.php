@@ -114,7 +114,7 @@ class RP4WP_Hook_Settings_Page extends RP4WP_Hook {
 			<h2>Related Posts for WordPress</h2>
 
 			<div class="rp4wp-content">
-				<form method="post" action="options.php">
+				<form method="post" action="options.php" id="rp4wp-settings-form">
 					<?php settings_fields( 'rp4wp' );    //pass slug name of page, also referred
 					//to in Settings API as option group name
 					do_settings_sections( 'rp4wp' );    //pass slug name of page

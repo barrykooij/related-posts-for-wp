@@ -33,5 +33,17 @@ class RP4WP_Hook_Admin_Scripts extends RP4WP_Hook {
 			);
 		}
 
+		if ( 'options-general.php' == $pagenow && isset( $_GET['page'] ) && $_GET['page'] === 'rp4wp' ) {
+
+			// Main settings JS
+			wp_enqueue_script(
+				'rp4wp_settings_js',
+				plugins_url( '/assets/js/settings' . ( ( ! SCRIPT_DEBUG ) ? '.min' : '' ) . '.js', RP4WP::get_plugin_file() ),
+				array( 'jquery' ),
+				RP4WP::VERSION
+			);
+
+		}
+
 	}
 }
