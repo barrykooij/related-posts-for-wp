@@ -112,6 +112,10 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
+= Trunk: January x, 2015 =
+* Fixed a bug where UTF-8 encoded characters were not correctly parsed.
+* Introduced icon alternative for when iconv isn't installed on server.
+
 = 1.8.0: December 30, 2014 =
 * Now preventing double form submitting in settings screen.
 * Added plugin version to enqueued scripts.
