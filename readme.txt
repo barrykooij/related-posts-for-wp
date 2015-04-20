@@ -4,7 +4,7 @@ Donate link: http://www.relatedpostsforwp.com/checkout/
 Tags: related posts for wordpress, related posts for wp, simple related posts, easy related posts, related posts, related, relations, internal links, seo, bounce rate
 Requires at least: 3.6
 Tested up to: 4.1.1
-Stable tag: 1.8.1
+Stable tag: 1.8.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -114,6 +114,9 @@ There is one custom table created for the post cache, this table will however no
 5. Related posts are automatically added below your posts!
 
 == Changelog ==
+
+= 1.8.2: April 20, 2015 =
+* Escaped view filter URL when manually linking posts to prevent possible XSS.
 
 = 1.8.1: January 3, 2015 =
 * Fixed a bug where UTF-8 encoded characters were not correctly parsed.
