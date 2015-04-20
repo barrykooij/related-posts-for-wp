@@ -187,13 +187,14 @@ class RP4WP_Related_Word_Manager {
 	 */
 	private function add_words_from_array( array $base_words, $words, $weight = 1 ) {
 
-		// Check if weight > 0 and if $words is array
-		if ( $weight > 0 && is_array( $words ) ) {
-			foreach ( $words as $word ) {
-				$word                      = $this->convert_characters( $word );
-				$word_multiplied_by_weight = array_fill( 0, $weight, $word );
-				$base_words                = array_merge( $base_words, $word_multiplied_by_weight );
-			}
+		if ( ! is_array( $words ) ) {
+			return $base_words;
+		}
+
+		foreach ( $words as $word ) {
+			$word                      = $this->convert_characters( $word );
+			$word_multiplied_by_weight = array_fill( 0, $weight, $word );
+			$base_words                = array_merge( $base_words, $word_multiplied_by_weight );
 		}
 
 		return $base_words;
