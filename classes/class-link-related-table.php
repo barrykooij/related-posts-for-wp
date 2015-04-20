@@ -51,10 +51,10 @@ class RP4WP_Link_Related_Table extends WP_List_Table {
 		$new_views = array();
 
 		foreach ( $views_arr as $key => $val ) {
-			$new_views[ $key ] = "<a href='" . add_query_arg( array(
+			$new_views[ $key ] = "<a href='" . esc_url( add_query_arg( array(
 					'rp4wp_view' => $key,
 					'paged'      => 1
-				) ) . "'" . ( ( $current == $key ) ? " class='current'" : "" ) . ">{$val}</a>";
+				) ) ) . "'" . ( ( $current == $key ) ? " class='current'" : "" ) . ">{$val}</a>";
 		}
 
 		return $new_views;
