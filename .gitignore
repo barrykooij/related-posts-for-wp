@@ -1,7 +1,5 @@
 /node_modules/
 
-composer.lock
-
 # Exclude everything in /vendor except our autoload stuff
 vendor/*
 !vendor/composer
