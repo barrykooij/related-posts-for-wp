@@ -43,15 +43,6 @@ class RP4WP {
 	}
 
 	/**
-	 * A static method that will setup the autoloader
-	 */
-	private static function setup_autoloader() {
-		require_once( plugin_dir_path( self::get_plugin_file() ) . '/classes/class-autoloader.php' );
-		$autoloader = new RP4WP_Autoloader( plugin_dir_path( self::get_plugin_file() ) . 'classes/' );
-		spl_autoload_register( array( $autoloader, 'load' ) );
-	}
-
-	/**
 	 * The constructor
 	 */
 	private function __construct() {
@@ -62,9 +53,6 @@ class RP4WP {
 	 * Initialize the plugin
 	 */
 	private function init() {
-
-		// Setup the autoloader
-		self::setup_autoloader();
 
 		// Load plugin text domain
 		load_plugin_textdomain( 'related-posts-for-wp', false, dirname( plugin_basename( RP4WP_PLUGIN_FILE ) ) . '/languages/' );
@@ -127,14 +115,4 @@ class RP4WP {
 		$this->settings = new RP4WP_Settings();
 	}
 
-}
-
-/**
- * @since  1.0.0
- * @access public
- *
- * @return RP4WP
- */
-function RP4WP() {
-	return RP4WP::get();
 }
