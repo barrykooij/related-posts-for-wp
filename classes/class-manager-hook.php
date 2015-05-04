@@ -8,33 +8,34 @@ if ( ! class_exists( 'RP4WP_Manager_Hook' ) ) {
 
 	class RP4WP_Manager_Hook {
 
-		private $hook_dir;
+		private $action_names = array();
 		private static $hooks;
 
-		public function __construct( $hook_dir ) {
-			$this->hook_dir = $hook_dir;
+		/**
+		 * @param array $action_names
+		 */
+		public function __construct( array $action_names ) {
+			$this->action_names = $action_names;
+		}
+
+		/**
+		 * @param string $action_name
+		 */
+		public function load_hook( $action_name ) {
+			$class_name = "RP4WP_Hook_" . str_replace( ' ', '_', ucwords( str_replace( '_', ' ', $action_name ) ) );
+			self::$hooks[$class_name] = new $class_name;
 		}
 
 		/**
 		 * Load and set hooks
 		 *
 		 * @access public
-		 * @static
 		 * @return void
 		 */
 		public function load_hooks() {
 
-			foreach ( new DirectoryIterator( $this->hook_dir ) as $file ) {
-
-				if ( ! $file->isDir() && ( strpos( $file->getFileName(), '.' ) !== 0 ) ) {
-
-					$class = RP4WP_Class_Manager::format_class_name( $file->getFileName() );
-					if ( 'RP4WP_Hook' != $class ) {
-						self::$hooks[$class] = new $class;
-					}
-
-				}
-
+			foreach( $this->action_names as $action_name ) {
+				$this->load_hook( $action_name );
 			}
 
 		}

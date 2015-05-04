@@ -8,45 +8,37 @@ if ( ! class_exists( 'RP4WP_Manager_Filter' ) ) {
 
 	class RP4WP_Manager_Filter {
 
-		private $filter_dir;
+		private $filter_names;
 		private static $filters;
 
-		public function __construct( $filter_dir ) {
-			$this->filter_dir = $filter_dir;
+		/**
+		 * @param array $filter_names
+		 */
+		public function __construct( array $filter_names ) {
+			$this->filter_names = $filter_names;
 		}
 
 		/**
 		 * Load on specific filter instead of all filters.
 		 * This method should be used when the load_filters() isn't run yet, for example in the (de)activation process.
 		 *
-		 * @param $file_name
+		 * @param string $filter_name
 		 */
-		public function load_filter( $file_name ) {
-			$class = RP4WP_Class_Manager::format_class_name( $file_name );
-			if ( 'RP4WP_Filter' != $class ) {
-				self::$filters[$class] = new $class;
-			}
+		public function load_filter( $filter_name ) {
+			$class_name = "RP4WP_Filter_" . str_replace( ' ', '_', ucwords( str_replace( '_', ' ', $filter_name ) ) );
+			self::$filters[$class_name] = new $class_name;
 		}
 
 		/**
 		 * Load and set hooks
 		 *
 		 * @access public
-		 * @static
 		 * @return void
 		 */
 		public function load_filters() {
 
-			foreach ( new DirectoryIterator( $this->filter_dir ) as $file ) {
-
-				if ( ! $file->isDir() && ( strpos( $file->getFileName(), '.' ) !== 0 ) ) {
-
-					$class = RP4WP_Class_Manager::format_class_name( $file->getFileName() );
-					if ( 'RP4WP_Filter' != $class ) {
-						self::$filters[$class] = new $class;
-					}
-
-				}
+			foreach( $this->filter_names as $filter_name ) {
+				$this->load_filter( $filter_name );
 			}
 
 		}
