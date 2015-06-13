@@ -85,11 +85,13 @@ class RP4WP {
 		add_action( 'init', array( $this, 'setup_settings' ) );
 
 		// Filters
-		$manager_filter = new RP4WP_Manager_Filter( plugin_dir_path( RP4WP_PLUGIN_FILE ) . 'classes/filters/' );
+		$filters = include dirname( RP4WP_PLUGIN_FILE ) .'/includes/filters.php';
+		$manager_filter = new RP4WP_Manager_Filter( $filters );
 		$manager_filter->load_filters();
 
 		// Hooks
-		$manager_hook = new RP4WP_Manager_Hook( plugin_dir_path( RP4WP_PLUGIN_FILE ) . 'classes/hooks/' );
+		$actions = include dirname( RP4WP_PLUGIN_FILE ) .'/includes/actions.php';
+		$manager_hook = new RP4WP_Manager_Hook( $actions );
 		$manager_hook->load_hooks();
 
 		// Include template functions
