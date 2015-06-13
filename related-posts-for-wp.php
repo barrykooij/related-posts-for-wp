@@ -36,10 +36,11 @@ function rp4wp_load_plugin() {
 	// Define
 	define( 'RP4WP_PLUGIN_FILE', __FILE__ );
 
-	// Load main plugin file
-	require_once plugin_dir_path( RP4WP_PLUGIN_FILE ) . 'classes/class-rp4wp.php';
-	RP4WP();
+	require dirname( __FILE__ ) . '/vendor/autoload_52.php';
+	require dirname( __FILE__ ) . '/includes/functions.php';
 
+	// Instantiate main plugin object
+	RP4WP();
 }
 
 // Create object - Plugin init
