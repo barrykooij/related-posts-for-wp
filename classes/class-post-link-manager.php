@@ -188,6 +188,11 @@ class RP4WP_Post_Link_Manager {
 			unset( $extra_args['order'] );
 		}
 
+		/**
+		 * Filter args for link query
+		 */
+		$link_args = apply_filters( 'rp4wp_get_children_link_args', $link_args, $parent_id );
+
 		// Create link query
 		$link_query = new WP_Query( $link_args );
 
@@ -223,6 +228,11 @@ class RP4WP_Post_Link_Manager {
 
 				// Extra arguments
 				$child_args = array_merge_recursive( $child_args, $extra_args );
+
+				/**
+				 * Filter args for child query
+				 */
+				$child_args = apply_filters( 'rp4wp_get_children_child_args', $child_args, $parent_id );
 
 				// Child Query
 				$child_query = new WP_Query( $child_args );
