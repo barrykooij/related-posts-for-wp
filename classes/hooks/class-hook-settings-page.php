@@ -48,6 +48,7 @@ class RP4WP_Hook_Settings_Page extends RP4WP_Hook {
 				</div>
 
 				<p><?php _e( 'Plugin version', 'related-posts-for-wp' ); ?>: <?php echo RP4WP::VERSION; ?></p>
+
 				<p><?php _e( 'Thank you for using Related Posts for WordPress!', 'related-posts-for-wp' ); ?></p>
 			</div>
 
@@ -55,7 +56,9 @@ class RP4WP_Hook_Settings_Page extends RP4WP_Hook {
 				<h3 class="rp4wp-title"><?php _e( 'Related Posts for WordPress Premium', 'related-posts-for-wp' ); ?></h3>
 
 				<p><?php _e( "This plugin has an even better premium version, I am sure you will love it.", 'related-posts-for-wp' ); ?></p>
+
 				<p><?php _e( "Premium features include cross custom post type related posts, related post themes, overwritable templates, adjustable weights, custom taxonomy support, priority support and more!", 'related-posts-for-wp' ); ?></p>
+
 				<p><?php printf( __( "%sMore information about Related Posts for WP Premium »%s", 'related-posts-for-wp' ), '<a href="https://www.relatedpostsforwp.com/upgrade-premium/?utm_source=plugin&utm_medium=link&utm_campaign=upgrade-box" target="_blank">', '</a>' ); ?></p>
 			</div>
 
@@ -63,8 +66,11 @@ class RP4WP_Hook_Settings_Page extends RP4WP_Hook {
 				<h3 class="rp4wp-title"><?php _e( 'Show a token of your appreciation', 'related-posts-for-wp' ); ?></h3>
 
 				<p><?php printf( __( "<a href='%s' target='_blank'>Leave a ★★★★★ plugin review on WordPress.org</a>", 'related-posts-for-wp' ), 'http://wordpress.org/support/view/plugin-reviews/related-posts-for-wp?rate=5#postform' ); ?></p>
+
 				<p><?php printf( __( "<a href='%s' target='_blank'>Tweet about Related Posts for WordPress</a>", 'related-posts-for-wp' ), 'https://twitter.com/intent/tweet?text=Showing%20my%20appreciation%20to%20%40CageNL%20for%20his%20WordPress%20plugin%3A%20Related%20Posts%20for%20WordPress%20-%20check%20it%20out!%20http%3A%2F%2Fwordpress.org%2Fplugins%2Frelated-posts-for-wp%2F' ); ?></p>
+
 				<p><?php printf( __( "Review the plugin on your blog and link to <a href='%s' target='_blank'>the plugin page</a>", 'related-posts-for-wp' ), 'https://www.relatedpostsforwp.com/?utm_source=plugin&utm_medium=link&utm_campaign=show-appreciation' ); ?></p>
+
 				<p><?php printf( __( "<a href='%s' target='_blank'>Vote 'works' on the WordPress.org plugin page</a>", 'related-posts-for-wp' ), 'http://wordpress.org/plugins/related-posts-for-wp/' ); ?></p>
 
 			</div>
@@ -111,15 +117,62 @@ class RP4WP_Hook_Settings_Page extends RP4WP_Hook {
 	 * @access public
 	 */
 	public function screen() {
+		global $wp_settings_sections, $wp_settings_fields;
 		?>
 		<div class="wrap">
 			<h2>Related Posts for WordPress</h2>
 
 			<div class="rp4wp-content">
 				<form method="post" action="options.php" id="rp4wp-settings-form">
-					<?php settings_fields( 'rp4wp' );    //pass slug name of page, also referred
-					//to in Settings API as option group name
-					do_settings_sections( 'rp4wp' );    //pass slug name of page
+					<?php
+					//pass slug name of page, also referred  to in Settings API as option group name
+					settings_fields( 'rp4wp' );
+
+					//do_settings_sections( 'rp4wp' );    //pass slug name of page
+
+					if ( isset( $wp_settings_sections['rp4wp'] ) ) {
+
+						echo '<h2 class="nav-tab-wrapper">';
+						foreach ( (array) $wp_settings_sections['rp4wp'] as $section ) {
+							//nav-tab-active
+							echo '<a href="#rp4wp-settings-' . $section['id'] . '" class="nav-tab">' . $section['title'] . '</a>';
+						}
+						echo '</h2>' . PHP_EOL;
+						?>
+						<?php
+
+
+						foreach ( (array) $wp_settings_sections['rp4wp'] as $section ) {
+
+							echo '<div id="rp4wp-settings-' . $section['id'] . '" class="rp4wp-settings-section">';
+
+							if ( $section['title'] ) {
+								echo "<h3>{$section['title']}</h3>\n";
+							}
+
+							if ( $section['callback'] ) {
+								call_user_func( $section['callback'], $section );
+							}
+
+							if ( isset( $wp_settings_fields ) && isset( $wp_settings_fields['rp4wp'] ) && isset( $wp_settings_fields['rp4wp'][ $section['id'] ] ) ) {
+								echo '<table class="form-table">';
+								do_settings_fields( 'rp4wp', $section['id'] );
+								echo '</table>';
+
+							}
+
+							echo '</div>';
+						}
+
+
+					}
+
+					//					echo '<pre>';
+					//					print_r( $wp_settings_sections['rp4wp'] );
+					//					echo '</pre>';
+
+
+					// submit button
 					submit_button();
 					?>
 				</form>

@@ -40,10 +40,10 @@ class RP4WP_Settings {
 
 		// The fields
 		$this->sections = array(
-			self::PREFIX . 'automatic_linking' => array(
-				'id'          => 'automatic_linking',
-				'label'       => __( 'Automatic post linking', 'related-posts-for-wp' ),
-				'description' => __( 'The following options affect how related posts are automatically linked.', 'related-posts-for-wp' ),
+			'general' => array(
+				'id'          => 'general',
+				'label'       => __( 'General', 'related-posts-for-wp' ),
+				'description' => __( 'The following options affect the general behaviour of the plugin.', 'related-posts-for-wp' ),
 				'fields'      => array(
 					array(
 						'id'          => 'automatic_linking',
@@ -58,13 +58,7 @@ class RP4WP_Settings {
 						'description' => __( 'The amount of automatically linked post', 'related-posts-for-wp' ),
 						'type'        => 'text',
 						'default'     => '3',
-					)
-				) ),
-			self::PREFIX . 'css'               => array(
-				'id'          => 'css',
-				'label'       => __( 'Frontend Settings', 'related-posts-for-wp' ),
-				'description' => __( 'The following options affect how related posts are displayed on the frontend.', 'related-posts-for-wp' ),
-				'fields'      => array(
+					),
 					array(
 						'id'          => 'heading_text',
 						'label'       => __( 'Heading text', 'related-posts-for-wp' ),
@@ -78,7 +72,13 @@ class RP4WP_Settings {
 						'description' => __( 'The amount of words to be displayed below the title on website. To disable, set value to 0.', 'related-posts-for-wp' ),
 						'type'        => 'text',
 						'default'     => '15',
-					),
+					)
+				) ),
+			'styling'               => array(
+				'id'          => 'styling',
+				'label'       => __( 'Styling', 'related-posts-for-wp' ),
+				'description' => __( 'The following options affect how related posts are displayed on the frontend.', 'related-posts-for-wp' ),
+				'fields'      => array(
 					array(
 						'id'          => 'display_image',
 						'label'       => __( 'Display Image', 'related-posts-for-wp' ),
@@ -94,10 +94,10 @@ class RP4WP_Settings {
 						'default'     => implode( PHP_EOL, $css_default_lines ),
 					)
 				) ),
-			self::PREFIX . 'restart_wizard'    => array(
-				'id'          => 'restart_wizard',
-				'label'       => __( 'Restart wizard', 'related-posts-for-wp' ),
-				'description' => __( "Remove the cache and all existing related post links and restart the wizard.", 'related-posts-for-wp' ),
+			'misc'              => array(
+				'id'          => 'misc',
+				'label'       => __( 'Misc', 'related-posts-for-wp' ),
+				'description' => __( "A shelter for options that just don't fit in anywhere else.", 'related-posts-for-wp' ),
 				'fields'      => array(
 					array(
 						'id'          => 'restart_wizard_button',
@@ -107,12 +107,6 @@ class RP4WP_Settings {
 						'href'        => admin_url( '?page=rp4wp_install&reinstall=1&rp4wp_nonce=' . wp_create_nonce( RP4WP_Constants::NONCE_INSTALL ) ),
 						'default'     => __( 'Restart wizard', 'related-posts-for-wp' ),
 					),
-				) ),
-			self::PREFIX . 'misc'              => array(
-				'id'          => 'misc',
-				'label'       => __( 'Miscellaneous Settings', 'related-posts-for-wp' ),
-				'description' => __( "A shelter for options that just don't fit in.", 'related-posts-for-wp' ),
-				'fields'      => array(
 					array(
 						'id'          => 'clean_on_uninstall',
 						'label'       => __( 'Remove Data on Uninstall?', 'related-posts-for-wp' ),
@@ -154,7 +148,7 @@ class RP4WP_Settings {
 
 				// Add the section
 				add_settings_section(
-					self::PREFIX . $section['id'],
+					$section['id'],
 					$section['label'],
 					array( $this, 'section_intro' ),
 					self::PAGE
@@ -166,11 +160,11 @@ class RP4WP_Settings {
 
 						// Add section
 						add_settings_field(
-							self::PREFIX . $field['id'],
+							$field['id'],
 							$field['label'],
 							array( $this, 'do_field' ),
 							self::PAGE,
-							self::PREFIX . $section['id'],
+							$section['id'],
 							$field
 						);
 
@@ -178,7 +172,6 @@ class RP4WP_Settings {
 				}
 
 			}
-
 
 			// Register section setting
 			register_setting( self::PAGE, self::PAGE, array( $this, 'sanitize_option' ) );
