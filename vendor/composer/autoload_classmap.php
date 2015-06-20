@@ -13,6 +13,7 @@ return array(
     'RP4WP_Filter' => $baseDir . '/classes/filters/class-filter.php',
     'RP4WP_Filter_After_Post' => $baseDir . '/classes/filters/class-filter-after-post.php',
     'RP4WP_Filter_Plugin_Links' => $baseDir . '/classes/filters/class-filter-plugin-links.php',
+    'RP4WP_Filter_Set_Screen_Option' => $baseDir . '/classes/filters/class-filter-set-screen-option.php',
     'RP4WP_Hook' => $baseDir . '/classes/hooks/class-hook.php',
     'RP4WP_Hook_Admin_Scripts' => $baseDir . '/classes/hooks/class-hook-admin-scripts.php',
     'RP4WP_Hook_Ajax_Delete_Link' => $baseDir . '/classes/hooks/class-hook-ajax-delete-link.php',
