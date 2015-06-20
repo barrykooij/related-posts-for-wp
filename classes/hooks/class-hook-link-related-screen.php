@@ -13,7 +13,21 @@ class RP4WP_Hook_Link_Related_Screen extends RP4WP_Hook {
 		$this->handle_bulk_link();
 
 		// Add Page
-		add_submenu_page( null, 'Link_Related_Screen', 'Link_Related_Screen', 'edit_posts', 'rp4wp_link_related', array( $this, 'content' ) );
+		$screen_hook = add_submenu_page( null, 'Link_Related_Screen', 'Link_Related_Screen', 'edit_posts', 'rp4wp_link_related', array( $this, 'content' ) );
+
+		// add screen options
+		add_action( 'load-' . $screen_hook, array( $this, 'init_screen' ) );
+	}
+
+	/**
+	 * Add screen options
+	 */
+	public function init_screen() {
+		add_screen_option( 'per_page', array(
+			'label' => 'Posts',
+			'default' => 20,
+			'option' => 'rp4wp_per_page'
+		) );
 	}
 
 	/**

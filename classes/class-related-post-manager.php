@@ -9,7 +9,8 @@ class RP4WP_Related_Post_Manager {
 	/**
 	 * Get related posts by post id and post type
 	 *
-	 * @param $post_id
+	 * @param int $post_id
+	 * @param int $limit
 	 *
 	 * @return array
 	 */

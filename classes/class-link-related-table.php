@@ -34,8 +34,6 @@ class RP4WP_Link_Related_Table extends WP_List_Table {
 	/**
 	 * Add page views
 	 *
-	 * @param array $views
-	 *
 	 * @return array
 	 */
 	public function add_page_views() {
@@ -119,11 +117,19 @@ class RP4WP_Link_Related_Table extends WP_List_Table {
 		$sortable              = $this->get_sortable_columns();
 		$this->_column_headers = array( $columns, $hidden, $sortable );
 
+		// pagination and sorting
+		$screen   = get_current_screen();
+		$per_page = absint( get_user_meta( get_current_user_id(), $screen->get_option( 'per_page', 'option' ), true ) );
+		$per_page = ( ( $per_page > 0 ) ? $per_page : 20 );
+		$paged    = absint( isset( $_GET['paged'] ) ? $_GET['paged'] : 1 );
+		$orderby  = isset( $_GET['orderby'] ) ? $_GET['orderby'] : 'title';
+		$order    = isset( $_GET['order'] ) ? $_GET['order'] : 'asc';
+
 		// Vies
 		$this->views();
 
 		// Set search
-		if ( $this->search !== null ) {
+		if ( null !== $this->search ) {
 			add_filter( 'posts_where', array( $this, 'filter_posts_where' ) );
 		}
 
@@ -132,15 +138,33 @@ class RP4WP_Link_Related_Table extends WP_List_Table {
 
 		// Get posts
 		if ( 'all' == $view ) {
-			$posts = get_posts( array(
+
+			// posts
+			$posts = array();
+
+			// the posts query
+			$post_query = new WP_Query( array(
 				'post_type'        => 'post',
-				'posts_per_page'   => '-1',
-				'suppress_filters' => false
+				'posts_per_page'   => $per_page,
+				'paged'            => $paged,
+				'suppress_filters' => false,
+				'orderby'          => $orderby,
+				'order'            => $order,
+				'post_status'      => apply_filters( 'rp4wp_manual_link_post_statuses', array( 'publish', 'private' ) ),
 			) );
+
+			// Format data for table
+			if ( $post_query->have_posts() ) {
+				while ( $post_query->have_posts() ) {
+					$posts[] = $post_query->next_post();
+				}
+			}
+
+
 		} else {
 			$rpm    = new RP4WP_Related_Post_Manager();
-			$parent = $_GET['rp4wp_parent'];
-			$posts  = $rpm->get_related_posts( $parent );
+			$parent = intval($_GET['rp4wp_parent']);
+			$posts  = $rpm->get_related_posts( $parent, 25 );
 		}
 
 		// Format data for table
@@ -153,11 +177,12 @@ class RP4WP_Link_Related_Table extends WP_List_Table {
 		// Remove search filter
 		remove_filter( 'posts_where', array( $this, 'filter_posts_where' ) );
 
-		// Sort
-		if ( ! $this->is_related ) {
-			if ( count( $this->data ) > 0 ) {
-				usort( $this->data, array( $this, 'custom_reorder' ) );
-			}
+		// Pagination only for all view
+		if ( 'all' == $view ) {
+			$this->set_pagination_args( array(
+				'total_items' => $post_query->found_posts,
+				'per_page'    => $per_page
+			) );
 		}
 
 		// Set items

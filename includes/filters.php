@@ -2,5 +2,6 @@
 
 return array(
 	'after_post',
-	'plugin_links'
+	'plugin_links',
+	'set_screen_option'
 );
