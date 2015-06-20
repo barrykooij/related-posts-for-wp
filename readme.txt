@@ -116,9 +116,12 @@ There is one custom table created for the post cache, this table will however no
 == Changelog ==
 
 = 1.9.0: June ??, 2015 =
+* Feature: Add pagination to manual post link table.
 * Tweak: Weight must be > 0 and words must be array in order to start adding words.
 * Tweak: Add Composer autoloading (PHP 5.2 compatible) instead of custom autoloader, props [Danny van Kooten](https://github.com/dannyvankooten).
 * Tweak: Static loading of hooks instead of directory scan, props [Danny van Kooten](https://github.com/dannyvankooten).
+* Tweak: Added filter: rp4wp_get_children_link_args in RP4WP_Post_Link_Manager:get_children().
+* Tweak: Added filter: rp4wp_get_children_child_args in RP4WP_Post_Link_Manager:get_children().
 
 = 1.8.2: April 20, 2015 =
 * Escaped view filter URL when manually linking posts to prevent possible XSS.
