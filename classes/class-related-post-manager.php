@@ -71,14 +71,31 @@ class RP4WP_Related_Post_Manager {
 	}
 
 	/**
-	 * Get the uncached post count
+	 * Deprecated, use get_unlinked_post_count() instead
+	 *
+	 * @deprecated 1.9.0
+	 *
+	 * @param $post_type
+	 *
+	 * @return mixed
+	 */
+	public function get_uncached_post_count( $post_type ) {
+
+		// Deprecated notice
+		_deprecated_function( __FUNCTION__, '1.9.0', __CLASS__ . '->get_uncached_post_count()' );
+
+		return $this->get_unlinked_post_count( $post_type );
+	}
+
+	/**
+	 * Get the unlinked post count
 	 *
 	 * @since  1.6.0
 	 * @access public
 	 *
 	 * @return mixed
 	 */
-	public function get_uncached_post_count() {
+	public function get_unlinked_post_count() {
 		global $wpdb;
 
 		$post_count = $wpdb->get_var( "SELECT COUNT(P.ID) FROM " . $wpdb->posts . " P LEFT JOIN ".$wpdb->postmeta." PM ON (P.ID = PM.post_id AND PM.meta_key = '" . RP4WP_Constants::PM_POST_AUTO_LINKED . "') WHERE 1=1 AND P.post_type = 'post' AND P.post_status = 'publish' AND PM.post_id IS NULL GROUP BY P.post_status" );

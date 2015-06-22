@@ -25,10 +25,10 @@ class RP4WP_Hook_Ajax_Install_Link_Posts extends RP4WP_Hook {
 		$related_post_manager->link_related_posts( $rel_amount, $ppr );
 
 		// Get uncached post count
-		$uncached_post_count  = $related_post_manager->get_uncached_post_count();
+		$unlinked_post_count  = $related_post_manager->get_unlinked_post_count();
 
 		// Check if we're done
-		if ( 0 == $uncached_post_count ) {
+		if ( 0 == $unlinked_post_count ) {
 			// Save the wizard setting as the option
 			$options                                  = RP4WP()->settings->get_options();
 			$options['automatic_linking_post_amount'] = $rel_amount;
@@ -36,7 +36,7 @@ class RP4WP_Hook_Ajax_Install_Link_Posts extends RP4WP_Hook {
 		}
 
 		// Echo the uncached posts
-		echo $uncached_post_count;
+		echo $unlinked_post_count;
 
 		exit;
 	}

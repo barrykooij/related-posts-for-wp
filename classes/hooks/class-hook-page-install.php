@@ -133,9 +133,13 @@ class RP4WP_Hook_Page_Install extends RP4WP_Hook {
 
 				if ( 1 == $cur_step ) {
 
-					// Echo current uncached posts
+					// related word manager
 					$related_word_manager = new RP4WP_Related_Word_Manager();
-					echo "<input type='hidden' id='rp4wp_uncached_posts' value='" . $related_word_manager->get_uncached_post_count() . "' />" . PHP_EOL;
+
+					// amount of posts needs caching
+					$posts_todo = $related_word_manager->get_uncached_post_count();
+
+					echo "<input type='hidden' id='rp4wp_posts_todo' value='" . $posts_todo . "' />" . PHP_EOL;
 
 					?>
 					<p><?php _e( 'Thank you for choosing Related Posts for WordPress!', 'related-posts-for-wp' ); ?></p>
@@ -144,13 +148,21 @@ class RP4WP_Hook_Page_Install extends RP4WP_Hook {
 
 					<p style="font-weight: bold;"><?php _e( 'Do NOT close this window, wait for this process to finish and this wizard to take you to the next step.', 'related-posts-for-wp' ); ?></p>
 
-					<div id="progressbar"></div>
+					<div id="progress-container">
+						<div id="progressbar"></div>
+						<p>Todo: <span id="progress-todo"><?php echo $posts_todo; ?></span></p>
+						<p>Done: <span id="progress-done">0</span></p>
+					</div>
 				<?php
 				} elseif ( 2 == $cur_step ) {
 
 					// Echo current uncached posts
 					$related_post_manager = new RP4WP_Related_Post_Manager();
-					echo "<input type='hidden' id='rp4wp_uncached_posts' value='" . $related_post_manager->get_uncached_post_count() . "' />" . PHP_EOL;
+
+					// amount of posts need linking
+					$posts_todo = $related_post_manager->get_unlinked_post_count();
+
+					echo "<input type='hidden' id='rp4wp_posts_todo' value='" . $posts_todo . "' />" . PHP_EOL;
 
 					?>
 					<p style="font-weight: bold;"><?php _e( 'Great! All your posts were successfully cached!', 'related-posts-for-wp' ); ?></p>
@@ -169,7 +181,12 @@ class RP4WP_Hook_Page_Install extends RP4WP_Hook {
 						   class="button"><?php _e( 'Skip linking', 'related-posts-for-wp' ); ?></a>
 					</p>
 					<br class="clear"/>
-					<div id="progressbar"></div>
+
+					<div id="progress-container">
+						<div id="progressbar"></div>
+						<p>Todo: <span id="progress-todo"><?php echo $posts_todo; ?></span></p>
+						<p>Done: <span id="progress-done">0</span></p>
+					</div>
 				<?php
 				} elseif ( 3 == $cur_step ) {
 					?>

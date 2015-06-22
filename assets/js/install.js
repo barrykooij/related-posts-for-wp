@@ -75,7 +75,17 @@ jQuery( document ).ready( function ( $ ) {
         };
 
         this.do_progressbar = function ( posts_left ) {
-            var progress = Math.round( ( ( this.total_posts - posts_left ) / this.total_posts ) * 100 );
+
+            var posts_done = (this.total_posts - posts_left);
+
+            if ( posts_done < 0 ) {
+                posts_done = 0;
+            }
+
+            jQuery( '#progress-done' ).html( posts_done );
+            jQuery( '#progress-todo' ).html( posts_left );
+
+            var progress = Math.round( ( posts_done / this.total_posts ) * 100 );
             if ( progress > 0 ) {
                 this.percentage_object.html( progress + '%' );
                 $( '#progressbar' ).progressbar( { value: progress } );
@@ -92,7 +102,7 @@ jQuery( document ).ready( function ( $ ) {
             $( '#progressbar' ).find( 'div:first' ).append( this.percentage_object );
 
             // Set the current progress
-            this.do_progressbar( $( '#rp4wp_uncached_posts' ).val() );
+            this.do_progressbar( $( '#rp4wp_posts_todo' ).val() );
 
             // Get the total posts
             this.total_posts = $( '#rp4wp_total_posts' ).val();
@@ -111,6 +121,9 @@ jQuery( document ).ready( function ( $ ) {
                     this.action = 'rp4wp_install_link_posts';
                     break;
             }
+
+            // show process container
+            jQuery( '#progress-container' ).show();
 
             // Do the first request
             this.do_request();
