@@ -12,23 +12,23 @@ module.exports = function (grunt) {
             lang: 'languages'
         },
 
-        // Compile all .less files.
-        less: {
-            compile: {
+        // compile all sass files
+        sass: {
+            dist: {
                 options: {
                     // These paths are searched for @imports
-                    paths: ['<%= dirs.css %>/']
+                    paths: [ '<%= dirs.css %>/' ]
                 },
-                files: [{
+                files: [ {
                     expand: true,
-                    cwd: '<%= dirs.css %>/',
+                    cwd: '<%= dirs.css %>/scss/',
                     src: [
-                        '*.less',
-                        '!mixins.less'
+                        '*.scss',
+                        '!mixins.scss'
                     ],
                     dest: '<%= dirs.css %>/',
                     ext: '.css'
-                }]
+                } ]
             }
         },
 
@@ -67,7 +67,7 @@ module.exports = function (grunt) {
         watch: {
             less: {
                 files: ['<%= dirs.css %>/*.less'],
-                tasks: ['less', 'cssmin'],
+                tasks: ['sass', 'cssmin']
             },
             js: {
                 files: [
@@ -112,7 +112,7 @@ module.exports = function (grunt) {
 
     // Load NPM tasks to be used here
     grunt.loadNpmTasks('grunt-shell');
-    grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks( 'grunt-sass' );
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
@@ -122,7 +122,7 @@ module.exports = function (grunt) {
 
     // Register tasks
     grunt.registerTask('default', [
-        'less',
+        'sass',
         'cssmin',
         'uglify'
     ]);
