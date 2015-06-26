@@ -117,6 +117,9 @@ There is one custom table created for the post cache, this table will however no
 
 = 1.9.0: June ??, 2015 =
 * Feature: Add pagination to manual post link table.
+* Feature: Added id attribute to [rp4wp] shortcode.
+* Feature: Added limit attribute to [rp4wp] shortcode.
+* Tweak: Now displaying amount of posts left to link in installer.
 * Tweak: Weight must be > 0 and words must be array in order to start adding words.
 * Tweak: Add Composer autoloading (PHP 5.2 compatible) instead of custom autoloader, props [Danny van Kooten](https://github.com/dannyvankooten).
 * Tweak: Static loading of hooks instead of directory scan, props [Danny van Kooten](https://github.com/dannyvankooten).
