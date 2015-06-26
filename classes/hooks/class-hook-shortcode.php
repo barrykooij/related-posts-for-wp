@@ -18,14 +18,17 @@ class RP4WP_Hook_Shortcode extends RP4WP_Hook {
 	 * @access public
 	 *
 	 */
-	public function output() {
-		// Get the current ID
-		$id = get_the_ID();
+	public function output( $atts ) {
+
+		$atts = shortcode_atts( array(
+			'id'    => get_the_ID(),
+			'limit' => -1
+		), $atts );
 
 		// Post Link Manager
 		$pl_manager = new RP4WP_Post_Link_Manager();
 
 		// Generate the children list
-		return $pl_manager->generate_children_list( $id );
+		return $pl_manager->generate_children_list( $atts['id'], $atts['limit'] );
 	}
 }

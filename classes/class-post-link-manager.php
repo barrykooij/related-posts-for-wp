@@ -159,7 +159,7 @@ class RP4WP_Post_Link_Manager {
 	 *
 	 * @return array
 	 */
-	public function get_children( $parent_id, $extra_args = null ) {
+	public function get_children( $parent_id, $extra_args = array() ) {
 		global $post;
 
 		// Store current post
@@ -204,7 +204,7 @@ class RP4WP_Post_Link_Manager {
 		endwhile;
 
 		// Get children with custom args
-		if ( $extra_args !== null && count( $extra_args ) > 0 ) {
+		if ( is_array( $extra_args ) && count( $extra_args ) > 0 ) {
 
 			if ( ! isset( $extra_args['orderby'] ) ) {
 				$this->temp_child_order = array();
@@ -343,20 +343,21 @@ class RP4WP_Post_Link_Manager {
 	/**
 	 * Generate the children list
 	 *
-	 * @param $id
+	 * @param int $id
+	 * @param int $limit
 	 *
 	 * @since  1.0.0
 	 * @access public
 	 *
 	 * @return string
 	 */
-	public function generate_children_list( $id ) {
+	public function generate_children_list( $id, $limit = -1 ) {
 
 		// The content
 		$content = '';
 
 		// Get the children
-		$related_posts = $this->get_children( $id );
+		$related_posts = $this->get_children( $id, array( 'posts_per_page' => $limit ) );
 
 		// Count
 		if ( count( $related_posts ) > 0 ) {
