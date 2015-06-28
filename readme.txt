@@ -119,6 +119,13 @@ There is one custom table created for the post cache, this table will however no
 * Feature: Add pagination to manual post link table.
 * Feature: Added id attribute to [rp4wp] shortcode.
 * Feature: Added limit attribute to [rp4wp] shortcode.
+* Feature: Added Brazilian Portuguese commonly used words.
+* Feature: Added Czech commonly used words.
+* Feature: Added Bulgarian commonly used words.
+* Feature: Added Russian commonly used words.
+* Feature: Added Swedish commonly used words.
+* Feature: Added Spanish commonly used words.
+* Feature: Added Norwegian Bokmål commonly used words.
 * Tweak: Now displaying amount of posts left to link in installer.
 * Tweak: Weight must be > 0 and words must be array in order to start adding words.
 * Tweak: Add Composer autoloading (PHP 5.2 compatible) instead of custom autoloader, props [Danny van Kooten](https://github.com/dannyvankooten).
