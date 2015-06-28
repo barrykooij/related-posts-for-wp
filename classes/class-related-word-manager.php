@@ -25,7 +25,7 @@ class RP4WP_Related_Word_Manager {
 	 * Internal method that formats and outputs the $ignored_words array to screen
 	 */
 	public function dedupe_and_order_ignored_words( $lang ) {
-		$output = '$ignored_words = array(';
+		$output = 'return array(';
 
 		$ignored_words = $this->get_ignored_words( $lang );
 
@@ -37,7 +37,7 @@ class RP4WP_Related_Word_Manager {
 				if ( false !== strpos( $word, "Ã" ) ) {
 					continue;
 				}
-				$temp_words[] = str_ireplace( "'", "", $word );
+				$temp_words[] = trim( str_ireplace( "'", "", $word ) );
 			}
 
 		}
