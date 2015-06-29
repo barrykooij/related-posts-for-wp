@@ -1,10 +1,10 @@
 === Related Posts for WordPress ===
 Contributors: barrykooij
-Donate link: http://www.relatedpostsforwp.com/checkout/
+Donate link: http://www.barrykooij.com/donate/
 Tags: related posts for wordpress, related posts for wp, simple related posts, easy related posts, related posts, related, relations, internal links, seo, bounce rate
 Requires at least: 3.6
-Tested up to: 4.1.1
-Stable tag: 1.8.2
+Tested up to: 4.2.2
+Stable tag: 1.9.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -21,8 +21,8 @@ Our installation wizard will do all the hard work for you, simply activate the p
 > #### Related Posts for WordPress Premium
 > There's an even better version of this plugin that comes with the following extra features:<br />
 >
+> - Full Styling Control With Our Configurator<br />
 > - Cross Custom Post Type Support<br />
-> - Multiple Related Post Styles<br />
 > - Overwritable templates<br />
 > - Custom Taxonomy Support<br />
 > - Adjustable Weights<br />
@@ -95,7 +95,10 @@ Yes, you can use `rp4wp_children();`.<br />
 [More information on the theme function can be found here](https://www.relatedpostsforwp.com/documentation/theme-functions-to-display-related-posts/?utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=faq-item).
 
 = Is there a shortcode? =
-Yes. To display your related posts via a shortcode use: [rp4wp]
+Yes. To display your related posts via a shortcode use: `[rp4wp]`
+
+= Can I limit the amount of related posts in the shortcode? =
+Yes. Use the limit attribute, for example `[rp4wp limit=1]` for one related post.
 
 = Is there a widget? =
 Yes there is!
@@ -115,7 +118,7 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
-= 1.9.0: June ??, 2015 =
+= 1.9.0: June 29, 2015 =
 * Feature: Add pagination to manual post link table.
 * Feature: Added id attribute to [rp4wp] shortcode.
 * Feature: Added limit attribute to [rp4wp] shortcode.
