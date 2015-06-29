@@ -213,19 +213,9 @@ class RP4WP_Related_Word_Manager {
 			$string = utf8_encode( $string );
 		}
 
-		// Check if iconv exists
-		if ( function_exists( 'iconv' ) ) {
-
-			// Replace all 'special characters' with normal ones
-			$string = iconv( "UTF-8", "us-ascii//TRANSLIT", $string );
-
-		} else {
-
-			// iconv isn't installed, use a regex as alternative
-			if ( strpos( $string = htmlentities( $string, ENT_QUOTES, 'UTF-8' ), '&' ) !== false ) {
-				$string = html_entity_decode( preg_replace( '~&([a-z]{1,2})(?:acute|cedil|circ|grave|lig|orn|ring|slash|tilde|uml);~i', '$1', $string ), ENT_QUOTES, 'UTF-8' );
-			}
-
+		// Replace all 'special characters' with normal ones
+		if ( strpos( $string = htmlentities( $string, ENT_QUOTES, 'UTF-8' ), '&' ) !== false ) {
+			$string = html_entity_decode( preg_replace( '~&([a-z]{1,2})(?:acute|cedil|circ|grave|lig|orn|ring|slash|tilde|uml);~i', '$1', $string ), ENT_QUOTES, 'UTF-8' );
 		}
 
 
