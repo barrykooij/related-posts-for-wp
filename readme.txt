@@ -132,6 +132,7 @@ There is one custom table created for the post cache, this table will however no
 * Tweak: Static loading of hooks instead of directory scan, props [Danny van Kooten](https://github.com/dannyvankooten).
 * Tweak: Added filter: rp4wp_get_children_link_args in RP4WP_Post_Link_Manager:get_children().
 * Tweak: Added filter: rp4wp_get_children_child_args in RP4WP_Post_Link_Manager:get_children().
+* Tweak: Fixed an issue with encoding non ASCII characters.
 
 = 1.8.2: April 20, 2015 =
 * Escaped view filter URL when manually linking posts to prevent possible XSS.
