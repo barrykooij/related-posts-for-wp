@@ -1,5 +1,5 @@
 === Related Posts for WordPress ===
-Contributors: barrykooij
+Contributors: never5, barrykooij
 Donate link: http://www.barrykooij.com/donate/
 Tags: related posts for wordpress, related posts for wp, simple related posts, easy related posts, related posts, related, relations, internal links, seo, bounce rate
 Requires at least: 3.6
