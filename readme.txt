@@ -3,8 +3,8 @@ Contributors: never5, barrykooij
 Donate link: http://www.barrykooij.com/donate/
 Tags: related posts for wordpress, related posts for wp, simple related posts, easy related posts, related posts, related, relations, internal links, seo, bounce rate
 Requires at least: 3.6
-Tested up to: 4.2.2
-Stable tag: 1.9.0
+Tested up to: 4.3
+Stable tag: 1.9.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -117,6 +117,9 @@ There is one custom table created for the post cache, this table will however no
 5. Related posts are automatically added below your posts!
 
 == Changelog ==
+
+= 1.9.1: September 10, 2015 =
+* Tweak: Fixed the `Woah! It looks like something else tried to run the Related Posts for WordPress` error message when resuming the wizard via the installing notice.
 
 = 1.9.0: June 29, 2015 =
 * Feature: Add pagination to manual post link table.
