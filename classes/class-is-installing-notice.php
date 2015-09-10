@@ -67,7 +67,7 @@ if ( ! class_exists( 'RP4WP_Is_Installing_Notice' ) ) {
 		 */
 		public function content() {
 			$query_params         = $this->get_admin_query_string_array();
-			$install_query_string = '?' . http_build_query( array_merge( $query_params, array( 'page' => 'rp4wp_install' ) ) );
+			$install_query_string = '?' . http_build_query( array_merge( $query_params, array( 'page' => 'rp4wp_install', 'rp4wp_nonce' => wp_create_nonce( RP4WP_Constants::NONCE_INSTALL ) ) ) );
 			$dismiss_query_string = '?' . http_build_query( array_merge( $query_params, array( 'rp4wp_hide_is_installing' => 1 ) ) );
 
 			echo '<div class="error"><p>';

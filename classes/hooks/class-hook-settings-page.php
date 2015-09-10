@@ -92,7 +92,7 @@ class RP4WP_Hook_Settings_Page extends RP4WP_Hook {
 				<a href="http://www.never5.com" target="_blank"><img src="<?php echo plugins_url( '/assets/images/never5-logo.png', RP4WP::get_plugin_file() ); ?>" alt="Never5" style="float:left;padding:0 10px 10px 0;" /></a>
 
 				<p><?php printf( __( 'At %sNever5%s we create high quality premium WordPress plugins, with extensive support. We offer solutions in related posts, advanced download management, vehicle management and connecting post types.', 'related-posts-for-wp'), '<a href="http://www.never5.com" target="_blank">', '</a>' ); ?></p>
-				
+
 				<p><?php printf( __( "%sFollow Never5 on Twitter%s", 'related-posts-for-wp' ), '<a href="https://twitter.com/Never5Plugins" target="_blank">', '</a>' ); ?></p>
 			</div>
 
@@ -156,11 +156,6 @@ class RP4WP_Hook_Settings_Page extends RP4WP_Hook {
 
 
 					}
-
-					//					echo '<pre>';
-					//					print_r( $wp_settings_sections['rp4wp'] );
-					//					echo '</pre>';
-
 
 					// submit button
 					submit_button();
