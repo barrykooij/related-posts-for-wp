@@ -80,24 +80,24 @@ class RP4WP_Hook_Settings_Page extends RP4WP_Hook {
 
 				<p><?php printf( __( "%sTweet about Related Posts for WordPress%s", 'related-posts-for-wp' ), '<a href="https://twitter.com/intent/tweet?text=Showing%20my%20appreciation%20to%20%40CageNL%20for%20his%20WordPress%20plugin%3A%20Related%20Posts%20for%20WordPress%20-%20check%20it%20out!%20http%3A%2F%2Fwordpress.org%2Fplugins%2Frelated-posts-for-wp%2F" target="_blank">', '</a>' ); ?></p>
 
-				<p><?php printf( __( "Review the plugin on your blog and link to %sthe plugin page%s", 'related-posts-for-wp' ), '<a href="https://www.relatedpostsforwp.com/?utm_source=plugin&utm_medium=link&utm_campaign=help-us" target="_blank">', '</a>' ); ?></p>
-
 				<p><?php printf( __( "%sVote 'works' on the WordPress.org plugin page%s", 'related-posts-for-wp' ), '<a href="http://wordpress.org/plugins/related-posts-for-wp/" target="_blank">', '</a>' ); ?></p>
+
+				<p><a href="http://www.never5.com/" target="_blank"><?php _e( "Check out our other plugins at Never5.com", 'related-posts-for-wp' ); ?></a></p>
 
 			</div>
 
 			<div class="rp4wp-box">
-				<h3 class="rp4wp-title"><?php _e( 'About the developer', 'related-posts-for-wp' ); ?></h3>
+				<h3 class="rp4wp-title"><?php _e( 'About Never5', 'related-posts-for-wp' ); ?></h3>
 
-				<p><?php _e( "Barry is a WordPress developer and the author of various WordPress plugins that include Related Posts for WordPress, Download Monitor, Post Connector and What The File.", 'related-posts-for-wp' ); ?></p>
+				<a href="http://www.never5.com" target="_blank"><img src="<?php echo plugins_url( '/assets/images/never5-logo.png', RP4WP::get_plugin_file() ); ?>" alt="Never5" style="float:left;padding:0 10px 10px 0;" /></a>
 
-				<p><?php _e( "Barry likes contributing to open source projects and visiting WordCamps and meetups. He’s the organizer of the WordPress meetup in Tilburg and in the organizing team for WordCamp The Netherlands.", 'related-posts-for-wp' ); ?></p>
-
-				<p><?php printf( __( "%sFollow Barry on Twitter%s", 'related-posts-for-wp' ), '<a href="https://twitter.com/cageNL" target="_blank">', '</a>' ); ?></p>
+				<p><?php printf( __( 'At %sNever5%s we create high quality premium WordPress plugins, with extensive support. We offer solutions in related posts, advanced download management, vehicle management and connecting post types.', 'related-posts-for-wp'), '<a href="http://www.never5.com" target="_blank">', '</a>' ); ?></p>
+				
+				<p><?php printf( __( "%sFollow Never5 on Twitter%s", 'related-posts-for-wp' ), '<a href="https://twitter.com/Never5Plugins" target="_blank">', '</a>' ); ?></p>
 			</div>
 
 		</div>
-	<?php
+		<?php
 	}
 
 	/**
@@ -169,6 +169,6 @@ class RP4WP_Hook_Settings_Page extends RP4WP_Hook {
 			</div>
 			<?php $this->sidebar(); ?>
 		</div>
-	<?php
+		<?php
 	}
 }
