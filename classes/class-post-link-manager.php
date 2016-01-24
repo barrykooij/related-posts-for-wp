@@ -228,6 +228,7 @@ class RP4WP_Post_Link_Manager {
 				$child_args = apply_filters( 'rp4wp_get_children_child_args', $child_args, $parent_id );
 
 				// Child Query
+				$wp_query = new WP_Query;
 				$posts = $wp_query->query( $child_args );
 				foreach( $posts as $post ) {
 					$children[ $post->ID ] = $post;
