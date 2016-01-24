@@ -15,7 +15,6 @@ abstract class RP4WP_Constants {
 	const PM_CHILD = 'rp4wp_child';
 
 	// Post meta
-	const PM_CACHED = 'rp4wp_cached'; // Posts that words are saved of
 	const PM_POST_AUTO_LINKED = 'rp4wp_auto_linked'; // Posts that have automatically linked posts
 
 	// Options
