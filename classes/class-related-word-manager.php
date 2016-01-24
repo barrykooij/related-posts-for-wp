@@ -119,7 +119,7 @@ class RP4WP_Related_Word_Manager {
 		$linked_words = array();
 
 		// Find all links in the content
-		if ( true == preg_match_all( '`<a[^>]*href="([^"]+)">[^<]*</a>`si', $content, $matches ) ) {
+		if ( true == preg_match_all( '`<a[^>]*href="([^"]+)">[^<]*</a>`iS', $content, $matches ) ) {
 			if ( count( $matches[1] ) > 0 ) {
 
 				// Loop
@@ -215,7 +215,7 @@ class RP4WP_Related_Word_Manager {
 
 		// Replace all 'special characters' with normal ones
 		if ( strpos( $string = htmlentities( $string, ENT_QUOTES, 'UTF-8' ), '&' ) !== false ) {
-			$string = html_entity_decode( preg_replace( '~&([a-z]{1,2})(?:acute|cedil|circ|grave|lig|orn|ring|slash|tilde|uml);~i', '$1', $string ), ENT_QUOTES, 'UTF-8' );
+			$string = html_entity_decode( preg_replace( '~&([a-z]{1,2})(?:acute|cedil|circ|grave|lig|orn|ring|slash|tilde|uml);~iS', '$1', $string ), ENT_QUOTES, 'UTF-8' );
 		}
 
 
