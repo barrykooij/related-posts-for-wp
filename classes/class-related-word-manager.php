@@ -248,7 +248,8 @@ class RP4WP_Related_Word_Manager {
 		$raw_words = $this->get_content_words( $post );
 
 		// Get words from title
-		$title_words = explode( ' ', $post->post_title );
+		$post_title = $this->convert_characters( $post->post_title );
+		$title_words = explode( ' ', $post_title );
 		$raw_words   = $this->add_words_from_array( $raw_words, $title_words, $title_weight );
 
 		// Get tags and add them to list
