@@ -269,7 +269,8 @@ class RP4WP_Post_Link_Manager {
 	 * @param $post_id
 	 */
 	public function delete_links_related_to( $post_id ) {
-		$involved_query = new WP_Query( array(
+		$involved_query = new WP_Query();
+		$posts = $involved_query->query( array(
 			'post_type'      => RP4WP_Constants::LINK_PT,
 			'posts_per_page' => - 1,
 			'meta_query'     => array(
@@ -286,9 +287,10 @@ class RP4WP_Post_Link_Manager {
 				)
 			)
 		) );
-		while ( $involved_query->have_posts() ) : $involved_query->the_post();
-			wp_delete_post( $involved_query->post->ID, true );
-		endwhile;
+
+		foreach( $posts as $post ) {
+			wp_delete_post( $post->ID, true );
+		}
 	}
 
 	/**
