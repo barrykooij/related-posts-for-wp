@@ -137,8 +137,11 @@ class RP4WP_Related_Word_Manager {
 
 					// Check if we found a linked post
 					if ( $link_post != null ) {
+
+						$post_title = $this->convert_characters( $link_post->post_title );
+
 						// Get words of title
-						$title_words = explode( ' ', $link_post->post_title );
+						$title_words = explode( ' ', $post_title );
 
 						// Check, Loop
 						if ( is_array( $title_words ) && count( $title_words ) > 0 ) {
@@ -179,6 +182,8 @@ class RP4WP_Related_Word_Manager {
 	/**
 	 * Add words from an array to the "base" words array, multiplied by their weight
 	 *
+	 * Note: Make sure `$words` is UTF-8 encoded at this point.
+	 *
 	 * @param array $base_words
 	 * @param array $words
 	 * @param int   $weight
@@ -190,7 +195,6 @@ class RP4WP_Related_Word_Manager {
 		// Check if weight > 0 and if $words is array
 		if ( $weight > 0 && is_array( $words ) ) {
 			foreach ( $words as $word ) {
-				$word                      = $this->convert_characters( $word );
 				$word_multiplied_by_weight = array_fill( 0, $weight, $word );
 				$base_words                = array_merge( $base_words, $word_multiplied_by_weight );
 			}
@@ -244,7 +248,8 @@ class RP4WP_Related_Word_Manager {
 		$raw_words = $this->get_content_words( $post );
 
 		// Get words from title
-		$title_words = explode( ' ', $post->post_title );
+		$post_title = $this->convert_characters( $post->post_title );
+		$title_words = explode( ' ', $post_title );
 		$raw_words   = $this->add_words_from_array( $raw_words, $title_words, $title_weight );
 
 		// Get tags and add them to list
@@ -252,6 +257,7 @@ class RP4WP_Related_Word_Manager {
 
 		if ( is_array( $tags ) && count( $tags ) > 0 ) {
 			foreach ( $tags as $tag ) {
+				$tag = $this->convert_characters( $tag );
 				$tag_words = explode( ' ', $tag );
 				$raw_words = $this->add_words_from_array( $raw_words, $tag_words, $tag_weight );
 			}
@@ -261,6 +267,7 @@ class RP4WP_Related_Word_Manager {
 		$categories = wp_get_post_categories( $post->ID, array( 'fields' => 'names' ) );
 		if ( is_array( $categories ) && count( $categories ) > 0 ) {
 			foreach ( $categories as $category ) {
+				$category = $this->convert_characters( $category );
 				$cat_words = explode( ' ', $category );
 				$raw_words = $this->add_words_from_array( $raw_words, $cat_words, $cat_weight );
 			}
