@@ -341,28 +341,26 @@ class RP4WP_Related_Word_Manager {
 			// Delete all currents words of post
 			$this->delete_words( $post_id );
 
-			// Loop words
+			// build SQL string for batch INSERT
+			$sql = 'INSERT INTO '. self::get_database_table() . ' (post_id, word, weight, post_type )';
+			$sql .= ' VALUES';
+			$params = array(  );
+
+			// add params for each VALUES pair
 			foreach ( $words as $word => $amount ) {
-
-				// Insert word row
-				$wpdb->insert(
-					self::get_database_table(),
-					array(
-						'post_id'   => $post_id,
-						'word'      => $word,
-						'weight'    => $amount,
-						'post_type' => 'post'
-					),
-					array(
-						'%d',
-						'%s',
-						'%f',
-						'%s',
-					)
-				);
-
+				$params[] = $post_id;
+				$params[] = $word;
+				$params[] = $amount;
+				$params[] = 'post';
 			}
 
+			// add VALUES pairs
+			$sql .= ' ' . str_repeat( '( %d, %s, %f, %s ),', count( $words ) );
+			$sql = rtrim( $sql, ',');
+
+			// prep & execute!
+			$query = $wpdb->prepare( $sql, $params );
+			$wpdb->query( $query );
 		}
 	}
 
