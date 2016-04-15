@@ -161,7 +161,7 @@ class RP4WP_Related_Word_Manager {
 		$content = str_ireplace( '<!--more-->', '', $content );
 
 		// Remove everything but letters and numbers
-		// $content = preg_replace( '/[^a-z0-9]+/i', ' ', $content );
+		$content = preg_replace( '/[^a-z0-9]+/i', ' ', $content );
 
 		// UTF8 fix content
 		$content = $this->convert_characters( $content );
