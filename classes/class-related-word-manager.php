@@ -364,10 +364,6 @@ class RP4WP_Related_Word_Manager {
 			}
 
 		}
-
-		// Update this post as cached
-		update_post_meta( $post_id, RP4WP_Constants::PM_CACHED, 1 );
-
 	}
 
 	/**
@@ -377,23 +373,23 @@ class RP4WP_Related_Word_Manager {
 	 *
 	 * @return array
 	 */
-	public function get_uncached_post_ids( $limit = - 1 ) {
+	public function get_uncached_post_ids( $limit = -1 ) {
 
-		// Get Posts without 'cached' PM
-		return get_posts( array(
-			'fields'         => 'ids',
-			'post_type'      => 'post',
-			'posts_per_page' => $limit,
-			'post_status'    => 'publish',
-			'meta_query'     => array(
-				array(
-					'key'     => RP4WP_Constants::PM_CACHED,
-					'compare' => 'NOT EXISTS',
-					'value'   => ''
-				),
-			)
-		) );
+		global $wpdb;
+		$words_table = self::get_database_table();
 
+		$sql = "SELECT p.ID FROM {$wpdb->posts} p";
+		$sql .= " LEFT JOIN {$words_table} w ON w.post_id = p.ID";
+		$sql .= " WHERE p.post_type = 'post' AND p.post_status = 'publish'";
+
+		// limit result to post rows WITHOUT joined rows
+		$sql .= ' AND w.post_id IS NULL';
+
+		if( $limit > 0 ) {
+			$sql .= sprintf( ' LIMIT %d', $limit );
+		}
+
+		return $wpdb->get_col( $sql );
 	}
 
 	/**
@@ -406,14 +402,16 @@ class RP4WP_Related_Word_Manager {
 	 */
 	public function get_uncached_post_count() {
 		global $wpdb;
+		$words_table = self::get_database_table();
 
-		$post_count = $wpdb->get_var( "SELECT COUNT(P.ID) FROM " . $wpdb->posts . " P LEFT JOIN ".$wpdb->postmeta." PM ON (P.ID = PM.post_id AND PM.meta_key = '" . RP4WP_Constants::PM_CACHED . "') WHERE 1=1 AND P.post_type = 'post' AND P.post_status = 'publish' AND PM.post_id IS NULL GROUP BY P.post_status" );
+		$sql = "SELECT COUNT(p.ID) FROM {$wpdb->posts} p";
+		$sql .= " LEFT JOIN {$words_table} w ON w.post_id = p.ID";
+		$sql .= " WHERE p.post_type = 'post' AND p.post_status = 'publish'";
 
-		if ( ! is_numeric( $post_count ) ) {
-			$post_count = 0;
-		}
+		// limit result to post rows WITHOUT joined rows
+		$sql .= ' AND w.post_id IS NULL';
 
-		return $post_count;
+		return $wpdb->get_var( $sql );
 	}
 
 	/**
