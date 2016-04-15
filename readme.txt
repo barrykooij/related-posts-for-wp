@@ -118,6 +118,9 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
+= 1.9.2: April x, 2016 =
+* Tweak: We're now ignoring all characters that are not letters or numbers from word cache.
+
 = 1.9.1: September 10, 2015 =
 * Tweak: Fixed the `Woah! It looks like something else tried to run the Related Posts for WordPress` error message when resuming the wizard via the installing notice.
 
