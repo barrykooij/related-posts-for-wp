@@ -138,6 +138,7 @@ class RP4WP_Related_Word_Manager {
 					// Check if we found a linked post
 					if ( $link_post != null ) {
 
+						// convert characters in title
 						$post_title = $this->convert_characters( $link_post->post_title );
 
 						// Get words of title
@@ -285,7 +286,7 @@ class RP4WP_Related_Word_Manager {
 				// Trim word
 				$word = strtolower( trim( $word ) );
 
-				// Only use words longer than 1 charecter
+				// Only use words longer than 1 character
 				if ( strlen( $word ) < 2 ) {
 					continue;
 				}
