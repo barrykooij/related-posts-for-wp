@@ -4,7 +4,7 @@ Donate link: http://www.barrykooij.com/donate/
 Tags: related posts for wordpress, related posts for wp, simple related posts, easy related posts, related posts, related, relations, internal links, seo, bounce rate
 Requires at least: 3.6
 Tested up to: 4.5
-Stable tag: 1.9.1
+Stable tag: 1.9.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -118,7 +118,7 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
-= 1.9.2: April x, 2016 =
+= 1.9.2: April 18, 2016 =
 * Tweak: We're now ignoring all characters that are not letters or numbers from word cache.
 * Tweak: Various performance optimizations, props [Danny van Kooten](https://github.com/dannyvankooten).
 * Tweak: Fixed a nonce error in installer when user clicked 'Skip linking'.
