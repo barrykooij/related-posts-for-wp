@@ -2,7 +2,7 @@
 host = https://www.transifex.com
 
 [related-posts-for-wordpress.related-posts-for-wppot]
-file_filter = languages/related-posts-for-wp-<lang>_<lang>.po
+file_filter = languages/related-posts-for-wp-<lang>.po
 source_file = languages/related-posts-for-wp.pot
 source_lang = en_US
 type = PO
