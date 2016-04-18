@@ -171,14 +171,9 @@ class RP4WP_Hook_Page_Install extends RP4WP_Hook {
 					<p style="font-weight: bold;"><?php _e( 'Do NOT close this window if you click the "Link now" button, wait for this process to finish and this wizard to take you to the next step.', 'related-posts-for-wp' ); ?></p>
 					<br class="clear"/>
 					<p class="rp4wp-install-link-box">
-						<label
-							for="rp4wp_related_posts_amount"><?php _e( 'Amount of related posts per post:', 'related-posts-for-wp' ); ?></label><input
-							class="form-input-tip" type="text" id="rp4wp_related_posts_amount"
-							value="<?php echo RP4WP()->settings->get_option( 'automatic_linking_post_amount' ); ?>"/>
-						<a href="javascript:;" class="button button-primary button-large rp4wp-link-now-btn"
-						   id="rp4wp-link-now"><?php _e( 'Link now', 'related-posts-for-wp' ); ?></a>
-						<a href="<?php echo admin_url(); ?>?page=rp4wp_install&step=3"
-						   class="button"><?php _e( 'Skip linking', 'related-posts-for-wp' ); ?></a>
+						<label for="rp4wp_related_posts_amount"><?php _e( 'Amount of related posts per post:', 'related-posts-for-wp' ); ?></label><input class="form-input-tip" type="text" id="rp4wp_related_posts_amount" value="<?php echo RP4WP()->settings->get_option( 'automatic_linking_post_amount' ); ?>"/>
+						<a href="javascript:;" class="button button-primary button-large rp4wp-link-now-btn" id="rp4wp-link-now"><?php _e( 'Link now', 'related-posts-for-wp' ); ?></a>
+						<a href="<?php echo admin_url( sprintf( '?page=rp4wp_install&step=3&rp4wp_nonce=%s', wp_create_nonce( RP4WP_Constants::NONCE_INSTALL ) ) ); ?>" class="button"><?php _e( 'Skip linking', 'related-posts-for-wp' ); ?></a>
 					</p>
 					<br class="clear"/>
 
