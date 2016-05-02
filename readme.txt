@@ -118,6 +118,10 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
+= 1.9.3: May x, 2016 =
+* Tweak: Fixed a bug that caused the search query to reset when navigating through pages on the manual linking page.
+* Tweak: Fixed unescaped page request variable on manual linking page.
+
 = 1.9.2: April 18, 2016 =
 * Tweak: We're now ignoring all characters that are not letters or numbers from word cache.
 * Tweak: Various performance optimizations, props [Danny van Kooten](https://github.com/dannyvankooten).
