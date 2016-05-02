@@ -118,7 +118,7 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
-= 1.9.3: May x, 2016 =
+= 1.9.3: May 2, 2016 =
 * Tweak: Fixed a bug that caused the search query to reset when navigating through pages on the manual linking page.
 * Tweak: Fixed unescaped page request variable on manual linking page.
 
