@@ -145,7 +145,7 @@ class RP4WP_Hook_Link_Related_Screen extends RP4WP_Hook {
 			</h2>
 
 			<form id="sp-list-table-form" method="post">
-				<input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>" />
+				<input type="hidden" name="page" value="<?php esc_attr_e( $_REQUEST['page'] ); ?>" />
 				<?php
 				// Create the link table
 				$list_table = new RP4WP_Link_Related_Table();
