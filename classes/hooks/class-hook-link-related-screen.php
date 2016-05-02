@@ -9,6 +9,9 @@ class RP4WP_Hook_Link_Related_Screen extends RP4WP_Hook {
 
 	public function run() {
 
+		// catch search requests
+		$this->catch_search();
+		
 		$this->handle_create_link();
 		$this->handle_bulk_link();
 
@@ -30,6 +33,19 @@ class RP4WP_Hook_Link_Related_Screen extends RP4WP_Hook {
 		) );
 	}
 
+	/**
+	 * Catch post search requests on our manually linking page and do a post to get
+	 */
+	private function catch_search() {
+		if ( isset( $_GET['page'] ) && 'rp4wp_link_related' == $_GET['page'] && ! empty( $_POST['s'] ) ) {
+
+			// post to get solution
+			wp_redirect( add_query_arg( 's', $_POST['s'], admin_url( sprintf( 'admin.php?page=rp4wp_link_related&rp4wp_parent=%d&rp4wp_view=%s', absint( $_GET['rp4wp_parent'] ), $_GET['rp4wp_view'] ) ) ), 302 );
+
+			exit;
+		}
+	}
+	
 	/**
 	 * Check if the current user is allowed to create related posts
 	 */
@@ -133,8 +149,8 @@ class RP4WP_Hook_Link_Related_Screen extends RP4WP_Hook {
 
 		// Catch search string
 		$search = null;
-		if ( isset( $_POST['s'] ) && $_POST['s'] != '' ) {
-			$search = $_POST['s'];
+		if ( isset( $_GET['s'] ) && $_GET['s'] != '' ) {
+			$search = $_GET['s'];
 		}
 
 		?>
