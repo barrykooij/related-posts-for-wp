@@ -9,11 +9,14 @@ class RP4WP_Hook_Link_Related_Screen extends RP4WP_Hook {
 
 	public function run() {
 
+		// handle singular link request
+		$this->handle_create_link();
+
+		// handle bulk link request
+		$this->handle_bulk_link();
+
 		// catch search requests
 		$this->catch_search();
-		
-		$this->handle_create_link();
-		$this->handle_bulk_link();
 
 		// Add Page
 		$screen_hook = add_submenu_page( null, 'Link_Related_Screen', 'Link_Related_Screen', 'edit_posts', 'rp4wp_link_related', array( $this, 'content' ) );
