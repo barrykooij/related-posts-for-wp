@@ -118,6 +118,9 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
+= 2.0.0: August xx, 2016 =
+* Tweak: Improved Content Matching Score algorithm. Better related content result.
+
 = 1.9.3: May 2, 2016 =
 * Tweak: Fixed a bug that caused the search query to reset when navigating through pages on the manual linking page.
 * Tweak: Fixed unescaped page request variable on manual linking page.
