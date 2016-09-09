@@ -91,8 +91,9 @@ class RP4WP_Link_Related_Table extends WP_List_Table {
 	 */
 	public function get_columns() {
 		$columns = array(
-			'cb'    => '<input type="checkbox" />',
-			'title' => __( 'Title', 'related-posts-for-wp' ),
+			'cb'        => '<input type="checkbox" />',
+			'title'     => __( 'Title', 'related-posts-for-wp' ),
+			'post_date' => __( 'Post Date', 'related-posts-for-wp' ),
 		);
 
 		return $columns;
@@ -170,7 +171,16 @@ class RP4WP_Link_Related_Table extends WP_List_Table {
 		// Format data for table
 		if ( count( $posts ) > 0 ) {
 			foreach ( $posts as $post ) {
-				$this->data[] = array( 'ID' => $post->ID, 'title' => $post->post_title );
+
+				// Related results only contain ID to keep query fast. Rather have an extra query per post on manual linking than a much heavier query for all linking.
+				if ( ! isset( $post->post_date ) ) {
+					$post = get_post( $post->ID );
+				}
+
+				$this->data[] = array( 'ID'        => $post->ID,
+				                       'title'     => $post->post_title,
+				                       'post_date' => date_i18n( get_option( 'date_format' ), strtotime( $post->post_date ) )
+				);
 			}
 		}
 
@@ -197,7 +207,8 @@ class RP4WP_Link_Related_Table extends WP_List_Table {
 	public function get_sortable_columns() {
 		$sortable_columns = array();
 		if ( ! $this->is_related ) {
-			$sortable_columns['title'] = array( 'title', false );
+			$sortable_columns['title']     = array( 'title', false );
+			$sortable_columns['post_date'] = array( 'post_date', false );
 		}
 
 		return $sortable_columns;
@@ -267,13 +278,14 @@ class RP4WP_Link_Related_Table extends WP_List_Table {
 	 * @param $item
 	 * @param $column_name
 	 *
-	 * @return mixed
+	 * @return string
 	 */
 	public function column_default( $item, $column_name ) {
-		switch ( $column_name ) {
-			case 'title':
-				return $item[ $column_name ];
+		if ( isset( $item[ $column_name ] ) ) {
+			return $item[ $column_name ];
 		}
+
+		return '';
 	}
 
 	/**
