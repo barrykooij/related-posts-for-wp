@@ -121,6 +121,7 @@ There is one custom table created for the post cache, this table will however no
 = 2.0.0: September xx, 2016 =
 * Tweak: Improved Content Matching Score algorithm. Better related content result.
 * Tweak: Fixed issue with search queries with multiple words in manual post linking.
+* Tweak: Added post dates to manual linking screen.
 
 = 1.9.3: May 2, 2016 =
 * Tweak: Fixed a bug that caused the search query to reset when navigating through pages on the manual linking page.
