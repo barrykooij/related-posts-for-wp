@@ -249,6 +249,42 @@ class RP4WP_Post_Link_Manager {
 		return $children;
 	}
 
+
+	/**
+	 * Get parents based on link_id and child_id.
+	 *
+	 * @access public
+	 *
+	 * @param int $child_id
+	 *
+	 * @return array
+	 */
+	public function get_parents( $child_id ) {
+
+		// build link args
+		$link_args = $this->create_link_args( RP4WP_Constants::PM_CHILD, $child_id );
+		$link_args['fields'] = 'ids';
+
+		/**
+		 * Filter args for link query
+		 */
+		$link_args = apply_filters( 'rp4wp_get_parents_link_args', $link_args, $child_id );
+
+		// Create link query
+		$wp_query = new WP_Query();
+		$link_post_ids = $wp_query->query( $link_args );
+
+		$parents = array();
+		if ( ! empty( $link_post_ids ) ) {
+			foreach ( $link_post_ids as $link_post_id ) {
+				// Add post to correct original sort key
+				$parents[ $link_post_id ] = get_post( get_post_meta( $link_post_id, RP4WP_Constants::PM_PARENT, true ) );
+			}
+		}
+
+		return $parents;
+	}
+
 	/**
 	 * Custom sort method to reorder children
 	 *
