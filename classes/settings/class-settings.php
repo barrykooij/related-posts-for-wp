@@ -101,11 +101,11 @@ class RP4WP_Settings {
 				'fields'      => array(
 					array(
 						'id'          => 'restart_wizard_button',
-						'label'       => __( 'Restart the wizard?', 'related-posts-for-wp' ),
+						'label'       => __( 'Rebuild posts linkage?', 'related-posts-for-wp' ),
 						'description' => __( "Click this button if you want to restart the wizard. Please note that this will delete all current related post links, also those you've manually added. Of course, we will never delete your actual posts.", 'related-posts-for-wp' ),
 						'type'        => 'button_link',
 						'href'        => admin_url( '?page=rp4wp_install&reinstall=1&rp4wp_nonce=' . wp_create_nonce( RP4WP_Constants::NONCE_INSTALL ) ),
-						'default'     => __( 'Restart wizard', 'related-posts-for-wp' ),
+						'default'     => __( 'Rebuild', 'related-posts-for-wp' ),
 					),
 					array(
 						'id'          => 'clean_on_uninstall',
