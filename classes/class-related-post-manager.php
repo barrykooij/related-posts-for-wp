@@ -57,7 +57,7 @@ class RP4WP_Related_Post_Manager {
 	public function get_not_auto_linked_posts_ids( $limit ) {
 		return get_posts( array(
 			'fields'         => 'ids',
-			'post_type'      => apply_filters( 'rp4wp_supported_post_types', array( 'post' ) ),
+			'post_type'      => RP4WP_Related_Post_Manager::get_supported_post_types(),
 			'posts_per_page' => $limit,
 			'post_status'    => 'publish',
 			'meta_query'     => array(
@@ -98,7 +98,7 @@ class RP4WP_Related_Post_Manager {
 	public function get_unlinked_post_count() {
 		global $wpdb;
 
-		$post_count = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(P.ID) FROM " . $wpdb->posts . " P LEFT JOIN " . $wpdb->postmeta . " PM ON (P.ID = PM.post_id AND PM.meta_key = '" . RP4WP_Constants::PM_POST_AUTO_LINKED . "') WHERE 1=1 AND P.post_type IN ('%s') AND P.post_status = 'publish' AND PM.post_id IS NULL GROUP BY P.post_status", implode( ',', apply_filters( 'rp4wp_supported_post_types', array( 'post' ) ) ) ) );
+		$post_count = $wpdb->get_var( "SELECT COUNT(P.ID) FROM " . $wpdb->posts . " P LEFT JOIN " . $wpdb->postmeta . " PM ON (P.ID = PM.post_id AND PM.meta_key = '" . RP4WP_Constants::PM_POST_AUTO_LINKED . "') WHERE 1=1 AND P.post_type IN ('" . implode( "','", RP4WP_Related_Post_Manager::get_supported_post_types() ) . "') AND P.post_status = 'publish' AND PM.post_id IS NULL GROUP BY P.post_status" );
 
 		if ( ! is_numeric( $post_count ) ) {
 			$post_count = 0;
@@ -141,7 +141,10 @@ class RP4WP_Related_Post_Manager {
 
 			// Set the correct ID's for batch meta insert
 			foreach ( $batch_data as $bk => $bd ) {
-				$batch_data[$bk]['meta'] = array_map( array( $this, 'batch_data_set_pid' ), $bd['meta'], array_fill( 0, count( $bd['meta'] ), $pid ) );
+				$batch_data[ $bk ]['meta'] = array_map( array(
+					$this,
+					'batch_data_set_pid'
+				), $bd['meta'], array_fill( 0, count( $bd['meta'] ), $pid ) );
 				$pid ++;
 			}
 
@@ -150,7 +153,7 @@ class RP4WP_Related_Post_Manager {
 				(`post_id`,`meta_key`,`meta_value`)
 				VALUES
 				" . implode( ',', array_map( array( $this, 'batch_data_get_meta' ), $batch_data ) ) . "
-				");
+				" );
 
 		}
 
@@ -184,7 +187,7 @@ class RP4WP_Related_Post_Manager {
 	 * @return string
 	 */
 	public function batch_data_get_meta( $batch ) {
-		return implode(',',$batch['meta']);
+		return implode( ',', $batch['meta'] );
 	}
 
 	/**
@@ -225,6 +228,28 @@ class RP4WP_Related_Post_Manager {
 
 		// Done
 		return true;
+	}
+
+	/**
+	 * Returns array with escaped supported post types
+	 * @return array
+	 */
+	public static function get_supported_post_types() {
+
+		// get post types
+		$post_types = apply_filters( 'rp4wp_supported_post_types', array( 'post' ) );
+
+		// at least 1 supported post type is needed
+		if ( ! is_array( $post_types ) || count( $post_types ) < 1 ) {
+			$post_types = array( 'post' );
+		}
+		
+		// escape values
+		foreach( $post_types as $pk => $pv ) {
+			$post_types[ $pk ] = esc_sql( $pv );
+		}
+
+		return $post_types;
 	}
 
 }
