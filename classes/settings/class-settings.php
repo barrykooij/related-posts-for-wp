@@ -39,7 +39,7 @@ class RP4WP_Settings {
 		}
 
 		// The fields
-		$this->sections = array(
+		$this->sections = apply_filters( 'rp4wp_settings_sections', array(
 			'general' => array(
 				'id'          => 'general',
 				'label'       => __( 'General', 'related-posts-for-wp' ),
@@ -122,7 +122,7 @@ class RP4WP_Settings {
 						'default'     => 0,
 					),
 				) ),
-		);
+		) );
 
 		// Set defaults
 		foreach ( $this->sections as $section ) {
