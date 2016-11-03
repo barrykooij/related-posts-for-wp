@@ -120,7 +120,12 @@ class RP4WP_Hook_Page_Install extends RP4WP_Hook {
 				<?php
 
 				// Hidden fields
-				echo "<input type='hidden' id='rp4wp_total_posts' value='" . wp_count_posts( 'post' )->publish . "' />" . PHP_EOL;
+				$total_posts = 0;
+				$pts = RP4WP_Related_Post_Manager::get_supported_post_types();
+				foreach($pts as $pt) {
+					$total_posts += intval( wp_count_posts( $pt )->publish );
+				}
+				echo "<input type='hidden' id='rp4wp_total_posts' value='" . $total_posts . "' />" . PHP_EOL;
 				echo "<input type='hidden' id='rp4wp_admin_url' value='" . admin_url() . "' />" . PHP_EOL;
 
 				// Echo the nonce
