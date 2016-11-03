@@ -125,6 +125,7 @@ There is one custom table created for the post cache, this table will however no
 * Tweak: Fixed jQuery lib include for HTTPS websites.
 * Tweak: Added rp4wp_settings_sections filter to settings.
 * Tweak: Renamed 'Restart wizard' to 'Rebuild Linkage'.
+* Tweak: Added rp4wp_supported_post_types filter to various places.
 
 = 1.9.3: May 2, 2016 =
 * Tweak: Fixed a bug that caused the search query to reset when navigating through pages on the manual linking page.
