@@ -43,8 +43,6 @@ class RP4WP_Related_Post_Manager {
 			$sql = $wpdb->prepare( $sql, $post_id, get_post_type( $post_id ), $post_id );
 		}
 
-		error_log($sql, 0);
-
 		// Get post from related cache
 		return $wpdb->get_results( $sql );
 	}
