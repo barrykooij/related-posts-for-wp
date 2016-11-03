@@ -31,7 +31,7 @@ class RP4WP_Hook_Page_Install extends RP4WP_Hook {
 				'jquery-ui-core',
 				'jquery-ui-progressbar'
 			), RP4WP::VERSION );
-		wp_enqueue_style( 'jquery-ui-smoothness', "http://ajax.googleapis.com/ajax/libs/jqueryui/" . $wp_scripts->query( 'jquery-ui-core' )->ver . "/themes/smoothness/jquery-ui.css", false, null );
+		wp_enqueue_style( 'jquery-ui-smoothness', "//ajax.googleapis.com/ajax/libs/jqueryui/" . $wp_scripts->query( 'jquery-ui-core' )->ver . "/themes/smoothness/jquery-ui.css", false, null );
 	}
 
 	/**
