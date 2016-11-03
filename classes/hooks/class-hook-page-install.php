@@ -191,7 +191,7 @@ class RP4WP_Hook_Page_Install extends RP4WP_Hook {
 				}
 				?>
 
-				<div class="rp4wp-box rp4wp-box-upgrade">
+				<div class="rp4wp-box rp4wp-box-upgrade-black">
 					<h3 class="rp4wp-title"><?php _e( 'Related Posts for WordPress Premium', 'related-posts-for-wp' ); ?></h3>
 
 					<p><?php _e( "This plugin has an even better premium version, I am sure you will love it.", 'related-posts-for-wp' ); ?></p>
