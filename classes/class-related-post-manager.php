@@ -25,7 +25,7 @@ class RP4WP_Related_Post_Manager {
 		INNER JOIN `" . $wpdb->posts . "` P ON P.`ID` = R.`post_id`
 		WHERE 1=1
 		AND O.`post_id` = %d
-		AND R.`post_type` = 'post'
+		AND R.`post_type` = %s
 		AND R.`post_id` != %d
 		AND P.`post_status` = 'publish'
 		GROUP BY P.`id`
@@ -37,11 +37,13 @@ class RP4WP_Related_Post_Manager {
 			$sql .= "
 			LIMIT 0,%d";
 			// Prepare SQL
-			$sql = $wpdb->prepare( $sql, $post_id, $post_id, $limit );
+			$sql = $wpdb->prepare( $sql, $post_id, get_post_type( $post_id ), $post_id, $limit );
 		} else {
 			// Prepare SQL
-			$sql = $wpdb->prepare( $sql, $post_id, $post_id );
+			$sql = $wpdb->prepare( $sql, $post_id, get_post_type( $post_id ), $post_id );
 		}
+
+		error_log($sql, 0);
 
 		// Get post from related cache
 		return $wpdb->get_results( $sql );
