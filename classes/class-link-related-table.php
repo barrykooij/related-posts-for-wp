@@ -145,7 +145,7 @@ class RP4WP_Link_Related_Table extends WP_List_Table {
 
 			// the posts query
 			$post_query = new WP_Query( array(
-				'post_type'        => 'post',
+				'post_type'        => apply_filters( 'rp4wp_supported_post_types', array( 'post' ) ),
 				'posts_per_page'   => $per_page,
 				'paged'            => $paged,
 				'suppress_filters' => false,

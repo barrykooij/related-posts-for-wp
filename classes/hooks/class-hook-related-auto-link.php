@@ -17,7 +17,7 @@ class RP4WP_Hook_Related_Auto_Link extends RP4WP_Hook {
 		}
 
 		// Only count on post type 'post'
-		if ( 'post' != $post->post_type ) {
+		if ( ! in_array( $post->post_type, apply_filters( 'rp4wp_supported_post_types', array( 'post' ) ) ) ) {
 			return;
 		}
 
