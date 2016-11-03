@@ -449,7 +449,7 @@ class RP4WP_Related_Word_Manager {
 	public function get_word_count() {
 		global $wpdb;
 
-		return $wpdb->get_var( "SELECT COUNT(word) FROM `" . self::get_database_table() . "` WHERE `post_type` = 'post'" );
+		return $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(word) FROM `" . self::get_database_table() . "` WHERE `post_type` IN ('%s') ", implode( ',', apply_filters( 'rp4wp_supported_post_types', array( 'post' ) ) ) ) );
 	}
 
 	/**
