@@ -45,61 +45,63 @@ class RP4WP_Settings {
 				'label'       => __( 'General', 'related-posts-for-wp' ),
 				'description' => __( 'The following options affect the general behaviour of the plugin.', 'related-posts-for-wp' ),
 				'fields'      => array(
-					array(
+					'automatic_linking'             => array(
 						'id'          => 'automatic_linking',
 						'label'       => __( 'Enable', 'related-posts-for-wp' ),
 						'description' => __( 'Checking this will enable automatically linking posts to new posts', 'related-posts-for-wp' ),
 						'type'        => 'checkbox',
 						'default'     => 1,
 					),
-					array(
+					'automatic_linking_post_amount' => array(
 						'id'          => 'automatic_linking_post_amount',
 						'label'       => __( 'Amount of Posts', 'related-posts-for-wp' ),
 						'description' => __( 'The amount of automatically linked post', 'related-posts-for-wp' ),
 						'type'        => 'text',
 						'default'     => '3',
 					),
-					array(
+					'heading_text'                  => array(
 						'id'          => 'heading_text',
 						'label'       => __( 'Heading text', 'related-posts-for-wp' ),
 						'description' => __( 'The text that is displayed above the related posts. To disable, leave field empty.', 'related-posts-for-wp' ),
 						'type'        => 'text',
 						'default'     => __( 'Related Posts', 'related-posts-for-wp' ),
 					),
-					array(
+					'excerpt_length'                => array(
 						'id'          => 'excerpt_length',
 						'label'       => __( 'Excerpt length', 'related-posts-for-wp' ),
 						'description' => __( 'The amount of words to be displayed below the title on website. To disable, set value to 0.', 'related-posts-for-wp' ),
 						'type'        => 'text',
 						'default'     => '15',
 					)
-				) ),
-			'styling'               => array(
+				)
+			),
+			'styling' => array(
 				'id'          => 'styling',
 				'label'       => __( 'Styling', 'related-posts-for-wp' ),
 				'description' => __( 'The following options affect how related posts are displayed on the frontend.', 'related-posts-for-wp' ),
 				'fields'      => array(
-					array(
+					'display_image' => array(
 						'id'          => 'display_image',
 						'label'       => __( 'Display Image', 'related-posts-for-wp' ),
 						'description' => __( 'Checking this will enable displaying featured images of related posts.', 'related-posts-for-wp' ),
 						'type'        => 'checkbox',
 						'default'     => 0,
 					),
-					array(
+					'css'           => array(
 						'id'          => 'css',
 						'label'       => __( 'CSS', 'related-posts-for-wp' ),
 						'description' => __( 'Warning! This is an advanced feature! An error here will break frontend display. To disable, leave field empty.', 'related-posts-for-wp' ),
 						'type'        => 'textarea',
 						'default'     => implode( PHP_EOL, $css_default_lines ),
 					)
-				) ),
-			'misc'              => array(
+				)
+			),
+			'misc'    => array(
 				'id'          => 'misc',
 				'label'       => __( 'Misc', 'related-posts-for-wp' ),
 				'description' => __( "A shelter for options that just don't fit in anywhere else.", 'related-posts-for-wp' ),
 				'fields'      => array(
-					array(
+					'restart_wizard_button' => array(
 						'id'          => 'restart_wizard_button',
 						'label'       => __( 'Rebuild posts linkage?', 'related-posts-for-wp' ),
 						'description' => __( "Click this button if you want to restart the wizard. Please note that this will delete all current related post links, also those you've manually added. Of course, we will never delete your actual posts.", 'related-posts-for-wp' ),
@@ -107,21 +109,22 @@ class RP4WP_Settings {
 						'href'        => admin_url( '?page=rp4wp_install&reinstall=1&rp4wp_nonce=' . wp_create_nonce( RP4WP_Constants::NONCE_INSTALL ) ),
 						'default'     => __( 'Rebuild', 'related-posts-for-wp' ),
 					),
-					array(
+					'clean_on_uninstall'    => array(
 						'id'          => 'clean_on_uninstall',
 						'label'       => __( 'Remove Data on Uninstall?', 'related-posts-for-wp' ),
 						'description' => __( 'Check this box if you would like to completely remove all of its data when the plugin is deleted.', 'related-posts-for-wp' ),
 						'type'        => 'checkbox',
 						'default'     => 0,
 					),
-					array(
+					'show_love'             => array(
 						'id'          => 'show_love',
 						'label'       => __( 'Show love?', 'related-posts-for-wp' ),
 						'description' => __( "Display a 'Powered by' line under your related posts. <strong>BEWARE! Only for the real fans.</strong>", 'related-posts-for-wp' ),
 						'type'        => 'checkbox',
 						'default'     => 0,
 					),
-				) ),
+				)
+			),
 		) );
 
 		// Set defaults

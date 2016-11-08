@@ -126,6 +126,7 @@ There is one custom table created for the post cache, this table will however no
 * Tweak: Added rp4wp_settings_sections filter to settings.
 * Tweak: Renamed 'Restart wizard' to 'Rebuild Linkage'.
 * Tweak: Added rp4wp_supported_post_types filter to various places.
+* Tweak: Added keys to settings to allow for more detailed filtering.
 
 = 1.9.3: May 2, 2016 =
 * Tweak: Fixed a bug that caused the search query to reset when navigating through pages on the manual linking page.
