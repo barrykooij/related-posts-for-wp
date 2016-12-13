@@ -119,6 +119,8 @@ There is one custom table created for the post cache, this table will however no
 == Changelog ==
 
 = 2.0.0: September xx, 2016 =
+* Tweak: New related post is found for parents of posts that are put back to draft or deleted.
+* Tweak: Related post are now removed when a post is put back to draft or deleted.
 * Tweak: Improved Content Matching Score algorithm. Better related content result.
 * Tweak: Fixed issue with search queries with multiple words in manual post linking.
 * Tweak: Added post dates to manual linking screen.
