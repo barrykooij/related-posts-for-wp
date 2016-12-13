@@ -28,6 +28,7 @@ return array(
     'RP4WP_Hook_Post_Type' => $baseDir . '/classes/hooks/class-hook-post-type.php',
     'RP4WP_Hook_Related_Auto_Link' => $baseDir . '/classes/hooks/class-hook-related-auto-link.php',
     'RP4WP_Hook_Related_Save_Words' => $baseDir . '/classes/hooks/class-hook-related-save-words.php',
+    'RP4WP_Hook_Related_Update_Link' => $baseDir . '/classes/hooks/class-hook-related-update-link.php',
     'RP4WP_Hook_Settings_Page' => $baseDir . '/classes/hooks/class-hook-settings-page.php',
     'RP4WP_Hook_Shortcode' => $baseDir . '/classes/hooks/class-hook-shortcode.php',
     'RP4WP_Hook_Widget' => $baseDir . '/classes/hooks/class-hook-widget.php',
