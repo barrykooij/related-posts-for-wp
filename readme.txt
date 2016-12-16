@@ -3,8 +3,8 @@ Contributors: never5, barrykooij
 Donate link: http://www.barrykooij.com/donate/
 Tags: related posts for wordpress, related posts for wp, simple related posts, easy related posts, related posts, related, relations, internal links, seo, bounce rate
 Requires at least: 3.6
-Tested up to: 4.6
-Stable tag: 1.9.3
+Tested up to: 4.7
+Stable tag: 2.0.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -121,7 +121,7 @@ There is one custom table created for the post cache, this table will however no
 = 2.0.0: Decemeber 16, 2016 =
 * Tweak: New related post is found for parents of posts that are put back to draft or deleted.
 * Tweak: Related post are now removed when a post is put back to draft or deleted.
-* Tweak: Improved Content Matching Score algorithm. Better related content result.
+* Tweak: Improved Content Matching Score algorithm. Better related content result. Rerun wizard for better results.
 * Tweak: Fixed issue with search queries with multiple words in manual post linking.
 * Tweak: Added post dates to manual linking screen.
 * Tweak: Fixed jQuery lib include for HTTPS websites.
