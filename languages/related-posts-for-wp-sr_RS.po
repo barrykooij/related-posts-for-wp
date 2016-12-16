@@ -1,4 +1,4 @@
-# Copyright (C) 2015 Barry Kooij
+# Copyright (C) 2016 Never5
 # This file is distributed under the GPL v3.
 # Translators:
 # Barry Kooij <mail@barrykooij.nl>, 2014
@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://github.com/barrykooij/related-posts-for-wp/issues\n"
-"POT-Creation-Date: 2015-05-31 09:56:12+00:00\n"
-"PO-Revision-Date: 2015-06-07 19:41+0000\n"
+"POT-Creation-Date: 2016-08-25 13:53:23+00:00\n"
+"PO-Revision-Date: 2016-08-25 13:54+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Serbian (Serbia) (http://www.transifex.com/barrykooijplugins/related-posts-for-wordpress/language/sr_RS/)\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: sr_RS\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: grunt-wp-i18n 0.4.8\n"
+"X-Generator: grunt-wp-i18n 0.4.9\n"
 
 #: classes/class-is-installing-notice.php:74
 msgid ""
@@ -32,10 +32,30 @@ msgstr "%sНастави са инсталацијом%s или %sугаси о�
 msgid "Are you sure you want to delete this related post?"
 msgstr "Да ли сте сигурни да желите да избришете овај повезани чланак?"
 
+#: classes/class-javascript-strings.php:15
+msgid "Delete this post type"
+msgstr ""
+
+#: classes/class-javascript-strings.php:16
+msgid "Relink related posts"
+msgstr ""
+
+#: classes/class-javascript-strings.php:17
+msgid "Reinstall this post type"
+msgstr ""
+
+#: classes/class-javascript-strings.php:18
+msgid "Save post type"
+msgstr ""
+
+#: classes/class-javascript-strings.php:19
+msgid "Add post type"
+msgstr ""
+
 #: classes/class-link-related-table.php:45
 #: classes/hooks/class-hook-settings-page.php:20
 #: classes/meta-boxes/class-meta-box-manage.php:37
-#: classes/settings/class-settings-general.php:59
+#: classes/settings/class-settings-general.php:60
 msgid "Related Posts"
 msgstr "Повезани чланци"
 
@@ -44,30 +64,34 @@ msgid "All Posts"
 msgstr "Сви чланци"
 
 #: classes/class-link-related-table.php:95
-#: classes/settings/class-settings-weights.php:29
+#: classes/settings/class-settings-weights.php:37
 msgid "Title"
 msgstr "Наслов"
 
 #: classes/class-link-related-table.php:96
-#: classes/hooks/class-hook-page-install.php:168
-#: classes/hooks/class-hook-settings-page.php:152
+#: classes/hooks/class-hook-page-install.php:187
+#: classes/hooks/class-hook-settings-page.php:155
 msgid "Post Type"
 msgstr "Post Type"
 
-#: classes/class-link-related-table.php:260
+#: classes/class-link-related-table.php:97
+msgid "Post Date"
+msgstr ""
+
+#: classes/class-link-related-table.php:270
 msgid "Link Post"
 msgstr "Повежи чланак"
 
-#: classes/class-link-related-table.php:268
+#: classes/class-link-related-table.php:278
 msgid "View Post"
 msgstr ""
 
-#: classes/class-link-related-table.php:299
+#: classes/class-link-related-table.php:317
 msgid "Link Posts"
 msgstr "Повежи чланке"
 
 #: classes/class-post-type-manager.php:21
-#: classes/hooks/class-hook-link-related-screen.php:155
+#: classes/hooks/class-hook-link-related-screen.php:187
 msgid "Posts"
 msgstr "Чланци"
 
@@ -87,46 +111,46 @@ msgstr "Прикажи повезане чланке."
 msgid "Settings"
 msgstr "Подешавања"
 
-#: classes/hooks/class-hook-link-related-screen.php:157
+#: classes/hooks/class-hook-link-related-screen.php:189
 msgid "Cancel linking"
 msgstr "Прекини линковање"
 
-#: classes/hooks/class-hook-link-related-screen.php:173
+#: classes/hooks/class-hook-link-related-screen.php:205
 msgid "Search"
 msgstr "Претражи"
 
-#: classes/hooks/class-hook-page-install.php:57
+#: classes/hooks/class-hook-page-install.php:59
 msgid "Welcome"
 msgstr "Добродошли"
 
-#: classes/hooks/class-hook-page-install.php:58
+#: classes/hooks/class-hook-page-install.php:60
 msgid "Caching Posts"
 msgstr "Кеширани чланци"
 
-#: classes/hooks/class-hook-page-install.php:59
+#: classes/hooks/class-hook-page-install.php:61
 msgid "Linking Posts"
 msgstr "Повезани чланци"
 
-#: classes/hooks/class-hook-page-install.php:60
+#: classes/hooks/class-hook-page-install.php:62
 msgid "Finished"
 msgstr "Завршено."
 
-#: classes/hooks/class-hook-page-install.php:71
+#: classes/hooks/class-hook-page-install.php:78
 msgid ""
 "Missing post type parameter, please report this incident via %sour "
 "website%s."
 msgstr ""
 
-#: classes/hooks/class-hook-page-install.php:102
+#: classes/hooks/class-hook-page-install.php:121
 msgid "Installation"
 msgstr "Инсталација"
 
-#: classes/hooks/class-hook-page-install.php:149
-#: classes/hooks/class-hook-page-install.php:228
+#: classes/hooks/class-hook-page-install.php:168
+#: classes/hooks/class-hook-page-install.php:247
 msgid "Thank you for choosing Related Posts for WordPress!"
 msgstr "Хвала што сте изабрали Повезане чланке за Вордпрес!"
 
-#: classes/hooks/class-hook-page-install.php:150
+#: classes/hooks/class-hook-page-install.php:169
 msgid ""
 "Below you'll find your post types available for installation, by installing "
 "a post type we'll set up a cache and offer you the ability to automatic link"
@@ -134,152 +158,150 @@ msgid ""
 "Type' button."
 msgstr "Испод ћете наћи ваше доступне post types за инсталацију, инсталирањем post type ми ћемо све кеширати и понудити Вам могућност да аутоматски повежете (подешене) чланке. Да инсталирате post type, једноставно кликните 'Инсталирај Post Type' дугме."
 
-#: classes/hooks/class-hook-page-install.php:169
+#: classes/hooks/class-hook-page-install.php:188
 msgid "Related to Post Types"
 msgstr ""
 
-#: classes/hooks/class-hook-page-install.php:204
-msgid "Edit"
+#: classes/hooks/class-hook-page-install.php:223
+msgid "Edit this post type"
 msgstr ""
 
-#: classes/hooks/class-hook-page-install.php:229
+#: classes/hooks/class-hook-page-install.php:248
 msgid ""
 "Before you can start using Related Posts for WordPress we need to cache your"
 " current posts."
 msgstr "Пре него што почнете са коришћењем Повезаних чланака за Вордпрес морамо да кеширамо све Ваше чланке."
 
-#: classes/hooks/class-hook-page-install.php:230
+#: classes/hooks/class-hook-page-install.php:249
 msgid ""
 "This is a one time process which might take some time now, depending on the "
 "amount of posts you have, but will ensure your website's performance when "
 "using the plugin."
 msgstr "Ово је процес који може да узме мало више времена сада, зависно од броја Ваших чланака, али ће осигурати боље перформансе Вашег вебсајта када се додатак користи."
 
-#: classes/hooks/class-hook-page-install.php:232
+#: classes/hooks/class-hook-page-install.php:251
 msgid ""
 "Do NOT close this window, wait for this process to finish and this wizard to"
 " take you to the next step."
 msgstr "Немојте да затварате овај прозор, сачекајте да се процес заврши и да вас одведе на следећи корак."
 
-#: classes/hooks/class-hook-page-install.php:266
+#: classes/hooks/class-hook-page-install.php:285
 msgid "Great! All your posts were successfully cached!"
 msgstr "Одлично! Сви твоји чланци су успешно кеширани!"
 
-#: classes/hooks/class-hook-page-install.php:267
+#: classes/hooks/class-hook-page-install.php:286
 msgid ""
 "You can let me link your posts, based on what I think is related, to each "
 "other. And don't worry, if I made a mistake at one of your posts you can "
 "easily correct this by editing it manually!"
 msgstr "Можете ме пустити да повежем Ваше чланке, судећи по томе како ја мислим да треба бити повезани. И не брините, ако погрешим, увек можете ручно исправити!"
 
-#: classes/hooks/class-hook-page-install.php:268
+#: classes/hooks/class-hook-page-install.php:287
 msgid ""
 "Want me to start linking posts to each other? Fill in the amount of related "
 "posts each post should have and click on the \"Link now\" button. Rather "
 "link your posts manually? Click \"Skip linking\"."
 msgstr "Желите да отпочнемо са повезивањем чланака? Попуните колико повезаних чланака сваки чланак треба да има и кликните ”Повежи сада” дугме. Ипак желите сами да повежите своје чланке? Кликните ”Прескочи повезивање”."
 
-#: classes/hooks/class-hook-page-install.php:269
+#: classes/hooks/class-hook-page-install.php:288
 msgid ""
 "Do NOT close this window if you click the \"Link now\" button, wait for this"
 " process to finish and this wizard to take you to the next step."
 msgstr "Немојте да затварате овај прозор, сачекајте да се процес заврши и да вас одведе на следећи корак."
 
-#: classes/hooks/class-hook-page-install.php:275
+#: classes/hooks/class-hook-page-install.php:295
 msgid "Amount of related posts:"
 msgstr ""
 
-#: classes/hooks/class-hook-page-install.php:277
+#: classes/hooks/class-hook-page-install.php:299
 msgid "The amount of related items per %s"
 msgstr ""
 
-#: classes/hooks/class-hook-page-install.php:282
+#: classes/hooks/class-hook-page-install.php:305
 msgid "Maximum Post Age:"
 msgstr ""
 
-#: classes/hooks/class-hook-page-install.php:284
+#: classes/hooks/class-hook-page-install.php:309
 msgid "The maximum age in days of %s that will be linked. (0 = unlimited)"
 msgstr ""
 
-#: classes/hooks/class-hook-page-install.php:290
+#: classes/hooks/class-hook-page-install.php:316
 msgid "Link now"
 msgstr "Повежи сада"
 
-#: classes/hooks/class-hook-page-install.php:291
+#: classes/hooks/class-hook-page-install.php:318
 msgid "Skip linking"
 msgstr "Прескочи повезивање"
 
-#: classes/hooks/class-hook-page-install.php:309
+#: classes/hooks/class-hook-page-install.php:336
 msgid "That's it, you're good to go!"
 msgstr "То је то, готово је за сада!"
 
-#: classes/hooks/class-hook-page-install.php:310
+#: classes/hooks/class-hook-page-install.php:337
 msgid ""
 "Thanks again for using Related Posts for WordPress and if you have any "
 "questions be sure to ask them at the %sWordPress.org forums.%s"
 msgstr "Хвала још једном што користите Повезане чланке за Вордпрес и ако имате питања слободно их поставите на %sWordPress.org forums.%s"
 
-#: classes/hooks/class-hook-page-install.php:313
+#: classes/hooks/class-hook-page-install.php:340
 msgid "Click here to return to step 1"
 msgstr "Кликните овде за повратак на корак 1"
 
-#: classes/hooks/class-hook-page-install.php:319
+#: classes/hooks/class-hook-page-install.php:346
 msgid "Click here to go to the settings page"
 msgstr "Кликните овде за страницу са подешавањима"
 
-#: classes/hooks/class-hook-settings-page.php:57
+#: classes/hooks/class-hook-settings-page.php:58
 msgid "Plugin version"
 msgstr "Верзија додатка"
 
-#: classes/hooks/class-hook-settings-page.php:63
+#: classes/hooks/class-hook-settings-page.php:64
 msgid ""
 "Got a question? Simply send us an email at "
 "%ssupport@relatedpostsforwp.com%s. Please note that support requires an "
 "active license."
 msgstr ""
 
-#: classes/hooks/class-hook-settings-page.php:67
+#: classes/hooks/class-hook-settings-page.php:68
 msgid "More information"
 msgstr "Више информација"
 
-#: classes/hooks/class-hook-settings-page.php:69
+#: classes/hooks/class-hook-settings-page.php:70
 msgid "<a href='%s'>Documentation</a>"
 msgstr ""
 
-#: classes/hooks/class-hook-settings-page.php:71
+#: classes/hooks/class-hook-settings-page.php:72
 msgid "<a href='%s'>Changelog</a>"
 msgstr ""
 
-#: classes/hooks/class-hook-settings-page.php:73
+#: classes/hooks/class-hook-settings-page.php:74
 msgid "<a href='%s'>Give us a review</a>"
 msgstr "<a href='%s'>Дајте нам рецензију</a>"
 
-#: classes/hooks/class-hook-settings-page.php:78
-msgid "About the developer"
-msgstr "О програмеру"
+#: classes/hooks/class-hook-settings-page.php:76
+msgid "Check out our other plugins at Never5.com"
+msgstr ""
 
-#: classes/hooks/class-hook-settings-page.php:80
+#: classes/hooks/class-hook-settings-page.php:81
+msgid "About Never5"
+msgstr ""
+
+#: classes/hooks/class-hook-settings-page.php:85
 msgid ""
-"Barry is a WordPress developer that works on WooCommerce and is the author "
-"of various WordPress plugins that include Related Posts for WordPress, Post "
-"Connector and What The File."
+"At %sNever5%s we create high quality premium WordPress plugins, with "
+"extensive support. We offer solutions in related posts, advanced download "
+"management, vehicle management and connecting post types."
 msgstr ""
 
-#: classes/hooks/class-hook-settings-page.php:82
-msgid ""
-"Barry likes contributing to open source projects and visiting WordCamps and "
-"WordPress meetups. He’s the organizer of the WordPress meetup in Tilburg."
+#: classes/hooks/class-hook-settings-page.php:87
+msgid "%sFollow Never5 on Twitter%s"
 msgstr ""
 
-#: classes/hooks/class-hook-settings-page.php:84
-msgid "%sFollow Barry on Twitter%s."
-msgstr ""
-
-#: classes/hooks/class-hook-settings-page.php:110
+#: classes/hooks/class-hook-settings-page.php:113
 msgid "General"
 msgstr "Опште"
 
-#: classes/hooks/class-hook-settings-page.php:130
+#: classes/hooks/class-hook-settings-page.php:133
 msgid "Installer"
 msgstr "Инсталациони програм"
 
@@ -287,17 +309,17 @@ msgstr "Инсталациони програм"
 msgid "Add Related Posts"
 msgstr "Додај Повезани чланак"
 
-#: classes/meta-boxes/class-meta-box-manage.php:103
-#: classes/meta-boxes/class-meta-box-manage.php:104
+#: classes/meta-boxes/class-meta-box-manage.php:108
+#: classes/meta-boxes/class-meta-box-manage.php:109
 msgid "Edit Post"
 msgstr "Уреди чланак"
 
-#: classes/meta-boxes/class-meta-box-manage.php:106
-#: classes/meta-boxes/class-meta-box-manage.php:107
+#: classes/meta-boxes/class-meta-box-manage.php:111
+#: classes/meta-boxes/class-meta-box-manage.php:112
 msgid "Unlink Related Post"
 msgstr "Прекини везу Повезаних чланака"
 
-#: classes/meta-boxes/class-meta-box-manage.php:120
+#: classes/meta-boxes/class-meta-box-manage.php:125
 msgid "No related posts found."
 msgstr "Нема пронађених повезаних чланака."
 
@@ -305,7 +327,7 @@ msgstr "Нема пронађених повезаних чланака."
 msgid "Related Posts Options"
 msgstr ""
 
-#: classes/meta-boxes/class-meta-box-options.php:59
+#: classes/meta-boxes/class-meta-box-options.php:62
 msgid "Exclude"
 msgstr ""
 
@@ -382,34 +404,90 @@ msgstr ""
 msgid "The maximum age in days of %ss that will be linked. (0 = unlimited)"
 msgstr ""
 
-#: classes/settings/class-settings-general.php:51
+#: classes/settings/class-settings-general.php:52
 msgid "Frontend Settings"
 msgstr "Подешавања корисничког интерфејса"
 
-#: classes/settings/class-settings-general.php:52
+#: classes/settings/class-settings-general.php:53
 msgid ""
 "The following options affect how related %ss are displayed on the frontend."
 msgstr "Опције које следе утичу на то како ће повезани %s бити приказани у корисничком интерфејсу."
 
-#: classes/settings/class-settings-general.php:56
+#: classes/settings/class-settings-general.php:57
 msgid "Heading text"
 msgstr "Главни текст"
 
-#: classes/settings/class-settings-general.php:57
+#: classes/settings/class-settings-general.php:58
 msgid ""
 "The text that is displayed above the related %ss. To disable, leave field "
 "empty."
 msgstr "Текст који се приказује изнад повезаних %s. Да онемогућите, оставите празно поље."
 
-#: classes/settings/class-settings-general.php:63
+#: classes/settings/class-settings-general.php:64
 msgid "Excerpt length"
 msgstr "Дужина одломка"
 
-#: classes/settings/class-settings-general.php:64
+#: classes/settings/class-settings-general.php:65
 msgid ""
 "The amount of words to be displayed below the title on website. To disable, "
 "set value to 0."
 msgstr "Број речи које се приказују испод наслова на вебсајту. Да онемогућите, поставите вредност на 0."
+
+#: classes/settings/class-settings-general.php:73
+msgid "Thumbnail size"
+msgstr ""
+
+#: classes/settings/class-settings-general.php:74
+msgid ""
+"These settings affect the display and dimensions of your related post "
+"thumbnails – the display on the front-end will still be affected by CSS "
+"styles. After changing these settings you may need to %sregenerate your "
+"thumbnails.%s"
+msgstr ""
+
+#: classes/settings/class-settings-general.php:78
+msgid "Width"
+msgstr ""
+
+#: classes/settings/class-settings-general.php:79
+msgid "Thumbnail's width in pixels."
+msgstr ""
+
+#: classes/settings/class-settings-general.php:85
+msgid "Height"
+msgstr ""
+
+#: classes/settings/class-settings-general.php:86
+msgid "Thumbnail's height in pixels."
+msgstr ""
+
+#: classes/settings/class-settings-general.php:92
+msgid "Crop"
+msgstr ""
+
+#: classes/settings/class-settings-general.php:93
+msgid "Crop the image from the center."
+msgstr ""
+
+#: classes/settings/class-settings-general.php:101
+msgid "Thumbnail Placeholder"
+msgstr ""
+
+#: classes/settings/class-settings-general.php:102
+msgid ""
+"The placeholder will be used if no featured image is set and no images could"
+" be found in the content."
+msgstr ""
+
+#: classes/settings/class-settings-general.php:106
+msgid "Placeholder"
+msgstr ""
+
+#: classes/settings/class-settings-general.php:107
+msgid ""
+"Thumbnail placeholder, the image that will be used if no other image is "
+"found."
+msgstr ""
 
 #: classes/settings/class-settings-license.php:18
 msgid "License"
@@ -480,11 +558,19 @@ msgid ""
 "problems connecting to licensing server."
 msgstr ""
 
-#: classes/settings/class-settings-page.php:448
+#: classes/settings/class-settings-page.php:212
+msgid "Image URL"
+msgstr ""
+
+#: classes/settings/class-settings-page.php:213
+msgid "Upload Image"
+msgstr ""
+
+#: classes/settings/class-settings-page.php:468
 msgid "ACTIVATED"
 msgstr ""
 
-#: classes/settings/class-settings-page.php:450
+#: classes/settings/class-settings-page.php:470
 msgid "NOT ACTIVE"
 msgstr ""
 
@@ -502,40 +588,93 @@ msgid ""
 "need to rerun the installer after changing weights."
 msgstr ""
 
+#: classes/settings/class-settings-weights.php:29
+#: classes/settings/class-settings-weights.php:33
+msgid "Reset Weight"
+msgstr ""
+
 #: classes/settings/class-settings-weights.php:30
+msgid ""
+"Reset the weights back to their defaults. Don't forget to Save the Changes "
+"after resetting the weights."
+msgstr ""
+
+#: classes/settings/class-settings-weights.php:38
 msgid "The weight of the title."
 msgstr ""
 
-#: classes/settings/class-settings-weights.php:36
+#: classes/settings/class-settings-weights.php:44
 msgid "Links"
 msgstr ""
 
-#: classes/settings/class-settings-weights.php:37
+#: classes/settings/class-settings-weights.php:45
 msgid "The weight of the links found in the content."
 msgstr ""
 
-#: classes/settings/class-settings-weights.php:43
+#: classes/settings/class-settings-weights.php:51
 msgid "Categories"
 msgstr ""
 
-#: classes/settings/class-settings-weights.php:44
+#: classes/settings/class-settings-weights.php:52
 msgid "The weight of the categories."
 msgstr ""
 
-#: classes/settings/class-settings-weights.php:50
+#: classes/settings/class-settings-weights.php:58
 msgid "Tags"
 msgstr ""
 
-#: classes/settings/class-settings-weights.php:51
+#: classes/settings/class-settings-weights.php:59
 msgid "The weight of the tags."
 msgstr ""
 
-#: classes/settings/class-settings-weights.php:57
+#: classes/settings/class-settings-weights.php:65
 msgid "Custom Taxonomies"
 msgstr ""
 
-#: classes/settings/class-settings-weights.php:58
+#: classes/settings/class-settings-weights.php:66
 msgid "The weight of custom taxonomies."
+msgstr ""
+
+#: classes/settings/class-settings-words.php:18
+msgid "Words"
+msgstr ""
+
+#: classes/settings/class-settings-words.php:24
+msgid "Word related options"
+msgstr ""
+
+#: classes/settings/class-settings-words.php:25
+msgid ""
+"Control what extra words should be excluded and what word combinations "
+"should be parsed as a single word."
+msgstr ""
+
+#: classes/settings/class-settings-words.php:29
+msgid "Extra Ignored Words"
+msgstr ""
+
+#: classes/settings/class-settings-words.php:30
+msgid ""
+"By default we already ignore a lot of words based on your language that are "
+"not related to your content. In English this would be words like %s and %s."
+msgstr ""
+
+#: classes/settings/class-settings-words.php:30
+msgid "Add the extra words you would to ignore here, one word per row."
+msgstr ""
+
+#: classes/settings/class-settings-words.php:36
+msgid "Joined Words"
+msgstr ""
+
+#: classes/settings/class-settings-words.php:37
+msgid ""
+"By default we split content per word but some word combinations should be "
+"considered as one word. An example of this would be %s."
+msgstr ""
+
+#: classes/settings/class-settings-words.php:37
+msgid "Add your joined words here, one joined word per row."
 msgstr ""
 
 #: includes/updater/class-rp4wp-updater.php:131
@@ -555,9 +694,9 @@ msgid "The best way to display related posts in WordPress."
 msgstr "Најбољи начин да прикажете повезане чланке у Вордпресу."
 
 #. Author of the plugin/theme
-msgid "Barry Kooij"
-msgstr "Barry Kooij"
+msgid "Never5"
+msgstr ""
 
 #. Author URI of the plugin/theme
-msgid "http://www.barrykooij.com/"
-msgstr "http://www.barrykooij.com/"
+msgid "http://www.never5.com/"
+msgstr ""

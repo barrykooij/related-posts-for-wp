@@ -1,13 +1,13 @@
-# Copyright (C) 2015 Barry Kooij
+# Copyright (C) 2016 Never5
 # This file is distributed under the GPL v3.
 # Translators:
-# Barry Kooij <mail@barrykooij.nl>, 2014
+# Barry Kooij <mail@barrykooij.nl>, 2014,2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://github.com/barrykooij/related-posts-for-wp/issues\n"
-"POT-Creation-Date: 2015-05-31 09:56:12+00:00\n"
-"PO-Revision-Date: 2015-06-07 19:28+0000\n"
+"POT-Creation-Date: 2016-08-25 13:53:23+00:00\n"
+"PO-Revision-Date: 2016-08-25 14:10+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/barrykooijplugins/related-posts-for-wordpress/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: nl_NL\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: grunt-wp-i18n 0.4.8\n"
+"X-Generator: grunt-wp-i18n 0.4.9\n"
 
 #: classes/class-is-installing-notice.php:74
 msgid ""
@@ -31,10 +31,30 @@ msgstr "%sGa door met de wizard%s of %sverberg dit bericht%s"
 msgid "Are you sure you want to delete this related post?"
 msgstr "Weet je zeker dat je dit gerelateerde bericht wilt verwijderen?"
 
+#: classes/class-javascript-strings.php:15
+msgid "Delete this post type"
+msgstr "Verwijder dit post type"
+
+#: classes/class-javascript-strings.php:16
+msgid "Relink related posts"
+msgstr "Herlink gerelateerde posts"
+
+#: classes/class-javascript-strings.php:17
+msgid "Reinstall this post type"
+msgstr "Herinstalleer dit post type"
+
+#: classes/class-javascript-strings.php:18
+msgid "Save post type"
+msgstr "Bewaar dit post type"
+
+#: classes/class-javascript-strings.php:19
+msgid "Add post type"
+msgstr "Voeg dit post type toe"
+
 #: classes/class-link-related-table.php:45
 #: classes/hooks/class-hook-settings-page.php:20
 #: classes/meta-boxes/class-meta-box-manage.php:37
-#: classes/settings/class-settings-general.php:59
+#: classes/settings/class-settings-general.php:60
 msgid "Related Posts"
 msgstr "Gerelateerde Berichten"
 
@@ -43,30 +63,34 @@ msgid "All Posts"
 msgstr "Alle Berichten"
 
 #: classes/class-link-related-table.php:95
-#: classes/settings/class-settings-weights.php:29
+#: classes/settings/class-settings-weights.php:37
 msgid "Title"
 msgstr "Titel"
 
 #: classes/class-link-related-table.php:96
-#: classes/hooks/class-hook-page-install.php:168
-#: classes/hooks/class-hook-settings-page.php:152
+#: classes/hooks/class-hook-page-install.php:187
+#: classes/hooks/class-hook-settings-page.php:155
 msgid "Post Type"
 msgstr "Post Type"
 
-#: classes/class-link-related-table.php:260
+#: classes/class-link-related-table.php:97
+msgid "Post Date"
+msgstr "Post Datum"
+
+#: classes/class-link-related-table.php:270
 msgid "Link Post"
 msgstr "Link Bericht"
 
-#: classes/class-link-related-table.php:268
+#: classes/class-link-related-table.php:278
 msgid "View Post"
 msgstr "Bekijk Post"
 
-#: classes/class-link-related-table.php:299
+#: classes/class-link-related-table.php:317
 msgid "Link Posts"
 msgstr "Link Berichten"
 
 #: classes/class-post-type-manager.php:21
-#: classes/hooks/class-hook-link-related-screen.php:155
+#: classes/hooks/class-hook-link-related-screen.php:187
 msgid "Posts"
 msgstr "Berichten"
 
@@ -86,46 +110,46 @@ msgstr "Toon gerelateerde berichten."
 msgid "Settings"
 msgstr "Instellingen"
 
-#: classes/hooks/class-hook-link-related-screen.php:157
+#: classes/hooks/class-hook-link-related-screen.php:189
 msgid "Cancel linking"
 msgstr "Annuleer linken"
 
-#: classes/hooks/class-hook-link-related-screen.php:173
+#: classes/hooks/class-hook-link-related-screen.php:205
 msgid "Search"
 msgstr "Zoeken"
 
-#: classes/hooks/class-hook-page-install.php:57
+#: classes/hooks/class-hook-page-install.php:59
 msgid "Welcome"
 msgstr "Welkom"
 
-#: classes/hooks/class-hook-page-install.php:58
+#: classes/hooks/class-hook-page-install.php:60
 msgid "Caching Posts"
 msgstr "Cachen van berichten"
 
-#: classes/hooks/class-hook-page-install.php:59
+#: classes/hooks/class-hook-page-install.php:61
 msgid "Linking Posts"
 msgstr "Linken van berichten"
 
-#: classes/hooks/class-hook-page-install.php:60
+#: classes/hooks/class-hook-page-install.php:62
 msgid "Finished"
 msgstr "Klaar"
 
-#: classes/hooks/class-hook-page-install.php:71
+#: classes/hooks/class-hook-page-install.php:78
 msgid ""
 "Missing post type parameter, please report this incident via %sour "
 "website%s."
 msgstr "De post type parameter ontbreekt, neem a.u.b. contact op via %sonze website%."
 
-#: classes/hooks/class-hook-page-install.php:102
+#: classes/hooks/class-hook-page-install.php:121
 msgid "Installation"
 msgstr "Installatie"
 
-#: classes/hooks/class-hook-page-install.php:149
-#: classes/hooks/class-hook-page-install.php:228
+#: classes/hooks/class-hook-page-install.php:168
+#: classes/hooks/class-hook-page-install.php:247
 msgid "Thank you for choosing Related Posts for WordPress!"
 msgstr "Bedankt voor het kiezen voor Related Posts for WordPress!"
 
-#: classes/hooks/class-hook-page-install.php:150
+#: classes/hooks/class-hook-page-install.php:169
 msgid ""
 "Below you'll find your post types available for installation, by installing "
 "a post type we'll set up a cache and offer you the ability to automatic link"
@@ -133,152 +157,150 @@ msgid ""
 "Type' button."
 msgstr "Hieronder vind je de beschikbare (custom) post types. Wanneer je een post type installeert zullen wij de content cachen en je daarna de mogelijkheid bieden om automatisch gerelateerde content aan elkaar te koppelen. Om een post type te installeren, klik op de 'Installeer post type' knop."
 
-#: classes/hooks/class-hook-page-install.php:169
+#: classes/hooks/class-hook-page-install.php:188
 msgid "Related to Post Types"
 msgstr "Gerelateerde Post Types"
 
-#: classes/hooks/class-hook-page-install.php:204
-msgid "Edit"
-msgstr "Bewerk"
+#: classes/hooks/class-hook-page-install.php:223
+msgid "Edit this post type"
+msgstr "Bewerk dit post type"
 
-#: classes/hooks/class-hook-page-install.php:229
+#: classes/hooks/class-hook-page-install.php:248
 msgid ""
 "Before you can start using Related Posts for WordPress we need to cache your"
 " current posts."
 msgstr "Voordat je Related Posts for WordPress kan gebruiken moeten we eerst je huidige berichten cachen."
 
-#: classes/hooks/class-hook-page-install.php:230
+#: classes/hooks/class-hook-page-install.php:249
 msgid ""
 "This is a one time process which might take some time now, depending on the "
 "amount of posts you have, but will ensure your website's performance when "
 "using the plugin."
 msgstr "Dit is een eenmalig proces wat  nu even kan duren, afhankelijk van het aantal berichten dat je hebt. Het zorgt er wel voor dat de prestatie van je website hoog blijft."
 
-#: classes/hooks/class-hook-page-install.php:232
+#: classes/hooks/class-hook-page-install.php:251
 msgid ""
 "Do NOT close this window, wait for this process to finish and this wizard to"
 " take you to the next step."
 msgstr "Sluit dit venster NIET, wacht tot het proces klaar is en de wizard je naar de volgende stap stuurt."
 
-#: classes/hooks/class-hook-page-install.php:266
+#: classes/hooks/class-hook-page-install.php:285
 msgid "Great! All your posts were successfully cached!"
 msgstr "Perfect! Al je berichten zijn succesvol gecached."
 
-#: classes/hooks/class-hook-page-install.php:267
+#: classes/hooks/class-hook-page-install.php:286
 msgid ""
 "You can let me link your posts, based on what I think is related, to each "
 "other. And don't worry, if I made a mistake at one of your posts you can "
 "easily correct this by editing it manually!"
 msgstr "Je kunt mij, op basis van wat ik denk dat gerelateerd is, je berichten aan elkaar laten koppelen. Maak je geen zorgen, als ik een fout heb gemaakt kun je deze later gemakkelijk corrigeren!"
 
-#: classes/hooks/class-hook-page-install.php:268
+#: classes/hooks/class-hook-page-install.php:287
 msgid ""
 "Want me to start linking posts to each other? Fill in the amount of related "
 "posts each post should have and click on the \"Link now\" button. Rather "
 "link your posts manually? Click \"Skip linking\"."
 msgstr "Wil je dat ik begin met het linken van gerelateerde berichten? Vul het aantal gerelateerde berichten dat ieder bericht moet krijgen in en klik op \"Nu linken\". Liever je berichten handmatig linken? Klik op \"Sla linken over\"."
 
-#: classes/hooks/class-hook-page-install.php:269
+#: classes/hooks/class-hook-page-install.php:288
 msgid ""
 "Do NOT close this window if you click the \"Link now\" button, wait for this"
 " process to finish and this wizard to take you to the next step."
 msgstr "Sluit dit venster NIET wanneer je \"Nu linken\" hebt gekozen, wacht tot het proces klaar is en de wizard je naar de volgende stap stuurt."
 
-#: classes/hooks/class-hook-page-install.php:275
+#: classes/hooks/class-hook-page-install.php:295
 msgid "Amount of related posts:"
 msgstr "Aantal gerelateerde berichten:"
 
-#: classes/hooks/class-hook-page-install.php:277
+#: classes/hooks/class-hook-page-install.php:299
 msgid "The amount of related items per %s"
 msgstr "Het aantal gerelateerde berichten per %s"
 
-#: classes/hooks/class-hook-page-install.php:282
+#: classes/hooks/class-hook-page-install.php:305
 msgid "Maximum Post Age:"
 msgstr "Maximum Post Leeftijd:"
 
-#: classes/hooks/class-hook-page-install.php:284
+#: classes/hooks/class-hook-page-install.php:309
 msgid "The maximum age in days of %s that will be linked. (0 = unlimited)"
 msgstr "De maximum leeftijd in dagen van %s die gelinked worden (0 = oneindig)"
 
-#: classes/hooks/class-hook-page-install.php:290
+#: classes/hooks/class-hook-page-install.php:316
 msgid "Link now"
 msgstr "Nu linken"
 
-#: classes/hooks/class-hook-page-install.php:291
+#: classes/hooks/class-hook-page-install.php:318
 msgid "Skip linking"
 msgstr "Sla linken over"
 
-#: classes/hooks/class-hook-page-install.php:309
+#: classes/hooks/class-hook-page-install.php:336
 msgid "That's it, you're good to go!"
 msgstr "Super, de wizard is klaar en je hebt nu gerelateerde berichten op je website!"
 
-#: classes/hooks/class-hook-page-install.php:310
+#: classes/hooks/class-hook-page-install.php:337
 msgid ""
 "Thanks again for using Related Posts for WordPress and if you have any "
 "questions be sure to ask them at the %sWordPress.org forums.%s"
 msgstr "Nogmaals bedankt voor het kiezen voor Related Posts for WordPress en als je nog vragen hebt kan je deze stellen op %shet WordPress.org forum%s."
 
-#: classes/hooks/class-hook-page-install.php:313
+#: classes/hooks/class-hook-page-install.php:340
 msgid "Click here to return to step 1"
 msgstr "Klik hier om terug te gaan naar stap 1"
 
-#: classes/hooks/class-hook-page-install.php:319
+#: classes/hooks/class-hook-page-install.php:346
 msgid "Click here to go to the settings page"
 msgstr "Klik hier om naar de instellingen pagina te gaan"
 
-#: classes/hooks/class-hook-settings-page.php:57
+#: classes/hooks/class-hook-settings-page.php:58
 msgid "Plugin version"
 msgstr "Plugin versie"
 
-#: classes/hooks/class-hook-settings-page.php:63
+#: classes/hooks/class-hook-settings-page.php:64
 msgid ""
 "Got a question? Simply send us an email at "
 "%ssupport@relatedpostsforwp.com%s. Please note that support requires an "
 "active license."
 msgstr "Heb je een vraag? Simpelweg stuur ons een email op %ssupport@relatedpostsforwp.com%s. Let wel op dat voor support een actieve licentie veriest is."
 
-#: classes/hooks/class-hook-settings-page.php:67
+#: classes/hooks/class-hook-settings-page.php:68
 msgid "More information"
 msgstr "Meer informatie"
 
-#: classes/hooks/class-hook-settings-page.php:69
+#: classes/hooks/class-hook-settings-page.php:70
 msgid "<a href='%s'>Documentation</a>"
 msgstr "<a href='%s'>Documentatie</a>"
 
-#: classes/hooks/class-hook-settings-page.php:71
+#: classes/hooks/class-hook-settings-page.php:72
 msgid "<a href='%s'>Changelog</a>"
 msgstr "<a href='%s'>Changelog</a>"
 
-#: classes/hooks/class-hook-settings-page.php:73
+#: classes/hooks/class-hook-settings-page.php:74
 msgid "<a href='%s'>Give us a review</a>"
 msgstr "<a href='%s'>Geef ons een review</a>"
 
-#: classes/hooks/class-hook-settings-page.php:78
-msgid "About the developer"
-msgstr "Over de ontwikkelaar"
+#: classes/hooks/class-hook-settings-page.php:76
+msgid "Check out our other plugins at Never5.com"
+msgstr "Bekijk andere plugins op Never5.com"
 
-#: classes/hooks/class-hook-settings-page.php:80
+#: classes/hooks/class-hook-settings-page.php:81
+msgid "About Never5"
+msgstr "Over Never5"
+
+#: classes/hooks/class-hook-settings-page.php:85
 msgid ""
-"Barry is a WordPress developer that works on WooCommerce and is the author "
-"of various WordPress plugins that include Related Posts for WordPress, Post "
-"Connector and What The File."
-msgstr "Barry is een WordPress ontwikkelaar welke werkt aan WooCommerce. Ook is hij de schrijver van verschillende WordPress plugins zoals Related Posts for WordPress, Post Connector en What The File."
+"At %sNever5%s we create high quality premium WordPress plugins, with "
+"extensive support. We offer solutions in related posts, advanced download "
+"management, vehicle management and connecting post types."
+msgstr "Bij %sNever5%s maken we premium WordPress plugins van hoge kwaliteit, met uitgebreide ondersteuning. Wij bieden oplossingen in gerelateerde berichten, geavanceerd download beheer, voertuig beheer en het verbinden van verschillende post types."
 
-#: classes/hooks/class-hook-settings-page.php:82
-msgid ""
-"Barry likes contributing to open source projects and visiting WordCamps and "
-"WordPress meetups. He’s the organizer of the WordPress meetup in Tilburg."
-msgstr "Barry houdt van het bijdragen aan opensource projecten en het bezoeken van WordCamps en WordPress meetups. Hij is de organisator van de WordPress meetup in Tilburg."
+#: classes/hooks/class-hook-settings-page.php:87
+msgid "%sFollow Never5 on Twitter%s"
+msgstr "%sVolg Never5 op Twitter%s"
 
-#: classes/hooks/class-hook-settings-page.php:84
-msgid "%sFollow Barry on Twitter%s."
-msgstr "%sVolg Barry op Twitter%s."
-
-#: classes/hooks/class-hook-settings-page.php:110
+#: classes/hooks/class-hook-settings-page.php:113
 msgid "General"
 msgstr "Algemeen"
 
-#: classes/hooks/class-hook-settings-page.php:130
+#: classes/hooks/class-hook-settings-page.php:133
 msgid "Installer"
 msgstr "Installatie wizard"
 
@@ -286,17 +308,17 @@ msgstr "Installatie wizard"
 msgid "Add Related Posts"
 msgstr "Voeg gerelateerde posts toe"
 
-#: classes/meta-boxes/class-meta-box-manage.php:103
-#: classes/meta-boxes/class-meta-box-manage.php:104
+#: classes/meta-boxes/class-meta-box-manage.php:108
+#: classes/meta-boxes/class-meta-box-manage.php:109
 msgid "Edit Post"
 msgstr "Bewerk Bericht"
 
-#: classes/meta-boxes/class-meta-box-manage.php:106
-#: classes/meta-boxes/class-meta-box-manage.php:107
+#: classes/meta-boxes/class-meta-box-manage.php:111
+#: classes/meta-boxes/class-meta-box-manage.php:112
 msgid "Unlink Related Post"
 msgstr "Ontkoppel Related Post"
 
-#: classes/meta-boxes/class-meta-box-manage.php:120
+#: classes/meta-boxes/class-meta-box-manage.php:125
 msgid "No related posts found."
 msgstr "Geen gerelateerde berichten gevonden."
 
@@ -304,7 +326,7 @@ msgstr "Geen gerelateerde berichten gevonden."
 msgid "Related Posts Options"
 msgstr "Gerelateerde Post Opties"
 
-#: classes/meta-boxes/class-meta-box-options.php:59
+#: classes/meta-boxes/class-meta-box-options.php:62
 msgid "Exclude"
 msgstr "Uitsluiten"
 
@@ -381,34 +403,90 @@ msgstr "Maximum Post Leeftijd"
 msgid "The maximum age in days of %ss that will be linked. (0 = unlimited)"
 msgstr "De maximum leeftijd in dagen van %s die gelinked worden (0 = oneindig)"
 
-#: classes/settings/class-settings-general.php:51
+#: classes/settings/class-settings-general.php:52
 msgid "Frontend Settings"
 msgstr "Frontend Instellingen"
 
-#: classes/settings/class-settings-general.php:52
+#: classes/settings/class-settings-general.php:53
 msgid ""
 "The following options affect how related %ss are displayed on the frontend."
 msgstr "De volgende opties beïnvloeden hoe gerelateerde %s getoond worden aan de voorkant van de website. "
 
-#: classes/settings/class-settings-general.php:56
+#: classes/settings/class-settings-general.php:57
 msgid "Heading text"
 msgstr "Titel tekst"
 
-#: classes/settings/class-settings-general.php:57
+#: classes/settings/class-settings-general.php:58
 msgid ""
 "The text that is displayed above the related %ss. To disable, leave field "
 "empty."
 msgstr "De tekst welke boven de gerelateerde %s getoond wordt. Laat het veld leeg om uit te schakelen."
 
-#: classes/settings/class-settings-general.php:63
+#: classes/settings/class-settings-general.php:64
 msgid "Excerpt length"
 msgstr "Samenvatting lengte"
 
-#: classes/settings/class-settings-general.php:64
+#: classes/settings/class-settings-general.php:65
 msgid ""
 "The amount of words to be displayed below the title on website. To disable, "
 "set value to 0."
 msgstr "Het aantal woorden dat getoond wordt onder de titel. Vul 0 in om het uit te schakelen."
+
+#: classes/settings/class-settings-general.php:73
+msgid "Thumbnail size"
+msgstr "Thumbnail grootte"
+
+#: classes/settings/class-settings-general.php:74
+msgid ""
+"These settings affect the display and dimensions of your related post "
+"thumbnails – the display on the front-end will still be affected by CSS "
+"styles. After changing these settings you may need to %sregenerate your "
+"thumbnails.%s"
+msgstr "Deze instellingen beinvloeden hoe de afbeeldingen van je gerelateerde posts getoond worden, de frontend wordt nog wel door CSS gestyled. Na het aanpassen van deze instellingen kan het nodig zijn om je %sthumbnails opnieuw te genereren%s."
+
+#: classes/settings/class-settings-general.php:78
+msgid "Width"
+msgstr "Breedte"
+
+#: classes/settings/class-settings-general.php:79
+msgid "Thumbnail's width in pixels."
+msgstr "Thumbnail breedte in pixels."
+
+#: classes/settings/class-settings-general.php:85
+msgid "Height"
+msgstr "Hoogte"
+
+#: classes/settings/class-settings-general.php:86
+msgid "Thumbnail's height in pixels."
+msgstr "Thumbnail hoogte in pixels."
+
+#: classes/settings/class-settings-general.php:92
+msgid "Crop"
+msgstr "Crop"
+
+#: classes/settings/class-settings-general.php:93
+msgid "Crop the image from the center."
+msgstr "Crop de afbeelding vanuit het midden."
+
+#: classes/settings/class-settings-general.php:101
+msgid "Thumbnail Placeholder"
+msgstr "Thumbnail Placeholder"
+
+#: classes/settings/class-settings-general.php:102
+msgid ""
+"The placeholder will be used if no featured image is set and no images could"
+" be found in the content."
+msgstr "De placeholder wordt gebruikt als er geen uitgelichte afbeeldingen is en er geen afbeeldingen in de content gevonden zijn."
+
+#: classes/settings/class-settings-general.php:106
+msgid "Placeholder"
+msgstr "Placeholder"
+
+#: classes/settings/class-settings-general.php:107
+msgid ""
+"Thumbnail placeholder, the image that will be used if no other image is "
+"found."
+msgstr "Thumbnail placeholder, de afbeelding welke gebruikt wordt wanneer er geen andere afbeeldingen gevonden is."
 
 #: classes/settings/class-settings-license.php:18
 msgid "License"
@@ -479,11 +557,19 @@ msgid ""
 "problems connecting to licensing server."
 msgstr "Zet SSL verificatie in licentie connectie uit. Zet dit aan als je problemen hebt met verbinding maken met de licentie server."
 
-#: classes/settings/class-settings-page.php:448
+#: classes/settings/class-settings-page.php:212
+msgid "Image URL"
+msgstr "Afbeelding URL"
+
+#: classes/settings/class-settings-page.php:213
+msgid "Upload Image"
+msgstr "Afbeeldingen Uploaden"
+
+#: classes/settings/class-settings-page.php:468
 msgid "ACTIVATED"
 msgstr "GEACTIVEERD"
 
-#: classes/settings/class-settings-page.php:450
+#: classes/settings/class-settings-page.php:470
 msgid "NOT ACTIVE"
 msgstr "NIET ACTIEF"
 
@@ -501,41 +587,94 @@ msgid ""
 "need to rerun the installer after changing weights."
 msgstr "Pas gemakkelijk de gewichten aan door middel van de sliders op de pagina. Let wel op dat je na het aanpassen van de gewichten de installatie wizard opnieuw moet doorlopen."
 
+#: classes/settings/class-settings-weights.php:29
+#: classes/settings/class-settings-weights.php:33
+msgid "Reset Weight"
+msgstr "Gewichten Resetten"
+
 #: classes/settings/class-settings-weights.php:30
+msgid ""
+"Reset the weights back to their defaults. Don't forget to Save the Changes "
+"after resetting the weights."
+msgstr "Reset de gewichten terug naar de standaard waarden. Vergeet niet de pagina hierna op te slaan."
+
+#: classes/settings/class-settings-weights.php:38
 msgid "The weight of the title."
 msgstr "Het gewicht van de titel."
 
-#: classes/settings/class-settings-weights.php:36
+#: classes/settings/class-settings-weights.php:44
 msgid "Links"
 msgstr "Links"
 
-#: classes/settings/class-settings-weights.php:37
+#: classes/settings/class-settings-weights.php:45
 msgid "The weight of the links found in the content."
 msgstr "Het gewicht van de content."
 
-#: classes/settings/class-settings-weights.php:43
+#: classes/settings/class-settings-weights.php:51
 msgid "Categories"
 msgstr "Categorieën."
 
-#: classes/settings/class-settings-weights.php:44
+#: classes/settings/class-settings-weights.php:52
 msgid "The weight of the categories."
 msgstr "Het gewicht van de categorieën."
 
-#: classes/settings/class-settings-weights.php:50
+#: classes/settings/class-settings-weights.php:58
 msgid "Tags"
 msgstr "Tags"
 
-#: classes/settings/class-settings-weights.php:51
+#: classes/settings/class-settings-weights.php:59
 msgid "The weight of the tags."
 msgstr "Het gewicht van de tags."
 
-#: classes/settings/class-settings-weights.php:57
+#: classes/settings/class-settings-weights.php:65
 msgid "Custom Taxonomies"
 msgstr "Custom Taxonomieën."
 
-#: classes/settings/class-settings-weights.php:58
+#: classes/settings/class-settings-weights.php:66
 msgid "The weight of custom taxonomies."
 msgstr "Het gewicht van de custom taxonomieën."
+
+#: classes/settings/class-settings-words.php:18
+msgid "Words"
+msgstr "Woorden"
+
+#: classes/settings/class-settings-words.php:24
+msgid "Word related options"
+msgstr "Woord gerelateerde opties"
+
+#: classes/settings/class-settings-words.php:25
+msgid ""
+"Control what extra words should be excluded and what word combinations "
+"should be parsed as a single word."
+msgstr "Beheer welke extra woorden uitgesloten moeten worden en welke woord-combinaties als één enkel woord gezien moeten worden."
+
+#: classes/settings/class-settings-words.php:29
+msgid "Extra Ignored Words"
+msgstr "Extre genegeerde woorden"
+
+#: classes/settings/class-settings-words.php:30
+msgid ""
+"By default we already ignore a lot of words based on your language that are "
+"not related to your content. In English this would be words like %s and %s."
+msgstr "Standaard negeren wij al een hoop woorden gebaseerd op jouw taal waarvan wij denken dat ze niet gerelateerd zijn aan jouw content. In het Engels zijn dit bijvoorbeeld woorden als %s en %s."
+
+#: classes/settings/class-settings-words.php:30
+msgid "Add the extra words you would to ignore here, one word per row."
+msgstr "Voeg hier de extra woorden toe welke wij moeten negeren, één woord per rij."
+
+#: classes/settings/class-settings-words.php:36
+msgid "Joined Words"
+msgstr "Samengevoegde Woorden"
+
+#: classes/settings/class-settings-words.php:37
+msgid ""
+"By default we split content per word but some word combinations should be "
+"considered as one word. An example of this would be %s."
+msgstr "Standaard splitten wij de content op per woord maar sommige woord combinaties moeten we als één woord beschouwen. Een (Engels) voorbeeld hiervan is %s."
+
+#: classes/settings/class-settings-words.php:37
+msgid "Add your joined words here, one joined word per row."
+msgstr "Voeg hier je samengevoegde woorden toe, één per rij."
 
 #: includes/updater/class-rp4wp-updater.php:131
 msgid "Hide notice"
@@ -554,9 +693,9 @@ msgid "The best way to display related posts in WordPress."
 msgstr "De beste manier om gerelateerde berichten te tonen in WordPress."
 
 #. Author of the plugin/theme
-msgid "Barry Kooij"
-msgstr "Barry Kooij"
+msgid "Never5"
+msgstr "Never5"
 
 #. Author URI of the plugin/theme
-msgid "http://www.barrykooij.com/"
-msgstr "http://www.barrykooij.com/"
+msgid "http://www.never5.com/"
+msgstr "http://www.never5.com/"

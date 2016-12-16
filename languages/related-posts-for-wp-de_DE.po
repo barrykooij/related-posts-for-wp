@@ -1,4 +1,4 @@
-# Copyright (C) 2015 Barry Kooij
+# Copyright (C) 2016 Never5
 # This file is distributed under the GPL v3.
 # Translators:
 # Barry Kooij <mail@barrykooij.nl>, 2014
@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://github.com/barrykooij/related-posts-for-wp/issues\n"
-"POT-Creation-Date: 2015-05-31 09:56:12+00:00\n"
-"PO-Revision-Date: 2015-06-07 19:35+0000\n"
+"POT-Creation-Date: 2016-08-25 13:53:23+00:00\n"
+"PO-Revision-Date: 2016-11-29 18:20+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: German (Germany) (http://www.transifex.com/barrykooijplugins/related-posts-for-wordpress/language/de_DE/)\n"
 "MIME-Version: 1.0\n"
@@ -17,13 +17,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: de_DE\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: grunt-wp-i18n 0.4.8\n"
+"X-Generator: grunt-wp-i18n 0.4.9\n"
 
 #: classes/class-is-installing-notice.php:74
 msgid ""
 "Woah! Looks like we weren't able to finish your Related Posts for WordPress "
 "installation wizard!"
-msgstr "Woah! Sieht aus, als wären wir nicht in der Lage, Ihren Related Posts für Wordpress-Installationsassistenten zu beenden!"
+msgstr "Oha! Es sieht so aus, als wären wir nicht in der Lage, den Related Posts für WordPress-Installationsassistenten zu beenden!"
 
 #: classes/class-is-installing-notice.php:76
 msgid "%sResume the installation wizard%s or %sdismiss this notice%s"
@@ -31,44 +31,68 @@ msgstr "%sSetze den Installationsassistenten fort%s oder %sverwerfe diese Meldun
 
 #: classes/class-javascript-strings.php:14
 msgid "Are you sure you want to delete this related post?"
-msgstr "Sind sie sicher das Sie diesen verwanten Beitrag löschen wollen?"
+msgstr "Bist du sicher, dass du diesen verwandten Beitrag löschen willst?"
+
+#: classes/class-javascript-strings.php:15
+msgid "Delete this post type"
+msgstr "Diesen Beitragstyp löschen"
+
+#: classes/class-javascript-strings.php:16
+msgid "Relink related posts"
+msgstr "Verwandte Beiträg neu verlinken"
+
+#: classes/class-javascript-strings.php:17
+msgid "Reinstall this post type"
+msgstr "Diesen Post Type erneut installieren"
+
+#: classes/class-javascript-strings.php:18
+msgid "Save post type"
+msgstr "Post Type speichern"
+
+#: classes/class-javascript-strings.php:19
+msgid "Add post type"
+msgstr "Beitragstyp hinzufügen"
 
 #: classes/class-link-related-table.php:45
 #: classes/hooks/class-hook-settings-page.php:20
 #: classes/meta-boxes/class-meta-box-manage.php:37
-#: classes/settings/class-settings-general.php:59
+#: classes/settings/class-settings-general.php:60
 msgid "Related Posts"
-msgstr "Verwante Beiträge"
+msgstr "Verwandte Beiträge"
 
 #: classes/class-link-related-table.php:46
 msgid "All Posts"
 msgstr "Alle Beiträge"
 
 #: classes/class-link-related-table.php:95
-#: classes/settings/class-settings-weights.php:29
+#: classes/settings/class-settings-weights.php:37
 msgid "Title"
 msgstr "Titel"
 
 #: classes/class-link-related-table.php:96
-#: classes/hooks/class-hook-page-install.php:168
-#: classes/hooks/class-hook-settings-page.php:152
+#: classes/hooks/class-hook-page-install.php:187
+#: classes/hooks/class-hook-settings-page.php:155
 msgid "Post Type"
 msgstr "Beitrags-Typ"
 
-#: classes/class-link-related-table.php:260
+#: classes/class-link-related-table.php:97
+msgid "Post Date"
+msgstr "Beitragsdatum"
+
+#: classes/class-link-related-table.php:270
 msgid "Link Post"
 msgstr "Verknüpfe Beitrag"
 
-#: classes/class-link-related-table.php:268
+#: classes/class-link-related-table.php:278
 msgid "View Post"
-msgstr ""
+msgstr "Beitrag ansehen"
 
-#: classes/class-link-related-table.php:299
+#: classes/class-link-related-table.php:317
 msgid "Link Posts"
 msgstr "Verknüpfe Beiträge"
 
 #: classes/class-post-type-manager.php:21
-#: classes/hooks/class-hook-link-related-screen.php:155
+#: classes/hooks/class-hook-link-related-screen.php:187
 msgid "Posts"
 msgstr "Beiträge"
 
@@ -78,237 +102,235 @@ msgstr "Seiten"
 
 #: classes/class-related-posts-widget.php:13
 msgid "Related Posts for WordPress"
-msgstr "Verwante Beiträge für WordPress"
+msgstr "Verwandte Beiträge für WordPress"
 
 #: classes/class-related-posts-widget.php:14
 msgid "Display related posts."
-msgstr "Zeige verwante Beiträge"
+msgstr "Zeige verwandte Beiträge"
 
 #: classes/filters/class-filter-plugin-links.php:29
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: classes/hooks/class-hook-link-related-screen.php:157
+#: classes/hooks/class-hook-link-related-screen.php:189
 msgid "Cancel linking"
-msgstr "Verknüpfen abbrechen"
+msgstr "Verknüpfung abbrechen"
 
-#: classes/hooks/class-hook-link-related-screen.php:173
+#: classes/hooks/class-hook-link-related-screen.php:205
 msgid "Search"
 msgstr "Suchen"
 
-#: classes/hooks/class-hook-page-install.php:57
+#: classes/hooks/class-hook-page-install.php:59
 msgid "Welcome"
 msgstr "Willkommen"
 
-#: classes/hooks/class-hook-page-install.php:58
+#: classes/hooks/class-hook-page-install.php:60
 msgid "Caching Posts"
 msgstr "Beiträge zwischenspeichern"
 
-#: classes/hooks/class-hook-page-install.php:59
+#: classes/hooks/class-hook-page-install.php:61
 msgid "Linking Posts"
 msgstr "Beiträge verknüpfen"
 
-#: classes/hooks/class-hook-page-install.php:60
+#: classes/hooks/class-hook-page-install.php:62
 msgid "Finished"
 msgstr "Fertig"
 
-#: classes/hooks/class-hook-page-install.php:71
+#: classes/hooks/class-hook-page-install.php:78
 msgid ""
 "Missing post type parameter, please report this incident via %sour "
 "website%s."
-msgstr ""
+msgstr "Fehlender Beitragstyp-Parameter. Bitte melde uns das auf %sunserer Website%s"
 
-#: classes/hooks/class-hook-page-install.php:102
+#: classes/hooks/class-hook-page-install.php:121
 msgid "Installation"
 msgstr "Installation"
 
-#: classes/hooks/class-hook-page-install.php:149
-#: classes/hooks/class-hook-page-install.php:228
+#: classes/hooks/class-hook-page-install.php:168
+#: classes/hooks/class-hook-page-install.php:247
 msgid "Thank you for choosing Related Posts for WordPress!"
-msgstr "Vielen dank für ihre Wahl für Verwante Beiträge für WordPress"
+msgstr "Vielen Dank fürs Verwenden von Related Posts for WordPress!"
 
-#: classes/hooks/class-hook-page-install.php:150
+#: classes/hooks/class-hook-page-install.php:169
 msgid ""
 "Below you'll find your post types available for installation, by installing "
 "a post type we'll set up a cache and offer you the ability to automatic link"
 " (custom) posts. To install a post type, simply click the 'Install Post "
 "Type' button."
-msgstr "Nachfolgend finden Sie hier unter Ihre verfügbare Beitrags-Typen für die Installation. Durch einen Beitrags-Type zu installieren wirdt ein Zwischenspeicher eingerichtet und bieten wir Ihnen die Möglichkeit zum automatischen Verknüpfen von Beiträge. Um ein Beitrags-Typ zu installieren, drücken Sie auf 'Installiere Beitrags-Typ' "
+msgstr "Nachfolgend findest du die verfügbaren Beitragstypen für die Installation. Dabei wird pro Beitragstyp ein Zwischenspeicher eingerichtet und wir bieten eine automatische Verknüpfung der Beiträge an. Klick für die Installation einfach auf \"Beitragstyp installieren\"."
 
-#: classes/hooks/class-hook-page-install.php:169
+#: classes/hooks/class-hook-page-install.php:188
 msgid "Related to Post Types"
-msgstr ""
+msgstr "Verwandt mit Post Types"
 
-#: classes/hooks/class-hook-page-install.php:204
-msgid "Edit"
-msgstr ""
+#: classes/hooks/class-hook-page-install.php:223
+msgid "Edit this post type"
+msgstr "Diesen Post Type bearbeiten"
 
-#: classes/hooks/class-hook-page-install.php:229
+#: classes/hooks/class-hook-page-install.php:248
 msgid ""
 "Before you can start using Related Posts for WordPress we need to cache your"
 " current posts."
-msgstr "Befor Sie anfangen können mit Verwante Beiträge für WordPress müssen wir Ihre aktuellen Beiträge zwischenspeichern."
+msgstr "Bevor du Related Posts for WordPress benutzen kannst, müssen wir deine aktuellen Beiträge zwischenspeichern."
 
-#: classes/hooks/class-hook-page-install.php:230
+#: classes/hooks/class-hook-page-install.php:249
 msgid ""
 "This is a one time process which might take some time now, depending on the "
 "amount of posts you have, but will ensure your website's performance when "
 "using the plugin."
-msgstr "Dies ist ein einmaliger Vorgang, der einige Zeit dauern kan, abhängig von der Menge der Beiträg, die Sie haben, aber notwendig ist um die Leistung Ihrer website zu gewährleisten wenn Sie diesen Plug-in benutzen."
+msgstr "Dies ist ein einmaliger Vorgang, der je nach Anzahl Beiträge etwas dauern kann, aber notwendig ist um optimale Leistung bei Verwendung dieses Plugins zu garantieren."
 
-#: classes/hooks/class-hook-page-install.php:232
+#: classes/hooks/class-hook-page-install.php:251
 msgid ""
 "Do NOT close this window, wait for this process to finish and this wizard to"
 " take you to the next step."
-msgstr "Schließen Sie dieses Fenster bitte NICHT, warten bis der Prozess beendet ist und der Installationsassistent wird Sie weiterleiten zum nächtsten Schritt."
+msgstr "Dieses Fenster NICHT schliessen. Warte, bis der Vorgang beendet ist und der Installationsassistent dich zum nächsten Schritt weiterleitet."
 
-#: classes/hooks/class-hook-page-install.php:266
+#: classes/hooks/class-hook-page-install.php:285
 msgid "Great! All your posts were successfully cached!"
-msgstr "Super! All Ihre Beiträge sind erfolgreich zwischengespeichert."
+msgstr "Super! All deine Beiträge sind erfolgreich zwischengespeichert."
 
-#: classes/hooks/class-hook-page-install.php:267
+#: classes/hooks/class-hook-page-install.php:286
 msgid ""
 "You can let me link your posts, based on what I think is related, to each "
 "other. And don't worry, if I made a mistake at one of your posts you can "
 "easily correct this by editing it manually!"
-msgstr "Sie können mich die Verknüpfungen legen lassen, basiert auf was ich denke das verwandt ist. Wenn ich einen Fehler mache können Sie ganz einfach korrigieren, durch den Beitrag selbst zu bearbeiten."
+msgstr "Du kannst mich die Verknüpfungen vornehmen lassen. Wenn mir ein Fehler unterläuft, kannst du den ganz einfach korrigieren, indem du den Beitrag bearbeitest."
 
-#: classes/hooks/class-hook-page-install.php:268
+#: classes/hooks/class-hook-page-install.php:287
 msgid ""
 "Want me to start linking posts to each other? Fill in the amount of related "
 "posts each post should have and click on the \"Link now\" button. Rather "
 "link your posts manually? Click \"Skip linking\"."
-msgstr "Möchten Sie dass ich anfang mit verknüpfen van Beiträgen? Füllen Sie die Menge der verwandten Beiträge jeder Beitrag haben sollte und klicken Sie auf den \"Verknüpfe jetzt\" Knopf. Lieber selbst deine Beiträge verknüpfen? Klick \"Überspringe Verknüpfen\"."
+msgstr "Möchtest du, dass ich beginne Beiträge zu verknüpfen? Gib die Anzahl verwandter Beiträge an, die jeder Beitrag haben soll und klick anschliessend auf \"Jetzt verknüpfen\". Lieber selbst deine Beiträge verknüpfen? Klick auf \"Verknüpfung überspringen\"."
 
-#: classes/hooks/class-hook-page-install.php:269
+#: classes/hooks/class-hook-page-install.php:288
 msgid ""
 "Do NOT close this window if you click the \"Link now\" button, wait for this"
 " process to finish and this wizard to take you to the next step."
-msgstr "Schließen Sie dieses Fenster bitte NICHT, wenn Sie auf \"Verknüpfe jetzt\", warten bis der Prozess beendet ist und der Installationsassistent wird Sie weiterleiten zum nächtsten Schritt."
+msgstr "Dieses Fenster NICHT schliessen nachdem du auf \"Jetzt verknüpfen\" geklickt hast. Warte, bis der Vorgang beendet ist und der Installationsassistent dich zum nächsten Schritt weiterleitet."
 
-#: classes/hooks/class-hook-page-install.php:275
+#: classes/hooks/class-hook-page-install.php:295
 msgid "Amount of related posts:"
-msgstr ""
+msgstr "Anzahl verwandter Beiträge:"
 
-#: classes/hooks/class-hook-page-install.php:277
+#: classes/hooks/class-hook-page-install.php:299
 msgid "The amount of related items per %s"
-msgstr ""
+msgstr "Die Anzahl verwandter Einträge pro %s."
 
-#: classes/hooks/class-hook-page-install.php:282
+#: classes/hooks/class-hook-page-install.php:305
 msgid "Maximum Post Age:"
-msgstr ""
+msgstr "Maximales Beitragsalter:"
 
-#: classes/hooks/class-hook-page-install.php:284
+#: classes/hooks/class-hook-page-install.php:309
 msgid "The maximum age in days of %s that will be linked. (0 = unlimited)"
-msgstr ""
+msgstr "Maximale Anzahl Tage für welche der Beitrag (%s) verknüpft wird. (0 = unlimitiert)"
 
-#: classes/hooks/class-hook-page-install.php:290
+#: classes/hooks/class-hook-page-install.php:316
 msgid "Link now"
 msgstr "Verknüpfe jetzt"
 
-#: classes/hooks/class-hook-page-install.php:291
+#: classes/hooks/class-hook-page-install.php:318
 msgid "Skip linking"
-msgstr "Überspringe Verknüpfen"
+msgstr "Verknüpfung überspringen"
 
-#: classes/hooks/class-hook-page-install.php:309
+#: classes/hooks/class-hook-page-install.php:336
 msgid "That's it, you're good to go!"
-msgstr "Das wars, jetzt kann es los gehen!"
+msgstr "Das wars, es kann los gehen!"
 
-#: classes/hooks/class-hook-page-install.php:310
+#: classes/hooks/class-hook-page-install.php:337
 msgid ""
 "Thanks again for using Related Posts for WordPress and if you have any "
 "questions be sure to ask them at the %sWordPress.org forums.%s"
-msgstr "Nochmals vielen Dank für die Verwendung von Related Posts für Wordpress und wenn Sie irgendwelche Fragen haben, sollten Sie sie auf den %sWordPress.org Foren%s fragen."
+msgstr "Nochmals vielen Dank für die Verwendung von Related Posts für WordPress. Wenn du irgendwelche Fragen hast, frag am besten im %sWordPress.org Forum%s nach."
 
-#: classes/hooks/class-hook-page-install.php:313
+#: classes/hooks/class-hook-page-install.php:340
 msgid "Click here to return to step 1"
-msgstr "Drücken Sie hier um zurück zu Schritt 1 zu gehen"
+msgstr "Zurück zu Schritt 1"
 
-#: classes/hooks/class-hook-page-install.php:319
+#: classes/hooks/class-hook-page-install.php:346
 msgid "Click here to go to the settings page"
-msgstr "Drücken Sie hier um zurück zu den Einstellungen zu gehen"
+msgstr "Zurück zu den Einstellungen"
 
-#: classes/hooks/class-hook-settings-page.php:57
+#: classes/hooks/class-hook-settings-page.php:58
 msgid "Plugin version"
 msgstr "Plugin Version"
 
-#: classes/hooks/class-hook-settings-page.php:63
+#: classes/hooks/class-hook-settings-page.php:64
 msgid ""
 "Got a question? Simply send us an email at "
 "%ssupport@relatedpostsforwp.com%s. Please note that support requires an "
 "active license."
-msgstr ""
+msgstr "Hast du eine Frage? Schreib uns eine E-Mail an %ssupport@relatedpostsforwp.com%s. Bitte beachte, dass für Support eine aktive Lizenz benötigt wird."
 
-#: classes/hooks/class-hook-settings-page.php:67
+#: classes/hooks/class-hook-settings-page.php:68
 msgid "More information"
 msgstr "Weitere Information"
 
-#: classes/hooks/class-hook-settings-page.php:69
+#: classes/hooks/class-hook-settings-page.php:70
 msgid "<a href='%s'>Documentation</a>"
 msgstr "<a href='%s'>Dokumentation</a>"
 
-#: classes/hooks/class-hook-settings-page.php:71
+#: classes/hooks/class-hook-settings-page.php:72
 msgid "<a href='%s'>Changelog</a>"
 msgstr "<a href='%s'>Changelog</a>"
 
-#: classes/hooks/class-hook-settings-page.php:73
+#: classes/hooks/class-hook-settings-page.php:74
 msgid "<a href='%s'>Give us a review</a>"
-msgstr "<a href='%s'>Geben Sie uns eine Bewertung</a>"
+msgstr "<a href='%s'>Gib uns eine Bewertung</a>"
 
-#: classes/hooks/class-hook-settings-page.php:78
-msgid "About the developer"
-msgstr "Über den Entwickler"
+#: classes/hooks/class-hook-settings-page.php:76
+msgid "Check out our other plugins at Never5.com"
+msgstr "Sieh dir auch unsere andern Plugins auf Never5.com an"
 
-#: classes/hooks/class-hook-settings-page.php:80
+#: classes/hooks/class-hook-settings-page.php:81
+msgid "About Never5"
+msgstr "Über Never5"
+
+#: classes/hooks/class-hook-settings-page.php:85
 msgid ""
-"Barry is a WordPress developer that works on WooCommerce and is the author "
-"of various WordPress plugins that include Related Posts for WordPress, Post "
-"Connector and What The File."
-msgstr ""
+"At %sNever5%s we create high quality premium WordPress plugins, with "
+"extensive support. We offer solutions in related posts, advanced download "
+"management, vehicle management and connecting post types."
+msgstr "Bei %sNever5%s entwickeln wir qualitativ hochwertige Premium WordPress Plugins mit herausragendem Support. Wir bieten Lösungen für verwandte Beiträge, Download Management, Fahrzeugverwaltung und Beitragsverknüpfungen an."
 
-#: classes/hooks/class-hook-settings-page.php:82
-msgid ""
-"Barry likes contributing to open source projects and visiting WordCamps and "
-"WordPress meetups. He’s the organizer of the WordPress meetup in Tilburg."
-msgstr ""
+#: classes/hooks/class-hook-settings-page.php:87
+msgid "%sFollow Never5 on Twitter%s"
+msgstr "%sFolge Never5 auf Twitter%s"
 
-#: classes/hooks/class-hook-settings-page.php:84
-msgid "%sFollow Barry on Twitter%s."
-msgstr "%sFolgen Sie Barry auf Twitter%s."
-
-#: classes/hooks/class-hook-settings-page.php:110
+#: classes/hooks/class-hook-settings-page.php:113
 msgid "General"
 msgstr "Allgemein"
 
-#: classes/hooks/class-hook-settings-page.php:130
+#: classes/hooks/class-hook-settings-page.php:133
 msgid "Installer"
 msgstr "Installer"
 
 #: classes/meta-boxes/class-meta-box-manage.php:80
 msgid "Add Related Posts"
-msgstr "Verwante Beiträge zufügen"
+msgstr "Verwandte Beiträge zufügen"
 
-#: classes/meta-boxes/class-meta-box-manage.php:103
-#: classes/meta-boxes/class-meta-box-manage.php:104
+#: classes/meta-boxes/class-meta-box-manage.php:108
+#: classes/meta-boxes/class-meta-box-manage.php:109
 msgid "Edit Post"
 msgstr "Beitrag bearbeiten"
 
-#: classes/meta-boxes/class-meta-box-manage.php:106
-#: classes/meta-boxes/class-meta-box-manage.php:107
+#: classes/meta-boxes/class-meta-box-manage.php:111
+#: classes/meta-boxes/class-meta-box-manage.php:112
 msgid "Unlink Related Post"
 msgstr "Verknüpfung aufheben"
 
-#: classes/meta-boxes/class-meta-box-manage.php:120
+#: classes/meta-boxes/class-meta-box-manage.php:125
 msgid "No related posts found."
-msgstr "Keine verwante Beiträge gefunden."
+msgstr "Keine verwandte Beiträge gefunden."
 
 #: classes/meta-boxes/class-meta-box-options.php:37
 msgid "Related Posts Options"
-msgstr ""
+msgstr "Einstellungen für verwandte Beiträge"
 
-#: classes/meta-boxes/class-meta-box-options.php:59
+#: classes/meta-boxes/class-meta-box-options.php:62
 msgid "Exclude"
-msgstr ""
+msgstr "Ausschliessen"
 
 #: classes/settings/class-settings-configurator.php:18
 msgid "Styling"
@@ -316,24 +338,24 @@ msgstr "Styling"
 
 #: classes/settings/class-settings-configurator.php:24
 msgid "Full control on how your related posts are displayed."
-msgstr ""
+msgstr "Vollständige Kontrolle über die Darstellung deiner verwandten Beiträge."
 
 #: classes/settings/class-settings-configurator.php:33
 msgid "Posts per row"
-msgstr ""
+msgstr "Beiträge pro Zeile"
 
 #: classes/settings/class-settings-configurator.php:34
 msgid "The amount of related posts per row."
-msgstr ""
+msgstr "Die Anzahl verwandter Beiträge pro Zeile."
 
 #: classes/settings/class-settings-configurator.php:46
 msgid "Row fixed height"
-msgstr ""
+msgstr "Fixe Zeilengrösse"
 
 #: classes/settings/class-settings-configurator.php:47
 msgid ""
 "The fixed height per row in pixels, set to 0 to allow dynamic heights.."
-msgstr ""
+msgstr "Die fixe Zeilenhöhe in Pixel. 0 für dynamische Höhe."
 
 #: classes/settings/class-settings-configurator.php:53
 msgid "Custom CSS"
@@ -343,7 +365,7 @@ msgstr "Benutzerdefinierte CSS"
 msgid ""
 "Add custom CSS to selected theme. Warning! This is an advanced feature! An "
 "error here will break frontend display. To disable, leave field empty."
-msgstr "Fügen Sie benutzerdefinierte CSS an ausgewählte Thema zu. Achtung! Dies ist eine erweiterte Funktion! Ein Fehler wird hier kann die Wiedergabe kaputt machen. Zum Deaktivieren, lassen Sie das Feld leer."
+msgstr "Füge benutzerdefiniertes CSS zum aktuellen Theme hinzu. Achtung: Dies ist eine fortgeschrittenere Funktionalität! Ein Fehler kann die ganze Anzeige auf der Website kaputt machen. Zum Deaktivieren leer lassen."
 
 #: classes/settings/class-settings-general.php:18
 msgid "General settings for %s"
@@ -357,7 +379,7 @@ msgstr "Automatische %s verknüpfung"
 msgid ""
 "The following options affect how related posts are automatically linked for "
 "%ss."
-msgstr "Die folgenden Optionen beeinflussen, wie verwandten Beiträge automatisch verknüpft werden für %sen."
+msgstr "Die folgenden Optionen beeinflussen, wie verwandte Beiträge (%s) automatisch verknüpft werden."
 
 #: classes/settings/class-settings-general.php:29
 msgid "Enable"
@@ -365,7 +387,7 @@ msgstr "Aktivieren"
 
 #: classes/settings/class-settings-general.php:30
 msgid "Checking this will enable automatically linking posts to new %ss"
-msgstr "Aktivieren dieser Option wird automatisch die Verknüpfung von Beiträgen zu neuen %sen aktivieren."
+msgstr "Aktiviere diese Option um die automatische Verknüpfung von Einträgen (%s) zu aktiveren."
 
 #: classes/settings/class-settings-general.php:36
 msgid "Amount of Posts"
@@ -373,71 +395,127 @@ msgstr "Menge der Beiträge"
 
 #: classes/settings/class-settings-general.php:37
 msgid "The amount of automatically linked %ss"
-msgstr "Die Menge der automatisch verknüpfte %s"
+msgstr "Die Menge der automatisch verknüpften Einträge (%s)"
 
 #: classes/settings/class-settings-general.php:43
 msgid "Maximum Post Age"
-msgstr ""
+msgstr "Maximales Beitragsalter"
 
 #: classes/settings/class-settings-general.php:44
 msgid "The maximum age in days of %ss that will be linked. (0 = unlimited)"
-msgstr ""
+msgstr "Maximale Anzahl Tage für welche die Beiträge (%s) verknüpft werden. (0 = unlimitiert)"
 
-#: classes/settings/class-settings-general.php:51
+#: classes/settings/class-settings-general.php:52
 msgid "Frontend Settings"
 msgstr "Frontend Einstellungen"
 
-#: classes/settings/class-settings-general.php:52
+#: classes/settings/class-settings-general.php:53
 msgid ""
 "The following options affect how related %ss are displayed on the frontend."
-msgstr "Die folgenden Optionen beeinflussen, wie verwandte %sen auf der Webseite gezeigt werden."
+msgstr "Die folgenden Optionen beeinflussen, wie verwandte Einträge (%s)  auf der Webseite gezeigt werden."
 
-#: classes/settings/class-settings-general.php:56
+#: classes/settings/class-settings-general.php:57
 msgid "Heading text"
 msgstr "Überschrift Text"
 
-#: classes/settings/class-settings-general.php:57
+#: classes/settings/class-settings-general.php:58
 msgid ""
 "The text that is displayed above the related %ss. To disable, leave field "
 "empty."
-msgstr "Der Text, wird über den Verwandten %sen gezeigt. Zum Deaktivieren, lassen Sie das Feld leer."
+msgstr "Der Text, der über den verwandten Einträgen (%s) angezeigt wird. Zum Deaktivieren Feld leer lassen."
 
-#: classes/settings/class-settings-general.php:63
+#: classes/settings/class-settings-general.php:64
 msgid "Excerpt length"
 msgstr "Auszug Länge"
 
-#: classes/settings/class-settings-general.php:64
+#: classes/settings/class-settings-general.php:65
 msgid ""
 "The amount of words to be displayed below the title on website. To disable, "
 "set value to 0."
-msgstr "Die Menge der Wörter, die unter dem Titel auf der Webseite gezeigt werden. Um zu deaktivieren, setzen Sie den Wert auf 0."
+msgstr "Die Anzahl Wörter, die unter dem Titel auf der Webseite angezeigt werden. Zum Deaktivieren Wert auf 0 setzen."
+
+#: classes/settings/class-settings-general.php:73
+msgid "Thumbnail size"
+msgstr "Vorschaubildgrösse"
+
+#: classes/settings/class-settings-general.php:74
+msgid ""
+"These settings affect the display and dimensions of your related post "
+"thumbnails – the display on the front-end will still be affected by CSS "
+"styles. After changing these settings you may need to %sregenerate your "
+"thumbnails.%s"
+msgstr "Diese Einstellungen beeinflussen die Darstellung und Dimensionen der Vorschaubilder verwandter Beiträge. Die Darstellung im Frontend wird weiterhin über CSS gesteuert. Nach einer Änderung musst du eventuell %sVorschaubilder regenerieren%s."
+
+#: classes/settings/class-settings-general.php:78
+msgid "Width"
+msgstr "Breite"
+
+#: classes/settings/class-settings-general.php:79
+msgid "Thumbnail's width in pixels."
+msgstr "Breite des Vorschaubilds in Pixel."
+
+#: classes/settings/class-settings-general.php:85
+msgid "Height"
+msgstr "Höhe"
+
+#: classes/settings/class-settings-general.php:86
+msgid "Thumbnail's height in pixels."
+msgstr "Höhe des Vorschaubilds in Pixel."
+
+#: classes/settings/class-settings-general.php:92
+msgid "Crop"
+msgstr "Zuschneiden"
+
+#: classes/settings/class-settings-general.php:93
+msgid "Crop the image from the center."
+msgstr "Bild von der Mitte aus zuschneiden."
+
+#: classes/settings/class-settings-general.php:101
+msgid "Thumbnail Placeholder"
+msgstr "Vorschaubildplatzhalter"
+
+#: classes/settings/class-settings-general.php:102
+msgid ""
+"The placeholder will be used if no featured image is set and no images could"
+" be found in the content."
+msgstr "Der Platzhalter wird verwendet, wenn kein Vorschaubild vorhanden ist und auch im Inhalt kein Bild gefunden werden konnte."
+
+#: classes/settings/class-settings-general.php:106
+msgid "Placeholder"
+msgstr "Platzhalter"
+
+#: classes/settings/class-settings-general.php:107
+msgid ""
+"Thumbnail placeholder, the image that will be used if no other image is "
+"found."
+msgstr "Platzhalter für den Fall, dass kein Vorschaubild vorhanden ist."
 
 #: classes/settings/class-settings-license.php:18
 msgid "License"
-msgstr ""
+msgstr "Lizenz"
 
 #: classes/settings/class-settings-license.php:29
 msgid "License Status"
-msgstr ""
+msgstr "Lizenzstatus"
 
 #: classes/settings/class-settings-license.php:36
 msgid "License Key"
-msgstr ""
+msgstr "Lizenzschlüssel"
 
 #: classes/settings/class-settings-license.php:37
 msgid ""
 "Your license key. You can find your license key in your %sMy Account%s page."
-msgstr ""
+msgstr "Dein Lizenzschlüssel. Du findest ihn auf der %sMy Account%s Seite."
 
 #: classes/settings/class-settings-license.php:44
 msgid "Activation Email"
-msgstr ""
+msgstr "Aktivierungsemail"
 
 #: classes/settings/class-settings-license.php:45
 msgid ""
 "Your activation email address. You can find your activation email address in"
 " your %sMy Account%s page."
-msgstr ""
+msgstr "Deine Aktivierungsemail. Du findest sie auf der %sMy Account%s Seite."
 
 #: classes/settings/class-settings-misc.php:18
 msgid "Misc"
@@ -449,7 +527,7 @@ msgstr "Sonstige Einstellungen"
 
 #: classes/settings/class-settings-misc.php:25
 msgid "A shelter for options that just don't fit in."
-msgstr "Ein Unterstand für Optionen, die einfach nicht passen."
+msgstr "Ein Bereich für Optionen, die einfach nirgendwo sonst reinpassen."
 
 #: classes/settings/class-settings-misc.php:29
 msgid "Remove Data on Uninstall?"
@@ -459,85 +537,146 @@ msgstr "Daten entfernen beim Deinstallieren?"
 msgid ""
 "Check this box if you would like to completely remove all of its data when "
 "the plugin is deleted."
-msgstr "Aktivieren Sie dieses Kästchen, wenn Sie möchten, um alle Daten zu entfernen, wenn der Plugin gelöscht wird."
+msgstr "Aktiviere diese Checkbox, wenn du beim Löschen dieses Plugins auch all dessen Daten löschen möchtest."
 
 #: classes/settings/class-settings-misc.php:36
 msgid "Show love?"
-msgstr ""
+msgstr "Etwas Liebe zeigen?"
 
 #: classes/settings/class-settings-misc.php:37
 msgid ""
 "Display a 'Powered by' line under your related posts. <strong>BEWARE! Only "
 "for the real fans.</strong>"
-msgstr ""
+msgstr "Zeige eine 'Powered by' Zeile unter den verwandten Beiträge. <strong>VORSICHT! Nur für echte Fans.</strong>"
 
 #: classes/settings/class-settings-misc.php:43
 msgid "Disable SSL Verification"
-msgstr ""
+msgstr "Deaktiviere SSL-Verifizierung"
 
 #: classes/settings/class-settings-misc.php:44
 msgid ""
 "Disable SSL verification in license requests. Check this if you've got "
 "problems connecting to licensing server."
-msgstr ""
+msgstr "Deaktiviere SSL-Verifizierung für Lizenzprüfungen. Wähle diese Option aus, wenn es Problem bei der Verbindung mit dem Lizenz-Server gibt."
 
-#: classes/settings/class-settings-page.php:448
+#: classes/settings/class-settings-page.php:212
+msgid "Image URL"
+msgstr "Bild-URL"
+
+#: classes/settings/class-settings-page.php:213
+msgid "Upload Image"
+msgstr "Bild hochladen"
+
+#: classes/settings/class-settings-page.php:468
 msgid "ACTIVATED"
-msgstr ""
+msgstr "AKTIVIERT"
 
-#: classes/settings/class-settings-page.php:450
+#: classes/settings/class-settings-page.php:470
 msgid "NOT ACTIVE"
-msgstr ""
+msgstr "NICHT AKTIV"
 
 #: classes/settings/class-settings-weights.php:18
 msgid "Weights"
-msgstr "Gewichte"
+msgstr "Gewichtungen"
 
 #: classes/settings/class-settings-weights.php:24
 msgid "Weight settings"
-msgstr "Gewichts Einstellungen"
+msgstr "Gewichtungseinstellung"
 
 #: classes/settings/class-settings-weights.php:25
 msgid ""
 "Easily adjust the weights by using the sliders below. Please note that you "
 "need to rerun the installer after changing weights."
-msgstr "Einfache Anpassung der Gewichte mit Hilfe der Schieberegler unten. Bitte beachten Sie, dass Sie das Installationsprogramm nach dem Ändern der Gewichte erneut ausführen müssen."
+msgstr "Passe die Gewichtung einfach an mit Hilfe der nachfolgenden Schieberegler. Bitte beachte, dass das Installationsprogramm nach einer Änderung erneut ausgeführt werden muss."
+
+#: classes/settings/class-settings-weights.php:29
+#: classes/settings/class-settings-weights.php:33
+msgid "Reset Weight"
+msgstr "Gewichtung zurücksetzen"
 
 #: classes/settings/class-settings-weights.php:30
-msgid "The weight of the title."
-msgstr "Das Gewicht des Titels."
+msgid ""
+"Reset the weights back to their defaults. Don't forget to Save the Changes "
+"after resetting the weights."
+msgstr "Gewichtungen zurück auf die Ursprungswerte zurücksetzen. Vergiss nicht die Änderung anschliessend zu speichern."
 
-#: classes/settings/class-settings-weights.php:36
+#: classes/settings/class-settings-weights.php:38
+msgid "The weight of the title."
+msgstr "Gewichtung des Titels."
+
+#: classes/settings/class-settings-weights.php:44
 msgid "Links"
 msgstr "Verknüpfungen"
 
-#: classes/settings/class-settings-weights.php:37
+#: classes/settings/class-settings-weights.php:45
 msgid "The weight of the links found in the content."
-msgstr "Das Gewicht der Links in dem Inhalt."
+msgstr "Gewichtung der Links in dem Inhalt."
 
-#: classes/settings/class-settings-weights.php:43
+#: classes/settings/class-settings-weights.php:51
 msgid "Categories"
 msgstr "Kategorien"
 
-#: classes/settings/class-settings-weights.php:44
+#: classes/settings/class-settings-weights.php:52
 msgid "The weight of the categories."
-msgstr "Das Gewicht der Kategorien."
+msgstr "Gewichtung der Kategorien."
 
-#: classes/settings/class-settings-weights.php:50
+#: classes/settings/class-settings-weights.php:58
 msgid "Tags"
-msgstr "Tags"
+msgstr "Schlagwörter"
 
-#: classes/settings/class-settings-weights.php:51
+#: classes/settings/class-settings-weights.php:59
 msgid "The weight of the tags."
-msgstr "Das Gewicht der Tags."
+msgstr "Gewichtung der Schlagwörter."
 
-#: classes/settings/class-settings-weights.php:57
+#: classes/settings/class-settings-weights.php:65
 msgid "Custom Taxonomies"
 msgstr "Benutzerdefinierte Taxonomien"
 
-#: classes/settings/class-settings-weights.php:58
+#: classes/settings/class-settings-weights.php:66
 msgid "The weight of custom taxonomies."
-msgstr "Das Gewicht der benutzerdefinierte Taxonomien."
+msgstr "Gewichtung der benutzerdefinierte Taxonomien."
+
+#: classes/settings/class-settings-words.php:18
+msgid "Words"
+msgstr "Wörter"
+
+#: classes/settings/class-settings-words.php:24
+msgid "Word related options"
+msgstr "Wörter-bezogene Einstellungen"
+
+#: classes/settings/class-settings-words.php:25
+msgid ""
+"Control what extra words should be excluded and what word combinations "
+"should be parsed as a single word."
+msgstr "Kontrolliere, welche zusätzlichen Wörter ausgeschlossen werden soll und welche Wortkombinationen als einzelne Wörter gelten."
+
+#: classes/settings/class-settings-words.php:29
+msgid "Extra Ignored Words"
+msgstr "Weitere i"
+
+#: classes/settings/class-settings-words.php:30
+msgid ""
+"By default we already ignore a lot of words based on your language that are "
+"not related to your content. In English this would be words like %s and %s."
+msgstr "Standardmässig ignorieren wir bereits eine Menge Wörter pro Sprache, welche nicht zum Inhalt gehören. In Englisch wären das Wörter wie %s und %s."
+
+#: classes/settings/class-settings-words.php:30
+msgid "Add the extra words you would to ignore here, one word per row."
+msgstr "Füge pro Zeile ein weiteres Wort ein, welches ignoriert werden soll."
+
+#: classes/settings/class-settings-words.php:36
+msgid "Joined Words"
+msgstr "Verbundene Wörter"
+
+#: classes/settings/class-settings-words.php:37
+msgid ""
+"By default we split content per word but some word combinations should be "
+"considered as one word. An example of this would be %s."
+msgstr "Standardmässig teilen wir den Inhalt in Wörter auf, aber manche Wortkombinationen gelten als ein Wort. Ein solches Beispiel ist etwa %s."
+
+#: classes/settings/class-settings-words.php:37
+msgid "Add your joined words here, one joined word per row."
+msgstr "Füge pro Zeile ein weiteres verbundenes Wort hinzu."
 
 #: includes/updater/class-rp4wp-updater.php:131
 msgid "Hide notice"
@@ -553,12 +692,12 @@ msgstr "http://www.relatedpostsforwp.com/"
 
 #. Description of the plugin/theme
 msgid "The best way to display related posts in WordPress."
-msgstr "Den besten Weg um verwandte Beiträge zu zeigen in WordPress."
+msgstr "Der beste Weg verwandte Beiträge in WordPress darzustellen."
 
 #. Author of the plugin/theme
-msgid "Barry Kooij"
-msgstr "Barry Kooij"
+msgid "Never5"
+msgstr "Never5"
 
 #. Author URI of the plugin/theme
-msgid "http://www.barrykooij.com/"
-msgstr "http://www.barrykooij.com/"
+msgid "http://www.never5.com/"
+msgstr "http://www.never5.com/"
