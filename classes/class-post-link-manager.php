@@ -366,13 +366,14 @@ class RP4WP_Post_Link_Manager {
 	 *
 	 * @param int $id
 	 * @param int $limit
+	 * @param str $class
 	 *
-	 * @since  1.0.0
+	 * @since  2.0.1
 	 * @access public
 	 *
 	 * @return string
 	 */
-	public function generate_children_list( $id, $limit = -1 ) {
+	public function generate_children_list( $id, $limit = -1, $class = '' ) {
 
 		// The content
 		$content = '';
@@ -383,8 +384,8 @@ class RP4WP_Post_Link_Manager {
 		// Count
 		if ( count( $related_posts ) > 0 ) {
 
-			// The rp4wp block
-			$content .= "<div class='rp4wp-related-posts'>\n";
+			// The rp4wp block with additional css class (if any)
+			$content .= "<div class='rp4wp-related-posts ".$class."'>\n";
 
 			// Get the heading text
 			$heading_text = RP4WP::get()->settings->get_option( 'heading_text' );
