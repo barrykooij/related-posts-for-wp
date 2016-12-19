@@ -368,7 +368,7 @@ class RP4WP_Post_Link_Manager {
 	 * @param int $limit
 	 * @param str $class
 	 *
-	 * @since  2.0.1
+	 * @since  1.0.0
 	 * @access public
 	 *
 	 * @return string
