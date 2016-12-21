@@ -25,13 +25,12 @@ class RP4WP_Hook_Shortcode extends RP4WP_Hook {
 			'limit' => -1,
 			'class' => '',
             'offset'=> 0,
-            'url'   => ''
 		), $atts );
 
 		// Post Link Manager
 		$pl_manager = new RP4WP_Post_Link_Manager();
 
 		// Generate the children list
-		return $pl_manager->generate_children_list( $atts['id'], $atts['limit'], $atts['class'], $atts['offset'], $atts['url'] );
+		return $pl_manager->generate_children_list( $atts['id'], $atts['limit'], $atts['class'], $atts['offset'] );
 	}
 }
