@@ -6,3 +6,5 @@ vendor/*
 !vendor/autoload_52.php
 vendor/composer/installers
 vendor/composer/installed.json
+*.swp
+*.swo
