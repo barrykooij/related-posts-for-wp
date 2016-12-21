@@ -184,6 +184,19 @@ class RP4WP_Post_Link_Manager {
 			unset( $extra_args['order'] );
 		}
 
+		/*
+		 * Check $extra_args for `offset`.
+		 * If 'offset' is set, we should add it to the link arguments
+         * Using 'offset' breaks pagination. More info here:
+         *  https://codex.wordpress.org/Making_Custom_Queries_using_Offset_and_Pagination
+		 */
+		if ( isset( $extra_args['offset'] ) ) {
+            if ( $extra_args['offset'] != 0 ) {
+			    $link_args['offset'] = $extra_args['offset'];
+            }
+			unset( $extra_args['offset'] );
+		}
+
 		/**
 		 * Filter args for link query
 		 */
@@ -226,8 +239,8 @@ class RP4WP_Post_Link_Manager {
 				 * Filter args for child query
 				 */
 				$child_args = apply_filters( 'rp4wp_get_children_child_args', $child_args, $parent_id );
-
-				// Child Query
+				
+                // Child Query
 				$wp_query = new WP_Query;
 				$posts = $wp_query->query( $child_args );
 				foreach( $posts as $post ) {
