@@ -24,7 +24,7 @@ class RP4WP_Hook_Shortcode extends RP4WP_Hook {
 			'id'    => get_the_ID(),
 			'limit' => -1,
 			'class' => '',
-            'offset'=> 0,
+			'offset'=> 0,
 		), $atts );
 
 		// Post Link Manager

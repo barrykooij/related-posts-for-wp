@@ -187,13 +187,13 @@ class RP4WP_Post_Link_Manager {
 		/*
 		 * Check $extra_args for `offset`.
 		 * If 'offset' is set, we should add it to the link arguments
-         * Using 'offset' breaks pagination. More info here:
-         *  https://codex.wordpress.org/Making_Custom_Queries_using_Offset_and_Pagination
+		 * Using 'offset' breaks pagination. More info here:
+		 *  https://codex.wordpress.org/Making_Custom_Queries_using_Offset_and_Pagination
 		 */
 		if ( isset( $extra_args['offset'] ) ) {
-            if ( $extra_args['offset'] != 0 ) {
+			if ( $extra_args['offset'] != 0 ) {
 			    $link_args['offset'] = $extra_args['offset'];
-            }
+			}
 			unset( $extra_args['offset'] );
 		}
 
@@ -240,7 +240,7 @@ class RP4WP_Post_Link_Manager {
 				 */
 				$child_args = apply_filters( 'rp4wp_get_children_child_args', $child_args, $parent_id );
 				
-                // Child Query
+				// Child Query
 				$wp_query = new WP_Query;
 				$posts = $wp_query->query( $child_args );
 				foreach( $posts as $post ) {
@@ -380,8 +380,8 @@ class RP4WP_Post_Link_Manager {
 	 * @param int $id
 	 * @param int $limit
 	 * @param str $class
-     * @param int $offset
-     *
+	 * @param int $offset
+	 *
 	 * @since  1.0.0
 	 * @access public
 	 *
@@ -392,9 +392,9 @@ class RP4WP_Post_Link_Manager {
 		// The content
 		$content = '';
 
-        // Get the children
-        $related_posts = $this->get_children( $id, array( 'posts_per_page' => $limit, 'offset' => $offset ) );
-            
+		// Get the children
+		$related_posts = $this->get_children( $id, array( 'posts_per_page' => $limit, 'offset' => $offset ) );
+			
 		// Count
 		if ( count( $related_posts ) > 0 ) {
 
