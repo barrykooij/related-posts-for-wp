@@ -29,7 +29,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 function rp4wp_load_plugin() {
 
+	// Deactivate own plugin if Premium is loaded
 	if ( defined( 'RP4WP_PLUGIN_FILE' ) ) {
+		require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		deactivate_plugins( plugin_basename( __FILE__ ) );
 		return false;
 	}
 
