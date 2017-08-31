@@ -118,6 +118,9 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
+= 2.0.1: August 31, 2017 =
+* Tweak: Deactivate self when premium is detected.
+
 = 2.0.0: December 16, 2016 =
 * Feature: New related post is found for parents of posts that are put back to draft or deleted.
 * Feature: Related post are now removed when a post is put back to draft or deleted.
