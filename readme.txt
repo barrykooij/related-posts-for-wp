@@ -118,8 +118,10 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
-= 2.0.1: August 31, 2017 =
-* Tweak: Deactivate self when premium is detected.
+= 2.0.1: September 7, 2017 =
+* Tweak: Plugin is now checking if required mbstring PHP extension is installed.
+* Tweak: Improved handling of plugin when premium version is also activated.
+* Tweak: Updated various translations.
 
 = 2.0.0: December 16, 2016 =
 * Feature: New related post is found for parents of posts that are put back to draft or deleted.
