@@ -10,6 +10,7 @@ return array(
     'RP4WP_Cap_Manager' => $baseDir . '/classes/class-cap-manager.php',
     'RP4WP_Class_Manager' => $baseDir . '/classes/class-class-manager.php',
     'RP4WP_Constants' => $baseDir . '/classes/class-constants.php',
+    'RP4WP_Dependencies' => $baseDir . '/classes/class-dependencies.php',
     'RP4WP_Filter' => $baseDir . '/classes/filters/class-filter.php',
     'RP4WP_Filter_After_Post' => $baseDir . '/classes/filters/class-filter-after-post.php',
     'RP4WP_Filter_Plugin_Links' => $baseDir . '/classes/filters/class-filter-plugin-links.php',
