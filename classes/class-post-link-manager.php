@@ -211,10 +211,8 @@ class RP4WP_Post_Link_Manager {
 
 			//Child WP_Query arguments
 			if ( count( $child_ids ) > 0 ) {
-				$child_id_values = array_values( $child_ids );
-				$child_post_type = get_post_type( array_shift( $child_id_values ) );
 				$child_args      = array(
-					'post_type'      => $child_post_type,
+					'post_type'      => 'post',
 					'posts_per_page' => - 1,
 					'post__in'       => $child_ids,
 				);

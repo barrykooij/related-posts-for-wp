@@ -118,6 +118,9 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
+= 2.0.2: October 10, 2017 =
+* Tweak: Removed a post type check since post type is always post.
+
 = 2.0.1: September 7, 2017 =
 * Tweak: Plugin is now checking if required mbstring PHP extension is installed.
 * Tweak: Improved handling of plugin when premium version is also activated.
