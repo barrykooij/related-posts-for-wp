@@ -212,9 +212,10 @@ class RP4WP_Post_Link_Manager {
 			//Child WP_Query arguments
 			if ( count( $child_ids ) > 0 ) {
 				$child_args      = array(
-					'post_type'      => 'post',
-					'posts_per_page' => - 1,
-					'post__in'       => $child_ids,
+					'post_type'           => 'post',
+					'posts_per_page'      => -1,
+					'ignore_sticky_posts' => 1,
+					'post__in'            => $child_ids,
 				);
 
 				// Extra arguments
