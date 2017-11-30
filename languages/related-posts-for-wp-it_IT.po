@@ -1,4 +1,4 @@
-# Copyright (C) 2016 Never5
+# Copyright (C) 2017 Never5
 # This file is distributed under the GPL v3.
 # Translators:
 # Barry Kooij <mail@barrykooij.nl>, 2014
@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://github.com/barrykooij/related-posts-for-wp/issues\n"
-"POT-Creation-Date: 2016-08-25 13:53:23+00:00\n"
-"PO-Revision-Date: 2016-08-25 13:54+0000\n"
+"POT-Creation-Date: 2017-09-06 17:17:09+00:00\n"
+"PO-Revision-Date: 2017-09-06 17:20+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Italian (Italy) (http://www.transifex.com/barrykooijplugins/related-posts-for-wordpress/language/it_IT/)\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: it_IT\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: grunt-wp-i18n 0.4.9\n"
+"X-Generator: grunt-wp-i18n1.0.0\n"
+
+#: classes/class-dependencies.php:27
+msgid "Error:"
+msgstr ""
 
 #: classes/class-is-installing-notice.php:74
 msgid ""
@@ -69,7 +73,7 @@ msgid "Title"
 msgstr "Titolo"
 
 #: classes/class-link-related-table.php:96
-#: classes/hooks/class-hook-page-install.php:187
+#: classes/hooks/class-hook-page-install.php:191
 #: classes/hooks/class-hook-settings-page.php:155
 msgid "Post Type"
 msgstr "Post Type"
@@ -107,6 +111,10 @@ msgstr "Related Posts for WordPress"
 msgid "Display related posts."
 msgstr "Mostra articoli correlati."
 
+#: classes/class-related-posts-widget.php:52
+msgid "Output template"
+msgstr ""
+
 #: classes/filters/class-filter-plugin-links.php:29
 msgid "Settings"
 msgstr "Impostazioni"
@@ -135,7 +143,7 @@ msgstr "Collegamento Articoli"
 msgid "Finished"
 msgstr "Completato"
 
-#: classes/hooks/class-hook-page-install.php:78
+#: classes/hooks/class-hook-page-install.php:73
 msgid ""
 "Missing post type parameter, please report this incident via %sour "
 "website%s."
@@ -145,12 +153,12 @@ msgstr "Parametro post type mancance, per favore segnala questo problema tramite
 msgid "Installation"
 msgstr "Installazione"
 
-#: classes/hooks/class-hook-page-install.php:168
-#: classes/hooks/class-hook-page-install.php:247
+#: classes/hooks/class-hook-page-install.php:172
+#: classes/hooks/class-hook-page-install.php:243
 msgid "Thank you for choosing Related Posts for WordPress!"
 msgstr "Grazie per aver scelto Related Posts for WordPress!"
 
-#: classes/hooks/class-hook-page-install.php:169
+#: classes/hooks/class-hook-page-install.php:173
 msgid ""
 "Below you'll find your post types available for installation, by installing "
 "a post type we'll set up a cache and offer you the ability to automatic link"
@@ -158,96 +166,96 @@ msgid ""
 "Type' button."
 msgstr "Qui sotto troverai i post type disponibili per l'installazione, installando un post type noi imposteremo una cache e ti daremo la possibilit&agrave; di collegare automaticamente articoli (custom). Per installare un post type, clicca semplicemente sul bottone 'Installa Post Type'."
 
-#: classes/hooks/class-hook-page-install.php:188
+#: classes/hooks/class-hook-page-install.php:192
 msgid "Related to Post Types"
 msgstr "Correlato ai Post Type"
 
-#: classes/hooks/class-hook-page-install.php:223
+#: classes/hooks/class-hook-page-install.php:227
 msgid "Edit this post type"
 msgstr ""
 
-#: classes/hooks/class-hook-page-install.php:248
+#: classes/hooks/class-hook-page-install.php:244
 msgid ""
 "Before you can start using Related Posts for WordPress we need to cache your"
 " current posts."
 msgstr "Prima di poter utilizzare Related Posts for WordPress abbiamo bisogno di creare una cache dei tuo articoli attuali."
 
-#: classes/hooks/class-hook-page-install.php:249
+#: classes/hooks/class-hook-page-install.php:245
 msgid ""
 "This is a one time process which might take some time now, depending on the "
 "amount of posts you have, but will ensure your website's performance when "
 "using the plugin."
 msgstr "Questo &egrave; un processo che viene eseguito una sola volta e potrebbero essere necessari alcuni minuti, in base al numero di articoli che hai, ma ti assicurer&agrave; migliori performance per il tuo sito durante l'utilizzo di questo plugin."
 
-#: classes/hooks/class-hook-page-install.php:251
+#: classes/hooks/class-hook-page-install.php:247
 msgid ""
 "Do NOT close this window, wait for this process to finish and this wizard to"
 " take you to the next step."
 msgstr "NON chiudere questa finestra, attendi che il processo venga completato e che questo wizard ti porti allo step successivo."
 
-#: classes/hooks/class-hook-page-install.php:285
+#: classes/hooks/class-hook-page-install.php:273
 msgid "Great! All your posts were successfully cached!"
 msgstr "Grandioso! La cache di tutti i tuoi articoli &egrave; stata creata correttamente!"
 
-#: classes/hooks/class-hook-page-install.php:286
+#: classes/hooks/class-hook-page-install.php:274
 msgid ""
 "You can let me link your posts, based on what I think is related, to each "
 "other. And don't worry, if I made a mistake at one of your posts you can "
 "easily correct this by editing it manually!"
 msgstr "Puoi lasciarmi collegare i tuoi articoli, in base a coas io penso che sia correlato tra essi. E non preoccuparti, se faccio un errore in qualcuno di essi puoi sempre correggerlo facilmente modificando l'articolo manualmente!"
 
-#: classes/hooks/class-hook-page-install.php:287
+#: classes/hooks/class-hook-page-install.php:275
 msgid ""
 "Want me to start linking posts to each other? Fill in the amount of related "
 "posts each post should have and click on the \"Link now\" button. Rather "
 "link your posts manually? Click \"Skip linking\"."
 msgstr "Vuoi che inizia a collegare gli articoli tra essi? Inserisci il numero ti articoli correlati che ogni articolo dovrebbe avere e clicca sul bottone \"Collega ora\". Vuoi farlo manualmente? Clicca su \"Salta collegamento\"."
 
-#: classes/hooks/class-hook-page-install.php:288
+#: classes/hooks/class-hook-page-install.php:276
 msgid ""
 "Do NOT close this window if you click the \"Link now\" button, wait for this"
 " process to finish and this wizard to take you to the next step."
 msgstr "NON chiudere questa finestra se clicchi sul bottone \"Collega ora\", attendi che questo processo finisca e che il wizard ti porti allo step successivo."
 
-#: classes/hooks/class-hook-page-install.php:295
+#: classes/hooks/class-hook-page-install.php:283
 msgid "Amount of related posts:"
 msgstr "Numero di articoli correlati:"
 
-#: classes/hooks/class-hook-page-install.php:299
+#: classes/hooks/class-hook-page-install.php:287
 msgid "The amount of related items per %s"
 msgstr "Il numero di elementi correlati per %s"
 
-#: classes/hooks/class-hook-page-install.php:305
+#: classes/hooks/class-hook-page-install.php:293
 msgid "Maximum Post Age:"
 msgstr "Et&agrave; massima dell'articolo:"
 
-#: classes/hooks/class-hook-page-install.php:309
+#: classes/hooks/class-hook-page-install.php:297
 msgid "The maximum age in days of %s that will be linked. (0 = unlimited)"
 msgstr ""
 
-#: classes/hooks/class-hook-page-install.php:316
+#: classes/hooks/class-hook-page-install.php:304
 msgid "Link now"
 msgstr "Collega ora"
 
-#: classes/hooks/class-hook-page-install.php:318
+#: classes/hooks/class-hook-page-install.php:306
 msgid "Skip linking"
 msgstr "Salta collegamento"
 
-#: classes/hooks/class-hook-page-install.php:336
+#: classes/hooks/class-hook-page-install.php:324
 msgid "That's it, you're good to go!"
 msgstr "Ecco fatto, sei pronto!"
 
-#: classes/hooks/class-hook-page-install.php:337
+#: classes/hooks/class-hook-page-install.php:325
 msgid ""
 "Thanks again for using Related Posts for WordPress and if you have any "
 "questions be sure to ask them at the %sWordPress.org forums.%s"
 msgstr "Grazie ancora per aver utilizzato Related Posts for WordPress e se hai domande assicurati di chiederlo sui %sforum di WordPress.org.%s"
 
-#: classes/hooks/class-hook-page-install.php:340
+#: classes/hooks/class-hook-page-install.php:328
 msgid "Click here to return to step 1"
 msgstr "Clicca qui per tornare allo step 1"
 
-#: classes/hooks/class-hook-page-install.php:346
+#: classes/hooks/class-hook-page-install.php:334
 msgid "Click here to go to the settings page"
 msgstr "Clicca qui per andare alla pagina delle impostazioni"
 
@@ -330,6 +338,27 @@ msgstr "Opzioni Articoli Correlati"
 #: classes/meta-boxes/class-meta-box-options.php:62
 msgid "Exclude"
 msgstr "Escludi"
+
+#: classes/settings/class-settings-categories.php:18
+#: classes/settings/class-settings-weights.php:51
+msgid "Categories"
+msgstr "Categorie"
+
+#: classes/settings/class-settings-categories.php:27
+msgid "Limit Post Categories"
+msgstr ""
+
+#: classes/settings/class-settings-categories.php:28
+msgid "Limit the categories related content is selected from."
+msgstr ""
+
+#: classes/settings/class-settings-categories.php:34
+msgid "Select Categories"
+msgstr ""
+
+#: classes/settings/class-settings-categories.php:35
+msgid "Select what categories we need to select related content from."
+msgstr ""
 
 #: classes/settings/class-settings-configurator.php:18
 msgid "Styling"
@@ -566,11 +595,11 @@ msgstr ""
 msgid "Upload Image"
 msgstr ""
 
-#: classes/settings/class-settings-page.php:468
+#: classes/settings/class-settings-page.php:471
 msgid "ACTIVATED"
 msgstr "ATTIVATO"
 
-#: classes/settings/class-settings-page.php:470
+#: classes/settings/class-settings-page.php:473
 msgid "NOT ACTIVE"
 msgstr "NON ATTIVO"
 
@@ -610,10 +639,6 @@ msgstr "Collegamenti"
 #: classes/settings/class-settings-weights.php:45
 msgid "The weight of the links found in the content."
 msgstr "Il peso dei collegamenti trovati nel contenuto."
-
-#: classes/settings/class-settings-weights.php:51
-msgid "Categories"
-msgstr "Categorie"
 
 #: classes/settings/class-settings-weights.php:52
 msgid "The weight of the categories."

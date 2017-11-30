@@ -1,10 +1,10 @@
 === Related Posts for WordPress ===
-Contributors: never5, barrykooij
+Contributors: never5, barrykooij, hchouhan
 Donate link: http://www.barrykooij.com/donate/
-Tags: related posts for wordpress, related posts for wp, simple related posts, easy related posts, related posts, related, relations, internal links, seo, bounce rate
+Tags: related posts for wordpress, related posts for wp, simple related posts, easy related posts, related posts, related post, related, relations, internal links, seo, bounce rate
 Requires at least: 3.6
-Tested up to: 4.7
-Stable tag: 2.0.0
+Tested up to: 4.9
+Stable tag: 2.0.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -118,10 +118,19 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
-= 2.0.0: Decemeber 16, 2016 =
-* Tweak: New related post is found for parents of posts that are put back to draft or deleted.
-* Tweak: Related post are now removed when a post is put back to draft or deleted.
-* Tweak: Improved Content Matching Score algorithm. Better related content result. Rerun wizard for better results.
+= 2.0.2: October 10, 2017 =
+* Tweak: Fixed an issue where sticky posts were always included in related posts.
+* Tweak: Removed a post type check since post type is always post.
+
+= 2.0.1: September 7, 2017 =
+* Tweak: Plugin is now checking if required mbstring PHP extension is installed.
+* Tweak: Improved handling of plugin when premium version is also activated.
+* Tweak: Updated various translations.
+
+= 2.0.0: December 16, 2016 =
+* Feature: New related post is found for parents of posts that are put back to draft or deleted.
+* Feature: Related post are now removed when a post is put back to draft or deleted.
+* Feature: Improved Content Matching Score algorithm. Better related content result. Rerun wizard for better results.
 * Tweak: Fixed issue with search queries with multiple words in manual post linking.
 * Tweak: Added post dates to manual linking screen.
 * Tweak: Fixed jQuery lib include for HTTPS websites.

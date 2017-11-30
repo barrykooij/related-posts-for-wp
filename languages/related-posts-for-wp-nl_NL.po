@@ -1,13 +1,13 @@
-# Copyright (C) 2016 Never5
+# Copyright (C) 2017 Never5
 # This file is distributed under the GPL v3.
 # Translators:
-# Barry Kooij <mail@barrykooij.nl>, 2014,2016
+# Barry Kooij <mail@barrykooij.nl>, 2014,2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://github.com/barrykooij/related-posts-for-wp/issues\n"
-"POT-Creation-Date: 2016-08-25 13:53:23+00:00\n"
-"PO-Revision-Date: 2016-08-25 14:10+0000\n"
+"POT-Creation-Date: 2017-09-06 17:17:09+00:00\n"
+"PO-Revision-Date: 2017-09-06 17:23+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/barrykooijplugins/related-posts-for-wordpress/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -15,7 +15,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: nl_NL\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: grunt-wp-i18n 0.4.9\n"
+"X-Generator: grunt-wp-i18n1.0.0\n"
+
+#: classes/class-dependencies.php:27
+msgid "Error:"
+msgstr "Foutmelding:"
 
 #: classes/class-is-installing-notice.php:74
 msgid ""
@@ -68,7 +72,7 @@ msgid "Title"
 msgstr "Titel"
 
 #: classes/class-link-related-table.php:96
-#: classes/hooks/class-hook-page-install.php:187
+#: classes/hooks/class-hook-page-install.php:191
 #: classes/hooks/class-hook-settings-page.php:155
 msgid "Post Type"
 msgstr "Post Type"
@@ -106,6 +110,10 @@ msgstr "Related Posts for WordPress"
 msgid "Display related posts."
 msgstr "Toon gerelateerde berichten."
 
+#: classes/class-related-posts-widget.php:52
+msgid "Output template"
+msgstr "Output template"
+
 #: classes/filters/class-filter-plugin-links.php:29
 msgid "Settings"
 msgstr "Instellingen"
@@ -134,7 +142,7 @@ msgstr "Linken van berichten"
 msgid "Finished"
 msgstr "Klaar"
 
-#: classes/hooks/class-hook-page-install.php:78
+#: classes/hooks/class-hook-page-install.php:73
 msgid ""
 "Missing post type parameter, please report this incident via %sour "
 "website%s."
@@ -144,12 +152,12 @@ msgstr "De post type parameter ontbreekt, neem a.u.b. contact op via %sonze webs
 msgid "Installation"
 msgstr "Installatie"
 
-#: classes/hooks/class-hook-page-install.php:168
-#: classes/hooks/class-hook-page-install.php:247
+#: classes/hooks/class-hook-page-install.php:172
+#: classes/hooks/class-hook-page-install.php:243
 msgid "Thank you for choosing Related Posts for WordPress!"
 msgstr "Bedankt voor het kiezen voor Related Posts for WordPress!"
 
-#: classes/hooks/class-hook-page-install.php:169
+#: classes/hooks/class-hook-page-install.php:173
 msgid ""
 "Below you'll find your post types available for installation, by installing "
 "a post type we'll set up a cache and offer you the ability to automatic link"
@@ -157,96 +165,96 @@ msgid ""
 "Type' button."
 msgstr "Hieronder vind je de beschikbare (custom) post types. Wanneer je een post type installeert zullen wij de content cachen en je daarna de mogelijkheid bieden om automatisch gerelateerde content aan elkaar te koppelen. Om een post type te installeren, klik op de 'Installeer post type' knop."
 
-#: classes/hooks/class-hook-page-install.php:188
+#: classes/hooks/class-hook-page-install.php:192
 msgid "Related to Post Types"
 msgstr "Gerelateerde Post Types"
 
-#: classes/hooks/class-hook-page-install.php:223
+#: classes/hooks/class-hook-page-install.php:227
 msgid "Edit this post type"
 msgstr "Bewerk dit post type"
 
-#: classes/hooks/class-hook-page-install.php:248
+#: classes/hooks/class-hook-page-install.php:244
 msgid ""
 "Before you can start using Related Posts for WordPress we need to cache your"
 " current posts."
 msgstr "Voordat je Related Posts for WordPress kan gebruiken moeten we eerst je huidige berichten cachen."
 
-#: classes/hooks/class-hook-page-install.php:249
+#: classes/hooks/class-hook-page-install.php:245
 msgid ""
 "This is a one time process which might take some time now, depending on the "
 "amount of posts you have, but will ensure your website's performance when "
 "using the plugin."
 msgstr "Dit is een eenmalig proces wat  nu even kan duren, afhankelijk van het aantal berichten dat je hebt. Het zorgt er wel voor dat de prestatie van je website hoog blijft."
 
-#: classes/hooks/class-hook-page-install.php:251
+#: classes/hooks/class-hook-page-install.php:247
 msgid ""
 "Do NOT close this window, wait for this process to finish and this wizard to"
 " take you to the next step."
 msgstr "Sluit dit venster NIET, wacht tot het proces klaar is en de wizard je naar de volgende stap stuurt."
 
-#: classes/hooks/class-hook-page-install.php:285
+#: classes/hooks/class-hook-page-install.php:273
 msgid "Great! All your posts were successfully cached!"
 msgstr "Perfect! Al je berichten zijn succesvol gecached."
 
-#: classes/hooks/class-hook-page-install.php:286
+#: classes/hooks/class-hook-page-install.php:274
 msgid ""
 "You can let me link your posts, based on what I think is related, to each "
 "other. And don't worry, if I made a mistake at one of your posts you can "
 "easily correct this by editing it manually!"
 msgstr "Je kunt mij, op basis van wat ik denk dat gerelateerd is, je berichten aan elkaar laten koppelen. Maak je geen zorgen, als ik een fout heb gemaakt kun je deze later gemakkelijk corrigeren!"
 
-#: classes/hooks/class-hook-page-install.php:287
+#: classes/hooks/class-hook-page-install.php:275
 msgid ""
 "Want me to start linking posts to each other? Fill in the amount of related "
 "posts each post should have and click on the \"Link now\" button. Rather "
 "link your posts manually? Click \"Skip linking\"."
 msgstr "Wil je dat ik begin met het linken van gerelateerde berichten? Vul het aantal gerelateerde berichten dat ieder bericht moet krijgen in en klik op \"Nu linken\". Liever je berichten handmatig linken? Klik op \"Sla linken over\"."
 
-#: classes/hooks/class-hook-page-install.php:288
+#: classes/hooks/class-hook-page-install.php:276
 msgid ""
 "Do NOT close this window if you click the \"Link now\" button, wait for this"
 " process to finish and this wizard to take you to the next step."
 msgstr "Sluit dit venster NIET wanneer je \"Nu linken\" hebt gekozen, wacht tot het proces klaar is en de wizard je naar de volgende stap stuurt."
 
-#: classes/hooks/class-hook-page-install.php:295
+#: classes/hooks/class-hook-page-install.php:283
 msgid "Amount of related posts:"
 msgstr "Aantal gerelateerde berichten:"
 
-#: classes/hooks/class-hook-page-install.php:299
+#: classes/hooks/class-hook-page-install.php:287
 msgid "The amount of related items per %s"
 msgstr "Het aantal gerelateerde berichten per %s"
 
-#: classes/hooks/class-hook-page-install.php:305
+#: classes/hooks/class-hook-page-install.php:293
 msgid "Maximum Post Age:"
 msgstr "Maximum Post Leeftijd:"
 
-#: classes/hooks/class-hook-page-install.php:309
+#: classes/hooks/class-hook-page-install.php:297
 msgid "The maximum age in days of %s that will be linked. (0 = unlimited)"
 msgstr "De maximum leeftijd in dagen van %s die gelinked worden (0 = oneindig)"
 
-#: classes/hooks/class-hook-page-install.php:316
+#: classes/hooks/class-hook-page-install.php:304
 msgid "Link now"
 msgstr "Nu linken"
 
-#: classes/hooks/class-hook-page-install.php:318
+#: classes/hooks/class-hook-page-install.php:306
 msgid "Skip linking"
 msgstr "Sla linken over"
 
-#: classes/hooks/class-hook-page-install.php:336
+#: classes/hooks/class-hook-page-install.php:324
 msgid "That's it, you're good to go!"
 msgstr "Super, de wizard is klaar en je hebt nu gerelateerde berichten op je website!"
 
-#: classes/hooks/class-hook-page-install.php:337
+#: classes/hooks/class-hook-page-install.php:325
 msgid ""
 "Thanks again for using Related Posts for WordPress and if you have any "
 "questions be sure to ask them at the %sWordPress.org forums.%s"
 msgstr "Nogmaals bedankt voor het kiezen voor Related Posts for WordPress en als je nog vragen hebt kan je deze stellen op %shet WordPress.org forum%s."
 
-#: classes/hooks/class-hook-page-install.php:340
+#: classes/hooks/class-hook-page-install.php:328
 msgid "Click here to return to step 1"
 msgstr "Klik hier om terug te gaan naar stap 1"
 
-#: classes/hooks/class-hook-page-install.php:346
+#: classes/hooks/class-hook-page-install.php:334
 msgid "Click here to go to the settings page"
 msgstr "Klik hier om naar de instellingen pagina te gaan"
 
@@ -329,6 +337,27 @@ msgstr "Gerelateerde Post Opties"
 #: classes/meta-boxes/class-meta-box-options.php:62
 msgid "Exclude"
 msgstr "Uitsluiten"
+
+#: classes/settings/class-settings-categories.php:18
+#: classes/settings/class-settings-weights.php:51
+msgid "Categories"
+msgstr "Categorieën."
+
+#: classes/settings/class-settings-categories.php:27
+msgid "Limit Post Categories"
+msgstr "Limiteer Post Categorieën"
+
+#: classes/settings/class-settings-categories.php:28
+msgid "Limit the categories related content is selected from."
+msgstr "Limiteer de categorieën waaruit berichten worden geselecteerd."
+
+#: classes/settings/class-settings-categories.php:34
+msgid "Select Categories"
+msgstr "Kies Categorieën"
+
+#: classes/settings/class-settings-categories.php:35
+msgid "Select what categories we need to select related content from."
+msgstr "Selecteer de categorieën waaruit we gerelateerde content mogen zoeken."
 
 #: classes/settings/class-settings-configurator.php:18
 msgid "Styling"
@@ -565,11 +594,11 @@ msgstr "Afbeelding URL"
 msgid "Upload Image"
 msgstr "Afbeeldingen Uploaden"
 
-#: classes/settings/class-settings-page.php:468
+#: classes/settings/class-settings-page.php:471
 msgid "ACTIVATED"
 msgstr "GEACTIVEERD"
 
-#: classes/settings/class-settings-page.php:470
+#: classes/settings/class-settings-page.php:473
 msgid "NOT ACTIVE"
 msgstr "NIET ACTIEF"
 
@@ -609,10 +638,6 @@ msgstr "Links"
 #: classes/settings/class-settings-weights.php:45
 msgid "The weight of the links found in the content."
 msgstr "Het gewicht van de content."
-
-#: classes/settings/class-settings-weights.php:51
-msgid "Categories"
-msgstr "Categorieën."
 
 #: classes/settings/class-settings-weights.php:52
 msgid "The weight of the categories."

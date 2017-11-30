@@ -8,7 +8,7 @@ class RP4WP {
 
 	private static $instance = null;
 
-	const VERSION = '2.0.0';
+	const VERSION = '2.0.2';
 
 	/**
 	 * @var RP4WP_Settings
@@ -79,6 +79,10 @@ class RP4WP {
 			// Check if we need to display an 'is installing' notice
 			$is_installing_notice = new RP4WP_Is_Installing_Notice();
 			$is_installing_notice->check();
+
+			// check for dependencies
+			$dep = new RP4WP_Dependencies();
+			$dep->check();
 		}
 
 		// Setup settings
