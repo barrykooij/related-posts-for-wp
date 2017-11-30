@@ -238,7 +238,7 @@ class RP4WP_Post_Link_Manager {
 				 * Filter args for child query
 				 */
 				$child_args = apply_filters( 'rp4wp_get_children_child_args', $child_args, $parent_id );
-				
+
 				// Child Query
 				$wp_query = new WP_Query;
 				$posts = $wp_query->query( $child_args );
@@ -380,20 +380,34 @@ class RP4WP_Post_Link_Manager {
 	 * @param int $limit
 	 * @param str $class
 	 * @param int $offset
+	 * @param str $url
 	 *
 	 * @since  1.0.0
 	 * @access public
 	 *
 	 * @return string
 	 */
-	public function generate_children_list( $id, $limit = -1, $class = '', $offset = 0 ) {
+	public function generate_children_list( $id, $limit = -1, $class = '', $offset = 0, $url = '' ) {
 
 		// The content
 		$content = '';
 
-		// Get the children
-		$related_posts = $this->get_children( $id, array( 'posts_per_page' => $limit, 'offset' => $offset ) );
-			
+		// check url for post id
+		$url_linked_post_id = url_to_postid($url);
+
+		if ( $url_linked_post_id != 0 ) {
+
+			// set up $related_posts to use single post from id
+			$related_posts = array();
+			$related_posts[$url_linked_post_id] = get_post($url_linked_post_id, OBJECT);
+
+		} else {
+
+			// Get the children
+			$related_posts = $this->get_children( $id, array( 'posts_per_page' => $limit, 'offset' => $offset ) );
+
+		}
+
 		// Count
 		if ( count( $related_posts ) > 0 ) {
 
