@@ -94,6 +94,7 @@ class RP4WP_Link_Related_Table extends WP_List_Table {
 			'cb'        => '<input type="checkbox" />',
 			'title'     => __( 'Title', 'related-posts-for-wp' ),
 			'post_date' => __( 'Post Date', 'related-posts-for-wp' ),
+			'category'  => __( 'Category', 'related-posts-for-wp' ),
 		);
 
 		return $columns;
@@ -123,8 +124,8 @@ class RP4WP_Link_Related_Table extends WP_List_Table {
 		$per_page = absint( get_user_meta( get_current_user_id(), $screen->get_option( 'per_page', 'option' ), true ) );
 		$per_page = ( ( $per_page > 0 ) ? $per_page : 20 );
 		$paged    = absint( isset( $_GET['paged'] ) ? $_GET['paged'] : 1 );
-		$orderby  = isset( $_GET['orderby'] ) ? $_GET['orderby'] : 'title';
-		$order    = isset( $_GET['order'] ) ? $_GET['order'] : 'asc';
+		$orderby  = isset( $_GET['orderby'] ) ? $_GET['orderby'] : 'post_date';
+		$order    = isset( $_GET['order'] ) ? $_GET['order'] : 'dsc';
 
 		// Vies
 		$this->views();
@@ -177,9 +178,11 @@ class RP4WP_Link_Related_Table extends WP_List_Table {
 					$post = get_post( $post->ID );
 				}
 
+				$categories = get_the_category_list(', ', '', $post->ID);
 				$this->data[] = array( 'ID'        => $post->ID,
 				                       'title'     => $post->post_title,
-				                       'post_date' => date_i18n( get_option( 'date_format' ), strtotime( $post->post_date ) )
+				                       'post_date' => date_i18n( get_option( 'date_format' ), strtotime( $post->post_date ) ),
+						       'category'  => $categories
 				);
 			}
 		}
@@ -209,6 +212,7 @@ class RP4WP_Link_Related_Table extends WP_List_Table {
 		if ( ! $this->is_related ) {
 			$sortable_columns['title']     = array( 'title', false );
 			$sortable_columns['post_date'] = array( 'post_date', false );
+		        $sortable_columns['category']  = array( 'category', false );
 		}
 
 		return $sortable_columns;
@@ -223,10 +227,10 @@ class RP4WP_Link_Related_Table extends WP_List_Table {
 	 * @return int
 	 */
 	public function custom_reorder( $a, $b ) {
-		// If no sort, default to title
-		$orderby = ( ! empty( $_GET['orderby'] ) ) ? $_GET['orderby'] : 'title';
-		// If no order, default to asc
-		$order = ( ! empty( $_GET['order'] ) ) ? $_GET['order'] : 'asc';
+		// If no sort, default to post_date
+		$orderby = ( ! empty( $_GET['orderby'] ) ) ? $_GET['orderby'] : 'post_date';
+		// If no order, default to dsc
+		$order = ( ! empty( $_GET['order'] ) ) ? $_GET['order'] : 'dsc';
 		// Determine sort order
 		$result = strcmp( $a[ $orderby ], $b[ $orderby ] );
 
