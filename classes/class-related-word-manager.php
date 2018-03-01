@@ -283,7 +283,7 @@ class RP4WP_Related_Word_Manager {
 			foreach ( $raw_words as $word ) {
 
 				// Trim word
-				$word = strtolower( trim( $word ) );
+				$word = mb_strtolower( trim( $word ) );
 
 				// Only use words longer than 1 character
 				if ( strlen( $word ) < 2 ) {
