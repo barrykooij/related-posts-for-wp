@@ -118,6 +118,12 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
+= 2.0.3: March 1, 2018 =
+* Tweak: Removed hard removal of non a-z0-9 characters because this removes all non-latin chars causing issues for non-latin languages. Instead we're now using a specific blacklist of characters that needs to be removed. Also moved this to convert_characters so we apply this blacklist also to title,taxonomy,etc.
+* Tweak: Made case lowering of words in cache UTF-8 compatible, solving an issue with non-latin characters.
+* Tweak: We no longer cache all words but only the top 6. This greatly improves performance of the caching task.
+* Tweak: Added filter 'rp4wp_cache_word_amount' to filter amount of words added in cache (default=6).
+
 = 2.0.2: October 10, 2017 =
 * Tweak: Fixed an issue where sticky posts were always included in related posts.
 * Tweak: Removed a post type check since post type is always post.
