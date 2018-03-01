@@ -305,19 +305,30 @@ class RP4WP_Related_Word_Manager {
 			}
 		}
 
-		$new_words       = array();
+		// reverse sort, most important words at top
+		arsort( $words );
+
+		// store new words
+		$new_words = array();
+
+		// count total 'raw' words
 		$total_raw_words = count( $raw_words );
-		$length_weight   = 0.6;
+
+		// count words added
+		$words_added = 0;
+
+		$cache_word_amount = apply_filters( 'rp4wp_cache_word_amount', 6 );
 
 		foreach ( $words as $word => $amount ) {
 
-			if ( $amount < 3 ) {
-				continue; // Don't add words that occur less than 3 times
+			// add word to new words with relative weight
+			$new_words[ $word ] = ( $amount / $total_raw_words );
+
+			// we only add 6 most important words, filterable via 'rp4wp_cache_word_amount'
+			$words_added ++;
+			if ( $words_added >= $cache_word_amount ) {
+				break;
 			}
-
-			// Add word and turn amount into weight (make it relative)
-			$new_words[$word] = ( $amount / ( $length_weight * $total_raw_words ) );
-
 		}
 
 		return $new_words;
