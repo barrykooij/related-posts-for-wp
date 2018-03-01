@@ -164,9 +164,6 @@ class RP4WP_Related_Word_Manager {
 		// Remove the <!--more--> tag
 		$content = str_ireplace( '<!--more-->', '', $content );
 
-		// Remove everything but letters and numbers
-		$content = preg_replace( '/[^a-z0-9]+/i', ' ', $content );
-
 		// UTF8 fix content
 		$content = $this->convert_characters( $content );
 
@@ -223,6 +220,8 @@ class RP4WP_Related_Word_Manager {
 			$string = html_entity_decode( preg_replace( '~&([a-z]{1,2})(?:acute|cedil|circ|grave|lig|orn|ring|slash|tilde|uml);~iS', '$1', $string ), ENT_QUOTES, 'UTF-8' );
 		}
 
+		// Remove characters that are on our 'blacklist'
+		$string = preg_replace( '/[;:\'\"\[\]\-\_=\+\.,\/\\<>`~\(\)\!@#$%\^&\*\?\|]+/i', ' ', $string );
 
 		// Return string
 		return $string;
