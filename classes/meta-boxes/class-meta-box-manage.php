@@ -67,7 +67,7 @@ class RP4WP_Meta_Box_Manage {
 
 		// WPML check
 		if ( isset( $_GET['lang'] ) ) {
-			$url .= "&amp;lang=" . $_GET['lang'];
+			$url .= "&amp;lang=" . esc_attr( $_GET['lang'] );
 		}
 
 		echo "<span id='view-post-btn'>";
