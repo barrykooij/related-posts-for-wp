@@ -118,6 +118,9 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
+= 2.0.4: March 15, 2021 =
+* Tweak: Fixed an XSS vulnerability with WPML language GET attribute.
+
 = 2.0.3: March 2, 2018 =
 * Tweak: Removed hard removal of non a-z0-9 characters because this removes all non-latin chars causing issues for non-latin languages. Instead we're now using a specific blacklist of characters that needs to be removed. Also moved this to convert_characters so we apply this blacklist also to title,taxonomy,etc.
 * Tweak: Made case lowering of words in cache UTF-8 compatible, solving an issue with non-latin characters.
