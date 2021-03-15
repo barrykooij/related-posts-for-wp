@@ -3,21 +3,21 @@
 	Plugin Name: Related Posts for WordPress
 	Plugin URI: http://www.relatedpostsforwp.com/
 	Description: Related Posts for WordPress, the best way to display related posts in WordPress.
-	Version: 2.0.3
+	Version: 2.0.4
 	Author: Never5
 	Author URI: http://www.never5.com/
 	License: GPL v3
-	 
+
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
 	the Free Software Foundation, either version 3 of the License, or
 	(at your option) any later version.
-	 
+
 	This program is distributed in the hope that it will be useful,
 	but WITHOUT ANY WARRANTY; without even the implied warranty of
 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 	GNU General Public License for more details.
-	 
+
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
