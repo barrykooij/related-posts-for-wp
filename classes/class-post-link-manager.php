@@ -392,7 +392,7 @@ class RP4WP_Post_Link_Manager {
 			if ( '' != $heading_text ) {
 
 				// Add heading text plus heading elements
-				$heading_text = '<h3>' . $heading_text . '</h3>' . PHP_EOL;
+				$heading_text = '<h3>' . esc_html( $heading_text ) . '</h3>' . PHP_EOL;
 			}
 
 			// Filter complete heading
