@@ -11,7 +11,7 @@ class RP4WP_Hook_Frontend_Css extends RP4WP_Hook {
 		if ( is_single() ) {
 			$css = trim( RP4WP::get()->settings->get_option( 'css' ) );
 			if ( '' != $css ) {
-				echo "<style type='text/css'>" . $css . "</style>" . PHP_EOL;
+				echo "<style type='text/css'>" . strip_tags( $css ) . "</style>" . PHP_EOL;
 			}
 		}
 	}
