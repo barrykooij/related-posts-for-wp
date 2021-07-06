@@ -1,10 +1,10 @@
 === Related Posts for WordPress ===
-Contributors: never5, barrykooij, hchouhan
+Contributors: never5, barrykooij
 Donate link: http://www.barrykooij.com/donate/
 Tags: related posts for wordpress, related posts for wp, simple related posts, easy related posts, related posts, related post, related, relations, internal links, seo, bounce rate
 Requires at least: 3.6
-Tested up to: 5.7
-Stable tag: 2.0.4
+Tested up to: 5.7.2
+Stable tag: 2.0.5
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -117,6 +117,10 @@ There is one custom table created for the post cache, this table will however no
 5. Related posts are automatically added below your posts!
 
 == Changelog ==
+
+= 2.0.5: July 6, 2021 =
+* Tweak: Fixed an XSS vulnerability in heading text option.
+* Tweak: Fixed an XSS vulnerability in custom CSS option.
 
 = 2.0.4: March 15, 2021 =
 * Tweak: Fixed an XSS vulnerability with WPML language GET attribute.
