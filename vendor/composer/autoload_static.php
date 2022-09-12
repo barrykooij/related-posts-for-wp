@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticIniteda194100eccf2275d23589996347a97
+class ComposerStaticInit91a3c7c82278c7e01b5ce9877aaa9299
 {
     public static $prefixesPsr0 = array (
         'x' => 
@@ -17,6 +17,7 @@ class ComposerStaticIniteda194100eccf2275d23589996347a97
     );
 
     public static $classMap = array (
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'RP4WP' => __DIR__ . '/../..' . '/classes/class-rp4wp.php',
         'RP4WP_Cap_Manager' => __DIR__ . '/../..' . '/classes/class-cap-manager.php',
         'RP4WP_Class_Manager' => __DIR__ . '/../..' . '/classes/class-class-manager.php',
@@ -26,6 +27,7 @@ class ComposerStaticIniteda194100eccf2275d23589996347a97
         'RP4WP_Filter_After_Post' => __DIR__ . '/../..' . '/classes/filters/class-filter-after-post.php',
         'RP4WP_Filter_Plugin_Links' => __DIR__ . '/../..' . '/classes/filters/class-filter-plugin-links.php',
         'RP4WP_Filter_Set_Screen_Option' => __DIR__ . '/../..' . '/classes/filters/class-filter-set-screen-option.php',
+        'RP4WP_Filter_Yoast_Duplicate_Post' => __DIR__ . '/../..' . '/classes/filters/class-filter-yoast-duplicate-post.php',
         'RP4WP_Hook' => __DIR__ . '/../..' . '/classes/hooks/class-hook.php',
         'RP4WP_Hook_Admin_Scripts' => __DIR__ . '/../..' . '/classes/hooks/class-hook-admin-scripts.php',
         'RP4WP_Hook_Ajax_Delete_Link' => __DIR__ . '/../..' . '/classes/hooks/class-hook-ajax-delete-link.php',
@@ -62,8 +64,8 @@ class ComposerStaticIniteda194100eccf2275d23589996347a97
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixesPsr0 = ComposerStaticIniteda194100eccf2275d23589996347a97::$prefixesPsr0;
-            $loader->classMap = ComposerStaticIniteda194100eccf2275d23589996347a97::$classMap;
+            $loader->prefixesPsr0 = ComposerStaticInit91a3c7c82278c7e01b5ce9877aaa9299::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit91a3c7c82278c7e01b5ce9877aaa9299::$classMap;
 
         }, null, ClassLoader::class);
     }
