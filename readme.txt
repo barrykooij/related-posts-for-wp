@@ -118,6 +118,11 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
+= 2.1.0: September 12, 2022 =
+* Feature: Added compatibility support for Yoast Duplicate Post plugin.
+* Tweak: meta data updates.
+* Tweak: Various small improvements.
+
 = 2.0.5: July 6, 2021 =
 * Tweak: Fixed an XSS vulnerability in heading text option.
 * Tweak: Fixed an XSS vulnerability in custom CSS option.
