@@ -9,3 +9,4 @@ vendor/*
 vendor/composer/installers
 vendor/composer/installed.json
 composer.phar
+package-lock.json
