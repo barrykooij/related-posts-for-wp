@@ -118,6 +118,9 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
+= x
+* Tweak: Fixed grabber backend asset path.
+
 = 2.1.0: September 12, 2022 =
 * Feature: Added compatibility support for Yoast Duplicate Post plugin.
 * Tweak: meta data updates.
