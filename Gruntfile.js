@@ -2,6 +2,8 @@
 module.exports = function (grunt) {
     'use strict';
 
+    const sass = require('node-sass');
+
     grunt.initConfig({
         // setting folder templates
         dirs: {
@@ -17,7 +19,8 @@ module.exports = function (grunt) {
             dist: {
                 options: {
                     // These paths are searched for @imports
-                    paths: [ '<%= dirs.css %>/' ]
+                    paths: [ '<%= dirs.css %>/' ],
+                    implementation: sass //and this part
                 },
                 files: [ {
                     expand: true,
