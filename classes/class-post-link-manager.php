@@ -417,6 +417,8 @@ class RP4WP_Post_Link_Manager {
 				// Setup the postdata
 				setup_postdata( $rp4wp_post );
 
+				do_action( 'rp4wp_before_content', $rp4wp_post );
+
 				// Output the linked post
 				echo "<li>";
 
@@ -429,12 +431,16 @@ class RP4WP_Post_Link_Manager {
 						 * @api String $thumbnail_size The current/default thumbnail size.
 						 */
 						$thumb_size = apply_filters( 'rp4wp_thumbnail_size', 'thumbnail' );
-						
+
+						do_action( 'rp4wp_before_image', $rp4wp_post );
+
 						echo "<div class='rp4wp-related-post-image'>" . PHP_EOL;
 						echo "<a href='" . $this->get_related_post_link( $rp4wp_post->ID ) . "'>";
 						echo get_the_post_thumbnail( $rp4wp_post->ID, $thumb_size );
 						echo "</a>";
 						echo "</div>" . PHP_EOL;
+
+						do_action( 'rp4wp_after_image', $rp4wp_post );
 					}
 				}
 
@@ -451,6 +457,8 @@ class RP4WP_Post_Link_Manager {
 				}
 
 				echo "</div>" . PHP_EOL;
+
+				do_action( 'rp4wp_after_content', $rp4wp_post );
 
 				echo "</li>\n";
 
