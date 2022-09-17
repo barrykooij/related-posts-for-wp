@@ -18,6 +18,8 @@ Related Posts for WordPress offers you the ability to link related posts to each
 
 Our installation wizard will do all the hard work for you, simply activate the plugin, set the amount of posts that should relate and press the button. Related Posts for WordPress will do the rest. Relating posts in WordPress has never been this easy!
 
+Fully tested and working on PHP 5.3 and up (including PHP 8 & 8.1)!
+
 > #### Related Posts for WordPress Premium
 > There's an even better version of this plugin that comes with the following extra features:<br />
 >
@@ -119,6 +121,13 @@ There is one custom table created for the post cache, this table will however no
 == Changelog ==
 
 = x
+* Feature: Added rp4wp_post_title_html filter.
+* Feature: Added rp4wp_post_link filter.
+* Feature: Added rp4wp_before_content action.
+* Feature: Added rp4wp_after_content action.
+* Feature: Added rp4wp_before_image action.
+* Feature: Added rp4wp_after_image action.
+* Tweak: Related posts output is now using an output buffer instead of 1 big variable concat.
 * Tweak: Fixed grabber backend asset path.
 
 = 2.1.0: September 12, 2022 =
