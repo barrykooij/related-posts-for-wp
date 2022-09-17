@@ -121,12 +121,12 @@ There is one custom table created for the post cache, this table will however no
 == Changelog ==
 
 = x
-* Feature: Added rp4wp_post_title_html filter.
-* Feature: Added rp4wp_post_link filter.
-* Feature: Added rp4wp_before_content action.
-* Feature: Added rp4wp_after_content action.
-* Feature: Added rp4wp_before_image action.
-* Feature: Added rp4wp_after_image action.
+* Tweak: Added rp4wp_post_title_html filter.
+* Tweak: Added rp4wp_post_link filter.
+* Tweak: Added rp4wp_before_content action.
+* Tweak: Added rp4wp_after_content action.
+* Tweak: Added rp4wp_before_image action.
+* Tweak: Added rp4wp_after_image action.
 * Tweak: Related posts output is now using an output buffer instead of 1 big variable concat.
 * Tweak: Fixed grabber backend asset path.
 
