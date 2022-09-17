@@ -4,7 +4,7 @@ Donate link: http://www.barrykooij.com/donate/
 Tags: related posts for wordpress, related posts for wp, simple related posts, easy related posts, related posts, related post, related, relations, internal links, seo, bounce rate
 Requires at least: 3.6
 Tested up to: 6.0.2
-Stable tag: 2.1.0
+Stable tag: 2.1.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -120,7 +120,7 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
-= x
+= 2.1.1: September 17, 2022 =
 * Tweak: Added rp4wp_post_title_html filter.
 * Tweak: Added rp4wp_post_link filter.
 * Tweak: Added rp4wp_before_content action.
