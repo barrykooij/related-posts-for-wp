@@ -384,8 +384,7 @@ class RP4WP_Post_Link_Manager {
 	 */
 	public function generate_children_list( $id, $limit = -1 ) {
 
-		// The content
-		$content = '';
+		ob_start();
 
 		// Get the children
 		$related_posts = $this->get_children( $id, array( 'posts_per_page' => $limit ) );
@@ -394,7 +393,7 @@ class RP4WP_Post_Link_Manager {
 		if ( count( $related_posts ) > 0 ) {
 
 			// The rp4wp block
-			$content .= "<div class='rp4wp-related-posts'>\n";
+			echo "<div class='rp4wp-related-posts'>\n";
 
 			// Get the heading text
 			$heading_text = RP4WP::get()->settings->get_option( 'heading_text' );
@@ -407,10 +406,10 @@ class RP4WP_Post_Link_Manager {
 			}
 
 			// Filter complete heading
-			$content .= apply_filters( 'rp4wp_heading', $heading_text );
+			echo apply_filters( 'rp4wp_heading', $heading_text );
 
 			// Open the list
-			$content .= "<ul>\n";
+			echo "<ul>\n";
 
 
 			foreach ( $related_posts as $rp4wp_post ) {
@@ -419,7 +418,7 @@ class RP4WP_Post_Link_Manager {
 				setup_postdata( $rp4wp_post );
 
 				// Output the linked post
-				$content .= "<li>";
+				echo "<li>";
 
 				if ( 1 == RP4WP::get()->settings->get_option( 'display_image' ) ) {
 					if ( has_post_thumbnail( $rp4wp_post->ID ) ) {
@@ -430,17 +429,17 @@ class RP4WP_Post_Link_Manager {
 						 * @api String $thumbnail_size The current/default thumbnail size.
 						 */
 						$thumb_size = apply_filters( 'rp4wp_thumbnail_size', 'thumbnail' );
-
-						$content .= "<div class='rp4wp-related-post-image'>" . PHP_EOL;
-						$content .= "<a href='" . $this->get_related_post_link( $rp4wp_post->ID ) . "'>";
-						$content .= get_the_post_thumbnail( $rp4wp_post->ID, $thumb_size );
-						$content .= "</a>";
-						$content .= "</div>" . PHP_EOL;
+						
+						echo "<div class='rp4wp-related-post-image'>" . PHP_EOL;
+						echo "<a href='" . $this->get_related_post_link( $rp4wp_post->ID ) . "'>";
+						echo get_the_post_thumbnail( $rp4wp_post->ID, $thumb_size );
+						echo "</a>";
+						echo "</div>" . PHP_EOL;
 					}
 				}
 
-				$content .= "<div class='rp4wp-related-post-content'>" . PHP_EOL;
-				$content .= sprintf( apply_filters("rp4wp_post_title_html", "<a href='%s'>%s</a>", $rp4wp_post),
+				echo "<div class='rp4wp-related-post-content'>" . PHP_EOL;
+				echo sprintf( apply_filters("rp4wp_post_title_html", "<a href='%s'>%s</a>", $rp4wp_post),
 					$this->get_related_post_link( $rp4wp_post->ID ),
 					apply_filters( 'rp4wp_post_title', $rp4wp_post->post_title, $rp4wp_post )
 				);
@@ -448,27 +447,27 @@ class RP4WP_Post_Link_Manager {
 				$excerpt_length = RP4WP::get()->settings->get_option( 'excerpt_length' );
 				if ( $excerpt_length > 0 ) {
 					$excerpt = wp_trim_words( strip_tags( strip_shortcodes( ( ( '' != $rp4wp_post->post_excerpt ) ? $rp4wp_post->post_excerpt : $rp4wp_post->post_content ) ) ), $excerpt_length );
-					$content .= "<p>" . apply_filters( 'rp4wp_post_excerpt', $excerpt, $rp4wp_post->ID ) . "</p>";
+					echo "<p>" . apply_filters( 'rp4wp_post_excerpt', $excerpt, $rp4wp_post->ID ) . "</p>";
 				}
 
-				$content .= "</div>" . PHP_EOL;
+				echo "</div>" . PHP_EOL;
 
-				$content .= "</li>\n";
+				echo "</li>\n";
 
 				// Reset the postdata
 				wp_reset_postdata();
 			}
 
 			// Close the wrapper div
-			$content .= "</ul>\n";
+			echo "</ul>\n";
 
-			$content .= $this->show_love();
+			echo $this->show_love();
 
-			$content .= "</div>\n";
+			echo "</div>\n";
 
 		}
 
-		return $content;
+		return trim( ob_get_clean() );
 
 	}
 
