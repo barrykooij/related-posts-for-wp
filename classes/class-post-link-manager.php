@@ -440,7 +440,10 @@ class RP4WP_Post_Link_Manager {
 				}
 
 				$content .= "<div class='rp4wp-related-post-content'>" . PHP_EOL;
-				$content .= "<a href='" . $this->get_related_post_link( $rp4wp_post->ID ) . "'>" . apply_filters( 'rp4wp_post_title', $rp4wp_post->post_title, $rp4wp_post ) . "</a>";
+				$content .= sprintf( apply_filters("rp4wp_post_title_html", "<a href='%s'>%s</a>", $rp4wp_post),
+					$this->get_related_post_link( $rp4wp_post->ID ),
+					apply_filters( 'rp4wp_post_title', $rp4wp_post->post_title, $rp4wp_post )
+				);
 
 				$excerpt_length = RP4WP::get()->settings->get_option( 'excerpt_length' );
 				if ( $excerpt_length > 0 ) {
