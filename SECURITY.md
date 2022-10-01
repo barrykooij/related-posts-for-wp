@@ -27,9 +27,6 @@ Please always test your found vulnerabilities against the latest version [master
 ### Vulnerabilities we accept 🙂
 
 - Open redirects
--  Password brute-forcing that circumvents rate limiting
-
-
 
 ## Non-Qualifying Vulnerabilities
 
