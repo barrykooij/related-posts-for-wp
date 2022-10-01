@@ -120,6 +120,11 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
+= 2.1.2: October 1, 2022 =
+* Tweak: Fixed CWE-79 XSS issue on manually link related post screen, props [foobar7](https://github.com/foobar7).
+* Tweak: Properly escaping redirect URL params on manually bulk linking of related posts.
+* Tweak: Properly escaping links in post table on manually link related post screen.
+
 = 2.1.1: September 17, 2022 =
 * Tweak: Added rp4wp_post_title_html filter.
 * Tweak: Added rp4wp_post_link filter.
