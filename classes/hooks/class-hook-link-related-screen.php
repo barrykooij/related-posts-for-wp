@@ -41,7 +41,7 @@ class RP4WP_Hook_Link_Related_Screen extends RP4WP_Hook {
 	 */
 	private function catch_search() {
 		if ( isset( $_GET['page'] ) && 'rp4wp_link_related' == $_GET['page'] && isset ( $_POST['s'] ) ) {
-			$base_url = admin_url( sprintf( 'admin.php?page=rp4wp_link_related&rp4wp_parent=%d&rp4wp_view=%s', absint( $_GET['rp4wp_parent'] ), $_GET['rp4wp_view'] ) );
+			$base_url = admin_url( sprintf( 'admin.php?page=rp4wp_link_related&rp4wp_parent=%d&rp4wp_view=%s', absint( $_GET['rp4wp_parent'] ), esc_attr( $_GET['rp4wp_view'] ) ) );
 			if ( ! empty( $_POST['s'] ) ) {
 				$s = urlencode( $_POST['s'] );
 				// post to get solution
