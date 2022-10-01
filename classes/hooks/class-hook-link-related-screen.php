@@ -106,7 +106,7 @@ class RP4WP_Hook_Link_Related_Screen extends RP4WP_Hook {
 		if ( isset( $_POST['rp4wp_bulk'] ) && isset( $_GET['rp4wp_parent'] ) ) {
 
 			// Get parent
-			$parent = $_GET['rp4wp_parent'];
+			$parent = absint( $_GET['rp4wp_parent'] );
 
 			// Check if user is allowed to do this
 			$this->check_if_allowed();
@@ -128,7 +128,7 @@ class RP4WP_Hook_Link_Related_Screen extends RP4WP_Hook {
 
 			// WPML check
 			if ( isset( $_GET['lang'] ) ) {
-				$redirect_url .= "&amp;lang=" . $_GET['lang'];
+				$redirect_url .= "&amp;lang=" . esc_attr( $_GET['lang'] );
 			}
 
 			wp_redirect( $redirect_url );
