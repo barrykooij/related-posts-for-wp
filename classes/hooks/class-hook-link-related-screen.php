@@ -82,7 +82,7 @@ class RP4WP_Hook_Link_Related_Screen extends RP4WP_Hook {
 			$post_link_manager = new RP4WP_Post_Link_Manager();
 
 			// Create link
-			$post_link_manager->add( $parent, $_GET['rp4wp_create_link'] );
+			$post_link_manager->add( $parent, absint( $_GET['rp4wp_create_link'] ) );
 
 			// Send back
 			$redirect_url = get_admin_url() . "post.php?post={$parent}&action=edit";
