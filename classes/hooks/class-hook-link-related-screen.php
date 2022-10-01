@@ -54,7 +54,7 @@ class RP4WP_Hook_Link_Related_Screen extends RP4WP_Hook {
 			exit;
 		}
 	}
-	
+
 	/**
 	 * Check if the current user is allowed to create related posts
 	 */
@@ -151,7 +151,7 @@ class RP4WP_Hook_Link_Related_Screen extends RP4WP_Hook {
 		}
 
 		// Parent
-		$parent = $_GET['rp4wp_parent'];
+		$parent = absint( $_GET['rp4wp_parent'] );
 
 		// Setup cancel URL
 		$cancel_url = get_admin_url() . "post.php?post={$parent}&action=edit";
@@ -166,7 +166,7 @@ class RP4WP_Hook_Link_Related_Screen extends RP4WP_Hook {
 		<div class="wrap">
 			<h2>
 				<?php _e( 'Posts', 'related-posts-for-wp' ); ?>
-				<a href="<?php echo $cancel_url; ?>" class="add-new-h2"><?php _e( 'Cancel linking', 'related-posts-for-wp' ); ?></a>
+				<a href="<?php echo esc_attr( $cancel_url ); ?>" class="add-new-h2"><?php _e( 'Cancel linking', 'related-posts-for-wp' ); ?></a>
 			</h2>
 
 			<form id="sp-list-table-form" method="post">
