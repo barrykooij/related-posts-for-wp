@@ -76,7 +76,7 @@ class RP4WP_Hook_Link_Related_Screen extends RP4WP_Hook {
 			$this->check_if_allowed();
 
 			// Get parent
-			$parent = $_GET['rp4wp_parent'];
+			$parent = absint( $_GET['rp4wp_parent'] );
 
 			// Create link
 			$post_link_manager = new RP4WP_Post_Link_Manager();
@@ -89,7 +89,7 @@ class RP4WP_Hook_Link_Related_Screen extends RP4WP_Hook {
 
 			// WPML check
 			if ( isset( $_GET['lang'] ) ) {
-				$redirect_url .= "&amp;lang=" . $_GET['lang'];
+				$redirect_url .= "&amp;lang=" . esc_attr( $_GET['lang'] );
 			}
 
 			wp_redirect( $redirect_url );
