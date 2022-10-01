@@ -257,14 +257,19 @@ class RP4WP_Link_Related_Table extends WP_List_Table {
 	public function column_title( $item ) {
 		$actions = array(
 			'link' => sprintf(
-				'<a href="?page=%s&amp;rp4wp_parent=%s&amp;rp4wp_create_link=%s">' . __( 'Link Post', 'related-posts-for-wp' ) . '</a>',
-				$_REQUEST['page'],
-				$_GET['rp4wp_parent'],
-				$item['ID']
+				'<a href="%s">' . __( 'Link Post', 'related-posts-for-wp' ) . '</a>',
+				esc_attr(
+					sprintf(
+						"?page=%s&amp;rp4wp_parent=%s&amp;rp4wp_create_link=%s",
+						$_REQUEST['page'],
+						$_GET['rp4wp_parent'],
+						$item['ID']
+					)
+				)
 			),
 			'view' => sprintf(
 				'<a href="%s" target="_blank">%s</a>',
-				get_permalink( $item['ID'] ),
+				esc_attr( get_permalink( $item['ID'] ) ),
 				__( 'View Post' )
 			)
 		);
