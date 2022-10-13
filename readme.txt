@@ -120,6 +120,9 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
+= 2.1.3: October 13, 2022 =
+* Tweak: Fixed CWE-79 XSS issue on related posts settings screen, props [Juampa Rodríguez](https://github.com/und3sc0n0c1d0).
+
 = 2.1.2: October 1, 2022 =
 * Tweak: Fixed CWE-79 XSS issue on manually link related post screen, props [foobar7](https://github.com/foobar7).
 * Tweak: Properly escape redirect URL params on manually bulk linking of related posts.
