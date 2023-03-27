@@ -53,7 +53,7 @@ Related Posts for Wordpress has a related post widget allowing you to display re
 
 - Visit the [Related Posts for WordPress website](http://www.relatedpostsforwp.com/?utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=more-information)
 - Other [WordPress plugins](http://profiles.wordpress.org/barrykooij/) by [Barry Kooij](http://www.barrykooij.com/)
-- Contact Barry on Twitter: [@CageNL](http://twitter.com/CageNL)
+- Contact Barry on Twitter: [@barry_kooij](http://twitter.com/barry_kooij)
 - If you're a dev, follow or contribute to the [Related Posts for WordPress plugin on GitHub](https://github.com/barrykooij/related-posts-for-wp)
 
 
