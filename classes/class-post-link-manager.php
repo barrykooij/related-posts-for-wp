@@ -475,9 +475,9 @@ class RP4WP_Post_Link_Manager {
 
 				echo "</div>" . PHP_EOL;
 
-				do_action( 'rp4wp_after_content', $rp4wp_post );
-
 				echo "</li>\n";
+
+				do_action( 'rp4wp_after_content', $rp4wp_post );
 
 				// Reset the postdata
 				wp_reset_postdata();
