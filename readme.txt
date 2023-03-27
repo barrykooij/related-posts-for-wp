@@ -1,14 +1,14 @@
 === Related Posts for WordPress ===
 Contributors: never5, barrykooij
 Donate link: http://www.barrykooij.com/donate/
-Tags: related posts for wordpress, related posts for wp, related posts, simple related posts, easy related posts, seo
+Tags: related posts, related, related posts for wordpress, similar posts
 Requires at least: 3.6
-Tested up to: 6.1.1
+Tested up to: 6.2
 Stable tag: 2.1.3
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Display related posts without slowing down your website! Link all your existing content with only 1 click, get related posts for all your posts today!
+Display related posts without slowing down your WordPress website! Link all your existing content with only 1 click, get related posts for all your posts today!
 
 == Description ==
 
