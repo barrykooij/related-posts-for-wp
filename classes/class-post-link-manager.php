@@ -16,8 +16,8 @@ class RP4WP_Post_Link_Manager {
 	 *
 	 * @access private
 	 *
-	 * @param int $post_id
-	 * @param string $meta_key
+	 * @param  int  $post_id
+	 * @param  string  $meta_key
 	 *
 	 * @return array
 	 */
@@ -44,7 +44,7 @@ class RP4WP_Post_Link_Manager {
 	 *
 	 * @access private
 	 *
-	 * @param int $parent_id
+	 * @param  int  $parent_id
 	 *
 	 * @return int
 	 */
@@ -77,9 +77,9 @@ class RP4WP_Post_Link_Manager {
 	 *
 	 * @access public
 	 *
-	 * @param int $parent_id
-	 * @param int $child_id
-	 * @param boolean $batch
+	 * @param  int  $parent_id
+	 * @param  int  $child_id
+	 * @param  boolean  $batch
 	 *
 	 * @return int ($link_id)
 	 */
@@ -88,7 +88,8 @@ class RP4WP_Post_Link_Manager {
 
 		// Setup the insert data
 		$data = array(
-			'post' => "('" . current_time( 'mysql', 0 ) . "', '" . current_time( 'mysql', 1 ) . "','','Related Posts for WordPress Link','" . RP4WP_Constants::LINK_PT . "','publish')",
+			'post' => "('" . current_time( 'mysql', 0 ) . "', '" . current_time( 'mysql',
+					1 ) . "','','Related Posts for WordPress Link','" . RP4WP_Constants::LINK_PT . "','publish')",
 			'meta' => array(
 				"(%d, '" . RP4WP_Constants::PM_PARENT . "', '$parent_id')",
 				"(%d, '" . RP4WP_Constants::PM_CHILD . "', '$child_id')",
@@ -131,7 +132,7 @@ class RP4WP_Post_Link_Manager {
 	 *
 	 * @access public
 	 *
-	 * @param id $link_id
+	 * @param  id  $link_id
 	 *
 	 * @return void
 	 */
@@ -154,8 +155,8 @@ class RP4WP_Post_Link_Manager {
 	 *
 	 * @access public
 	 *
-	 * @param int $parent_id
-	 * @param array $extra_args
+	 * @param  int  $parent_id
+	 * @param  array  $extra_args
 	 *
 	 * @return array
 	 */
@@ -191,11 +192,11 @@ class RP4WP_Post_Link_Manager {
 
 		// Create link query
 		$wp_query = new WP_Query();
-		$posts = $wp_query->query( $link_args );
+		$posts    = $wp_query->query( $link_args );
 
 		// Store child ids
 		$child_ids = array();
-		foreach( $posts as $post ) {
+		foreach ( $posts as $post ) {
 			$child_ids[ $post->ID ] = get_post_meta( $post->ID, RP4WP_Constants::PM_CHILD, true );
 		}
 
@@ -211,9 +212,9 @@ class RP4WP_Post_Link_Manager {
 
 			//Child WP_Query arguments
 			if ( count( $child_ids ) > 0 ) {
-				$child_args      = array(
+				$child_args = array(
 					'post_type'           => 'post',
-					'posts_per_page'      => -1,
+					'posts_per_page'      => - 1,
 					'ignore_sticky_posts' => 1,
 					'post__in'            => $child_ids,
 				);
@@ -228,8 +229,8 @@ class RP4WP_Post_Link_Manager {
 
 				// Child Query
 				$wp_query = new WP_Query;
-				$posts = $wp_query->query( $child_args );
-				foreach( $posts as $post ) {
+				$posts    = $wp_query->query( $child_args );
+				foreach ( $posts as $post ) {
 					$children[ $post->ID ] = $post;
 				}
 
@@ -254,14 +255,14 @@ class RP4WP_Post_Link_Manager {
 	 *
 	 * @access public
 	 *
-	 * @param int $child_id
+	 * @param  int  $child_id
 	 *
 	 * @return array
 	 */
 	public function get_parents( $child_id ) {
 
 		// build link args
-		$link_args = $this->create_link_args( RP4WP_Constants::PM_CHILD, $child_id );
+		$link_args           = $this->create_link_args( RP4WP_Constants::PM_CHILD, $child_id );
 		$link_args['fields'] = 'ids';
 
 		/**
@@ -270,14 +271,15 @@ class RP4WP_Post_Link_Manager {
 		$link_args = apply_filters( 'rp4wp_get_parents_link_args', $link_args, $child_id );
 
 		// Create link query
-		$wp_query = new WP_Query();
+		$wp_query      = new WP_Query();
 		$link_post_ids = $wp_query->query( $link_args );
 
 		$parents = array();
 		if ( ! empty( $link_post_ids ) ) {
 			foreach ( $link_post_ids as $link_post_id ) {
 				// Add post to correct original sort key
-				$parents[ $link_post_id ] = get_post( get_post_meta( $link_post_id, RP4WP_Constants::PM_PARENT, true ) );
+				$parents[ $link_post_id ] = get_post( get_post_meta( $link_post_id, RP4WP_Constants::PM_PARENT,
+					true ) );
 			}
 		}
 
@@ -305,7 +307,7 @@ class RP4WP_Post_Link_Manager {
 	 */
 	public function delete_links_related_to( $post_id ) {
 		$involved_query = new WP_Query();
-		$posts = $involved_query->query( array(
+		$posts          = $involved_query->query( array(
 			'post_type'      => RP4WP_Constants::LINK_PT,
 			'posts_per_page' => - 1,
 			'meta_query'     => array(
@@ -323,7 +325,7 @@ class RP4WP_Post_Link_Manager {
 			)
 		) );
 
-		foreach( $posts as $post ) {
+		foreach ( $posts as $post ) {
 			wp_delete_post( $post->ID, true );
 		}
 	}
@@ -344,12 +346,14 @@ class RP4WP_Post_Link_Manager {
 		// Allow affiliates to add affiliate ID to Power By link
 		$ref = apply_filters( 'rp4wp_poweredby_affiliate_id', '' );
 		if ( '' !== $ref ) {
-			$ref = intval( $ref );
+			$ref          = intval( $ref );
 			$query_string .= "ref=" . $ref . '&';
 		}
 
 		// The UTM campaign stuff
-		$query_string .= sprintf( "utm_source=%s&utm_medium=link&utm_campaign=poweredby", strtolower( preg_replace( "`[^A-z0-9\-.]+`i", '', str_ireplace( ' ', '-', html_entity_decode( get_bloginfo( 'name' ) ) ) ) ) );
+		$query_string .= sprintf( "utm_source=%s&utm_medium=link&utm_campaign=poweredby",
+			strtolower( preg_replace( "`[^A-z0-9\-.]+`i", '',
+				str_ireplace( ' ', '-', html_entity_decode( get_bloginfo( 'name' ) ) ) ) ) );
 
 		// The URL
 		$url = $base_url . htmlentities( $query_string );
@@ -374,15 +378,15 @@ class RP4WP_Post_Link_Manager {
 	/**
 	 * Generate the children list
 	 *
-	 * @param int $id
-	 * @param int $limit
+	 * @param  int  $id
+	 * @param  int  $limit
 	 *
+	 * @return string
 	 * @since  1.0.0
 	 * @access public
 	 *
-	 * @return string
 	 */
-	public function generate_children_list( $id, $limit = -1 ) {
+	public function generate_children_list( $id, $limit = - 1 ) {
 
 		ob_start();
 
@@ -445,14 +449,27 @@ class RP4WP_Post_Link_Manager {
 				}
 
 				echo "<div class='rp4wp-related-post-content'>" . PHP_EOL;
-				echo sprintf( apply_filters("rp4wp_post_title_html", "<a href='%s'>%s</a>", $rp4wp_post),
-					$this->get_related_post_link( $rp4wp_post->ID ),
-					apply_filters( 'rp4wp_post_title', $rp4wp_post->post_title, $rp4wp_post )
+				echo apply_filters(
+					"rp4wp_post_title_html_values",
+					sprintf(
+						apply_filters(
+							"rp4wp_post_title_html",
+							"<a href='%s'>%s</a>",
+							$rp4wp_post
+						),
+						$this->get_related_post_link( $rp4wp_post->ID ),
+						apply_filters(
+							'rp4wp_post_title',
+							$rp4wp_post->post_title,
+							$rp4wp_post
+						)
+					)
 				);
 
 				$excerpt_length = RP4WP::get()->settings->get_option( 'excerpt_length' );
 				if ( $excerpt_length > 0 ) {
-					$excerpt = wp_trim_words( strip_tags( strip_shortcodes( ( ( '' != $rp4wp_post->post_excerpt ) ? $rp4wp_post->post_excerpt : $rp4wp_post->post_content ) ) ), $excerpt_length );
+					$excerpt = wp_trim_words( strip_tags( strip_shortcodes( ( ( '' != $rp4wp_post->post_excerpt ) ? $rp4wp_post->post_excerpt : $rp4wp_post->post_content ) ) ),
+						$excerpt_length );
 					echo "<p>" . apply_filters( 'rp4wp_post_excerpt', $excerpt, $rp4wp_post->ID ) . "</p>";
 				}
 

@@ -120,6 +120,9 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
+= 2.1.4: March 27, 2023 =
+* Tweak: Added rp4wp_post_title_html_values filter.
+
 = 2.1.3: October 13, 2022 =
 * Tweak: Fixed CWE-79 XSS issue on related posts settings screen, props [Juampa Rodríguez](https://github.com/und3sc0n0c1d0).
 
