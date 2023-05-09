@@ -191,6 +191,9 @@ class RP4WP_Related_Word_Manager {
 		// Check if weight > 0 and if $words is array
 		if ( $weight > 0 && is_array( $words ) ) {
 			foreach ( $words as $word ) {
+				if ( empty( $word ) ) {
+					continue;
+				}
 				$word_multiplied_by_weight = array_fill( 0, $weight, $word );
 				$base_words                = array_merge( $base_words, $word_multiplied_by_weight );
 			}
