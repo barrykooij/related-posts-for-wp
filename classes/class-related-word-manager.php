@@ -266,11 +266,16 @@ class RP4WP_Related_Word_Manager {
 		}
 
 		// Get categories and add them to list
-		$categories = wp_get_post_categories( $post->ID, array( 'fields' => 'names' ) );
+		$categories = wp_get_post_categories( $post->ID, array( 'fields' => 'all' ) );
 		if ( is_array( $categories ) && count( $categories ) > 0 ) {
 			foreach ( $categories as $category ) {
-				$category = $this->convert_characters( $category );
-				$cat_words = explode( ' ', $category );
+
+				// skip the "default" category
+				if ( $category->term_id === 1 ) {
+					continue;
+				}
+
+				$cat_words = explode( ' ', $this->convert_characters( $category->name ) );
 				$raw_words = $this->add_words_from_array( $raw_words, $cat_words, $cat_weight );
 			}
 		}
@@ -298,7 +303,6 @@ class RP4WP_Related_Word_Manager {
 				}
 
 				// Add word
-				if ( isset( $words[$word] ) ) {
 				if ( isset( $words[ $word ] ) ) {
 					$words[ $word ] += 1;
 				} else {
