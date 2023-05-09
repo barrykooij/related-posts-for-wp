@@ -121,6 +121,9 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
+= 2.2.0: May 9, 2023 =
+*
+
 = 2.1.4: March 27, 2023 =
 * Tweak: Added rp4wp_post_title_html_values filter.
 * Tweak: Moved rp4wp_after_content action to after closing of li (this was the designed position, it was placed incorrectly inside of li)
