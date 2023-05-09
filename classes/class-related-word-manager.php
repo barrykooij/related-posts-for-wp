@@ -119,37 +119,35 @@ class RP4WP_Related_Word_Manager {
 		$linked_words = array();
 
 		// Find all links in the content
-		if ( true == preg_match_all( '`<a[^>]*href="([^"]+)">[^<]*</a>`iS', $content, $matches ) ) {
-			if ( count( $matches[1] ) > 0 ) {
+		preg_match_all( '`<a[^>]*href="([^"]+)"[^>]*>[^<]*</a>`iS', $content, $matches );
 
-				// Loop
-				foreach ( $matches[1] as $url ) {
+		if ( count( $matches[1] ) > 0 ) {
+			// Loop
+			foreach ( $matches[1] as $url ) {
 
-					// Get the post Id
-					$link_post_id = url_to_postid( $url );
+				// Get the post id
+				$link_post_id = url_to_postid( $url );
 
-					if ( 0 == $link_post_id ) {
-						continue;
+				if ( 0 == $link_post_id ) {
+					continue;
+				}
+
+				// Get the post
+				$link_post = get_post( $link_post_id );
+
+				// Check if we found a linked post
+				if ( $link_post != null ) {
+
+					// convert characters in title
+					$post_title = $this->convert_characters( $link_post->post_title );
+
+					// Get words of title
+					$title_words = explode( ' ', $post_title );
+
+					// Check, Loop
+					if ( is_array( $title_words ) && count( $title_words ) > 0 ) {
+						$linked_words = $this->add_words_from_array( $linked_words, $title_words, 20 );
 					}
-
-					// Get the post
-					$link_post = get_post( $link_post_id );
-
-					// Check if we found a linked post
-					if ( $link_post != null ) {
-
-						// convert characters in title
-						$post_title = $this->convert_characters( $link_post->post_title );
-
-						// Get words of title
-						$title_words = explode( ' ', $post_title );
-
-						// Check, Loop
-						if ( is_array( $title_words ) && count( $title_words ) > 0 ) {
-							$linked_words = $this->add_words_from_array( $linked_words, $title_words, 20 );
-						}
-					}
-
 				}
 
 			}
