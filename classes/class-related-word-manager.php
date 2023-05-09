@@ -299,9 +299,10 @@ class RP4WP_Related_Word_Manager {
 
 				// Add word
 				if ( isset( $words[$word] ) ) {
-					$words[$word] += 1;
+				if ( isset( $words[ $word ] ) ) {
+					$words[ $word ] += 1;
 				} else {
-					$words[$word] = 1;
+					$words[ $word ] = 1;
 				}
 
 			}
@@ -357,9 +358,9 @@ class RP4WP_Related_Word_Manager {
 			$this->delete_words( $post_id );
 
 			// build SQL string for batch INSERT
-			$sql = 'INSERT INTO '. self::get_database_table() . ' (post_id, word, weight, post_type )';
-			$sql .= ' VALUES';
-			$params = array(  );
+			$sql    = 'INSERT INTO ' . self::get_database_table() . ' (post_id, word, weight, post_type )';
+			$sql    .= ' VALUES';
+			$params = array();
 
 			// add params for each VALUES pair
 			foreach ( $words as $word => $amount ) {
@@ -394,6 +395,7 @@ class RP4WP_Related_Word_Manager {
 		$sql = "SELECT p.ID FROM {$wpdb->posts} p";
 		$sql .= " LEFT JOIN {$words_table} w ON w.post_id = p.ID";
 		$sql .= " WHERE p.post_type IN ('" . implode( "','",
+				RP4WP_Related_Post_Manager::get_supported_post_types() ) . "') AND p.post_status = 'publish'";
 
 		// limit result to post rows WITHOUT joined rows
 		$sql .= ' AND w.post_id IS NULL';
