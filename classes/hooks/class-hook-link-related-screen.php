@@ -19,7 +19,7 @@ class RP4WP_Hook_Link_Related_Screen extends RP4WP_Hook {
 		$this->catch_search();
 
 		// Add Page
-		$screen_hook = add_submenu_page( null, 'Link_Related_Screen', 'Link_Related_Screen', 'edit_posts', 'rp4wp_link_related', array( $this, 'content' ) );
+		$screen_hook = add_submenu_page( '', 'Link_Related_Screen', 'Link_Related_Screen', 'edit_posts', 'rp4wp_link_related', array( $this, 'content' ) );
 
 		// add screen options
 		add_action( 'load-' . $screen_hook, array( $this, 'init_screen' ) );
