@@ -121,6 +121,9 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
+= 2.2.1: October 5, 2023 =
+* Tweak: Playground links need to be opened in a new tab.
+
 = 2.2.0: October 5, 2023 =
 * Tweak: Updated & improved stop words list for en_US.
 * Tweak: Corrected ahref detection in linking process.
