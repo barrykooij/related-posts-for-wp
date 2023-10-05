@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit91a3c7c82278c7e01b5ce9877aaa9299
+class ComposerStaticInit33a1238a52f4c24561fc1a1160ae47e5
 {
     public static $prefixesPsr0 = array (
         'x' => 
@@ -54,6 +54,7 @@ class ComposerStaticInit91a3c7c82278c7e01b5ce9877aaa9299
         'RP4WP_Meta_Box_Manage' => __DIR__ . '/../..' . '/classes/meta-boxes/class-meta-box-manage.php',
         'RP4WP_Multisite_Notice' => __DIR__ . '/../..' . '/classes/class-multisite-notice.php',
         'RP4WP_Nag_Manager' => __DIR__ . '/../..' . '/classes/class-nag-manager.php',
+        'RP4WP_Playground' => __DIR__ . '/../..' . '/classes/class-playground.php',
         'RP4WP_Post_Link_Manager' => __DIR__ . '/../..' . '/classes/class-post-link-manager.php',
         'RP4WP_Related_Post_Manager' => __DIR__ . '/../..' . '/classes/class-related-post-manager.php',
         'RP4WP_Related_Posts_Widget' => __DIR__ . '/../..' . '/classes/class-related-posts-widget.php',
@@ -64,8 +65,8 @@ class ComposerStaticInit91a3c7c82278c7e01b5ce9877aaa9299
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixesPsr0 = ComposerStaticInit91a3c7c82278c7e01b5ce9877aaa9299::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit91a3c7c82278c7e01b5ce9877aaa9299::$classMap;
+            $loader->prefixesPsr0 = ComposerStaticInit33a1238a52f4c24561fc1a1160ae47e5::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit33a1238a52f4c24561fc1a1160ae47e5::$classMap;
 
         }, null, ClassLoader::class);
     }

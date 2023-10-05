@@ -43,6 +43,7 @@ return array(
     'RP4WP_Meta_Box_Manage' => $baseDir . '/classes/meta-boxes/class-meta-box-manage.php',
     'RP4WP_Multisite_Notice' => $baseDir . '/classes/class-multisite-notice.php',
     'RP4WP_Nag_Manager' => $baseDir . '/classes/class-nag-manager.php',
+    'RP4WP_Playground' => $baseDir . '/classes/class-playground.php',
     'RP4WP_Post_Link_Manager' => $baseDir . '/classes/class-post-link-manager.php',
     'RP4WP_Related_Post_Manager' => $baseDir . '/classes/class-related-post-manager.php',
     'RP4WP_Related_Posts_Widget' => $baseDir . '/classes/class-related-posts-widget.php',
