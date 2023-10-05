@@ -118,7 +118,7 @@ class RP4WP_Related_Word_Manager {
 		// Array to store the linked words
 		$linked_words = array();
 
-		
+
 		// Find all links in the content
 		preg_match_all( '`<a[^>]*href="([^"]+)"[^>]*>[^<]*</a>`iS', $content, $matches );
 

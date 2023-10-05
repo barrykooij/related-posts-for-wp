@@ -54,6 +54,11 @@ class RP4WP {
 	 */
 	private function init() {
 
+		if(RP4WP_Playground::is_playground()) {
+			RP4WP_Playground::add_admin_notice();
+			return;
+		}
+
 		// Load plugin text domain
 		load_plugin_textdomain( 'related-posts-for-wp', false, dirname( plugin_basename( RP4WP_PLUGIN_FILE ) ) . '/languages/' );
 
