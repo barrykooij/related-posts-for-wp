@@ -121,8 +121,12 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
-= 2.2.0: May 9, 2023 =
-*
+= 2.2.0: October 5, 2023 =
+* Tweak: Updated & improved stop words list for en_US.
+* Tweak: Corrected ahref detection in linking process.
+* Tweak: Multiple word-processing improvements.
+* Tweak: Skipping the default category in the linking process.
+* Tweak: Added a WP Playground check.
 
 = 2.1.4: March 27, 2023 =
 * Tweak: Added rp4wp_post_title_html_values filter.
