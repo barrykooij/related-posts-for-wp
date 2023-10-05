@@ -25,7 +25,7 @@ class RP4WP_Playground {
                 <p><?php esc_html_e( 'For more information regarding our plugin:', 'related-posts-for-wp' ); ?></p>
                 <p>
                     <a href="https://www.relatedpostsforwp.com/tour/?utm_source=playground&utm_medium=button&utm_campaign=notice-box"
-                       class="button button-primary button-large"><?php esc_html_e( "View the tour on relatedpostsforwp.com",
+                       target="_blank" class="button button-primary button-large"><?php esc_html_e( "View the tour on relatedpostsforwp.com",
 							'related-posts-for-wp' ); ?></a></p>
             </div>
 			<?php
