@@ -9,7 +9,7 @@ License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Requires PHP: 7.2
 
-Display related posts without slowing down your WordPress website! Link all your existing content with only 1 click, get related posts for all your posts today!
+The best WordPress plugin for related posts. Simple, flexible, powerful algorithm, and built-in caching. Fully setup with only 1 click!
 
 == Description ==
 
