@@ -3,8 +3,8 @@ Contributors: never5, barrykooij
 Donate link: http://www.barrykooij.com/donate/
 Tags: related post, related posts,inline related posts, inside related posts, suggestions, similar post, similar posts, related,contextual, relations, seo, bounce rate, internal links, similarity, related content, inline related post, Zemanta, inline, Related Links, Contextual Related Posts, YARPP recommendation engine, YARPP
 Requires at least: 3.6
-Tested up to: 6.3.1
-Stable tag: 2.2.1
+Tested up to: 6.4.3
+Stable tag: 2.2.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Requires PHP: 7.2
@@ -120,6 +120,11 @@ There is one custom table created for the post cache, this table will however no
 5. Related posts are automatically added below your posts!
 
 == Changelog ==
+
+= 2.2.2: March 11, 2024 =
+* Tweak: Fixed a WPCLI issue where HTTP_HOST notices were logged.
+* Tweak: Added nonces and nonce checks to link adding in admin screen. Fixes CVE-2024-0592, props Krzysztof Zając.
+* Tweak: Various fixes and improvements.
 
 = 2.2.1: October 5, 2023 =
 * Tweak: Playground links need to be opened in a new tab.
