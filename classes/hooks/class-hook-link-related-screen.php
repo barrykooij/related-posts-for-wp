@@ -30,9 +30,9 @@ class RP4WP_Hook_Link_Related_Screen extends RP4WP_Hook {
 	 */
 	public function init_screen() {
 		add_screen_option( 'per_page', array(
-			'label' => 'Posts',
+			'label'   => 'Posts',
 			'default' => 20,
-			'option' => 'rp4wp_per_page'
+			'option'  => 'rp4wp_per_page'
 		) );
 	}
 
@@ -75,6 +75,11 @@ class RP4WP_Hook_Link_Related_Screen extends RP4WP_Hook {
 			// Check if user is allowed to do this
 			$this->check_if_allowed();
 
+			// check nonce
+			if ( ! isset( $_GET['rp4wp_nonce'] ) || ! wp_verify_nonce( $_GET['rp4wp_nonce'], 'rp4wp_link_nonce' ) ) {
+				wp_die( 'There was a problem creating the links, please try again. (nonce failed)' );
+			}
+
 			// Get parent
 			$parent = absint( $_GET['rp4wp_parent'] );
 
@@ -110,6 +115,11 @@ class RP4WP_Hook_Link_Related_Screen extends RP4WP_Hook {
 
 			// Check if user is allowed to do this
 			$this->check_if_allowed();
+
+			// check nonce
+			if ( ! isset( $_POST['_wpnonce'] ) || ! wp_verify_nonce( $_POST['_wpnonce'], 'bulk-admin_page_rp4wp_link_related' ) ) {
+				wp_die( 'There was a problem creating the link, please try again. (nonce failed)' );
+			}
 
 			// Post Link Manager
 			$post_link_manager = new RP4WP_Post_Link_Manager();
@@ -170,7 +180,7 @@ class RP4WP_Hook_Link_Related_Screen extends RP4WP_Hook {
 			</h2>
 
 			<form id="sp-list-table-form" method="post">
-				<input type="hidden" name="page" value="<?php esc_attr_e( $_REQUEST['page'] ); ?>" />
+				<input type="hidden" name="page" value="<?php esc_attr_e( $_REQUEST['page'] ); ?>"/>
 				<?php
 				// Create the link table
 				$list_table = new RP4WP_Link_Related_Table();
@@ -190,6 +200,6 @@ class RP4WP_Hook_Link_Related_Screen extends RP4WP_Hook {
 			</form>
 		</div>
 
-	<?php
+		<?php
 	}
 }

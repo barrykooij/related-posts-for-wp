@@ -20,6 +20,7 @@ class RP4WP_Link_Related_Table extends WP_List_Table {
 	public function __construct() {
 		parent::__construct();
 		add_filter( 'views_' . $this->screen->id, array( $this, 'add_page_views' ) );
+
 	}
 
 	/**
@@ -75,8 +76,8 @@ class RP4WP_Link_Related_Table extends WP_List_Table {
 	/**
 	 * Display the search box.
 	 *
-	 * @param string $text The search button text
-	 * @param string $input_id The search input id
+	 * @param  string $text The search button text
+	 * @param  string $input_id The search input id
 	 */
 	public function search_box( $text, $input_id ) {
 		if ( $this->get_current_view() != 'related' ) {
@@ -164,7 +165,7 @@ class RP4WP_Link_Related_Table extends WP_List_Table {
 
 		} else {
 			$rpm    = new RP4WP_Related_Post_Manager();
-			$parent = intval($_GET['rp4wp_parent']);
+			$parent = intval( $_GET['rp4wp_parent'] );
 			$posts  = $rpm->get_related_posts( $parent, 25 );
 		}
 
@@ -177,9 +178,10 @@ class RP4WP_Link_Related_Table extends WP_List_Table {
 					$post = get_post( $post->ID );
 				}
 
-				$this->data[] = array( 'ID'        => $post->ID,
-				                       'title'     => $post->post_title,
-				                       'post_date' => date_i18n( get_option( 'date_format' ), strtotime( $post->post_date ) )
+				$this->data[] = array(
+					'ID'        => $post->ID,
+					'title'     => $post->post_title,
+					'post_date' => date_i18n( get_option( 'date_format' ), strtotime( $post->post_date ) )
 				);
 			}
 		}
@@ -257,13 +259,14 @@ class RP4WP_Link_Related_Table extends WP_List_Table {
 	public function column_title( $item ) {
 		$actions = array(
 			'link' => sprintf(
-				'<a href="%s">' . __( 'Link Post', 'related-posts-for-wp' ) . '</a>',
+				'<a href="%s">' . esc_html__( 'Link Post', 'related-posts-for-wp' ) . '</a>',
 				esc_attr(
 					sprintf(
-						"?page=%s&amp;rp4wp_parent=%s&amp;rp4wp_create_link=%s",
+						"?page=%s&rp4wp_parent=%s&rp4wp_create_link=%s&rp4wp_nonce=%s",
 						$_REQUEST['page'],
 						$_GET['rp4wp_parent'],
-						$item['ID']
+						$item['ID'],
+						wp_create_nonce( 'rp4wp_link_nonce' )
 					)
 				)
 			),
@@ -300,7 +303,7 @@ class RP4WP_Link_Related_Table extends WP_List_Table {
 	 */
 	public function get_bulk_actions() {
 		$actions = array(
-			'link' => __( 'Link Posts', 'related-posts-for-wp' )
+			'link' => esc_html__( 'Link Posts', 'related-posts-for-wp' )
 		);
 
 		return $actions;
