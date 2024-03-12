@@ -1,7 +1,7 @@
 === Related Posts for WordPress ===
 Contributors: never5, barrykooij
 Donate link: http://www.barrykooij.com/donate/
-Tags: related post, related posts,inline related posts, inside related posts, suggestions, similar post, similar posts, related,contextual, relations, seo, bounce rate, internal links, similarity, related content, inline related post, Zemanta, inline, Related Links, Contextual Related Posts, YARPP recommendation engine, YARPP
+Tags: related, inline related posts, similar posts, contextual relations, seo bounce rate, internal links
 Requires at least: 3.6
 Tested up to: 6.4.3
 Stable tag: 2.2.2
