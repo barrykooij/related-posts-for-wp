@@ -121,6 +121,9 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
+= 2.2.3: April 16, 2024 =
+* Tweak: Adding empty string instead of null in add_submenu_page, fixes PHP 8.1 warnings.
+
 = 2.2.2: March 11, 2024 =
 * Tweak: Fixed a WPCLI issue where HTTP_HOST notices were logged.
 * Tweak: Added nonces and nonce checks to link adding in admin screen. Fixes CVE-2024-0592, props Krzysztof Zając.
