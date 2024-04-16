@@ -8,7 +8,7 @@ class RP4WP {
 
 	private static $instance = null;
 
-	const VERSION = '2.2.2';
+	const VERSION = '2.2.3';
 
 	/**
 	 * @var RP4WP_Settings
