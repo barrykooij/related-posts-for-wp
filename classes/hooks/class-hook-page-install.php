@@ -9,7 +9,13 @@ class RP4WP_Hook_Page_Install extends RP4WP_Hook {
 
 	public function run() {
 
-		$menu_hook = add_submenu_page( null, 'RP4WPINSTALL', 'RP4WPINSTALL', 'edit_posts', 'rp4wp_install', array(
+		$menu_hook = add_submenu_page(
+				'',
+				'RP4WPINSTALL',
+				'RP4WPINSTALL',
+				'edit_posts',
+				'rp4wp_install',
+				array(
 				$this,
 				'content'
 			) );
