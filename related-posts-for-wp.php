@@ -44,7 +44,7 @@ function rp4wp_load_plugin() {
 	// Define
 	define( 'RP4WP_PLUGIN_FILE', __FILE__ );
 
-	require dirname( __FILE__ ) . '/vendor/autoload_52.php';
+	require dirname( __FILE__ ) . '/vendor/autoload.php';
 	require dirname( __FILE__ ) . '/includes/functions.php';
 
 	// Instantiate main plugin object

@@ -4,18 +4,8 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit33a1238a52f4c24561fc1a1160ae47e5
+class ComposerStaticInit95fd34c52fd72a98255be149fd084931
 {
-    public static $prefixesPsr0 = array (
-        'x' => 
-        array (
-            'xrstf\\Composer52' => 
-            array (
-                0 => __DIR__ . '/..' . '/xrstf/composer-php52/lib',
-            ),
-        ),
-    );
-
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'RP4WP' => __DIR__ . '/../..' . '/classes/class-rp4wp.php',
@@ -65,8 +55,7 @@ class ComposerStaticInit33a1238a52f4c24561fc1a1160ae47e5
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixesPsr0 = ComposerStaticInit33a1238a52f4c24561fc1a1160ae47e5::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit33a1238a52f4c24561fc1a1160ae47e5::$classMap;
+            $loader->classMap = ComposerStaticInit95fd34c52fd72a98255be149fd084931::$classMap;
 
         }, null, ClassLoader::class);
     }
