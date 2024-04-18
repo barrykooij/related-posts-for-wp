@@ -123,6 +123,7 @@ There is one custom table created for the post cache, this table will however no
 
 = 2.2.4: x =
 * Tweak: Added $rp4wp_post variable to rp4wp_post_title_html_values filter.
+* Tweak: Removed PHP 5.2 classmap autoloading support.
 
 = 2.2.3: April 16, 2024 =
 * Tweak: Adding empty string instead of null in add_submenu_page, fixes PHP 8.1 warnings.
