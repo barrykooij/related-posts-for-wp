@@ -463,7 +463,8 @@ class RP4WP_Post_Link_Manager {
 							$rp4wp_post->post_title,
 							$rp4wp_post
 						)
-					)
+					),
+					$rp4wp_post
 				);
 
 				$excerpt_length = RP4WP::get()->settings->get_option( 'excerpt_length' );
