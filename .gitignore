@@ -5,7 +5,7 @@
 # Exclude everything in /vendor except our autoload stuff
 vendor/*
 !vendor/composer
-!vendor/autoload_52.php
+!vendor/autoload.php
 vendor/composer/installers
 vendor/composer/installed.json
 composer.phar
