@@ -18,10 +18,10 @@ class RP4WP {
 	/**
 	 * Singleton get method
 	 *
+	 * @return RP4WP
 	 * @since  1.0.0
 	 * @access public
 	 *
-	 * @return RP4WP
 	 */
 	public static function get() {
 		if ( null == self::$instance ) {
@@ -54,18 +54,22 @@ class RP4WP {
 	 */
 	private function init() {
 
-		if(RP4WP_Playground::is_playground()) {
+		if ( RP4WP_Playground::is_playground() ) {
 			RP4WP_Playground::add_admin_notice();
+
 			return;
 		}
 
-		// Load plugin text domain
-		load_plugin_textdomain( 'related-posts-for-wp', false, dirname( plugin_basename( RP4WP_PLUGIN_FILE ) ) . '/languages/' );
+		add_action( 'init', function () {
+			// Load plugin text domain
+			load_plugin_textdomain( 'related-posts-for-wp', false, dirname( plugin_basename( RP4WP_PLUGIN_FILE ) ) . '/languages/' );
+		} );
 
 		// Check for multisite, we don't support that
 		if ( is_multisite() && ( is_admin() || is_network_admin() ) ) {
 			add_action( 'admin_notices', array( 'RP4WP_Multisite_Notice', 'display' ) );
 			add_action( 'network_admin_notices', array( 'RP4WP_Multisite_Notice', 'display' ) );
+
 			return;
 		}
 
@@ -94,12 +98,12 @@ class RP4WP {
 		add_action( 'init', array( $this, 'setup_settings' ) );
 
 		// Filters
-		$filters = include dirname( RP4WP_PLUGIN_FILE ) .'/includes/filters.php';
+		$filters        = include dirname( RP4WP_PLUGIN_FILE ) . '/includes/filters.php';
 		$manager_filter = new RP4WP_Manager_Filter( $filters );
 		$manager_filter->load_filters();
 
 		// Hooks
-		$actions = include dirname( RP4WP_PLUGIN_FILE ) .'/includes/actions.php';
+		$actions      = include dirname( RP4WP_PLUGIN_FILE ) . '/includes/actions.php';
 		$manager_hook = new RP4WP_Manager_Hook( $actions );
 		$manager_hook->load_hooks();
 
