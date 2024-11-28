@@ -121,6 +121,9 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
+= 2.2.5: November 28, 2024
+* Tweak: Load translation in init hook, fixes debug notice.
+
 = 2.2.4: September 27, 2024 =
 * Tweak: Added $rp4wp_post variable to rp4wp_post_title_html_values filter.
 * Tweak: Removed PHP 5.2 classmap autoloading support.
