@@ -21,14 +21,15 @@ class RP4WP_Hook_Shortcode extends RP4WP_Hook {
 	public function output( $atts ) {
 
 		$atts = shortcode_atts( array(
-			'id'    => get_the_ID(),
-			'limit' => -1
+			'id'     => get_the_ID(),
+			'limit'  => - 1,
+			'offset' => 0,
 		), $atts );
 
 		// Post Link Manager
 		$pl_manager = new RP4WP_Post_Link_Manager();
 
 		// Generate the children list
-		return $pl_manager->generate_children_list( $atts['id'], $atts['limit'] );
+		return $pl_manager->generate_children_list( $atts['id'], $atts['limit'], $atts['offset'] );
 	}
 }

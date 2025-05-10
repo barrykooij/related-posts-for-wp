@@ -3,7 +3,7 @@
 	Plugin Name: Related Posts for WordPress
 	Plugin URI: http://www.relatedpostsforwp.com/
 	Description: Related Posts for WordPress, the best way to display related posts in WordPress.
-	Version: 2.2.5
+	Version: 2.3.0
 	Author: Never5
 	Author URI: http://www.never5.com/
 	Requires at least: 5.0

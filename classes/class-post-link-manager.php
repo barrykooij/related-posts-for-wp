@@ -185,6 +185,14 @@ class RP4WP_Post_Link_Manager {
 			unset( $extra_args['order'] );
 		}
 
+		// Check $extra_args for `offset`, this should be added to link query instead of the child query
+		if ( isset( $extra_args['offset'] ) ) {
+
+			// Set posts_per_page to link arguments
+			$link_args['offset'] = $extra_args['offset'];
+			unset( $extra_args['offset'] );
+		}
+
 		/**
 		 * Filter args for link query
 		 */
@@ -380,18 +388,19 @@ class RP4WP_Post_Link_Manager {
 	 *
 	 * @param  int  $id
 	 * @param  int  $limit
+	 * @param  int  $offset
 	 *
 	 * @return string
 	 * @since  1.0.0
 	 * @access public
 	 *
 	 */
-	public function generate_children_list( $id, $limit = - 1 ) {
+	public function generate_children_list( $id, $limit = - 1, $offset = 0 ) {
 
 		ob_start();
 
 		// Get the children
-		$related_posts = $this->get_children( $id, array( 'posts_per_page' => $limit ) );
+		$related_posts = $this->get_children( $id, [ 'posts_per_page' => $limit, 'offset' => $offset ] );
 
 		// Count
 		if ( count( $related_posts ) > 0 ) {
