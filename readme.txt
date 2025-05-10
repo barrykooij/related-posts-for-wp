@@ -48,7 +48,7 @@ Everyone makes mistakes, so do we. That's why you can easily modify all automati
 Related Posts for WordPress has a related post shortcode allowing you to display related posts on any position within your content.
 
 = Widget =
-Related Posts for Wordpress has a related post widget allowing you to display related posts in any sidebar you'd like.
+Related Posts for WordPress has a related post widget allowing you to display related posts in any sidebar you'd like.
 
 **More information**
 
