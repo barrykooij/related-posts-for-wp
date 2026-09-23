@@ -12,8 +12,13 @@ class RP4WP_Hook_Ajax_Install_Save_Words extends RP4WP_Hook {
 		// Check nonce
 		check_ajax_referer( RP4WP_Constants::NONCE_AJAX, 'nonce' );
 
+		// Only admins can run the installation wizard
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( __( 'You are not allowed to run the installation wizard.', 'related-posts-for-wp' ) );
+		}
+
 		// Get the PPR
-		$ppr = isset( $_POST['ppr'] ) ? $_POST['ppr'] : 25;
+		$ppr = isset( $_POST['ppr'] ) ? absint( $_POST['ppr'] ) : 25;
 
 		// Related Post Manager
 		$related_word_manager = new RP4WP_Related_Word_Manager();

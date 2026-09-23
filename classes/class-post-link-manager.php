@@ -86,6 +86,10 @@ class RP4WP_Post_Link_Manager {
 	public function add( $parent_id, $child_id, $batch = false ) {
 		global $wpdb;
 
+		// Post IDs are placed directly in the SQL below, so they must be integers
+		$parent_id = absint( $parent_id );
+		$child_id  = absint( $child_id );
+
 		// Setup the insert data
 		$data = array(
 			'post' => "('" . current_time( 'mysql', 0 ) . "', '" . current_time( 'mysql',

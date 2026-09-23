@@ -19,7 +19,7 @@ class RP4WP_Hook_Meta_Box_Ajax_Sort extends RP4WP_Hook {
 		}
 
 		// Check if the items are set
-		if ( ! isset( $_POST['rp4wp_items'] ) ) {
+		if ( ! isset( $_POST['rp4wp_items'] ) || ! is_string( $_POST['rp4wp_items'] ) ) {
 			return;
 		}
 
@@ -34,7 +34,15 @@ class RP4WP_Hook_Meta_Box_Ajax_Sort extends RP4WP_Hook {
 		// Change order
 		$counter = 0;
 		foreach ( $items as $item_id ) {
-			$wpdb->update( $wpdb->posts, array( 'menu_order' => $counter ), array( 'ID' => $item_id ) );
+
+			// Only reorder links the user is allowed to edit
+			$link = get_post( absint( $item_id ) );
+			if ( null === $link || RP4WP_Constants::LINK_PT !== $link->post_type || ! current_user_can( 'edit_post', absint( get_post_meta( $link->ID, RP4WP_Constants::PM_PARENT, true ) ) ) ) {
+				$counter ++;
+				continue;
+			}
+
+			$wpdb->update( $wpdb->posts, array( 'menu_order' => $counter ), array( 'ID' => $link->ID ) );
 			$counter ++;
 		}
 

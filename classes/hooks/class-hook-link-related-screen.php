@@ -57,9 +57,11 @@ class RP4WP_Hook_Link_Related_Screen extends RP4WP_Hook {
 
 	/**
 	 * Check if the current user is allowed to create related posts
+	 *
+	 * @param int $parent_id When set, the user must also be allowed to edit this post
 	 */
-	private function check_if_allowed() {
-		if ( ! current_user_can( 'edit_posts' ) ) {
+	private function check_if_allowed( $parent_id = 0 ) {
+		if ( ! current_user_can( 'edit_posts' ) || ( $parent_id > 0 && ! current_user_can( 'edit_post', $parent_id ) ) ) {
 			wp_die( 'There was a problem loading this page, you may not have the necessary permissions.' );
 		}
 	}
@@ -72,16 +74,16 @@ class RP4WP_Hook_Link_Related_Screen extends RP4WP_Hook {
 		// Check if link is chosen
 		if ( isset( $_GET['rp4wp_create_link'] ) && isset( $_GET['rp4wp_parent'] ) ) {
 
+			// Get parent
+			$parent = absint( $_GET['rp4wp_parent'] );
+
 			// Check if user is allowed to do this
-			$this->check_if_allowed();
+			$this->check_if_allowed( $parent );
 
 			// check nonce
 			if ( ! isset( $_GET['rp4wp_nonce'] ) || ! wp_verify_nonce( $_GET['rp4wp_nonce'], 'rp4wp_link_nonce' ) ) {
 				wp_die( 'There was a problem creating the links, please try again. (nonce failed)' );
 			}
-
-			// Get parent
-			$parent = absint( $_GET['rp4wp_parent'] );
 
 			// Create link
 			$post_link_manager = new RP4WP_Post_Link_Manager();
@@ -114,7 +116,7 @@ class RP4WP_Hook_Link_Related_Screen extends RP4WP_Hook {
 			$parent = absint( $_GET['rp4wp_parent'] );
 
 			// Check if user is allowed to do this
-			$this->check_if_allowed();
+			$this->check_if_allowed( $parent );
 
 			// check nonce
 			if ( ! isset( $_POST['_wpnonce'] ) || ! wp_verify_nonce( $_POST['_wpnonce'], 'bulk-admin_page_rp4wp_link_related' ) ) {
@@ -124,11 +126,17 @@ class RP4WP_Hook_Link_Related_Screen extends RP4WP_Hook {
 			// Post Link Manager
 			$post_link_manager = new RP4WP_Post_Link_Manager();
 
-			if ( count( $_POST['rp4wp_bulk'] ) > 0 ) {
+			if ( is_array( $_POST['rp4wp_bulk'] ) ) {
 				foreach ( $_POST['rp4wp_bulk'] as $bulk_post ) {
 
+					// Only accept post IDs
+					$child_id = absint( $bulk_post );
+					if ( 0 === $child_id ) {
+						continue;
+					}
+
 					// Create link
-					$post_link_manager->add( $parent, $bulk_post );
+					$post_link_manager->add( $parent, $child_id );
 
 				}
 			}
@@ -153,15 +161,15 @@ class RP4WP_Hook_Link_Related_Screen extends RP4WP_Hook {
 	 */
 	public function content() {
 
-		// Check if user is allowed to do this
-		$this->check_if_allowed();
-
 		if ( ! isset( $_GET['rp4wp_parent'] ) ) {
 			wp_die( "Can't load page, no parent set. Please contact support and provide them this message" );
 		}
 
 		// Parent
 		$parent = absint( $_GET['rp4wp_parent'] );
+
+		// Check if user is allowed to do this
+		$this->check_if_allowed( $parent );
 
 		// Setup cancel URL
 		$cancel_url = get_admin_url() . "post.php?post={$parent}&action=edit";
