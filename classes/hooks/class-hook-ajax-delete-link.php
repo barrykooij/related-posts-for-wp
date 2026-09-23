@@ -32,10 +32,15 @@ class RP4WP_Hook_Ajax_Delete_Link extends RP4WP_Hook {
 		}
 
 		//  Load post
-		$target_post = get_post( $post_id );
+		$target_post = get_post( absint( $post_id ) );
 
 		// Only delete post type we control
-		if ( $target_post->post_type != RP4WP_Constants::LINK_PT ) {
+		if ( null === $target_post || $target_post->post_type != RP4WP_Constants::LINK_PT ) {
+			return;
+		}
+
+		// Only allow users that can edit the post this link belongs to
+		if ( ! current_user_can( 'edit_post', absint( get_post_meta( $target_post->ID, RP4WP_Constants::PM_PARENT, true ) ) ) ) {
 			return;
 		}
 

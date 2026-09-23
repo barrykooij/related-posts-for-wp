@@ -36,6 +36,11 @@ if ( ! class_exists( 'RP4WP_Is_Installing_Notice' ) ) {
 		 */
 		public function check() {
 
+			// Only admins can run or dismiss the installation wizard
+			if ( ! current_user_can( 'manage_options' ) ) {
+				return;
+			}
+
 			// Check if we need to dismiss the notice
 			if ( isset( $_GET['rp4wp_hide_is_installing'] ) ) {
 				delete_option( RP4WP_Constants::OPTION_IS_INSTALLING );

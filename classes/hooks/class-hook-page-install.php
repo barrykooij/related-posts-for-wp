@@ -13,7 +13,7 @@ class RP4WP_Hook_Page_Install extends RP4WP_Hook {
 				'',
 				'RP4WPINSTALL',
 				'RP4WPINSTALL',
-				'edit_posts',
+				'manage_options',
 				'rp4wp_install',
 				array(
 				$this,

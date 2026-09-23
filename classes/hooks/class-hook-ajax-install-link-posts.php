@@ -12,11 +12,16 @@ class RP4WP_Hook_Ajax_Install_Link_Posts extends RP4WP_Hook {
 		// Check nonce
 		check_ajax_referer( RP4WP_Constants::NONCE_AJAX, 'nonce' );
 
+		// Only admins can run the installation wizard
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( __( 'You are not allowed to run the installation wizard.', 'related-posts-for-wp' ) );
+		}
+
 		// Get the PPR
-		$ppr = isset( $_POST['ppr'] ) ? $_POST['ppr'] : 5;
+		$ppr = isset( $_POST['ppr'] ) ? absint( $_POST['ppr'] ) : 5;
 
 		// Get the rel amount
-		$rel_amount = isset( $_POST['rel_amount'] ) ? $_POST['rel_amount'] : 3;
+		$rel_amount = isset( $_POST['rel_amount'] ) ? absint( $_POST['rel_amount'] ) : 3;
 
 		// Related Post Manager object
 		$related_post_manager = new RP4WP_Related_Post_Manager();
