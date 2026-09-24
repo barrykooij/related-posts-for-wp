@@ -13,6 +13,9 @@ use LV2\WordPress\RelatedPostsForWP\Module;
 
 /**
  * The hidden screen that adds related posts to a post by hand, one at a time or in bulk.
+ *
+ * The premium add-on extends this class: it adds links and builds the table through add_link() and list_table(), and
+ * every callback is registered for the class that set up the module.
  */
 class Page implements Module {
 
@@ -40,16 +43,16 @@ class Page implements Module {
 		LegacyHooks::add_action(
 			'RP4WP_Hook_Link_Related_Screen',
 			'admin_menu',
-			[ self::class, 'register' ],
+			[ static::class, 'register' ],
 			10,
 			1,
 			[
-				'init_screen' => [ self::class, 'add_screen_options' ],
-				'content'     => [ self::class, 'render' ],
+				'init_screen' => [ static::class, 'add_screen_options' ],
+				'content'     => [ static::class, 'render' ],
 			]
 		);
 
-		LegacyHooks::add_filter( 'RP4WP_Filter_Set_Screen_Option', 'set-screen-option', [ self::class, 'save_screen_option' ], 10, 3 );
+		LegacyHooks::add_filter( 'RP4WP_Filter_Set_Screen_Option', 'set-screen-option', [ static::class, 'save_screen_option' ], 10, 3 );
 	}
 
 	/**
@@ -62,9 +65,9 @@ class Page implements Module {
 		self::handle_bulk_link();
 		self::handle_search();
 
-		$hook = add_submenu_page( '', 'Link_Related_Screen', 'Link_Related_Screen', 'edit_posts', self::SLUG, [ self::class, 'render' ] );
+		$hook = add_submenu_page( '', 'Link_Related_Screen', 'Link_Related_Screen', 'edit_posts', self::SLUG, [ static::class, 'render' ] );
 
-		add_action( 'load-' . $hook, [ self::class, 'add_screen_options' ] );
+		add_action( 'load-' . $hook, [ static::class, 'add_screen_options' ] );
 	}
 
 	/**
@@ -127,7 +130,7 @@ class Page implements Module {
 			<form id="sp-list-table-form" method="post">
 				<input type="hidden" name="page" value="<?php echo esc_attr( self::SLUG ); ?>"/>
 				<?php
-				$list_table = new ListTable();
+				$list_table = static::list_table( $parent );
 				$list_table->set_search( $search );
 				$list_table->prepare_items();
 				$list_table->search_box( __( 'Search', 'related-posts-for-wp' ), 'sp-search' );
@@ -156,7 +159,7 @@ class Page implements Module {
 			wp_die( 'There was a problem creating the links, please try again. (nonce failed)' );
 		}
 
-		( new LinkRepository() )->add( $parent, absint( $_GET['rp4wp_create_link'] ) );
+		static::add_link( $parent, absint( $_GET['rp4wp_create_link'] ) );
 		// phpcs:enable
 
 		wp_safe_redirect( self::edit_url( $parent ) );
@@ -182,12 +185,10 @@ class Page implements Module {
 		}
 
 		if ( is_array( $_POST['rp4wp_bulk'] ) ) {
-			$links = new LinkRepository();
-
 			foreach ( array_map( 'absint', wp_unslash( $_POST['rp4wp_bulk'] ) ) as $child_id ) {
 				// Only accept post IDs.
 				if ( $child_id > 0 ) {
-					$links->add( $parent, $child_id );
+					static::add_link( $parent, $child_id );
 				}
 			}
 		}
@@ -216,6 +217,29 @@ class Page implements Module {
 
 		wp_safe_redirect( '' !== $search ? add_query_arg( 's', rawurlencode( $search ), $base ) : remove_query_arg( 's', $base ), 302 );
 		exit;
+	}
+
+	/**
+	 * Link a post to a parent, by hand.
+	 *
+	 * @param int $parent The post links are added to.
+	 * @param int $child  The post to link.
+	 *
+	 * @return void
+	 */
+	protected static function add_link( int $parent, int $child ): void {
+		( new LinkRepository() )->add( $parent, $child );
+	}
+
+	/**
+	 * The table of posts to link to a parent.
+	 *
+	 * @param int $parent The post links are added to.
+	 *
+	 * @return ListTable
+	 */
+	protected static function list_table( int $parent ): ListTable { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found -- Subclasses use it.
+		return new ListTable();
 	}
 
 	/**

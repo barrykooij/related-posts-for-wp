@@ -17,7 +17,8 @@ if ( ! class_exists( 'WP_List_Table' ) ) {
 /**
  * The posts on the link screen: suggested related posts, or all posts with search and paging.
  *
- * The 2.x class RP4WP_Link_Related_Table extends this one, so the method and parameter names are kept.
+ * The 2.x class RP4WP_Link_Related_Table extends this one, so the method and parameter names are kept. The premium
+ * add-on extends it too, and changes the posts through linkable_post_types(), suggested_posts() and row_data().
  */
 class ListTable extends \WP_List_Table {
 
@@ -152,7 +153,7 @@ class ListTable extends \WP_List_Table {
 		if ( 'all' === $view ) {
 			$query = new \WP_Query(
 				[
-					'post_type'        => PostTypes::supported(),
+					'post_type'        => $this->linkable_post_types(),
 					'posts_per_page'   => $per_page,
 					'paged'            => $paged,
 					'suppress_filters' => false,
@@ -171,7 +172,7 @@ class ListTable extends \WP_List_Table {
 
 			$posts = $query->posts;
 		} else {
-			$posts = ( new Finder() )->related_posts( $parent, 25 );
+			$posts = $this->suggested_posts( $parent );
 		}
 
 		foreach ( $posts as $post ) {
@@ -184,11 +185,7 @@ class ListTable extends \WP_List_Table {
 				continue;
 			}
 
-			$this->data[] = [
-				'ID'        => $post->ID,
-				'title'     => $post->post_title,
-				'post_date' => date_i18n( get_option( 'date_format' ), strtotime( $post->post_date ) ),
-			];
+			$this->data[] = $this->row_data( $post );
 		}
 
 		remove_filter( 'posts_where', [ $this, 'filter_posts_where' ] );
@@ -203,6 +200,41 @@ class ListTable extends \WP_List_Table {
 		}
 
 		$this->items = $this->data;
+	}
+
+	/**
+	 * The post types of the posts the "all" view lists.
+	 *
+	 * @return string[]
+	 */
+	protected function linkable_post_types(): array {
+		return PostTypes::supported();
+	}
+
+	/**
+	 * The posts the "related" view suggests.
+	 *
+	 * @param int $parent The post links are added to.
+	 *
+	 * @return array<int, object> Posts, or objects with the ID of a post.
+	 */
+	protected function suggested_posts( int $parent ): array {
+		return ( new Finder() )->related_posts( $parent, 25 );
+	}
+
+	/**
+	 * The row of a post.
+	 *
+	 * @param \WP_Post $post The post.
+	 *
+	 * @return array<string, mixed>
+	 */
+	protected function row_data( \WP_Post $post ): array {
+		return [
+			'ID'        => $post->ID,
+			'title'     => $post->post_title,
+			'post_date' => date_i18n( get_option( 'date_format' ), strtotime( $post->post_date ) ),
+		];
 	}
 
 	/**
