@@ -21,12 +21,10 @@
 
 	<coverage processUncoveredFiles="false">
 		<include>
+			<directory suffix=".php">src</directory>
 			<directory suffix=".php">classes</directory>
 			<directory suffix=".php">includes</directory>
 		</include>
-		<exclude>
-			<directory>classes/ignored-words</directory>
-		</exclude>
 		<report>
 			<html outputDirectory="coverage"/>
 			<clover outputFile="coverage.xml"/>
