@@ -141,4 +141,51 @@ test.describe( 'Related posts meta box', () => {
 			before
 		);
 	} );
+
+	test( 'links several posts at once with the bulk action', async ( {
+		page,
+		admin,
+		rp4wp,
+	} ) => {
+		const posts = await rp4wp.createCorpus();
+		await rp4wp.install();
+		await rp4wp.link();
+
+		await admin.editPost( posts[ 'banana-bread' ].id );
+		await openMetaBoxes( page );
+		const before = await metaBoxTitles( page );
+
+		await page
+			.locator( '#rp4wp_metabox_related_posts' )
+			.getByRole( 'link', { name: 'Add Related Posts' } )
+			.click();
+		await page
+			.locator( '.subsubsub' )
+			.getByRole( 'link', { name: 'All Posts' } )
+			.click();
+
+		for ( const title of [
+			'Pruning roses in spring',
+			'Common rose diseases',
+		] ) {
+			await page
+				.getByRole( 'row', { name: new RegExp( title ) } )
+				.getByRole( 'checkbox' )
+				.check();
+		}
+		await page
+			.locator( '#bulk-action-selector-top' )
+			.selectOption( 'link' );
+		await page.locator( '#doaction' ).click();
+
+		// Back in the editor, both posts are added after the existing ones.
+		await expect( page ).toHaveURL( /post\.php\?post=\d+&action=edit/ );
+		await openMetaBoxes( page );
+		const after = await metaBoxTitles( page );
+		expect( after.slice( 0, before.length ) ).toEqual( before );
+		expect( after.slice( before.length ).sort() ).toEqual( [
+			'Common rose diseases',
+			'Pruning roses in spring',
+		] );
+	} );
 } );

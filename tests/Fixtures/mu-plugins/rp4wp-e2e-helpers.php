@@ -147,6 +147,22 @@ add_action(
 					$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}rp4wp_cache" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.DirectDatabaseQuery.SchemaChange -- Test reset.
 					wp_cache_flush();
 
+					// Take the related posts widget out of every sidebar.
+					$sidebars = (array) get_option( 'sidebars_widgets', [] );
+					foreach ( $sidebars as $sidebar => $widgets ) {
+						if ( is_array( $widgets ) ) {
+							$sidebars[ $sidebar ] = array_values(
+								array_filter(
+									$widgets,
+									static function ( $widget ) {
+										return 0 !== strpos( $widget, 'rp4wp_related_posts_widget-' );
+									}
+								)
+							);
+						}
+					}
+					update_option( 'sidebars_widgets', $sidebars );
+
 					return [ 'reset' => true ];
 				},
 			]
@@ -193,6 +209,37 @@ add_action(
 					( new RP4WP_Related_Post_Manager() )->link_related_posts( 3 );
 
 					return [ 'linked' => true ];
+				},
+			]
+		);
+
+		// Put one related posts widget in a sidebar of the active (classic) theme.
+		register_rest_route(
+			'rp4wp-e2e/v1',
+			'/widget',
+			[
+				'methods'             => 'POST',
+				'permission_callback' => $admin_only,
+				'args'                => [
+					'sidebar' => [
+						'type'     => 'string',
+						'required' => true,
+					],
+				],
+				'callback'            => static function ( WP_REST_Request $request ) {
+					update_option(
+						'widget_rp4wp_related_posts_widget',
+						[
+							2              => [],
+							'_multiwidget' => 1,
+						]
+					);
+
+					$sidebars                                  = (array) get_option( 'sidebars_widgets', [] );
+					$sidebars[ (string) $request['sidebar'] ] = [ 'rp4wp_related_posts_widget-2' ];
+					update_option( 'sidebars_widgets', $sidebars );
+
+					return [ 'widget' => true ];
 				},
 			]
 		);

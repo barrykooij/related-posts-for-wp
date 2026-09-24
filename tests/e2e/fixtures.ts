@@ -127,6 +127,31 @@ export class RP4WPUtils {
 		return posts;
 	}
 
+	/**
+	 * Put the related posts widget in a sidebar of the active theme.
+	 *
+	 * @param sidebar The sidebar ID.
+	 */
+	async addWidget( sidebar: string ): Promise< void > {
+		await this.requestUtils.rest( {
+			method: 'POST',
+			path: '/rp4wp-e2e/v1/widget',
+			data: { sidebar },
+		} );
+	}
+
+	/**
+	 * The stylesheet of the active theme.
+	 */
+	async activeTheme(): Promise< string > {
+		const themes = ( await this.requestUtils.rest( {
+			path: '/wp/v2/themes',
+			params: { status: 'active' },
+		} ) ) as Array< { stylesheet: string } >;
+
+		return themes[ 0 ].stylesheet;
+	}
+
 	async clearProblems(): Promise< void > {
 		await this.requestUtils.rest( {
 			method: 'DELETE',
