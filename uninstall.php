@@ -46,8 +46,13 @@ if ( ! function_exists( 'rp4wp_uninstall' ) ) {
 		// The options.
 		delete_option( 'rp4wp' );
 		delete_option( 'rp4wp_do_install' );
+		delete_option( 'rp4wp_is_installing' );
 		delete_option( 'rp4wp_install_date' );
 		delete_option( 'rp4wp_hide_nag' );
+
+		// What users chose: the review notice dismissed, and the links per page on the link screen.
+		delete_metadata( 'user', 0, 'rp4wp_hide_nag', '', true );
+		delete_metadata( 'user', 0, 'rp4wp_per_page', '', true );
 
 		// The post meta on content posts.
 		$wpdb->query( "DELETE FROM {$wpdb->postmeta} WHERE `meta_key` IN ( 'rp4wp_auto_linked', 'rp4wp_cached', 'rp4wp_no_words' )" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- One-off cleanup.

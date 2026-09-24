@@ -126,6 +126,7 @@ There is one custom table created for the post cache, this table will however no
 * Fix: Related posts with the same link order keep the order they were added in, so a limit or an offset in the shortcode always shows the same posts.
 * Fix: The related posts meta box skips links to posts that no longer exist.
 * Fix: PHP 8 deprecation notices, and word extraction no longer changes the locale of the rest of the request.
+* Fix: Deleting the plugin with "Remove data on uninstall" on also removes the state of an unfinished installation wizard, the dismissed review notice and the chosen number of links per page.
 * Tweak: Titles, settings and links in the admin are escaped.
 * Tweak: The notices about mbstring and the unfinished installation wizard can be translated.
 * Tweak: The Settings link on the Plugins screen also shows when the plugin folder is renamed.

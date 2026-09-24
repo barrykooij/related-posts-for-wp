@@ -36,6 +36,13 @@ final class UninstallTest extends TestCase {
 	private int $link;
 
 	/**
+	 * A user who dismissed the review notice and chose the links per page.
+	 *
+	 * @var int
+	 */
+	private int $user;
+
+	/**
 	 * Queries sent while uninstall.php ran.
 	 *
 	 * @var string[]
@@ -52,8 +59,13 @@ final class UninstallTest extends TestCase {
 		update_post_meta( $this->parent, 'rp4wp_auto_linked', 1 );
 		update_post_meta( $this->parent, 'rp4wp_cached', 1 );
 		update_option( 'rp4wp_do_install', 1 );
+		update_option( 'rp4wp_is_installing', 1 );
 		update_option( 'rp4wp_install_date', '2024-01-01' );
 		update_option( 'rp4wp_hide_nag', 1 );
+
+		$this->user = self::factory()->user->create();
+		add_user_meta( $this->user, 'rp4wp_hide_nag', '1', true );
+		update_user_meta( $this->user, 'rp4wp_per_page', 50 );
 	}
 
 	public function test_keeps_everything_when_cleaning_is_off(): void {
@@ -65,6 +77,8 @@ final class UninstallTest extends TestCase {
 		$this->assertSame( '1', get_post_meta( $this->parent, 'rp4wp_auto_linked', true ) );
 		$this->assertNotFalse( get_option( 'rp4wp' ) );
 		$this->assertNotFalse( get_option( 'rp4wp_install_date' ) );
+		$this->assertNotFalse( get_option( 'rp4wp_is_installing' ) );
+		$this->assertSame( '1', get_user_meta( $this->user, 'rp4wp_hide_nag', true ) );
 		$this->assertSame( [], $this->drop_queries() );
 	}
 
@@ -84,9 +98,13 @@ final class UninstallTest extends TestCase {
 		$this->assertSame( '', get_post_meta( $this->parent, 'rp4wp_cached', true ) );
 
 		// Options.
-		foreach ( [ 'rp4wp', 'rp4wp_do_install', 'rp4wp_install_date', 'rp4wp_hide_nag' ] as $option ) {
+		foreach ( [ 'rp4wp', 'rp4wp_do_install', 'rp4wp_is_installing', 'rp4wp_install_date', 'rp4wp_hide_nag' ] as $option ) {
 			$this->assertFalse( get_option( $option ), "Option {$option} should be deleted." );
 		}
+
+		// What users chose.
+		$this->assertSame( '', get_user_meta( $this->user, 'rp4wp_hide_nag', true ) );
+		$this->assertSame( '', get_user_meta( $this->user, 'rp4wp_per_page', true ) );
 
 		// The word cache table.
 		$this->assertCount( 1, $this->drop_queries() );
