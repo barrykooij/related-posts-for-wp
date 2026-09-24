@@ -36,6 +36,10 @@ async function metaBoxTitles( page: Page ): Promise< string[] > {
 }
 
 test.describe( 'Related posts meta box', () => {
+	// Some WordPress versions show meta boxes in a short pane below the editor. A tall window keeps every row visible,
+	// which dragging rows to reorder them needs.
+	test.use( { viewport: { width: 1280, height: 1400 } } );
+
 	test.beforeEach( async ( { rp4wp } ) => {
 		await rp4wp.reset();
 	} );
@@ -84,6 +88,7 @@ test.describe( 'Related posts meta box', () => {
 
 		// Drag the new post to the top.
 		const rows = metaBox.locator( '.rp4wp_table_manage tbody tr' );
+		await rows.last().scrollIntoViewIfNeeded();
 		const last = await rows.last().boundingBox();
 		const first = await rows.first().boundingBox();
 		if ( ! last || ! first ) {
