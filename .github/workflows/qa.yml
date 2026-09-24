@@ -93,8 +93,6 @@ jobs:
         continue-on-error: true
       - name: Build assets
         run: npm run build
-      - name: Committed build is up to date
-        run: git diff --exit-code -- assets/
 
   integration:
     name: Integration, WP ${{ matrix.wp }}, PHP ${{ matrix.php }}
@@ -149,6 +147,8 @@ jobs:
           cache: npm
       - run: composer install --no-interaction --no-progress --no-dev
       - run: npm ci --no-audit --no-fund
+      # Built CSS and JS are not committed; the specs load the minified files.
+      - run: npm run build
       - run: npx playwright install --with-deps chromium
       - name: Start wp-env
         run: npm run env:test:start

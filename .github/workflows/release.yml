@@ -1,0 +1,62 @@
+name: Release plugin
+
+# Publishing a GitHub release builds the plugin and deploys it to WordPress.org, then attaches the zip to the release.
+# Needs the repository secrets SVN_USERNAME and SVN_PASSWORD.
+
+on:
+  release:
+    types: [ published ]
+
+jobs:
+  release:
+    name: Build and deploy
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Release tag matches the plugin version
+        run: |
+          tag="${{ github.event.release.tag_name }}"
+          header=$(sed -n 's/^[[:space:]]*\*\{0,1\}[[:space:]]*Version:[[:space:]]*//p' related-posts-for-wp.php | head -1 | tr -d '[:space:]')
+          stable=$(sed -n 's/^Stable tag:[[:space:]]*//p' readme.txt | head -1 | tr -d '[:space:]')
+          echo "Tag: $tag, plugin header: $header, readme stable tag: $stable"
+          if [ "$tag" != "$header" ] || [ "$tag" != "$stable" ]; then
+            echo "::error::The release tag, the plugin header Version and the readme Stable tag must be the same."
+            exit 1
+          fi
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+          coverage: none
+          tools: composer:v2
+
+      - name: Install production dependencies
+        run: composer install --no-dev --optimize-autoloader --no-interaction --no-progress
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Build assets
+        run: |
+          npm ci --no-audit --no-fund
+          npm run build
+
+      - name: Deploy to WordPress.org
+        id: deploy
+        uses: 10up/action-wordpress-plugin-deploy@stable
+        with:
+          generate-zip: true
+        env:
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+          SLUG: related-posts-for-wp
+
+      - name: Attach the zip to the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${{ github.event.release.tag_name }}" "${{ steps.deploy.outputs.zip-path }}" --clobber

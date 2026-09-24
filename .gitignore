@@ -2,6 +2,10 @@
 /vendor/
 /node_modules/
 
+# Built assets (npm run build; release zips are built in CI)
+/assets/css/*.css
+/assets/js/*.min.js
+
 # Tool caches and reports
 /.phpstan.cache/
 /.phpunit.result.cache
