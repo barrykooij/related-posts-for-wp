@@ -7,7 +7,6 @@
 
 namespace LV2\WordPress\RelatedPostsForWP\Frontend;
 
-use LV2\WordPress\RelatedPostsForWP\Links\LinkRepository;
 use LV2\WordPress\RelatedPostsForWP\Main;
 
 /**
@@ -44,7 +43,7 @@ class Widget extends \WP_Widget {
 			return;
 		}
 
-		$content = ( new Renderer( new LinkRepository(), Main::get()->settings() ) )->related_posts_html( (int) get_the_ID() );
+		$content = Main::get()->renderer()->render( (int) get_the_ID() );
 
 		if ( '' !== $content ) {
 			echo $args['before_widget']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Theme markup.

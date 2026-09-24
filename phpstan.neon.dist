@@ -46,3 +46,4 @@ parameters:
         # yoast/wp-test-utils defines ABSPATH as `true`; pin the real type.
         ABSPATH: string
         RP4WP_PLUGIN_FILE: string
+        RP4WP_FREE_PLUGIN_FILE: string

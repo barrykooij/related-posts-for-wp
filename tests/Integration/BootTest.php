@@ -20,8 +20,11 @@ use LV2\WordPress\RelatedPostsForWP\Settings\Controller;
 final class BootTest extends TestCase {
 
 	public function test_plugin_boots(): void {
-		$this->assertStringEndsWith( '/related-posts-for-wp.php', RP4WP_PLUGIN_FILE );
-		$this->assertSame( RP4WP_PLUGIN_FILE, Main::file() );
+		$this->assertStringEndsWith( '/related-posts-for-wp.php', RP4WP_FREE_PLUGIN_FILE );
+		$this->assertSame( RP4WP_FREE_PLUGIN_FILE, Main::file() );
+
+		// Without premium, the 2.x constant points to this plugin too.
+		$this->assertSame( RP4WP_FREE_PLUGIN_FILE, RP4WP_PLUGIN_FILE );
 		$this->assertSame( 20, has_action( 'plugins_loaded', 'rp4wp_load_plugin' ) );
 	}
 

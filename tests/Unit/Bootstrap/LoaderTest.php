@@ -110,9 +110,26 @@ final class LoaderTest extends TestCase {
 		$this->include_main_file();
 		rp4wp_load_plugin();
 
-		$this->assertSame( dirname( __DIR__, 3 ) . '/related-posts-for-wp.php', RP4WP_PLUGIN_FILE );
+		$this->assertSame( dirname( __DIR__, 3 ) . '/related-posts-for-wp.php', RP4WP_FREE_PLUGIN_FILE );
+		$this->assertSame( RP4WP_FREE_PLUGIN_FILE, RP4WP_PLUGIN_FILE );
 		$this->assertTrue( Main::get()->is_set_up() );
 		$this->assertTrue( function_exists( 'RP4WP' ) );
+	}
+
+	public function test_boots_next_to_premium_3x_and_points_the_2x_constant_to_it(): void {
+		Functions\when( 'get_bloginfo' )->justReturn( '7.1' );
+		Filters\expectApplied( 'rp4wp_modules' )->once()->andReturn( [] );
+
+		// Premium 3.x defines this when WordPress includes it, before the plugins_loaded callbacks run.
+		define( 'RP4WP_PREMIUM_PLUGIN_FILE', '/wp-content/plugins/related-posts-for-wp-premium/related-posts-for-wp-premium.php' );
+
+		$this->include_main_file();
+		rp4wp_load_plugin();
+
+		$this->assertTrue( Main::get()->is_set_up() );
+		$this->assertSame( RP4WP_PREMIUM_PLUGIN_FILE, RP4WP_PLUGIN_FILE );
+		$this->assertSame( dirname( __DIR__, 3 ) . '/related-posts-for-wp.php', RP4WP_FREE_PLUGIN_FILE );
+		$this->assertSame( RP4WP_FREE_PLUGIN_FILE, Main::file() );
 	}
 
 	/**

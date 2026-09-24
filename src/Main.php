@@ -44,6 +44,13 @@ class Main {
 	private ?Settings\Settings $settings = null;
 
 	/**
+	 * The renderer of the related posts; the default one is created when first needed.
+	 *
+	 * @var Contracts\Renderer|null
+	 */
+	private ?Contracts\Renderer $renderer = null;
+
+	/**
 	 * The shared instance.
 	 *
 	 * @return Main
@@ -195,11 +202,36 @@ class Main {
 	}
 
 	/**
-	 * The main plugin file.
+	 * The renderer of the related posts.
+	 *
+	 * @return Contracts\Renderer
+	 */
+	public function renderer(): Contracts\Renderer {
+		if ( null === $this->renderer ) {
+			$this->renderer = new Frontend\Renderer( new Links\LinkRepository(), $this->settings() );
+		}
+
+		return $this->renderer;
+	}
+
+	/**
+	 * Replace the renderer of the related posts; the premium add-on does this on `rp4wp_register_services`.
+	 *
+	 * @param Contracts\Renderer $renderer The renderer.
+	 *
+	 * @return void
+	 */
+	public function set_renderer( Contracts\Renderer $renderer ): void {
+		$this->renderer = $renderer;
+	}
+
+	/**
+	 * The main file of this plugin. RP4WP_PLUGIN_FILE points to the premium plugin when that is active, like in 2.x,
+	 * so the core uses its own constant for its files.
 	 *
 	 * @return string
 	 */
 	public static function file(): string {
-		return RP4WP_PLUGIN_FILE;
+		return RP4WP_FREE_PLUGIN_FILE;
 	}
 }

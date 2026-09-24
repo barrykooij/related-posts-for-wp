@@ -8,7 +8,6 @@
 namespace LV2\WordPress\RelatedPostsForWP\Frontend;
 
 use LV2\WordPress\RelatedPostsForWP\Compat\LegacyHooks;
-use LV2\WordPress\RelatedPostsForWP\Links\LinkRepository;
 use LV2\WordPress\RelatedPostsForWP\Main;
 use LV2\WordPress\RelatedPostsForWP\Module;
 
@@ -64,6 +63,12 @@ class Shortcode implements Module {
 			$atts
 		);
 
-		return ( new Renderer( new LinkRepository(), Main::get()->settings() ) )->related_posts_html( (int) $atts['id'], (int) $atts['limit'], (int) $atts['offset'] );
+		return Main::get()->renderer()->render(
+			(int) $atts['id'],
+			[
+				'limit'  => (int) $atts['limit'],
+				'offset' => (int) $atts['offset'],
+			]
+		);
 	}
 }

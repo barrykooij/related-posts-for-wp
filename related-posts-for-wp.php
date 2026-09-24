@@ -113,7 +113,11 @@ function rp4wp_load_plugin() {
 		return;
 	}
 
-	define( 'RP4WP_PLUGIN_FILE', __FILE__ );
+	// The core finds its own files through RP4WP_FREE_PLUGIN_FILE. RP4WP_PLUGIN_FILE keeps its 2.x meaning: the main file of
+	// the premium plugin when that is active (premium 3.x defines RP4WP_PREMIUM_PLUGIN_FILE when WordPress includes it),
+	// and of this plugin otherwise.
+	define( 'RP4WP_FREE_PLUGIN_FILE', __FILE__ );
+	define( 'RP4WP_PLUGIN_FILE', defined( 'RP4WP_PREMIUM_PLUGIN_FILE' ) ? RP4WP_PREMIUM_PLUGIN_FILE : __FILE__ );
 
 	require __DIR__ . '/vendor/autoload.php';
 	\LV2\WordPress\RelatedPostsForWP\Compat\LegacyClassLoader::register();

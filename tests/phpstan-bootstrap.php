@@ -5,6 +5,10 @@
  * @package RelatedPostsForWP
  */
 
+if ( ! defined( 'RP4WP_FREE_PLUGIN_FILE' ) ) {
+	define( 'RP4WP_FREE_PLUGIN_FILE', dirname( __DIR__ ) . '/related-posts-for-wp.php' );
+}
+
 if ( ! defined( 'RP4WP_PLUGIN_FILE' ) ) {
 	define( 'RP4WP_PLUGIN_FILE', dirname( __DIR__ ) . '/related-posts-for-wp.php' );
 }

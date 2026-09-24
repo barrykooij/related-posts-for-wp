@@ -8,7 +8,6 @@
 namespace LV2\WordPress\RelatedPostsForWP\Frontend;
 
 use LV2\WordPress\RelatedPostsForWP\Compat\LegacyHooks;
-use LV2\WordPress\RelatedPostsForWP\Links\LinkRepository;
 use LV2\WordPress\RelatedPostsForWP\Main;
 use LV2\WordPress\RelatedPostsForWP\Module;
 
@@ -53,6 +52,6 @@ class ContentFilter implements Module {
 			return $content;
 		}
 
-		return $content . ( new Renderer( new LinkRepository(), Main::get()->settings() ) )->related_posts_html( (int) $id );
+		return $content . Main::get()->renderer()->render( (int) $id );
 	}
 }

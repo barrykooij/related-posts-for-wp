@@ -7,13 +7,14 @@
 
 namespace LV2\WordPress\RelatedPostsForWP\Frontend;
 
+use LV2\WordPress\RelatedPostsForWP\Contracts\Renderer as RendererContract;
 use LV2\WordPress\RelatedPostsForWP\Links\LinkRepository;
 use LV2\WordPress\RelatedPostsForWP\Settings\Settings;
 
 /**
  * Renders the list of related posts. The markup and hooks are the same as in 2.x; themes style it.
  */
-class Renderer {
+class Renderer implements RendererContract {
 
 	/**
 	 * The link repository.
@@ -38,6 +39,19 @@ class Renderer {
 	public function __construct( LinkRepository $links, Settings $settings ) {
 		$this->links    = $links;
 		$this->settings = $settings;
+	}
+
+	/**
+	 * The HTML of the related posts of a post; empty when it has none. The free plugin has one layout, so it only reads
+	 * `limit` and `offset`.
+	 *
+	 * @param int                  $post_id The post.
+	 * @param array<string, mixed> $args    What to show: `limit` (-1 for all) and `offset`.
+	 *
+	 * @return string
+	 */
+	public function render( int $post_id, array $args = [] ): string {
+		return $this->related_posts_html( $post_id, (int) ( $args['limit'] ?? -1 ), (int) ( $args['offset'] ?? 0 ) );
 	}
 
 	/**
