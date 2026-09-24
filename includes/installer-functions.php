@@ -1,17 +1,19 @@
 <?php
+/**
+ * The activation callback. Kept as a named function, registered with register_activation_hook().
+ *
+ * @package RelatedPostsForWP
+ */
 
+/**
+ * Create the word cache table and start the installation wizard.
+ *
+ * Activation runs before this plugin's plugins_loaded callback, so load the autoloader here.
+ *
+ * @return void
+ */
 function rp4wp_activate_plugin() {
-	global $wpdb;
+	require_once dirname( __DIR__ ) . '/vendor/autoload.php';
 
-	$sql = "CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "rp4wp_cache` (
-  `post_id` bigint(20) unsigned NOT NULL,
-  `word` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `weight` float unsigned NOT NULL,
-  `post_type` varchar(20) CHARACTER SET utf8 NOT NULL,
-  PRIMARY KEY (`post_id`,`word`) ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
-
-	$wpdb->query( $sql );
-
-	// Redirect to installation wizard
-	add_option( 'rp4wp_do_install', true );
+	\LV2\WordPress\RelatedPostsForWP\Install\Installer::activate();
 }

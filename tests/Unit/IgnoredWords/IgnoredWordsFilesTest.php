@@ -68,11 +68,11 @@ final class IgnoredWordsFilesTest extends TestCase {
 	}
 
 	/**
-	 * Where the word lists live in 2.x.
+	 * Where the word lists live.
 	 *
 	 * @return string
 	 */
 	private static function directory(): string {
-		return dirname( __DIR__, 3 ) . '/classes/ignored-words';
+		return dirname( __DIR__, 3 ) . '/resources/ignored-words';
 	}
 }
