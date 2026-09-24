@@ -95,19 +95,35 @@ final class RendererSeamTest extends TestCase {
 		$this->assertSame( 0, $this->recorder->calls[0][1]['offset'] );
 	}
 
-	public function test_the_shortcode_passes_its_limit_and_offset(): void {
-		$this->assertSame( 'rendered', do_shortcode( "[rp4wp id={$this->post_id} limit=2 offset=1]" ) );
+	public function test_the_shortcode_passes_its_attributes(): void {
+		$this->assertSame( 'rendered', do_shortcode( "[rp4wp id={$this->post_id} limit=2 offset=1 template='my-template.php' heading_text='Read next']" ) );
 		$this->assertSame(
 			[
 				[
 					$this->post_id,
 					[
-						'limit'  => 2,
-						'offset' => 1,
+						'template'     => 'my-template.php',
+						'limit'        => 2,
+						'heading_text' => 'Read next',
+						'offset'       => 1,
 					],
 				],
 			],
 			$this->recorder->calls
+		);
+	}
+
+	public function test_the_shortcode_has_the_defaults_of_the_template_tag(): void {
+		do_shortcode( "[rp4wp id={$this->post_id}]" );
+
+		$this->assertSame(
+			[
+				'template'     => 'related-posts-default.php',
+				'limit'        => -1,
+				'heading_text' => null,
+				'offset'       => 0,
+			],
+			$this->recorder->calls[0][1]
 		);
 	}
 

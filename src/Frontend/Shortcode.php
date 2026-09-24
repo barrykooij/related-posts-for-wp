@@ -54,11 +54,14 @@ class Shortcode implements Module {
 	 * @return string
 	 */
 	public static function render( $atts ): string {
+		// The premium add-on also reads template and heading_text; the free plugin has one layout and ignores them.
 		$atts = shortcode_atts(
 			[
-				'id'     => get_the_ID(),
-				'limit'  => -1,
-				'offset' => 0,
+				'id'           => get_the_ID(),
+				'limit'        => -1,
+				'offset'       => 0,
+				'template'     => 'related-posts-default.php',
+				'heading_text' => null,
 			],
 			$atts
 		);
@@ -66,8 +69,10 @@ class Shortcode implements Module {
 		return Main::get()->renderer()->render(
 			(int) $atts['id'],
 			[
-				'limit'  => (int) $atts['limit'],
-				'offset' => (int) $atts['offset'],
+				'template'     => $atts['template'],
+				'limit'        => (int) $atts['limit'],
+				'heading_text' => $atts['heading_text'],
+				'offset'       => (int) $atts['offset'],
 			]
 		);
 	}
