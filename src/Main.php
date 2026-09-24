@@ -146,6 +146,9 @@ class Main {
 			Frontend\Css::class,
 			Frontend\Shortcode::class,
 			Frontend\Widgets::class,
+			Admin\Assets::class,
+			Admin\PluginLinks::class,
+			Integrations\YoastDuplicatePost::class,
 		];
 
 		/**
