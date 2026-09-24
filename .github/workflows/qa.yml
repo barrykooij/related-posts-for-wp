@@ -165,3 +165,40 @@ jobs:
         with:
           name: e2e-report-wp-${{ matrix.wp }}
           path: artifacts/e2e/
+
+  upgrade:
+    name: Upgrade from ${{ matrix.from }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # The latest release of each 2.x line that sites update from.
+        from: [ '2.2.5', '2.3.1' ]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # The test builds the site with the 2.x release from its tag.
+          fetch-depth: 0
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          coverage: none
+          tools: composer:v2
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: composer install --no-interaction --no-progress --no-dev
+      - run: npm ci --no-audit --no-fund
+      - run: npm run build
+      - name: Upgrade test
+        run: npm run test:upgrade -- ${{ matrix.from }}
+      - name: Upload snapshots
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: upgrade-from-${{ matrix.from }}
+          path: |
+            artifacts/upgrade/before/
+            artifacts/upgrade/after/
+            artifacts/upgrade/changes.diff

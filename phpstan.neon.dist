@@ -41,6 +41,7 @@ parameters:
             paths:
                 - tests/Integration/Contract/*
                 - tests/Integration/Deprecated/*
+                - tests/Upgrade/*
     dynamicConstantNames:
         # yoast/wp-test-utils defines ABSPATH as `true`; pin the real type.
         ABSPATH: string

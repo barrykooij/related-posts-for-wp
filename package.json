@@ -25,10 +25,11 @@
     "env:stop": "wp-env stop",
     "env:test:start": "wp-env --config=.wp-env.test.json start",
     "env:test:stop": "wp-env --config=.wp-env.test.json stop",
-    "env:test:clean": "wp-env --config=.wp-env.test.json clean all",
+    "env:test:clean": "wp-env --config=.wp-env.test.json reset all",
     "test:integration": "wp-env --config=.wp-env.test.json run cli --env-cwd=wp-content/plugins/related-posts-for-wp vendor/bin/phpunit -c phpunit-integration.xml.dist",
     "test:integration:record": "wp-env --config=.wp-env.test.json run cli --env-cwd=wp-content/plugins/related-posts-for-wp bash -c 'RP4WP_UPDATE_GOLDEN=1 vendor/bin/phpunit -c phpunit-integration.xml.dist --group golden'",
     "test:e2e": "playwright test --config=tests/e2e/playwright.config.ts",
+    "test:upgrade": "bash scripts/upgrade-test.sh",
     "i18n:pot": "wp-env run cli --env-cwd=wp-content/plugins/related-posts-for-wp wp i18n make-pot . languages/related-posts-for-wp.pot --exclude=node_modules,vendor,tests,scripts"
   },
   "devDependencies": {
