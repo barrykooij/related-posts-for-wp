@@ -284,7 +284,7 @@ class Page implements Module {
 			$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->postmeta} WHERE `post_id` IN ({$placeholders})", $link_ids ) );
 		}
 
-		$wpdb->query( "DELETE FROM {$wpdb->postmeta} WHERE `meta_key` = 'rp4wp_auto_linked' OR `meta_key` = 'rp4wp_cached'" );
+		$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->postmeta} WHERE `meta_key` IN ( 'rp4wp_auto_linked', 'rp4wp_cached', %s )", Cache::META_NO_WORDS ) );
 		$wpdb->query( 'DELETE FROM ' . Table::name() . ' WHERE 1=1' );
 		// phpcs:enable
 	}

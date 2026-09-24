@@ -71,6 +71,10 @@ class Extractor {
 			$text = mb_convert_encoding( $text, 'UTF-8', 'ISO-8859-1' );
 		}
 
+		// The word cache table can't store 4-byte characters, such as emoji, and WordPress refuses the whole insert when
+		// one word has one (known issues K14 and P15). They separate words, like punctuation.
+		$text = (string) ( preg_replace( '/[\x{10000}-\x{10FFFF}]/u', ' ', $text ) ?? $text );
+
 		// Replace accented characters with their plain letter.
 		$text = htmlentities( $text, ENT_QUOTES, 'UTF-8' );
 		if ( false !== strpos( $text, '&' ) ) {

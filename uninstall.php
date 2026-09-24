@@ -50,7 +50,7 @@ if ( ! function_exists( 'rp4wp_uninstall' ) ) {
 		delete_option( 'rp4wp_hide_nag' );
 
 		// The post meta on content posts.
-		$wpdb->query( "DELETE FROM {$wpdb->postmeta} WHERE `meta_key` = 'rp4wp_auto_linked' OR `meta_key` = 'rp4wp_cached'" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- One-off cleanup.
+		$wpdb->query( "DELETE FROM {$wpdb->postmeta} WHERE `meta_key` IN ( 'rp4wp_auto_linked', 'rp4wp_cached', 'rp4wp_no_words' )" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- One-off cleanup.
 
 		// The word cache table.
 		$wpdb->query( "DROP TABLE {$wpdb->prefix}rp4wp_cache" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- One-off cleanup of our own table.

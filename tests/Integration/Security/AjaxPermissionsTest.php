@@ -8,6 +8,7 @@
 namespace LV2\WordPress\RelatedPostsForWP\Tests\Integration\Security;
 
 use LV2\WordPress\RelatedPostsForWP\Links\LinkRepository;
+use LV2\WordPress\RelatedPostsForWP\Words\Cache;
 
 /**
  * Regression tests for the 2.3.1 security fixes in the AJAX handlers.
@@ -173,6 +174,25 @@ final class AjaxPermissionsTest extends \WP_Ajax_UnitTestCase {
 
 		// With everything linked, the chosen amount becomes the setting.
 		$this->assertSame( 2, get_option( 'rp4wp' )['automatic_linking_post_amount'] );
+	}
+
+	public function test_a_post_without_words_does_not_keep_the_words_batch_waiting(): void {
+		$this->act_as( 'administrator' );
+		$post_id = self::factory()->post->create(
+			[
+				'post_title'   => 'The',
+				'post_content' => '',
+			]
+		);
+		// A site where the post was never looked at.
+		delete_post_meta( $post_id, Cache::META_NO_WORDS );
+
+		$_POST['nonce'] = wp_create_nonce( 'rp4wp-ajax-nonce-omgrandomword' );
+		$_POST['ppr']   = 1000;
+
+		// 2.x answered 1 here, again and again, so the wizard never finished (known issue P15).
+		$this->assertSame( '0', $this->handle_expecting_die( 'rp4wp_install_save_words' ) );
+		$this->assertSame( '1', get_post_meta( $post_id, Cache::META_NO_WORDS, true ) );
 	}
 
 	/**

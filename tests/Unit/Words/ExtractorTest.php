@@ -44,6 +44,8 @@ final class ExtractorTest extends TestCase {
 			'quotes and dashes become a space'  => [ "it's a well-known \"fact\"", 'it s a well known  fact ' ],
 			'latin-1 input is converted first'  => [ "caf\xE9", 'cafe' ],
 			'characters without plain form stay' => [ 'Ελληνικά 日本', 'Ελληνικά 日本' ],
+			'emoji separate words'              => [ "cake\u{1F382}party \u{1F389}", 'cake party  ' ],
+			'other 4-byte characters too'       => [ "\u{1D401}old \u{2000B}", ' old  ' ],
 		];
 	}
 }
