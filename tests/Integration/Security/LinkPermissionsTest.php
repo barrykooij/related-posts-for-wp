@@ -7,13 +7,14 @@
 
 namespace LV2\WordPress\RelatedPostsForWP\Tests\Integration\Security;
 
+use LV2\WordPress\RelatedPostsForWP\Admin\LinkScreen\Page;
 use LV2\WordPress\RelatedPostsForWP\Tests\Integration\TestCase;
 
 /**
  * Regression tests for the 2.3.1 security fixes in link creation.
  *
  * @covers \RP4WP_Post_Link_Manager::add
- * @covers \RP4WP_Hook_Link_Related_Screen
+ * @covers \LV2\WordPress\RelatedPostsForWP\Admin\LinkScreen\Page
  */
 final class LinkPermissionsTest extends TestCase {
 
@@ -190,16 +191,15 @@ final class LinkPermissionsTest extends TestCase {
 	// phpcs:enable
 
 	/**
-	 * Call one of the private request handlers on the link screen hook.
+	 * Call one of the private request handlers of the link screen.
 	 *
 	 * @param string $method The method name.
 	 *
 	 * @return void
 	 */
 	private function invoke_screen_method( string $method ): void {
-		$screen  = \RP4WP_Manager_Hook::get_hook_object( 'RP4WP_Hook_Link_Related_Screen' );
-		$handler = new \ReflectionMethod( $screen, $method );
+		$handler = new \ReflectionMethod( Page::class, $method );
 		$handler->setAccessible( true );
-		$handler->invoke( $screen );
+		$handler->invoke( null );
 	}
 }

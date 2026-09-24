@@ -154,6 +154,7 @@ class Main {
 			Admin\MetaBox\Ajax::class,
 			Admin\Wizard\Page::class,
 			Admin\Wizard\Ajax::class,
+			Admin\LinkScreen\Page::class,
 			Admin\PluginLinks::class,
 			Integrations\YoastDuplicatePost::class,
 		];
