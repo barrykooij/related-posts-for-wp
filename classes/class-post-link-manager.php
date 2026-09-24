@@ -4,72 +4,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
+use LV2\WordPress\RelatedPostsForWP\Links\LinkRepository;
+
+/**
+ * 2.x link manager. The link data methods delegate to LinkRepository; the list rendering moves in a later step.
+ */
 class RP4WP_Post_Link_Manager {
 
 	private $temp_child_order;
 
+	/**
+	 * The link repository.
+	 *
+	 * @var LinkRepository
+	 */
+	private $links;
+
 	public function __construct() {
-	}
-
-	/**
-	 * Create query arguments used to fetch links
-	 *
-	 * @access private
-	 *
-	 * @param  int  $post_id
-	 * @param  string  $meta_key
-	 *
-	 * @return array
-	 */
-	private function create_link_args( $meta_key, $post_id ) {
-		$args = array(
-			'post_type'      => RP4WP_Constants::LINK_PT,
-			'posts_per_page' => - 1,
-			'orderby'        => 'menu_order',
-			'order'          => 'ASC',
-			'meta_query'     => array(
-				array(
-					'key'     => $meta_key,
-					'value'   => $post_id,
-					'compare' => '=',
-				)
-			)
-		);
-
-		return $args;
-	}
-
-	/**
-	 * Get amount of links based on post type link id and (post) parent id
-	 *
-	 * @access private
-	 *
-	 * @param  int  $parent_id
-	 *
-	 * @return int
-	 */
-	private function get_link_count( $parent_id ) {
-		$link_query = new WP_Query(
-			array(
-				'fields'         => 'ids',
-				'post_type'      => RP4WP_Constants::LINK_PT,
-				'posts_per_page' => - 1,
-				'orderby'        => 'menu_order',
-				'order'          => 'ASC',
-				'meta_query'     => array(
-					array(
-						'key'     => RP4WP_Constants::PM_PARENT,
-						'value'   => $parent_id,
-						'compare' => '=',
-					),
-				)
-			)
-		);
-
-		// Reset global post variables
-		wp_reset_postdata();
-
-		return $link_query->found_posts;
+		$this->links = new LinkRepository();
 	}
 
 	/**
@@ -81,54 +33,14 @@ class RP4WP_Post_Link_Manager {
 	 * @param  int  $child_id
 	 * @param  boolean  $batch
 	 *
-	 * @return int ($link_id)
+	 * @return int|array The link ID, or the insert data when $batch is true.
 	 */
 	public function add( $parent_id, $child_id, $batch = false ) {
-		global $wpdb;
-
-		// Post IDs are placed directly in the SQL below, so they must be integers
-		$parent_id = absint( $parent_id );
-		$child_id  = absint( $child_id );
-
-		// Setup the insert data
-		$data = array(
-			'post' => "('" . current_time( 'mysql', 0 ) . "', '" . current_time( 'mysql',
-					1 ) . "','','Related Posts for WordPress Link','" . RP4WP_Constants::LINK_PT . "','publish')",
-			'meta' => array(
-				"(%d, '" . RP4WP_Constants::PM_PARENT . "', '$parent_id')",
-				"(%d, '" . RP4WP_Constants::PM_CHILD . "', '$child_id')",
-			)
-		);
-
-		// If this is a batch insert, return data
 		if ( true === $batch ) {
-			return $data;
+			return $this->links->insert_data( absint( $parent_id ), absint( $child_id ) );
 		}
 
-		// Create post link
-		$wpdb->query( "	INSERT INTO `$wpdb->posts`
-						(`post_date`,`post_date_gmt`,`post_content`,`post_title`,`post_type`,`post_status`)
-						VALUES
-						{$data['post']}
-						" );
-
-		$link_id = $wpdb->insert_id;
-
-		// Create post meta
-		$wpdb->query(
-			$wpdb->prepare(
-				"INSERT INTO `$wpdb->postmeta`
-				(`post_id`,`meta_key`,`meta_value`)
-				VALUES
-				{$data['meta'][0]},
-				{$data['meta'][1]}
-				", $link_id, $link_id ) );
-
-		// Do action rp4wp_after_link_add
-		do_action( 'rp4wp_after_link_add', $link_id );
-
-		// Return link id
-		return $link_id;
+		return $this->links->add( absint( $parent_id ), absint( $child_id ) );
 	}
 
 	/**
@@ -136,21 +48,12 @@ class RP4WP_Post_Link_Manager {
 	 *
 	 * @access public
 	 *
-	 * @param  id  $link_id
+	 * @param  int  $link_id
 	 *
 	 * @return void
 	 */
 	public function delete( $link_id ) {
-		// Action
-		do_action( 'rp4wp_before_link_delete', $link_id );
-
-		// Delete link
-		wp_delete_post( $link_id, true );
-
-		// Action
-		do_action( 'rp4wp_after_link_delete', $link_id );
-
-		return;
+		$this->links->delete( (int) $link_id );
 	}
 
 	/**
@@ -165,102 +68,8 @@ class RP4WP_Post_Link_Manager {
 	 * @return array
 	 */
 	public function get_children( $parent_id, $extra_args = array() ) {
-
-		// Do WP_Query
-		$link_args = $this->create_link_args( RP4WP_Constants::PM_PARENT, $parent_id );
-
-		/*
-		 * Check $extra_args for `posts_per_page`.
-		 * This is the only arg that should be added to link query instead of the child query
-		 */
-		if ( isset( $extra_args['posts_per_page'] ) ) {
-
-			// Set posts_per_page to link arguments
-			$link_args['posts_per_page'] = $extra_args['posts_per_page'];
-			unset( $extra_args['posts_per_page'] );
-		}
-
-		/*
-		 * Check $extra_args for `order`.
-		 * If 'order' is set without 'orderby', we should add it to the link arguments
-		 */
-		if ( isset( $extra_args['order'] ) && ! isset( $extra_args['orderby'] ) ) {
-			$link_args['order'] = $extra_args['order'];
-			unset( $extra_args['order'] );
-		}
-
-		// Check $extra_args for `offset`, this should be added to link query instead of the child query
-		if ( isset( $extra_args['offset'] ) ) {
-
-			// Set posts_per_page to link arguments
-			$link_args['offset'] = $extra_args['offset'];
-			unset( $extra_args['offset'] );
-		}
-
-		/**
-		 * Filter args for link query
-		 */
-		$link_args = apply_filters( 'rp4wp_get_children_link_args', $link_args, $parent_id );
-
-		// Create link query
-		$wp_query = new WP_Query();
-		$posts    = $wp_query->query( $link_args );
-
-		// Store child ids
-		$child_ids = array();
-		foreach ( $posts as $post ) {
-			$child_ids[ $post->ID ] = get_post_meta( $post->ID, RP4WP_Constants::PM_CHILD, true );
-		}
-
-		// Get children with custom args
-		if ( is_array( $extra_args ) && count( $extra_args ) > 0 ) {
-
-			if ( ! isset( $extra_args['orderby'] ) ) {
-				$this->temp_child_order = array_values( $child_ids );
-			}
-
-			// Get child again, but this time by $extra_args
-			$children = array();
-
-			//Child WP_Query arguments
-			if ( count( $child_ids ) > 0 ) {
-				$child_args = array(
-					'post_type'           => 'post',
-					'posts_per_page'      => - 1,
-					'ignore_sticky_posts' => 1,
-					'post__in'            => $child_ids,
-				);
-
-				// Extra arguments
-				$child_args = array_merge_recursive( $child_args, $extra_args );
-
-				/**
-				 * Filter args for child query
-				 */
-				$child_args = apply_filters( 'rp4wp_get_children_child_args', $child_args, $parent_id );
-
-				// Child Query
-				$wp_query = new WP_Query;
-				$posts    = $wp_query->query( $child_args );
-				foreach ( $posts as $post ) {
-					$children[ $post->ID ] = $post;
-				}
-
-				// Fix sorting
-				if ( ! isset( $extra_args['orderby'] ) ) {
-					uasort( $children, array( $this, 'sort_get_children_children' ) );
-				}
-
-			}
-		} else {
-			// No custom arguments found, get all objects of stored ID's
-			$children = array_map( 'get_post', $child_ids );
-		}
-
-		// Return children
-		return $children;
+		return $this->links->get_children( (int) $parent_id, (array) $extra_args );
 	}
-
 
 	/**
 	 * Get parents based on link_id and child_id.
@@ -272,30 +81,7 @@ class RP4WP_Post_Link_Manager {
 	 * @return array
 	 */
 	public function get_parents( $child_id ) {
-
-		// build link args
-		$link_args           = $this->create_link_args( RP4WP_Constants::PM_CHILD, $child_id );
-		$link_args['fields'] = 'ids';
-
-		/**
-		 * Filter args for link query
-		 */
-		$link_args = apply_filters( 'rp4wp_get_parents_link_args', $link_args, $child_id );
-
-		// Create link query
-		$wp_query      = new WP_Query();
-		$link_post_ids = $wp_query->query( $link_args );
-
-		$parents = array();
-		if ( ! empty( $link_post_ids ) ) {
-			foreach ( $link_post_ids as $link_post_id ) {
-				// Add post to correct original sort key
-				$parents[ $link_post_id ] = get_post( get_post_meta( $link_post_id, RP4WP_Constants::PM_PARENT,
-					true ) );
-			}
-		}
-
-		return $parents;
+		return $this->links->get_parents( (int) $child_id );
 	}
 
 	/**
@@ -315,31 +101,10 @@ class RP4WP_Post_Link_Manager {
 	 *
 	 * @access public
 	 *
-	 * @param $post_id
+	 * @param  int  $post_id
 	 */
 	public function delete_links_related_to( $post_id ) {
-		$involved_query = new WP_Query();
-		$posts          = $involved_query->query( array(
-			'post_type'      => RP4WP_Constants::LINK_PT,
-			'posts_per_page' => - 1,
-			'meta_query'     => array(
-				'relation' => 'OR',
-				array(
-					'key'     => RP4WP_Constants::PM_PARENT,
-					'value'   => $post_id,
-					'compare' => '=',
-				),
-				array(
-					'key'     => RP4WP_Constants::PM_CHILD,
-					'value'   => $post_id,
-					'compare' => '=',
-				)
-			)
-		) );
-
-		foreach ( $posts as $post ) {
-			wp_delete_post( $post->ID, true );
-		}
+		$this->links->delete_links_related_to( (int) $post_id );
 	}
 
 	/**

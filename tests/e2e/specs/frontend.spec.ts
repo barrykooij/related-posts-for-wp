@@ -51,14 +51,7 @@ test.describe( 'Front end', () => {
 		const all = await blocks.nth( 0 ).locator( 'li a' ).allTextContents();
 		expect( all ).toHaveLength( 3 );
 
-		// 2.x orders links by menu_order only, and links from the wizard all share menu_order 0, so which tied link
-		// LIMIT/OFFSET picks is up to the database. Assert what 2.x guarantees; the integration golden master pins the
-		// exact order. TODO(3.x): once links are ordered by menu_order then ID, assert it is exactly all[ 1 ].
-		const offsetItems = await blocks
-			.nth( 1 )
-			.locator( 'li a' )
-			.allTextContents();
-		expect( offsetItems ).toHaveLength( 1 );
-		expect( all ).toContain( offsetItems[ 0 ] );
+		// Links are ordered by menu_order, then ID (the relevance order), so the offset picks the second post.
+		await expect( blocks.nth( 1 ).locator( 'li a' ) ).toHaveText( [ all[ 1 ] ] );
 	} );
 } );

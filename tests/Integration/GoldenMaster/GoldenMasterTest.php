@@ -82,25 +82,6 @@ final class GoldenMasterTest extends TestCase {
 
 		$this->set_permalink_structure( '/%postname%/' );
 		wp_set_current_user( self::$author );
-
-		/*
-		 * Links from the wizard and automatic linking all have menu_order 0 and 2.x orders by menu_order only, so with a
-		 * LIMIT (for example [rp4wp limit=1]) the database may return any of the tied links. Break ties by ID, which is
-		 * the insertion order and so the relevance order, through the plugin's own filter. The rework orders this way
-		 * natively; see the modernization plan.
-		 */
-		add_filter(
-			'rp4wp_get_children_link_args',
-			static function ( $args ) {
-				$order           = isset( $args['order'] ) ? $args['order'] : 'ASC';
-				$args['orderby'] = [
-					'menu_order' => $order,
-					'ID'         => $order,
-				];
-
-				return $args;
-			}
-		);
 	}
 
 	public function tear_down(): void {
@@ -459,7 +440,7 @@ final class GoldenMasterTest extends TestCase {
 		}
 		$result['after_reverse'] = $this->children_of( $parent, self::$ids );
 
-		$manager->delete( $link ); // @phpstan-ignore argument.type (The 2.x docblock declares the type as "id"; the rework fixes it.)
+		$manager->delete( $link );
 		$result['after_delete'] = $this->children_of( $parent, self::$ids );
 
 		$result['parents_of_kyoto_temples'] = $this->parents_of( self::$ids['kyoto-temples'], self::$ids );
