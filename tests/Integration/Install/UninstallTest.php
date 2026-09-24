@@ -62,6 +62,7 @@ final class UninstallTest extends TestCase {
 		update_option( 'rp4wp_is_installing', 1 );
 		update_option( 'rp4wp_install_date', '2024-01-01' );
 		update_option( 'rp4wp_hide_nag', 1 );
+		update_option( 'widget_rp4wp_related_posts_widget', [ 2 => [ 'title' => 'Related' ] ] );
 
 		$this->user = self::factory()->user->create();
 		add_user_meta( $this->user, 'rp4wp_hide_nag', '1', true );
@@ -78,6 +79,7 @@ final class UninstallTest extends TestCase {
 		$this->assertNotFalse( get_option( 'rp4wp' ) );
 		$this->assertNotFalse( get_option( 'rp4wp_install_date' ) );
 		$this->assertNotFalse( get_option( 'rp4wp_is_installing' ) );
+		$this->assertNotFalse( get_option( 'widget_rp4wp_related_posts_widget' ) );
 		$this->assertSame( '1', get_user_meta( $this->user, 'rp4wp_hide_nag', true ) );
 		$this->assertSame( [], $this->drop_queries() );
 	}
@@ -98,7 +100,7 @@ final class UninstallTest extends TestCase {
 		$this->assertSame( '', get_post_meta( $this->parent, 'rp4wp_cached', true ) );
 
 		// Options.
-		foreach ( [ 'rp4wp', 'rp4wp_do_install', 'rp4wp_is_installing', 'rp4wp_install_date', 'rp4wp_hide_nag' ] as $option ) {
+		foreach ( [ 'rp4wp', 'rp4wp_do_install', 'rp4wp_is_installing', 'rp4wp_install_date', 'rp4wp_hide_nag', 'widget_rp4wp_related_posts_widget' ] as $option ) {
 			$this->assertFalse( get_option( $option ), "Option {$option} should be deleted." );
 		}
 

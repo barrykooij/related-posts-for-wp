@@ -127,7 +127,7 @@ There is one custom table created for the post cache, this table will however no
 * Fix: The related posts meta box skips links to posts that no longer exist.
 * Fix: The installation wizard no longer keeps waiting on posts without words or with emoji.
 * Fix: PHP 8 deprecation notices, and word extraction no longer changes the locale of the rest of the request.
-* Fix: Deleting the plugin with "Remove data on uninstall" on also removes the state of an unfinished installation wizard, the dismissed review notice and the chosen number of links per page.
+* Fix: Deleting the plugin with "Remove data on uninstall" on also removes the widget settings, the state of an unfinished installation wizard, the dismissed review notice and the chosen number of links per page.
 * Tweak: Titles, settings and links in the admin are escaped.
 * Tweak: The notices about mbstring and the unfinished installation wizard can be translated.
 * Tweak: The Settings link on the Plugins screen also shows when the plugin folder is renamed.

@@ -49,6 +49,7 @@ if ( ! function_exists( 'rp4wp_uninstall' ) ) {
 		delete_option( 'rp4wp_is_installing' );
 		delete_option( 'rp4wp_install_date' );
 		delete_option( 'rp4wp_hide_nag' );
+		delete_option( 'widget_rp4wp_related_posts_widget' );
 
 		// What users chose: the review notice dismissed, and the links per page on the link screen.
 		delete_metadata( 'user', 0, 'rp4wp_hide_nag', '', true );
