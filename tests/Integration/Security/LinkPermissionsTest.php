@@ -11,9 +11,9 @@ use LV2\WordPress\RelatedPostsForWP\Admin\LinkScreen\Page;
 use LV2\WordPress\RelatedPostsForWP\Tests\Integration\TestCase;
 
 /**
- * Regression tests for the 2.3.1 security fixes in link creation.
+ * Regression tests for the 2.3.1 security fixes in link creation. The fixes in the 2.x link manager are covered by
+ * Deprecated\PostLinkManagerTest.
  *
- * @covers \RP4WP_Post_Link_Manager::add
  * @covers \LV2\WordPress\RelatedPostsForWP\Admin\LinkScreen\Page
  */
 final class LinkPermissionsTest extends TestCase {
@@ -48,30 +48,6 @@ final class LinkPermissionsTest extends TestCase {
 		$_POST = [];
 
 		parent::tear_down();
-	}
-
-	public function test_add_does_not_run_sql_from_the_child_id(): void {
-		global $wpdb;
-
-		$payload = $this->children[0] . "'), (1, 'rp4wp_injected', 'pwned";
-		$link_id = ( new \RP4WP_Post_Link_Manager() )->add( $this->admin_post, $payload ); // @phpstan-ignore argument.type (The attack passes a string on purpose.)
-
-		$injected = (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$wpdb->postmeta} WHERE meta_key = 'rp4wp_injected'" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- Verifying the raw table.
-
-		$this->assertSame( 0, $injected );
-		$this->assertSame( (string) $this->children[0], get_post_meta( $link_id, 'rp4wp_child', true ) );
-		$this->assertSame( (string) $this->admin_post, get_post_meta( $link_id, 'rp4wp_parent', true ) );
-	}
-
-	public function test_add_does_not_run_sql_from_the_parent_id(): void {
-		global $wpdb;
-
-		$payload = $this->admin_post . "'), (1, 'rp4wp_injected', 'pwned";
-		( new \RP4WP_Post_Link_Manager() )->add( $payload, $this->children[0] ); // @phpstan-ignore argument.type (The attack passes a string on purpose.)
-
-		$injected = (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$wpdb->postmeta} WHERE meta_key = 'rp4wp_injected'" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- Verifying the raw table.
-
-		$this->assertSame( 0, $injected );
 	}
 
 	public function test_contributor_cannot_bulk_link_to_someone_elses_post(): void {

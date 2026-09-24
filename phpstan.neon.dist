@@ -2,8 +2,8 @@
 #
 # Starts at level 5; raise the level step by step towards 8 as the reported errors are fixed.
 #
-# The legacy classes/ and includes/ code is scanned for symbols but not analysed, because it is replaced class by
-# class during the 3.x rework. New code is added to `paths` as it lands.
+# The 2.x classes live in deprecated/ as shims. The deprecation rules report any use of them from new code; only the
+# tests that are about the 2.x API may use it.
 #
 # Baseline additions require a `# BASELINE:` comment block per entry in phpstan-baseline.neon explaining the WP stub
 # gap or WP runtime quirk.
@@ -17,6 +17,7 @@ parameters:
     paths:
         - src
         - deprecated
+        - includes
         - tests
         - related-posts-for-wp.php
         - uninstall.php
@@ -31,10 +32,15 @@ parameters:
         - vendor/autoload.php
         - tests/phpstan-bootstrap.php
     scanDirectories:
-        - classes
-        - includes
         # The WordPress test suite classes (WP_UnitTestCase and friends) used by the integration tests.
         - vendor/wp-phpunit/wp-phpunit/includes
+    ignoreErrors:
+        -
+            # These tests are about the 2.x API, so they use it on purpose. Everywhere else, using it is an error.
+            message: '#deprecated#'
+            paths:
+                - tests/Integration/Contract/*
+                - tests/Integration/Deprecated/*
     dynamicConstantNames:
         # yoast/wp-test-utils defines ABSPATH as `true`; pin the real type.
         ABSPATH: string

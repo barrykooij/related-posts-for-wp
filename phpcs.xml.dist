@@ -2,12 +2,9 @@
 <ruleset name="RelatedPostsForWP">
 	<description>Coding standards for Related Posts for WordPress.</description>
 
-	<!--
-		The legacy classes/ and includes/ code is not linted, because it is replaced class by class during the
-		3.x rework. New code is added here as it lands.
-	-->
 	<file>src</file>
 	<file>deprecated</file>
+	<file>includes</file>
 	<file>tests</file>
 	<file>related-posts-for-wp.php</file>
 	<file>uninstall.php</file>

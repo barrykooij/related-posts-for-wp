@@ -70,7 +70,10 @@ final class LegacyUnhookingTest extends TestCase {
 	 * @param int    $priority The priority.
 	 */
 	public function test_can_be_unhooked_the_2x_way( string $class, string $tag, int $priority ): void {
-		$hook = 0 === strpos( $class, 'RP4WP_Filter_' )
+		$is_filter = 0 === strpos( $class, 'RP4WP_Filter_' );
+		$this->setExpectedDeprecated( $is_filter ? 'RP4WP_Manager_Filter::get_filter_object' : 'RP4WP_Manager_Hook::get_hook_object' );
+
+		$hook = $is_filter
 			? \RP4WP_Manager_Filter::get_filter_object( $class )
 			: \RP4WP_Manager_Hook::get_hook_object( $class );
 
@@ -90,6 +93,7 @@ final class LegacyUnhookingTest extends TestCase {
 
 		$this->assertStringContainsString( 'rp4wp-related-posts', $this->content_of( $parent ) );
 
+		$this->setExpectedDeprecated( 'RP4WP_Manager_Filter::get_filter_object' );
 		$hook = \RP4WP_Manager_Filter::get_filter_object( 'RP4WP_Filter_After_Post' );
 		remove_filter( $hook->get_tag(), [ $hook, 'run' ], $hook->get_priority() );
 
@@ -100,6 +104,7 @@ final class LegacyUnhookingTest extends TestCase {
 		$parent = self::factory()->post->create();
 		( new LinkRepository() )->add( $parent, self::factory()->post->create( [ 'post_title' => 'A related post' ] ) );
 
+		$this->setExpectedDeprecated( 'RP4WP_Manager_Hook::get_hook_object' );
 		$hook = \RP4WP_Manager_Hook::get_hook_object( 'RP4WP_Hook_Shortcode' );
 		if ( ! is_object( $hook ) || ( ! method_exists( $hook, 'output' ) && ! method_exists( $hook, '__call' ) ) ) {
 			$this->fail( 'The 2.x shortcode object is not available.' );
@@ -112,6 +117,7 @@ final class LegacyUnhookingTest extends TestCase {
 		require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		require_once ABSPATH . 'wp-admin/includes/template.php';
 
+		$this->setExpectedDeprecated( 'RP4WP_Manager_Hook::get_hook_object' );
 		$hook = \RP4WP_Manager_Hook::get_hook_object( 'RP4WP_Hook_Settings_Page' );
 		if ( ! is_object( $hook ) || ( ! method_exists( $hook, '__call' ) && ( ! method_exists( $hook, 'screen' ) || ! method_exists( $hook, 'enqueue_assets' ) ) ) ) {
 			$this->fail( 'The 2.x settings page object is not available.' );

@@ -22,7 +22,7 @@
 	<coverage processUncoveredFiles="false">
 		<include>
 			<directory suffix=".php">src</directory>
-			<directory suffix=".php">classes</directory>
+			<directory suffix=".php">deprecated</directory>
 			<directory suffix=".php">includes</directory>
 		</include>
 		<report>

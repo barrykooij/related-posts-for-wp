@@ -201,12 +201,12 @@ add_action(
 				'methods'             => 'POST',
 				'permission_callback' => $admin_only,
 				'callback'            => static function () {
-					if ( ! class_exists( 'RP4WP_Related_Word_Manager' ) ) {
+					if ( ! class_exists( \LV2\WordPress\RelatedPostsForWP\Main::class ) || ! \LV2\WordPress\RelatedPostsForWP\Main::get()->is_set_up() ) {
 						return new WP_Error( 'rp4wp_e2e_inactive', 'Activate the plugin first.', [ 'status' => 409 ] );
 					}
 
-					( new RP4WP_Related_Word_Manager() )->save_all_words();
-					( new RP4WP_Related_Post_Manager() )->link_related_posts( 3 );
+					( new \LV2\WordPress\RelatedPostsForWP\Words\Cache() )->save_all();
+					( new \LV2\WordPress\RelatedPostsForWP\Related\Linker() )->link_all( 3 );
 
 					return [ 'linked' => true ];
 				},

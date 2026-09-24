@@ -149,6 +149,8 @@ final class GoldenMasterTest extends TestCase {
 	}
 
 	public function test_link_manager_api_matches_golden(): void {
+		$this->expect_link_manager_api_deprecations();
+
 		Golden::assert_json_matches( self::SET, 'link-manager-api.json', $this->link_manager_api() );
 	}
 
@@ -156,6 +158,8 @@ final class GoldenMasterTest extends TestCase {
 	 * Every scenario again with a recorder attached: the same hooks must fire with the same argument counts.
 	 */
 	public function test_hooks_fired_match_golden(): void {
+		$this->expect_link_manager_api_deprecations();
+
 		$recorder = new HookRecorder();
 		$recorder->start();
 
@@ -464,6 +468,17 @@ final class GoldenMasterTest extends TestCase {
 	 */
 	private function link_manager_api(): array {
 		return LinkManagerApi::snapshot( self::$ids['espresso-at-home'], $this->normalizer() );
+	}
+
+	/**
+	 * The link manager scenario uses the 2.x API, which reports itself as deprecated.
+	 *
+	 * @return void
+	 */
+	private function expect_link_manager_api_deprecations(): void {
+		foreach ( LinkManagerApi::DEPRECATED as $deprecated ) {
+			$this->setExpectedDeprecated( $deprecated );
+		}
 	}
 
 	/**

@@ -16,6 +16,16 @@ use LV2\WordPress\RelatedPostsForWP\Tests\Support\Normalizer;
 final class LinkManagerApi {
 
 	/**
+	 * The deprecation notices snapshot() causes, for setExpectedDeprecated().
+	 */
+	public const DEPRECATED = [
+		'RP4WP_Post_Link_Manager',
+		'RP4WP_Post_Link_Manager::get_children',
+		'RP4WP_Post_Link_Manager::get_parents',
+		'RP4WP_Post_Link_Manager::generate_children_list',
+	];
+
+	/**
 	 * Call the link manager for one parent post.
 	 *
 	 * @param int        $parent_id  The parent post.

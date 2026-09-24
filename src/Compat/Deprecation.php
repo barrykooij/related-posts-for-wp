@@ -22,11 +22,12 @@ class Deprecation {
 	 *
 	 * @param string $method      The method, as __METHOD__ gives it.
 	 * @param string $replacement What to use instead; empty when there is nothing to use instead.
+	 * @param string $since       The version that deprecated it, for the few methods 2.x had already deprecated.
 	 *
 	 * @return void
 	 */
-	public static function method( string $method, string $replacement = '' ): void {
-		_deprecated_function( esc_html( $method ), esc_html( self::SINCE ), esc_html( $replacement ) );
+	public static function method( string $method, string $replacement = '', string $since = self::SINCE ): void {
+		_deprecated_function( esc_html( $method ), esc_html( $since ), esc_html( $replacement ) );
 	}
 
 	/**
