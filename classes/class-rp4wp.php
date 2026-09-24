@@ -4,11 +4,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
+/**
+ * The 2.x plugin class.
+ *
+ * The plugin boots through LV2\WordPress\RelatedPostsForWP\Main now. This class only keeps RP4WP()->settings and the
+ * plugin file available for code written for 2.x, and is created when such code first asks for it.
+ */
 class RP4WP {
 
 	private static $instance = null;
 
-	const VERSION = '2.3.1';
+	const VERSION = \LV2\WordPress\RelatedPostsForWP\Main::VERSION;
 
 	/**
 	 * @var RP4WP_Settings
@@ -39,39 +45,20 @@ class RP4WP {
 	 * @return String
 	 */
 	public static function get_plugin_file() {
-		return RP4WP_PLUGIN_FILE;
+		return \LV2\WordPress\RelatedPostsForWP\Main::file();
 	}
 
 	/**
 	 * The constructor
+	 *
+	 * Like 2.x, the settings object exists from init on.
 	 */
 	private function __construct() {
-		$this->init();
-	}
-
-	/**
-	 * Initialize the plugin
-	 */
-	private function init() {
-
-		// Main handles WordPress Playground, multisite and the text domain; nothing below runs where Main does not.
-		if ( ! \LV2\WordPress\RelatedPostsForWP\Main::get()->should_run() ) {
-			return;
+		if ( did_action( 'init' ) ) {
+			$this->setup_settings();
+		} else {
+			add_action( 'init', array( $this, 'setup_settings' ) );
 		}
-
-		// Setup settings
-		add_action( 'init', array( $this, 'setup_settings' ) );
-
-		// Filters
-		$filters        = include dirname( RP4WP_PLUGIN_FILE ) . '/includes/filters.php';
-		$manager_filter = new RP4WP_Manager_Filter( $filters );
-		$manager_filter->load_filters();
-
-		// Hooks
-		$actions      = include dirname( RP4WP_PLUGIN_FILE ) . '/includes/actions.php';
-		$manager_hook = new RP4WP_Manager_Hook( $actions );
-		$manager_hook->load_hooks();
-
 	}
 
 	/**

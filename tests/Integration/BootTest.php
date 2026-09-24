@@ -20,6 +20,13 @@ final class BootTest extends TestCase {
 		$this->assertSame( 20, has_action( 'plugins_loaded', 'rp4wp_load_plugin' ) );
 	}
 
+	public function test_every_module_exists(): void {
+		// Main skips a module that is not a Module, with only a notice, so check the list here.
+		foreach ( \LV2\WordPress\RelatedPostsForWP\Main::get()->modules() as $module ) {
+			$this->assertTrue( is_subclass_of( $module, \LV2\WordPress\RelatedPostsForWP\Module::class ), "{$module} is not a module." );
+		}
+	}
+
 	public function test_main_is_set_up_once_and_announces_it(): void {
 		$this->assertTrue( \LV2\WordPress\RelatedPostsForWP\Main::get()->is_set_up() );
 		$this->assertSame( 1, did_action( 'rp4wp_register_services' ) );
@@ -44,6 +51,7 @@ final class BootTest extends TestCase {
 	}
 
 	public function test_settings_are_set_up_on_init(): void {
+		$this->assertSame( 10, has_action( 'init', [ \LV2\WordPress\RelatedPostsForWP\Settings\Controller::class, 'build' ] ) );
 		$this->assertInstanceOf( \RP4WP_Settings::class, RP4WP()->settings );
 	}
 }

@@ -7,8 +7,6 @@
 
 namespace LV2\WordPress\RelatedPostsForWP;
 
-use LV2\WordPress\RelatedPostsForWP\Settings\Settings;
-
 /**
  * Boots the plugin.
  *
@@ -41,9 +39,9 @@ class Main {
 	/**
 	 * The settings service.
 	 *
-	 * @var Settings|null
+	 * @var Settings\Settings|null
 	 */
-	private ?Settings $settings = null;
+	private ?Settings\Settings $settings = null;
 
 	/**
 	 * The shared instance.
@@ -143,8 +141,7 @@ class Main {
 			Admin\Notices\Installing::class,
 			Admin\Notices\Mbstring::class,
 			Admin\Notices\Review::class,
-			// The 2.x bootstrap, until every 2.x class has moved into src/.
-			Legacy\Bootstrap::class,
+			Settings\Controller::class,
 			Links\LinkPostType::class,
 			Links\PostLifecycle::class,
 			Frontend\ContentFilter::class,
@@ -176,11 +173,11 @@ class Main {
 	/**
 	 * The settings service.
 	 *
-	 * @return Settings
+	 * @return Settings\Settings
 	 */
-	public function settings(): Settings {
+	public function settings(): Settings\Settings {
 		if ( null === $this->settings ) {
-			$this->settings = new Settings();
+			$this->settings = new Settings\Settings();
 		}
 
 		return $this->settings;
@@ -189,11 +186,11 @@ class Main {
 	/**
 	 * Replace the settings service. Use it on `rp4wp_register_services`.
 	 *
-	 * @param Settings $settings The settings service.
+	 * @param Settings\Settings $settings The settings service.
 	 *
 	 * @return void
 	 */
-	public function set_settings( Settings $settings ): void {
+	public function set_settings( Settings\Settings $settings ): void {
 		$this->settings = $settings;
 	}
 
