@@ -45,18 +45,13 @@ class Installing implements Module {
 	 * @return void
 	 */
 	public static function display(): void {
-		$params = self::current_query();
-
-		$resume  = '?' . http_build_query(
-			array_merge(
-				$params,
-				[
-					'page'        => Page::SLUG,
-					'rp4wp_nonce' => wp_create_nonce( Page::NONCE ),
-				]
-			)
+		$resume  = add_query_arg(
+			[
+				'page'        => Page::SLUG,
+				'rp4wp_nonce' => wp_create_nonce( Page::NONCE ),
+			]
 		);
-		$dismiss = '?' . http_build_query( array_merge( $params, [ 'rp4wp_hide_is_installing' => 1 ] ) );
+		$dismiss = add_query_arg( 'rp4wp_hide_is_installing', 1 );
 
 		echo '<div class="error"><p>';
 		echo esc_html__( "Woah! Looks like we weren't able to finish your Related Posts for WordPress installation wizard!", 'related-posts-for-wp' );
@@ -64,25 +59,11 @@ class Installing implements Module {
 		printf(
 			/* translators: 1: resume link opening tag, 2: link closing tag, 3: dismiss link opening tag, 4: link closing tag */
 			esc_html__( '%1$sResume the installation wizard%2$s or %3$sdismiss this notice%4$s', 'related-posts-for-wp' ),
-			'<a href="' . esc_attr( $resume ) . '">',
+			'<a href="' . esc_url( $resume ) . '">',
 			'</a>',
-			'<a href="' . esc_attr( $dismiss ) . '">',
+			'<a href="' . esc_url( $dismiss ) . '">',
 			'</a>'
 		);
 		echo '</p></div>';
-	}
-
-	/**
-	 * The query arguments of the current admin page.
-	 *
-	 * @return array<string, mixed>
-	 */
-	private static function current_query(): array {
-		$params = [];
-		if ( isset( $_SERVER['QUERY_STRING'] ) ) {
-			parse_str( sanitize_text_field( wp_unslash( $_SERVER['QUERY_STRING'] ) ), $params );
-		}
-
-		return $params;
 	}
 }
