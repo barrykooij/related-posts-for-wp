@@ -3,10 +3,13 @@
 	<description>Coding standards for Related Posts for WordPress.</description>
 
 	<!--
-		Phase 1 of the 3.x rework: the legacy classes/ and includes/ code is not linted, because it is replaced
-		class by class. New code (src/, deprecated/) is added here as it lands.
+		The legacy classes/ and includes/ code is not linted, because it is replaced class by class during the
+		3.x rework. New code is added here as it lands.
 	-->
+	<file>src</file>
 	<file>tests</file>
+	<file>related-posts-for-wp.php</file>
+	<file>uninstall.php</file>
 
 	<exclude-pattern>*/vendor/*</exclude-pattern>
 	<exclude-pattern>*/node_modules/*</exclude-pattern>

@@ -2,9 +2,8 @@
 #
 # Starts at level 5; raise the level step by step towards 8 as the reported errors are fixed.
 #
-# Phase 1 of the 3.x rework: only the tests are analysed. The legacy classes/ and includes/ code is scanned for
-# symbols but not analysed, because it is replaced class by class. New code (src/, deprecated/) is added to `paths`
-# as it lands.
+# The legacy classes/ and includes/ code is scanned for symbols but not analysed, because it is replaced class by
+# class during the 3.x rework. New code is added to `paths` as it lands.
 #
 # Baseline additions require a `# BASELINE:` comment block per entry in phpstan-baseline.neon explaining the WP stub
 # gap or WP runtime quirk.
@@ -16,7 +15,10 @@ parameters:
     level: 5
     phpVersion: 80000
     paths:
+        - src
         - tests
+        - related-posts-for-wp.php
+        - uninstall.php
     excludePaths:
         analyse:
             - tests/Fixtures/*
@@ -27,8 +29,6 @@ parameters:
     bootstrapFiles:
         - vendor/autoload.php
         - tests/phpstan-bootstrap.php
-    scanFiles:
-        - related-posts-for-wp.php
     scanDirectories:
         - classes
         - includes

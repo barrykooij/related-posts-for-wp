@@ -27,6 +27,9 @@
     "yoast/wp-test-utils": "^1.2"
   },
   "autoload": {
+    "psr-4": {
+      "LV2\\WordPress\\RelatedPostsForWP\\": "src/"
+    },
     "classmap": [
       "classes/"
     ]
@@ -50,6 +53,7 @@
     "lint": "phpcs",
     "lint:fix": "phpcbf",
     "lint:strict": "phpcs --warning-severity=1",
+    "lint:bootstrap": "phpcs --standard=PHPCompatibilityWP --runtime-set testVersion 7.0- related-posts-for-wp.php",
     "stan": "phpstan analyse --memory-limit=2G",
     "stan:baseline": "phpstan analyse --memory-limit=2G --generate-baseline=phpstan-baseline.neon",
     "test": "phpunit --testsuite Unit",
@@ -57,6 +61,7 @@
     "test:coverage": "phpunit --testsuite Unit --coverage-html coverage/",
     "qa": [
       "@lint",
+      "@lint:bootstrap",
       "@stan",
       "@test"
     ]
@@ -65,11 +70,12 @@
     "lint": "Run PHPCS (errors only).",
     "lint:fix": "Auto-fix PHPCS violations with PHPCBF.",
     "lint:strict": "Run PHPCS including warnings.",
+    "lint:bootstrap": "Check that the main plugin file still parses on PHP 7.0, so old sites get a notice instead of a fatal error.",
     "stan": "Run PHPStan static analysis.",
     "stan:baseline": "Regenerate the PHPStan baseline.",
     "test": "Run the PHPUnit unit suite (no WordPress runtime).",
     "test:integration": "Run the PHPUnit integration suite. Needs WordPress, so run it inside wp-env with `npm run test:integration`.",
     "test:coverage": "Run the unit suite with an HTML coverage report.",
-    "qa": "Run lint, stan and the unit tests."
+    "qa": "Run lint, the bootstrap compatibility check, stan and the unit tests."
   }
 }

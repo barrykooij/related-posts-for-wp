@@ -20,6 +20,12 @@ final class BootTest extends TestCase {
 		$this->assertSame( 20, has_action( 'plugins_loaded', 'rp4wp_load_plugin' ) );
 	}
 
+	public function test_main_is_set_up_once_and_announces_it(): void {
+		$this->assertTrue( \LV2\WordPress\RelatedPostsForWP\Main::get()->is_set_up() );
+		$this->assertSame( 1, did_action( 'rp4wp_register_services' ) );
+		$this->assertSame( 1, did_action( 'rp4wp_loaded' ) );
+	}
+
 	public function test_cache_table_exists(): void {
 		global $wpdb;
 

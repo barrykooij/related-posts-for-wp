@@ -2,12 +2,12 @@
 Contributors: never5, barrykooij
 Donate link: http://www.barrykooij.com/donate/
 Tags: related, inline related posts, similar posts, contextual relations, seo bounce rate, internal links
-Requires at least: 5.0
+Requires at least: 6.6
 Tested up to: 7.1
 Stable tag: 2.3.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
-Requires PHP: 7.2
+Requires PHP: 8.0
 
 The best WordPress plugin for related posts. Simple, flexible, powerful algorithm, and built-in caching. Fully setup with only 1 click!
 

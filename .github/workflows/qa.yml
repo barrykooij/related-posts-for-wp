@@ -58,6 +58,8 @@ jobs:
       - name: Lint (PHPCS, warnings too)
         run: composer lint:strict
         continue-on-error: true
+      - name: Main plugin file parses on PHP 7.0
+        run: composer lint:bootstrap
       - name: Static analysis (PHPStan)
         run: composer stan
       - name: Unit tests
