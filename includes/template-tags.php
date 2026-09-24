@@ -23,7 +23,7 @@ if ( ! function_exists( 'rp4wp_children' ) ) {
 	 * @param string|null $heading_text The premium heading; null for the setting.
 	 * @param int         $offset       How many related posts to skip.
 	 *
-	 * @return string|void The list when $output is false.
+	 * @return string The list when $output is false, and an empty string after printing it, like premium 2.x.
 	 */
 	function rp4wp_children( $id = false, $output = true, $template = 'related-posts-default.php', $limit = -1, $heading_text = null, $offset = 0 ) {
 		if ( false === $id ) {
@@ -45,5 +45,7 @@ if ( ! function_exists( 'rp4wp_children' ) ) {
 		}
 
 		echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Built by the renderer.
+
+		return '';
 	}
 }

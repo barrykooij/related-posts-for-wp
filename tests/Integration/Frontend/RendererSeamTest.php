@@ -84,9 +84,10 @@ final class RendererSeamTest extends TestCase {
 		the_post();
 
 		ob_start();
-		rp4wp_children();
+		$returned = rp4wp_children();
 
 		$this->assertSame( 'rendered', ob_get_clean() );
+		$this->assertSame( '', $returned );
 		$this->assertSame( $this->post_id, $this->recorder->calls[0][0] );
 		$this->assertSame( 'related-posts-default.php', $this->recorder->calls[0][1]['template'] );
 		$this->assertSame( -1, $this->recorder->calls[0][1]['limit'] );
