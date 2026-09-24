@@ -66,6 +66,19 @@ final class MainTest extends TestCase {
 		$this->assertFalse( $main->should_run() );
 	}
 
+	public function test_runs_in_a_multisite_admin_when_the_premium_add_on_supports_it(): void {
+		Functions\when( 'is_multisite' )->justReturn( true );
+		Functions\when( 'is_admin' )->justReturn( true );
+		Filters\expectApplied( 'rp4wp_supports_multisite' )->andReturn( true );
+		Filters\expectApplied( 'rp4wp_modules' )->once()->andReturn( [ FirstModule::class ] );
+
+		$main = new Main();
+		$main->setup();
+
+		$this->assertTrue( $main->should_run() );
+		$this->assertSame( [ FirstModule::class ], RecordingModule::$calls );
+	}
+
 	public function test_runs_on_the_front_end_of_a_multisite(): void {
 		Functions\when( 'is_multisite' )->justReturn( true );
 		Filters\expectApplied( 'rp4wp_modules' )->once()->andReturn( [ FirstModule::class ] );

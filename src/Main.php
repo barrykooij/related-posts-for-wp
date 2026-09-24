@@ -70,7 +70,23 @@ class Main {
 	 * @return bool
 	 */
 	public function should_run(): bool {
-		return ! Admin\Notices\Playground::is_playground() && ! ( is_multisite() && ( is_admin() || is_network_admin() ) );
+		if ( Admin\Notices\Playground::is_playground() ) {
+			return false;
+		}
+
+		/**
+		 * Filters whether the plugin runs in the admin of a multisite network. The free plugin does not support
+		 * multisite there; the premium add-on does, and switches this on.
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param bool $supported Whether multisite is supported. Default false.
+		 */
+		if ( true === apply_filters( 'rp4wp_supports_multisite', false ) ) {
+			return true;
+		}
+
+		return ! ( is_multisite() && ( is_admin() || is_network_admin() ) );
 	}
 
 	/**
