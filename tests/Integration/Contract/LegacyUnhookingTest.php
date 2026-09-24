@@ -7,6 +7,7 @@
 
 namespace LV2\WordPress\RelatedPostsForWP\Tests\Integration\Contract;
 
+use LV2\WordPress\RelatedPostsForWP\Links\LinkRepository;
 use LV2\WordPress\RelatedPostsForWP\Tests\Integration\TestCase;
 
 /**
@@ -85,7 +86,7 @@ final class LegacyUnhookingTest extends TestCase {
 
 	public function test_unhooking_the_content_filter_removes_the_related_posts(): void {
 		$parent = self::factory()->post->create( [ 'post_content' => 'Parent content.' ] );
-		( new \RP4WP_Post_Link_Manager() )->add( $parent, self::factory()->post->create( [ 'post_title' => 'A related post' ] ) );
+		( new LinkRepository() )->add( $parent, self::factory()->post->create( [ 'post_title' => 'A related post' ] ) );
 
 		$this->assertStringContainsString( 'rp4wp-related-posts', $this->content_of( $parent ) );
 
@@ -97,7 +98,7 @@ final class LegacyUnhookingTest extends TestCase {
 
 	public function test_the_2x_shortcode_object_still_renders_through_output(): void {
 		$parent = self::factory()->post->create();
-		( new \RP4WP_Post_Link_Manager() )->add( $parent, self::factory()->post->create( [ 'post_title' => 'A related post' ] ) );
+		( new LinkRepository() )->add( $parent, self::factory()->post->create( [ 'post_title' => 'A related post' ] ) );
 
 		$hook = \RP4WP_Manager_Hook::get_hook_object( 'RP4WP_Hook_Shortcode' );
 		if ( ! is_object( $hook ) || ( ! method_exists( $hook, 'output' ) && ! method_exists( $hook, '__call' ) ) ) {

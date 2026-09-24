@@ -127,8 +127,7 @@ class Page implements Module {
 			<form id="sp-list-table-form" method="post">
 				<input type="hidden" name="page" value="<?php echo esc_attr( self::SLUG ); ?>"/>
 				<?php
-				// The 2.x class name, so code that extends or replaces it keeps working.
-				$list_table = new \RP4WP_Link_Related_Table();
+				$list_table = new ListTable();
 				$list_table->set_search( $search );
 				$list_table->prepare_items();
 				$list_table->search_box( __( 'Search', 'related-posts-for-wp' ), 'sp-search' );

@@ -8,6 +8,8 @@
 namespace LV2\WordPress\RelatedPostsForWP\Tests\Integration\Security;
 
 use LV2\WordPress\RelatedPostsForWP\Admin\Notices\Installing;
+use LV2\WordPress\RelatedPostsForWP\Admin\Notices\Multisite;
+use LV2\WordPress\RelatedPostsForWP\Admin\Wizard\Page;
 use LV2\WordPress\RelatedPostsForWP\Tests\Integration\TestCase;
 
 /**
@@ -15,7 +17,7 @@ use LV2\WordPress\RelatedPostsForWP\Tests\Integration\TestCase;
  *
  * @covers \LV2\WordPress\RelatedPostsForWP\Admin\Wizard\Page
  * @covers \LV2\WordPress\RelatedPostsForWP\Admin\Notices\Installing
- * @covers \RP4WP_Multisite_Notice
+ * @covers \LV2\WordPress\RelatedPostsForWP\Admin\Notices\Multisite
  */
 final class AdminAccessTest extends TestCase {
 
@@ -31,12 +33,7 @@ final class AdminAccessTest extends TestCase {
 
 		$this->act_as( 'administrator' );
 		set_current_screen( 'dashboard' );
-		// Through the 2.x hook object, which only promises a run() method.
-		$hook = \RP4WP_Manager_Hook::get_hook_object( 'RP4WP_Hook_Page_Install' );
-		if ( ! is_object( $hook ) || ! method_exists( $hook, 'run' ) ) {
-			$this->fail( 'The 2.x install page hook object is not available.' );
-		}
-		$hook->run();
+		Page::register();
 
 		$install_page = array_values(
 			array_filter(
@@ -85,7 +82,7 @@ final class AdminAccessTest extends TestCase {
 
 	public function test_multisite_notice_renders_on_php_8(): void {
 		ob_start();
-		\RP4WP_Multisite_Notice::display();
+		Multisite::display();
 		$output = ob_get_clean();
 
 		$this->assertStringContainsString( 'upgrade-premium', $output );

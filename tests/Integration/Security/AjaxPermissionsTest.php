@@ -7,6 +7,8 @@
 
 namespace LV2\WordPress\RelatedPostsForWP\Tests\Integration\Security;
 
+use LV2\WordPress\RelatedPostsForWP\Links\LinkRepository;
+
 /**
  * Regression tests for the 2.3.1 security fixes in the AJAX handlers.
  *
@@ -15,10 +17,8 @@ namespace LV2\WordPress\RelatedPostsForWP\Tests\Integration\Security;
  * before the exit where they need to look at the result of a successful loop. The E2E suite covers the full flows.
  *
  * @group ajax
- * @covers \RP4WP_Hook_Ajax_Delete_Link
- * @covers \RP4WP_Hook_Meta_Box_Ajax_Sort
- * @covers \RP4WP_Hook_Ajax_Install_Save_Words
- * @covers \RP4WP_Hook_Ajax_Install_Link_Posts
+ * @covers \LV2\WordPress\RelatedPostsForWP\Admin\MetaBox\Ajax
+ * @covers \LV2\WordPress\RelatedPostsForWP\Admin\Wizard\Ajax
  */
 final class AjaxPermissionsTest extends \WP_Ajax_UnitTestCase {
 
@@ -41,7 +41,7 @@ final class AjaxPermissionsTest extends \WP_Ajax_UnitTestCase {
 
 		$admin            = self::factory()->user->create( [ 'role' => 'administrator' ] );
 		$this->admin_post = self::factory()->post->create( [ 'post_author' => $admin ] );
-		$this->admin_link = ( new \RP4WP_Post_Link_Manager() )->add( $this->admin_post, self::factory()->post->create() );
+		$this->admin_link = ( new LinkRepository() )->add( $this->admin_post, self::factory()->post->create() );
 	}
 
 	public function test_contributor_cannot_delete_a_link_on_someone_elses_post(): void {
@@ -123,7 +123,7 @@ final class AjaxPermissionsTest extends \WP_Ajax_UnitTestCase {
 	}
 
 	public function test_admin_can_reorder_links(): void {
-		$second = ( new \RP4WP_Post_Link_Manager() )->add( $this->admin_post, self::factory()->post->create() );
+		$second = ( new LinkRepository() )->add( $this->admin_post, self::factory()->post->create() );
 		$this->set_menu_order( [ $this->admin_link, $second ], 7 );
 		$sentinel = $this->sentinel_link();
 
@@ -276,7 +276,7 @@ final class AjaxPermissionsTest extends \WP_Ajax_UnitTestCase {
 	 * @return int The sentinel link ID.
 	 */
 	private function sentinel_link(): int {
-		$sentinel = ( new \RP4WP_Post_Link_Manager() )->add( $this->admin_post, self::factory()->post->create() );
+		$sentinel = ( new LinkRepository() )->add( $this->admin_post, self::factory()->post->create() );
 
 		add_filter(
 			'get_post_metadata',

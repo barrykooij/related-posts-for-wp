@@ -7,6 +7,8 @@
 
 namespace LV2\WordPress\RelatedPostsForWP\Tests\Integration;
 
+use LV2\WordPress\RelatedPostsForWP\Install\Table;
+
 /**
  * Base class for integration tests. Runs inside WordPress with the plugin booted.
  */
@@ -41,7 +43,7 @@ abstract class TestCase extends \WP_UnitTestCase {
 	protected static function truncate_cache(): void {
 		global $wpdb;
 
-		$wpdb->query( 'TRUNCATE TABLE ' . \RP4WP_Related_Word_Manager::get_database_table() ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.NotPrepared -- Test cleanup of our own table.
+		$wpdb->query( 'TRUNCATE TABLE ' . Table::name() ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.NotPrepared -- Test cleanup of our own table.
 	}
 
 	/**

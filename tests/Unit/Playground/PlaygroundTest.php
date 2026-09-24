@@ -9,12 +9,13 @@ namespace LV2\WordPress\RelatedPostsForWP\Tests\Unit\Playground;
 
 use Brain\Monkey\Actions;
 use Brain\Monkey\Functions;
+use LV2\WordPress\RelatedPostsForWP\Admin\Notices\Playground;
 use Yoast\WPTestUtils\BrainMonkey\TestCase;
 
 /**
  * WordPress Playground detection.
  *
- * @covers \RP4WP_Playground
+ * @covers \LV2\WordPress\RelatedPostsForWP\Admin\Notices\Playground
  */
 final class PlaygroundTest extends TestCase {
 
@@ -47,24 +48,24 @@ final class PlaygroundTest extends TestCase {
 	public function test_detects_playground_host(): void {
 		$_SERVER['HTTP_HOST'] = 'playground.wordpress.net';
 
-		$this->assertTrue( \RP4WP_Playground::is_playground() );
+		$this->assertTrue( Playground::is_playground() );
 	}
 
 	public function test_ignores_other_hosts(): void {
 		$_SERVER['HTTP_HOST'] = 'example.org';
 
-		$this->assertFalse( \RP4WP_Playground::is_playground() );
+		$this->assertFalse( Playground::is_playground() );
 	}
 
 	public function test_ignores_missing_host(): void {
 		unset( $_SERVER['HTTP_HOST'] );
 
-		$this->assertFalse( \RP4WP_Playground::is_playground() );
+		$this->assertFalse( Playground::is_playground() );
 	}
 
 	public function test_admin_notice_is_hooked(): void {
-		Actions\expectAdded( 'admin_notices' )->once();
+		Actions\expectAdded( 'admin_notices' )->once()->with( [ Playground::class, 'display' ] );
 
-		\RP4WP_Playground::add_admin_notice();
+		Playground::setup();
 	}
 }

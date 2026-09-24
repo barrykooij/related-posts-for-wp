@@ -7,10 +7,19 @@
 
 namespace LV2\WordPress\RelatedPostsForWP\Tests\Integration\GoldenMaster;
 
+use LV2\WordPress\RelatedPostsForWP\Compat\LegacyHooks;
+use LV2\WordPress\RelatedPostsForWP\Frontend\Css;
+use LV2\WordPress\RelatedPostsForWP\Install\Table;
+use LV2\WordPress\RelatedPostsForWP\Links\LinkRepository;
+use LV2\WordPress\RelatedPostsForWP\Main;
+use LV2\WordPress\RelatedPostsForWP\Related\Finder;
+use LV2\WordPress\RelatedPostsForWP\Related\Linker;
+use LV2\WordPress\RelatedPostsForWP\Tests\Integration\Contract\LinkManagerApi;
 use LV2\WordPress\RelatedPostsForWP\Tests\Integration\TestCase;
 use LV2\WordPress\RelatedPostsForWP\Tests\Support\Golden;
 use LV2\WordPress\RelatedPostsForWP\Tests\Support\HookRecorder;
 use LV2\WordPress\RelatedPostsForWP\Tests\Support\Normalizer;
+use LV2\WordPress\RelatedPostsForWP\Words\Cache;
 
 /**
  * Golden master for the free plugin: stored data and rendered output must stay identical to 2.x.
@@ -171,7 +180,7 @@ final class GoldenMasterTest extends TestCase {
 	private function word_cache(): array {
 		global $wpdb;
 
-		$rows = $wpdb->get_results( 'SELECT post_id, word, weight, post_type FROM ' . \RP4WP_Related_Word_Manager::get_database_table() . ' ORDER BY post_id, word', ARRAY_A ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.NotPrepared -- Reading our own table.
+		$rows = $wpdb->get_results( 'SELECT post_id, word, weight, post_type FROM ' . Table::name() . ' ORDER BY post_id, word', ARRAY_A ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.NotPrepared -- Reading our own table.
 
 		$cache = [];
 		foreach ( $rows as $row ) {
@@ -217,11 +226,11 @@ final class GoldenMasterTest extends TestCase {
 	 * @return array<string, array<int, array{post: string, score: string}>>
 	 */
 	private function related_scores(): array {
-		$manager = new \RP4WP_Related_Post_Manager();
-		$scores  = [];
+		$finder = new Finder();
+		$scores = [];
 
 		foreach ( self::$ids as $slug => $post_id ) {
-			foreach ( $manager->get_related_posts( $post_id, self::WIZARD_AMOUNT + 2 ) as $related ) {
+			foreach ( $finder->related_posts( $post_id, self::WIZARD_AMOUNT + 2 ) as $related ) {
 				$scores[ $slug ][] = [
 					'post'  => $this->normalizer()->name( (int) $related->ID ),
 					'score' => number_format( (float) $related->CMS, 8, '.', '' ), // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- Column name from the 2.x query.
@@ -425,11 +434,11 @@ final class GoldenMasterTest extends TestCase {
 	 * @return array<string, mixed>
 	 */
 	private function manual_linking(): array {
-		$manager = new \RP4WP_Post_Link_Manager();
-		$parent  = self::$ids['pruning-roses'];
-		$result  = [ 'before' => $this->children_of( $parent, self::$ids ) ];
+		$links  = new LinkRepository();
+		$parent = self::$ids['pruning-roses'];
+		$result = [ 'before' => $this->children_of( $parent, self::$ids ) ];
 
-		$link = $manager->add( $parent, self::$ids['kyoto-temples'] );
+		$link = $links->add( $parent, self::$ids['kyoto-temples'] );
 		$result['after_add'] = $this->children_of( $parent, self::$ids );
 
 		// Reverse the order, like the sort handler does.
@@ -440,7 +449,7 @@ final class GoldenMasterTest extends TestCase {
 		}
 		$result['after_reverse'] = $this->children_of( $parent, self::$ids );
 
-		$manager->delete( $link );
+		$links->delete( $link );
 		$result['after_delete'] = $this->children_of( $parent, self::$ids );
 
 		$result['parents_of_kyoto_temples'] = $this->parents_of( self::$ids['kyoto-temples'], self::$ids );
@@ -454,37 +463,7 @@ final class GoldenMasterTest extends TestCase {
 	 * @return array<string, mixed>
 	 */
 	private function link_manager_api(): array {
-		$manager = new \RP4WP_Post_Link_Manager();
-		$parent  = self::$ids['espresso-at-home'];
-		// 2.x keeps links to hard-deleted posts, and get_children() without arguments returns null for those.
-		$names = function ( array $posts ): array {
-			return array_values(
-				array_map(
-					function ( $post ) {
-						return null === $post ? 'null' : $this->normalizer()->name( (int) $post->ID );
-					},
-					$posts
-				)
-			);
-		};
-
-		return [
-			'get_children'                  => $names( $manager->get_children( $parent ) ),
-			'get_children limit 2'          => $names( $manager->get_children( $parent, [ 'posts_per_page' => 2 ] ) ),
-			'get_children order DESC'       => $names( $manager->get_children( $parent, [ 'order' => 'DESC' ] ) ),
-			'get_children orderby title'    => $names(
-				$manager->get_children(
-					$parent,
-					[
-						'orderby' => 'title',
-						'order'   => 'ASC',
-					]
-				)
-			),
-			'get_children post_status any'  => $names( $manager->get_children( $parent, [ 'post_status' => 'any' ] ) ),
-			'get_parents'                   => $this->parents_of( $parent, self::$ids ),
-			'generate_children_list limit'  => $this->normalizer()->html( $manager->generate_children_list( $parent, 1 ) ),
-		];
+		return LinkManagerApi::snapshot( self::$ids['espresso-at-home'], $this->normalizer() );
 	}
 
 	/**
@@ -549,14 +528,8 @@ final class GoldenMasterTest extends TestCase {
 	 * @return string
 	 */
 	public function frontend_css(): string {
-		// Through the 2.x hook object, like code written for 2.x would; it only promises a run() method.
-		$hook = \RP4WP_Manager_Hook::get_hook_object( 'RP4WP_Hook_Frontend_Css' );
-		if ( ! is_object( $hook ) || ! method_exists( $hook, 'run' ) ) {
-			$this->fail( 'The 2.x CSS hook object is not available.' );
-		}
-
 		ob_start();
-		$hook->run();
+		Css::print_css();
 
 		return (string) ob_get_clean();
 	}
@@ -584,7 +557,7 @@ final class GoldenMasterTest extends TestCase {
 	private function words_of( int $post_id ): array {
 		global $wpdb;
 
-		$rows = $wpdb->get_results( $wpdb->prepare( 'SELECT word, weight FROM ' . \RP4WP_Related_Word_Manager::get_database_table() . ' WHERE post_id = %d ORDER BY word', $post_id ), ARRAY_A ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.NotPrepared -- Reading our own table; the table name cannot be a placeholder.
+		$rows = $wpdb->get_results( $wpdb->prepare( 'SELECT word, weight FROM ' . Table::name() . ' WHERE post_id = %d ORDER BY word', $post_id ), ARRAY_A ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.NotPrepared -- Reading our own table; the table name cannot be a placeholder.
 
 		return array_column(
 			array_map(
@@ -631,7 +604,7 @@ final class GoldenMasterTest extends TestCase {
 			static function ( $parent ) use ( $normalizer ) {
 				return $normalizer->name( (int) $parent->ID );
 			},
-			array_values( ( new \RP4WP_Post_Link_Manager() )->get_parents( $post_id ) )
+			array_values( ( new LinkRepository() )->get_parents( $post_id ) )
 		);
 
 		sort( $parents );
@@ -647,7 +620,7 @@ final class GoldenMasterTest extends TestCase {
 	 * @return void
 	 */
 	private function with_options( array $options ): void {
-		update_option( 'rp4wp', array_merge( RP4WP()->settings->get_options(), $options ) );
+		update_option( 'rp4wp', array_merge( Main::get()->settings()->get_options(), $options ) );
 	}
 
 	/**
@@ -674,10 +647,15 @@ final class GoldenMasterTest extends TestCase {
 	 * @param bool $attach Whether to attach.
 	 *
 	 * @return void
+	 *
+	 * @throws \RuntimeException When one of the hooks is not registered.
 	 */
 	private static function toggle_lifecycle_hooks( bool $attach ): void {
 		foreach ( [ 'RP4WP_Hook_Related_Save_Words', 'RP4WP_Hook_Related_Auto_Link', 'RP4WP_Hook_Related_Update_Link' ] as $class ) {
-			$hook = \RP4WP_Manager_Hook::get_hook_object( $class );
+			$hook = LegacyHooks::get( $class );
+			if ( null === $hook ) {
+				throw new \RuntimeException( "The {$class} hook is not registered." );
+			}
 
 			if ( $attach ) {
 				add_action( $hook->get_tag(), [ $hook, 'run' ], $hook->get_priority(), $hook->get_args() );
@@ -693,7 +671,7 @@ final class GoldenMasterTest extends TestCase {
 	 * @return void
 	 */
 	private static function run_wizard(): void {
-		( new \RP4WP_Related_Word_Manager() )->save_all_words();
-		( new \RP4WP_Related_Post_Manager() )->link_related_posts( self::WIZARD_AMOUNT );
+		( new Cache() )->save_all();
+		( new Linker() )->link_all( self::WIZARD_AMOUNT );
 	}
 }

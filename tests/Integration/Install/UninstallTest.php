@@ -7,7 +7,9 @@
 
 namespace LV2\WordPress\RelatedPostsForWP\Tests\Integration\Install;
 
+use LV2\WordPress\RelatedPostsForWP\Links\LinkRepository;
 use LV2\WordPress\RelatedPostsForWP\Tests\Integration\TestCase;
+use LV2\WordPress\RelatedPostsForWP\Words\Cache;
 
 /**
  * What uninstall.php removes, and that it removes nothing unless "Remove data on uninstall" is on.
@@ -44,8 +46,8 @@ final class UninstallTest extends TestCase {
 		parent::set_up();
 
 		$this->parent = self::factory()->post->create();
-		$this->link   = ( new \RP4WP_Post_Link_Manager() )->add( $this->parent, self::factory()->post->create() );
-		( new \RP4WP_Related_Word_Manager() )->save_words_of_post( $this->parent );
+		$this->link   = ( new LinkRepository() )->add( $this->parent, self::factory()->post->create() );
+		( new Cache() )->save_post( $this->parent );
 
 		update_post_meta( $this->parent, 'rp4wp_auto_linked', 1 );
 		update_post_meta( $this->parent, 'rp4wp_cached', 1 );
