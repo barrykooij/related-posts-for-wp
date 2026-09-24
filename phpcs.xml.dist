@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<ruleset name="RelatedPostsForWP">
+	<description>Coding standards for Related Posts for WordPress.</description>
+
+	<!--
+		Phase 1 of the 3.x rework: the legacy classes/ and includes/ code is not linted, because it is replaced
+		class by class. New code (src/, deprecated/) is added here as it lands.
+	-->
+	<file>tests</file>
+
+	<exclude-pattern>*/vendor/*</exclude-pattern>
+	<exclude-pattern>*/node_modules/*</exclude-pattern>
+	<exclude-pattern>*/tests/Fixtures/golden/*</exclude-pattern>
+	<exclude-pattern>*/tests/e2e/*</exclude-pattern>
+
+	<arg name="basepath" value="."/>
+	<arg name="colors"/>
+	<arg name="parallel" value="8"/>
+	<arg name="extensions" value="php"/>
+	<arg value="sp"/>
+
+	<!--
+		Default severity: errors only. Run `composer lint:strict` to include
+		warnings.
+	-->
+	<arg name="warning-severity" value="0"/>
+	<arg name="error-severity" value="1"/>
+
+	<config name="testVersion" value="8.0-"/>
+	<config name="minimum_supported_wp_version" value="6.6"/>
+
+	<!-- WordPress Coding Standards (3.x). -->
+	<rule ref="WordPress">
+		<!-- Modern PHP: short arrays are fine. -->
+		<exclude name="Generic.Arrays.DisallowShortArraySyntax"/>
+		<exclude name="Universal.Arrays.DisallowShortArraySyntax"/>
+		<!-- PSR-4 file naming (PascalCase class per file), not WP file naming (class-*.php). -->
+		<exclude name="WordPress.Files.FileName"/>
+		<!-- Yoda conditions are not required; normal order is more readable. -->
+		<exclude name="WordPress.PHP.YodaConditions"/>
+		<!--
+			Empty catch blocks are allowed when they explain why; that is
+			enforced by Squiz.Commenting.EmptyCatchComment.
+		-->
+		<exclude name="Generic.CodeAnalysis.EmptyStatement.DetectedCatch"/>
+	</rule>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="related-posts-for-wp"/>
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="rp4wp"/>
+				<element value="RP4WP"/>
+				<element value="LV2\WordPress\RelatedPostsForWP"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!-- PHP cross-version compatibility. -->
+	<rule ref="PHPCompatibilityWP"/>
+
+	<!--
+		Method and function names follow WordPress standards: lowercase with
+		underscores. PHPUnit's API (setUp/tearDown) is the one exception, so the
+		method-name sniff is relaxed for test files only.
+	-->
+	<rule ref="WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid">
+		<exclude-pattern>tests/*</exclude-pattern>
+	</rule>
+
+	<!--
+		Test files do not require WPCS-style docblocks. Test method names and
+		PHPUnit annotations carry the intent. Fixture classes may share a file.
+	-->
+	<rule ref="Squiz.Commenting.FunctionComment.Missing">
+		<exclude-pattern>tests/*</exclude-pattern>
+	</rule>
+	<rule ref="Squiz.Commenting.FunctionComment.MissingParamTag">
+		<exclude-pattern>tests/*</exclude-pattern>
+	</rule>
+	<rule ref="Squiz.Commenting.ClassComment.Missing">
+		<exclude-pattern>tests/*</exclude-pattern>
+	</rule>
+	<rule ref="Squiz.Commenting.FileComment.Missing">
+		<exclude-pattern>tests/*</exclude-pattern>
+	</rule>
+	<rule ref="Generic.Commenting.DocComment.MissingShort">
+		<exclude-pattern>tests/*</exclude-pattern>
+	</rule>
+	<rule ref="Generic.Files.OneObjectStructurePerFile.MultipleFound">
+		<exclude-pattern>tests/*</exclude-pattern>
+	</rule>
+	<rule ref="Squiz.Classes.ClassFileName.NoMatch">
+		<exclude-pattern>tests/*</exclude-pattern>
+	</rule>
+	<rule ref="Squiz.Commenting.VariableComment.Missing">
+		<exclude-pattern>tests/*</exclude-pattern>
+	</rule>
+
+	<!--
+		Tests legitimately set up WordPress globals to drive a unit under test.
+		The override sniff is production-oriented.
+	-->
+	<rule ref="WordPress.WP.GlobalVariablesOverride.Prohibited">
+		<exclude-pattern>tests/*</exclude-pattern>
+	</rule>
+
+	<!--
+		Test doubles throw exceptions (for example from a stubbed wp_die()) whose
+		messages are never rendered as HTML.
+	-->
+	<rule ref="WordPress.Security.EscapeOutput.ExceptionNotEscaped">
+		<exclude-pattern>tests/*</exclude-pattern>
+	</rule>
+
+	<!--
+		Tests drive request handlers through the superglobals, the way WordPress
+		fills them. Nonces are part of the scenario, not a missing check.
+	-->
+	<rule ref="WordPress.Security.NonceVerification">
+		<exclude-pattern>tests/*</exclude-pattern>
+	</rule>
+
+	<!--
+		Test bootstraps define WordPress constants (ABSPATH) and stub
+		third-party classes under their own namespaces, so the prefix rule
+		does not apply there.
+	-->
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<exclude-pattern>tests/*</exclude-pattern>
+	</rule>
+</ruleset>

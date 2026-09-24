@@ -1,0 +1,45 @@
+# Files and folders NOT shipped to WordPress.org or in the release zip.
+
+# VCS / CI / editor
+/.git
+/.github
+/.gitignore
+/.gitattributes
+/.distignore
+/.editorconfig
+/.nvmrc
+/.idea
+/.vscode
+/.tx
+
+# Local environments
+/.wp-env.json
+/.wp-env.test.json
+
+# Tooling and tests
+/tests
+/scripts
+/phpcs.xml.dist
+/phpstan.neon.dist
+/phpstan-baseline.neon
+/phpunit.xml.dist
+/phpunit-integration.xml.dist
+/composer.json
+/composer.lock
+/package.json
+/package-lock.json
+/node_modules
+/assets/css/scss
+
+# Caches and reports
+/.phpstan.cache
+/.phpunit.result.cache
+/.phpunit-integration.result.cache
+/coverage
+/coverage-integration
+/coverage.xml
+/artifacts
+
+# OS
+.DS_Store
+Thumbs.db

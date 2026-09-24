@@ -1,12 +1,21 @@
+# Dependencies (installed with composer install / npm ci; release zips are built in CI)
+/vendor/
 /node_modules/
 
-.idea
+# Tool caches and reports
+/.phpstan.cache/
+/.phpunit.result.cache
+/.phpunit-integration.result.cache
+/coverage/
+/coverage-integration/
+/coverage.xml
+/artifacts/
+/tests/e2e/.auth/
 
-# Exclude everything in /vendor except our autoload stuff
-vendor/*
-!vendor/composer
-!vendor/autoload.php
-vendor/composer/installers
-vendor/composer/installed.json
+# Local
+/.idea/
+/.vscode/
+.DS_Store
+Thumbs.db
+*.log
 composer.phar
-package-lock.json

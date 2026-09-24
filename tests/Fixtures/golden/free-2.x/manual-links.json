@@ -1,0 +1,27 @@
+{
+    "before": [
+        "climbing-roses",
+        "saving-tomato-seeds",
+        "composting-for-beginners"
+    ],
+    "after_add": [
+        "climbing-roses",
+        "saving-tomato-seeds",
+        "composting-for-beginners"
+    ],
+    "after_reverse": [
+        "composting-for-beginners",
+        "kyoto-temples",
+        "saving-tomato-seeds",
+        "climbing-roses"
+    ],
+    "after_delete": [
+        "composting-for-beginners",
+        "saving-tomato-seeds",
+        "climbing-roses"
+    ],
+    "parents_of_kyoto_temples": [
+        "japanese-garden-design",
+        "osaka-street-food"
+    ]
+}

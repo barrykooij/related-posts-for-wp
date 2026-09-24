@@ -1,0 +1,165 @@
+name: QA
+
+on:
+  push:
+    branches: [ master, dev, 3.x ]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: qa-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Every new PHPStan baseline entry needs a "# BASELINE:" justification (see phpstan-baseline.neon).
+  baseline-drift:
+    name: PHPStan baseline justification
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check new baseline entries are justified
+        run: |
+          base="origin/${{ github.base_ref }}"
+          added_entries=$(git diff "$base"...HEAD -- phpstan-baseline.neon | grep -c '^+\s*message:' || true)
+          added_reasons=$(git diff "$base"...HEAD -- phpstan-baseline.neon | grep -c '^+\s*# BASELINE:' || true)
+          echo "New entries: $added_entries, new justifications: $added_reasons"
+          if [ "$added_reasons" -lt "$added_entries" ]; then
+            echo "::error file=phpstan-baseline.neon::Every new baseline entry needs a '# BASELINE:' comment explaining why."
+            exit 1
+          fi
+
+  php:
+    name: PHP ${{ matrix.php }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: [ '8.0', '8.1', '8.2', '8.3', '8.4', '8.5' ]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: ${{ matrix.php == '8.3' && 'xdebug' || 'none' }}
+          tools: composer:v2
+      - name: Composer cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.composer/cache
+          key: composer-${{ matrix.php }}-${{ hashFiles( 'composer.lock' ) }}
+      - run: composer install --no-interaction --no-progress
+      - name: Lint (PHPCS, errors)
+        run: composer lint
+      - name: Lint (PHPCS, warnings too)
+        run: composer lint:strict
+        continue-on-error: true
+      - name: Static analysis (PHPStan)
+        run: composer stan
+      - name: Unit tests
+        if: matrix.php != '8.3'
+        run: composer test
+      - name: Unit tests with coverage
+        if: matrix.php == '8.3'
+        run: composer test:coverage
+      - name: Upload coverage
+        if: matrix.php == '8.3'
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-unit
+          path: coverage/
+
+  js:
+    name: JS and CSS
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Lint (new code)
+        run: npm run lint:js
+      - name: Lint legacy JS (informational until the admin screens are rebuilt)
+        run: npm run lint:js:legacy
+        continue-on-error: true
+      - name: Lint legacy SCSS (informational until the admin screens are rebuilt)
+        run: npm run lint:style:legacy
+        continue-on-error: true
+      - name: Build assets
+        run: npm run build
+      - name: Committed build is up to date
+        run: git diff --exit-code -- assets/
+
+  integration:
+    name: Integration, WP ${{ matrix.wp }}, PHP ${{ matrix.php }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # The latest WordPress major plus the five before it; see the modernization plan (D1a).
+        wp: [ '6.6', '6.7', '6.8', '6.9', '7.0', 'latest' ]
+        php: [ '8.0' ]
+        include:
+          - wp: latest
+            php: '8.4'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          coverage: none
+          tools: composer:v2
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: composer install --no-interaction --no-progress
+      - run: npm ci --no-audit --no-fund
+      - name: Start wp-env
+        run: npm run env:test:start
+        env:
+          WP_ENV_CORE: ${{ matrix.wp != 'latest' && format( 'WordPress/WordPress#{0}', matrix.wp ) || '' }}
+          WP_ENV_PHP_VERSION: ${{ matrix.php }}
+      - name: Integration tests
+        run: npm run test:integration
+
+  e2e:
+    name: E2E, WP ${{ matrix.wp }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        wp: [ '6.6', '6.7', '6.8', '6.9', '7.0', 'latest' ]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          coverage: none
+          tools: composer:v2
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: composer install --no-interaction --no-progress --no-dev
+      - run: npm ci --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium
+      - name: Start wp-env
+        run: npm run env:test:start
+        env:
+          WP_ENV_CORE: ${{ matrix.wp != 'latest' && format( 'WordPress/WordPress#{0}', matrix.wp ) || '' }}
+          WP_ENV_PHP_VERSION: '8.2'
+      - name: E2E tests
+        run: npm run test:e2e
+      - name: Upload report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-report-wp-${{ matrix.wp }}
+          path: artifacts/e2e/

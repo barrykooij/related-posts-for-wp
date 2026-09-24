@@ -1,0 +1,30 @@
+{
+    "get_children": [
+        "sourdough-bread-at-home",
+        "pour-over-coffee",
+        "cold-brew-coffee"
+    ],
+    "get_children limit 2": [
+        "sourdough-bread-at-home",
+        "pour-over-coffee"
+    ],
+    "get_children order DESC": [
+        "cold-brew-coffee",
+        "pour-over-coffee",
+        "sourdough-bread-at-home"
+    ],
+    "get_children orderby title": [
+        "sourdough-bread-at-home",
+        "cold-brew-coffee",
+        "pour-over-coffee"
+    ],
+    "get_children post_status any": [
+        "sourdough-bread-at-home",
+        "pour-over-coffee",
+        "cold-brew-coffee"
+    ],
+    "get_parents": [
+        "sourdough-bread-at-home"
+    ],
+    "generate_children_list limit": "<div class='rp4wp-related-posts'>\n<h3>Related Posts</h3>\n<ul>\n<li><div class='rp4wp-related-post-content'>\n<a href='http://example.org/sourdough-bread-at-home/'>Baking sourdough bread at home</a><p>A sourdough starter needs flour, water and patience. Feed the starter daily and bake the&hellip;</p></div>\n</li>\n</ul>\n</div>"
+}

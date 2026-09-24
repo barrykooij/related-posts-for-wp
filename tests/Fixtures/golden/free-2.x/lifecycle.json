@@ -1,0 +1,45 @@
+{
+    "publish": {
+        "words": {
+            "coffee": "0.018215",
+            "espresso": "0.147541",
+            "italian": "0.145719",
+            "pasta": "0.165756",
+            "rome": "0.147541",
+            "travel": "0.036430"
+        },
+        "children": [
+            "fresh-pasta-dough",
+            "rome-in-three-days",
+            "espresso-at-home"
+        ]
+    },
+    "unpublish": {
+        "parents_before": [
+            "fresh-pasta-dough",
+            "growing-tomatoes",
+            "saving-tomato-seeds"
+        ],
+        "parents_after": [],
+        "children_of": {
+            "fresh-pasta-dough": [
+                "homemade-pizza-dough",
+                "risotto-technique",
+                "lifecycle-new-post"
+            ],
+            "growing-tomatoes": [
+                "olive-trees-in-pots",
+                "saving-tomato-seeds",
+                "olive-trees-in-pots"
+            ],
+            "saving-tomato-seeds": [
+                "growing-tomatoes",
+                "climbing-roses",
+                "growing-tomatoes"
+            ]
+        }
+    },
+    "delete": {
+        "words": []
+    }
+}

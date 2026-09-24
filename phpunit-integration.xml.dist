@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<phpunit
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.6/phpunit.xsd"
+	bootstrap="tests/bootstrap-integration.php"
+	cacheResultFile=".phpunit-integration.result.cache"
+	colors="true"
+	beStrictAboutOutputDuringTests="true"
+	beStrictAboutTestsThatDoNotTestAnything="true"
+	failOnRisky="true"
+	failOnWarning="true"
+	verbose="true">
+
+	<testsuites>
+		<!-- Needs the WordPress test suite: run inside wp-env with `npm run test:integration`. -->
+		<testsuite name="Integration">
+			<directory suffix="Test.php">tests/Integration</directory>
+		</testsuite>
+	</testsuites>
+
+	<extensions>
+		<!-- Fails the run when code under test calls exit(); see the class for why. -->
+		<extension class="LV2\WordPress\RelatedPostsForWP\Tests\Support\ExitGuard"/>
+	</extensions>
+
+	<coverage processUncoveredFiles="false">
+		<include>
+			<directory suffix=".php">classes</directory>
+			<directory suffix=".php">includes</directory>
+		</include>
+		<exclude>
+			<directory>classes/ignored-words</directory>
+		</exclude>
+		<report>
+			<html outputDirectory="coverage-integration"/>
+			<text outputFile="php://stdout" showOnlySummary="true"/>
+		</report>
+	</coverage>
+</phpunit>

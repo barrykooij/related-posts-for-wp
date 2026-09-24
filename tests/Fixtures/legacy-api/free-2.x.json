@@ -1,0 +1,2669 @@
+{
+    "classes": {
+        "RP4WP": {
+            "abstract": false,
+            "parents": [],
+            "magic_get": false,
+            "constants": {
+                "VERSION": "2.3.1"
+            },
+            "properties": {
+                "settings": {
+                    "visibility": "public",
+                    "static": false
+                }
+            },
+            "methods": {
+                "get": {
+                    "visibility": "public",
+                    "static": true,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_plugin_file": {
+                    "visibility": "public",
+                    "static": true,
+                    "abstract": false,
+                    "params": []
+                },
+                "setup_settings": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                }
+            }
+        },
+        "RP4WP_Cap_Manager": {
+            "abstract": false,
+            "parents": [],
+            "magic_get": false,
+            "constants": [],
+            "properties": [],
+            "methods": {
+                "get_capability": {
+                    "visibility": "public",
+                    "static": true,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "post_id",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                }
+            }
+        },
+        "RP4WP_Class_Manager": {
+            "abstract": false,
+            "parents": [],
+            "magic_get": false,
+            "constants": [],
+            "properties": [],
+            "methods": {
+                "capitalize_part": {
+                    "visibility": "public",
+                    "static": true,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "part",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                },
+                "format_class_name": {
+                    "visibility": "public",
+                    "static": true,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "file_name",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                }
+            }
+        },
+        "RP4WP_Constants": {
+            "abstract": true,
+            "parents": [],
+            "magic_get": false,
+            "constants": {
+                "LINK_PT": "rp4wp_link",
+                "NONCE_AJAX": "rp4wp-ajax-nonce-omgrandomword",
+                "NONCE_INSTALL": "rp4wp-install-secret",
+                "OPTION_ADMIN_NOTICE_KEY": "rp4wp_hide_nag",
+                "OPTION_DO_INSTALL": "rp4wp_do_install",
+                "OPTION_INSTALL_DATE": "rp4wp_install_date",
+                "OPTION_IS_INSTALLING": "rp4wp_is_installing",
+                "PM_CHILD": "rp4wp_child",
+                "PM_PARENT": "rp4wp_parent",
+                "PM_POST_AUTO_LINKED": "rp4wp_auto_linked",
+                "PM_PT_PARENT": "rp4wp_pt_parent"
+            },
+            "properties": [],
+            "methods": []
+        },
+        "RP4WP_Dependencies": {
+            "abstract": false,
+            "parents": [],
+            "magic_get": false,
+            "constants": [],
+            "properties": [],
+            "methods": {
+                "check": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "display_mbstring_error": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                }
+            }
+        },
+        "RP4WP_Filter": {
+            "abstract": true,
+            "parents": [],
+            "magic_get": false,
+            "constants": [],
+            "properties": {
+                "args": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "priority": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "tag": {
+                    "visibility": "protected",
+                    "static": false
+                }
+            },
+            "methods": {
+                "__construct": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_args": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_priority": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_tag": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "register": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                }
+            }
+        },
+        "RP4WP_Filter_After_Post": {
+            "abstract": false,
+            "parents": [
+                "RP4WP_Filter"
+            ],
+            "magic_get": false,
+            "constants": [],
+            "properties": {
+                "args": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "priority": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "tag": {
+                    "visibility": "protected",
+                    "static": false
+                }
+            },
+            "methods": {
+                "__construct": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_args": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_priority": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_tag": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "register": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "run": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "content",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                }
+            }
+        },
+        "RP4WP_Filter_Plugin_Links": {
+            "abstract": false,
+            "parents": [
+                "RP4WP_Filter"
+            ],
+            "magic_get": false,
+            "constants": [],
+            "properties": {
+                "args": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "priority": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "tag": {
+                    "visibility": "protected",
+                    "static": false
+                }
+            },
+            "methods": {
+                "__construct": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_args": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_priority": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_tag": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "register": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "run": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "links",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                }
+            }
+        },
+        "RP4WP_Filter_Set_Screen_Option": {
+            "abstract": false,
+            "parents": [
+                "RP4WP_Filter"
+            ],
+            "magic_get": false,
+            "constants": [],
+            "properties": {
+                "args": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "priority": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "tag": {
+                    "visibility": "protected",
+                    "static": false
+                }
+            },
+            "methods": {
+                "__construct": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_args": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_priority": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_tag": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "register": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "run": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "status",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        },
+                        {
+                            "name": "option",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        },
+                        {
+                            "name": "value",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                }
+            }
+        },
+        "RP4WP_Filter_Yoast_Duplicate_Post": {
+            "abstract": false,
+            "parents": [
+                "RP4WP_Filter"
+            ],
+            "magic_get": false,
+            "constants": [],
+            "properties": {
+                "args": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "priority": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "tag": {
+                    "visibility": "protected",
+                    "static": false
+                }
+            },
+            "methods": {
+                "__construct": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_args": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_priority": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_tag": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "register": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "run": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "meta_excludelist",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                }
+            }
+        },
+        "RP4WP_Hook": {
+            "abstract": true,
+            "parents": [],
+            "magic_get": false,
+            "constants": [],
+            "properties": {
+                "args": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "priority": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "tag": {
+                    "visibility": "protected",
+                    "static": false
+                }
+            },
+            "methods": {
+                "__construct": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_args": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_priority": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_tag": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "register": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                }
+            }
+        },
+        "RP4WP_Hook_Admin_Scripts": {
+            "abstract": false,
+            "parents": [
+                "RP4WP_Hook"
+            ],
+            "magic_get": false,
+            "constants": [],
+            "properties": {
+                "args": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "priority": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "tag": {
+                    "visibility": "protected",
+                    "static": false
+                }
+            },
+            "methods": {
+                "__construct": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_args": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_priority": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_tag": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "register": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "run": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                }
+            }
+        },
+        "RP4WP_Hook_Ajax_Delete_Link": {
+            "abstract": false,
+            "parents": [
+                "RP4WP_Hook"
+            ],
+            "magic_get": false,
+            "constants": [],
+            "properties": {
+                "args": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "priority": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "tag": {
+                    "visibility": "protected",
+                    "static": false
+                }
+            },
+            "methods": {
+                "__construct": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_args": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_priority": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_tag": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "register": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "run": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                }
+            }
+        },
+        "RP4WP_Hook_Ajax_Install_Link_Posts": {
+            "abstract": false,
+            "parents": [
+                "RP4WP_Hook"
+            ],
+            "magic_get": false,
+            "constants": [],
+            "properties": {
+                "args": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "priority": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "tag": {
+                    "visibility": "protected",
+                    "static": false
+                }
+            },
+            "methods": {
+                "__construct": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_args": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_priority": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_tag": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "register": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "run": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                }
+            }
+        },
+        "RP4WP_Hook_Ajax_Install_Save_Words": {
+            "abstract": false,
+            "parents": [
+                "RP4WP_Hook"
+            ],
+            "magic_get": false,
+            "constants": [],
+            "properties": {
+                "args": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "priority": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "tag": {
+                    "visibility": "protected",
+                    "static": false
+                }
+            },
+            "methods": {
+                "__construct": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_args": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_priority": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_tag": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "register": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "run": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                }
+            }
+        },
+        "RP4WP_Hook_Delete_Words": {
+            "abstract": false,
+            "parents": [
+                "RP4WP_Hook"
+            ],
+            "magic_get": false,
+            "constants": [],
+            "properties": {
+                "args": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "priority": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "tag": {
+                    "visibility": "protected",
+                    "static": false
+                }
+            },
+            "methods": {
+                "__construct": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_args": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_priority": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_tag": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "register": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "run": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "post_id",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                }
+            }
+        },
+        "RP4WP_Hook_Frontend_Css": {
+            "abstract": false,
+            "parents": [
+                "RP4WP_Hook"
+            ],
+            "magic_get": false,
+            "constants": [],
+            "properties": {
+                "args": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "priority": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "tag": {
+                    "visibility": "protected",
+                    "static": false
+                }
+            },
+            "methods": {
+                "__construct": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_args": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_priority": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_tag": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "register": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "run": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                }
+            }
+        },
+        "RP4WP_Hook_Link_Related_Screen": {
+            "abstract": false,
+            "parents": [
+                "RP4WP_Hook"
+            ],
+            "magic_get": false,
+            "constants": [],
+            "properties": {
+                "args": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "priority": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "tag": {
+                    "visibility": "protected",
+                    "static": false
+                }
+            },
+            "methods": {
+                "__construct": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "content": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_args": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_priority": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_tag": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "init_screen": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "register": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "run": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                }
+            }
+        },
+        "RP4WP_Hook_Meta_Box": {
+            "abstract": false,
+            "parents": [
+                "RP4WP_Hook"
+            ],
+            "magic_get": false,
+            "constants": [],
+            "properties": {
+                "args": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "priority": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "tag": {
+                    "visibility": "protected",
+                    "static": false
+                }
+            },
+            "methods": {
+                "__construct": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_args": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_priority": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_tag": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "register": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "run": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                }
+            }
+        },
+        "RP4WP_Hook_Meta_Box_Ajax_Sort": {
+            "abstract": false,
+            "parents": [
+                "RP4WP_Hook"
+            ],
+            "magic_get": false,
+            "constants": [],
+            "properties": {
+                "args": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "priority": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "tag": {
+                    "visibility": "protected",
+                    "static": false
+                }
+            },
+            "methods": {
+                "__construct": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_args": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_priority": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_tag": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "register": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "run": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                }
+            }
+        },
+        "RP4WP_Hook_Page_Install": {
+            "abstract": false,
+            "parents": [
+                "RP4WP_Hook"
+            ],
+            "magic_get": false,
+            "constants": [],
+            "properties": {
+                "args": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "priority": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "tag": {
+                    "visibility": "protected",
+                    "static": false
+                }
+            },
+            "methods": {
+                "__construct": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "content": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "enqueue_install_assets": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_args": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_priority": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_tag": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "register": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "run": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                }
+            }
+        },
+        "RP4WP_Hook_Post_Type": {
+            "abstract": false,
+            "parents": [
+                "RP4WP_Hook"
+            ],
+            "magic_get": false,
+            "constants": [],
+            "properties": {
+                "args": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "priority": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "tag": {
+                    "visibility": "protected",
+                    "static": false
+                }
+            },
+            "methods": {
+                "__construct": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_args": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_priority": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_tag": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "register": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "run": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                }
+            }
+        },
+        "RP4WP_Hook_Related_Auto_Link": {
+            "abstract": false,
+            "parents": [
+                "RP4WP_Hook"
+            ],
+            "magic_get": false,
+            "constants": [],
+            "properties": {
+                "args": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "priority": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "tag": {
+                    "visibility": "protected",
+                    "static": false
+                }
+            },
+            "methods": {
+                "__construct": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_args": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_priority": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_tag": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "register": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "run": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "new_status",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        },
+                        {
+                            "name": "old_status",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        },
+                        {
+                            "name": "post",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                }
+            }
+        },
+        "RP4WP_Hook_Related_Save_Words": {
+            "abstract": false,
+            "parents": [
+                "RP4WP_Hook"
+            ],
+            "magic_get": false,
+            "constants": [],
+            "properties": {
+                "args": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "priority": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "tag": {
+                    "visibility": "protected",
+                    "static": false
+                }
+            },
+            "methods": {
+                "__construct": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_args": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_priority": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_tag": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "register": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "run": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "new_status",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        },
+                        {
+                            "name": "old_status",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        },
+                        {
+                            "name": "post",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                }
+            }
+        },
+        "RP4WP_Hook_Related_Update_Link": {
+            "abstract": false,
+            "parents": [
+                "RP4WP_Hook"
+            ],
+            "magic_get": false,
+            "constants": [],
+            "properties": {
+                "args": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "priority": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "tag": {
+                    "visibility": "protected",
+                    "static": false
+                }
+            },
+            "methods": {
+                "__construct": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_args": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_priority": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_tag": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "register": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "run": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "new_status",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        },
+                        {
+                            "name": "old_status",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        },
+                        {
+                            "name": "post",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                }
+            }
+        },
+        "RP4WP_Hook_Settings_Page": {
+            "abstract": false,
+            "parents": [
+                "RP4WP_Hook"
+            ],
+            "magic_get": false,
+            "constants": [],
+            "properties": {
+                "args": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "priority": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "tag": {
+                    "visibility": "protected",
+                    "static": false
+                }
+            },
+            "methods": {
+                "__construct": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "enqueue_assets": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_args": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_priority": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_tag": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "register": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "run": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "screen": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                }
+            }
+        },
+        "RP4WP_Hook_Shortcode": {
+            "abstract": false,
+            "parents": [
+                "RP4WP_Hook"
+            ],
+            "magic_get": false,
+            "constants": [],
+            "properties": {
+                "args": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "priority": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "tag": {
+                    "visibility": "protected",
+                    "static": false
+                }
+            },
+            "methods": {
+                "__construct": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_args": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_priority": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_tag": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "output": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "atts",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                },
+                "register": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "run": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                }
+            }
+        },
+        "RP4WP_Hook_Widget": {
+            "abstract": false,
+            "parents": [
+                "RP4WP_Hook"
+            ],
+            "magic_get": false,
+            "constants": [],
+            "properties": {
+                "args": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "priority": {
+                    "visibility": "protected",
+                    "static": false
+                },
+                "tag": {
+                    "visibility": "protected",
+                    "static": false
+                }
+            },
+            "methods": {
+                "__construct": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_args": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_priority": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_tag": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "register": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "run": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                }
+            }
+        },
+        "RP4WP_Is_Installing_Notice": {
+            "abstract": false,
+            "parents": [],
+            "magic_get": false,
+            "constants": [],
+            "properties": [],
+            "methods": {
+                "check": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "content": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                }
+            }
+        },
+        "RP4WP_Javascript_Strings": {
+            "abstract": false,
+            "parents": [],
+            "magic_get": false,
+            "constants": [],
+            "properties": [],
+            "methods": {
+                "get": {
+                    "visibility": "public",
+                    "static": true,
+                    "abstract": false,
+                    "params": []
+                }
+            }
+        },
+        "RP4WP_Link_Related_Table": {
+            "abstract": false,
+            "parents": [
+                "WP_List_Table"
+            ],
+            "magic_get": true,
+            "constants": [],
+            "properties": [],
+            "methods": {
+                "__construct": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "add_page_views": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "column_cb": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "item",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                },
+                "column_default": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "item",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        },
+                        {
+                            "name": "column_name",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                },
+                "column_title": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "item",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                },
+                "custom_reorder": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "a",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        },
+                        {
+                            "name": "b",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                },
+                "filter_posts_where": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "where",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                },
+                "get_bulk_actions": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_columns": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_sortable_columns": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "prepare_items": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "search_box": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "text",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        },
+                        {
+                            "name": "input_id",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                },
+                "set_search": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "search",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                }
+            }
+        },
+        "RP4WP_Manager_Filter": {
+            "abstract": false,
+            "parents": [],
+            "magic_get": false,
+            "constants": [],
+            "properties": [],
+            "methods": {
+                "__construct": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "filter_names",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                },
+                "get_filter_object": {
+                    "visibility": "public",
+                    "static": true,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "class_name",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                },
+                "load_filter": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "filter_name",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                },
+                "load_filters": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                }
+            }
+        },
+        "RP4WP_Manager_Hook": {
+            "abstract": false,
+            "parents": [],
+            "magic_get": false,
+            "constants": [],
+            "properties": [],
+            "methods": {
+                "__construct": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "action_names",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                },
+                "get_hook_object": {
+                    "visibility": "public",
+                    "static": true,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "class_name",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                },
+                "load_hook": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "action_name",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                },
+                "load_hooks": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                }
+            }
+        },
+        "RP4WP_Meta_Box_Manage": {
+            "abstract": false,
+            "parents": [],
+            "magic_get": false,
+            "constants": [],
+            "properties": [],
+            "methods": {
+                "__construct": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "add_meta_box": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "callback": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "post",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                }
+            }
+        },
+        "RP4WP_Multisite_Notice": {
+            "abstract": false,
+            "parents": [],
+            "magic_get": false,
+            "constants": [],
+            "properties": [],
+            "methods": {
+                "display": {
+                    "visibility": "public",
+                    "static": true,
+                    "abstract": false,
+                    "params": []
+                }
+            }
+        },
+        "RP4WP_Nag_Manager": {
+            "abstract": false,
+            "parents": [],
+            "magic_get": false,
+            "constants": [],
+            "properties": [],
+            "methods": {
+                "catch_hide_notice": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "display_admin_notice": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "setup": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                }
+            }
+        },
+        "RP4WP_Playground": {
+            "abstract": false,
+            "parents": [],
+            "magic_get": false,
+            "constants": [],
+            "properties": [],
+            "methods": {
+                "add_admin_notice": {
+                    "visibility": "public",
+                    "static": true,
+                    "abstract": false,
+                    "params": []
+                },
+                "is_playground": {
+                    "visibility": "public",
+                    "static": true,
+                    "abstract": false,
+                    "params": []
+                }
+            }
+        },
+        "RP4WP_Post_Link_Manager": {
+            "abstract": false,
+            "parents": [],
+            "magic_get": false,
+            "constants": [],
+            "properties": [],
+            "methods": {
+                "__construct": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "add": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "parent_id",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        },
+                        {
+                            "name": "child_id",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        },
+                        {
+                            "name": "batch",
+                            "optional": true,
+                            "default": "false",
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                },
+                "delete": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "link_id",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                },
+                "delete_links_related_to": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "post_id",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                },
+                "generate_children_list": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "id",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        },
+                        {
+                            "name": "limit",
+                            "optional": true,
+                            "default": "-1",
+                            "by_ref": false,
+                            "variadic": false
+                        },
+                        {
+                            "name": "offset",
+                            "optional": true,
+                            "default": "0",
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                },
+                "get_children": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "parent_id",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        },
+                        {
+                            "name": "extra_args",
+                            "optional": true,
+                            "default": "array (\n)",
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                },
+                "get_parents": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "child_id",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                },
+                "sort_get_children_children": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "a",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        },
+                        {
+                            "name": "b",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                }
+            }
+        },
+        "RP4WP_Related_Post_Manager": {
+            "abstract": false,
+            "parents": [],
+            "magic_get": false,
+            "constants": [],
+            "properties": [],
+            "methods": {
+                "batch_data_get_meta": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "batch",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                },
+                "batch_data_get_post": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "batch",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                },
+                "batch_data_set_pid": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "batch",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        },
+                        {
+                            "name": "pid",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                },
+                "get_not_auto_linked_posts_ids": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "limit",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                },
+                "get_related_posts": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "post_id",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        },
+                        {
+                            "name": "limit",
+                            "optional": true,
+                            "default": "-1",
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                },
+                "get_supported_post_types": {
+                    "visibility": "public",
+                    "static": true,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_uncached_post_count": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "post_type",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                },
+                "get_unlinked_post_count": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "link_related_post": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "post_id",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        },
+                        {
+                            "name": "amount",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                },
+                "link_related_posts": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "rel_amount",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        },
+                        {
+                            "name": "post_amount",
+                            "optional": true,
+                            "default": "-1",
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                }
+            }
+        },
+        "RP4WP_Related_Posts_Widget": {
+            "abstract": false,
+            "parents": [
+                "WP_Widget"
+            ],
+            "magic_get": false,
+            "constants": [],
+            "properties": [],
+            "methods": {
+                "__construct": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "widget": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "args",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        },
+                        {
+                            "name": "instance",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                }
+            }
+        },
+        "RP4WP_Related_Word_Manager": {
+            "abstract": false,
+            "parents": [],
+            "magic_get": false,
+            "constants": {
+                "DB_TABLE": "rp4wp_cache"
+            },
+            "properties": [],
+            "methods": {
+                "dedupe_and_order_ignored_words": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "lang",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                },
+                "delete_words": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "post_id",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                },
+                "get_database_table": {
+                    "visibility": "public",
+                    "static": true,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_uncached_post_count": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_uncached_post_ids": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "limit",
+                            "optional": true,
+                            "default": "-1",
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                },
+                "get_word_count": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "get_words_of_post": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "post_id",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                },
+                "save_all_words": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "limit",
+                            "optional": true,
+                            "default": "-1",
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                },
+                "save_words_of_post": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "post_id",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                }
+            }
+        },
+        "RP4WP_Settings": {
+            "abstract": false,
+            "parents": [],
+            "magic_get": false,
+            "constants": {
+                "PAGE": "rp4wp",
+                "PREFIX": "rp4wp_"
+            },
+            "properties": [],
+            "methods": {
+                "__construct": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "do_field": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "field",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                },
+                "get_option": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "option",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                },
+                "get_options": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                },
+                "sanitize_option": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "post_data",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                },
+                "section_intro": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": [
+                        {
+                            "name": "section",
+                            "optional": false,
+                            "default": null,
+                            "by_ref": false,
+                            "variadic": false
+                        }
+                    ]
+                },
+                "setup": {
+                    "visibility": "public",
+                    "static": false,
+                    "abstract": false,
+                    "params": []
+                }
+            }
+        }
+    },
+    "functions": {
+        "RP4WP": {
+            "params": []
+        },
+        "rp4wp_activate_plugin": {
+            "params": []
+        },
+        "rp4wp_children": {
+            "params": [
+                {
+                    "name": "id",
+                    "optional": true,
+                    "default": "false",
+                    "by_ref": false,
+                    "variadic": false
+                },
+                {
+                    "name": "output",
+                    "optional": true,
+                    "default": "true",
+                    "by_ref": false,
+                    "variadic": false
+                }
+            ]
+        },
+        "rp4wp_load_plugin": {
+            "params": []
+        }
+    }
+}

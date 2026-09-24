@@ -1,0 +1,101 @@
+{
+    "rp4wp_after_content": [
+        1
+    ],
+    "rp4wp_after_image": [
+        1
+    ],
+    "rp4wp_after_link_add": [
+        1
+    ],
+    "rp4wp_after_link_delete": [
+        1
+    ],
+    "rp4wp_append_content": [
+        1
+    ],
+    "rp4wp_automatic_linking": [
+        1
+    ],
+    "rp4wp_automatic_linking_post_amount": [
+        1
+    ],
+    "rp4wp_before_content": [
+        1
+    ],
+    "rp4wp_before_image": [
+        1
+    ],
+    "rp4wp_before_link_delete": [
+        1
+    ],
+    "rp4wp_cache_word_amount": [
+        1
+    ],
+    "rp4wp_css": [
+        1
+    ],
+    "rp4wp_display_image": [
+        1
+    ],
+    "rp4wp_excerpt_length": [
+        1
+    ],
+    "rp4wp_get_children_child_args": [
+        2
+    ],
+    "rp4wp_get_children_link_args": [
+        2
+    ],
+    "rp4wp_get_parents_link_args": [
+        2
+    ],
+    "rp4wp_heading": [
+        1
+    ],
+    "rp4wp_heading_text": [
+        1
+    ],
+    "rp4wp_ignored_words": [
+        1
+    ],
+    "rp4wp_options": [
+        1
+    ],
+    "rp4wp_post_excerpt": [
+        2
+    ],
+    "rp4wp_post_link": [
+        2
+    ],
+    "rp4wp_post_title": [
+        2
+    ],
+    "rp4wp_post_title_html": [
+        2
+    ],
+    "rp4wp_post_title_html_values": [
+        2
+    ],
+    "rp4wp_poweredby_affiliate_id": [
+        1
+    ],
+    "rp4wp_show_love": [
+        1
+    ],
+    "rp4wp_supported_post_types": [
+        1
+    ],
+    "rp4wp_thumbnail_size": [
+        1
+    ],
+    "rp4wp_weight_cat": [
+        1
+    ],
+    "rp4wp_weight_tag": [
+        1
+    ],
+    "rp4wp_weight_title": [
+        1
+    ]
+}

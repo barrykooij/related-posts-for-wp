@@ -1,0 +1,322 @@
+{
+    "sourdough-bread-at-home": {
+        "baking": "0.189873 post",
+        "bread": "0.191983 post",
+        "cooking": "0.042194 post",
+        "home": "0.168776 post",
+        "sourdough": "0.170886 post",
+        "starter": "0.004219 post"
+    },
+    "fresh-pasta-dough": {
+        "cooking": "0.042283 post",
+        "dough": "0.171247 post",
+        "fresh": "0.171247 post",
+        "italian": "0.023256 post",
+        "pasta": "0.192389 post",
+        "scratch": "0.169133 post"
+    },
+    "tomato-sauce-basics": {
+        "basics": "0.170940 post",
+        "cooking": "0.042735 post",
+        "pasta": "0.194444 post",
+        "sauce": "0.175214 post",
+        "tomato": "0.173077 post",
+        "tomatoes": "0.023504 post"
+    },
+    "espresso-at-home": {
+        "brewing": "0.211640 post",
+        "coffee": "0.029101 post",
+        "cooking": "0.052910 post",
+        "espresso": "0.214286 post",
+        "home": "0.211640 post",
+        "needs": "0.002646 post"
+    },
+    "pour-over-coffee": {
+        "beginners": "0.173536 post",
+        "calm": "0.002169 post",
+        "coffee": "0.199566 post",
+        "cooking": "0.043384 post",
+        "pour": "0.177874 post",
+        "slow": "0.002169 post"
+    },
+    "focaccia-with-rosemary": {
+        "bread": "0.233333 post",
+        "cooking": "0.051282 post",
+        "flat": "0.002564 post",
+        "focaccia": "0.207692 post",
+        "italian": "0.028205 post",
+        "rosemary": "0.207692 post"
+    },
+    "risotto-technique": {
+        "cooking": "0.064516 post",
+        "explained": "0.258065 post",
+        "italian": "0.035484 post",
+        "rice": "0.035484 post",
+        "risotto": "0.261290 post",
+        "technique": "0.258065 post"
+    },
+    "banana-bread-recipe": {
+        "baking": "0.025575 post",
+        "banana": "0.207161 post",
+        "bread": "0.232737 post",
+        "cooking": "0.051151 post",
+        "moist": "0.207161 post",
+        "recipe": "0.204604 post"
+    },
+    "cold-brew-coffee": {
+        "brew": "0.151402 post",
+        "coffee": "0.171963 post",
+        "cold": "0.153271 post",
+        "cooking": "0.037383 post",
+        "fridge": "0.149533 post",
+        "steeps": "0.001869 post"
+    },
+    "homemade-pizza-dough": {
+        "cooking": "0.036232 post",
+        "dough": "0.148551 post",
+        "homemade": "0.144928 post",
+        "oven": "0.144928 post",
+        "pizza": "0.146739 post",
+        "tips": "0.144928 post"
+    },
+    "hiking-the-dolomites": {
+        "dolomites": "0.173820 post",
+        "hiking": "0.195279 post",
+        "italy": "0.023605 post",
+        "northern": "0.002146 post",
+        "summer": "0.171674 post",
+        "travel": "0.042918 post"
+    },
+    "rome-in-three-days": {
+        "city": "0.025974 post",
+        "days": "0.210390 post",
+        "italy": "0.025974 post",
+        "rome": "0.210390 post",
+        "three": "0.210390 post",
+        "travel": "0.051948 post"
+    },
+    "tokyo-coffee-shops": {
+        "coffee": "0.167897 post",
+        "shops": "0.149446 post",
+        "tokyo": "0.149446 post",
+        "travel": "0.036900 post",
+        "trip": "0.147601 post",
+        "worth": "0.147601 post"
+    },
+    "kyoto-temples": {
+        "full": "0.002611 post",
+        "gardens": "0.237598 post",
+        "japan": "0.026110 post",
+        "kyoto": "0.211488 post",
+        "temples": "0.214099 post",
+        "travel": "0.052219 post"
+    },
+    "packing-light": {
+        "fewer": "0.002193 post",
+        "light": "0.177632 post",
+        "means": "0.002193 post",
+        "packing": "0.199561 post",
+        "travel": "0.043860 post",
+        "trips": "0.175439 post"
+    },
+    "train-travel-europe": {
+        "across": "0.206718 post",
+        "europe": "0.235142 post",
+        "night": "0.005168 post",
+        "train": "0.206718 post",
+        "trains": "0.031008 post",
+        "travel": "0.258398 post"
+    },
+    "amsterdam-by-bike": {
+        "amsterdam": "0.264706 post",
+        "bike": "0.267974 post",
+        "city": "0.032680 post",
+        "europe": "0.032680 post",
+        "seen": "0.003268 post",
+        "travel": "0.065359 post"
+    },
+    "hiking-gear-checklist": {
+        "checklist": "0.264706 post",
+        "covers": "0.003268 post",
+        "gear": "0.264706 post",
+        "hiking": "0.300654 post",
+        "packing": "0.032680 post",
+        "travel": "0.065359 post"
+    },
+    "florence-food-tour": {
+        "florence": "0.269103 post",
+        "food": "0.302326 post",
+        "italy": "0.033223 post",
+        "rewards": "0.003322 post",
+        "tour": "0.269103 post",
+        "travel": "0.066445 post"
+    },
+    "osaka-street-food": {
+        "food": "0.238845 post",
+        "guide": "0.209974 post",
+        "japan": "0.028871 post",
+        "osaka": "0.212598 post",
+        "street": "0.212598 post",
+        "travel": "0.052493 post"
+    },
+    "wordpress-plugin-basics": {
+        "basics": "0.208877 post",
+        "development": "0.208877 post",
+        "php": "0.028721 post",
+        "plugin": "0.214099 post",
+        "technology": "0.052219 post",
+        "wordpress": "0.240209 post"
+    },
+    "php-8-features": {
+        "arguments": "0.002208 post",
+        "brought": "0.002208 post",
+        "features": "0.176600 post",
+        "named": "0.002208 post",
+        "php": "0.203091 post",
+        "technology": "0.044150 post"
+    },
+    "mysql-index-tips": {
+        "databases": "0.032895 post",
+        "index": "0.269737 post",
+        "mysql": "0.299342 post",
+        "speeds": "0.003289 post",
+        "technology": "0.065789 post",
+        "tips": "0.263158 post"
+    },
+    "wordpress-hooks-explained": {
+        "come": "0.003300 post",
+        "explained": "0.264026 post",
+        "hooks": "0.270627 post",
+        "php": "0.033003 post",
+        "technology": "0.066007 post",
+        "wordpress": "0.300330 post"
+    },
+    "static-analysis-php": {
+        "analysis": "0.175325 post",
+        "php": "0.199134 post",
+        "projects": "0.173160 post",
+        "static": "0.175325 post",
+        "technology": "0.043290 post",
+        "testing": "0.021645 post"
+    },
+    "database-backups": {
+        "backups": "0.209424 post",
+        "database": "0.212042 post",
+        "databases": "0.026178 post",
+        "mysql": "0.028796 post",
+        "technology": "0.052356 post",
+        "work": "0.209424 post"
+    },
+    "unit-testing-wordpress": {
+        "plugin": "0.005263 post",
+        "plugins": "0.210526 post",
+        "technology": "0.052632 post",
+        "testing": "0.239474 post",
+        "unit": "0.213158 post",
+        "wordpress": "0.242105 post"
+    },
+    "coffee-and-code": {
+        "code": "0.148897 post",
+        "coffee": "0.169118 post",
+        "developer": "0.147059 post",
+        "morning": "0.148897 post",
+        "php": "0.020221 post",
+        "technology": "0.036765 post"
+    },
+    "git-branching": {
+        "branches": "0.004435 post",
+        "branching": "0.177384 post",
+        "git": "0.201774 post",
+        "keep": "0.002217 post",
+        "teams": "0.179601 post",
+        "technology": "0.044346 post"
+    },
+    "caching-wordpress": {
+        "caching": "0.217277 post",
+        "makes": "0.002618 post",
+        "performance": "0.026178 post",
+        "speed": "0.212042 post",
+        "technology": "0.052356 post",
+        "wordpress": "0.238220 post"
+    },
+    "growing-tomatoes": {
+        "gardening": "0.052219 post",
+        "grow": "0.002611 post",
+        "growing": "0.208877 post",
+        "pots": "0.211488 post",
+        "tomatoes": "0.240209 post",
+        "vegetables": "0.026110 post"
+    },
+    "pruning-roses": {
+        "early": "0.174569 post",
+        "gardening": "0.043103 post",
+        "prune": "0.002155 post",
+        "pruning": "0.193966 post",
+        "roses": "0.196121 post",
+        "spring": "0.174569 post"
+    },
+    "herb-garden-basil": {
+        "basil": "0.150459 post",
+        "garden": "0.148624 post",
+        "gardening": "0.036697 post",
+        "herb": "0.148624 post",
+        "herbs": "0.018349 post",
+        "kitchen": "0.146789 post"
+    },
+    "composting-for-beginners": {
+        "beginners": "0.254777 post",
+        "compost": "0.038217 post",
+        "composting": "0.254777 post",
+        "gardening": "0.063694 post",
+        "soil": "0.035032 post",
+        "turns": "0.003185 post"
+    },
+    "japanese-garden-design": {
+        "design": "0.210390 post",
+        "garden": "0.210390 post",
+        "gardening": "0.051948 post",
+        "gardens": "0.028571 post",
+        "ideas": "0.210390 post",
+        "japanese": "0.210390 post"
+    },
+    "raised-vegetable-beds": {
+        "beds": "0.212987 post",
+        "building": "0.207792 post",
+        "gardening": "0.051948 post",
+        "raised": "0.210390 post",
+        "soil": "0.028571 post",
+        "vegetable": "0.210390 post"
+    },
+    "climbing-roses": {
+        "climbing": "0.271523 post",
+        "gardening": "0.066225 post",
+        "pruning": "0.033113 post",
+        "roses": "0.304636 post",
+        "sturdy": "0.003311 post",
+        "training": "0.264901 post"
+    },
+    "olive-trees-in-pots": {
+        "gardening": "0.051680 post",
+        "italy": "0.025840 post",
+        "olive": "0.211886 post",
+        "pots": "0.209302 post",
+        "tree": "0.002584 post",
+        "trees": "0.235142 post"
+    },
+    "saving-tomato-seeds": {
+        "gardening": "0.065789 post",
+        "save": "0.003289 post",
+        "saving": "0.263158 post",
+        "seeds": "0.302632 post",
+        "tomato": "0.266447 post",
+        "tomatoes": "0.036184 post"
+    },
+    "lawn-care-autumn": {
+        "autumn": "0.210938 post",
+        "care": "0.208333 post",
+        "feed": "0.002604 post",
+        "gardening": "0.052083 post",
+        "lawn": "0.236979 post",
+        "soil": "0.028646 post"
+    }
+}

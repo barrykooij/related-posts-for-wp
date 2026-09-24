@@ -1,17 +1,75 @@
 {
   "name": "never5/related-posts-for-wp",
-  "description": "Related Posts plugin for WordPress",
-  "keywords": ["wordpress", "related posts"],
-  "homepage": "https://rp4wp.com/",
-  "license": "GPL-3.0+",
-  "author": "Never5",
+  "description": "Related Posts for WordPress, the best way to display related posts in WordPress.",
+  "type": "wordpress-plugin",
+  "keywords": [
+    "wordpress",
+    "related posts"
+  ],
+  "homepage": "https://www.relatedpostsforwp.com/",
+  "license": "GPL-3.0-or-later",
+  "require": {
+    "php": ">=8.0"
+  },
+  "require-dev": {
+    "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+    "php-stubs/wordpress-stubs": "^7.1",
+    "phpcompatibility/phpcompatibility-wp": "^2.1",
+    "phpstan/extension-installer": "^1.4",
+    "phpstan/phpstan": "^2.1",
+    "phpstan/phpstan-deprecation-rules": "^2.0",
+    "phpstan/phpstan-mockery": "^2.0",
+    "phpunit/phpunit": "^9.6",
+    "squizlabs/php_codesniffer": "^3.13",
+    "szepeviktor/phpstan-wordpress": "^2.0",
+    "wp-coding-standards/wpcs": "^3.1",
+    "wp-phpunit/wp-phpunit": "^7.1",
+    "yoast/wp-test-utils": "^1.2"
+  },
   "autoload": {
     "classmap": [
-      "classes/",
-      "classes/hooks/",
-      "classes/filters/",
-      "classes/meta-boxes/",
-      "classes/settings/"
+      "classes/"
     ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "LV2\\WordPress\\RelatedPostsForWP\\Tests\\": "tests/"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "phpstan/extension-installer": true
+    },
+    "sort-packages": true,
+    "platform": {
+      "php": "8.0.30"
+    }
+  },
+  "scripts": {
+    "lint": "phpcs",
+    "lint:fix": "phpcbf",
+    "lint:strict": "phpcs --warning-severity=1",
+    "stan": "phpstan analyse --memory-limit=2G",
+    "stan:baseline": "phpstan analyse --memory-limit=2G --generate-baseline=phpstan-baseline.neon",
+    "test": "phpunit --testsuite Unit",
+    "test:integration": "phpunit -c phpunit-integration.xml.dist",
+    "test:coverage": "phpunit --testsuite Unit --coverage-html coverage/",
+    "qa": [
+      "@lint",
+      "@stan",
+      "@test"
+    ]
+  },
+  "scripts-descriptions": {
+    "lint": "Run PHPCS (errors only).",
+    "lint:fix": "Auto-fix PHPCS violations with PHPCBF.",
+    "lint:strict": "Run PHPCS including warnings.",
+    "stan": "Run PHPStan static analysis.",
+    "stan:baseline": "Regenerate the PHPStan baseline.",
+    "test": "Run the PHPUnit unit suite (no WordPress runtime).",
+    "test:integration": "Run the PHPUnit integration suite. Needs WordPress, so run it inside wp-env with `npm run test:integration`.",
+    "test:coverage": "Run the unit suite with an HTML coverage report.",
+    "qa": "Run lint, stan and the unit tests."
   }
 }
