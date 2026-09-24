@@ -59,12 +59,6 @@ class RP4WP {
 			return;
 		}
 
-		if ( is_admin() ) {
-			// check for dependencies
-			$dep = new RP4WP_Dependencies();
-			$dep->check();
-		}
-
 		// Setup settings
 		add_action( 'init', array( $this, 'setup_settings' ) );
 
@@ -77,12 +71,6 @@ class RP4WP {
 		$actions      = include dirname( RP4WP_PLUGIN_FILE ) . '/includes/actions.php';
 		$manager_hook = new RP4WP_Manager_Hook( $actions );
 		$manager_hook->load_hooks();
-
-		// Setup the nag
-		if ( is_admin() ) {
-			$nag_manager = new RP4WP_Nag_Manager();
-			$nag_manager->setup();
-		}
 
 	}
 

@@ -141,6 +141,8 @@ class Main {
 			// Runs first: it may redirect to the installation wizard and stop.
 			Admin\Wizard\Redirect::class,
 			Admin\Notices\Installing::class,
+			Admin\Notices\Mbstring::class,
+			Admin\Notices\Review::class,
 			// The 2.x bootstrap, until every 2.x class has moved into src/.
 			Legacy\Bootstrap::class,
 			Links\LinkPostType::class,
