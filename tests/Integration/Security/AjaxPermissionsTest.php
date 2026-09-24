@@ -77,6 +77,37 @@ final class AjaxPermissionsTest extends \WP_Ajax_UnitTestCase {
 		$this->assertEmpty( $this->_last_response );
 	}
 
+	public function test_admin_can_delete_a_link_and_gets_the_2x_response(): void {
+		$this->act_as( 'administrator' );
+
+		$_POST['id']    = $this->admin_link;
+		$_POST['nonce'] = wp_create_nonce( 'rp4wp-ajax-nonce-omgrandomword' );
+
+		try {
+			$this->_handleAjax( 'rp4wp_delete_link' );
+		} catch ( \WPAjaxDieContinueException $e ) {
+			unset( $e );
+		}
+
+		$this->assertSame( '{"success":true}', $this->_last_response );
+		$this->assertNull( get_post( $this->admin_link ) );
+	}
+
+	public function test_admin_sort_gets_the_2x_response(): void {
+		$this->act_as( 'administrator' );
+
+		$_POST['rp4wp_items'] = (string) $this->admin_link;
+		$_POST['nonce']       = wp_create_nonce( 'rp4wp-ajax-nonce-omgrandomword' );
+
+		try {
+			$this->_handleAjax( 'rp4wp_related_sort' );
+		} catch ( \WPAjaxDieContinueException $e ) {
+			unset( $e );
+		}
+
+		$this->assertSame( '{"success":true}', $this->_last_response );
+	}
+
 	public function test_contributor_cannot_reorder_normal_posts_or_other_users_links(): void {
 		$this->set_menu_order( [ $this->admin_post, $this->admin_link ], 7 );
 		$sentinel = $this->sentinel_link();

@@ -147,6 +147,8 @@ class Main {
 			Frontend\Shortcode::class,
 			Frontend\Widgets::class,
 			Admin\Assets::class,
+			Admin\MetaBox\ManageLinks::class,
+			Admin\MetaBox\Ajax::class,
 			Admin\PluginLinks::class,
 			Integrations\YoastDuplicatePost::class,
 		];
