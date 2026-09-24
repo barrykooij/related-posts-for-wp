@@ -128,6 +128,9 @@ jobs:
           WP_ENV_PHP_VERSION: ${{ matrix.php }}
       - name: Integration tests
         run: npm run test:integration
+      # The WordPress test suite leaves the ajax group out unless it is asked for.
+      - name: Integration tests of the AJAX handlers
+        run: npm run test:integration:ajax
 
   e2e:
     name: E2E, WP ${{ matrix.wp }}
