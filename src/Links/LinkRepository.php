@@ -21,9 +21,18 @@ class LinkRepository {
 	 * @return int The link ID.
 	 */
 	public function add( int $parent_id, int $child_id ): int {
-		global $wpdb;
+		return $this->insert( $this->insert_data( $parent_id, $child_id ) );
+	}
 
-		$data = $this->insert_data( $parent_id, $child_id );
+	/**
+	 * Insert a link from its SQL values; see insert_data().
+	 *
+	 * @param array{post: string, meta: string[]} $data The SQL values.
+	 *
+	 * @return int The link ID.
+	 */
+	protected function insert( array $data ): int {
+		global $wpdb;
 
 		// A direct insert, like 2.x: link posts never run the save_post hooks of other plugins.
 		$wpdb->query( "INSERT INTO `{$wpdb->posts}` (`post_date`,`post_date_gmt`,`post_content`,`post_title`,`post_type`,`post_status`) VALUES {$data['post']}" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Values are built from integers, constants and dates.
@@ -31,7 +40,7 @@ class LinkRepository {
 		$link_id = (int) $wpdb->insert_id;
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare -- The values hold %d placeholders for the link ID.
-		$wpdb->query( $wpdb->prepare( "INSERT INTO `{$wpdb->postmeta}` (`post_id`,`meta_key`,`meta_value`) VALUES {$data['meta'][0]}, {$data['meta'][1]}", $link_id, $link_id ) );
+		$wpdb->query( $wpdb->prepare( "INSERT INTO `{$wpdb->postmeta}` (`post_id`,`meta_key`,`meta_value`) VALUES " . implode( ', ', $data['meta'] ), array_fill( 0, count( $data['meta'] ), $link_id ) ) );
 
 		/**
 		 * Fires after a link is added.
@@ -257,7 +266,7 @@ class LinkRepository {
 	 *
 	 * @return array<string, mixed>
 	 */
-	private function link_args( string $meta_key, int $post_id ): array {
+	protected function link_args( string $meta_key, int $post_id ): array {
 		return [
 			'post_type'      => LinkPostType::POST_TYPE,
 			'posts_per_page' => -1,
@@ -284,7 +293,7 @@ class LinkRepository {
 	 *
 	 * @return array<string, mixed>
 	 */
-	private function with_tie_break( $args ): array {
+	protected function with_tie_break( $args ): array {
 		$args = (array) $args;
 
 		if ( isset( $args['orderby'] ) && 'menu_order' === $args['orderby'] ) {
