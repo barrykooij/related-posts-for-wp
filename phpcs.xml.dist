@@ -7,6 +7,7 @@
 		3.x rework. New code is added here as it lands.
 	-->
 	<file>src</file>
+	<file>deprecated</file>
 	<file>tests</file>
 	<file>related-posts-for-wp.php</file>
 	<file>uninstall.php</file>

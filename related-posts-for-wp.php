@@ -91,6 +91,7 @@ function rp4wp_load_plugin() {
 	define( 'RP4WP_PLUGIN_FILE', __FILE__ );
 
 	require __DIR__ . '/vendor/autoload.php';
+	\LV2\WordPress\RelatedPostsForWP\Compat\LegacyClassLoader::register();
 	require __DIR__ . '/includes/functions.php';
 	require __DIR__ . '/includes/template-tags.php';
 

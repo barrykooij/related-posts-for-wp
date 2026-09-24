@@ -16,6 +16,7 @@ parameters:
     phpVersion: 80000
     paths:
         - src
+        - deprecated
         - tests
         - related-posts-for-wp.php
         - uninstall.php
