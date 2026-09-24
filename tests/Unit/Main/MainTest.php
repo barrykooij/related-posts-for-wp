@@ -119,10 +119,11 @@ final class MainTest extends TestCase {
 		$this->assertSame( [ FirstModule::class ], RecordingModule::$calls );
 	}
 
-	public function test_the_legacy_bootstrap_runs_first(): void {
+	public function test_the_wizard_redirect_runs_first(): void {
 		Filters\expectApplied( 'rp4wp_modules' )->once()->andReturnFirstArg();
 
-		$this->assertSame( \LV2\WordPress\RelatedPostsForWP\Legacy\Bootstrap::class, ( new Main() )->modules()[0] );
+		// It may redirect and stop the request, so nothing else should be set up before it.
+		$this->assertSame( \LV2\WordPress\RelatedPostsForWP\Admin\Wizard\Redirect::class, ( new Main() )->modules()[0] );
 	}
 
 	public function test_get_returns_one_shared_instance(): void {

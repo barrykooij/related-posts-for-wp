@@ -159,6 +159,39 @@ final class AjaxPermissionsTest extends \WP_Ajax_UnitTestCase {
 		}
 	}
 
+	public function test_admin_wizard_batches_answer_with_the_posts_left(): void {
+		$this->act_as( 'administrator' );
+		delete_post_meta_by_key( 'rp4wp_auto_linked' );
+
+		$_POST['nonce'] = wp_create_nonce( 'rp4wp-ajax-nonce-omgrandomword' );
+		$_POST['ppr']   = 1000;
+
+		$this->assertSame( '0', $this->handle_expecting_die( 'rp4wp_install_save_words' ) );
+
+		$_POST['rel_amount'] = 2;
+		$this->assertSame( '0', $this->handle_expecting_die( 'rp4wp_install_link_posts' ) );
+
+		// With everything linked, the chosen amount becomes the setting.
+		$this->assertSame( 2, get_option( 'rp4wp' )['automatic_linking_post_amount'] );
+	}
+
+	/**
+	 * Run an AJAX action that ends with wp_die( $message ), and return the message.
+	 *
+	 * @param string $action The AJAX action.
+	 *
+	 * @return string
+	 */
+	private function handle_expecting_die( string $action ): string {
+		try {
+			$this->_handleAjax( $action );
+		} catch ( \WPAjaxDieStopException $e ) {
+			return $e->getMessage();
+		}
+
+		$this->fail( "{$action} did not end with wp_die()." );
+	}
+
 	/**
 	 * The install AJAX actions.
 	 *

@@ -7,13 +7,14 @@
 
 namespace LV2\WordPress\RelatedPostsForWP\Tests\Integration\Security;
 
+use LV2\WordPress\RelatedPostsForWP\Admin\Notices\Installing;
 use LV2\WordPress\RelatedPostsForWP\Tests\Integration\TestCase;
 
 /**
  * Regression tests for the 2.3.1 changes to the install wizard page and notices.
  *
- * @covers \RP4WP_Hook_Page_Install
- * @covers \RP4WP_Is_Installing_Notice
+ * @covers \LV2\WordPress\RelatedPostsForWP\Admin\Wizard\Page
+ * @covers \LV2\WordPress\RelatedPostsForWP\Admin\Notices\Installing
  * @covers \RP4WP_Multisite_Notice
  */
 final class AdminAccessTest extends TestCase {
@@ -30,8 +31,11 @@ final class AdminAccessTest extends TestCase {
 
 		$this->act_as( 'administrator' );
 		set_current_screen( 'dashboard' );
+		// Through the 2.x hook object, which only promises a run() method.
 		$hook = \RP4WP_Manager_Hook::get_hook_object( 'RP4WP_Hook_Page_Install' );
-		$this->assertInstanceOf( \RP4WP_Hook_Page_Install::class, $hook );
+		if ( ! is_object( $hook ) || ! method_exists( $hook, 'run' ) ) {
+			$this->fail( 'The 2.x install page hook object is not available.' );
+		}
 		$hook->run();
 
 		$install_page = array_values(
@@ -51,20 +55,20 @@ final class AdminAccessTest extends TestCase {
 		update_option( 'rp4wp_is_installing', 'yes' );
 		$this->act_as( 'editor' );
 
-		$notice = new \RP4WP_Is_Installing_Notice();
-		$notice->check();
+		set_current_screen( 'dashboard' );
+		Installing::setup();
 
-		$this->assertFalse( has_action( 'admin_notices', [ $notice, 'content' ] ) );
+		$this->assertFalse( has_action( 'admin_notices', [ Installing::class, 'display' ] ) );
 	}
 
 	public function test_installing_notice_is_shown_to_admins(): void {
 		update_option( 'rp4wp_is_installing', 'yes' );
 		$this->act_as( 'administrator' );
 
-		$notice = new \RP4WP_Is_Installing_Notice();
-		$notice->check();
+		set_current_screen( 'dashboard' );
+		Installing::setup();
 
-		$this->assertSame( 10, has_action( 'admin_notices', [ $notice, 'content' ] ) );
+		$this->assertSame( 10, has_action( 'admin_notices', [ Installing::class, 'display' ] ) );
 	}
 
 	public function test_non_admins_cannot_dismiss_the_installing_notice(): void {
@@ -72,7 +76,8 @@ final class AdminAccessTest extends TestCase {
 		$this->act_as( 'editor' );
 		$_GET['rp4wp_hide_is_installing'] = 1;
 
-		( new \RP4WP_Is_Installing_Notice() )->check();
+		set_current_screen( 'dashboard' );
+		Installing::setup();
 		unset( $_GET['rp4wp_hide_is_installing'] );
 
 		$this->assertSame( 'yes', get_option( 'rp4wp_is_installing' ) );

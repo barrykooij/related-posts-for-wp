@@ -138,6 +138,9 @@ class Main {
 	 */
 	public function modules(): array {
 		$modules = [
+			// Runs first: it may redirect to the installation wizard and stop.
+			Admin\Wizard\Redirect::class,
+			Admin\Notices\Installing::class,
 			// The 2.x bootstrap, until every 2.x class has moved into src/.
 			Legacy\Bootstrap::class,
 			Links\LinkPostType::class,
@@ -149,6 +152,8 @@ class Main {
 			Admin\Assets::class,
 			Admin\MetaBox\ManageLinks::class,
 			Admin\MetaBox\Ajax::class,
+			Admin\Wizard\Page::class,
+			Admin\Wizard\Ajax::class,
 			Admin\PluginLinks::class,
 			Integrations\YoastDuplicatePost::class,
 		];

@@ -59,22 +59,7 @@ class RP4WP {
 			return;
 		}
 
-		// Check if we need to run the installer
-		if ( is_admin() && get_option( RP4WP_Constants::OPTION_DO_INSTALL, false ) ) {
-
-			// Delete do install site option
-			delete_option( RP4WP_Constants::OPTION_DO_INSTALL );
-
-			// Redirect to installation wizard
-			wp_redirect( admin_url() . '?page=rp4wp_install&rp4wp_nonce=' . wp_create_nonce( RP4WP_Constants::NONCE_INSTALL ), 307 );
-			exit;
-		}
-
 		if ( is_admin() ) {
-			// Check if we need to display an 'is installing' notice
-			$is_installing_notice = new RP4WP_Is_Installing_Notice();
-			$is_installing_notice->check();
-
 			// check for dependencies
 			$dep = new RP4WP_Dependencies();
 			$dep->check();
