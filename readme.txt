@@ -121,6 +121,17 @@ There is one custom table created for the post cache, this table will however no
 
 == Changelog ==
 
+= 3.0.0: TBD =
+* Feature: Related Posts for WordPress Premium 3.0 is an add-on for this plugin: keep both installed and active. Next to Premium 2.x, this plugin leaves the related posts to Premium and asks to update it.
+* Fix: Related posts with the same link order keep the order they were added in, so a limit or an offset in the shortcode always shows the same posts.
+* Fix: The related posts meta box skips links to posts that no longer exist.
+* Fix: PHP 8 deprecation notices, and word extraction no longer changes the locale of the rest of the request.
+* Tweak: Titles, settings and links in the admin are escaped.
+* Tweak: The notices about mbstring and the unfinished installation wizard can be translated.
+* Tweak: The Settings link on the Plugins screen also shows when the plugin folder is renamed.
+* Tweak: Rewritten on a modern, tested code base. The classes of 2.x and RP4WP() still work, and report their use as deprecated when WP_DEBUG is on.
+* Tweak: Requires WordPress 6.6 or newer and PHP 8.0 or newer.
+
 = 2.3.1: September 23, 2026 =
 * Security: Fixed an SQL injection in bulk linking that could be abused by users with the Contributor role or higher.
 * Security: Users can now only add, remove or reorder related posts on posts they are allowed to edit.
@@ -385,4 +396,8 @@ There is one custom table created for the post cache, this table will however no
 * Initial version
 
 == Upgrade Notice ==
+
+= 3.0.0 =
+Requires WordPress 6.6 and PHP 8.0. Using Related Posts for WordPress Premium? Update it to 3.0 as well.
+
 This version is safe to upgrade. If all of your related posts are linked automatically, we do recommend rerunning the wizard for better results.

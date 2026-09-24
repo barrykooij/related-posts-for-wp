@@ -1,7 +1,7 @@
 {
   "name": "related-posts-for-wp",
   "title": "Related Posts for WordPress",
-  "version": "2.3.1",
+  "version": "3.0.0-rc.1",
   "private": true,
   "description": "Related Posts for WordPress: development tooling.",
   "homepage": "https://wordpress.org/plugins/related-posts-for-wp/",
