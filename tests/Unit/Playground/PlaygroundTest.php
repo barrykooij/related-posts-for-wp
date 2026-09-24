@@ -8,6 +8,7 @@
 namespace LV2\WordPress\RelatedPostsForWP\Tests\Unit\Playground;
 
 use Brain\Monkey\Actions;
+use Brain\Monkey\Functions;
 use Yoast\WPTestUtils\BrainMonkey\TestCase;
 
 /**
@@ -28,6 +29,9 @@ final class PlaygroundTest extends TestCase {
 		parent::set_up();
 
 		$this->host = $_SERVER['HTTP_HOST'] ?? null; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput -- Saved as is, to restore it after the test.
+
+		Functions\when( 'sanitize_text_field' )->returnArg();
+		Functions\when( 'wp_unslash' )->returnArg();
 	}
 
 	protected function tear_down(): void {

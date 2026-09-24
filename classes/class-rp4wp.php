@@ -54,22 +54,8 @@ class RP4WP {
 	 */
 	private function init() {
 
-		if ( RP4WP_Playground::is_playground() ) {
-			RP4WP_Playground::add_admin_notice();
-
-			return;
-		}
-
-		add_action( 'init', function () {
-			// Load plugin text domain
-			load_plugin_textdomain( 'related-posts-for-wp', false, dirname( plugin_basename( RP4WP_PLUGIN_FILE ) ) . '/languages/' );
-		} );
-
-		// Check for multisite, we don't support that
-		if ( is_multisite() && ( is_admin() || is_network_admin() ) ) {
-			add_action( 'admin_notices', array( 'RP4WP_Multisite_Notice', 'display' ) );
-			add_action( 'network_admin_notices', array( 'RP4WP_Multisite_Notice', 'display' ) );
-
+		// Main handles WordPress Playground, multisite and the text domain; nothing below runs where Main does not.
+		if ( ! \LV2\WordPress\RelatedPostsForWP\Main::get()->should_run() ) {
 			return;
 		}
 

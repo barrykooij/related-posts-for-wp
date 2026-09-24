@@ -25,6 +25,54 @@ final class MainTest extends TestCase {
 		parent::set_up();
 
 		RecordingModule::$calls = [];
+		unset( $_SERVER['HTTP_HOST'] );
+
+		Functions\when( 'is_multisite' )->justReturn( false );
+		Functions\when( 'is_admin' )->justReturn( false );
+		Functions\when( 'is_network_admin' )->justReturn( false );
+		Functions\when( 'sanitize_text_field' )->returnArg();
+		Functions\when( 'wp_unslash' )->returnArg();
+	}
+
+	protected function tear_down(): void {
+		unset( $_SERVER['HTTP_HOST'] );
+
+		parent::tear_down();
+	}
+
+	public function test_does_not_run_inside_wordpress_playground(): void {
+		$_SERVER['HTTP_HOST'] = 'playground.wordpress.net';
+		Filters\expectApplied( 'rp4wp_modules' )->never();
+		Actions\expectDone( 'rp4wp_loaded' )->never();
+		Actions\expectAdded( 'admin_notices' )->once();
+
+		( new Main() )->setup();
+
+		$this->assertSame( [], RecordingModule::$calls );
+	}
+
+	public function test_only_shows_a_notice_in_a_multisite_admin(): void {
+		Functions\when( 'is_multisite' )->justReturn( true );
+		Functions\when( 'is_admin' )->justReturn( true );
+		Filters\expectApplied( 'rp4wp_modules' )->never();
+		Actions\expectDone( 'rp4wp_loaded' )->never();
+		Actions\expectAdded( 'admin_notices' )->once();
+		Actions\expectAdded( 'network_admin_notices' )->once();
+		Actions\expectAdded( 'init' )->once(); // The text domain still loads, like 2.x.
+
+		$main = new Main();
+		$main->setup();
+
+		$this->assertFalse( $main->should_run() );
+	}
+
+	public function test_runs_on_the_front_end_of_a_multisite(): void {
+		Functions\when( 'is_multisite' )->justReturn( true );
+		Filters\expectApplied( 'rp4wp_modules' )->once()->andReturn( [ FirstModule::class ] );
+
+		( new Main() )->setup();
+
+		$this->assertSame( [ FirstModule::class ], RecordingModule::$calls );
 	}
 
 	public function test_setup_runs_services_hook_then_modules_then_loaded_hook(): void {

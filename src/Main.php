@@ -59,6 +59,16 @@ class Main {
 	}
 
 	/**
+	 * Whether the plugin runs on this request. Like 2.x, it does not run inside WordPress Playground, and the free
+	 * plugin does not run in a multisite (network) admin; both only show a notice.
+	 *
+	 * @return bool
+	 */
+	public function should_run(): bool {
+		return ! Admin\Notices\Playground::is_playground() && ! ( is_multisite() && ( is_admin() || is_network_admin() ) );
+	}
+
+	/**
 	 * Set up the plugin. Runs once; later calls do nothing.
 	 *
 	 * @return void
@@ -69,6 +79,20 @@ class Main {
 		}
 
 		$this->is_set_up = true;
+
+		if ( Admin\Notices\Playground::is_playground() ) {
+			Admin\Notices\Playground::setup();
+
+			return;
+		}
+
+		TextDomain::setup();
+
+		if ( ! $this->should_run() ) {
+			Admin\Notices\Multisite::setup();
+
+			return;
+		}
 
 		/**
 		 * Fires before the modules are set up, so services can be replaced.
