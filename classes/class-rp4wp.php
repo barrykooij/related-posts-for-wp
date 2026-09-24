@@ -107,11 +107,6 @@ class RP4WP {
 		$manager_hook = new RP4WP_Manager_Hook( $actions );
 		$manager_hook->load_hooks();
 
-		// Include template functions
-		if ( ! is_admin() ) {
-			require_once( plugin_dir_path( self::get_plugin_file() ) . '/includes/template-functions.php' );
-		}
-
 		// Setup the nag
 		if ( is_admin() ) {
 			$nag_manager = new RP4WP_Nag_Manager();

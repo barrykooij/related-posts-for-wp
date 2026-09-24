@@ -31,11 +31,13 @@ class LegacyHooks {
 	 * @param callable $callback     The callback.
 	 * @param int      $priority     The priority.
 	 * @param int      $args         The number of arguments.
+	 * @param array    $methods      Other public methods of the 2.x class: name => callable.
 	 *
 	 * @return LegacyAction
 	 */
-	public static function add_action( string $legacy_class, string $tag, callable $callback, int $priority = 10, int $args = 1 ): LegacyAction {
+	public static function add_action( string $legacy_class, string $tag, callable $callback, int $priority = 10, int $args = 1, array $methods = [] ): LegacyAction {
 		$hook = new LegacyAction( $tag, $callback, $priority, $args );
+		$hook->set_methods( $methods );
 		add_action( $tag, [ $hook, 'run' ], $priority, $args );
 
 		self::$hooks[ $legacy_class ] = $hook;
@@ -51,11 +53,13 @@ class LegacyHooks {
 	 * @param callable $callback     The callback.
 	 * @param int      $priority     The priority.
 	 * @param int      $args         The number of arguments.
+	 * @param array    $methods      Other public methods of the 2.x class: name => callable.
 	 *
 	 * @return LegacyFilter
 	 */
-	public static function add_filter( string $legacy_class, string $tag, callable $callback, int $priority = 10, int $args = 1 ): LegacyFilter {
+	public static function add_filter( string $legacy_class, string $tag, callable $callback, int $priority = 10, int $args = 1, array $methods = [] ): LegacyFilter {
 		$hook = new LegacyFilter( $tag, $callback, $priority, $args );
+		$hook->set_methods( $methods );
 		add_filter( $tag, [ $hook, 'run' ], $priority, $args );
 
 		self::$hooks[ $legacy_class ] = $hook;

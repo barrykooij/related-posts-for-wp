@@ -549,8 +549,11 @@ final class GoldenMasterTest extends TestCase {
 	 * @return string
 	 */
 	public function frontend_css(): string {
+		// Through the 2.x hook object, like code written for 2.x would; it only promises a run() method.
 		$hook = \RP4WP_Manager_Hook::get_hook_object( 'RP4WP_Hook_Frontend_Css' );
-		$this->assertInstanceOf( \RP4WP_Hook_Frontend_Css::class, $hook );
+		if ( ! is_object( $hook ) || ! method_exists( $hook, 'run' ) ) {
+			$this->fail( 'The 2.x CSS hook object is not available.' );
+		}
 
 		ob_start();
 		$hook->run();

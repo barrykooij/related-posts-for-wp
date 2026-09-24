@@ -46,6 +46,13 @@ abstract class LegacyHook {
 	private int $args;
 
 	/**
+	 * Other public methods of the 2.x class, mapped to where they live now.
+	 *
+	 * @var array<string, callable>
+	 */
+	private array $methods = [];
+
+	/**
 	 * Constructor.
 	 *
 	 * @param string   $tag      The WordPress hook.
@@ -58,6 +65,35 @@ abstract class LegacyHook {
 		$this->callback = $callback;
 		$this->priority = $priority;
 		$this->args     = $args;
+	}
+
+	/**
+	 * Map other public methods of the 2.x class, like RP4WP_Hook_Shortcode::output(), to where they live now.
+	 *
+	 * @param array<string, callable> $methods 2.x method name => callable.
+	 *
+	 * @return void
+	 */
+	public function set_methods( array $methods ): void {
+		$this->methods = $methods;
+	}
+
+	/**
+	 * Call one of the mapped 2.x methods.
+	 *
+	 * @param string       $name      The method.
+	 * @param array<mixed> $arguments The arguments.
+	 *
+	 * @return mixed
+	 *
+	 * @throws \BadMethodCallException When the 2.x class did not have the method either.
+	 */
+	public function __call( string $name, array $arguments ) {
+		if ( ! isset( $this->methods[ $name ] ) ) {
+			throw new \BadMethodCallException( esc_html( sprintf( 'Call to undefined method %s::%s()', static::class, $name ) ) );
+		}
+
+		return call_user_func_array( $this->methods[ $name ], $arguments );
 	}
 
 	/**

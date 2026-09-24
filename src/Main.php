@@ -118,6 +118,10 @@ class Main {
 			Legacy\Bootstrap::class,
 			Links\LinkPostType::class,
 			Links\PostLifecycle::class,
+			Frontend\ContentFilter::class,
+			Frontend\Css::class,
+			Frontend\Shortcode::class,
+			Frontend\Widgets::class,
 		];
 
 		/**

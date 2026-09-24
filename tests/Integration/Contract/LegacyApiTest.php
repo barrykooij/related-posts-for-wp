@@ -125,6 +125,12 @@ final class LegacyApiTest extends TestCase {
 	 * @return void
 	 */
 	private function write( string $file, $data ): void {
+		// These snapshots describe 2.x and must never be recorded from later code. Delete a file on purpose to record
+		// it again, against 2.x code only.
+		if ( file_exists( $file ) ) {
+			$this->markTestSkipped( basename( $file ) . ' already exists; legacy API snapshots are never overwritten.' );
+		}
+
 		if ( ! is_dir( dirname( $file ) ) ) {
 			mkdir( dirname( $file ), 0777, true ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_mkdir -- Test fixture files.
 		}

@@ -92,6 +92,7 @@ function rp4wp_load_plugin() {
 
 	require __DIR__ . '/vendor/autoload.php';
 	require __DIR__ . '/includes/functions.php';
+	require __DIR__ . '/includes/template-tags.php';
 
 	\LV2\WordPress\RelatedPostsForWP\Main::get()->setup();
 }

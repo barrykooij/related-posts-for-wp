@@ -29,9 +29,9 @@ final class ApiSnapshot {
 	private const VOLATILE_CONSTANTS = [ 'RP4WP::VERSION' ];
 
 	/**
-	 * Prefix of the plugin's own legacy classes.
+	 * Prefix of WordPress core classes, whose members are not part of the contract.
 	 */
-	private const OWN_PREFIX = 'RP4WP';
+	private const CORE_PREFIX = 'WP_';
 
 	/**
 	 * Build a snapshot.
@@ -158,14 +158,14 @@ final class ApiSnapshot {
 	}
 
 	/**
-	 * Whether a class is one of the plugin's own, rather than a WordPress core class it extends.
+	 * Whether a class belongs to the plugin (a 2.x class or one of its new classes), not to WordPress core.
 	 *
 	 * @param \ReflectionClass $class The class.
 	 *
 	 * @return bool
 	 */
 	private static function is_own( \ReflectionClass $class ): bool {
-		return 0 === strpos( $class->getName(), self::OWN_PREFIX );
+		return 0 !== strpos( $class->getName(), self::CORE_PREFIX );
 	}
 
 	/**

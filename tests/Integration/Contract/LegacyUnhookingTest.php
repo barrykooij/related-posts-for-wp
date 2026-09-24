@@ -95,6 +95,33 @@ final class LegacyUnhookingTest extends TestCase {
 		$this->assertStringNotContainsString( 'rp4wp-related-posts', $this->content_of( $parent ) );
 	}
 
+	public function test_the_2x_shortcode_object_still_renders_through_output(): void {
+		$parent = self::factory()->post->create();
+		( new \RP4WP_Post_Link_Manager() )->add( $parent, self::factory()->post->create( [ 'post_title' => 'A related post' ] ) );
+
+		$hook = \RP4WP_Manager_Hook::get_hook_object( 'RP4WP_Hook_Shortcode' );
+		if ( ! is_object( $hook ) || ( ! method_exists( $hook, 'output' ) && ! method_exists( $hook, '__call' ) ) ) {
+			$this->fail( 'The 2.x shortcode object is not available.' );
+		}
+
+		$this->assertStringContainsString( 'A related post', $hook->output( [ 'id' => $parent ] ) );
+	}
+
+	public function test_the_widget_can_still_be_unregistered_by_its_2x_class_name(): void {
+		global $wp_widget_factory;
+
+		$this->assertArrayHasKey( 'RP4WP_Related_Posts_Widget', $wp_widget_factory->widgets );
+		$widget = $wp_widget_factory->widgets['RP4WP_Related_Posts_Widget'];
+
+		unregister_widget( 'RP4WP_Related_Posts_Widget' );
+		$unregistered = ! isset( $wp_widget_factory->widgets['RP4WP_Related_Posts_Widget'] );
+
+		// The widget factory is global and not reset between tests, so put the widget back.
+		$wp_widget_factory->widgets['RP4WP_Related_Posts_Widget'] = $widget;
+
+		$this->assertTrue( $unregistered );
+	}
+
 	/**
 	 * The filtered content of a post, rendered on its own page.
 	 *
