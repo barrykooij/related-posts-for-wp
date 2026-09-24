@@ -116,6 +116,8 @@ class Main {
 		$modules = [
 			// The 2.x bootstrap, until every 2.x class has moved into src/.
 			Legacy\Bootstrap::class,
+			Links\LinkPostType::class,
+			Links\PostLifecycle::class,
 		];
 
 		/**

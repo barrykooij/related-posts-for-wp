@@ -52,7 +52,8 @@ if ( ! class_exists( 'RP4WP_Manager_Hook' ) ) {
 				return self::$hooks[$class_name];
 			}
 
-			return null;
+			// Callbacks that moved into a module are registered through LegacyHooks under their 2.x class name.
+			return \LV2\WordPress\RelatedPostsForWP\Compat\LegacyHooks::get( (string) $class_name );
 		}
 
 	}

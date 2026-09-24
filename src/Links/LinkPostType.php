@@ -7,10 +7,13 @@
 
 namespace LV2\WordPress\RelatedPostsForWP\Links;
 
+use LV2\WordPress\RelatedPostsForWP\Compat\LegacyHooks;
+use LV2\WordPress\RelatedPostsForWP\Module;
+
 /**
  * The hidden post type that stores one "post A shows post B as related" link per post.
  */
-class LinkPostType {
+class LinkPostType implements Module {
 
 	/**
 	 * The post type.
@@ -41,4 +44,28 @@ class LinkPostType {
 	 * The title of every link post.
 	 */
 	public const TITLE = 'Related Posts for WordPress Link';
+
+	/**
+	 * Register the post type on init.
+	 *
+	 * @return void
+	 */
+	public static function setup(): void {
+		LegacyHooks::add_action( 'RP4WP_Hook_Post_Type', 'init', [ self::class, 'register' ] );
+	}
+
+	/**
+	 * Register the post type.
+	 *
+	 * @return void
+	 */
+	public static function register(): void {
+		register_post_type(
+			self::POST_TYPE,
+			[
+				'public' => false,
+				'label'  => self::TITLE,
+			]
+		);
+	}
 }

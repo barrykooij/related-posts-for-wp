@@ -71,10 +71,10 @@ final class MainTest extends TestCase {
 		$this->assertSame( [ FirstModule::class ], RecordingModule::$calls );
 	}
 
-	public function test_the_legacy_bootstrap_is_the_default_module(): void {
+	public function test_the_legacy_bootstrap_runs_first(): void {
 		Filters\expectApplied( 'rp4wp_modules' )->once()->andReturnFirstArg();
 
-		$this->assertSame( [ \LV2\WordPress\RelatedPostsForWP\Legacy\Bootstrap::class ], ( new Main() )->modules() );
+		$this->assertSame( \LV2\WordPress\RelatedPostsForWP\Legacy\Bootstrap::class, ( new Main() )->modules()[0] );
 	}
 
 	public function test_get_returns_one_shared_instance(): void {
