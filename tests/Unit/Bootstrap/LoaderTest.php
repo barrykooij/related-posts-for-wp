@@ -49,15 +49,58 @@ final class LoaderTest extends TestCase {
 		$this->assertFalse( Main::get()->is_set_up() );
 	}
 
-	public function test_stays_dormant_next_to_premium_2x(): void {
+	public function test_stays_dormant_next_to_premium_2x_and_asks_to_update_it(): void {
 		Functions\when( 'get_bloginfo' )->justReturn( '7.1' );
 		define( 'RP4WP_PLUGIN_FILE', '/wp-content/plugins/related-posts-for-wp-premium/related-posts-for-wp-premium.php' );
 		Functions\expect( 'deactivate_plugins' )->never();
+		Actions\expectAdded( 'admin_notices' )->once()->with( 'rp4wp_premium_update_notice' );
 
 		$this->include_main_file();
 		rp4wp_load_plugin();
 
 		$this->assertFalse( Main::get()->is_set_up() );
+		$this->assertFalse( function_exists( 'RP4WP' ) );
+	}
+
+	public function test_the_premium_update_notice_links_to_the_plugins_screen(): void {
+		$this->stubTranslationFunctions();
+		$this->stubEscapeFunctions();
+		Functions\when( 'current_user_can' )->justReturn( true );
+		Functions\when( 'get_current_screen' )->justReturn( (object) [ 'id' => 'plugins' ] );
+		Functions\when( 'self_admin_url' )->justReturn( 'https://example.org/wp-admin/plugins.php' );
+
+		$this->include_main_file();
+		ob_start();
+		rp4wp_premium_update_notice();
+		$html = (string) ob_get_clean();
+
+		$this->assertStringContainsString( 'Premium 3.0', $html );
+		$this->assertStringContainsString( '<a href="https://example.org/wp-admin/plugins.php">update Premium</a>', $html );
+	}
+
+	public function test_the_premium_update_notice_stays_off_other_screens_and_from_other_users(): void {
+		$screen = (object) [ 'id' => 'edit-post' ];
+		$can    = true;
+		Functions\when( 'get_current_screen' )->alias(
+			static function () use ( &$screen ) {
+				return $screen;
+			}
+		);
+		Functions\when( 'current_user_can' )->alias(
+			static function () use ( &$can ) {
+				return $can;
+			}
+		);
+
+		$this->include_main_file();
+
+		ob_start();
+		rp4wp_premium_update_notice();
+		$screen = (object) [ 'id' => 'dashboard' ];
+		$can    = false;
+		rp4wp_premium_update_notice();
+
+		$this->assertSame( '', ob_get_clean() );
 	}
 
 	public function test_boots_when_the_requirements_are_met(): void {

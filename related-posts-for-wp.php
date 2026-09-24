@@ -71,6 +71,29 @@ function rp4wp_requirements_notice() {
 }
 
 /**
+ * Ask admins to update premium 2.x, next to which this plugin stays dormant. Shown where plugins are updated.
+ *
+ * @return void
+ */
+function rp4wp_premium_update_notice() {
+	$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+	$update_screens = array( 'dashboard', 'plugins', 'update-core', 'dashboard-network', 'plugins-network', 'update-core-network' );
+
+	if ( ! current_user_can( 'update_plugins' ) || null === $screen || ! in_array( $screen->id, $update_screens, true ) ) {
+		return;
+	}
+
+	echo '<div class="notice notice-warning"><p>';
+	printf(
+		/* translators: 1: link opening tag, 2: link closing tag */
+		esc_html__( 'Related Posts for WordPress 3.0 works together with Related Posts for WordPress Premium 3.0. Please %1$supdate Premium%2$s. Until then, your current version of Premium keeps working on its own.', 'related-posts-for-wp' ),
+		'<a href="' . esc_url( self_admin_url( 'plugins.php' ) ) . '">',
+		'</a>'
+	);
+	echo '</p></div>';
+}
+
+/**
  * Boot the plugin on plugins_loaded. Kept as a named callback, so it can still be unhooked with remove_action().
  *
  * @return void
@@ -83,8 +106,10 @@ function rp4wp_load_plugin() {
 	}
 
 	// The premium plugin up to 2.x is a full copy of this plugin and boots first, defining this constant. Stay active but
-	// dormant next to it instead of deactivating like 2.x did, so premium 3.x can build on this plugin later.
+	// dormant next to it instead of deactivating like 2.x did, and ask to update it: premium 3.x builds on this plugin.
 	if ( defined( 'RP4WP_PLUGIN_FILE' ) ) {
+		add_action( 'admin_notices', 'rp4wp_premium_update_notice' );
+
 		return;
 	}
 
