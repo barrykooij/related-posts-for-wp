@@ -107,6 +107,26 @@ final class LegacyUnhookingTest extends TestCase {
 		$this->assertStringContainsString( 'A related post', $hook->output( [ 'id' => $parent ] ) );
 	}
 
+	public function test_the_2x_settings_page_object_still_renders_the_screen_and_loads_its_styles(): void {
+		require_once ABSPATH . 'wp-admin/includes/plugin.php';
+		require_once ABSPATH . 'wp-admin/includes/template.php';
+
+		$hook = \RP4WP_Manager_Hook::get_hook_object( 'RP4WP_Hook_Settings_Page' );
+		if ( ! is_object( $hook ) || ( ! method_exists( $hook, '__call' ) && ( ! method_exists( $hook, 'screen' ) || ! method_exists( $hook, 'enqueue_assets' ) ) ) ) {
+			$this->fail( 'The 2.x settings page object is not available.' );
+		}
+
+		ob_start();
+		$hook->screen();
+		$this->assertStringContainsString( 'id="rp4wp-settings-form"', (string) ob_get_clean() );
+
+		$hook->enqueue_assets();
+		$enqueued = wp_style_is( 'rp4wp-settings-css' );
+		wp_dequeue_style( 'rp4wp-settings-css' );
+
+		$this->assertTrue( $enqueued );
+	}
+
 	public function test_the_widget_can_still_be_unregistered_by_its_2x_class_name(): void {
 		global $wp_widget_factory;
 

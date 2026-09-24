@@ -155,6 +155,8 @@ class Main {
 			Admin\Wizard\Page::class,
 			Admin\Wizard\Ajax::class,
 			Admin\LinkScreen\Page::class,
+			Admin\Settings\Fields::class,
+			Admin\Settings\Page::class,
 			Admin\PluginLinks::class,
 			Integrations\YoastDuplicatePost::class,
 		];
