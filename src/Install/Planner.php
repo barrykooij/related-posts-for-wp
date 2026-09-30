@@ -12,6 +12,8 @@ use LV2\WordPress\RelatedPostsForWP\Install\Tasks\CacheWordsTask;
 use LV2\WordPress\RelatedPostsForWP\Install\Tasks\LinkPostsTask;
 use LV2\WordPress\RelatedPostsForWP\Install\Tasks\ResetTask;
 use LV2\WordPress\RelatedPostsForWP\Install\Tasks\SaveAmountTask;
+use LV2\WordPress\RelatedPostsForWP\Main;
+use LV2\WordPress\RelatedPostsForWP\Words\Cache;
 
 /**
  * The installation of the free plugin: optionally remove everything, cache the words of all posts, save the number of
@@ -36,7 +38,7 @@ class Planner implements InstallPlanner {
 				'type'        => 'integer',
 				'minimum'     => 1,
 				'maximum'     => self::max_amount(),
-				'default'     => 3,
+				'default'     => self::current_amount(),
 			],
 			'skip_linking' => [
 				'description' => __( 'Only cache the words of the posts, and link nothing.', 'related-posts-for-wp' ),
@@ -49,6 +51,15 @@ class Planner implements InstallPlanner {
 				'default'     => false,
 			],
 		];
+	}
+
+	/**
+	 * Whether the site was installed: it has cached words.
+	 *
+	 * @return bool
+	 */
+	public function is_installed(): bool {
+		return ( new Cache() )->word_count() > 0;
 	}
 
 	/**
@@ -74,6 +85,17 @@ class Planner implements InstallPlanner {
 		}
 
 		return $tasks;
+	}
+
+	/**
+	 * The number of related posts of the settings, as the default for the next installation.
+	 *
+	 * @return int
+	 */
+	private static function current_amount(): int {
+		$amount = (int) Main::get()->settings()->get( 'automatic_linking_post_amount' );
+
+		return max( 1, min( self::max_amount(), $amount > 0 ? $amount : 3 ) );
 	}
 
 	/**

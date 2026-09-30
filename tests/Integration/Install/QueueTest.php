@@ -409,6 +409,15 @@ final class FixedPlanner implements InstallPlanner {
 	}
 
 	/**
+	 * Never installed.
+	 *
+	 * @return bool
+	 */
+	public function is_installed(): bool {
+		return false;
+	}
+
+	/**
 	 * The tasks.
 	 *
 	 * @param array<string, mixed> $request Ignored.

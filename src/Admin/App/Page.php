@@ -8,6 +8,7 @@
 namespace LV2\WordPress\RelatedPostsForWP\Admin\App;
 
 use LV2\WordPress\RelatedPostsForWP\Module;
+use LV2\WordPress\RelatedPostsForWP\Rest\Routes;
 
 /**
  * The page the admin app runs on.
@@ -37,7 +38,7 @@ class Page implements Module {
 	 * @return void
 	 */
 	public static function register(): void {
-		$hook = add_submenu_page( '', __( 'Related Posts', 'related-posts-for-wp' ), __( 'Related Posts', 'related-posts-for-wp' ), 'manage_options', self::SLUG, [ self::class, 'render' ] );
+		$hook = add_submenu_page( '', __( 'Related Posts', 'related-posts-for-wp' ), __( 'Related Posts', 'related-posts-for-wp' ), Routes::capability(), self::SLUG, [ self::class, 'render' ] );
 
 		if ( false !== $hook ) {
 			add_action( 'load-' . $hook, [ Assets::class, 'enqueue' ] );

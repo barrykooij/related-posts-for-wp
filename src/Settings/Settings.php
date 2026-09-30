@@ -7,6 +7,8 @@
 
 namespace LV2\WordPress\RelatedPostsForWP\Settings;
 
+use LV2\WordPress\RelatedPostsForWP\Install\Planner;
+
 /**
  * The plugin settings: their definitions, defaults and values.
  *
@@ -122,6 +124,10 @@ class Settings {
 	 * @return mixed
 	 */
 	public function sanitize( $post_data ) {
+		if ( ! is_array( $post_data ) ) {
+			return $post_data;
+		}
+
 		// Unchecked checkboxes are not posted.
 		if ( ! isset( $post_data['automatic_linking'] ) ) {
 			$post_data['automatic_linking'] = 0;
@@ -131,9 +137,14 @@ class Settings {
 			$post_data['display_image'] = 0;
 		}
 
-		$post_data['automatic_linking']             = intval( $post_data['automatic_linking'] );
-		$post_data['automatic_linking_post_amount'] = intval( $post_data['automatic_linking_post_amount'] );
-		$post_data['excerpt_length']                = intval( $post_data['excerpt_length'] );
+		$post_data['automatic_linking'] = intval( $post_data['automatic_linking'] );
+
+		// Code that saves part of the option (the REST API registers this callback too) may leave these out.
+		foreach ( [ 'automatic_linking_post_amount', 'excerpt_length' ] as $number ) {
+			if ( isset( $post_data[ $number ] ) ) {
+				$post_data[ $number ] = intval( $post_data[ $number ] );
+			}
+		}
 
 		return $post_data;
 	}
@@ -162,6 +173,9 @@ class Settings {
 						'label'       => __( 'Amount of Posts', 'related-posts-for-wp' ),
 						'description' => __( 'The amount of automatically linked post', 'related-posts-for-wp' ),
 						'type'        => 'text',
+						'ui'          => 'number',
+						'min'         => 1,
+						'max'         => Planner::max_amount(),
 						'default'     => '3',
 					],
 					'heading_text'                  => [
@@ -176,6 +190,8 @@ class Settings {
 						'label'       => __( 'Excerpt length', 'related-posts-for-wp' ),
 						'description' => __( 'The amount of words to be displayed below the title on website. To disable, set value to 0.', 'related-posts-for-wp' ),
 						'type'        => 'text',
+						'ui'          => 'number',
+						'min'         => 0,
 						'default'     => '15',
 					],
 				],
@@ -197,6 +213,7 @@ class Settings {
 						'label'       => __( 'CSS', 'related-posts-for-wp' ),
 						'description' => __( 'Warning! This is an advanced feature! An error here will break frontend display. To disable, leave field empty.', 'related-posts-for-wp' ),
 						'type'        => 'textarea',
+						'ui'          => 'code',
 						'default'     => $this->default_css(),
 					],
 				],

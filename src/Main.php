@@ -51,6 +51,13 @@ class Main {
 	private ?Contracts\Renderer $renderer = null;
 
 	/**
+	 * The settings pages of the admin app; the default ones are created when first needed.
+	 *
+	 * @var Contracts\SettingsSchema|null
+	 */
+	private ?Contracts\SettingsSchema $settings_schema = null;
+
+	/**
 	 * The planner of installations; the default one is created when first needed.
 	 *
 	 * @var Contracts\InstallPlanner|null
@@ -188,6 +195,7 @@ class Main {
 			Admin\Settings\Page::class,
 			Admin\App\Page::class,
 			Install\Jobs\Runner::class,
+			Rest\Routes::class,
 			Admin\PluginLinks::class,
 			Integrations\YoastDuplicatePost::class,
 		];
@@ -248,6 +256,30 @@ class Main {
 	 */
 	public function set_renderer( Contracts\Renderer $renderer ): void {
 		$this->renderer = $renderer;
+	}
+
+	/**
+	 * The settings pages of the admin app and the REST API.
+	 *
+	 * @return Contracts\SettingsSchema
+	 */
+	public function settings_schema(): Contracts\SettingsSchema {
+		if ( null === $this->settings_schema ) {
+			$this->settings_schema = new Settings\Schema\Pages( $this->settings() );
+		}
+
+		return $this->settings_schema;
+	}
+
+	/**
+	 * Replace the settings pages; the premium add-on does this on `rp4wp_register_services`.
+	 *
+	 * @param Contracts\SettingsSchema $schema The settings pages.
+	 *
+	 * @return void
+	 */
+	public function set_settings_schema( Contracts\SettingsSchema $schema ): void {
+		$this->settings_schema = $schema;
 	}
 
 	/**

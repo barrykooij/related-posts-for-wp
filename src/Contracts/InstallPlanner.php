@@ -24,6 +24,13 @@ interface InstallPlanner {
 	public function args(): array;
 
 	/**
+	 * Whether the site was installed: the admin app shows its first-run card when it was not.
+	 *
+	 * @return bool
+	 */
+	public function is_installed(): bool;
+
+	/**
 	 * The tasks of an installation.
 	 *
 	 * @param array<string, mixed> $request What the admin asked for, validated against args().

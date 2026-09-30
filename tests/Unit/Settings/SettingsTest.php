@@ -81,6 +81,13 @@ final class SettingsTest extends TestCase {
 		$this->assertSame( 'yes', ( new Settings() )->defaults()['extra'] );
 	}
 
+	public function test_sanitize_leaves_out_numbers_that_were_not_saved(): void {
+		$clean = ( new Settings() )->sanitize( [ 'heading_text' => 'Only this' ] );
+
+		$this->assertArrayNotHasKey( 'automatic_linking_post_amount', $clean );
+		$this->assertArrayNotHasKey( 'excerpt_length', $clean );
+	}
+
 	public function test_sanitize_turns_unchecked_boxes_off_and_numbers_into_integers(): void {
 		$clean = ( new Settings() )->sanitize(
 			[

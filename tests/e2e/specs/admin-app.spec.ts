@@ -25,9 +25,40 @@ test.describe( 'Admin app', () => {
 			page.getByRole( 'heading', { name: 'General', level: 2 } )
 		).toBeVisible();
 		await expect( page ).toHaveURL( /#\/general$/ );
+		// The first REST responses come with the page.
+		const preloaded = await page
+			.locator( 'script#wp-api-fetch-js-after' )
+			.textContent();
+		expect( preloaded ).toMatch( /rp4wp\\?\/v1\\?\/settings/ );
+		expect( preloaded ).toMatch( /rp4wp\\?\/v1\\?\/install/ );
 		expect(
 			await page.evaluate( () => window.rp4wp?.admin?.apiVersion )
 		).toBe( 1 );
 		expect( errors ).toEqual( [] );
+	} );
+
+	test( 'the REST API needs the nonce of the page, not only the login cookie', async ( {
+		page,
+		admin,
+	} ) => {
+		await admin.visitAdminPage( 'admin.php', 'page=rp4wp_app' );
+
+		// The same browser, with the admin's login cookie, but without the nonce: a forged request from another site.
+		const forged = await page.request.get( '/wp-json/rp4wp/v1/settings' );
+		expect( forged.status() ).toBe( 401 );
+
+		const nonce = await page.evaluate(
+			// @ts-expect-error -- wp.apiFetch is a WordPress global.
+			() => window.wp.apiFetch.nonceMiddleware.nonce as string
+		);
+		const allowed = await page.request.get( '/wp-json/rp4wp/v1/settings', {
+			headers: { 'X-WP-Nonce': nonce },
+		} );
+		expect( allowed.status() ).toBe( 200 );
+		expect(
+			( await allowed.json() ).pages.map(
+				( item: { id: string } ) => item.id
+			)
+		).toEqual( [ 'general', 'styling', 'misc' ] );
 	} );
 } );
