@@ -5,3 +5,17 @@ import { afterEach } from 'vitest';
 afterEach( () => {
 	cleanup();
 } );
+
+// jsdom has no matchMedia, which responsive WordPress components (Card, Flex) use.
+if ( ! window.matchMedia ) {
+	window.matchMedia = ( query: string ): MediaQueryList => ( {
+		matches: false,
+		media: query,
+		onchange: null,
+		addListener: () => {},
+		removeListener: () => {},
+		addEventListener: () => {},
+		removeEventListener: () => {},
+		dispatchEvent: () => false,
+	} );
+}

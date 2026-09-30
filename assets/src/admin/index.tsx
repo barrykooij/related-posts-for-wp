@@ -8,13 +8,13 @@ import domReady from '@wordpress/dom-ready';
 import { createRoot } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { App } from './components/App';
-import { api, registerRoute } from './public-api';
+import * as api from './public-api';
 import { General } from './screens/General';
 import './style.scss';
 
 window.rp4wp = { ...window.rp4wp, admin: api };
 
-registerRoute( {
+api.registerRoute( {
 	path: 'general',
 	title: __( 'General', 'related-posts-for-wp' ),
 	order: 10,
