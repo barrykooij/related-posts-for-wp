@@ -103,7 +103,7 @@ jobs:
       fail-fast: false
       matrix:
         # The latest WordPress major plus the five before it; see the modernization plan (D1a).
-        wp: [ '6.6', '6.7', '6.8', '6.9', '7.0', 'latest' ]
+        wp: [ '6.8', '6.9', '7.0', 'latest' ]
         php: [ '8.0' ]
         include:
           - wp: latest
@@ -138,7 +138,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        wp: [ '6.6', '6.7', '6.8', '6.9', '7.0', 'latest' ]
+        wp: [ '6.8', '6.9', '7.0', 'latest' ]
     steps:
       - uses: actions/checkout@v4
       - uses: shivammathur/setup-php@v2

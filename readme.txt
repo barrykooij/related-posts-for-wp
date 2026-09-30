@@ -2,7 +2,7 @@
 Contributors: never5, barrykooij
 Donate link: http://www.barrykooij.com/donate/
 Tags: related, inline related posts, similar posts, contextual relations, seo bounce rate, internal links
-Requires at least: 6.6
+Requires at least: 6.8
 Tested up to: 7.1
 Stable tag: 2.3.1
 License: GPLv3 or later
@@ -132,7 +132,7 @@ There is one custom table created for the post cache, this table will however no
 * Tweak: The notices about mbstring and the unfinished installation wizard can be translated.
 * Tweak: The Settings link on the Plugins screen also shows when the plugin folder is renamed.
 * Tweak: Rewritten on a modern, tested code base. The classes of 2.x and RP4WP() still work, and report their use as deprecated when WP_DEBUG is on.
-* Tweak: Requires WordPress 6.6 or newer and PHP 8.0 or newer.
+* Tweak: Requires WordPress 6.8 or newer and PHP 8.0 or newer.
 
 = 2.3.1: September 23, 2026 =
 * Security: Fixed an SQL injection in bulk linking that could be abused by users with the Contributor role or higher.
@@ -400,6 +400,6 @@ There is one custom table created for the post cache, this table will however no
 == Upgrade Notice ==
 
 = 3.0.0 =
-Requires WordPress 6.6 and PHP 8.0. Using Related Posts for WordPress Premium? Update it to 3.0 as well.
+Requires WordPress 6.8 and PHP 8.0. Using Related Posts for WordPress Premium? Update it to 3.0 as well.
 
 This version is safe to upgrade. If all of your related posts are linked automatically, we do recommend rerunning the wizard for better results.

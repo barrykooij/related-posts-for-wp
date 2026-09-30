@@ -12,7 +12,7 @@
  * Version:           3.0.0-rc.2
  * Author:            Never5
  * Author URI:        http://www.never5.com/
- * Requires at least: 6.6
+ * Requires at least: 6.8
  * Requires PHP:      8.0
  * License:           GPL v3
  * License URI:       http://www.gnu.org/licenses/gpl-3.0.html
@@ -47,7 +47,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return bool
  */
 function rp4wp_meets_requirements() {
-	return version_compare( PHP_VERSION, '8.0', '>=' ) && version_compare( get_bloginfo( 'version' ), '6.6', '>=' );
+	return version_compare( PHP_VERSION, '8.0', '>=' ) && version_compare( get_bloginfo( 'version' ), '6.8', '>=' );
 }
 
 /**
@@ -65,7 +65,7 @@ function rp4wp_requirements_notice() {
 		/* translators: 1: required PHP version, 2: required WordPress version */
 		esc_html__( 'Related Posts for WordPress needs PHP %1$s and WordPress %2$s or newer. It does not run on this site until they are updated.', 'related-posts-for-wp' ),
 		'8.0',
-		'6.6'
+		'6.8'
 	);
 	echo '</p></div>';
 }
