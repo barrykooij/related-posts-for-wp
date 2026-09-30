@@ -71,7 +71,9 @@ final class AppTest extends TestCase {
 		$script = wp_scripts()->query( Assets::SCRIPT );
 		$this->assertInstanceOf( \_WP_Dependency::class, $script );
 		$this->assertTrue( wp_script_is( Assets::SCRIPT, 'enqueued' ) );
-		$this->assertSame( $asset['dependencies'], $script->deps );
+		// wp_set_script_translations() adds wp-i18n, which a real build lists already.
+		$this->assertSame( [], array_diff( $asset['dependencies'], $script->deps ) );
+		$this->assertContains( 'wp-i18n', $script->deps );
 		$this->assertSame( $asset['version'], $script->ver );
 		$this->assertStringEndsWith( '/assets/build/admin/index.js', (string) $script->src );
 		$this->assertSame( 1, $script->extra['group'] ?? null, 'The app loads in the footer.' );
@@ -94,7 +96,11 @@ final class AppTest extends TestCase {
 		Assets::enqueue();
 
 		$before = implode( '', (array) wp_scripts()->get_data( Assets::SCRIPT, 'before' ) );
-		$this->assertStringContainsString( 'window.rp4wpAdminData = ' . wp_json_encode( [ 'version' => Main::VERSION, 'edition' => 'premium' ] ) . ';', $before );
+		$data   = [
+			'version' => Main::VERSION,
+			'edition' => 'premium',
+		];
+		$this->assertStringContainsString( 'window.rp4wpAdminData = ' . wp_json_encode( $data ) . ';', $before );
 	}
 
 	public function test_scripts_that_extend_the_app_are_enqueued_after_it(): void {
