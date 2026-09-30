@@ -9,8 +9,7 @@ namespace LV2\WordPress\RelatedPostsForWP\Admin\Wizard;
 
 use LV2\WordPress\RelatedPostsForWP\Admin\MetaBox\Ajax as MetaBoxAjax;
 use LV2\WordPress\RelatedPostsForWP\Compat\LegacyHooks;
-use LV2\WordPress\RelatedPostsForWP\Install\Table;
-use LV2\WordPress\RelatedPostsForWP\Links\LinkPostType;
+use LV2\WordPress\RelatedPostsForWP\Install\Tasks\ResetTask;
 use LV2\WordPress\RelatedPostsForWP\Main;
 use LV2\WordPress\RelatedPostsForWP\Module;
 use LV2\WordPress\RelatedPostsForWP\PostTypes;
@@ -107,7 +106,7 @@ class Page implements Module {
 		}
 
 		if ( isset( $_GET['reinstall'] ) ) {
-			self::remove_links_and_words();
+			( new ResetTask() )->run_batch();
 		}
 
 		$steps = [
@@ -258,34 +257,5 @@ class Page implements Module {
 		?>
 		</p>
 		<?php
-	}
-
-	/**
-	 * Remove every link, the "linked automatically" flags and the word cache, to start the wizard over.
-	 *
-	 * @return void
-	 */
-	private static function remove_links_and_words(): void {
-		global $wpdb;
-
-		$link_ids = get_posts(
-			[
-				'post_type'      => LinkPostType::POST_TYPE,
-				'fields'         => 'ids',
-				'posts_per_page' => -1,
-			]
-		);
-
-		// phpcs:disable WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQL.NotPrepared -- Bulk removal, like 2.x; the placeholders are built from the ID count.
-		if ( count( $link_ids ) > 0 ) {
-			$placeholders = implode( ',', array_fill( 0, count( $link_ids ), '%d' ) );
-
-			$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->posts} WHERE `ID` IN ({$placeholders})", $link_ids ) );
-			$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->postmeta} WHERE `post_id` IN ({$placeholders})", $link_ids ) );
-		}
-
-		$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->postmeta} WHERE `meta_key` IN ( 'rp4wp_auto_linked', 'rp4wp_cached', %s )", Cache::META_NO_WORDS ) );
-		$wpdb->query( 'DELETE FROM ' . Table::name() . ' WHERE 1=1' );
-		// phpcs:enable
 	}
 }

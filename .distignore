@@ -37,6 +37,9 @@
 *.test.ts
 *.test.tsx
 /assets/src/test-setup.ts
+# Notes for coding assistants that Action Scheduler ships; not needed on a site.
+/vendor/woocommerce/action-scheduler/AGENTS.md
+/vendor/woocommerce/action-scheduler/CLAUDE.md
 
 # Caches and reports
 /.phpstan.cache

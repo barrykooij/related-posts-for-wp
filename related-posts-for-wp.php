@@ -94,6 +94,21 @@ function rp4wp_premium_update_notice() {
 }
 
 /**
+ * Load Action Scheduler, which runs the installer in the background. It registers itself on plugins_loaded at priority
+ * 0, and the newest copy on the site (WooCommerce and others ship it too) is the one that runs. Loaded before that, and
+ * only when this plugin will run: its code needs a newer PHP than this file.
+ *
+ * @return void
+ */
+function rp4wp_load_action_scheduler() {
+	if ( ! rp4wp_meets_requirements() || defined( 'RP4WP_PLUGIN_FILE' ) ) {
+		return;
+	}
+
+	require_once __DIR__ . '/vendor/woocommerce/action-scheduler/action-scheduler.php';
+}
+
+/**
  * Boot the plugin on plugins_loaded. Kept as a named callback, so it can still be unhooked with remove_action().
  *
  * @return void
@@ -127,7 +142,12 @@ function rp4wp_load_plugin() {
 	\LV2\WordPress\RelatedPostsForWP\Main::get()->setup();
 }
 
+add_action( 'plugins_loaded', 'rp4wp_load_action_scheduler', -10 );
 add_action( 'plugins_loaded', 'rp4wp_load_plugin', 20 );
+
+// Stop the background installer when the plugin is deactivated, however that happens.
+require_once __DIR__ . '/includes/deactivation-functions.php';
+register_deactivation_hook( __FILE__, 'rp4wp_deactivate_plugin' );
 
 // The activation hook is only registered on normal admin requests, like 2.x (see known issue K3).
 if ( is_admin() && ! is_multisite() && ! wp_doing_ajax() ) {

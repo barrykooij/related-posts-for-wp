@@ -63,6 +63,12 @@ final class UninstallTest extends TestCase {
 		update_option( 'rp4wp_install_date', '2024-01-01' );
 		update_option( 'rp4wp_hide_nag', 1 );
 		update_option( 'widget_rp4wp_related_posts_widget', [ 2 => [ 'title' => 'Related' ] ] );
+		update_option( 'rp4wp_install_job', [ 'id' => 'job' ], false );
+		update_option( 'rp4wp_install_lock', time() + 60, false );
+
+		// A background action of the installer, and one of another plugin.
+		as_enqueue_async_action( 'rp4wp_install_run', [ 'job' ], 'rp4wp' );
+		as_enqueue_async_action( 'another_plugin_action', [], 'another-plugin' );
 
 		$this->user = self::factory()->user->create();
 		add_user_meta( $this->user, 'rp4wp_hide_nag', '1', true );
@@ -81,6 +87,8 @@ final class UninstallTest extends TestCase {
 		$this->assertNotFalse( get_option( 'rp4wp_is_installing' ) );
 		$this->assertNotFalse( get_option( 'widget_rp4wp_related_posts_widget' ) );
 		$this->assertSame( '1', get_user_meta( $this->user, 'rp4wp_hide_nag', true ) );
+		$this->assertNotFalse( get_option( 'rp4wp_install_job' ) );
+		$this->assertCount( 1, as_get_scheduled_actions( [ 'group' => 'rp4wp' ], 'ids' ) );
 		$this->assertSame( [], $this->drop_queries() );
 	}
 
@@ -100,13 +108,17 @@ final class UninstallTest extends TestCase {
 		$this->assertSame( '', get_post_meta( $this->parent, 'rp4wp_cached', true ) );
 
 		// Options.
-		foreach ( [ 'rp4wp', 'rp4wp_do_install', 'rp4wp_is_installing', 'rp4wp_install_date', 'rp4wp_hide_nag', 'widget_rp4wp_related_posts_widget' ] as $option ) {
+		foreach ( [ 'rp4wp', 'rp4wp_do_install', 'rp4wp_is_installing', 'rp4wp_install_date', 'rp4wp_hide_nag', 'widget_rp4wp_related_posts_widget', 'rp4wp_install_job', 'rp4wp_install_lock' ] as $option ) {
 			$this->assertFalse( get_option( $option ), "Option {$option} should be deleted." );
 		}
 
 		// What users chose.
 		$this->assertSame( '', get_user_meta( $this->user, 'rp4wp_hide_nag', true ) );
 		$this->assertSame( '', get_user_meta( $this->user, 'rp4wp_per_page', true ) );
+
+		// The actions of the background installer; the actions of other plugins stay.
+		$this->assertSame( [], as_get_scheduled_actions( [ 'group' => 'rp4wp' ], 'ids' ) );
+		$this->assertCount( 1, as_get_scheduled_actions( [ 'group' => 'another-plugin' ], 'ids' ) );
 
 		// The word cache table.
 		$this->assertCount( 1, $this->drop_queries() );

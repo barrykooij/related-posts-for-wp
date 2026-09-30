@@ -34,6 +34,11 @@ parameters:
     scanDirectories:
         # The WordPress test suite classes (WP_UnitTestCase and friends) used by the integration tests.
         - vendor/wp-phpunit/wp-phpunit/includes
+        # Action Scheduler, which the installer runs on; it has no Composer autoload.
+        - vendor/woocommerce/action-scheduler/classes
+        - vendor/woocommerce/action-scheduler/lib
+    scanFiles:
+        - vendor/woocommerce/action-scheduler/functions.php
     ignoreErrors:
         -
             # These tests are about the 2.x API, so they use it on purpose. Everywhere else, using it is an error.

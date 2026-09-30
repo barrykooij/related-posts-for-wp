@@ -51,6 +51,13 @@ class Main {
 	private ?Contracts\Renderer $renderer = null;
 
 	/**
+	 * The planner of installations; the default one is created when first needed.
+	 *
+	 * @var Contracts\InstallPlanner|null
+	 */
+	private ?Contracts\InstallPlanner $install_planner = null;
+
+	/**
 	 * The shared instance.
 	 *
 	 * @return Main
@@ -180,6 +187,7 @@ class Main {
 			Admin\Settings\Fields::class,
 			Admin\Settings\Page::class,
 			Admin\App\Page::class,
+			Install\Jobs\Runner::class,
 			Admin\PluginLinks::class,
 			Integrations\YoastDuplicatePost::class,
 		];
@@ -240,6 +248,30 @@ class Main {
 	 */
 	public function set_renderer( Contracts\Renderer $renderer ): void {
 		$this->renderer = $renderer;
+	}
+
+	/**
+	 * The planner of installations.
+	 *
+	 * @return Contracts\InstallPlanner
+	 */
+	public function install_planner(): Contracts\InstallPlanner {
+		if ( null === $this->install_planner ) {
+			$this->install_planner = new Install\Planner();
+		}
+
+		return $this->install_planner;
+	}
+
+	/**
+	 * Replace the planner of installations; the premium add-on does this on `rp4wp_register_services`.
+	 *
+	 * @param Contracts\InstallPlanner $planner The planner.
+	 *
+	 * @return void
+	 */
+	public function set_install_planner( Contracts\InstallPlanner $planner ): void {
+		$this->install_planner = $planner;
 	}
 
 	/**

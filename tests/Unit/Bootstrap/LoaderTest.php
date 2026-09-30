@@ -30,12 +30,43 @@ final class LoaderTest extends TestCase {
 		Functions\when( 'is_admin' )->justReturn( false );
 		Functions\when( 'is_multisite' )->justReturn( false );
 		Functions\when( 'wp_doing_ajax' )->justReturn( false );
+		Functions\when( 'register_deactivation_hook' )->justReturn( null );
 	}
 
 	public function test_registers_the_loader_on_plugins_loaded_at_priority_20(): void {
 		Actions\expectAdded( 'plugins_loaded' )->once()->with( 'rp4wp_load_plugin', 20 );
 
 		$this->include_main_file();
+	}
+
+	public function test_loads_action_scheduler_before_it_registers_itself_at_priority_0(): void {
+		Actions\expectAdded( 'plugins_loaded' )->once()->with( 'rp4wp_load_action_scheduler', -10 );
+		Actions\expectAdded( 'plugins_loaded' )->once()->with( 'rp4wp_load_plugin', 20 );
+		Functions\when( 'get_bloginfo' )->justReturn( '7.1' );
+
+		$this->include_main_file();
+		rp4wp_load_action_scheduler();
+
+		$this->assertTrue( function_exists( 'action_scheduler_register_4_dot_2_dot_0' ) );
+	}
+
+	public function test_does_not_load_action_scheduler_where_the_plugin_does_not_run(): void {
+		Functions\when( 'get_bloginfo' )->justReturn( '6.7.2' );
+
+		$this->include_main_file();
+		rp4wp_load_action_scheduler();
+
+		$this->assertFalse( function_exists( 'action_scheduler_register_4_dot_2_dot_0' ), 'Its code needs WordPress 6.8.' );
+	}
+
+	public function test_does_not_load_action_scheduler_next_to_premium_2x(): void {
+		Functions\when( 'get_bloginfo' )->justReturn( '7.1' );
+		define( 'RP4WP_PLUGIN_FILE', '/wp-content/plugins/related-posts-for-wp-premium/related-posts-for-wp-premium.php' );
+
+		$this->include_main_file();
+		rp4wp_load_action_scheduler();
+
+		$this->assertFalse( function_exists( 'action_scheduler_register_4_dot_2_dot_0' ) );
 	}
 
 	public function test_does_not_boot_on_an_old_wordpress_version(): void {

@@ -9,7 +9,8 @@
   "homepage": "https://www.relatedpostsforwp.com/",
   "license": "GPL-3.0-or-later",
   "require": {
-    "php": ">=8.0"
+    "php": ">=8.0",
+    "woocommerce/action-scheduler": "^4.2"
   },
   "require-dev": {
     "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
@@ -50,7 +51,7 @@
     "lint": "phpcs",
     "lint:fix": "phpcbf",
     "lint:strict": "phpcs --warning-severity=1",
-    "lint:bootstrap": "phpcs --standard=PHPCompatibilityWP --runtime-set testVersion 7.0- related-posts-for-wp.php",
+    "lint:bootstrap": "phpcs --standard=PHPCompatibilityWP --runtime-set testVersion 7.0- related-posts-for-wp.php includes/deactivation-functions.php",
     "stan": "phpstan analyse --memory-limit=2G",
     "stan:baseline": "phpstan analyse --memory-limit=2G --generate-baseline=phpstan-baseline.neon",
     "test": "phpunit --testsuite Unit",

@@ -26,6 +26,15 @@ define( 'WP_TESTS_PHPUNIT_POLYFILLS_PATH', $rp4wp_root . '/vendor/yoast/phpunit-
 
 require_once $rp4wp_tests_dir . '/includes/functions.php';
 
+// Action Scheduler keeps its actions in posts until it has moved them to its own tables, which it does in a background
+// action that never runs in the tests. On a real site it finishes within minutes; use its tables from the start here.
+tests_add_filter(
+	'pre_option_action_scheduler_migration_status',
+	static function () {
+		return 'complete';
+	}
+);
+
 // Load the plugin like WordPress would, so it boots on plugins_loaded exactly as on a real site.
 tests_add_filter(
 	'muplugins_loaded',
