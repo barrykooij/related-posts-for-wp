@@ -179,6 +179,7 @@ class Main {
 			Admin\LinkScreen\Page::class,
 			Admin\Settings\Fields::class,
 			Admin\Settings\Page::class,
+			Admin\App\Page::class,
 			Admin\PluginLinks::class,
 			Integrations\YoastDuplicatePost::class,
 		];

@@ -5,6 +5,7 @@
 # Built assets (npm run build; release zips are built in CI)
 /assets/css/*.css
 /assets/js/*.min.js
+/assets/build/
 
 # Tool caches and reports
 /.phpstan.cache/

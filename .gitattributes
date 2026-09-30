@@ -32,3 +32,8 @@
 /composer.lock                export-ignore
 /package.json                 export-ignore
 /package-lock.json            export-ignore
+/tsconfig.json                export-ignore
+/vite.config.mts              export-ignore
+*.test.ts                     export-ignore
+*.test.tsx                    export-ignore
+/assets/src/test-setup.ts     export-ignore

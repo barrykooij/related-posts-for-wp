@@ -31,6 +31,12 @@
 /package-lock.json
 /node_modules
 /assets/css/scss
+/tsconfig.json
+/vite.config.mts
+# The app sources in assets/src are shipped (human-readable source, as wordpress.org asks), their tests are not.
+*.test.ts
+*.test.tsx
+/assets/src/test-setup.ts
 
 # Caches and reports
 /.phpstan.cache

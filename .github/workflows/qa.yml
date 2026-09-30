@@ -87,6 +87,12 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - name: Lint (new code)
         run: npm run lint:js
+      - name: Lint styles (new code)
+        run: npm run lint:style
+      - name: Type check
+        run: npm run typecheck
+      - name: Unit tests (JS)
+        run: npm run test:js
       - name: Lint legacy JS (informational until the admin screens are rebuilt)
         run: npm run lint:js:legacy
         continue-on-error: true
