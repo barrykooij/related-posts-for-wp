@@ -19,584 +19,586 @@ msgstr ""
 #. Plugin Name of the plugin
 #: related-posts-for-wp.php src/Frontend/Widget.php:28
 msgid "Related Posts for WordPress"
-msgstr ""
+msgstr "Related Posts for WordPress"
 
 #. Plugin URI of the plugin
 #: related-posts-for-wp.php
 msgid "http://www.relatedpostsforwp.com/"
-msgstr ""
+msgstr "http://www.relatedpostsforwp.com/"
 
 #. Description of the plugin
 #: related-posts-for-wp.php
 msgid "Related Posts for WordPress, the best way to display related posts in WordPress."
-msgstr ""
+msgstr "Related Posts for WordPress: найкращий спосіб показувати схожі записи у WordPress."
 
 #. Author of the plugin
 #: related-posts-for-wp.php
 msgid "Never5"
-msgstr ""
+msgstr "Never5"
 
 #. Author URI of the plugin
 #: related-posts-for-wp.php
 msgid "http://www.never5.com/"
-msgstr ""
+msgstr "http://www.never5.com/"
 
 #. translators: 1: required PHP version, 2: required WordPress version
 #: related-posts-for-wp.php:66
 msgid "Related Posts for WordPress needs PHP %1$s and WordPress %2$s or newer. It does not run on this site until they are updated."
-msgstr ""
+msgstr "Related Posts for WordPress потребує PHP %1$s і WordPress %2$s або новіших версій. Плагін не працюватиме на цьому сайті, доки їх не буде оновлено."
 
 #. translators: 1: link opening tag, 2: link closing tag
 #: related-posts-for-wp.php:89
 msgid "Related Posts for WordPress 3.0 works together with Related Posts for WordPress Premium 3.0. Please %1$supdate Premium%2$s. Until then, your current version of Premium keeps working on its own."
-msgstr ""
+msgstr "Related Posts for WordPress 3.0 працює разом із Related Posts for WordPress Premium 3.0. Будь ласка, %1$sоновіть Premium%2$s. До того часу ваша поточна версія Premium працюватиме самостійно."
 
 #: src/Admin/App/Assets.php:104
 msgid "The settings screen of Related Posts for WordPress is missing its scripts. Run npm run build in the plugin folder."
-msgstr ""
+msgstr "Екрану налаштувань Related Posts for WordPress бракує скриптів. Виконайте npm run build у теці плагіна."
 
 #: src/Admin/Assets.php:52
 msgid "Are you sure you want to delete this related post?"
-msgstr ""
+msgstr "Ви впевнені, що хочете видалити цей схожий запис?"
 
 #: src/Admin/LinkScreen/ListTable.php:63 src/Admin/MetaBox/ManageLinks.php:53
 #: src/Admin/Settings/Page.php:51 src/Admin/Wizard/Page.php:73
 #: src/Settings/Settings.php:181 assets/build/admin/index.js:13
 msgid "Related Posts"
-msgstr ""
+msgstr "Схожі записи"
 
 #: src/Admin/LinkScreen/ListTable.php:64
 msgid "All Posts"
-msgstr ""
+msgstr "Усі записи"
 
 #: src/Admin/LinkScreen/ListTable.php:118
 msgid "Title"
-msgstr ""
+msgstr "Заголовок"
 
 #: src/Admin/LinkScreen/ListTable.php:119
 msgid "Post Date"
-msgstr ""
+msgstr "Дата запису"
 
 #: src/Admin/LinkScreen/ListTable.php:301
 msgid "Link Post"
-msgstr ""
+msgstr "Пов'язати запис"
 
 #: src/Admin/LinkScreen/ListTable.php:334
 msgid "Link Posts"
-msgstr ""
+msgstr "Пов'язати записи"
 
 #: src/Admin/LinkScreen/Page.php:126
 msgid "Posts"
-msgstr ""
+msgstr "Записи"
 
 #: src/Admin/LinkScreen/Page.php:127
 msgid "Cancel linking"
-msgstr ""
+msgstr "Скасувати пов'язування"
 
 #: src/Admin/LinkScreen/Page.php:136
 msgid "Search"
-msgstr ""
+msgstr "Пошук"
 
 #: src/Admin/MetaBox/ManageLinks.php:81
 msgid "Add Related Posts"
-msgstr ""
+msgstr "Додати схожі записи"
 
 #: src/Admin/MetaBox/ManageLinks.php:100 src/Admin/MetaBox/ManageLinks.php:101
 msgid "Edit Post"
-msgstr ""
+msgstr "Редагувати запис"
 
 #: src/Admin/MetaBox/ManageLinks.php:103 src/Admin/MetaBox/ManageLinks.php:104
 msgid "Unlink Related Post"
-msgstr ""
+msgstr "Від'єднати схожий запис"
 
 #: src/Admin/MetaBox/ManageLinks.php:115
 msgid "No related posts found."
-msgstr ""
+msgstr "Схожих записів не знайдено."
 
 #. translators: %d: how far the installation is, in percent
 #: src/Admin/Notices/Installing.php:70
 msgid "Related Posts for WordPress is linking your posts in the background (%d%%)."
-msgstr ""
+msgstr "Related Posts for WordPress пов'язує ваші записи у фоновому режимі (%d%%)."
 
 #: src/Admin/Notices/Installing.php:73
 msgid "View progress"
-msgstr ""
+msgstr "Переглянути хід виконання"
 
 #: src/Admin/Notices/Installing.php:83
 msgid "The installation of Related Posts for WordPress stopped with an error."
-msgstr ""
+msgstr "Встановлення Related Posts for WordPress зупинилося через помилку."
 
 #: src/Admin/Notices/Installing.php:84
 msgid "See what happened"
-msgstr ""
+msgstr "Дізнатися, що сталося"
 
 #: src/Admin/Notices/Installing.php:95
 msgid "Woah! Looks like we weren't able to finish your Related Posts for WordPress installation wizard!"
-msgstr ""
+msgstr "Ого! Схоже, нам не вдалося завершити майстер встановлення Related Posts for WordPress!"
 
 #: src/Admin/Notices/Installing.php:96
 msgid "Finish the installation"
-msgstr ""
+msgstr "Завершити встановлення"
 
 #: src/Admin/Notices/Installing.php:145
 msgid "Dismiss"
-msgstr ""
+msgstr "Приховати"
 
 #: src/Admin/Notices/Mbstring.php:37
 msgid "Error:"
-msgstr ""
+msgstr "Помилка:"
 
 #. translators: %s: the name of the PHP extension
 #: src/Admin/Notices/Mbstring.php:40
 msgid "The %s extension needs to be installed and activated for Related Posts for WP to work!"
-msgstr ""
+msgstr "Для роботи Related Posts for WP потрібно встановити й активувати розширення %s!"
 
 #. translators: %s: the name of the PHP extension
 #: src/Admin/Notices/Mbstring.php:46
 msgid "Please contact your host and ask them to install the %s PHP extension."
-msgstr ""
+msgstr "Будь ласка, зверніться до свого хостинг-провайдера й попросіть встановити розширення PHP %s."
 
 #: src/Admin/Notices/Multisite.php:32
 msgid "The free version of Related Posts for WordPress doesn't support WordPress Multisite/Network!"
-msgstr ""
+msgstr "Безкоштовна версія Related Posts for WordPress не підтримує WordPress Multisite (мережу сайтів)!"
 
 #. translators: 1: link opening tag, 2: link closing tag
 #: src/Admin/Notices/Multisite.php:36
 msgid "%1$sUpgrade to the premium version%2$s or disable the plugin."
-msgstr ""
+msgstr "%1$sПерейдіть на версію Premium%2$s або деактивуйте плагін."
 
 #: src/Admin/Notices/Playground.php:40
 msgid ""
 "We noticed you're running the plugin in the WordPress playground.\n"
 "                    Our plugin currently doesn't work there, due to limitation on the side of the WP playground."
 msgstr ""
+"Ми помітили, що ви запускаєте плагін у WordPress Playground.\n"
+"                    Наразі наш плагін там не працює через обмеження з боку WP Playground."
 
 #: src/Admin/Notices/Playground.php:47
 msgid "Related Posts for WP is not available inside the WordPress Playground!"
-msgstr ""
+msgstr "Related Posts for WP недоступний у WordPress Playground!"
 
 #: src/Admin/Notices/Playground.php:49
 msgid "For more information regarding our plugin:"
-msgstr ""
+msgstr "Докладніше про наш плагін:"
 
 #: src/Admin/Notices/Playground.php:51
 msgid "View the tour on relatedpostsforwp.com"
-msgstr ""
+msgstr "Переглянути огляд можливостей на relatedpostsforwp.com"
 
 #. translators: 1: bold opening tag, 2: bold closing tag
 #: src/Admin/Notices/Review.php:59
 msgid "You've been using %sRelated Posts for WordPress%s for some time now, could you please give it a review at wordpress.org?"
-msgstr ""
+msgstr "Ви вже деякий час користуєтеся %sRelated Posts for WordPress%s. Чи не могли б ви залишити відгук на wordpress.org?"
 
 #. translators: 1: review link opening tag, 2: link closing tag, 3: dismiss link opening tag, 4: link closing tag
 #: src/Admin/Notices/Review.php:66
 msgid "%sYes, take me there!%s - %sI've already done this!%s"
-msgstr ""
+msgstr "%sТак, перейти туди!%s - %sВже зроблено!%s"
 
 #: src/Admin/PluginLinks.php:38
 msgid "Settings"
-msgstr ""
+msgstr "Налаштування"
 
 #: src/Admin/PluginLinks.php:39
 msgid "Upgrade to Premium"
-msgstr ""
+msgstr "Перейти на Premium"
 
 #: src/Admin/Settings/Page.php:74
 msgid "The settings of Related Posts for WordPress need JavaScript."
-msgstr ""
+msgstr "Для налаштувань Related Posts for WordPress потрібен JavaScript."
 
 #: src/Admin/Wizard/Page.php:115
 msgid "Go to the settings of Related Posts for WordPress"
-msgstr ""
+msgstr "Перейти до налаштувань Related Posts for WordPress"
 
 #: src/Frontend/Widget.php:29
 msgid "Display related posts."
-msgstr ""
+msgstr "Показує схожі записи."
 
 #: src/Install/Jobs/Queue.php:89
 msgid "An installation is running already."
-msgstr ""
+msgstr "Встановлення вже виконується."
 
 #: src/Install/Jobs/Queue.php:138
 msgid "There is no stopped installation to resume."
-msgstr ""
+msgstr "Немає зупиненого встановлення, яке можна продовжити."
 
 #: src/Install/Jobs/Queue.php:279
 msgid "The steps of the installation changed while it ran. Please start it again."
-msgstr ""
+msgstr "Кроки встановлення змінилися під час його виконання. Будь ласка, запустіть його знову."
 
 #: src/Install/Planner.php:37
 msgid "The number of related posts to link to each post."
-msgstr ""
+msgstr "Кількість схожих записів, які пов'язуються з кожним записом."
 
 #: src/Install/Planner.php:44
 msgid "Only cache the words of the posts, and link nothing."
-msgstr ""
+msgstr "Лише кешувати слова записів, нічого не пов'язуючи."
 
 #: src/Install/Planner.php:49
 msgid "Remove every link and all cached words first, and install again."
-msgstr ""
+msgstr "Спочатку видалити всі зв'язки й усі кешовані слова, а потім встановити заново."
 
 #: src/Install/Tasks/CacheWordsTask.php:49
 msgid "Caching posts"
-msgstr ""
+msgstr "Кешування записів"
 
 #: src/Install/Tasks/LinkPostsTask.php:68
 msgid "Linking posts"
-msgstr ""
+msgstr "Пов'язування записів"
 
 #: src/Install/Tasks/ResetTask.php:35
 msgid "Removing the old links and words"
-msgstr ""
+msgstr "Видалення старих зв'язків і слів"
 
 #: src/Install/Tasks/SaveAmountTask.php:54
 msgid "Saving the settings"
-msgstr ""
+msgstr "Збереження налаштувань"
 
 #: src/Rest/InstallController.php:126
 msgid "No installation is running."
-msgstr ""
+msgstr "Встановлення не виконується."
 
 #: src/Rest/SettingsController.php:49
 msgid "The values to save, by field ID. Fields that are left out keep their value."
-msgstr ""
+msgstr "Значення для збереження за ID поля. Поля, яких немає в запиті, зберігають своє значення."
 
 #. translators: %s: a settings page ID
 #: src/Settings/Schema/Pages.php:164
 msgid "There is no settings page \"%s\"."
-msgstr ""
+msgstr "Сторінки налаштувань \"%s\" не існує."
 
 #: src/Settings/Settings.php:156
 msgid "General"
-msgstr ""
+msgstr "Загальні"
 
 #: src/Settings/Settings.php:157
 msgid "The following options affect the general behaviour of the plugin."
-msgstr ""
+msgstr "Наведені нижче параметри впливають на загальну поведінку плагіна."
 
 #: src/Settings/Settings.php:161
 msgid "Enable"
-msgstr ""
+msgstr "Увімкнути"
 
 #: src/Settings/Settings.php:162
 msgid "Checking this will enable automatically linking posts to new posts"
-msgstr ""
+msgstr "Якщо позначено, нові записи автоматично пов'язуються зі схожими записами"
 
 #: src/Settings/Settings.php:168
 msgid "Amount of Posts"
-msgstr ""
+msgstr "Кількість записів"
 
 #: src/Settings/Settings.php:169
 msgid "The amount of automatically linked post"
-msgstr ""
+msgstr "Кількість автоматично пов'язаних записів"
 
 #: src/Settings/Settings.php:178
 msgid "Heading text"
-msgstr ""
+msgstr "Текст заголовка"
 
 #: src/Settings/Settings.php:179
 msgid "The text that is displayed above the related posts. To disable, leave field empty."
-msgstr ""
+msgstr "Текст, що показується над схожими записами. Щоб вимкнути, залиште поле порожнім."
 
 #: src/Settings/Settings.php:185
 msgid "Excerpt length"
-msgstr ""
+msgstr "Довжина уривка"
 
 #: src/Settings/Settings.php:186
 msgid "The amount of words to be displayed below the title on website. To disable, set value to 0."
-msgstr ""
+msgstr "Кількість слів, що показуються під заголовком на сайті. Щоб вимкнути, вкажіть 0."
 
 #: src/Settings/Settings.php:196
 msgid "Styling"
-msgstr ""
+msgstr "Оформлення"
 
 #: src/Settings/Settings.php:197
 msgid "The following options affect how related posts are displayed on the frontend."
-msgstr ""
+msgstr "Наведені нижче параметри визначають, як схожі записи показуються на сайті."
 
 #: src/Settings/Settings.php:201
 msgid "Display Image"
-msgstr ""
+msgstr "Показувати зображення"
 
 #: src/Settings/Settings.php:202
 msgid "Checking this will enable displaying featured images of related posts."
-msgstr ""
+msgstr "Якщо позначено, показуються зображення схожих записів."
 
 #: src/Settings/Settings.php:208
 msgid "CSS"
-msgstr ""
+msgstr "CSS"
 
 #: src/Settings/Settings.php:209
 msgid "Warning! This is an advanced feature! An error here will break frontend display. To disable, leave field empty."
-msgstr ""
+msgstr "Увага! Це розширене налаштування! Помилка тут порушить показ на сайті. Щоб вимкнути, залиште поле порожнім."
 
 #: src/Settings/Settings.php:218
 msgid "Misc"
-msgstr ""
+msgstr "Інше"
 
 #: src/Settings/Settings.php:219
 msgid "A shelter for options that just don't fit in anywhere else."
-msgstr ""
+msgstr "Притулок для параметрів, які більше нікуди не вписуються."
 
 #: src/Settings/Settings.php:223
 msgid "Remove Data on Uninstall?"
-msgstr ""
+msgstr "Видаляти дані під час видалення плагіна?"
 
 #: src/Settings/Settings.php:224
 msgid "Check this box if you would like to completely remove all of its data when the plugin is deleted."
-msgstr ""
+msgstr "Позначте, якщо хочете повністю видалити всі дані плагіна під час його видалення."
 
 #: src/Settings/Settings.php:230
 msgid "Show love?"
-msgstr ""
+msgstr "Показати свою любов?"
 
 #: src/Settings/Settings.php:231
 msgid "Display a 'Powered by' line under your related posts. <strong>BEWARE! Only for the real fans.</strong>"
-msgstr ""
+msgstr "Показувати рядок 'Powered by' під схожими записами. <strong>УВАГА! Лише для справжніх шанувальників.</strong>"
 
 #: assets/build/admin/index.js:1
 msgid "The settings could not be loaded."
-msgstr ""
+msgstr "Не вдалося завантажити налаштування."
 
 #: assets/build/admin/index.js:1
 msgid "The installer could not be reached."
-msgstr ""
+msgstr "Засіб встановлення недоступний."
 
 #: assets/build/admin/index.js:1
 msgid "All set! Your posts are linked."
-msgstr ""
+msgstr "Готово! Ваші записи пов'язано."
 
 #: assets/build/admin/index.js:1
 msgid "All set! Your posts are read."
-msgstr ""
+msgstr "Готово! Ваші записи прочитано."
 
 #: assets/build/admin/index.js:1
 msgid "Every post shows its related posts now, and new posts are linked when you publish them."
-msgstr ""
+msgstr "Тепер кожен запис показує свої схожі записи, а нові записи пов'язуються під час публікації."
 
 #: assets/build/admin/index.js:1
 msgid "Link them from the Installer tab when you are ready."
-msgstr ""
+msgstr "Пов'яжіть їх на вкладці «Встановлення», коли будете готові."
 
 #: assets/build/admin/index.js:1
 msgid "Close"
-msgstr ""
+msgstr "Закрити"
 
 #: assets/build/admin/index.js:1
 msgid "Less than a minute left"
-msgstr ""
+msgstr "Залишилося менше хвилини"
 
 #. translators: %s: a number of minutes
 #: assets/build/admin/index.js:4
 msgid "About %s minute left"
 msgid_plural "About %s minutes left"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Залишилася приблизно %s хвилина"
+msgstr[1] "Залишилося приблизно %s хвилини"
+msgstr[2] "Залишилося приблизно %s хвилин"
 
 #. translators: 1: posts done, 2: all posts
 #: assets/build/admin/index.js:7
 msgid "%1$s of %2$s posts"
-msgstr ""
+msgstr "%1$s з %2$s записів"
 
 #: assets/build/admin/index.js:7
 msgid "The installation stopped"
-msgstr ""
+msgstr "Встановлення зупинилося"
 
 #: assets/build/admin/index.js:7
 msgid "The installation was cancelled"
-msgstr ""
+msgstr "Встановлення скасовано"
 
 #: assets/build/admin/index.js:7
 msgid "Linking your related posts"
-msgstr ""
+msgstr "Пов'язування ваших схожих записів"
 
 #: assets/build/admin/index.js:7
 msgid "This runs in the background. You can leave this page; it goes on without you."
-msgstr ""
+msgstr "Це виконується у фоновому режимі. Ви можете залишити цю сторінку; процес триватиме без вас."
 
 #. translators: %d: how far the installation is, in percent
 #: assets/build/admin/index.js:10
 msgid "%d%%"
-msgstr ""
+msgstr "%d%%"
 
 #: assets/build/admin/index.js:10
 msgid "Installation progress"
-msgstr ""
+msgstr "Хід встановлення"
 
 #: assets/build/admin/index.js:10
 msgid "Background processing is slow on this site, so this page is doing the work now. Keep it open to finish sooner, or come back later."
-msgstr ""
+msgstr "Фонові завдання на цьому сайті виконуються повільно, тому зараз роботу виконує ця сторінка. Не закривайте її, щоб завершити швидше, або поверніться пізніше."
 
 #: assets/build/admin/index.js:10
 msgid "Something went wrong."
-msgstr ""
+msgstr "Щось пішло не так."
 
 #: assets/build/admin/index.js:10
 msgid "What was done so far is kept. Resume to finish the rest."
-msgstr ""
+msgstr "Уже виконану роботу збережено. Продовжте, щоб завершити решту."
 
 #: assets/build/admin/index.js:10
 msgid "Cancel"
-msgstr ""
+msgstr "Скасувати"
 
 #: assets/build/admin/index.js:10
 msgid "The installation could not resume."
-msgstr ""
+msgstr "Не вдалося продовжити встановлення."
 
 #: assets/build/admin/index.js:10
 msgid "Resume"
-msgstr ""
+msgstr "Продовжити"
 
 #: assets/build/admin/index.js:10
 msgid "Cancel the installation?"
-msgstr ""
+msgstr "Скасувати встановлення?"
 
 #: assets/build/admin/index.js:10
 msgid "Cancel installation"
-msgstr ""
+msgstr "Скасувати встановлення"
 
 #: assets/build/admin/index.js:10
 msgid "Keep running"
-msgstr ""
+msgstr "Не скасовувати"
 
 #: assets/build/admin/index.js:10
 msgid "The installation could not be cancelled."
-msgstr ""
+msgstr "Не вдалося скасувати встановлення."
 
 #: assets/build/admin/index.js:10
 msgid "What was done so far is kept, and you can resume later."
-msgstr ""
+msgstr "Уже виконану роботу збережено, і ви зможете продовжити пізніше."
 
 #: assets/build/admin/index.js:10
 msgid "Related posts per post"
-msgstr ""
+msgstr "Схожих записів для кожного запису"
 
 #: assets/build/admin/index.js:10
 msgid "Get started"
-msgstr ""
+msgstr "Початок роботи"
 
 #: assets/build/admin/index.js:10
 msgid "Let's link your related posts"
-msgstr ""
+msgstr "Пов'яжімо ваші схожі записи"
 
 #: assets/build/admin/index.js:10
 msgid "Related Posts reads your posts once to learn what each one is about, then links every post to the posts that are most related to it."
-msgstr ""
+msgstr "Related Posts один раз читає ваші записи, щоб дізнатися, про що кожен із них, а потім пов'язує кожен запис із найбільш схожими на нього записами."
 
 #: assets/build/admin/index.js:10
 msgid "It runs in the background, so you can leave this page while it works."
-msgstr ""
+msgstr "Це виконується у фоновому режимі, тож ви можете залишити цю сторінку, поки триває робота."
 
 #: assets/build/admin/index.js:10
 msgid "You can change this later, and link again at any time."
-msgstr ""
+msgstr "Ви зможете змінити це пізніше й будь-коли пов'язати записи знову."
 
 #: assets/build/admin/index.js:10
 msgid "Link the posts right away"
-msgstr ""
+msgstr "Пов'язати записи одразу"
 
 #: assets/build/admin/index.js:10
 msgid "Turn this off to only read the posts now, and link them later from the Installer tab."
-msgstr ""
+msgstr "Вимкніть, щоб зараз лише прочитати записи, а пов'язати їх пізніше на вкладці «Встановлення»."
 
 #: assets/build/admin/index.js:10 assets/build/admin/index.js:13
 msgid "The installation could not start."
-msgstr ""
+msgstr "Не вдалося запустити встановлення."
 
 #: assets/build/admin/index.js:10
 msgid "Start"
-msgstr ""
+msgstr "Почати"
 
 #: assets/build/admin/index.js:10
 msgid "The installation is done."
-msgstr ""
+msgstr "Встановлення завершено."
 
 #: assets/build/admin/index.js:10
 msgid "The installation stopped."
-msgstr ""
+msgstr "Встановлення зупинилося."
 
 #. translators: %s: the plugin version
 #: assets/build/admin/index.js:13
 msgid "Version %s"
-msgstr ""
+msgstr "Версія %s"
 
 #: assets/build/admin/index.js:13
 msgid "Premium"
-msgstr ""
+msgstr "Premium"
 
 #: assets/build/admin/index.js:13
 msgid "Related Posts settings"
-msgstr ""
+msgstr "Налаштування Related Posts"
 
 #: assets/build/admin/index.js:13
 msgid "Unsaved changes"
-msgstr ""
+msgstr "Незбережені зміни"
 
 #: assets/build/admin/index.js:13
 msgid "You have unsaved changes."
-msgstr ""
+msgstr "У вас є незбережені зміни."
 
 #: assets/build/admin/index.js:13
 msgid "Discard"
-msgstr ""
+msgstr "Відкинути"
 
 #: assets/build/admin/index.js:13
 msgid "Settings saved."
-msgstr ""
+msgstr "Налаштування збережено."
 
 #: assets/build/admin/index.js:13
 msgid "The settings could not be saved."
-msgstr ""
+msgstr "Не вдалося зберегти налаштування."
 
 #: assets/build/admin/index.js:13
 msgid "Save changes"
-msgstr ""
+msgstr "Зберегти зміни"
 
 #: assets/build/admin/index.js:13
 msgid "This page does not exist."
-msgstr ""
+msgstr "Такої сторінки не існує."
 
 #: assets/build/admin/index.js:13
 msgid "This option is overwritten by a filter."
-msgstr ""
+msgstr "Цей параметр перевизначено фільтром."
 
 #: assets/build/admin/index.js:13
 msgid "Installer"
-msgstr ""
+msgstr "Встановлення"
 
 #: assets/build/admin/index.js:13
 msgid "An installation is running. You can start another one when it is done."
-msgstr ""
+msgstr "Зараз виконується встановлення. Ви зможете запустити нове, коли воно завершиться."
 
 #: assets/build/admin/index.js:13
 msgid "Link new posts"
-msgstr ""
+msgstr "Пов'язати нові записи"
 
 #: assets/build/admin/index.js:13
 msgid "Read and link the posts that are not linked yet, for example posts from before automatic linking was on. Links that exist stay as they are."
-msgstr ""
+msgstr "Прочитати й пов'язати записи, які ще не пов'язано, наприклад записи, створені до ввімкнення автоматичного пов'язування. Наявні зв'язки залишаться без змін."
 
 #: assets/build/admin/index.js:13
 msgid "Rebuild everything"
-msgstr ""
+msgstr "Перебудувати все"
 
 #: assets/build/admin/index.js:13
 msgid "Start over: remove every related post link, also the links you added by hand, read all posts again and link them. Your posts themselves are never touched."
-msgstr ""
+msgstr "Почати з нуля: видалити всі зв'язки схожих записів, зокрема додані вручну, знову прочитати всі записи й пов'язати їх. Самі записи ніколи не змінюються."
 
 #: assets/build/admin/index.js:13
 msgid "Rebuild everything?"
-msgstr ""
+msgstr "Перебудувати все?"
 
 #: assets/build/admin/index.js:13
 msgid "Remove links and rebuild"
-msgstr ""
+msgstr "Видалити зв'язки й перебудувати"
 
 #: assets/build/admin/index.js:13
 msgid "Keep my links"
-msgstr ""
+msgstr "Залишити мої зв'язки"
 
 #: assets/build/admin/index.js:13
 msgid "Every related post link is removed, including the links you added by hand. This can not be undone."
-msgstr ""
+msgstr "Усі зв'язки схожих записів буде видалено, зокрема додані вручну. Цю дію неможливо скасувати."

@@ -21,7 +21,7 @@ msgstr ""
 #. Plugin Name of the plugin
 #: related-posts-for-wp.php src/Frontend/Widget.php:28
 msgid "Related Posts for WordPress"
-msgstr "Relaterade inlägg för WordPress"
+msgstr "Related Posts for WordPress"
 
 #. Plugin URI of the plugin
 #: related-posts-for-wp.php
@@ -30,33 +30,32 @@ msgstr "http://www.relatedpostsforwp.com/"
 
 #. Description of the plugin
 #: related-posts-for-wp.php
-#, fuzzy
 msgid "Related Posts for WordPress, the best way to display related posts in WordPress."
-msgstr "Det bästa sättet att visa relaterade inlägg i WordPress."
+msgstr "Related Posts for WordPress, det bästa sättet att visa relaterade inlägg i WordPress."
 
 #. Author of the plugin
 #: related-posts-for-wp.php
 msgid "Never5"
-msgstr ""
+msgstr "Never5"
 
 #. Author URI of the plugin
 #: related-posts-for-wp.php
 msgid "http://www.never5.com/"
-msgstr ""
+msgstr "http://www.never5.com/"
 
 #. translators: 1: required PHP version, 2: required WordPress version
 #: related-posts-for-wp.php:66
 msgid "Related Posts for WordPress needs PHP %1$s and WordPress %2$s or newer. It does not run on this site until they are updated."
-msgstr ""
+msgstr "Related Posts for WordPress kräver PHP %1$s och WordPress %2$s eller senare. Tillägget körs inte på den här webbplatsen förrän de har uppdaterats."
 
 #. translators: 1: link opening tag, 2: link closing tag
 #: related-posts-for-wp.php:89
 msgid "Related Posts for WordPress 3.0 works together with Related Posts for WordPress Premium 3.0. Please %1$supdate Premium%2$s. Until then, your current version of Premium keeps working on its own."
-msgstr ""
+msgstr "Related Posts for WordPress 3.0 fungerar tillsammans med Related Posts for WordPress Premium 3.0. %1$sUppdatera Premium%2$s. Till dess fortsätter din nuvarande version av Premium att fungera på egen hand."
 
 #: src/Admin/App/Assets.php:104
 msgid "The settings screen of Related Posts for WordPress is missing its scripts. Run npm run build in the plugin folder."
-msgstr ""
+msgstr "Inställningssidan för Related Posts for WordPress saknar sina skript. Kör npm run build i tilläggets mapp."
 
 #: src/Admin/Assets.php:52
 msgid "Are you sure you want to delete this related post?"
@@ -78,7 +77,7 @@ msgstr "Rubrik"
 
 #: src/Admin/LinkScreen/ListTable.php:119
 msgid "Post Date"
-msgstr ""
+msgstr "Inläggsdatum"
 
 #: src/Admin/LinkScreen/ListTable.php:301
 msgid "Link Post"
@@ -102,7 +101,7 @@ msgstr "Sök"
 
 #: src/Admin/MetaBox/ManageLinks.php:81
 msgid "Add Related Posts"
-msgstr "Lägg till relaterat inlägg"
+msgstr "Lägg till relaterade inlägg"
 
 #: src/Admin/MetaBox/ManageLinks.php:100 src/Admin/MetaBox/ManageLinks.php:101
 msgid "Edit Post"
@@ -119,85 +118,84 @@ msgstr "Inga relaterade inlägg hittades"
 #. translators: %d: how far the installation is, in percent
 #: src/Admin/Notices/Installing.php:70
 msgid "Related Posts for WordPress is linking your posts in the background (%d%%)."
-msgstr ""
+msgstr "Related Posts for WordPress länkar dina inlägg i bakgrunden (%d%%)."
 
 #: src/Admin/Notices/Installing.php:73
 msgid "View progress"
-msgstr ""
+msgstr "Visa förlopp"
 
 #: src/Admin/Notices/Installing.php:83
-#, fuzzy
 msgid "The installation of Related Posts for WordPress stopped with an error."
-msgstr "Före du kan börja använda Related Posts for WooCommerce behöver vi cache'a ditt nuvarande inlägg."
+msgstr "Installationen av Related Posts for WordPress stoppades på grund av ett fel."
 
 #: src/Admin/Notices/Installing.php:84
 msgid "See what happened"
-msgstr ""
+msgstr "Se vad som hände"
 
 #: src/Admin/Notices/Installing.php:95
 msgid "Woah! Looks like we weren't able to finish your Related Posts for WordPress installation wizard!"
-msgstr "Oj! Det ser ut som att vi inte kunde slutföra installationsguiden av Related Posts for WordPress!"
+msgstr "Oj! Det ser ut som att installationen av Related Posts for WordPress inte slutfördes!"
 
 #: src/Admin/Notices/Installing.php:96
-#, fuzzy
 msgid "Finish the installation"
-msgstr "Installation"
+msgstr "Slutför installationen"
 
 #: src/Admin/Notices/Installing.php:145
 msgid "Dismiss"
-msgstr ""
+msgstr "Avfärda"
 
 #: src/Admin/Notices/Mbstring.php:37
 msgid "Error:"
-msgstr ""
+msgstr "Fel:"
 
 #. translators: %s: the name of the PHP extension
 #: src/Admin/Notices/Mbstring.php:40
 msgid "The %s extension needs to be installed and activated for Related Posts for WP to work!"
-msgstr ""
+msgstr "Utökningen %s måste vara installerad och aktiverad för att Related Posts for WP ska fungera!"
 
 #. translators: %s: the name of the PHP extension
 #: src/Admin/Notices/Mbstring.php:46
 msgid "Please contact your host and ask them to install the %s PHP extension."
-msgstr ""
+msgstr "Kontakta ditt webbhotell och be dem installera PHP-utökningen %s."
 
 #: src/Admin/Notices/Multisite.php:32
 msgid "The free version of Related Posts for WordPress doesn't support WordPress Multisite/Network!"
-msgstr ""
+msgstr "Den kostnadsfria versionen av Related Posts for WordPress stöder inte WordPress Multisite/nätverk!"
 
 #. translators: 1: link opening tag, 2: link closing tag
 #: src/Admin/Notices/Multisite.php:36
 msgid "%1$sUpgrade to the premium version%2$s or disable the plugin."
-msgstr ""
+msgstr "%1$sUppgradera till premiumversionen%2$s eller inaktivera tillägget."
 
 #: src/Admin/Notices/Playground.php:40
 msgid ""
 "We noticed you're running the plugin in the WordPress playground.\n"
 "                    Our plugin currently doesn't work there, due to limitation on the side of the WP playground."
 msgstr ""
+"Vi märkte att du kör tillägget i WordPress Playground.\n"
+"                    Vårt tillägg fungerar för närvarande inte där, på grund av en begränsning i WP Playground."
 
 #: src/Admin/Notices/Playground.php:47
 msgid "Related Posts for WP is not available inside the WordPress Playground!"
-msgstr ""
+msgstr "Related Posts for WP är inte tillgängligt i WordPress Playground!"
 
 #: src/Admin/Notices/Playground.php:49
 msgid "For more information regarding our plugin:"
-msgstr ""
+msgstr "Mer information om vårt tillägg:"
 
 #: src/Admin/Notices/Playground.php:51
-#, fuzzy
 msgid "View the tour on relatedpostsforwp.com"
-msgstr "http://www.relatedpostsforwp.com/"
+msgstr "Se rundturen på relatedpostsforwp.com"
 
 #. translators: 1: bold opening tag, 2: bold closing tag
 #: src/Admin/Notices/Review.php:59
 msgid "You've been using %sRelated Posts for WordPress%s for some time now, could you please give it a review at wordpress.org?"
-msgstr ""
+msgstr "Du har använt %sRelated Posts for WordPress%s ett tag nu. Vill du skriva en recension på wordpress.org?"
 
 #. translators: 1: review link opening tag, 2: link closing tag, 3: dismiss link opening tag, 4: link closing tag
 #: src/Admin/Notices/Review.php:66
 msgid "%sYes, take me there!%s - %sI've already done this!%s"
-msgstr ""
+msgstr "%sJa, ta mig dit!%s - %sDet har jag redan gjort!%s"
 
 #: src/Admin/PluginLinks.php:38
 msgid "Settings"
@@ -205,17 +203,15 @@ msgstr "Inställningar"
 
 #: src/Admin/PluginLinks.php:39
 msgid "Upgrade to Premium"
-msgstr ""
+msgstr "Uppgradera till Premium"
 
 #: src/Admin/Settings/Page.php:74
-#, fuzzy
 msgid "The settings of Related Posts for WordPress need JavaScript."
-msgstr "Före du kan börja använda Related Posts for WooCommerce behöver vi cache'a ditt nuvarande inlägg."
+msgstr "Inställningarna för Related Posts for WordPress kräver JavaScript."
 
 #: src/Admin/Wizard/Page.php:115
-#, fuzzy
 msgid "Go to the settings of Related Posts for WordPress"
-msgstr "Tack för att du valt Related Posts for WordPress!"
+msgstr "Gå till inställningarna för Related Posts for WordPress"
 
 #: src/Frontend/Widget.php:29
 msgid "Display related posts."
@@ -223,97 +219,88 @@ msgstr "Visa relaterade inlägg."
 
 #: src/Install/Jobs/Queue.php:89
 msgid "An installation is running already."
-msgstr ""
+msgstr "En installation pågår redan."
 
 #: src/Install/Jobs/Queue.php:138
 msgid "There is no stopped installation to resume."
-msgstr ""
+msgstr "Det finns ingen stoppad installation att återuppta."
 
 #: src/Install/Jobs/Queue.php:279
 msgid "The steps of the installation changed while it ran. Please start it again."
-msgstr ""
+msgstr "Installationens steg ändrades medan den kördes. Starta den igen."
 
 #: src/Install/Planner.php:37
-#, fuzzy
 msgid "The number of related posts to link to each post."
-msgstr "Det bästa sättet att visa relaterade inlägg i WordPress."
+msgstr "Antalet relaterade inlägg som ska länkas till varje inlägg."
 
 #: src/Install/Planner.php:44
 msgid "Only cache the words of the posts, and link nothing."
-msgstr ""
+msgstr "Cacha bara inläggens ord, och länka ingenting."
 
 #: src/Install/Planner.php:49
 msgid "Remove every link and all cached words first, and install again."
-msgstr ""
+msgstr "Ta först bort alla länkar och alla cachade ord, och installera sedan igen."
 
 #: src/Install/Tasks/CacheWordsTask.php:49
-#, fuzzy
 msgid "Caching posts"
 msgstr "Cachar inlägg"
 
 #: src/Install/Tasks/LinkPostsTask.php:68
-#, fuzzy
 msgid "Linking posts"
 msgstr "Länkar inlägg"
 
 #: src/Install/Tasks/ResetTask.php:35
 msgid "Removing the old links and words"
-msgstr ""
+msgstr "Tar bort gamla länkar och ord"
 
 #: src/Install/Tasks/SaveAmountTask.php:54
-#, fuzzy
 msgid "Saving the settings"
-msgstr "Frontend-inställningar"
+msgstr "Sparar inställningarna"
 
 #: src/Rest/InstallController.php:126
 msgid "No installation is running."
-msgstr ""
+msgstr "Ingen installation pågår."
 
 #: src/Rest/SettingsController.php:49
 msgid "The values to save, by field ID. Fields that are left out keep their value."
-msgstr ""
+msgstr "Värdena som ska sparas, per fält-ID. Fält som utelämnas behåller sitt värde."
 
 #. translators: %s: a settings page ID
 #: src/Settings/Schema/Pages.php:164
-#, fuzzy
 msgid "There is no settings page \"%s\"."
-msgstr "Klicka här för att gå till inställningssidan"
+msgstr "Det finns ingen inställningssida \"%s\"."
 
 #: src/Settings/Settings.php:156
 msgid "General"
 msgstr "Allmänt"
 
 #: src/Settings/Settings.php:157
-#, fuzzy
 msgid "The following options affect the general behaviour of the plugin."
-msgstr "Följande alternativ påverkar hur relaterade %ss visas i frontend."
+msgstr "Följande alternativ påverkar tilläggets allmänna beteende."
 
 #: src/Settings/Settings.php:161
 msgid "Enable"
 msgstr "Aktivera"
 
 #: src/Settings/Settings.php:162
-#, fuzzy
 msgid "Checking this will enable automatically linking posts to new posts"
-msgstr "Kryssa i den här för att automatiskt länka inlägg till nya %ss"
+msgstr "Om du kryssar i detta länkas nya inlägg automatiskt till relaterade inlägg"
 
 #: src/Settings/Settings.php:168
 msgid "Amount of Posts"
 msgstr "Antal inlägg"
 
 #: src/Settings/Settings.php:169
-#, fuzzy
 msgid "The amount of automatically linked post"
-msgstr "Antalet automatiskt länkade %ss"
+msgstr "Antalet automatiskt länkade inlägg"
 
 #: src/Settings/Settings.php:178
 msgid "Heading text"
 msgstr "Rubriktext"
 
 #: src/Settings/Settings.php:179
-#, fuzzy
 msgid "The text that is displayed above the related posts. To disable, leave field empty."
-msgstr "Texten som visas ovanför relaterade %ss. Lämna tomt för att avaktivera."
+msgstr "Texten som visas ovanför de relaterade inläggen. Lämna fältet tomt för att inaktivera."
 
 #: src/Settings/Settings.php:185
 msgid "Excerpt length"
@@ -328,36 +315,32 @@ msgid "Styling"
 msgstr "Styling"
 
 #: src/Settings/Settings.php:197
-#, fuzzy
 msgid "The following options affect how related posts are displayed on the frontend."
-msgstr "Följande alternativ påverkar hur relaterade %ss visas i frontend."
+msgstr "Följande alternativ påverkar hur relaterade inlägg visas på webbplatsen."
 
 #: src/Settings/Settings.php:201
 msgid "Display Image"
-msgstr ""
+msgstr "Visa bild"
 
 #: src/Settings/Settings.php:202
-#, fuzzy
 msgid "Checking this will enable displaying featured images of related posts."
-msgstr "Kryssa i den här för att automatiskt länka inlägg till nya %ss"
+msgstr "Om du kryssar i detta visas utvalda bilder för relaterade inlägg."
 
 #: src/Settings/Settings.php:208
 msgid "CSS"
-msgstr ""
+msgstr "CSS"
 
 #: src/Settings/Settings.php:209
-#, fuzzy
 msgid "Warning! This is an advanced feature! An error here will break frontend display. To disable, leave field empty."
-msgstr "Lägg till egen CSS till det valda temat. Varning! Detta är en avancerad funktion! Ett fel här kan förstöra designen i frontend. Lämna tomt för att avaktivera."
+msgstr "Varning! Detta är en avancerad funktion! Ett fel här förstör visningen på webbplatsen. Lämna fältet tomt för att inaktivera."
 
 #: src/Settings/Settings.php:218
 msgid "Misc"
 msgstr "Övrigt"
 
 #: src/Settings/Settings.php:219
-#, fuzzy
 msgid "A shelter for options that just don't fit in anywhere else."
-msgstr "En tillflykt för inställningar som helt enkelt inte passar in."
+msgstr "En tillflykt för alternativ som inte passar in någon annanstans."
 
 #: src/Settings/Settings.php:223
 msgid "Remove Data on Uninstall?"
@@ -369,265 +352,254 @@ msgstr "Kryssa i den här rutan om du vill avlägsna all data i samband med att 
 
 #: src/Settings/Settings.php:230
 msgid "Show love?"
-msgstr ""
+msgstr "Visa kärlek?"
 
 #: src/Settings/Settings.php:231
 msgid "Display a 'Powered by' line under your related posts. <strong>BEWARE! Only for the real fans.</strong>"
-msgstr ""
+msgstr "Visa en rad med 'Powered by' under dina relaterade inlägg. <strong>VARNING! Endast för de riktiga fansen.</strong>"
 
 #: assets/build/admin/index.js:1
 msgid "The settings could not be loaded."
-msgstr ""
+msgstr "Inställningarna kunde inte laddas."
 
 #: assets/build/admin/index.js:1
 msgid "The installer could not be reached."
-msgstr ""
+msgstr "Det gick inte att nå installationen."
 
 #: assets/build/admin/index.js:1
 msgid "All set! Your posts are linked."
-msgstr ""
+msgstr "Klart! Dina inlägg är länkade."
 
 #: assets/build/admin/index.js:1
 msgid "All set! Your posts are read."
-msgstr ""
+msgstr "Klart! Dina inlägg är inlästa."
 
 #: assets/build/admin/index.js:1
 msgid "Every post shows its related posts now, and new posts are linked when you publish them."
-msgstr ""
+msgstr "Alla inlägg visar nu sina relaterade inlägg, och nya inlägg länkas när du publicerar dem."
 
 #: assets/build/admin/index.js:1
 msgid "Link them from the Installer tab when you are ready."
-msgstr ""
+msgstr "Länka dem från fliken Installation när du är redo."
 
 #: assets/build/admin/index.js:1
 msgid "Close"
-msgstr ""
+msgstr "Stäng"
 
 #: assets/build/admin/index.js:1
 msgid "Less than a minute left"
-msgstr ""
+msgstr "Mindre än en minut kvar"
 
 #. translators: %s: a number of minutes
 #: assets/build/admin/index.js:4
 msgid "About %s minute left"
 msgid_plural "About %s minutes left"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ungefär %s minut kvar"
+msgstr[1] "Ungefär %s minuter kvar"
 
 #. translators: 1: posts done, 2: all posts
 #: assets/build/admin/index.js:7
 msgid "%1$s of %2$s posts"
-msgstr ""
+msgstr "%1$s av %2$s inlägg"
 
 #: assets/build/admin/index.js:7
-#, fuzzy
 msgid "The installation stopped"
-msgstr "Installation"
+msgstr "Installationen stoppades"
 
 #: assets/build/admin/index.js:7
 msgid "The installation was cancelled"
-msgstr ""
+msgstr "Installationen avbröts"
 
 #: assets/build/admin/index.js:7
-#, fuzzy
 msgid "Linking your related posts"
-msgstr "Visa relaterade inlägg."
+msgstr "Länkar dina relaterade inlägg"
 
 #: assets/build/admin/index.js:7
 msgid "This runs in the background. You can leave this page; it goes on without you."
-msgstr ""
+msgstr "Det här körs i bakgrunden. Du kan lämna sidan; arbetet fortsätter utan dig."
 
 #. translators: %d: how far the installation is, in percent
 #: assets/build/admin/index.js:10
 msgid "%d%%"
-msgstr ""
+msgstr "%d%%"
 
 #: assets/build/admin/index.js:10
-#, fuzzy
 msgid "Installation progress"
-msgstr "Installation"
+msgstr "Installationens förlopp"
 
 #: assets/build/admin/index.js:10
 msgid "Background processing is slow on this site, so this page is doing the work now. Keep it open to finish sooner, or come back later."
-msgstr ""
+msgstr "Bakgrundsbearbetningen är långsam på den här webbplatsen, så den här sidan gör jobbet nu. Håll sidan öppen så blir det klart snabbare, eller kom tillbaka senare."
 
 #: assets/build/admin/index.js:10
 msgid "Something went wrong."
-msgstr ""
+msgstr "Något gick fel."
 
 #: assets/build/admin/index.js:10
 msgid "What was done so far is kept. Resume to finish the rest."
-msgstr ""
+msgstr "Det som redan är gjort sparas. Återuppta för att slutföra resten."
 
 #: assets/build/admin/index.js:10
-#, fuzzy
 msgid "Cancel"
-msgstr "Avbryt länkning"
+msgstr "Avbryt"
 
 #: assets/build/admin/index.js:10
 msgid "The installation could not resume."
-msgstr ""
+msgstr "Installationen kunde inte återupptas."
 
 #: assets/build/admin/index.js:10
 msgid "Resume"
-msgstr ""
+msgstr "Återuppta"
 
 #: assets/build/admin/index.js:10
-#, fuzzy
 msgid "Cancel the installation?"
-msgstr "Installation"
+msgstr "Avbryta installationen?"
 
 #: assets/build/admin/index.js:10
-#, fuzzy
 msgid "Cancel installation"
-msgstr "Installation"
+msgstr "Avbryt installationen"
 
 #: assets/build/admin/index.js:10
 msgid "Keep running"
-msgstr ""
+msgstr "Låt den fortsätta"
 
 #: assets/build/admin/index.js:10
 msgid "The installation could not be cancelled."
-msgstr ""
+msgstr "Installationen kunde inte avbrytas."
 
 #: assets/build/admin/index.js:10
 msgid "What was done so far is kept, and you can resume later."
-msgstr ""
+msgstr "Det som redan är gjort sparas, och du kan återuppta senare."
 
 #: assets/build/admin/index.js:10
-#, fuzzy
 msgid "Related posts per post"
-msgstr "Relaterade inlägg för WordPress"
+msgstr "Relaterade inlägg per inlägg"
 
 #: assets/build/admin/index.js:10
 msgid "Get started"
-msgstr ""
+msgstr "Kom igång"
 
 #: assets/build/admin/index.js:10
-#, fuzzy
 msgid "Let's link your related posts"
-msgstr "Visa relaterade inlägg."
+msgstr "Nu länkar vi dina relaterade inlägg"
 
 #: assets/build/admin/index.js:10
 msgid "Related Posts reads your posts once to learn what each one is about, then links every post to the posts that are most related to it."
-msgstr ""
+msgstr "Related Posts läser in dina inlägg en gång för att lära sig vad vart och ett handlar om, och länkar sedan varje inlägg till de inlägg som är mest relaterade till det."
 
 #: assets/build/admin/index.js:10
 msgid "It runs in the background, so you can leave this page while it works."
-msgstr ""
+msgstr "Det körs i bakgrunden, så du kan lämna sidan medan det pågår."
 
 #: assets/build/admin/index.js:10
 msgid "You can change this later, and link again at any time."
-msgstr ""
+msgstr "Du kan ändra detta senare och länka igen när som helst."
 
 #: assets/build/admin/index.js:10
 msgid "Link the posts right away"
-msgstr ""
+msgstr "Länka inläggen direkt"
 
 #: assets/build/admin/index.js:10
 msgid "Turn this off to only read the posts now, and link them later from the Installer tab."
-msgstr ""
+msgstr "Stäng av detta för att bara läsa in inläggen nu och länka dem senare från fliken Installation."
 
 #: assets/build/admin/index.js:10 assets/build/admin/index.js:13
 msgid "The installation could not start."
-msgstr ""
+msgstr "Installationen kunde inte starta."
 
 #: assets/build/admin/index.js:10
 msgid "Start"
-msgstr ""
+msgstr "Starta"
 
 #: assets/build/admin/index.js:10
 msgid "The installation is done."
-msgstr ""
+msgstr "Installationen är klar."
 
 #: assets/build/admin/index.js:10
 msgid "The installation stopped."
-msgstr ""
+msgstr "Installationen stoppades."
 
 #. translators: %s: the plugin version
 #: assets/build/admin/index.js:13
 msgid "Version %s"
-msgstr ""
+msgstr "Version %s"
 
 #: assets/build/admin/index.js:13
 msgid "Premium"
-msgstr ""
+msgstr "Premium"
 
 #: assets/build/admin/index.js:13
-#, fuzzy
 msgid "Related Posts settings"
-msgstr "Relaterade inlägg"
+msgstr "Inställningar för Related Posts"
 
 #: assets/build/admin/index.js:13
 msgid "Unsaved changes"
-msgstr ""
+msgstr "Osparade ändringar"
 
 #: assets/build/admin/index.js:13
 msgid "You have unsaved changes."
-msgstr ""
+msgstr "Du har osparade ändringar."
 
 #: assets/build/admin/index.js:13
 msgid "Discard"
-msgstr ""
+msgstr "Förkasta"
 
 #: assets/build/admin/index.js:13
-#, fuzzy
 msgid "Settings saved."
-msgstr "Inställningar"
+msgstr "Inställningarna har sparats."
 
 #: assets/build/admin/index.js:13
 msgid "The settings could not be saved."
-msgstr ""
+msgstr "Inställningarna kunde inte sparas."
 
 #: assets/build/admin/index.js:13
 msgid "Save changes"
-msgstr ""
+msgstr "Spara ändringar"
 
 #: assets/build/admin/index.js:13
 msgid "This page does not exist."
-msgstr ""
+msgstr "Den här sidan finns inte."
 
 #: assets/build/admin/index.js:13
 msgid "This option is overwritten by a filter."
-msgstr ""
+msgstr "Detta alternativ skrivs över av ett filter."
 
 #: assets/build/admin/index.js:13
 msgid "Installer"
-msgstr "Installer"
+msgstr "Installation"
 
 #: assets/build/admin/index.js:13
 msgid "An installation is running. You can start another one when it is done."
-msgstr ""
+msgstr "En installation pågår. Du kan starta en ny när den är klar."
 
 #: assets/build/admin/index.js:13
-#, fuzzy
 msgid "Link new posts"
-msgstr "Länka inlägg"
+msgstr "Länka nya inlägg"
 
 #: assets/build/admin/index.js:13
 msgid "Read and link the posts that are not linked yet, for example posts from before automatic linking was on. Links that exist stay as they are."
-msgstr ""
+msgstr "Läs in och länka de inlägg som inte är länkade än, till exempel inlägg från innan automatisk länkning var aktiverad. Befintliga länkar lämnas som de är."
 
 #: assets/build/admin/index.js:13
 msgid "Rebuild everything"
-msgstr ""
+msgstr "Bygg om allt"
 
 #: assets/build/admin/index.js:13
 msgid "Start over: remove every related post link, also the links you added by hand, read all posts again and link them. Your posts themselves are never touched."
-msgstr ""
+msgstr "Börja om: ta bort alla länkar till relaterade inlägg, även dem du har lagt till manuellt, läs in alla inlägg igen och länka dem. Själva inläggen påverkas aldrig."
 
 #: assets/build/admin/index.js:13
 msgid "Rebuild everything?"
-msgstr ""
+msgstr "Bygga om allt?"
 
 #: assets/build/admin/index.js:13
 msgid "Remove links and rebuild"
-msgstr ""
+msgstr "Ta bort länkar och bygg om"
 
 #: assets/build/admin/index.js:13
 msgid "Keep my links"
-msgstr ""
+msgstr "Behåll mina länkar"
 
 #: assets/build/admin/index.js:13
 msgid "Every related post link is removed, including the links you added by hand. This can not be undone."
-msgstr ""
+msgstr "Alla länkar till relaterade inlägg tas bort, även dem du har lagt till manuellt. Detta kan inte ångras."

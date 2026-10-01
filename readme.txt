@@ -132,6 +132,7 @@ There is one custom table created for the post cache, this table will however no
 * Fix: Deleting the plugin with "Remove data on uninstall" on also removes the widget settings, the state of an unfinished installation wizard, the dismissed review notice and the chosen number of links per page.
 * Tweak: Titles, settings and links in the admin are escaped.
 * Tweak: The notices about mbstring and the unfinished installation wizard can be translated.
+* Tweak: The bundled Dutch, French, German, Italian, Portuguese (Brazil and Portugal), Serbian, Swedish and Ukrainian translations are updated for 3.0.
 * Tweak: The Settings link on the Plugins screen also shows when the plugin folder is renamed.
 * Tweak: Rewritten on a modern, tested code base. The classes of 2.x and RP4WP() still work, and report their use as deprecated when WP_DEBUG is on.
 * Tweak: The installation wizard is replaced by the installer on the settings screen; links to the wizard open it there.

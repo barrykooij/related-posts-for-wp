@@ -22,7 +22,7 @@ msgstr ""
 #. Plugin Name of the plugin
 #: related-posts-for-wp.php src/Frontend/Widget.php:28
 msgid "Related Posts for WordPress"
-msgstr "Posts Relacionados para WordPress"
+msgstr "Related Posts for WordPress"
 
 #. Plugin URI of the plugin
 #: related-posts-for-wp.php
@@ -31,33 +31,32 @@ msgstr "http://www.relatedpostsforwp.com/"
 
 #. Description of the plugin
 #: related-posts-for-wp.php
-#, fuzzy
 msgid "Related Posts for WordPress, the best way to display related posts in WordPress."
-msgstr "A melhor maneira de mostrar posts relacionados no WordPress."
+msgstr "Related Posts for WordPress, a melhor forma de mostrar artigos relacionados no WordPress."
 
 #. Author of the plugin
 #: related-posts-for-wp.php
 msgid "Never5"
-msgstr ""
+msgstr "Never5"
 
 #. Author URI of the plugin
 #: related-posts-for-wp.php
 msgid "http://www.never5.com/"
-msgstr ""
+msgstr "http://www.never5.com/"
 
 #. translators: 1: required PHP version, 2: required WordPress version
 #: related-posts-for-wp.php:66
 msgid "Related Posts for WordPress needs PHP %1$s and WordPress %2$s or newer. It does not run on this site until they are updated."
-msgstr ""
+msgstr "O Related Posts for WordPress requer PHP %1$s e WordPress %2$s ou superior. Não funciona neste site até serem atualizados."
 
 #. translators: 1: link opening tag, 2: link closing tag
 #: related-posts-for-wp.php:89
 msgid "Related Posts for WordPress 3.0 works together with Related Posts for WordPress Premium 3.0. Please %1$supdate Premium%2$s. Until then, your current version of Premium keeps working on its own."
-msgstr ""
+msgstr "O Related Posts for WordPress 3.0 funciona em conjunto com o Related Posts for WordPress Premium 3.0. %1$sAtualize o Premium%2$s. Até lá, a sua versão atual do Premium continua a funcionar de forma independente."
 
 #: src/Admin/App/Assets.php:104
 msgid "The settings screen of Related Posts for WordPress is missing its scripts. Run npm run build in the plugin folder."
-msgstr ""
+msgstr "Faltam os scripts do ecrã de definições do Related Posts for WordPress. Execute npm run build na pasta do plugin."
 
 #: src/Admin/Assets.php:52
 msgid "Are you sure you want to delete this related post?"
@@ -79,15 +78,15 @@ msgstr "Título"
 
 #: src/Admin/LinkScreen/ListTable.php:119
 msgid "Post Date"
-msgstr ""
+msgstr "Data do artigo"
 
 #: src/Admin/LinkScreen/ListTable.php:301
 msgid "Link Post"
-msgstr "Link do Post"
+msgstr "Vincular artigo"
 
 #: src/Admin/LinkScreen/ListTable.php:334
 msgid "Link Posts"
-msgstr "Link dos Posts"
+msgstr "Vincular artigos"
 
 #: src/Admin/LinkScreen/Page.php:126
 msgid "Posts"
@@ -103,7 +102,7 @@ msgstr "Buscar"
 
 #: src/Admin/MetaBox/ManageLinks.php:81
 msgid "Add Related Posts"
-msgstr "Adciionar Post Relacioando"
+msgstr "Adicionar artigos relacionados"
 
 #: src/Admin/MetaBox/ManageLinks.php:100 src/Admin/MetaBox/ManageLinks.php:101
 msgid "Edit Post"
@@ -120,104 +119,100 @@ msgstr "Nenhum post relacionado foi encontrado."
 #. translators: %d: how far the installation is, in percent
 #: src/Admin/Notices/Installing.php:70
 msgid "Related Posts for WordPress is linking your posts in the background (%d%%)."
-msgstr ""
+msgstr "O Related Posts for WordPress está a vincular os seus artigos em segundo plano (%d%%)."
 
 #: src/Admin/Notices/Installing.php:73
-#, fuzzy
 msgid "View progress"
-msgstr "Ver Post"
+msgstr "Ver progresso"
 
 #: src/Admin/Notices/Installing.php:83
-#, fuzzy
 msgid "The installation of Related Posts for WordPress stopped with an error."
-msgstr "Antes que você possa começar a usar Posts Relacionados para WordPress nos precisamos armazenar os seus posts atuais."
+msgstr "A instalação do Related Posts for WordPress parou com um erro."
 
 #: src/Admin/Notices/Installing.php:84
 msgid "See what happened"
-msgstr ""
+msgstr "Ver o que aconteceu"
 
 #: src/Admin/Notices/Installing.php:95
 msgid "Woah! Looks like we weren't able to finish your Related Posts for WordPress installation wizard!"
-msgstr "Woah! Parece que não fomos capazes de terminar a instalação do Posts Relacionados para WordPress!"
+msgstr "Ups! Parece que não foi possível concluir a instalação do Related Posts for WordPress!"
 
 #: src/Admin/Notices/Installing.php:96
-#, fuzzy
 msgid "Finish the installation"
-msgstr "Instalação"
+msgstr "Concluir a instalação"
 
 #: src/Admin/Notices/Installing.php:145
 msgid "Dismiss"
-msgstr ""
+msgstr "Ignorar"
 
 #: src/Admin/Notices/Mbstring.php:37
 msgid "Error:"
-msgstr ""
+msgstr "Erro:"
 
 #. translators: %s: the name of the PHP extension
 #: src/Admin/Notices/Mbstring.php:40
 msgid "The %s extension needs to be installed and activated for Related Posts for WP to work!"
-msgstr ""
+msgstr "A extensão %s tem de estar instalada e ativada para o Related Posts for WP funcionar!"
 
 #. translators: %s: the name of the PHP extension
 #: src/Admin/Notices/Mbstring.php:46
 msgid "Please contact your host and ask them to install the %s PHP extension."
-msgstr ""
+msgstr "Contacte o seu serviço de alojamento e peça para instalarem a extensão PHP %s."
 
 #: src/Admin/Notices/Multisite.php:32
 msgid "The free version of Related Posts for WordPress doesn't support WordPress Multisite/Network!"
-msgstr ""
+msgstr "A versão gratuita do Related Posts for WordPress não suporta WordPress Multisite/rede!"
 
 #. translators: 1: link opening tag, 2: link closing tag
 #: src/Admin/Notices/Multisite.php:36
 msgid "%1$sUpgrade to the premium version%2$s or disable the plugin."
-msgstr ""
+msgstr "%1$sAtualize para a versão Premium%2$s ou desative o plugin."
 
 #: src/Admin/Notices/Playground.php:40
 msgid ""
 "We noticed you're running the plugin in the WordPress playground.\n"
 "                    Our plugin currently doesn't work there, due to limitation on the side of the WP playground."
 msgstr ""
+"Detetámos que está a usar o plugin no WordPress Playground.\n"
+"                    De momento, o nosso plugin não funciona aí, devido a uma limitação do WP Playground."
 
 #: src/Admin/Notices/Playground.php:47
 msgid "Related Posts for WP is not available inside the WordPress Playground!"
-msgstr ""
+msgstr "O Related Posts for WP não está disponível no WordPress Playground!"
 
 #: src/Admin/Notices/Playground.php:49
 msgid "For more information regarding our plugin:"
-msgstr ""
+msgstr "Para mais informações sobre o nosso plugin:"
 
 #: src/Admin/Notices/Playground.php:51
-#, fuzzy
 msgid "View the tour on relatedpostsforwp.com"
-msgstr "http://www.relatedpostsforwp.com/"
+msgstr "Ver a visita guiada em relatedpostsforwp.com"
 
 #. translators: 1: bold opening tag, 2: bold closing tag
 #: src/Admin/Notices/Review.php:59
 msgid "You've been using %sRelated Posts for WordPress%s for some time now, could you please give it a review at wordpress.org?"
-msgstr ""
+msgstr "Já usa o %sRelated Posts for WordPress%s há algum tempo. Pode deixar-nos uma avaliação em wordpress.org?"
 
 #. translators: 1: review link opening tag, 2: link closing tag, 3: dismiss link opening tag, 4: link closing tag
 #: src/Admin/Notices/Review.php:66
 msgid "%sYes, take me there!%s - %sI've already done this!%s"
-msgstr ""
+msgstr "%sSim, quero avaliar!%s - %sJá o fiz!%s"
 
 #: src/Admin/PluginLinks.php:38
 msgid "Settings"
-msgstr "Configurações"
+msgstr "Definições"
 
 #: src/Admin/PluginLinks.php:39
 msgid "Upgrade to Premium"
-msgstr ""
+msgstr "Atualizar para Premium"
 
 #: src/Admin/Settings/Page.php:74
-#, fuzzy
 msgid "The settings of Related Posts for WordPress need JavaScript."
-msgstr "Antes que você possa começar a usar Posts Relacionados para WordPress nos precisamos armazenar os seus posts atuais."
+msgstr "As definições do Related Posts for WordPress requerem JavaScript."
 
 #: src/Admin/Wizard/Page.php:115
-#, fuzzy
 msgid "Go to the settings of Related Posts for WordPress"
-msgstr "Obrigado por escolher Posts Relacionados para WordPress!"
+msgstr "Ir para as definições do Related Posts for WordPress"
 
 #: src/Frontend/Widget.php:29
 msgid "Display related posts."
@@ -225,97 +220,88 @@ msgstr "Exibir posts relacionados."
 
 #: src/Install/Jobs/Queue.php:89
 msgid "An installation is running already."
-msgstr ""
+msgstr "Já está a decorrer uma instalação."
 
 #: src/Install/Jobs/Queue.php:138
 msgid "There is no stopped installation to resume."
-msgstr ""
+msgstr "Não há nenhuma instalação parada para retomar."
 
 #: src/Install/Jobs/Queue.php:279
 msgid "The steps of the installation changed while it ran. Please start it again."
-msgstr ""
+msgstr "Os passos da instalação mudaram durante a execução. Inicie-a novamente."
 
 #: src/Install/Planner.php:37
-#, fuzzy
 msgid "The number of related posts to link to each post."
-msgstr "O número de posts relacionados por linha."
+msgstr "O número de artigos relacionados a vincular a cada artigo."
 
 #: src/Install/Planner.php:44
 msgid "Only cache the words of the posts, and link nothing."
-msgstr ""
+msgstr "Guardar apenas as palavras dos artigos em cache, sem vincular nada."
 
 #: src/Install/Planner.php:49
 msgid "Remove every link and all cached words first, and install again."
-msgstr ""
+msgstr "Remover primeiro todos os vínculos e todas as palavras em cache, e instalar novamente."
 
 #: src/Install/Tasks/CacheWordsTask.php:49
-#, fuzzy
 msgid "Caching posts"
-msgstr "Armazenamento de Posts"
+msgstr "A guardar os artigos em cache"
 
 #: src/Install/Tasks/LinkPostsTask.php:68
-#, fuzzy
 msgid "Linking posts"
-msgstr "Vinculação de Posts"
+msgstr "A vincular os artigos"
 
 #: src/Install/Tasks/ResetTask.php:35
 msgid "Removing the old links and words"
-msgstr ""
+msgstr "A remover os vínculos e as palavras antigos"
 
 #: src/Install/Tasks/SaveAmountTask.php:54
-#, fuzzy
 msgid "Saving the settings"
-msgstr "Configuração de prioridades"
+msgstr "A guardar as definições"
 
 #: src/Rest/InstallController.php:126
 msgid "No installation is running."
-msgstr ""
+msgstr "Não está a decorrer nenhuma instalação."
 
 #: src/Rest/SettingsController.php:49
 msgid "The values to save, by field ID. Fields that are left out keep their value."
-msgstr ""
+msgstr "Os valores a guardar, por ID de campo. Os campos omitidos mantêm o seu valor."
 
 #. translators: %s: a settings page ID
 #: src/Settings/Schema/Pages.php:164
-#, fuzzy
 msgid "There is no settings page \"%s\"."
-msgstr "Clique aqui para ir à página de configurações"
+msgstr "Não existe nenhuma página de definições \"%s\"."
 
 #: src/Settings/Settings.php:156
 msgid "General"
 msgstr "Geral"
 
 #: src/Settings/Settings.php:157
-#, fuzzy
 msgid "The following options affect the general behaviour of the plugin."
-msgstr "As opções a seguir afetam como os posts relacionados %ss são exibidos no frontend."
+msgstr "As opções seguintes afetam o comportamento geral do plugin."
 
 #: src/Settings/Settings.php:161
 msgid "Enable"
 msgstr "Habilitar"
 
 #: src/Settings/Settings.php:162
-#, fuzzy
 msgid "Checking this will enable automatically linking posts to new posts"
-msgstr "Marcando isso vai permitir a vinculação automaticamente para novos posts %ss"
+msgstr "Marque para vincular automaticamente artigos relacionados aos novos artigos"
 
 #: src/Settings/Settings.php:168
 msgid "Amount of Posts"
 msgstr "Quantidade de Posts"
 
 #: src/Settings/Settings.php:169
-#, fuzzy
 msgid "The amount of automatically linked post"
-msgstr "A quantidade de posts automaticamente vinculada %ss"
+msgstr "O número de artigos vinculados automaticamente"
 
 #: src/Settings/Settings.php:178
 msgid "Heading text"
 msgstr "Texto do Cabeçalho"
 
 #: src/Settings/Settings.php:179
-#, fuzzy
 msgid "The text that is displayed above the related posts. To disable, leave field empty."
-msgstr "O texto que é exibido acima dos %ss relacionados. Para desativar, deixe este campo vazio sair."
+msgstr "O texto apresentado acima dos artigos relacionados. Para desativar, deixe o campo vazio."
 
 #: src/Settings/Settings.php:185
 msgid "Excerpt length"
@@ -330,40 +316,36 @@ msgid "Styling"
 msgstr "Estilos"
 
 #: src/Settings/Settings.php:197
-#, fuzzy
 msgid "The following options affect how related posts are displayed on the frontend."
-msgstr "As opções a seguir afetam como os posts relacionados %ss são exibidos no frontend."
+msgstr "As opções seguintes afetam a forma como os artigos relacionados são apresentados no site."
 
 #: src/Settings/Settings.php:201
 msgid "Display Image"
-msgstr ""
+msgstr "Mostrar imagem"
 
 #: src/Settings/Settings.php:202
-#, fuzzy
 msgid "Checking this will enable displaying featured images of related posts."
-msgstr "Marcando isso vai permitir a vinculação automaticamente para novos posts %ss"
+msgstr "Marque para mostrar as imagens de destaque dos artigos relacionados."
 
 #: src/Settings/Settings.php:208
 msgid "CSS"
-msgstr ""
+msgstr "CSS"
 
 #: src/Settings/Settings.php:209
-#, fuzzy
 msgid "Warning! This is an advanced feature! An error here will break frontend display. To disable, leave field empty."
-msgstr "Adicionar CSS personalizado com o tema selecionado. Aviso! Este é um recurso avançado! Um erro aqui vai quebrar exibição na frente do seu site. Para desativar, deixe este campo vazio."
+msgstr "Atenção! Esta é uma funcionalidade avançada! Um erro aqui irá estragar a apresentação no site. Para desativar, deixe o campo vazio."
 
 #: src/Settings/Settings.php:218
 msgid "Misc"
 msgstr "Diversos"
 
 #: src/Settings/Settings.php:219
-#, fuzzy
 msgid "A shelter for options that just don't fit in anywhere else."
-msgstr "Lugar para as opções que simplesmente não se encaixam."
+msgstr "Um abrigo para as opções que não se encaixam em mais lado nenhum."
 
 #: src/Settings/Settings.php:223
 msgid "Remove Data on Uninstall?"
-msgstr "Remover Dados ao Desistalar?"
+msgstr "Remover dados ao desinstalar?"
 
 #: src/Settings/Settings.php:224
 msgid "Check this box if you would like to completely remove all of its data when the plugin is deleted."
@@ -379,219 +361,209 @@ msgstr "Apresentar informação 'Powered by' abaixo dos posts relacionados. <str
 
 #: assets/build/admin/index.js:1
 msgid "The settings could not be loaded."
-msgstr ""
+msgstr "Não foi possível carregar as definições."
 
 #: assets/build/admin/index.js:1
 msgid "The installer could not be reached."
-msgstr ""
+msgstr "Não foi possível contactar o instalador."
 
 #: assets/build/admin/index.js:1
 msgid "All set! Your posts are linked."
-msgstr ""
+msgstr "Pronto! Os seus artigos estão vinculados."
 
 #: assets/build/admin/index.js:1
 msgid "All set! Your posts are read."
-msgstr ""
+msgstr "Pronto! Os seus artigos foram lidos."
 
 #: assets/build/admin/index.js:1
 msgid "Every post shows its related posts now, and new posts are linked when you publish them."
-msgstr ""
+msgstr "Cada artigo mostra agora os seus artigos relacionados, e os novos artigos são vinculados quando os publicar."
 
 #: assets/build/admin/index.js:1
 msgid "Link them from the Installer tab when you are ready."
-msgstr ""
+msgstr "Vincule-os no separador Instalador quando estiver pronto."
 
 #: assets/build/admin/index.js:1
 msgid "Close"
-msgstr ""
+msgstr "Fechar"
 
 #: assets/build/admin/index.js:1
 msgid "Less than a minute left"
-msgstr ""
+msgstr "Falta menos de um minuto"
 
 #. translators: %s: a number of minutes
 #: assets/build/admin/index.js:4
 msgid "About %s minute left"
 msgid_plural "About %s minutes left"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Falta cerca de %s minuto"
+msgstr[1] "Faltam cerca de %s minutos"
 
 #. translators: 1: posts done, 2: all posts
 #: assets/build/admin/index.js:7
 msgid "%1$s of %2$s posts"
-msgstr ""
+msgstr "%1$s de %2$s artigos"
 
 #: assets/build/admin/index.js:7
-#, fuzzy
 msgid "The installation stopped"
-msgstr "Instalação"
+msgstr "A instalação parou"
 
 #: assets/build/admin/index.js:7
 msgid "The installation was cancelled"
-msgstr ""
+msgstr "A instalação foi cancelada"
 
 #: assets/build/admin/index.js:7
-#, fuzzy
 msgid "Linking your related posts"
-msgstr "Quantidade de posts relacionados:"
+msgstr "A vincular os seus artigos relacionados"
 
 #: assets/build/admin/index.js:7
 msgid "This runs in the background. You can leave this page; it goes on without you."
-msgstr ""
+msgstr "Isto decorre em segundo plano. Pode sair desta página; o processo continua sem si."
 
 #. translators: %d: how far the installation is, in percent
 #: assets/build/admin/index.js:10
 msgid "%d%%"
-msgstr ""
+msgstr "%d%%"
 
 #: assets/build/admin/index.js:10
-#, fuzzy
 msgid "Installation progress"
-msgstr "Instalação"
+msgstr "Progresso da instalação"
 
 #: assets/build/admin/index.js:10
 msgid "Background processing is slow on this site, so this page is doing the work now. Keep it open to finish sooner, or come back later."
-msgstr ""
+msgstr "O processamento em segundo plano é lento neste site, por isso é esta página que está a fazer o trabalho. Mantenha-a aberta para terminar mais depressa, ou volte mais tarde."
 
 #: assets/build/admin/index.js:10
 msgid "Something went wrong."
-msgstr ""
+msgstr "Algo correu mal."
 
 #: assets/build/admin/index.js:10
 msgid "What was done so far is kept. Resume to finish the rest."
-msgstr ""
+msgstr "O que já foi feito é mantido. Retome para concluir o resto."
 
 #: assets/build/admin/index.js:10
-#, fuzzy
 msgid "Cancel"
-msgstr "Cancelar vinculação"
+msgstr "Cancelar"
 
 #: assets/build/admin/index.js:10
 msgid "The installation could not resume."
-msgstr ""
+msgstr "Não foi possível retomar a instalação."
 
 #: assets/build/admin/index.js:10
 msgid "Resume"
-msgstr ""
+msgstr "Retomar"
 
 #: assets/build/admin/index.js:10
-#, fuzzy
 msgid "Cancel the installation?"
-msgstr "Instalação"
+msgstr "Cancelar a instalação?"
 
 #: assets/build/admin/index.js:10
-#, fuzzy
 msgid "Cancel installation"
-msgstr "Instalação"
+msgstr "Cancelar instalação"
 
 #: assets/build/admin/index.js:10
 msgid "Keep running"
-msgstr ""
+msgstr "Continuar"
 
 #: assets/build/admin/index.js:10
 msgid "The installation could not be cancelled."
-msgstr ""
+msgstr "Não foi possível cancelar a instalação."
 
 #: assets/build/admin/index.js:10
 msgid "What was done so far is kept, and you can resume later."
-msgstr ""
+msgstr "O que já foi feito é mantido, e pode retomar mais tarde."
 
 #: assets/build/admin/index.js:10
-#, fuzzy
 msgid "Related posts per post"
-msgstr "Opções do Related Posts"
+msgstr "Artigos relacionados por artigo"
 
 #: assets/build/admin/index.js:10
 msgid "Get started"
-msgstr ""
+msgstr "Começar"
 
 #: assets/build/admin/index.js:10
-#, fuzzy
 msgid "Let's link your related posts"
-msgstr "Exibir posts relacionados."
+msgstr "Vamos vincular os seus artigos relacionados"
 
 #: assets/build/admin/index.js:10
 msgid "Related Posts reads your posts once to learn what each one is about, then links every post to the posts that are most related to it."
-msgstr ""
+msgstr "O Related Posts lê os seus artigos uma vez para perceber o assunto de cada um, e depois vincula cada artigo aos artigos mais relacionados com ele."
 
 #: assets/build/admin/index.js:10
 msgid "It runs in the background, so you can leave this page while it works."
-msgstr ""
+msgstr "Decorre em segundo plano, por isso pode sair desta página enquanto está em curso."
 
 #: assets/build/admin/index.js:10
 msgid "You can change this later, and link again at any time."
-msgstr ""
+msgstr "Pode alterar isto mais tarde e voltar a vincular a qualquer momento."
 
 #: assets/build/admin/index.js:10
 msgid "Link the posts right away"
-msgstr ""
+msgstr "Vincular os artigos de imediato"
 
 #: assets/build/admin/index.js:10
 msgid "Turn this off to only read the posts now, and link them later from the Installer tab."
-msgstr ""
+msgstr "Desative esta opção para apenas ler os artigos agora e vinculá-los mais tarde no separador Instalador."
 
 #: assets/build/admin/index.js:10 assets/build/admin/index.js:13
 msgid "The installation could not start."
-msgstr ""
+msgstr "Não foi possível iniciar a instalação."
 
 #: assets/build/admin/index.js:10
 msgid "Start"
-msgstr ""
+msgstr "Iniciar"
 
 #: assets/build/admin/index.js:10
 msgid "The installation is done."
-msgstr ""
+msgstr "A instalação está concluída."
 
 #: assets/build/admin/index.js:10
 msgid "The installation stopped."
-msgstr ""
+msgstr "A instalação parou."
 
 #. translators: %s: the plugin version
 #: assets/build/admin/index.js:13
 msgid "Version %s"
-msgstr ""
+msgstr "Versão %s"
 
 #: assets/build/admin/index.js:13
 msgid "Premium"
-msgstr ""
+msgstr "Premium"
 
 #: assets/build/admin/index.js:13
-#, fuzzy
 msgid "Related Posts settings"
-msgstr "Opções do Related Posts"
+msgstr "Definições do Related Posts"
 
 #: assets/build/admin/index.js:13
 msgid "Unsaved changes"
-msgstr ""
+msgstr "Alterações não guardadas"
 
 #: assets/build/admin/index.js:13
 msgid "You have unsaved changes."
-msgstr ""
+msgstr "Tem alterações não guardadas."
 
 #: assets/build/admin/index.js:13
 msgid "Discard"
-msgstr ""
+msgstr "Descartar"
 
 #: assets/build/admin/index.js:13
-#, fuzzy
 msgid "Settings saved."
-msgstr "Configurações"
+msgstr "Definições guardadas."
 
 #: assets/build/admin/index.js:13
 msgid "The settings could not be saved."
-msgstr ""
+msgstr "Não foi possível guardar as definições."
 
 #: assets/build/admin/index.js:13
 msgid "Save changes"
-msgstr ""
+msgstr "Guardar alterações"
 
 #: assets/build/admin/index.js:13
 msgid "This page does not exist."
-msgstr ""
+msgstr "Esta página não existe."
 
 #: assets/build/admin/index.js:13
 msgid "This option is overwritten by a filter."
-msgstr ""
+msgstr "Esta opção é substituída por um filtro."
 
 #: assets/build/admin/index.js:13
 msgid "Installer"
@@ -599,37 +571,36 @@ msgstr "Instalador"
 
 #: assets/build/admin/index.js:13
 msgid "An installation is running. You can start another one when it is done."
-msgstr ""
+msgstr "Está a decorrer uma instalação. Pode iniciar outra quando esta terminar."
 
 #: assets/build/admin/index.js:13
-#, fuzzy
 msgid "Link new posts"
-msgstr "Link dos Posts"
+msgstr "Vincular novos artigos"
 
 #: assets/build/admin/index.js:13
 msgid "Read and link the posts that are not linked yet, for example posts from before automatic linking was on. Links that exist stay as they are."
-msgstr ""
+msgstr "Ler e vincular os artigos que ainda não estão vinculados, por exemplo artigos anteriores à ativação da vinculação automática. Os vínculos existentes mantêm-se."
 
 #: assets/build/admin/index.js:13
 msgid "Rebuild everything"
-msgstr ""
+msgstr "Reconstruir tudo"
 
 #: assets/build/admin/index.js:13
 msgid "Start over: remove every related post link, also the links you added by hand, read all posts again and link them. Your posts themselves are never touched."
-msgstr ""
+msgstr "Recomeçar: remover todos os vínculos a artigos relacionados, incluindo os que adicionou manualmente, ler novamente todos os artigos e vinculá-los. Os seus artigos nunca são alterados."
 
 #: assets/build/admin/index.js:13
 msgid "Rebuild everything?"
-msgstr ""
+msgstr "Reconstruir tudo?"
 
 #: assets/build/admin/index.js:13
 msgid "Remove links and rebuild"
-msgstr ""
+msgstr "Remover vínculos e reconstruir"
 
 #: assets/build/admin/index.js:13
 msgid "Keep my links"
-msgstr ""
+msgstr "Manter os meus vínculos"
 
 #: assets/build/admin/index.js:13
 msgid "Every related post link is removed, including the links you added by hand. This can not be undone."
-msgstr ""
+msgstr "Todos os vínculos a artigos relacionados são removidos, incluindo os que adicionou manualmente. Esta ação não pode ser desfeita."
