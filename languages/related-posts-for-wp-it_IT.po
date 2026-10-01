@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
-"POT-Creation-Date: 2026-10-01T20:48:48+00:00\n"
+"POT-Creation-Date: 2026-10-01T21:00:31+00:00\n"
 "PO-Revision-Date: 2017-09-06 17:20+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Italian (Italy) (http://www.transifex.com/barrykooijplugins/related-posts-for-wordpress/language/it_IT/)\n"
@@ -62,8 +62,7 @@ msgid "Are you sure you want to delete this related post?"
 msgstr "Sei sicuro di voler cancellare questo articolo correlato?"
 
 #: src/Admin/LinkScreen/ListTable.php:63 src/Admin/MetaBox/ManageLinks.php:53
-#: src/Admin/Settings/Page.php:55 src/Admin/Wizard/Page.php:77
-#: src/Settings/Settings.php:181
+#: src/Admin/Wizard/Page.php:77 src/Settings/Settings.php:181
 msgid "Related Posts"
 msgstr "Articoli Correlati"
 
@@ -212,7 +211,13 @@ msgctxt "page title"
 msgid "Related Posts"
 msgstr "Related Posts"
 
-#: src/Admin/Settings/Page.php:82
+#. translators: The label of the settings page in the Settings menu: the name of the plugin, best left as it is.
+#: src/Admin/Settings/Page.php:56
+msgctxt "menu label"
+msgid "Related Posts"
+msgstr "Related Posts"
+
+#: src/Admin/Settings/Page.php:83
 msgid "The settings of Related Posts for WordPress need JavaScript."
 msgstr "Le impostazioni di Related Posts for WordPress richiedono JavaScript."
 

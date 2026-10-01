@@ -52,7 +52,8 @@ class Page implements Module {
 			'options-general.php',
 			/* translators: The title of the settings page: the name of the plugin, best left as it is. */
 			_x( 'Related Posts', 'page title', 'related-posts-for-wp' ),
-			__( 'Related Posts', 'related-posts-for-wp' ),
+			/* translators: The label of the settings page in the Settings menu: the name of the plugin, best left as it is. */
+			_x( 'Related Posts', 'menu label', 'related-posts-for-wp' ),
 			Routes::capability(),
 			self::SLUG,
 			[ self::class, 'render' ]
