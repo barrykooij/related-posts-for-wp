@@ -28,6 +28,7 @@ api.registerRoute( {
 	title: __( 'Installer', 'related-posts-for-wp' ),
 	order: 80,
 	component: Installer,
+	linking: true,
 } );
 
 /** The settings pages that have a tab now, and their paths. */

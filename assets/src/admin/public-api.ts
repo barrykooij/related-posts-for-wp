@@ -27,6 +27,7 @@ export const apiVersion = 1;
 export const registerRoute = registry.registerRoute;
 export const registerFieldType = registry.registerFieldType;
 export const registerSetupStep = registry.registerSetupStep;
+export const unregisterRoute = registry.unregisterRoute;
 
 /** The installer: its state, and starting an installation (which the progress card then follows). */
 export {

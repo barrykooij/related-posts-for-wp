@@ -16,6 +16,8 @@ export interface Route {
 	component: ComponentType;
 	/** Routes in the same group share a tab, titled `title`, with a switcher that shows each route's `label`. */
 	group?: { id: string; title: string; label: string };
+	/** The tab where posts are linked after the first run; texts that send the admin there name its title. */
+	linking?: boolean;
 }
 
 export interface FieldProps< Value = unknown > {
@@ -44,6 +46,8 @@ export interface SetupStep {
 	id: string;
 	order: number;
 	component: ComponentType< SetupStepProps >;
+	/** The step asks for the number of related posts itself, so the card leaves out its own field. */
+	providesAmount?: boolean;
 }
 
 export interface Snapshot {

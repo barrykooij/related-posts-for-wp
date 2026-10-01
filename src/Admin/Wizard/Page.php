@@ -102,7 +102,18 @@ class Page implements Module {
 	 */
 	public static function target(): string {
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Only decides where to send the admin; nothing changes.
-		return SettingsPage::url( isset( $_GET['reinstall'] ) ? 'installer' : 'setup' );
+		if ( ! isset( $_GET['reinstall'] ) ) {
+			return SettingsPage::url( 'setup' );
+		}
+
+		/**
+		 * Filters the tab of the settings screen where posts are linked again, which a link to reinstall opens.
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param string $route The route of the tab, `installer` by default.
+		 */
+		return SettingsPage::url( (string) apply_filters( 'rp4wp_linking_route', 'installer' ) );
 	}
 
 	/**

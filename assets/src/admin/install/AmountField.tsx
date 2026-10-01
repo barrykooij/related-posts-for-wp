@@ -8,6 +8,7 @@ interface Props {
 	value: number;
 	onChange: ( value: number ) => void;
 	help?: string;
+	disabled?: boolean;
 }
 
 /**
@@ -18,8 +19,15 @@ interface Props {
  * @param props.value    The number.
  * @param props.onChange Called with a new number.
  * @param props.help     A line below the field.
+ * @param props.disabled Whether it can't be changed.
  */
-export function AmountField( { schema, value, onChange, help }: Props ) {
+export function AmountField( {
+	schema,
+	value,
+	onChange,
+	help,
+	disabled = false,
+}: Props ) {
 	const min = schema?.minimum ?? 1;
 	const max = schema?.maximum ?? 50;
 	// What is typed, which may be empty or out of range for a moment.
@@ -37,6 +45,7 @@ export function AmountField( { schema, value, onChange, help }: Props ) {
 			className="rp4wp-amount"
 			label={ __( 'Related posts per post', 'related-posts-for-wp' ) }
 			help={ help }
+			disabled={ disabled }
 			type="number"
 			min={ min }
 			max={ max }

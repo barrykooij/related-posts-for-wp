@@ -6,10 +6,10 @@ import {
 	ToggleControl,
 } from '@wordpress/components';
 import { useState } from '@wordpress/element';
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 import { errorMessage } from '../api/client';
 import type { InstallRequest } from '../api/types';
-import { useRegistry } from '../registry/useRegistry';
+import { useLinkingTab, useRegistry } from '../registry/useRegistry';
 import { start, useInstall } from '../store/install';
 import { AmountField, defaultAmount } from './AmountField';
 
@@ -19,11 +19,15 @@ import { AmountField, defaultAmount } from './AmountField';
 export function SetupCard() {
 	const { state, busy } = useInstall();
 	const { setupSteps } = useRegistry();
+	const linkingTab = useLinkingTab();
 	const args = state?.args ?? {};
-	const [ request, setRequestState ] = useState< InstallRequest >( () => ( {
-		amount: defaultAmount( args.amount ),
-		skip_linking: false,
-	} ) );
+	// A step that asks for the number of related posts itself, for example per post type, replaces the card's field.
+	const ownAmount = ! setupSteps.some( ( step ) => step.providesAmount );
+	const [ request, setRequestState ] = useState< InstallRequest >( () =>
+		ownAmount
+			? { amount: defaultAmount( args.amount ), skip_linking: false }
+			: { skip_linking: false }
+	);
 	const [ error, setError ] = useState< string | null >( null );
 
 	const setRequest = ( changes: InstallRequest ) =>
@@ -74,15 +78,17 @@ export function SetupCard() {
 					</p>
 				</div>
 				<div className="rp4wp-setup__form">
-					<AmountField
-						schema={ args.amount }
-						value={ Number( request.amount ) }
-						onChange={ ( amount ) => setRequest( { amount } ) }
-						help={ __(
-							'You can change this later, and link again at any time.',
-							'related-posts-for-wp'
-						) }
-					/>
+					{ ownAmount && (
+						<AmountField
+							schema={ args.amount }
+							value={ Number( request.amount ) }
+							onChange={ ( amount ) => setRequest( { amount } ) }
+							help={ __(
+								'You can change this later, and link again at any time.',
+								'related-posts-for-wp'
+							) }
+						/>
+					) }
 					{ setupSteps.map( ( { id, component: Step } ) => (
 						<Step
 							key={ id }
@@ -97,9 +103,13 @@ export function SetupCard() {
 							'Link the posts right away',
 							'related-posts-for-wp'
 						) }
-						help={ __(
-							'Turn this off to only read the posts now, and link them later from the Installer tab.',
-							'related-posts-for-wp'
+						help={ sprintf(
+							/** translators: %s: the name of a tab of the settings screen, for example Installer */
+							__(
+								'Turn this off to only read the posts now, and link them later from the %s tab.',
+								'related-posts-for-wp'
+							),
+							linkingTab
 						) }
 						checked={ ! request.skip_linking }
 						onChange={ ( checked: boolean ) =>

@@ -148,6 +148,14 @@ final class SettingsPageTest extends TestCase {
 		// The 2.x "Rebuild" link removed everything right away; now it only opens the installer, which asks first.
 		$_GET['reinstall'] = '1';
 		$this->assertSame( Page::url( 'installer' ), WizardPage::target() );
+
+		// Premium links the posts on its Post types tab.
+		$tab = static function () {
+			return 'post-types';
+		};
+		add_filter( 'rp4wp_linking_route', $tab );
+		$this->assertSame( Page::url( 'post-types' ), WizardPage::target() );
+		remove_filter( 'rp4wp_linking_route', $tab );
 		unset( $_GET['reinstall'] );
 	}
 

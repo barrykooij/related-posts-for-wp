@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
-"POT-Creation-Date: 2026-10-01T21:00:31+00:00\n"
+"POT-Creation-Date: 2026-10-01T22:38:07+00:00\n"
 "PO-Revision-Date: 2026-10-01 12:00+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Norwegian (Bokmal)\n"
@@ -203,7 +203,7 @@ msgstr "Oppgrader til Premium"
 
 #. translators: The title of the settings page: the name of the plugin, best left as it is.
 #: src/Admin/Settings/Page.php:54 src/Admin/Wizard/Page.php:76
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgctxt "page title"
 msgid "Related Posts"
 msgstr "Related Posts"
@@ -218,7 +218,7 @@ msgstr "Related Posts"
 msgid "The settings of Related Posts for WordPress need JavaScript."
 msgstr "Innstillingene for Related Posts for WordPress krever JavaScript."
 
-#: src/Admin/Wizard/Page.php:123
+#: src/Admin/Wizard/Page.php:134
 msgid "Go to the settings of Related Posts for WordPress"
 msgstr "Gå til innstillingene for Related Posts for WordPress"
 
@@ -375,6 +375,10 @@ msgstr "Innstillingene kunne ikke lastes inn."
 msgid "The installer could not be reached."
 msgstr "Fikk ikke kontakt med installasjonen."
 
+#: assets/build/admin/index.js:1 assets/build/admin/index.js:22
+msgid "Installer"
+msgstr "Installasjon"
+
 #: assets/build/admin/index.js:1
 msgid "All set! Your posts are linked."
 msgstr "Ferdig! Innleggene dine er koblet."
@@ -387,228 +391,226 @@ msgstr "Ferdig! Innleggene dine er lest."
 msgid "Every post shows its related posts now, and new posts are linked when you publish them."
 msgstr "Hvert innlegg viser nå sine relaterte innlegg, og nye innlegg kobles når du publiserer dem."
 
-#: assets/build/admin/index.js:1
-msgid "Link them from the Installer tab when you are ready."
-msgstr "Koble dem fra fanen Installasjon når du er klar."
+#. translators: %s: the name of a tab of the settings screen, for example Installer
+#: assets/build/admin/index.js:4
+msgid "Link them from the %s tab when you are ready."
+msgstr "Koble dem fra fanen %s når du er klar."
 
-#: assets/build/admin/index.js:1
+#: assets/build/admin/index.js:4
 msgid "Close"
 msgstr "Lukk"
 
-#: assets/build/admin/index.js:1
+#: assets/build/admin/index.js:4
 msgid "Less than a minute left"
 msgstr "Mindre enn ett minutt igjen"
 
 #. translators: %s: a number of minutes
-#: assets/build/admin/index.js:4
+#: assets/build/admin/index.js:7
 msgid "About %s minute left"
 msgid_plural "About %s minutes left"
 msgstr[0] "Omtrent %s minutt igjen"
 msgstr[1] "Omtrent %s minutter igjen"
 
 #. translators: 1: posts done, 2: all posts
-#: assets/build/admin/index.js:7
+#: assets/build/admin/index.js:10
 msgid "%1$s of %2$s posts"
 msgstr "%1$s av %2$s innlegg"
 
-#: assets/build/admin/index.js:7
+#: assets/build/admin/index.js:10
 msgid "The installation stopped"
 msgstr "Installasjonen stoppet"
 
-#: assets/build/admin/index.js:7
+#: assets/build/admin/index.js:10
 msgid "The installation was cancelled"
 msgstr "Installasjonen ble avbrutt"
 
-#: assets/build/admin/index.js:7
+#: assets/build/admin/index.js:10
 msgid "Linking your related posts"
 msgstr "Kobler de relaterte innleggene dine"
 
-#: assets/build/admin/index.js:7
+#: assets/build/admin/index.js:10
 msgid "This runs in the background. You can leave this page; it goes on without you."
 msgstr "Dette kjører i bakgrunnen. Du kan forlate denne siden; det fortsetter uten deg."
 
 #. translators: %d: how far the installation is, in percent
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "%d%%"
 msgstr "%d %%"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Installation progress"
 msgstr "Fremdrift for installasjonen"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Background processing is slow on this site, so this page is doing the work now. Keep it open to finish sooner, or come back later."
 msgstr "Bakgrunnsprosessering er treg på dette nettstedet, så denne siden gjør jobben nå. Hold den åpen for å bli ferdig raskere, eller kom tilbake senere."
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Something went wrong."
 msgstr "Noe gikk galt."
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "What was done so far is kept. Resume to finish the rest."
 msgstr "Det som er gjort så langt, blir beholdt. Gjenoppta for å fullføre resten."
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "The installation could not resume."
 msgstr "Installasjonen kunne ikke gjenopptas."
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Resume"
 msgstr "Gjenoppta"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Cancel the installation?"
 msgstr "Avbryte installasjonen?"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Cancel installation"
 msgstr "Avbryt installasjonen"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Keep running"
 msgstr "Fortsett"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "The installation could not be cancelled."
 msgstr "Installasjonen kunne ikke avbrytes."
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "What was done so far is kept, and you can resume later."
 msgstr "Det som er gjort så langt, blir beholdt, og du kan gjenoppta senere."
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Related posts per post"
 msgstr "Relaterte innlegg per innlegg"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Get started"
 msgstr "Kom i gang"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Let's link your related posts"
 msgstr "La oss koble de relaterte innleggene dine"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Related Posts reads your posts once to learn what each one is about, then links every post to the posts that are most related to it."
 msgstr "Related Posts leser innleggene dine én gang for å finne ut hva hvert av dem handler om, og kobler deretter hvert innlegg til de innleggene som er mest relatert til det."
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "It runs in the background, so you can leave this page while it works."
 msgstr "Det kjører i bakgrunnen, så du kan forlate denne siden mens det pågår."
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "You can change this later, and link again at any time."
 msgstr "Du kan endre dette senere, og koble på nytt når som helst."
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Link the posts right away"
 msgstr "Koble innleggene med en gang"
 
-#: assets/build/admin/index.js:10
-msgid "Turn this off to only read the posts now, and link them later from the Installer tab."
-msgstr "Slå av dette for bare å lese innleggene nå, og koble dem senere fra fanen Installasjon."
+#. translators: %s: the name of a tab of the settings screen, for example Installer
+#: assets/build/admin/index.js:16
+msgid "Turn this off to only read the posts now, and link them later from the %s tab."
+msgstr "Slå av dette for bare å lese innleggene nå, og koble dem senere fra fanen %s."
 
-#: assets/build/admin/index.js:10 assets/build/admin/index.js:16
+#: assets/build/admin/index.js:16 assets/build/admin/index.js:22
 msgid "The installation could not start."
 msgstr "Installasjonen kunne ikke starte."
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:16
 msgid "Start"
 msgstr "Start"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:16
 msgid "The installation is done."
 msgstr "Installasjonen er ferdig."
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:16
 msgid "The installation stopped."
 msgstr "Installasjonen stoppet."
 
 #. translators: %s: the plugin version
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:19
 msgid "Version %s"
 msgstr "Versjon %s"
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Premium"
 msgstr "Premium"
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Related Posts settings"
 msgstr "Innstillinger for Related Posts"
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Unsaved changes"
 msgstr "Ulagrede endringer"
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "You have unsaved changes."
 msgstr "Du har ulagrede endringer."
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Discard"
 msgstr "Forkast"
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Settings saved."
 msgstr "Innstillingene er lagret."
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "The settings could not be saved."
 msgstr "Innstillingene kunne ikke lagres."
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Save changes"
 msgstr "Lagre endringer"
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "This page does not exist."
 msgstr "Denne siden finnes ikke."
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "This option is overwritten by a filter."
 msgstr "Dette alternativet overstyres av et filter."
 
-#: assets/build/admin/index.js:16
-msgid "Installer"
-msgstr "Installasjon"
-
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "An installation is running. You can start another one when it is done."
 msgstr "En installasjon kjører. Du kan starte en ny når den er ferdig."
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Link new posts"
 msgstr "Koble nye innlegg"
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Read and link the posts that are not linked yet, for example posts from before automatic linking was on. Links that exist stay as they are."
 msgstr "Les og koble innleggene som ikke er koblet ennå, for eksempel innlegg fra før automatisk kobling var slått på. Eksisterende koblinger forblir som de er."
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Rebuild everything"
 msgstr "Bygg opp alt på nytt"
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Start over: remove every related post link, also the links you added by hand, read all posts again and link them. Your posts themselves are never touched."
 msgstr "Begynn på nytt: fjern alle koblinger til relaterte innlegg, også koblingene du har lagt til manuelt, les alle innleggene på nytt og koble dem. Selve innleggene dine blir aldri endret."
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Rebuild everything?"
 msgstr "Bygge opp alt på nytt?"
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Remove links and rebuild"
 msgstr "Fjern koblinger og bygg på nytt"
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Keep my links"
 msgstr "Behold koblingene mine"
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Every related post link is removed, including the links you added by hand. This can not be undone."
 msgstr "Alle koblinger til relaterte innlegg fjernes, også koblingene du har lagt til manuelt. Dette kan ikke angres."

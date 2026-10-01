@@ -1,7 +1,8 @@
 import { Button, Card, CardBody } from '@wordpress/components';
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 import { Icon, check } from '@wordpress/icons';
 import type { Job } from '../api/types';
+import { useLinkingTab } from '../registry/useRegistry';
 
 interface Props {
 	job: Job;
@@ -17,6 +18,7 @@ interface Props {
  */
 export function DoneCard( { job, onClose }: Props ) {
 	const linked = ! job.request.skip_linking;
+	const linkingTab = useLinkingTab();
 
 	return (
 		<Card className="rp4wp-card rp4wp-done">
@@ -42,9 +44,13 @@ export function DoneCard( { job, onClose }: Props ) {
 									'Every post shows its related posts now, and new posts are linked when you publish them.',
 									'related-posts-for-wp'
 								)
-							: __(
-									'Link them from the Installer tab when you are ready.',
-									'related-posts-for-wp'
+							: sprintf(
+									/** translators: %s: the name of a tab of the settings screen, for example Installer */
+									__(
+										'Link them from the %s tab when you are ready.',
+										'related-posts-for-wp'
+									),
+									linkingTab
 								) }
 					</p>
 				</div>

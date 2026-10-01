@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
-"POT-Creation-Date: 2026-10-01T21:00:31+00:00\n"
+"POT-Creation-Date: 2026-10-01T22:38:07+00:00\n"
 "PO-Revision-Date: 2026-10-01 12:00+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Czech\n"
@@ -203,7 +203,7 @@ msgstr "Přejít na Premium"
 
 #. translators: The title of the settings page: the name of the plugin, best left as it is.
 #: src/Admin/Settings/Page.php:54 src/Admin/Wizard/Page.php:76
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgctxt "page title"
 msgid "Related Posts"
 msgstr "Related Posts"
@@ -218,7 +218,7 @@ msgstr "Related Posts"
 msgid "The settings of Related Posts for WordPress need JavaScript."
 msgstr "Nastavení pluginu Related Posts for WordPress vyžaduje JavaScript."
 
-#: src/Admin/Wizard/Page.php:123
+#: src/Admin/Wizard/Page.php:134
 msgid "Go to the settings of Related Posts for WordPress"
 msgstr "Přejít do nastavení pluginu Related Posts for WordPress"
 
@@ -375,6 +375,10 @@ msgstr "Nastavení se nepodařilo načíst."
 msgid "The installer could not be reached."
 msgstr "Nepodařilo se spojit s instalátorem."
 
+#: assets/build/admin/index.js:1 assets/build/admin/index.js:22
+msgid "Installer"
+msgstr "Instalátor"
+
 #: assets/build/admin/index.js:1
 msgid "All set! Your posts are linked."
 msgstr "Hotovo! Vaše příspěvky jsou propojené."
@@ -387,20 +391,21 @@ msgstr "Hotovo! Vaše příspěvky jsou přečtené."
 msgid "Every post shows its related posts now, and new posts are linked when you publish them."
 msgstr "Každý příspěvek nyní zobrazuje své související příspěvky a nové příspěvky se propojí, jakmile je publikujete."
 
-#: assets/build/admin/index.js:1
-msgid "Link them from the Installer tab when you are ready."
-msgstr "Až budete připraveni, propojte je na kartě Instalátor."
+#. translators: %s: the name of a tab of the settings screen, for example Installer
+#: assets/build/admin/index.js:4
+msgid "Link them from the %s tab when you are ready."
+msgstr "Až budete připraveni, propojte je na kartě %s."
 
-#: assets/build/admin/index.js:1
+#: assets/build/admin/index.js:4
 msgid "Close"
 msgstr "Zavřít"
 
-#: assets/build/admin/index.js:1
+#: assets/build/admin/index.js:4
 msgid "Less than a minute left"
 msgstr "Zbývá méně než minuta"
 
 #. translators: %s: a number of minutes
-#: assets/build/admin/index.js:4
+#: assets/build/admin/index.js:7
 msgid "About %s minute left"
 msgid_plural "About %s minutes left"
 msgstr[0] "Zbývá asi %s minuta"
@@ -408,208 +413,205 @@ msgstr[1] "Zbývají asi %s minuty"
 msgstr[2] "Zbývá asi %s minut"
 
 #. translators: 1: posts done, 2: all posts
-#: assets/build/admin/index.js:7
+#: assets/build/admin/index.js:10
 msgid "%1$s of %2$s posts"
 msgstr "%1$s z %2$s příspěvků"
 
-#: assets/build/admin/index.js:7
+#: assets/build/admin/index.js:10
 msgid "The installation stopped"
 msgstr "Instalace se zastavila"
 
-#: assets/build/admin/index.js:7
+#: assets/build/admin/index.js:10
 msgid "The installation was cancelled"
 msgstr "Instalace byla zrušena"
 
-#: assets/build/admin/index.js:7
+#: assets/build/admin/index.js:10
 msgid "Linking your related posts"
 msgstr "Propojování vašich souvisejících příspěvků"
 
-#: assets/build/admin/index.js:7
+#: assets/build/admin/index.js:10
 msgid "This runs in the background. You can leave this page; it goes on without you."
 msgstr "Probíhá to na pozadí. Tuto stránku můžete opustit; vše poběží dál i bez vás."
 
 #. translators: %d: how far the installation is, in percent
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "%d%%"
 msgstr "%d %%"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Installation progress"
 msgstr "Průběh instalace"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Background processing is slow on this site, so this page is doing the work now. Keep it open to finish sooner, or come back later."
 msgstr "Úlohy na pozadí jsou na tomto webu pomalé, takže práci teď vykonává tato stránka. Nechte ji otevřenou, aby vše skončilo dříve, nebo se vraťte později."
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Something went wrong."
 msgstr "Něco se pokazilo."
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "What was done so far is kept. Resume to finish the rest."
 msgstr "Vše, co už bylo hotovo, zůstane zachováno. Pokračováním dokončíte zbytek."
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Cancel"
 msgstr "Zrušit"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "The installation could not resume."
 msgstr "V instalaci se nepodařilo pokračovat."
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Resume"
 msgstr "Pokračovat"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Cancel the installation?"
 msgstr "Zrušit instalaci?"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Cancel installation"
 msgstr "Zrušit instalaci"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Keep running"
 msgstr "Nechat běžet"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "The installation could not be cancelled."
 msgstr "Instalaci se nepodařilo zrušit."
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "What was done so far is kept, and you can resume later."
 msgstr "Vše, co už bylo hotovo, zůstane zachováno a pokračovat můžete později."
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Related posts per post"
 msgstr "Počet souvisejících příspěvků u příspěvku"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Get started"
 msgstr "Začínáme"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Let's link your related posts"
 msgstr "Pojďme propojit vaše související příspěvky"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Related Posts reads your posts once to learn what each one is about, then links every post to the posts that are most related to it."
 msgstr "Related Posts jednou přečte vaše příspěvky, aby zjistil, o čem každý z nich je, a pak propojí každý příspěvek s příspěvky, které s ním nejvíce souvisejí."
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "It runs in the background, so you can leave this page while it works."
 msgstr "Probíhá to na pozadí, takže tuto stránku můžete mezitím opustit."
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "You can change this later, and link again at any time."
 msgstr "Později to můžete změnit a kdykoli propojit znovu."
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Link the posts right away"
 msgstr "Propojit příspěvky hned"
 
-#: assets/build/admin/index.js:10
-msgid "Turn this off to only read the posts now, and link them later from the Installer tab."
-msgstr "Vypněte, chcete-li příspěvky teď jen přečíst a propojit je později na kartě Instalátor."
+#. translators: %s: the name of a tab of the settings screen, for example Installer
+#: assets/build/admin/index.js:16
+msgid "Turn this off to only read the posts now, and link them later from the %s tab."
+msgstr "Vypněte, chcete-li příspěvky teď jen přečíst a propojit je později na kartě %s."
 
-#: assets/build/admin/index.js:10 assets/build/admin/index.js:16
+#: assets/build/admin/index.js:16 assets/build/admin/index.js:22
 msgid "The installation could not start."
 msgstr "Instalaci se nepodařilo spustit."
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:16
 msgid "Start"
 msgstr "Spustit"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:16
 msgid "The installation is done."
 msgstr "Instalace je dokončena."
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:16
 msgid "The installation stopped."
 msgstr "Instalace se zastavila."
 
 #. translators: %s: the plugin version
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:19
 msgid "Version %s"
 msgstr "Verze %s"
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Premium"
 msgstr "Premium"
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Related Posts settings"
 msgstr "Nastavení Related Posts"
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Unsaved changes"
 msgstr "Neuložené změny"
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "You have unsaved changes."
 msgstr "Máte neuložené změny."
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Discard"
 msgstr "Zahodit"
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Settings saved."
 msgstr "Nastavení bylo uloženo."
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "The settings could not be saved."
 msgstr "Nastavení se nepodařilo uložit."
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Save changes"
 msgstr "Uložit změny"
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "This page does not exist."
 msgstr "Tato stránka neexistuje."
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "This option is overwritten by a filter."
 msgstr "Tato možnost je přepsána filtrem."
 
-#: assets/build/admin/index.js:16
-msgid "Installer"
-msgstr "Instalátor"
-
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "An installation is running. You can start another one when it is done."
 msgstr "Probíhá instalace. Další můžete spustit, až bude dokončena."
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Link new posts"
 msgstr "Propojit nové příspěvky"
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Read and link the posts that are not linked yet, for example posts from before automatic linking was on. Links that exist stay as they are."
 msgstr "Přečte a propojí příspěvky, které ještě nejsou propojené, například příspěvky z doby před zapnutím automatického propojování. Stávající propojení zůstanou beze změny."
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Rebuild everything"
 msgstr "Vše znovu sestavit"
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Start over: remove every related post link, also the links you added by hand, read all posts again and link them. Your posts themselves are never touched."
 msgstr "Začít znovu: odstraní všechna propojení souvisejících příspěvků, včetně těch, která jste přidali ručně, znovu přečte všechny příspěvky a propojí je. Samotné příspěvky zůstanou vždy nedotčené."
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Rebuild everything?"
 msgstr "Vše znovu sestavit?"
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Remove links and rebuild"
 msgstr "Odstranit propojení a sestavit znovu"
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Keep my links"
 msgstr "Ponechat moje propojení"
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Every related post link is removed, including the links you added by hand. This can not be undone."
 msgstr "Všechna propojení souvisejících příspěvků budou odstraněna, včetně těch, která jste přidali ručně. Tuto akci nelze vrátit zpět."

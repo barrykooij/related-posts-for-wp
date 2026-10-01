@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
-"POT-Creation-Date: 2026-10-01T21:00:31+00:00\n"
+"POT-Creation-Date: 2026-10-01T22:38:07+00:00\n"
 "PO-Revision-Date: 2026-10-01 12:00+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Turkish\n"
@@ -203,7 +203,7 @@ msgstr "Premium'a yükselt"
 
 #. translators: The title of the settings page: the name of the plugin, best left as it is.
 #: src/Admin/Settings/Page.php:54 src/Admin/Wizard/Page.php:76
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgctxt "page title"
 msgid "Related Posts"
 msgstr "Related Posts"
@@ -218,7 +218,7 @@ msgstr "Related Posts"
 msgid "The settings of Related Posts for WordPress need JavaScript."
 msgstr "Related Posts for WordPress ayarları için JavaScript gerekir."
 
-#: src/Admin/Wizard/Page.php:123
+#: src/Admin/Wizard/Page.php:134
 msgid "Go to the settings of Related Posts for WordPress"
 msgstr "Related Posts for WordPress ayarlarına git"
 
@@ -375,6 +375,10 @@ msgstr "Ayarlar yüklenemedi."
 msgid "The installer could not be reached."
 msgstr "Kurulum aracına ulaşılamadı."
 
+#: assets/build/admin/index.js:1 assets/build/admin/index.js:22
+msgid "Installer"
+msgstr "Kurulum"
+
 #: assets/build/admin/index.js:1
 msgid "All set! Your posts are linked."
 msgstr "Her şey hazır! Yazılarınız bağlandı."
@@ -387,228 +391,226 @@ msgstr "Her şey hazır! Yazılarınız okundu."
 msgid "Every post shows its related posts now, and new posts are linked when you publish them."
 msgstr "Artık her yazı kendi ilgili yazılarını gösteriyor; yeni yazılar da yayımladığınızda bağlanır."
 
-#: assets/build/admin/index.js:1
-msgid "Link them from the Installer tab when you are ready."
-msgstr "Hazır olduğunuzda onları Kurulum sekmesinden bağlayın."
+#. translators: %s: the name of a tab of the settings screen, for example Installer
+#: assets/build/admin/index.js:4
+msgid "Link them from the %s tab when you are ready."
+msgstr "Hazır olduğunuzda onları %s sekmesinden bağlayın."
 
-#: assets/build/admin/index.js:1
+#: assets/build/admin/index.js:4
 msgid "Close"
 msgstr "Kapat"
 
-#: assets/build/admin/index.js:1
+#: assets/build/admin/index.js:4
 msgid "Less than a minute left"
 msgstr "Bir dakikadan az kaldı"
 
 #. translators: %s: a number of minutes
-#: assets/build/admin/index.js:4
+#: assets/build/admin/index.js:7
 msgid "About %s minute left"
 msgid_plural "About %s minutes left"
 msgstr[0] "Yaklaşık %s dakika kaldı"
 msgstr[1] "Yaklaşık %s dakika kaldı"
 
 #. translators: 1: posts done, 2: all posts
-#: assets/build/admin/index.js:7
+#: assets/build/admin/index.js:10
 msgid "%1$s of %2$s posts"
 msgstr "%1$s / %2$s yazı"
 
-#: assets/build/admin/index.js:7
+#: assets/build/admin/index.js:10
 msgid "The installation stopped"
 msgstr "Kurulum durdu"
 
-#: assets/build/admin/index.js:7
+#: assets/build/admin/index.js:10
 msgid "The installation was cancelled"
 msgstr "Kurulum iptal edildi"
 
-#: assets/build/admin/index.js:7
+#: assets/build/admin/index.js:10
 msgid "Linking your related posts"
 msgstr "İlgili yazılarınız bağlanıyor"
 
-#: assets/build/admin/index.js:7
+#: assets/build/admin/index.js:10
 msgid "This runs in the background. You can leave this page; it goes on without you."
 msgstr "Bu işlem arka planda çalışır. Bu sayfadan ayrılabilirsiniz; işlem siz olmadan devam eder."
 
 #. translators: %d: how far the installation is, in percent
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "%d%%"
 msgstr "%%%d"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Installation progress"
 msgstr "Kurulum ilerlemesi"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Background processing is slow on this site, so this page is doing the work now. Keep it open to finish sooner, or come back later."
 msgstr "Bu sitede arka plan işlemleri yavaş, bu yüzden işi şu anda bu sayfa yapıyor. Daha çabuk bitirmek için sayfayı açık tutun ya da daha sonra geri gelin."
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Something went wrong."
 msgstr "Bir şeyler ters gitti."
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "What was done so far is kept. Resume to finish the rest."
 msgstr "Şimdiye kadar yapılanlar korunur. Kalanını bitirmek için sürdürün."
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Cancel"
 msgstr "İptal"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "The installation could not resume."
 msgstr "Kurulum sürdürülemedi."
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Resume"
 msgstr "Sürdür"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Cancel the installation?"
 msgstr "Kurulum iptal edilsin mi?"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Cancel installation"
 msgstr "Kurulumu iptal et"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Keep running"
 msgstr "Devam etsin"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "The installation could not be cancelled."
 msgstr "Kurulum iptal edilemedi."
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "What was done so far is kept, and you can resume later."
 msgstr "Şimdiye kadar yapılanlar korunur ve daha sonra sürdürebilirsiniz."
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Related posts per post"
 msgstr "Yazı başına ilgili yazı"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Get started"
 msgstr "Başlayın"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Let's link your related posts"
 msgstr "İlgili yazılarınızı bağlayalım"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Related Posts reads your posts once to learn what each one is about, then links every post to the posts that are most related to it."
 msgstr "Related Posts, her yazının ne hakkında olduğunu öğrenmek için yazılarınızı bir kez okur, ardından her yazıyı onunla en çok ilgili olan yazılara bağlar."
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "It runs in the background, so you can leave this page while it works."
 msgstr "Arka planda çalışır, bu yüzden işlem sürerken bu sayfadan ayrılabilirsiniz."
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "You can change this later, and link again at any time."
 msgstr "Bunu daha sonra değiştirebilir ve istediğiniz zaman yeniden bağlayabilirsiniz."
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Link the posts right away"
 msgstr "Yazıları hemen bağla"
 
-#: assets/build/admin/index.js:10
-msgid "Turn this off to only read the posts now, and link them later from the Installer tab."
-msgstr "Yazıları şimdi yalnızca okumak ve daha sonra Kurulum sekmesinden bağlamak için bunu kapatın."
+#. translators: %s: the name of a tab of the settings screen, for example Installer
+#: assets/build/admin/index.js:16
+msgid "Turn this off to only read the posts now, and link them later from the %s tab."
+msgstr "Yazıları şimdi yalnızca okumak ve daha sonra %s sekmesinden bağlamak için bunu kapatın."
 
-#: assets/build/admin/index.js:10 assets/build/admin/index.js:16
+#: assets/build/admin/index.js:16 assets/build/admin/index.js:22
 msgid "The installation could not start."
 msgstr "Kurulum başlatılamadı."
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:16
 msgid "Start"
 msgstr "Başlat"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:16
 msgid "The installation is done."
 msgstr "Kurulum tamamlandı."
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:16
 msgid "The installation stopped."
 msgstr "Kurulum durdu."
 
 #. translators: %s: the plugin version
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:19
 msgid "Version %s"
 msgstr "Sürüm %s"
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Premium"
 msgstr "Premium"
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Related Posts settings"
 msgstr "Related Posts ayarları"
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Unsaved changes"
 msgstr "Kaydedilmemiş değişiklikler"
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "You have unsaved changes."
 msgstr "Kaydedilmemiş değişiklikleriniz var."
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Discard"
 msgstr "Vazgeç"
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Settings saved."
 msgstr "Ayarlar kaydedildi."
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "The settings could not be saved."
 msgstr "Ayarlar kaydedilemedi."
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Save changes"
 msgstr "Değişiklikleri kaydet"
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "This page does not exist."
 msgstr "Bu sayfa mevcut değil."
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "This option is overwritten by a filter."
 msgstr "Bu seçenek bir filtre tarafından geçersiz kılınıyor."
 
-#: assets/build/admin/index.js:16
-msgid "Installer"
-msgstr "Kurulum"
-
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "An installation is running. You can start another one when it is done."
 msgstr "Bir kurulum çalışıyor. O tamamlandığında yenisini başlatabilirsiniz."
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Link new posts"
 msgstr "Yeni yazıları bağla"
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Read and link the posts that are not linked yet, for example posts from before automatic linking was on. Links that exist stay as they are."
 msgstr "Henüz bağlanmamış yazıları, örneğin otomatik bağlama açılmadan önceki yazıları okuyun ve bağlayın. Mevcut bağlantılar olduğu gibi kalır."
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Rebuild everything"
 msgstr "Her şeyi yeniden oluştur"
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Start over: remove every related post link, also the links you added by hand, read all posts again and link them. Your posts themselves are never touched."
 msgstr "Baştan başlayın: elle eklediğiniz bağlantılar dahil tüm ilgili yazı bağlantılarını kaldırın, tüm yazıları yeniden okuyun ve bağlayın. Yazılarınızın kendisine asla dokunulmaz."
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Rebuild everything?"
 msgstr "Her şey yeniden oluşturulsun mu?"
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Remove links and rebuild"
 msgstr "Bağlantıları kaldır ve yeniden oluştur"
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Keep my links"
 msgstr "Bağlantılarımı koru"
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:22
 msgid "Every related post link is removed, including the links you added by hand. This can not be undone."
 msgstr "Elle eklediğiniz bağlantılar dahil tüm ilgili yazı bağlantıları kaldırılır. Bu işlem geri alınamaz."
