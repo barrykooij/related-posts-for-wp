@@ -1,481 +1,606 @@
-# Copyright (C) 2024 Never5
+# Copyright (C) 2026 Never5
 # This file is distributed under the GPL v3.
 msgid ""
 msgstr ""
-"Project-Id-Version: Related Posts for WordPress 2.2.3\n"
-"Report-Msgid-Bugs-To: "
-"https://wordpress.org/support/plugin/related-posts-for-wp\n"
-"POT-Creation-Date: 2024-04-16 18:16:11+00:00\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2024-MO-DA HO:MI+ZONE\n"
+"Project-Id-Version: Related Posts for WordPress 3.0.0-rc.3\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"X-Generator: node-wp-i18n 1.2.7\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-01T12:29:25+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: related-posts-for-wp\n"
 
-#: classes/class-dependencies.php:27
-msgid "Error:"
-msgstr ""
-
-#: classes/class-is-installing-notice.php:74
-msgid ""
-"Woah! Looks like we weren't able to finish your Related Posts for WordPress "
-"installation wizard!"
-msgstr ""
-
-#: classes/class-is-installing-notice.php:76
-msgid "%sResume the installation wizard%s or %sdismiss this notice%s"
-msgstr ""
-
-#: classes/class-javascript-strings.php:14
-msgid "Are you sure you want to delete this related post?"
-msgstr ""
-
-#: classes/class-link-related-table.php:46
-#: classes/hooks/class-hook-settings-page.php:17
-#: classes/meta-boxes/class-meta-box-manage.php:32
-#: classes/settings/class-settings.php:67
-msgid "Related Posts"
-msgstr ""
-
-#: classes/class-link-related-table.php:47
-msgid "All Posts"
-msgstr ""
-
-#: classes/class-link-related-table.php:96
-msgid "Title"
-msgstr ""
-
-#: classes/class-link-related-table.php:97
-msgid "Post Date"
-msgstr ""
-
-#: classes/class-link-related-table.php:262
-msgid "Link Post"
-msgstr ""
-
-#: classes/class-link-related-table.php:276
-msgid "View Post"
-msgstr ""
-
-#: classes/class-link-related-table.php:306
-msgid "Link Posts"
-msgstr ""
-
-#: classes/class-multisite-notice.php:10
-msgid ""
-"The free version of Related Posts for WordPress doesn't support WordPress "
-"Multisite/Network!"
-msgstr ""
-
-#: classes/class-multisite-notice.php:12
-msgid "%Upgrade to the premium version%s or disable the plugin."
-msgstr ""
-
-#: classes/class-nag-manager.php:105
-msgid ""
-"You've been using %sRelated Posts for WordPress%s for some time now, could "
-"you please give it a review at wordpress.org?"
-msgstr ""
-
-#: classes/class-nag-manager.php:107
-msgid "%sYes, take me there!%s - %sI've already done this!%s"
-msgstr ""
-
-#: classes/class-playground.php:31
-msgid "Related Posts for WP is not available inside the WordPress Playground!"
-msgstr ""
-
-#: classes/class-playground.php:33
-msgid ""
-"We noticed you're running the plugin in the WordPress playground.\n"
-"                    Our plugin currently doesn't work there, due to "
-"limitation on the side of the WP playground."
-msgstr ""
-
-#: classes/class-playground.php:36
-msgid "For more information regarding our plugin:"
-msgstr ""
-
-#: classes/class-playground.php:39
-msgid "View the tour on relatedpostsforwp.com"
-msgstr ""
-
-#. Plugin Name of the plugin/theme
+#. Plugin Name of the plugin
+#: related-posts-for-wp.php
+#: src/Frontend/Widget.php:28
 msgid "Related Posts for WordPress"
 msgstr ""
 
-#: classes/class-related-posts-widget.php:14
-msgid "Display related posts."
-msgstr ""
-
-#: classes/filters/class-filter-plugin-links.php:23
-msgid "Settings"
-msgstr ""
-
-#: classes/filters/class-filter-plugin-links.php:24
-msgid "Upgrade to Premium"
-msgstr ""
-
-#: classes/hooks/class-hook-link-related-screen.php:178
-msgid "Posts"
-msgstr ""
-
-#: classes/hooks/class-hook-link-related-screen.php:179
-msgid "Cancel linking"
-msgstr ""
-
-#: classes/hooks/class-hook-link-related-screen.php:195
-msgid "Search"
-msgstr ""
-
-#: classes/hooks/class-hook-page-install.php:89
-msgid "Caching Posts"
-msgstr ""
-
-#: classes/hooks/class-hook-page-install.php:90
-msgid "Linking Posts"
-msgstr ""
-
-#: classes/hooks/class-hook-page-install.php:91
-msgid "Finished"
-msgstr ""
-
-#: classes/hooks/class-hook-page-install.php:108
-msgid "Installation"
-msgstr ""
-
-#: classes/hooks/class-hook-page-install.php:156
-msgid "Thank you for choosing Related Posts for WordPress!"
-msgstr ""
-
-#: classes/hooks/class-hook-page-install.php:157
-msgid ""
-"Before you can start using Related Posts for WordPress we need to cache "
-"your current posts."
-msgstr ""
-
-#: classes/hooks/class-hook-page-install.php:158
-msgid ""
-"This is a one time process which might take some time now, depending on the "
-"amount of posts you have, but will ensure your website's performance when "
-"using the plugin."
-msgstr ""
-
-#: classes/hooks/class-hook-page-install.php:160
-msgid ""
-"Do NOT close this window, wait for this process to finish and this wizard "
-"to take you to the next step."
-msgstr ""
-
-#: classes/hooks/class-hook-page-install.php:179
-msgid "Great! All your posts were successfully cached!"
-msgstr ""
-
-#: classes/hooks/class-hook-page-install.php:180
-msgid ""
-"You can let me link your posts, based on what I think is related, to each "
-"other. And don't worry, if I made a mistake at one of your posts you can "
-"easily correct this by editing it manually!"
-msgstr ""
-
-#: classes/hooks/class-hook-page-install.php:181
-msgid ""
-"Want me to start linking posts to each other? Fill in the amount of related "
-"posts each post should have and click on the \"Link now\" button. Rather "
-"link your posts manually? Click \"Skip linking\"."
-msgstr ""
-
-#: classes/hooks/class-hook-page-install.php:182
-msgid ""
-"Do NOT close this window if you click the \"Link now\" button, wait for "
-"this process to finish and this wizard to take you to the next step."
-msgstr ""
-
-#: classes/hooks/class-hook-page-install.php:185
-msgid "Amount of related posts per post:"
-msgstr ""
-
-#: classes/hooks/class-hook-page-install.php:186
-msgid "Link now"
-msgstr ""
-
-#: classes/hooks/class-hook-page-install.php:187
-msgid "Skip linking"
-msgstr ""
-
-#: classes/hooks/class-hook-page-install.php:199
-msgid "That's it, you're good to go!"
-msgstr ""
-
-#: classes/hooks/class-hook-page-install.php:200
-msgid ""
-"Thanks again for using Related Posts for WordPress and if you have any "
-"questions be sure to ask them at the %sWordPress.org forums.%s"
-msgstr ""
-
-#: classes/hooks/class-hook-page-install.php:206
-#: classes/hooks/class-hook-settings-page.php:46
-msgid "Related Posts for WordPress Premium"
-msgstr ""
-
-#: classes/hooks/class-hook-page-install.php:208
-#: classes/hooks/class-hook-settings-page.php:48
-msgid "This plugin has an even better premium version, I am sure you will love it."
-msgstr ""
-
-#: classes/hooks/class-hook-page-install.php:210
-msgid ""
-"Premium features include custom post type support, related post themes, "
-"custom taxonomy support and priority support."
-msgstr ""
-
-#: classes/hooks/class-hook-page-install.php:212
-msgid ""
-"%sMore information about Related Posts for WP Premium (opens in new window) "
-"»%s"
-msgstr ""
-
-#: classes/hooks/class-hook-settings-page.php:50
-msgid "Premium features include:"
-msgstr ""
-
-#: classes/hooks/class-hook-settings-page.php:52
-msgid "Full control over your post display with our configurator"
-msgstr ""
-
-#: classes/hooks/class-hook-settings-page.php:53
-msgid "Related Custom Post Types & Taxonomies to each other"
-msgstr ""
-
-#: classes/hooks/class-hook-settings-page.php:54
-msgid "Ability to Exclude posts from being related"
-msgstr ""
-
-#: classes/hooks/class-hook-settings-page.php:55
-msgid "Keep Manually created links"
-msgstr ""
-
-#: classes/hooks/class-hook-settings-page.php:56
-msgid "Define What you find related by setting weights"
-msgstr ""
-
-#: classes/hooks/class-hook-settings-page.php:57
-msgid "Top notch priority Email support"
-msgstr ""
-
-#: classes/hooks/class-hook-settings-page.php:60
-msgid ""
-"And more features, click the button below to get a full overview including "
-"a demo video!"
-msgstr ""
-
-#: classes/hooks/class-hook-settings-page.php:62
-msgid "%sView All Premium Features%s"
-msgstr ""
-
-#: classes/hooks/class-hook-settings-page.php:66
-msgid "Can we help you?"
-msgstr ""
-
-#: classes/hooks/class-hook-settings-page.php:68
-msgid ""
-"We've covered a lot of general questions in our %sdocumentation%s, is your "
-"question not covered there? Feel free to open a thread at our "
-"%sWordPress.org forum%s."
-msgstr ""
-
-#: classes/hooks/class-hook-settings-page.php:70
-msgid "Did you know our %sPremium customers%s get priority email support?"
-msgstr ""
-
-#: classes/hooks/class-hook-settings-page.php:75
-msgid "Want to help us?"
-msgstr ""
-
-#: classes/hooks/class-hook-settings-page.php:77
-msgid "%sUpgrade to Related Posts for WordPress Premium%s"
-msgstr ""
-
-#: classes/hooks/class-hook-settings-page.php:79
-msgid "%sLeave a ★★★★★ plugin review on WordPress.org%s"
-msgstr ""
-
-#: classes/hooks/class-hook-settings-page.php:81
-msgid "%sTweet about Related Posts for WordPress%s"
-msgstr ""
-
-#: classes/hooks/class-hook-settings-page.php:83
-msgid "%sVote 'works' on the WordPress.org plugin page%s"
-msgstr ""
-
-#: classes/hooks/class-hook-settings-page.php:85
-msgid "Check out our other plugins at Never5.com"
-msgstr ""
-
-#: classes/hooks/class-hook-settings-page.php:90
-msgid "About Never5"
-msgstr ""
-
-#: classes/hooks/class-hook-settings-page.php:94
-msgid ""
-"At %sNever5%s we create high quality premium WordPress plugins, with "
-"extensive support. We offer solutions in related posts, advanced download "
-"management, vehicle management and connecting post types."
-msgstr ""
-
-#: classes/hooks/class-hook-settings-page.php:96
-msgid "%sFollow Never5 on Twitter%s"
-msgstr ""
-
-#: classes/meta-boxes/class-meta-box-manage.php:75
-msgid "Add Related Posts"
-msgstr ""
-
-#: classes/meta-boxes/class-meta-box-manage.php:98
-#: classes/meta-boxes/class-meta-box-manage.php:99
-msgid "Edit Post"
-msgstr ""
-
-#: classes/meta-boxes/class-meta-box-manage.php:101
-#: classes/meta-boxes/class-meta-box-manage.php:102
-msgid "Unlink Related Post"
-msgstr ""
-
-#: classes/meta-boxes/class-meta-box-manage.php:115
-msgid "No related posts found."
-msgstr ""
-
-#: classes/settings/class-settings.php:45
-msgid "General"
-msgstr ""
-
-#: classes/settings/class-settings.php:46
-msgid "The following options affect the general behaviour of the plugin."
-msgstr ""
-
-#: classes/settings/class-settings.php:50
-msgid "Enable"
-msgstr ""
-
-#: classes/settings/class-settings.php:51
-msgid "Checking this will enable automatically linking posts to new posts"
-msgstr ""
-
-#: classes/settings/class-settings.php:57
-msgid "Amount of Posts"
-msgstr ""
-
-#: classes/settings/class-settings.php:58
-msgid "The amount of automatically linked post"
-msgstr ""
-
-#: classes/settings/class-settings.php:64
-msgid "Heading text"
-msgstr ""
-
-#: classes/settings/class-settings.php:65
-msgid ""
-"The text that is displayed above the related posts. To disable, leave field "
-"empty."
-msgstr ""
-
-#: classes/settings/class-settings.php:71
-msgid "Excerpt length"
-msgstr ""
-
-#: classes/settings/class-settings.php:72
-msgid ""
-"The amount of words to be displayed below the title on website. To disable, "
-"set value to 0."
-msgstr ""
-
-#: classes/settings/class-settings.php:80
-msgid "Styling"
-msgstr ""
-
-#: classes/settings/class-settings.php:81
-msgid ""
-"The following options affect how related posts are displayed on the "
-"frontend."
-msgstr ""
-
-#: classes/settings/class-settings.php:85
-msgid "Display Image"
-msgstr ""
-
-#: classes/settings/class-settings.php:86
-msgid "Checking this will enable displaying featured images of related posts."
-msgstr ""
-
-#: classes/settings/class-settings.php:92
-msgid "CSS"
-msgstr ""
-
-#: classes/settings/class-settings.php:93
-msgid ""
-"Warning! This is an advanced feature! An error here will break frontend "
-"display. To disable, leave field empty."
-msgstr ""
-
-#: classes/settings/class-settings.php:101
-msgid "Misc"
-msgstr ""
-
-#: classes/settings/class-settings.php:102
-msgid "A shelter for options that just don't fit in anywhere else."
-msgstr ""
-
-#: classes/settings/class-settings.php:106
-msgid "Rebuild posts linkage?"
-msgstr ""
-
-#: classes/settings/class-settings.php:107
-msgid ""
-"Click this button if you want to restart the wizard. Please note that this "
-"will delete all current related post links, also those you've manually "
-"added. Of course, we will never delete your actual posts."
-msgstr ""
-
-#: classes/settings/class-settings.php:110
-msgid "Rebuild"
-msgstr ""
-
-#: classes/settings/class-settings.php:114
-msgid "Remove Data on Uninstall?"
-msgstr ""
-
-#: classes/settings/class-settings.php:115
-msgid ""
-"Check this box if you would like to completely remove all of its data when "
-"the plugin is deleted."
-msgstr ""
-
-#: classes/settings/class-settings.php:121
-msgid "Show love?"
-msgstr ""
-
-#: classes/settings/class-settings.php:122
-msgid ""
-"Display a 'Powered by' line under your related posts. <strong>BEWARE! Only "
-"for the real fans.</strong>"
-msgstr ""
-
-#. Plugin URI of the plugin/theme
+#. Plugin URI of the plugin
+#: related-posts-for-wp.php
 msgid "http://www.relatedpostsforwp.com/"
 msgstr ""
 
-#. Description of the plugin/theme
-msgid ""
-"Related Posts for WordPress, the best way to display related posts in "
-"WordPress."
+#. Description of the plugin
+#: related-posts-for-wp.php
+msgid "Related Posts for WordPress, the best way to display related posts in WordPress."
 msgstr ""
 
-#. Author of the plugin/theme
+#. Author of the plugin
+#: related-posts-for-wp.php
 msgid "Never5"
 msgstr ""
 
-#. Author URI of the plugin/theme
+#. Author URI of the plugin
+#: related-posts-for-wp.php
 msgid "http://www.never5.com/"
+msgstr ""
+
+#. translators: 1: required PHP version, 2: required WordPress version
+#: related-posts-for-wp.php:66
+msgid "Related Posts for WordPress needs PHP %1$s and WordPress %2$s or newer. It does not run on this site until they are updated."
+msgstr ""
+
+#. translators: 1: link opening tag, 2: link closing tag
+#: related-posts-for-wp.php:89
+msgid "Related Posts for WordPress 3.0 works together with Related Posts for WordPress Premium 3.0. Please %1$supdate Premium%2$s. Until then, your current version of Premium keeps working on its own."
+msgstr ""
+
+#: src/Admin/App/Assets.php:104
+msgid "The settings screen of Related Posts for WordPress is missing its scripts. Run npm run build in the plugin folder."
+msgstr ""
+
+#: src/Admin/Assets.php:52
+msgid "Are you sure you want to delete this related post?"
+msgstr ""
+
+#: src/Admin/LinkScreen/ListTable.php:63
+#: src/Admin/MetaBox/ManageLinks.php:53
+#: src/Admin/Settings/Page.php:51
+#: src/Admin/Wizard/Page.php:73
+#: src/Settings/Settings.php:181
+#: assets/build/admin/index.js:13
+msgid "Related Posts"
+msgstr ""
+
+#: src/Admin/LinkScreen/ListTable.php:64
+msgid "All Posts"
+msgstr ""
+
+#: src/Admin/LinkScreen/ListTable.php:118
+msgid "Title"
+msgstr ""
+
+#: src/Admin/LinkScreen/ListTable.php:119
+msgid "Post Date"
+msgstr ""
+
+#: src/Admin/LinkScreen/ListTable.php:301
+msgid "Link Post"
+msgstr ""
+
+#: src/Admin/LinkScreen/ListTable.php:334
+msgid "Link Posts"
+msgstr ""
+
+#: src/Admin/LinkScreen/Page.php:126
+msgid "Posts"
+msgstr ""
+
+#: src/Admin/LinkScreen/Page.php:127
+msgid "Cancel linking"
+msgstr ""
+
+#: src/Admin/LinkScreen/Page.php:136
+msgid "Search"
+msgstr ""
+
+#: src/Admin/MetaBox/ManageLinks.php:81
+msgid "Add Related Posts"
+msgstr ""
+
+#: src/Admin/MetaBox/ManageLinks.php:100
+#: src/Admin/MetaBox/ManageLinks.php:101
+msgid "Edit Post"
+msgstr ""
+
+#: src/Admin/MetaBox/ManageLinks.php:103
+#: src/Admin/MetaBox/ManageLinks.php:104
+msgid "Unlink Related Post"
+msgstr ""
+
+#: src/Admin/MetaBox/ManageLinks.php:115
+msgid "No related posts found."
+msgstr ""
+
+#. translators: %d: how far the installation is, in percent
+#: src/Admin/Notices/Installing.php:70
+msgid "Related Posts for WordPress is linking your posts in the background (%d%%)."
+msgstr ""
+
+#: src/Admin/Notices/Installing.php:73
+msgid "View progress"
+msgstr ""
+
+#: src/Admin/Notices/Installing.php:83
+msgid "The installation of Related Posts for WordPress stopped with an error."
+msgstr ""
+
+#: src/Admin/Notices/Installing.php:84
+msgid "See what happened"
+msgstr ""
+
+#: src/Admin/Notices/Installing.php:95
+msgid "Woah! Looks like we weren't able to finish your Related Posts for WordPress installation wizard!"
+msgstr ""
+
+#: src/Admin/Notices/Installing.php:96
+msgid "Finish the installation"
+msgstr ""
+
+#: src/Admin/Notices/Installing.php:145
+msgid "Dismiss"
+msgstr ""
+
+#: src/Admin/Notices/Mbstring.php:37
+msgid "Error:"
+msgstr ""
+
+#. translators: %s: the name of the PHP extension
+#: src/Admin/Notices/Mbstring.php:40
+msgid "The %s extension needs to be installed and activated for Related Posts for WP to work!"
+msgstr ""
+
+#. translators: %s: the name of the PHP extension
+#: src/Admin/Notices/Mbstring.php:46
+msgid "Please contact your host and ask them to install the %s PHP extension."
+msgstr ""
+
+#: src/Admin/Notices/Multisite.php:32
+msgid "The free version of Related Posts for WordPress doesn't support WordPress Multisite/Network!"
+msgstr ""
+
+#. translators: 1: link opening tag, 2: link closing tag
+#: src/Admin/Notices/Multisite.php:36
+msgid "%1$sUpgrade to the premium version%2$s or disable the plugin."
+msgstr ""
+
+#: src/Admin/Notices/Playground.php:40
+msgid ""
+"We noticed you're running the plugin in the WordPress playground.\n"
+"                    Our plugin currently doesn't work there, due to limitation on the side of the WP playground."
+msgstr ""
+
+#: src/Admin/Notices/Playground.php:47
+msgid "Related Posts for WP is not available inside the WordPress Playground!"
+msgstr ""
+
+#: src/Admin/Notices/Playground.php:49
+msgid "For more information regarding our plugin:"
+msgstr ""
+
+#: src/Admin/Notices/Playground.php:51
+msgid "View the tour on relatedpostsforwp.com"
+msgstr ""
+
+#. translators: 1: bold opening tag, 2: bold closing tag
+#: src/Admin/Notices/Review.php:59
+msgid "You've been using %sRelated Posts for WordPress%s for some time now, could you please give it a review at wordpress.org?"
+msgstr ""
+
+#. translators: 1: review link opening tag, 2: link closing tag, 3: dismiss link opening tag, 4: link closing tag
+#: src/Admin/Notices/Review.php:66
+msgid "%sYes, take me there!%s - %sI've already done this!%s"
+msgstr ""
+
+#: src/Admin/PluginLinks.php:38
+msgid "Settings"
+msgstr ""
+
+#: src/Admin/PluginLinks.php:39
+msgid "Upgrade to Premium"
+msgstr ""
+
+#: src/Admin/Settings/Page.php:74
+msgid "The settings of Related Posts for WordPress need JavaScript."
+msgstr ""
+
+#: src/Admin/Wizard/Page.php:115
+msgid "Go to the settings of Related Posts for WordPress"
+msgstr ""
+
+#: src/Frontend/Widget.php:29
+msgid "Display related posts."
+msgstr ""
+
+#: src/Install/Jobs/Queue.php:89
+msgid "An installation is running already."
+msgstr ""
+
+#: src/Install/Jobs/Queue.php:138
+msgid "There is no stopped installation to resume."
+msgstr ""
+
+#: src/Install/Jobs/Queue.php:279
+msgid "The steps of the installation changed while it ran. Please start it again."
+msgstr ""
+
+#: src/Install/Planner.php:37
+msgid "The number of related posts to link to each post."
+msgstr ""
+
+#: src/Install/Planner.php:44
+msgid "Only cache the words of the posts, and link nothing."
+msgstr ""
+
+#: src/Install/Planner.php:49
+msgid "Remove every link and all cached words first, and install again."
+msgstr ""
+
+#: src/Install/Tasks/CacheWordsTask.php:49
+msgid "Caching posts"
+msgstr ""
+
+#: src/Install/Tasks/LinkPostsTask.php:68
+msgid "Linking posts"
+msgstr ""
+
+#: src/Install/Tasks/ResetTask.php:35
+msgid "Removing the old links and words"
+msgstr ""
+
+#: src/Install/Tasks/SaveAmountTask.php:54
+msgid "Saving the settings"
+msgstr ""
+
+#: src/Rest/InstallController.php:126
+msgid "No installation is running."
+msgstr ""
+
+#: src/Rest/SettingsController.php:49
+msgid "The values to save, by field ID. Fields that are left out keep their value."
+msgstr ""
+
+#. translators: %s: a settings page ID
+#: src/Settings/Schema/Pages.php:164
+msgid "There is no settings page \"%s\"."
+msgstr ""
+
+#: src/Settings/Settings.php:156
+msgid "General"
+msgstr ""
+
+#: src/Settings/Settings.php:157
+msgid "The following options affect the general behaviour of the plugin."
+msgstr ""
+
+#: src/Settings/Settings.php:161
+msgid "Enable"
+msgstr ""
+
+#: src/Settings/Settings.php:162
+msgid "Checking this will enable automatically linking posts to new posts"
+msgstr ""
+
+#: src/Settings/Settings.php:168
+msgid "Amount of Posts"
+msgstr ""
+
+#: src/Settings/Settings.php:169
+msgid "The amount of automatically linked post"
+msgstr ""
+
+#: src/Settings/Settings.php:178
+msgid "Heading text"
+msgstr ""
+
+#: src/Settings/Settings.php:179
+msgid "The text that is displayed above the related posts. To disable, leave field empty."
+msgstr ""
+
+#: src/Settings/Settings.php:185
+msgid "Excerpt length"
+msgstr ""
+
+#: src/Settings/Settings.php:186
+msgid "The amount of words to be displayed below the title on website. To disable, set value to 0."
+msgstr ""
+
+#: src/Settings/Settings.php:196
+msgid "Styling"
+msgstr ""
+
+#: src/Settings/Settings.php:197
+msgid "The following options affect how related posts are displayed on the frontend."
+msgstr ""
+
+#: src/Settings/Settings.php:201
+msgid "Display Image"
+msgstr ""
+
+#: src/Settings/Settings.php:202
+msgid "Checking this will enable displaying featured images of related posts."
+msgstr ""
+
+#: src/Settings/Settings.php:208
+msgid "CSS"
+msgstr ""
+
+#: src/Settings/Settings.php:209
+msgid "Warning! This is an advanced feature! An error here will break frontend display. To disable, leave field empty."
+msgstr ""
+
+#: src/Settings/Settings.php:218
+msgid "Misc"
+msgstr ""
+
+#: src/Settings/Settings.php:219
+msgid "A shelter for options that just don't fit in anywhere else."
+msgstr ""
+
+#: src/Settings/Settings.php:223
+msgid "Remove Data on Uninstall?"
+msgstr ""
+
+#: src/Settings/Settings.php:224
+msgid "Check this box if you would like to completely remove all of its data when the plugin is deleted."
+msgstr ""
+
+#: src/Settings/Settings.php:230
+msgid "Show love?"
+msgstr ""
+
+#: src/Settings/Settings.php:231
+msgid "Display a 'Powered by' line under your related posts. <strong>BEWARE! Only for the real fans.</strong>"
+msgstr ""
+
+#: assets/build/admin/index.js:1
+msgid "The settings could not be loaded."
+msgstr ""
+
+#: assets/build/admin/index.js:1
+msgid "The installer could not be reached."
+msgstr ""
+
+#: assets/build/admin/index.js:1
+msgid "All set! Your posts are linked."
+msgstr ""
+
+#: assets/build/admin/index.js:1
+msgid "All set! Your posts are read."
+msgstr ""
+
+#: assets/build/admin/index.js:1
+msgid "Every post shows its related posts now, and new posts are linked when you publish them."
+msgstr ""
+
+#: assets/build/admin/index.js:1
+msgid "Link them from the Installer tab when you are ready."
+msgstr ""
+
+#: assets/build/admin/index.js:1
+msgid "Close"
+msgstr ""
+
+#: assets/build/admin/index.js:1
+msgid "Less than a minute left"
+msgstr ""
+
+#. translators: %s: a number of minutes
+#: assets/build/admin/index.js:4
+msgid "About %s minute left"
+msgid_plural "About %s minutes left"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: 1: posts done, 2: all posts
+#: assets/build/admin/index.js:7
+msgid "%1$s of %2$s posts"
+msgstr ""
+
+#: assets/build/admin/index.js:7
+msgid "The installation stopped"
+msgstr ""
+
+#: assets/build/admin/index.js:7
+msgid "The installation was cancelled"
+msgstr ""
+
+#: assets/build/admin/index.js:7
+msgid "Linking your related posts"
+msgstr ""
+
+#: assets/build/admin/index.js:7
+msgid "This runs in the background. You can leave this page; it goes on without you."
+msgstr ""
+
+#. translators: %d: how far the installation is, in percent
+#: assets/build/admin/index.js:10
+msgid "%d%%"
+msgstr ""
+
+#: assets/build/admin/index.js:10
+msgid "Installation progress"
+msgstr ""
+
+#: assets/build/admin/index.js:10
+msgid "Background processing is slow on this site, so this page is doing the work now. Keep it open to finish sooner, or come back later."
+msgstr ""
+
+#: assets/build/admin/index.js:10
+msgid "Something went wrong."
+msgstr ""
+
+#: assets/build/admin/index.js:10
+msgid "What was done so far is kept. Resume to finish the rest."
+msgstr ""
+
+#: assets/build/admin/index.js:10
+msgid "Cancel"
+msgstr ""
+
+#: assets/build/admin/index.js:10
+msgid "The installation could not resume."
+msgstr ""
+
+#: assets/build/admin/index.js:10
+msgid "Resume"
+msgstr ""
+
+#: assets/build/admin/index.js:10
+msgid "Cancel the installation?"
+msgstr ""
+
+#: assets/build/admin/index.js:10
+msgid "Cancel installation"
+msgstr ""
+
+#: assets/build/admin/index.js:10
+msgid "Keep running"
+msgstr ""
+
+#: assets/build/admin/index.js:10
+msgid "The installation could not be cancelled."
+msgstr ""
+
+#: assets/build/admin/index.js:10
+msgid "What was done so far is kept, and you can resume later."
+msgstr ""
+
+#: assets/build/admin/index.js:10
+msgid "Related posts per post"
+msgstr ""
+
+#: assets/build/admin/index.js:10
+msgid "Get started"
+msgstr ""
+
+#: assets/build/admin/index.js:10
+msgid "Let's link your related posts"
+msgstr ""
+
+#: assets/build/admin/index.js:10
+msgid "Related Posts reads your posts once to learn what each one is about, then links every post to the posts that are most related to it."
+msgstr ""
+
+#: assets/build/admin/index.js:10
+msgid "It runs in the background, so you can leave this page while it works."
+msgstr ""
+
+#: assets/build/admin/index.js:10
+msgid "You can change this later, and link again at any time."
+msgstr ""
+
+#: assets/build/admin/index.js:10
+msgid "Link the posts right away"
+msgstr ""
+
+#: assets/build/admin/index.js:10
+msgid "Turn this off to only read the posts now, and link them later from the Installer tab."
+msgstr ""
+
+#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
+msgid "The installation could not start."
+msgstr ""
+
+#: assets/build/admin/index.js:10
+msgid "Start"
+msgstr ""
+
+#: assets/build/admin/index.js:10
+msgid "The installation is done."
+msgstr ""
+
+#: assets/build/admin/index.js:10
+msgid "The installation stopped."
+msgstr ""
+
+#. translators: %s: the plugin version
+#: assets/build/admin/index.js:13
+msgid "Version %s"
+msgstr ""
+
+#: assets/build/admin/index.js:13
+msgid "Premium"
+msgstr ""
+
+#: assets/build/admin/index.js:13
+msgid "Related Posts settings"
+msgstr ""
+
+#: assets/build/admin/index.js:13
+msgid "Unsaved changes"
+msgstr ""
+
+#: assets/build/admin/index.js:13
+msgid "You have unsaved changes."
+msgstr ""
+
+#: assets/build/admin/index.js:13
+msgid "Discard"
+msgstr ""
+
+#: assets/build/admin/index.js:13
+msgid "Settings saved."
+msgstr ""
+
+#: assets/build/admin/index.js:13
+msgid "The settings could not be saved."
+msgstr ""
+
+#: assets/build/admin/index.js:13
+msgid "Save changes"
+msgstr ""
+
+#: assets/build/admin/index.js:13
+msgid "This page does not exist."
+msgstr ""
+
+#: assets/build/admin/index.js:13
+msgid "This option is overwritten by a filter."
+msgstr ""
+
+#: assets/build/admin/index.js:13
+msgid "Installer"
+msgstr ""
+
+#: assets/build/admin/index.js:13
+msgid "An installation is running. You can start another one when it is done."
+msgstr ""
+
+#: assets/build/admin/index.js:13
+msgid "Link new posts"
+msgstr ""
+
+#: assets/build/admin/index.js:13
+msgid "Read and link the posts that are not linked yet, for example posts from before automatic linking was on. Links that exist stay as they are."
+msgstr ""
+
+#: assets/build/admin/index.js:13
+msgid "Rebuild everything"
+msgstr ""
+
+#: assets/build/admin/index.js:13
+msgid "Start over: remove every related post link, also the links you added by hand, read all posts again and link them. Your posts themselves are never touched."
+msgstr ""
+
+#: assets/build/admin/index.js:13
+msgid "Rebuild everything?"
+msgstr ""
+
+#: assets/build/admin/index.js:13
+msgid "Remove links and rebuild"
+msgstr ""
+
+#: assets/build/admin/index.js:13
+msgid "Keep my links"
+msgstr ""
+
+#: assets/build/admin/index.js:13
+msgid "Every related post link is removed, including the links you added by hand. This can not be undone."
 msgstr ""

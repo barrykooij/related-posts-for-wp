@@ -36,7 +36,7 @@
     "test:integration:record": "wp-env --config=.wp-env.test.json run cli --env-cwd=wp-content/plugins/related-posts-for-wp bash -c 'RP4WP_UPDATE_GOLDEN=1 vendor/bin/phpunit -c phpunit-integration.xml.dist --group golden'",
     "test:e2e": "playwright test --config=tests/e2e/playwright.config.ts",
     "test:upgrade": "bash scripts/upgrade-test.sh",
-    "i18n:pot": "wp-env run cli --env-cwd=wp-content/plugins/related-posts-for-wp wp i18n make-pot . languages/related-posts-for-wp.pot --exclude=node_modules,vendor,tests,scripts"
+    "i18n:pot": "wp-env run cli --env-cwd=wp-content/plugins/related-posts-for-wp wp i18n make-pot . languages/related-posts-for-wp.pot --exclude=node_modules,vendor,tests,scripts,artifacts,coverage,coverage-integration"
   },
   "devDependencies": {
     "@playwright/test": "^1.55.0",
