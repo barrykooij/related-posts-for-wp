@@ -101,6 +101,36 @@ $breakpoint: 782px;
 	}
 }
 
+// The switcher between the pages of a group
+
+.rp4wp-switcher {
+	display: inline-flex;
+	flex-wrap: wrap;
+	gap: 4px;
+	margin-bottom: var(--rp4wp-gap);
+	padding: 4px;
+	border-radius: var(--rp4wp-radius);
+	background: #e9e9e9;
+}
+
+.rp4wp-switcher__item {
+	padding: 6px 14px;
+	border-radius: 6px;
+	color: inherit;
+	text-decoration: none;
+
+	&:focus {
+		box-shadow: none;
+		outline: 2px solid var(--rp4wp-accent);
+	}
+
+	&[aria-current="page"] {
+		background: var(--rp4wp-surface);
+		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+		font-weight: 600;
+	}
+}
+
 // Cards and fields
 
 .rp4wp-page {

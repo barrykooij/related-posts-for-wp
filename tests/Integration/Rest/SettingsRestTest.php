@@ -172,6 +172,44 @@ final class SettingsRestTest extends RestTestCase {
 		$this->assertSame( 400, $this->request( 'PUT', '/settings/misc', [ 'values' => [ 'docs' => 'x' ] ] )->get_status() );
 	}
 
+	public function test_a_field_can_be_left_out_of_the_app_labels_are_plain_text_and_integers_are_stored_as_such(): void {
+		add_filter(
+			'rp4wp_settings_sections',
+			static function ( array $sections ) {
+				$sections['styling']['fields']['legacy_button'] = [
+					'id'      => 'legacy_button',
+					'label'   => 'Legacy',
+					'type'    => 'button_link',
+					'ui'      => 'none',
+					'default' => '',
+				];
+				$sections['styling']['fields']['columns']       = [
+					'id'      => 'columns',
+					'label'   => esc_html( "Columns' count" ),
+					'type'    => 'text',
+					'schema'  => [
+						'type'    => 'integer',
+						'minimum' => 1,
+					],
+					'default' => '2',
+				];
+
+				return $sections;
+			}
+		);
+		$this->fresh_settings();
+
+		$page   = $this->request( 'GET', '/settings' )->get_data()['pages'][1];
+		$fields = array_column( $page['sections'][0]['fields'], null, 'id' );
+
+		$this->assertArrayNotHasKey( 'legacy_button', $fields );
+		$this->assertSame( "Columns' count", $fields['columns']['label'] );
+		$this->assertSame( 2, ( (array) $page['values'] )['columns'] );
+
+		$this->request( 'PUT', '/settings/styling', [ 'values' => [ 'columns' => 3 ] ] );
+		$this->assertSame( 3, get_option( 'rp4wp' )['columns'] );
+	}
+
 	public function test_fields_added_by_a_filter_are_described_and_saved(): void {
 		add_filter(
 			'rp4wp_settings_sections',

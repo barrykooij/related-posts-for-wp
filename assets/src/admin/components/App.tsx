@@ -7,7 +7,7 @@ import { useHashPath } from '../router/useHashPath';
 import { useInstall } from '../store/install';
 import { useSettings } from '../store/settings';
 import { Header } from './Header';
-import { Navigation } from './Navigation';
+import { GroupSwitcher, Navigation } from './Navigation';
 import { SaveBar } from './SaveBar';
 import { Snackbars } from './Snackbars';
 
@@ -61,8 +61,9 @@ export function App() {
 			{ ! loading && (
 				<>
 					<InstallPanel />
-					<Navigation routes={ routes } current={ route?.path } />
+					<Navigation routes={ routes } current={ route } />
 					<main className="rp4wp-admin__main">
+						<GroupSwitcher routes={ routes } current={ route } />
 						{ Screen ? (
 							<Screen />
 						) : (

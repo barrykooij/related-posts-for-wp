@@ -14,6 +14,8 @@ export interface Route {
 	order: number;
 	/** The screen. */
 	component: ComponentType;
+	/** Routes in the same group share a tab, titled `title`, with a switcher that shows each route's `label`. */
+	group?: { id: string; title: string; label: string };
 }
 
 export interface FieldProps< Value = unknown > {
@@ -79,6 +81,19 @@ export function createRegistry() {
 			);
 
 			update( { routes: [ ...routes, route ].sort( byOrder ) } );
+		},
+
+		/**
+		 * Remove a screen.
+		 *
+		 * @param path The path of the screen.
+		 */
+		unregisterRoute( path: string ): void {
+			update( {
+				routes: snapshot.routes.filter(
+					( existing ) => existing.path !== path
+				),
+			} );
 		},
 
 		/**

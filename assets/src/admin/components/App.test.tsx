@@ -100,6 +100,44 @@ describe( 'App', () => {
 		).toHaveProperty( 'value', '4' );
 	} );
 
+	it( 'shows one tab for a group of screens, with a switcher between them', async () => {
+		const Posts = () => <p>Posts screen</p>;
+		const Books = () => <p>Books screen</p>;
+		// Other tests registered a plain General tab in the same registry; this group has a title of its own.
+		const group = { id: 'by-type', title: 'By post type' };
+
+		registerRoute( {
+			path: 'general_post',
+			title: 'Posts',
+			order: 1,
+			component: Posts,
+			group: { ...group, label: 'Posts' },
+		} );
+		registerRoute( {
+			path: 'general_book',
+			title: 'Books',
+			order: 2,
+			component: Books,
+			group: { ...group, label: 'Books' },
+		} );
+		window.location.hash = '#/general_book';
+
+		render( <App /> );
+
+		const tabs = screen.getByRole( 'navigation' );
+		expect(
+			Array.from( tabs.querySelectorAll( 'a' ) ).filter(
+				( tab ) => tab.textContent === 'By post type'
+			)
+		).toHaveLength( 1 );
+		expect( screen.getByText( 'Books screen' ) ).toBeTruthy();
+		expect(
+			screen
+				.getByRole( 'group', { name: 'By post type' } )
+				.querySelector( '[aria-current="page"]' )?.textContent
+		).toBe( 'Books' );
+	} );
+
 	it( 'shows a screen that is registered after the app mounted', async () => {
 		window.location.hash = '#/late';
 		render( <App /> );

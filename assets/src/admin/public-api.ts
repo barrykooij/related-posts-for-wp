@@ -8,10 +8,34 @@
  */
 import { registry } from './registry/registry';
 
-export type { FieldProps, Route, SetupStep } from './registry/registry';
+export type {
+	FieldProps,
+	Route,
+	SetupStep,
+	SetupStepProps,
+} from './registry/registry';
+export type {
+	ArgSchema,
+	Field,
+	InstallRequest,
+	InstallState,
+	Job,
+} from './api/types';
 
 export const apiVersion = 1;
 
 export const registerRoute = registry.registerRoute;
 export const registerFieldType = registry.registerFieldType;
 export const registerSetupStep = registry.registerSetupStep;
+
+/** The installer: its state, and starting an installation (which the progress card then follows). */
+export {
+	useInstall,
+	start as startInstall,
+	loadInstall,
+} from './store/install';
+
+/** Building blocks for screens that look like the rest of the app. */
+export { notify } from './components/Snackbars';
+export { ConfirmModal } from './components/ConfirmModal';
+export { AmountField, defaultAmount } from './install/AmountField';

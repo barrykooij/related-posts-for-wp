@@ -48,13 +48,13 @@ class Pages implements SettingsSchema {
 
 			$pages[] = [
 				'id'          => (string) $section['id'],
-				'title'       => (string) ( $section['label'] ?? '' ),
+				'title'       => Field::text( $section['label'] ?? '' ),
 				'description' => '',
 				'option'      => Settings::OPTION,
 				'sections'    => [
 					[
 						'id'          => (string) $section['id'],
-						'title'       => (string) ( $section['label'] ?? '' ),
+						'title'       => Field::text( $section['label'] ?? '' ),
 						'description' => wp_kses_post( (string) ( $section['description'] ?? '' ) ),
 						'fields'      => $fields,
 					],
@@ -194,7 +194,7 @@ class Pages implements SettingsSchema {
 		$fields = [];
 
 		foreach ( (array) ( $section['fields'] ?? [] ) as $field ) {
-			if ( is_array( $field ) && isset( $field['id'] ) && '' !== (string) $field['id'] ) {
+			if ( is_array( $field ) && isset( $field['id'] ) && '' !== (string) $field['id'] && Field::is_shown( $field ) ) {
 				$fields[] = $field;
 			}
 		}

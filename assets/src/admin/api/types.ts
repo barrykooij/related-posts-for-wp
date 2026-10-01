@@ -37,6 +37,10 @@ export interface SettingsPage {
 	option: string;
 	sections: Section[];
 	values: Values;
+	/** Pages with the same group share a tab, titled group_title, with a switcher that shows each group_label. */
+	group?: string;
+	group_title?: string;
+	group_label?: string;
 }
 
 export interface InstallStep {

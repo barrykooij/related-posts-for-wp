@@ -11,8 +11,9 @@ namespace LV2\WordPress\RelatedPostsForWP\Settings\Schema;
  * Turns a field of the 2.x settings sections (as `rp4wp_settings_sections` filters them) into what the admin app and
  * the REST API need: its control, the JSON schema of its value, and the value as the app edits it.
  *
- * A field may say how the app shows it with `ui` (for example `number`), limits with `min` and `max`, and its JSON
- * schema with `schema`. Without them the 2.x `type` decides; a type the app does not know is a text field.
+ * A field may say how the app shows it with `ui` (for example `number`, or `none` to leave it out of the app), limits
+ * with `min` and `max`, and its JSON schema with `schema`. Without them the 2.x `type` decides; a type the app does not
+ * know is a text field. A field whose schema is an integer is stored as one.
  */
 class Field {
 
@@ -43,6 +44,28 @@ class Field {
 	}
 
 	/**
+	 * Whether the app shows the field.
+	 *
+	 * @param array<string, mixed> $field The field.
+	 *
+	 * @return bool
+	 */
+	public static function is_shown( array $field ): bool {
+		return 'none' !== self::control( $field );
+	}
+
+	/**
+	 * Plain text from a label of the 2.x settings, which may be escaped HTML.
+	 *
+	 * @param mixed $label The label.
+	 *
+	 * @return string
+	 */
+	public static function text( $label ): string {
+		return html_entity_decode( wp_strip_all_tags( (string) $label ), ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+	}
+
+	/**
 	 * Whether the field holds a value that can be saved; a link does not.
 	 *
 	 * @param array<string, mixed> $field The field.
@@ -50,7 +73,7 @@ class Field {
 	 * @return bool
 	 */
 	public static function is_writable( array $field ): bool {
-		return 'link' !== self::control( $field );
+		return self::is_shown( $field ) && 'link' !== self::control( $field );
 	}
 
 	/**
@@ -66,7 +89,7 @@ class Field {
 		$description = [
 			'id'          => (string) $field['id'],
 			'type'        => $control,
-			'label'       => (string) ( $field['label'] ?? '' ),
+			'label'       => self::text( $field['label'] ?? '' ),
 			'description' => wp_kses_post( (string) ( $field['description'] ?? '' ) ),
 			'default'     => self::from_storage( $field, $field['default'] ?? null ),
 			'filtered'    => $filtered,
@@ -84,7 +107,7 @@ class Field {
 			foreach ( $field['options'] as $value => $label ) {
 				$description['options'][] = [
 					'value' => (string) $value,
-					'label' => (string) $label,
+					'label' => self::text( $label ),
 				];
 			}
 		}
@@ -146,6 +169,10 @@ class Field {
 	 * @return mixed
 	 */
 	public static function from_storage( array $field, $value ) {
+		if ( 'integer' === ( self::json_schema( $field )['type'] ?? null ) ) {
+			return (int) $value;
+		}
+
 		switch ( self::control( $field ) ) {
 			case 'toggle':
 				return 1 === (int) $value;
@@ -173,6 +200,10 @@ class Field {
 	 * @return mixed
 	 */
 	public static function to_storage( array $field, $value ) {
+		if ( 'integer' === ( self::json_schema( $field )['type'] ?? null ) ) {
+			return (int) $value;
+		}
+
 		switch ( self::control( $field ) ) {
 			case 'toggle':
 				return $value ? 1 : 0;

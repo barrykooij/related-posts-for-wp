@@ -12,9 +12,12 @@ namespace LV2\WordPress\RelatedPostsForWP\Contracts;
  * its own pages through `Main::set_settings_schema()`.
  *
  * A page is an array with `id`, `title`, `description`, `option` (the option it is saved in) and `sections`, each
- * with `id`, `title`, `description` and `fields`. A field has `id`, `type` (the control in the admin app), `label`,
- * `description` (HTML, already passed through wp_kses_post()), `default`, `filtered` (a filter decides its value, so
- * it can't be changed here) and, per type, `options`, `min`, `max` or `href`.
+ * with `id`, `title`, `description` and `fields`. Pages with the same `group` share a tab in the app, titled
+ * `group_title`, with a switcher between them that shows each page's `group_label`.
+ *
+ * A field has `id`, `type` (the control in the admin app), `label`, `description` (HTML, already passed through
+ * wp_kses_post()), `default`, `filtered` (a filter decides its value, so it can't be changed here) and, per type,
+ * `options`, `min`, `max` or `href`.
  */
 interface SettingsSchema {
 

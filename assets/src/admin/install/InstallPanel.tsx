@@ -72,20 +72,23 @@ export function InstallPanel() {
 	const job = state?.job ?? null;
 	const running = job?.status === 'running';
 	const [ dismissed, setDismissed ] = useState( dismissedJob );
-	const previous = useRef( job?.status );
+	// The job as this page saw it last; it starts as the job of the page load, which this page did not run.
+	const previous = useRef( job ? { id: job.id, status: job.status } : null );
 	const panel = useRef< HTMLDivElement >( null );
 
 	usePolling( running );
 
-	// Tell screen readers when a job ends, and show the settings it saved.
+	// Tell screen readers when a job ends, and show the settings it saved. A small job can be done before the answer
+	// to its start arrives, so a new job that is done counts as one that ended too.
 	useEffect( () => {
 		const status = job?.status;
+		const before = previous.current;
+		const ended =
+			!! job &&
+			status !== 'running' &&
+			( before?.id !== job.id || before?.status === 'running' );
 
-		if (
-			previous.current === 'running' &&
-			status &&
-			status !== 'running'
-		) {
+		if ( ended ) {
 			if ( status === 'done' ) {
 				speak(
 					__( 'The installation is done.', 'related-posts-for-wp' )
@@ -102,15 +105,15 @@ export function InstallPanel() {
 			}
 		}
 
-		if ( previous.current !== 'running' && status === 'running' ) {
+		if ( status === 'running' && before?.status !== 'running' ) {
 			panel.current?.scrollIntoView?.( {
 				behavior: 'smooth',
 				block: 'nearest',
 			} );
 		}
 
-		previous.current = status;
-	}, [ job?.status ] );
+		previous.current = job ? { id: job.id, status: job.status } : null;
+	}, [ job ] );
 
 	if ( ! loaded || ! state ) {
 		return null;
