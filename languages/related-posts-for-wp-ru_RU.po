@@ -1,0 +1,603 @@
+# Copyright (C) 2026 Never5
+# This file is distributed under the GPL v3.
+msgid ""
+msgstr ""
+"Project-Id-Version: Related Posts for WordPress\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
+"POT-Creation-Date: 2026-10-01T12:29:25+00:00\n"
+"PO-Revision-Date: 2026-10-01 12:00+0000\n"
+"Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
+"Language-Team: Russian\n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : ((n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) ? 1 : 2);\n"
+"X-Domain: related-posts-for-wp\n"
+
+#. Plugin Name of the plugin
+#: related-posts-for-wp.php src/Frontend/Widget.php:28
+msgid "Related Posts for WordPress"
+msgstr "Related Posts for WordPress"
+
+#. Plugin URI of the plugin
+#: related-posts-for-wp.php
+msgid "http://www.relatedpostsforwp.com/"
+msgstr "http://www.relatedpostsforwp.com/"
+
+#. Description of the plugin
+#: related-posts-for-wp.php
+msgid "Related Posts for WordPress, the best way to display related posts in WordPress."
+msgstr "Related Posts for WordPress: лучший способ показывать связанные записи в WordPress."
+
+#. Author of the plugin
+#: related-posts-for-wp.php
+msgid "Never5"
+msgstr "Never5"
+
+#. Author URI of the plugin
+#: related-posts-for-wp.php
+msgid "http://www.never5.com/"
+msgstr "http://www.never5.com/"
+
+#. translators: 1: required PHP version, 2: required WordPress version
+#: related-posts-for-wp.php:66
+msgid "Related Posts for WordPress needs PHP %1$s and WordPress %2$s or newer. It does not run on this site until they are updated."
+msgstr "Для Related Posts for WordPress требуется PHP %1$s и WordPress %2$s или новее. Плагин не будет работать на этом сайте, пока они не обновлены."
+
+#. translators: 1: link opening tag, 2: link closing tag
+#: related-posts-for-wp.php:89
+msgid "Related Posts for WordPress 3.0 works together with Related Posts for WordPress Premium 3.0. Please %1$supdate Premium%2$s. Until then, your current version of Premium keeps working on its own."
+msgstr "Related Posts for WordPress 3.0 работает вместе с Related Posts for WordPress Premium 3.0. %1$sОбновите Premium%2$s. До тех пор ваша текущая версия Premium продолжит работать самостоятельно."
+
+#: src/Admin/App/Assets.php:104
+msgid "The settings screen of Related Posts for WordPress is missing its scripts. Run npm run build in the plugin folder."
+msgstr "На экране настроек Related Posts for WordPress отсутствуют скрипты. Выполните npm run build в папке плагина."
+
+#: src/Admin/Assets.php:52
+msgid "Are you sure you want to delete this related post?"
+msgstr "Вы уверены, что хотите удалить эту связанную запись?"
+
+#: src/Admin/LinkScreen/ListTable.php:63 src/Admin/MetaBox/ManageLinks.php:53
+#: src/Admin/Settings/Page.php:51 src/Admin/Wizard/Page.php:73
+#: src/Settings/Settings.php:181 assets/build/admin/index.js:13
+msgid "Related Posts"
+msgstr "Связанные записи"
+
+#: src/Admin/LinkScreen/ListTable.php:64
+msgid "All Posts"
+msgstr "Все записи"
+
+#: src/Admin/LinkScreen/ListTable.php:118
+msgid "Title"
+msgstr "Название"
+
+#: src/Admin/LinkScreen/ListTable.php:119
+msgid "Post Date"
+msgstr "Дата записи"
+
+#: src/Admin/LinkScreen/ListTable.php:301
+msgid "Link Post"
+msgstr "Связать запись"
+
+#: src/Admin/LinkScreen/ListTable.php:334
+msgid "Link Posts"
+msgstr "Связать записи"
+
+#: src/Admin/LinkScreen/Page.php:126
+msgid "Posts"
+msgstr "Записи"
+
+#: src/Admin/LinkScreen/Page.php:127
+msgid "Cancel linking"
+msgstr "Отменить связывание"
+
+#: src/Admin/LinkScreen/Page.php:136
+msgid "Search"
+msgstr "Поиск"
+
+#: src/Admin/MetaBox/ManageLinks.php:81
+msgid "Add Related Posts"
+msgstr "Добавить связанные записи"
+
+#: src/Admin/MetaBox/ManageLinks.php:100 src/Admin/MetaBox/ManageLinks.php:101
+msgid "Edit Post"
+msgstr "Изменить запись"
+
+#: src/Admin/MetaBox/ManageLinks.php:103 src/Admin/MetaBox/ManageLinks.php:104
+msgid "Unlink Related Post"
+msgstr "Отменить ссылку на связанную запись"
+
+#: src/Admin/MetaBox/ManageLinks.php:115
+msgid "No related posts found."
+msgstr "Связанных записей не найдено."
+
+#. translators: %d: how far the installation is, in percent
+#: src/Admin/Notices/Installing.php:70
+msgid "Related Posts for WordPress is linking your posts in the background (%d%%)."
+msgstr "Related Posts for WordPress связывает ваши записи в фоновом режиме (%d%%)."
+
+#: src/Admin/Notices/Installing.php:73
+msgid "View progress"
+msgstr "Показать ход установки"
+
+#: src/Admin/Notices/Installing.php:83
+msgid "The installation of Related Posts for WordPress stopped with an error."
+msgstr "Установка Related Posts for WordPress остановлена из-за ошибки."
+
+#: src/Admin/Notices/Installing.php:84
+msgid "See what happened"
+msgstr "Посмотреть, что произошло"
+
+#: src/Admin/Notices/Installing.php:95
+msgid "Woah! Looks like we weren't able to finish your Related Posts for WordPress installation wizard!"
+msgstr "Ой! Похоже, нам не удалось завершить работу мастера установки Related Posts for WordPress!"
+
+#: src/Admin/Notices/Installing.php:96
+msgid "Finish the installation"
+msgstr "Завершить установку"
+
+#: src/Admin/Notices/Installing.php:145
+msgid "Dismiss"
+msgstr "Скрыть"
+
+#: src/Admin/Notices/Mbstring.php:37
+msgid "Error:"
+msgstr "Ошибка :"
+
+#. translators: %s: the name of the PHP extension
+#: src/Admin/Notices/Mbstring.php:40
+msgid "The %s extension needs to be installed and activated for Related Posts for WP to work!"
+msgstr "Для работы Related Posts for WP должно быть установлено и включено расширение %s!"
+
+#. translators: %s: the name of the PHP extension
+#: src/Admin/Notices/Mbstring.php:46
+msgid "Please contact your host and ask them to install the %s PHP extension."
+msgstr "Обратитесь к своему хостинг-провайдеру и попросите установить расширение PHP %s."
+
+#: src/Admin/Notices/Multisite.php:32
+msgid "The free version of Related Posts for WordPress doesn't support WordPress Multisite/Network!"
+msgstr "Бесплатная версия Related Posts for WordPress не поддерживает мультисайт/сеть WordPress!"
+
+#. translators: 1: link opening tag, 2: link closing tag
+#: src/Admin/Notices/Multisite.php:36
+msgid "%1$sUpgrade to the premium version%2$s or disable the plugin."
+msgstr "%1$sПерейдите на премиум-версию%2$s или отключите плагин."
+
+#: src/Admin/Notices/Playground.php:40
+msgid ""
+"We noticed you're running the plugin in the WordPress playground.\n"
+"                    Our plugin currently doesn't work there, due to limitation on the side of the WP playground."
+msgstr ""
+"Мы заметили, что вы используете наш плагин в среде WordPress Playground.\n"
+"                   В настоящее время наш плагин не работает в этой среде из-за ограничений со стороны WP Playground."
+
+#: src/Admin/Notices/Playground.php:47
+msgid "Related Posts for WP is not available inside the WordPress Playground!"
+msgstr "Related Posts for WP недоступен в WordPress Playground!"
+
+#: src/Admin/Notices/Playground.php:49
+msgid "For more information regarding our plugin:"
+msgstr "Для получения дополнительной информации о нашем плагине:"
+
+#: src/Admin/Notices/Playground.php:51
+msgid "View the tour on relatedpostsforwp.com"
+msgstr "Ознакомьтесь с обзором на сайте relatedpostsforwp.com"
+
+#. translators: 1: bold opening tag, 2: bold closing tag
+#: src/Admin/Notices/Review.php:59
+msgid "You've been using %sRelated Posts for WordPress%s for some time now, could you please give it a review at wordpress.org?"
+msgstr "Вы уже некоторое время используете %sRelated Posts for WordPress%s. Не могли бы вы оставить отзыв о плагине на сайте wordpress.org?"
+
+#. translators: 1: review link opening tag, 2: link closing tag, 3: dismiss link opening tag, 4: link closing tag
+#: src/Admin/Notices/Review.php:66
+msgid "%sYes, take me there!%s - %sI've already done this!%s"
+msgstr "%sДа, перейдите по ссылке!%s - %sЯ уже это сделал!%s"
+
+#: src/Admin/PluginLinks.php:38
+msgid "Settings"
+msgstr "Настройки"
+
+#: src/Admin/PluginLinks.php:39
+msgid "Upgrade to Premium"
+msgstr "Обновить до Premium"
+
+#: src/Admin/Settings/Page.php:74
+msgid "The settings of Related Posts for WordPress need JavaScript."
+msgstr "Для настроек Related Posts for WordPress требуется JavaScript."
+
+#: src/Admin/Wizard/Page.php:115
+msgid "Go to the settings of Related Posts for WordPress"
+msgstr "Перейти к настройкам Related Posts for WordPress"
+
+#: src/Frontend/Widget.php:29
+msgid "Display related posts."
+msgstr "Отобразить связанные записи."
+
+#: src/Install/Jobs/Queue.php:89
+msgid "An installation is running already."
+msgstr "Установка уже выполняется."
+
+#: src/Install/Jobs/Queue.php:138
+msgid "There is no stopped installation to resume."
+msgstr "Нет остановленной установки, которую можно возобновить."
+
+#: src/Install/Jobs/Queue.php:279
+msgid "The steps of the installation changed while it ran. Please start it again."
+msgstr "Шаги установки изменились во время её выполнения. Запустите её заново."
+
+#: src/Install/Planner.php:37
+msgid "The number of related posts to link to each post."
+msgstr "Количество связанных записей для каждой записи."
+
+#: src/Install/Planner.php:44
+msgid "Only cache the words of the posts, and link nothing."
+msgstr "Только кэшировать слова записей, ничего не связывая."
+
+#: src/Install/Planner.php:49
+msgid "Remove every link and all cached words first, and install again."
+msgstr "Сначала удалить все связи и все кэшированные слова, затем установить заново."
+
+#: src/Install/Tasks/CacheWordsTask.php:49
+msgid "Caching posts"
+msgstr "Кэширование записей"
+
+#: src/Install/Tasks/LinkPostsTask.php:68
+msgid "Linking posts"
+msgstr "Связывание записей"
+
+#: src/Install/Tasks/ResetTask.php:35
+msgid "Removing the old links and words"
+msgstr "Удаление старых связей и слов"
+
+#: src/Install/Tasks/SaveAmountTask.php:54
+msgid "Saving the settings"
+msgstr "Сохранение настроек"
+
+#: src/Rest/InstallController.php:126
+msgid "No installation is running."
+msgstr "Установка не выполняется."
+
+#: src/Rest/SettingsController.php:49
+msgid "The values to save, by field ID. Fields that are left out keep their value."
+msgstr "Значения для сохранения по ID поля. Поля, которые не указаны, сохраняют своё значение."
+
+#. translators: %s: a settings page ID
+#: src/Settings/Schema/Pages.php:164
+msgid "There is no settings page \"%s\"."
+msgstr "Страница настроек «%s» не существует."
+
+#: src/Settings/Settings.php:156
+msgid "General"
+msgstr "Общее"
+
+#: src/Settings/Settings.php:157
+msgid "The following options affect the general behaviour of the plugin."
+msgstr "Следующие параметры влияют на общее поведение плагина."
+
+#: src/Settings/Settings.php:161
+msgid "Enable"
+msgstr "Вкл"
+
+#: src/Settings/Settings.php:162
+msgid "Checking this will enable automatically linking posts to new posts"
+msgstr "Установив эту галочку, вы включите автоматическую привязку записей к новым публикациям"
+
+#: src/Settings/Settings.php:168
+msgid "Amount of Posts"
+msgstr "Количество записей"
+
+#: src/Settings/Settings.php:169
+msgid "The amount of automatically linked post"
+msgstr "Количество автоматически связанных записей"
+
+#: src/Settings/Settings.php:178
+msgid "Heading text"
+msgstr "Текст заголовка"
+
+#: src/Settings/Settings.php:179
+msgid "The text that is displayed above the related posts. To disable, leave field empty."
+msgstr "Текст, отображаемый выше связанных записей. Чтобы отключить, оставьте поле пустым."
+
+#: src/Settings/Settings.php:185
+msgid "Excerpt length"
+msgstr "Длина отрывка"
+
+#: src/Settings/Settings.php:186
+msgid "The amount of words to be displayed below the title on website. To disable, set value to 0."
+msgstr "Количество слов, отображаемых на сайте под названием записи. Чтобы отключить, укажите 0."
+
+#: src/Settings/Settings.php:196
+msgid "Styling"
+msgstr "Стилизация"
+
+#: src/Settings/Settings.php:197
+msgid "The following options affect how related posts are displayed on the frontend."
+msgstr "Следующие параметры влияют на то, как связанные записи отображаются на внешнем интерфейсе."
+
+#: src/Settings/Settings.php:201
+msgid "Display Image"
+msgstr "Отображать изображение"
+
+#: src/Settings/Settings.php:202
+msgid "Checking this will enable displaying featured images of related posts."
+msgstr "Установив этот флажок, вы включите отображение избранных изображений в связанных записях."
+
+#: src/Settings/Settings.php:208
+msgid "CSS"
+msgstr "CSS"
+
+#: src/Settings/Settings.php:209
+msgid "Warning! This is an advanced feature! An error here will break frontend display. To disable, leave field empty."
+msgstr "Внимание! Это расширенная особенность! Ошибка в этом поле приведёт к сбою отображения на внешнем интерфейсе. Чтобы отключить эту особенность, оставьте поле пустым."
+
+#: src/Settings/Settings.php:218
+msgid "Misc"
+msgstr "Разное"
+
+#: src/Settings/Settings.php:219
+msgid "A shelter for options that just don't fit in anywhere else."
+msgstr "Место, где находят приют параметры, которые просто не вписываются никуда больше."
+
+#: src/Settings/Settings.php:223
+msgid "Remove Data on Uninstall?"
+msgstr "Удалить данные при удалении программы?"
+
+#: src/Settings/Settings.php:224
+msgid "Check this box if you would like to completely remove all of its data when the plugin is deleted."
+msgstr "Установите этот бокс, если вы хотите полностью удалить все данные при удалении плагина."
+
+#: src/Settings/Settings.php:230
+msgid "Show love?"
+msgstr "Показать любовь?"
+
+#: src/Settings/Settings.php:231
+msgid "Display a 'Powered by' line under your related posts. <strong>BEWARE! Only for the real fans.</strong>"
+msgstr "Показывать строку «Powered by» под связанными записями. <strong>ВНИМАНИЕ! Только для настоящих поклонников.</strong>"
+
+#: assets/build/admin/index.js:1
+msgid "The settings could not be loaded."
+msgstr "Не удалось загрузить настройки."
+
+#: assets/build/admin/index.js:1
+msgid "The installer could not be reached."
+msgstr "Установщик недоступен."
+
+#: assets/build/admin/index.js:1
+msgid "All set! Your posts are linked."
+msgstr "Готово! Ваши записи связаны."
+
+#: assets/build/admin/index.js:1
+msgid "All set! Your posts are read."
+msgstr "Готово! Ваши записи прочитаны."
+
+#: assets/build/admin/index.js:1
+msgid "Every post shows its related posts now, and new posts are linked when you publish them."
+msgstr "Теперь каждая запись показывает свои связанные записи, а новые записи связываются при публикации."
+
+#: assets/build/admin/index.js:1
+msgid "Link them from the Installer tab when you are ready."
+msgstr "Когда будете готовы, свяжите их на вкладке «Установка»."
+
+#: assets/build/admin/index.js:1
+msgid "Close"
+msgstr "Закрыть"
+
+#: assets/build/admin/index.js:1
+msgid "Less than a minute left"
+msgstr "Осталось меньше минуты"
+
+#. translators: %s: a number of minutes
+#: assets/build/admin/index.js:4
+msgid "About %s minute left"
+msgid_plural "About %s minutes left"
+msgstr[0] "Осталось около %s минуты"
+msgstr[1] "Осталось около %s минут"
+msgstr[2] "Осталось около %s минут"
+
+#. translators: 1: posts done, 2: all posts
+#: assets/build/admin/index.js:7
+msgid "%1$s of %2$s posts"
+msgstr "Записи: %1$s из %2$s"
+
+#: assets/build/admin/index.js:7
+msgid "The installation stopped"
+msgstr "Установка остановлена"
+
+#: assets/build/admin/index.js:7
+msgid "The installation was cancelled"
+msgstr "Установка отменена"
+
+#: assets/build/admin/index.js:7
+msgid "Linking your related posts"
+msgstr "Связывание ваших записей"
+
+#: assets/build/admin/index.js:7
+msgid "This runs in the background. You can leave this page; it goes on without you."
+msgstr "Процесс выполняется в фоновом режиме. Можно покинуть эту страницу; работа продолжится без вас."
+
+#. translators: %d: how far the installation is, in percent
+#: assets/build/admin/index.js:10
+msgid "%d%%"
+msgstr "%d%%"
+
+#: assets/build/admin/index.js:10
+msgid "Installation progress"
+msgstr "Ход установки"
+
+#: assets/build/admin/index.js:10
+msgid "Background processing is slow on this site, so this page is doing the work now. Keep it open to finish sooner, or come back later."
+msgstr "Фоновые задачи на этом сайте выполняются медленно, поэтому сейчас работу выполняет эта страница. Не закрывайте её, чтобы закончить быстрее, или вернитесь позже."
+
+#: assets/build/admin/index.js:10
+msgid "Something went wrong."
+msgstr "Что-то пошло не так."
+
+#: assets/build/admin/index.js:10
+msgid "What was done so far is kept. Resume to finish the rest."
+msgstr "Уже выполненная работа сохранена. Возобновите установку, чтобы завершить остальное."
+
+#: assets/build/admin/index.js:10
+msgid "Cancel"
+msgstr "Отмена"
+
+#: assets/build/admin/index.js:10
+msgid "The installation could not resume."
+msgstr "Не удалось возобновить установку."
+
+#: assets/build/admin/index.js:10
+msgid "Resume"
+msgstr "Возобновить"
+
+#: assets/build/admin/index.js:10
+msgid "Cancel the installation?"
+msgstr "Отменить установку?"
+
+#: assets/build/admin/index.js:10
+msgid "Cancel installation"
+msgstr "Отменить установку"
+
+#: assets/build/admin/index.js:10
+msgid "Keep running"
+msgstr "Продолжить"
+
+#: assets/build/admin/index.js:10
+msgid "The installation could not be cancelled."
+msgstr "Не удалось отменить установку."
+
+#: assets/build/admin/index.js:10
+msgid "What was done so far is kept, and you can resume later."
+msgstr "Уже выполненная работа сохранена, и вы сможете возобновить установку позже."
+
+#: assets/build/admin/index.js:10
+msgid "Related posts per post"
+msgstr "Связанных записей на запись"
+
+#: assets/build/admin/index.js:10
+msgid "Get started"
+msgstr "Начало работы"
+
+#: assets/build/admin/index.js:10
+msgid "Let's link your related posts"
+msgstr "Давайте свяжем ваши записи"
+
+#: assets/build/admin/index.js:10
+msgid "Related Posts reads your posts once to learn what each one is about, then links every post to the posts that are most related to it."
+msgstr "Related Posts один раз читает ваши записи, чтобы понять, о чём каждая из них, а затем связывает каждую запись с наиболее близкими к ней записями."
+
+#: assets/build/admin/index.js:10
+msgid "It runs in the background, so you can leave this page while it works."
+msgstr "Процесс выполняется в фоновом режиме, поэтому во время работы можно покинуть эту страницу."
+
+#: assets/build/admin/index.js:10
+msgid "You can change this later, and link again at any time."
+msgstr "Это можно изменить позже и в любой момент связать записи заново."
+
+#: assets/build/admin/index.js:10
+msgid "Link the posts right away"
+msgstr "Сразу связать записи"
+
+#: assets/build/admin/index.js:10
+msgid "Turn this off to only read the posts now, and link them later from the Installer tab."
+msgstr "Отключите, чтобы сейчас только прочитать записи, а связать их позже на вкладке «Установка»."
+
+#: assets/build/admin/index.js:10 assets/build/admin/index.js:13
+msgid "The installation could not start."
+msgstr "Не удалось запустить установку."
+
+#: assets/build/admin/index.js:10
+msgid "Start"
+msgstr "Запустить"
+
+#: assets/build/admin/index.js:10
+msgid "The installation is done."
+msgstr "Установка завершена."
+
+#: assets/build/admin/index.js:10
+msgid "The installation stopped."
+msgstr "Установка остановлена."
+
+#. translators: %s: the plugin version
+#: assets/build/admin/index.js:13
+msgid "Version %s"
+msgstr "Версия %s"
+
+#: assets/build/admin/index.js:13
+msgid "Premium"
+msgstr "Premium"
+
+#: assets/build/admin/index.js:13
+msgid "Related Posts settings"
+msgstr "Настройки Related Posts"
+
+#: assets/build/admin/index.js:13
+msgid "Unsaved changes"
+msgstr "Несохранённые изменения"
+
+#: assets/build/admin/index.js:13
+msgid "You have unsaved changes."
+msgstr "У вас есть несохранённые изменения."
+
+#: assets/build/admin/index.js:13
+msgid "Discard"
+msgstr "Отменить изменения"
+
+#: assets/build/admin/index.js:13
+msgid "Settings saved."
+msgstr "Настройки сохранены."
+
+#: assets/build/admin/index.js:13
+msgid "The settings could not be saved."
+msgstr "Не удалось сохранить настройки."
+
+#: assets/build/admin/index.js:13
+msgid "Save changes"
+msgstr "Сохранить изменения"
+
+#: assets/build/admin/index.js:13
+msgid "This page does not exist."
+msgstr "Эта страница не существует."
+
+#: assets/build/admin/index.js:13
+msgid "This option is overwritten by a filter."
+msgstr "Этот параметр переопределён фильтром."
+
+#: assets/build/admin/index.js:13
+msgid "Installer"
+msgstr "Установка"
+
+#: assets/build/admin/index.js:13
+msgid "An installation is running. You can start another one when it is done."
+msgstr "Выполняется установка. Новую можно будет запустить после её завершения."
+
+#: assets/build/admin/index.js:13
+msgid "Link new posts"
+msgstr "Связать новые записи"
+
+#: assets/build/admin/index.js:13
+msgid "Read and link the posts that are not linked yet, for example posts from before automatic linking was on. Links that exist stay as they are."
+msgstr "Прочитать и связать записи, которые ещё не связаны, например записи, созданные до включения автоматического связывания. Существующие связи останутся без изменений."
+
+#: assets/build/admin/index.js:13
+msgid "Rebuild everything"
+msgstr "Пересоздать всё"
+
+#: assets/build/admin/index.js:13
+msgid "Start over: remove every related post link, also the links you added by hand, read all posts again and link them. Your posts themselves are never touched."
+msgstr "Начать заново: удалить все связи связанных записей, в том числе добавленные вручную, заново прочитать все записи и связать их. Сами записи при этом никогда не изменяются."
+
+#: assets/build/admin/index.js:13
+msgid "Rebuild everything?"
+msgstr "Пересоздать всё?"
+
+#: assets/build/admin/index.js:13
+msgid "Remove links and rebuild"
+msgstr "Удалить связи и пересоздать"
+
+#: assets/build/admin/index.js:13
+msgid "Keep my links"
+msgstr "Сохранить мои связи"
+
+#: assets/build/admin/index.js:13
+msgid "Every related post link is removed, including the links you added by hand. This can not be undone."
+msgstr "Все связи связанных записей будут удалены, в том числе добавленные вручную. Это действие нельзя отменить."

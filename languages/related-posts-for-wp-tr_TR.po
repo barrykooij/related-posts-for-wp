@@ -1,0 +1,602 @@
+# Copyright (C) 2026 Never5
+# This file is distributed under the GPL v3.
+msgid ""
+msgstr ""
+"Project-Id-Version: Related Posts for WordPress\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
+"POT-Creation-Date: 2026-10-01T12:29:25+00:00\n"
+"PO-Revision-Date: 2026-10-01 12:00+0000\n"
+"Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
+"Language-Team: Turkish\n"
+"Language: tr_TR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Domain: related-posts-for-wp\n"
+
+#. Plugin Name of the plugin
+#: related-posts-for-wp.php src/Frontend/Widget.php:28
+msgid "Related Posts for WordPress"
+msgstr "Related Posts for WordPress"
+
+#. Plugin URI of the plugin
+#: related-posts-for-wp.php
+msgid "http://www.relatedpostsforwp.com/"
+msgstr "http://www.relatedpostsforwp.com/"
+
+#. Description of the plugin
+#: related-posts-for-wp.php
+msgid "Related Posts for WordPress, the best way to display related posts in WordPress."
+msgstr "Related Posts for WordPress, WordPress'te ilgili yazıları göstermenin en iyi yolu."
+
+#. Author of the plugin
+#: related-posts-for-wp.php
+msgid "Never5"
+msgstr "Never5"
+
+#. Author URI of the plugin
+#: related-posts-for-wp.php
+msgid "http://www.never5.com/"
+msgstr "http://www.never5.com/"
+
+#. translators: 1: required PHP version, 2: required WordPress version
+#: related-posts-for-wp.php:66
+msgid "Related Posts for WordPress needs PHP %1$s and WordPress %2$s or newer. It does not run on this site until they are updated."
+msgstr "Related Posts for WordPress için PHP %1$s ve WordPress %2$s ya da daha yeni sürümleri gerekir. Bunlar güncellenene kadar eklenti bu sitede çalışmaz."
+
+#. translators: 1: link opening tag, 2: link closing tag
+#: related-posts-for-wp.php:89
+msgid "Related Posts for WordPress 3.0 works together with Related Posts for WordPress Premium 3.0. Please %1$supdate Premium%2$s. Until then, your current version of Premium keeps working on its own."
+msgstr "Related Posts for WordPress 3.0, Related Posts for WordPress Premium 3.0 ile birlikte çalışır. Lütfen %1$sPremium'u güncelleyin%2$s. O zamana kadar mevcut Premium sürümünüz kendi başına çalışmaya devam eder."
+
+#: src/Admin/App/Assets.php:104
+msgid "The settings screen of Related Posts for WordPress is missing its scripts. Run npm run build in the plugin folder."
+msgstr "Related Posts for WordPress ayarlar ekranının betikleri eksik. Eklenti klasöründe npm run build komutunu çalıştırın."
+
+#: src/Admin/Assets.php:52
+msgid "Are you sure you want to delete this related post?"
+msgstr "Bu ilgili yazıyı silmek istediğinizden emin misiniz?"
+
+#: src/Admin/LinkScreen/ListTable.php:63 src/Admin/MetaBox/ManageLinks.php:53
+#: src/Admin/Settings/Page.php:51 src/Admin/Wizard/Page.php:73
+#: src/Settings/Settings.php:181 assets/build/admin/index.js:13
+msgid "Related Posts"
+msgstr "İlgili yazılar"
+
+#: src/Admin/LinkScreen/ListTable.php:64
+msgid "All Posts"
+msgstr "Tüm yazılar"
+
+#: src/Admin/LinkScreen/ListTable.php:118
+msgid "Title"
+msgstr "Başlık"
+
+#: src/Admin/LinkScreen/ListTable.php:119
+msgid "Post Date"
+msgstr "Yazı tarihi"
+
+#: src/Admin/LinkScreen/ListTable.php:301
+msgid "Link Post"
+msgstr "Yazıyı bağla"
+
+#: src/Admin/LinkScreen/ListTable.php:334
+msgid "Link Posts"
+msgstr "Yazıları bağla"
+
+#: src/Admin/LinkScreen/Page.php:126
+msgid "Posts"
+msgstr "Yazılar"
+
+#: src/Admin/LinkScreen/Page.php:127
+msgid "Cancel linking"
+msgstr "Bağlamayı iptal et"
+
+#: src/Admin/LinkScreen/Page.php:136
+msgid "Search"
+msgstr "Ara"
+
+#: src/Admin/MetaBox/ManageLinks.php:81
+msgid "Add Related Posts"
+msgstr "İlgili yazı ekle"
+
+#: src/Admin/MetaBox/ManageLinks.php:100 src/Admin/MetaBox/ManageLinks.php:101
+msgid "Edit Post"
+msgstr "Yazıyı düzenle"
+
+#: src/Admin/MetaBox/ManageLinks.php:103 src/Admin/MetaBox/ManageLinks.php:104
+msgid "Unlink Related Post"
+msgstr "İlgili yazının bağlantısını kaldır"
+
+#: src/Admin/MetaBox/ManageLinks.php:115
+msgid "No related posts found."
+msgstr "İlgili yazı bulunamadı."
+
+#. translators: %d: how far the installation is, in percent
+#: src/Admin/Notices/Installing.php:70
+msgid "Related Posts for WordPress is linking your posts in the background (%d%%)."
+msgstr "Related Posts for WordPress yazılarınızı arka planda bağlıyor (%%%d)."
+
+#: src/Admin/Notices/Installing.php:73
+msgid "View progress"
+msgstr "İlerlemeyi görüntüle"
+
+#: src/Admin/Notices/Installing.php:83
+msgid "The installation of Related Posts for WordPress stopped with an error."
+msgstr "Related Posts for WordPress kurulumu bir hata nedeniyle durdu."
+
+#: src/Admin/Notices/Installing.php:84
+msgid "See what happened"
+msgstr "Ne olduğunu görün"
+
+#: src/Admin/Notices/Installing.php:95
+msgid "Woah! Looks like we weren't able to finish your Related Posts for WordPress installation wizard!"
+msgstr "Vay! Related Posts for WordPress kurulum sihirbazınızı tamamlayamamışız gibi görünüyor!"
+
+#: src/Admin/Notices/Installing.php:96
+msgid "Finish the installation"
+msgstr "Kurulumu tamamla"
+
+#: src/Admin/Notices/Installing.php:145
+msgid "Dismiss"
+msgstr "Yoksay"
+
+#: src/Admin/Notices/Mbstring.php:37
+msgid "Error:"
+msgstr "Hata:"
+
+#. translators: %s: the name of the PHP extension
+#: src/Admin/Notices/Mbstring.php:40
+msgid "The %s extension needs to be installed and activated for Related Posts for WP to work!"
+msgstr "Related Posts for WP eklentisinin çalışması için %s uzantısının kurulu ve etkin olması gerekir!"
+
+#. translators: %s: the name of the PHP extension
+#: src/Admin/Notices/Mbstring.php:46
+msgid "Please contact your host and ask them to install the %s PHP extension."
+msgstr "Lütfen barındırma sağlayıcınızla iletişime geçin ve %s PHP uzantısını kurmalarını isteyin."
+
+#: src/Admin/Notices/Multisite.php:32
+msgid "The free version of Related Posts for WordPress doesn't support WordPress Multisite/Network!"
+msgstr "Related Posts for WordPress eklentisinin ücretsiz sürümü WordPress çoklu site/ağ yapısını desteklemez!"
+
+#. translators: 1: link opening tag, 2: link closing tag
+#: src/Admin/Notices/Multisite.php:36
+msgid "%1$sUpgrade to the premium version%2$s or disable the plugin."
+msgstr "%1$sPremium sürüme yükseltin%2$s ya da eklentiyi devre dışı bırakın."
+
+#: src/Admin/Notices/Playground.php:40
+msgid ""
+"We noticed you're running the plugin in the WordPress playground.\n"
+"                    Our plugin currently doesn't work there, due to limitation on the side of the WP playground."
+msgstr ""
+"Eklentiyi WordPress Playground içinde çalıştırdığınızı fark ettik.\n"
+"                    WP Playground tarafındaki bir kısıtlama nedeniyle eklentimiz şu anda orada çalışmıyor."
+
+#: src/Admin/Notices/Playground.php:47
+msgid "Related Posts for WP is not available inside the WordPress Playground!"
+msgstr "Related Posts for WP, WordPress Playground içinde kullanılamaz!"
+
+#: src/Admin/Notices/Playground.php:49
+msgid "For more information regarding our plugin:"
+msgstr "Eklentimiz hakkında daha fazla bilgi için:"
+
+#: src/Admin/Notices/Playground.php:51
+msgid "View the tour on relatedpostsforwp.com"
+msgstr "relatedpostsforwp.com üzerindeki tanıtım turunu görüntüleyin"
+
+#. translators: 1: bold opening tag, 2: bold closing tag
+#: src/Admin/Notices/Review.php:59
+msgid "You've been using %sRelated Posts for WordPress%s for some time now, could you please give it a review at wordpress.org?"
+msgstr "%sRelated Posts for WordPress%s eklentisini bir süredir kullanıyorsunuz. wordpress.org üzerinde bir değerlendirme yazabilir misiniz?"
+
+#. translators: 1: review link opening tag, 2: link closing tag, 3: dismiss link opening tag, 4: link closing tag
+#: src/Admin/Notices/Review.php:66
+msgid "%sYes, take me there!%s - %sI've already done this!%s"
+msgstr "%sEvet, beni oraya götür!%s - %sBunu zaten yaptım!%s"
+
+#: src/Admin/PluginLinks.php:38
+msgid "Settings"
+msgstr "Ayarlar"
+
+#: src/Admin/PluginLinks.php:39
+msgid "Upgrade to Premium"
+msgstr "Premium'a yükselt"
+
+#: src/Admin/Settings/Page.php:74
+msgid "The settings of Related Posts for WordPress need JavaScript."
+msgstr "Related Posts for WordPress ayarları için JavaScript gerekir."
+
+#: src/Admin/Wizard/Page.php:115
+msgid "Go to the settings of Related Posts for WordPress"
+msgstr "Related Posts for WordPress ayarlarına git"
+
+#: src/Frontend/Widget.php:29
+msgid "Display related posts."
+msgstr "İlgili yazıları gösterir."
+
+#: src/Install/Jobs/Queue.php:89
+msgid "An installation is running already."
+msgstr "Zaten çalışan bir kurulum var."
+
+#: src/Install/Jobs/Queue.php:138
+msgid "There is no stopped installation to resume."
+msgstr "Sürdürülecek durdurulmuş bir kurulum yok."
+
+#: src/Install/Jobs/Queue.php:279
+msgid "The steps of the installation changed while it ran. Please start it again."
+msgstr "Kurulum çalışırken kurulum adımları değişti. Lütfen kurulumu yeniden başlatın."
+
+#: src/Install/Planner.php:37
+msgid "The number of related posts to link to each post."
+msgstr "Her yazıya bağlanacak ilgili yazı sayısı."
+
+#: src/Install/Planner.php:44
+msgid "Only cache the words of the posts, and link nothing."
+msgstr "Yalnızca yazıların kelimelerini önbelleğe al, hiçbir şey bağlama."
+
+#: src/Install/Planner.php:49
+msgid "Remove every link and all cached words first, and install again."
+msgstr "Önce tüm bağlantıları ve önbelleğe alınmış tüm kelimeleri kaldır, ardından yeniden kur."
+
+#: src/Install/Tasks/CacheWordsTask.php:49
+msgid "Caching posts"
+msgstr "Yazılar önbelleğe alınıyor"
+
+#: src/Install/Tasks/LinkPostsTask.php:68
+msgid "Linking posts"
+msgstr "Yazılar bağlanıyor"
+
+#: src/Install/Tasks/ResetTask.php:35
+msgid "Removing the old links and words"
+msgstr "Eski bağlantılar ve kelimeler kaldırılıyor"
+
+#: src/Install/Tasks/SaveAmountTask.php:54
+msgid "Saving the settings"
+msgstr "Ayarlar kaydediliyor"
+
+#: src/Rest/InstallController.php:126
+msgid "No installation is running."
+msgstr "Çalışan bir kurulum yok."
+
+#: src/Rest/SettingsController.php:49
+msgid "The values to save, by field ID. Fields that are left out keep their value."
+msgstr "Alan kimliğine göre kaydedilecek değerler. Belirtilmeyen alanlar mevcut değerlerini korur."
+
+#. translators: %s: a settings page ID
+#: src/Settings/Schema/Pages.php:164
+msgid "There is no settings page \"%s\"."
+msgstr "\"%s\" adlı bir ayarlar sayfası yok."
+
+#: src/Settings/Settings.php:156
+msgid "General"
+msgstr "Genel"
+
+#: src/Settings/Settings.php:157
+msgid "The following options affect the general behaviour of the plugin."
+msgstr "Aşağıdaki seçenekler eklentinin genel davranışını etkiler."
+
+#: src/Settings/Settings.php:161
+msgid "Enable"
+msgstr "Etkinleştir"
+
+#: src/Settings/Settings.php:162
+msgid "Checking this will enable automatically linking posts to new posts"
+msgstr "Bu seçenek işaretlendiğinde yeni yazılar ilgili yazılara otomatik olarak bağlanır"
+
+#: src/Settings/Settings.php:168
+msgid "Amount of Posts"
+msgstr "Yazı sayısı"
+
+#: src/Settings/Settings.php:169
+msgid "The amount of automatically linked post"
+msgstr "Otomatik olarak bağlanan yazı sayısı"
+
+#: src/Settings/Settings.php:178
+msgid "Heading text"
+msgstr "Başlık metni"
+
+#: src/Settings/Settings.php:179
+msgid "The text that is displayed above the related posts. To disable, leave field empty."
+msgstr "İlgili yazıların üstünde gösterilen metin. Devre dışı bırakmak için alanı boş bırakın."
+
+#: src/Settings/Settings.php:185
+msgid "Excerpt length"
+msgstr "Özet uzunluğu"
+
+#: src/Settings/Settings.php:186
+msgid "The amount of words to be displayed below the title on website. To disable, set value to 0."
+msgstr "Sitede başlığın altında gösterilecek kelime sayısı. Devre dışı bırakmak için değeri 0 yapın."
+
+#: src/Settings/Settings.php:196
+msgid "Styling"
+msgstr "Stil"
+
+#: src/Settings/Settings.php:197
+msgid "The following options affect how related posts are displayed on the frontend."
+msgstr "Aşağıdaki seçenekler ilgili yazıların sitenin ön yüzünde nasıl gösterileceğini etkiler."
+
+#: src/Settings/Settings.php:201
+msgid "Display Image"
+msgstr "Görseli göster"
+
+#: src/Settings/Settings.php:202
+msgid "Checking this will enable displaying featured images of related posts."
+msgstr "Bu seçenek işaretlendiğinde ilgili yazıların öne çıkarılmış görselleri gösterilir."
+
+#: src/Settings/Settings.php:208
+msgid "CSS"
+msgstr "CSS"
+
+#: src/Settings/Settings.php:209
+msgid "Warning! This is an advanced feature! An error here will break frontend display. To disable, leave field empty."
+msgstr "Uyarı! Bu gelişmiş bir özelliktir! Buradaki bir hata ön yüz görünümünü bozar. Devre dışı bırakmak için alanı boş bırakın."
+
+#: src/Settings/Settings.php:218
+msgid "Misc"
+msgstr "Çeşitli"
+
+#: src/Settings/Settings.php:219
+msgid "A shelter for options that just don't fit in anywhere else."
+msgstr "Başka hiçbir yere uymayan seçenekler için bir sığınak."
+
+#: src/Settings/Settings.php:223
+msgid "Remove Data on Uninstall?"
+msgstr "Kaldırırken veriler silinsin mi?"
+
+#: src/Settings/Settings.php:224
+msgid "Check this box if you would like to completely remove all of its data when the plugin is deleted."
+msgstr "Eklenti silindiğinde tüm verilerinin tamamen kaldırılmasını istiyorsanız bu kutuyu işaretleyin."
+
+#: src/Settings/Settings.php:230
+msgid "Show love?"
+msgstr "Sevginizi gösterir misiniz?"
+
+#: src/Settings/Settings.php:231
+msgid "Display a 'Powered by' line under your related posts. <strong>BEWARE! Only for the real fans.</strong>"
+msgstr "İlgili yazılarınızın altında bir 'Powered by' satırı gösterir. <strong>DİKKAT! Yalnızca gerçek hayranlar için.</strong>"
+
+#: assets/build/admin/index.js:1
+msgid "The settings could not be loaded."
+msgstr "Ayarlar yüklenemedi."
+
+#: assets/build/admin/index.js:1
+msgid "The installer could not be reached."
+msgstr "Kurulum aracına ulaşılamadı."
+
+#: assets/build/admin/index.js:1
+msgid "All set! Your posts are linked."
+msgstr "Her şey hazır! Yazılarınız bağlandı."
+
+#: assets/build/admin/index.js:1
+msgid "All set! Your posts are read."
+msgstr "Her şey hazır! Yazılarınız okundu."
+
+#: assets/build/admin/index.js:1
+msgid "Every post shows its related posts now, and new posts are linked when you publish them."
+msgstr "Artık her yazı kendi ilgili yazılarını gösteriyor; yeni yazılar da yayımladığınızda bağlanır."
+
+#: assets/build/admin/index.js:1
+msgid "Link them from the Installer tab when you are ready."
+msgstr "Hazır olduğunuzda onları Kurulum sekmesinden bağlayın."
+
+#: assets/build/admin/index.js:1
+msgid "Close"
+msgstr "Kapat"
+
+#: assets/build/admin/index.js:1
+msgid "Less than a minute left"
+msgstr "Bir dakikadan az kaldı"
+
+#. translators: %s: a number of minutes
+#: assets/build/admin/index.js:4
+msgid "About %s minute left"
+msgid_plural "About %s minutes left"
+msgstr[0] "Yaklaşık %s dakika kaldı"
+msgstr[1] "Yaklaşık %s dakika kaldı"
+
+#. translators: 1: posts done, 2: all posts
+#: assets/build/admin/index.js:7
+msgid "%1$s of %2$s posts"
+msgstr "%1$s / %2$s yazı"
+
+#: assets/build/admin/index.js:7
+msgid "The installation stopped"
+msgstr "Kurulum durdu"
+
+#: assets/build/admin/index.js:7
+msgid "The installation was cancelled"
+msgstr "Kurulum iptal edildi"
+
+#: assets/build/admin/index.js:7
+msgid "Linking your related posts"
+msgstr "İlgili yazılarınız bağlanıyor"
+
+#: assets/build/admin/index.js:7
+msgid "This runs in the background. You can leave this page; it goes on without you."
+msgstr "Bu işlem arka planda çalışır. Bu sayfadan ayrılabilirsiniz; işlem siz olmadan devam eder."
+
+#. translators: %d: how far the installation is, in percent
+#: assets/build/admin/index.js:10
+msgid "%d%%"
+msgstr "%%%d"
+
+#: assets/build/admin/index.js:10
+msgid "Installation progress"
+msgstr "Kurulum ilerlemesi"
+
+#: assets/build/admin/index.js:10
+msgid "Background processing is slow on this site, so this page is doing the work now. Keep it open to finish sooner, or come back later."
+msgstr "Bu sitede arka plan işlemleri yavaş, bu yüzden işi şu anda bu sayfa yapıyor. Daha çabuk bitirmek için sayfayı açık tutun ya da daha sonra geri gelin."
+
+#: assets/build/admin/index.js:10
+msgid "Something went wrong."
+msgstr "Bir şeyler ters gitti."
+
+#: assets/build/admin/index.js:10
+msgid "What was done so far is kept. Resume to finish the rest."
+msgstr "Şimdiye kadar yapılanlar korunur. Kalanını bitirmek için sürdürün."
+
+#: assets/build/admin/index.js:10
+msgid "Cancel"
+msgstr "İptal"
+
+#: assets/build/admin/index.js:10
+msgid "The installation could not resume."
+msgstr "Kurulum sürdürülemedi."
+
+#: assets/build/admin/index.js:10
+msgid "Resume"
+msgstr "Sürdür"
+
+#: assets/build/admin/index.js:10
+msgid "Cancel the installation?"
+msgstr "Kurulum iptal edilsin mi?"
+
+#: assets/build/admin/index.js:10
+msgid "Cancel installation"
+msgstr "Kurulumu iptal et"
+
+#: assets/build/admin/index.js:10
+msgid "Keep running"
+msgstr "Devam etsin"
+
+#: assets/build/admin/index.js:10
+msgid "The installation could not be cancelled."
+msgstr "Kurulum iptal edilemedi."
+
+#: assets/build/admin/index.js:10
+msgid "What was done so far is kept, and you can resume later."
+msgstr "Şimdiye kadar yapılanlar korunur ve daha sonra sürdürebilirsiniz."
+
+#: assets/build/admin/index.js:10
+msgid "Related posts per post"
+msgstr "Yazı başına ilgili yazı"
+
+#: assets/build/admin/index.js:10
+msgid "Get started"
+msgstr "Başlayın"
+
+#: assets/build/admin/index.js:10
+msgid "Let's link your related posts"
+msgstr "İlgili yazılarınızı bağlayalım"
+
+#: assets/build/admin/index.js:10
+msgid "Related Posts reads your posts once to learn what each one is about, then links every post to the posts that are most related to it."
+msgstr "Related Posts, her yazının ne hakkında olduğunu öğrenmek için yazılarınızı bir kez okur, ardından her yazıyı onunla en çok ilgili olan yazılara bağlar."
+
+#: assets/build/admin/index.js:10
+msgid "It runs in the background, so you can leave this page while it works."
+msgstr "Arka planda çalışır, bu yüzden işlem sürerken bu sayfadan ayrılabilirsiniz."
+
+#: assets/build/admin/index.js:10
+msgid "You can change this later, and link again at any time."
+msgstr "Bunu daha sonra değiştirebilir ve istediğiniz zaman yeniden bağlayabilirsiniz."
+
+#: assets/build/admin/index.js:10
+msgid "Link the posts right away"
+msgstr "Yazıları hemen bağla"
+
+#: assets/build/admin/index.js:10
+msgid "Turn this off to only read the posts now, and link them later from the Installer tab."
+msgstr "Yazıları şimdi yalnızca okumak ve daha sonra Kurulum sekmesinden bağlamak için bunu kapatın."
+
+#: assets/build/admin/index.js:10 assets/build/admin/index.js:13
+msgid "The installation could not start."
+msgstr "Kurulum başlatılamadı."
+
+#: assets/build/admin/index.js:10
+msgid "Start"
+msgstr "Başlat"
+
+#: assets/build/admin/index.js:10
+msgid "The installation is done."
+msgstr "Kurulum tamamlandı."
+
+#: assets/build/admin/index.js:10
+msgid "The installation stopped."
+msgstr "Kurulum durdu."
+
+#. translators: %s: the plugin version
+#: assets/build/admin/index.js:13
+msgid "Version %s"
+msgstr "Sürüm %s"
+
+#: assets/build/admin/index.js:13
+msgid "Premium"
+msgstr "Premium"
+
+#: assets/build/admin/index.js:13
+msgid "Related Posts settings"
+msgstr "Related Posts ayarları"
+
+#: assets/build/admin/index.js:13
+msgid "Unsaved changes"
+msgstr "Kaydedilmemiş değişiklikler"
+
+#: assets/build/admin/index.js:13
+msgid "You have unsaved changes."
+msgstr "Kaydedilmemiş değişiklikleriniz var."
+
+#: assets/build/admin/index.js:13
+msgid "Discard"
+msgstr "Vazgeç"
+
+#: assets/build/admin/index.js:13
+msgid "Settings saved."
+msgstr "Ayarlar kaydedildi."
+
+#: assets/build/admin/index.js:13
+msgid "The settings could not be saved."
+msgstr "Ayarlar kaydedilemedi."
+
+#: assets/build/admin/index.js:13
+msgid "Save changes"
+msgstr "Değişiklikleri kaydet"
+
+#: assets/build/admin/index.js:13
+msgid "This page does not exist."
+msgstr "Bu sayfa mevcut değil."
+
+#: assets/build/admin/index.js:13
+msgid "This option is overwritten by a filter."
+msgstr "Bu seçenek bir filtre tarafından geçersiz kılınıyor."
+
+#: assets/build/admin/index.js:13
+msgid "Installer"
+msgstr "Kurulum"
+
+#: assets/build/admin/index.js:13
+msgid "An installation is running. You can start another one when it is done."
+msgstr "Bir kurulum çalışıyor. O tamamlandığında yenisini başlatabilirsiniz."
+
+#: assets/build/admin/index.js:13
+msgid "Link new posts"
+msgstr "Yeni yazıları bağla"
+
+#: assets/build/admin/index.js:13
+msgid "Read and link the posts that are not linked yet, for example posts from before automatic linking was on. Links that exist stay as they are."
+msgstr "Henüz bağlanmamış yazıları, örneğin otomatik bağlama açılmadan önceki yazıları okuyun ve bağlayın. Mevcut bağlantılar olduğu gibi kalır."
+
+#: assets/build/admin/index.js:13
+msgid "Rebuild everything"
+msgstr "Her şeyi yeniden oluştur"
+
+#: assets/build/admin/index.js:13
+msgid "Start over: remove every related post link, also the links you added by hand, read all posts again and link them. Your posts themselves are never touched."
+msgstr "Baştan başlayın: elle eklediğiniz bağlantılar dahil tüm ilgili yazı bağlantılarını kaldırın, tüm yazıları yeniden okuyun ve bağlayın. Yazılarınızın kendisine asla dokunulmaz."
+
+#: assets/build/admin/index.js:13
+msgid "Rebuild everything?"
+msgstr "Her şey yeniden oluşturulsun mu?"
+
+#: assets/build/admin/index.js:13
+msgid "Remove links and rebuild"
+msgstr "Bağlantıları kaldır ve yeniden oluştur"
+
+#: assets/build/admin/index.js:13
+msgid "Keep my links"
+msgstr "Bağlantılarımı koru"
+
+#: assets/build/admin/index.js:13
+msgid "Every related post link is removed, including the links you added by hand. This can not be undone."
+msgstr "Elle eklediğiniz bağlantılar dahil tüm ilgili yazı bağlantıları kaldırılır. Bu işlem geri alınamaz."

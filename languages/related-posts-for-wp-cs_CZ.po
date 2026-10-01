@@ -1,0 +1,603 @@
+# Copyright (C) 2026 Never5
+# This file is distributed under the GPL v3.
+msgid ""
+msgstr ""
+"Project-Id-Version: Related Posts for WordPress\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
+"POT-Creation-Date: 2026-10-01T12:29:25+00:00\n"
+"PO-Revision-Date: 2026-10-01 12:00+0000\n"
+"Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
+"Language-Team: Czech\n"
+"Language: cs_CZ\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n == 1) ? 0 : ((n >= 2 && n <= 4) ? 1 : 2);\n"
+"X-Domain: related-posts-for-wp\n"
+
+#. Plugin Name of the plugin
+#: related-posts-for-wp.php src/Frontend/Widget.php:28
+msgid "Related Posts for WordPress"
+msgstr "Related Posts for WordPress"
+
+#. Plugin URI of the plugin
+#: related-posts-for-wp.php
+msgid "http://www.relatedpostsforwp.com/"
+msgstr "http://www.relatedpostsforwp.com/"
+
+#. Description of the plugin
+#: related-posts-for-wp.php
+msgid "Related Posts for WordPress, the best way to display related posts in WordPress."
+msgstr "Related Posts for WordPress, nejlepší způsob, jak ve WordPressu zobrazovat související příspěvky."
+
+#. Author of the plugin
+#: related-posts-for-wp.php
+msgid "Never5"
+msgstr "Never5"
+
+#. Author URI of the plugin
+#: related-posts-for-wp.php
+msgid "http://www.never5.com/"
+msgstr "http://www.never5.com/"
+
+#. translators: 1: required PHP version, 2: required WordPress version
+#: related-posts-for-wp.php:66
+msgid "Related Posts for WordPress needs PHP %1$s and WordPress %2$s or newer. It does not run on this site until they are updated."
+msgstr "Related Posts for WordPress vyžaduje PHP %1$s a WordPress %2$s nebo novější. Dokud nebudou aktualizovány, plugin na tomto webu nepoběží."
+
+#. translators: 1: link opening tag, 2: link closing tag
+#: related-posts-for-wp.php:89
+msgid "Related Posts for WordPress 3.0 works together with Related Posts for WordPress Premium 3.0. Please %1$supdate Premium%2$s. Until then, your current version of Premium keeps working on its own."
+msgstr "Related Posts for WordPress 3.0 spolupracuje s Related Posts for WordPress Premium 3.0. %1$sAktualizujte prosím Premium%2$s. Do té doby bude vaše současná verze Premium fungovat samostatně."
+
+#: src/Admin/App/Assets.php:104
+msgid "The settings screen of Related Posts for WordPress is missing its scripts. Run npm run build in the plugin folder."
+msgstr "Stránce nastavení pluginu Related Posts for WordPress chybí skripty. Spusťte ve složce pluginu npm run build."
+
+#: src/Admin/Assets.php:52
+msgid "Are you sure you want to delete this related post?"
+msgstr "Opravdu chcete smazat tento související příspěvek?"
+
+#: src/Admin/LinkScreen/ListTable.php:63 src/Admin/MetaBox/ManageLinks.php:53
+#: src/Admin/Settings/Page.php:51 src/Admin/Wizard/Page.php:73
+#: src/Settings/Settings.php:181 assets/build/admin/index.js:13
+msgid "Related Posts"
+msgstr "Související příspěvky"
+
+#: src/Admin/LinkScreen/ListTable.php:64
+msgid "All Posts"
+msgstr "Všechny příspěvky"
+
+#: src/Admin/LinkScreen/ListTable.php:118
+msgid "Title"
+msgstr "Název"
+
+#: src/Admin/LinkScreen/ListTable.php:119
+msgid "Post Date"
+msgstr "Datum příspěvku"
+
+#: src/Admin/LinkScreen/ListTable.php:301
+msgid "Link Post"
+msgstr "Propojit příspěvek"
+
+#: src/Admin/LinkScreen/ListTable.php:334
+msgid "Link Posts"
+msgstr "Propojit příspěvky"
+
+#: src/Admin/LinkScreen/Page.php:126
+msgid "Posts"
+msgstr "Příspěvky"
+
+#: src/Admin/LinkScreen/Page.php:127
+msgid "Cancel linking"
+msgstr "Zrušit propojování"
+
+#: src/Admin/LinkScreen/Page.php:136
+msgid "Search"
+msgstr "Hledat"
+
+#: src/Admin/MetaBox/ManageLinks.php:81
+msgid "Add Related Posts"
+msgstr "Přidat související příspěvky"
+
+#: src/Admin/MetaBox/ManageLinks.php:100 src/Admin/MetaBox/ManageLinks.php:101
+msgid "Edit Post"
+msgstr "Upravit příspěvek"
+
+#: src/Admin/MetaBox/ManageLinks.php:103 src/Admin/MetaBox/ManageLinks.php:104
+msgid "Unlink Related Post"
+msgstr "Zrušit propojení souvisejícího příspěvku"
+
+#: src/Admin/MetaBox/ManageLinks.php:115
+msgid "No related posts found."
+msgstr "Nebyly nalezeny žádné související příspěvky."
+
+#. translators: %d: how far the installation is, in percent
+#: src/Admin/Notices/Installing.php:70
+msgid "Related Posts for WordPress is linking your posts in the background (%d%%)."
+msgstr "Related Posts for WordPress na pozadí propojuje vaše příspěvky (%d %%)."
+
+#: src/Admin/Notices/Installing.php:73
+msgid "View progress"
+msgstr "Zobrazit průběh"
+
+#: src/Admin/Notices/Installing.php:83
+msgid "The installation of Related Posts for WordPress stopped with an error."
+msgstr "Instalace pluginu Related Posts for WordPress skončila chybou."
+
+#: src/Admin/Notices/Installing.php:84
+msgid "See what happened"
+msgstr "Zjistit, co se stalo"
+
+#: src/Admin/Notices/Installing.php:95
+msgid "Woah! Looks like we weren't able to finish your Related Posts for WordPress installation wizard!"
+msgstr "Jejda! Zdá se, že se nepodařilo dokončit průvodce instalací pluginu Related Posts for WordPress!"
+
+#: src/Admin/Notices/Installing.php:96
+msgid "Finish the installation"
+msgstr "Dokončit instalaci"
+
+#: src/Admin/Notices/Installing.php:145
+msgid "Dismiss"
+msgstr "Skrýt"
+
+#: src/Admin/Notices/Mbstring.php:37
+msgid "Error:"
+msgstr "Chyba:"
+
+#. translators: %s: the name of the PHP extension
+#: src/Admin/Notices/Mbstring.php:40
+msgid "The %s extension needs to be installed and activated for Related Posts for WP to work!"
+msgstr "Aby Related Posts for WP fungoval, musí být nainstalováno a aktivováno rozšíření %s!"
+
+#. translators: %s: the name of the PHP extension
+#: src/Admin/Notices/Mbstring.php:46
+msgid "Please contact your host and ask them to install the %s PHP extension."
+msgstr "Kontaktujte prosím svého poskytovatele hostingu a požádejte ho o instalaci PHP rozšíření %s."
+
+#: src/Admin/Notices/Multisite.php:32
+msgid "The free version of Related Posts for WordPress doesn't support WordPress Multisite/Network!"
+msgstr "Bezplatná verze pluginu Related Posts for WordPress nepodporuje WordPress Multisite (síť webů)!"
+
+#. translators: 1: link opening tag, 2: link closing tag
+#: src/Admin/Notices/Multisite.php:36
+msgid "%1$sUpgrade to the premium version%2$s or disable the plugin."
+msgstr "%1$sPřejděte na verzi Premium%2$s, nebo plugin deaktivujte."
+
+#: src/Admin/Notices/Playground.php:40
+msgid ""
+"We noticed you're running the plugin in the WordPress playground.\n"
+"                    Our plugin currently doesn't work there, due to limitation on the side of the WP playground."
+msgstr ""
+"Zjistili jsme, že plugin používáte ve WordPress Playground.\n"
+"                    Náš plugin tam kvůli omezení na straně WP Playground zatím nefunguje."
+
+#: src/Admin/Notices/Playground.php:47
+msgid "Related Posts for WP is not available inside the WordPress Playground!"
+msgstr "Related Posts for WP není ve WordPress Playground k dispozici!"
+
+#: src/Admin/Notices/Playground.php:49
+msgid "For more information regarding our plugin:"
+msgstr "Další informace o našem pluginu:"
+
+#: src/Admin/Notices/Playground.php:51
+msgid "View the tour on relatedpostsforwp.com"
+msgstr "Zobrazit prohlídku na relatedpostsforwp.com"
+
+#. translators: 1: bold opening tag, 2: bold closing tag
+#: src/Admin/Notices/Review.php:59
+msgid "You've been using %sRelated Posts for WordPress%s for some time now, could you please give it a review at wordpress.org?"
+msgstr "Plugin %sRelated Posts for WordPress%s už nějakou dobu používáte. Mohli byste ho prosím ohodnotit na wordpress.org?"
+
+#. translators: 1: review link opening tag, 2: link closing tag, 3: dismiss link opening tag, 4: link closing tag
+#: src/Admin/Notices/Review.php:66
+msgid "%sYes, take me there!%s - %sI've already done this!%s"
+msgstr "%sAno, chci tam přejít!%s - %sTo už mám hotové!%s"
+
+#: src/Admin/PluginLinks.php:38
+msgid "Settings"
+msgstr "Nastavení"
+
+#: src/Admin/PluginLinks.php:39
+msgid "Upgrade to Premium"
+msgstr "Přejít na Premium"
+
+#: src/Admin/Settings/Page.php:74
+msgid "The settings of Related Posts for WordPress need JavaScript."
+msgstr "Nastavení pluginu Related Posts for WordPress vyžaduje JavaScript."
+
+#: src/Admin/Wizard/Page.php:115
+msgid "Go to the settings of Related Posts for WordPress"
+msgstr "Přejít do nastavení pluginu Related Posts for WordPress"
+
+#: src/Frontend/Widget.php:29
+msgid "Display related posts."
+msgstr "Zobrazí související příspěvky."
+
+#: src/Install/Jobs/Queue.php:89
+msgid "An installation is running already."
+msgstr "Instalace již probíhá."
+
+#: src/Install/Jobs/Queue.php:138
+msgid "There is no stopped installation to resume."
+msgstr "Neexistuje žádná zastavená instalace, ve které by bylo možné pokračovat."
+
+#: src/Install/Jobs/Queue.php:279
+msgid "The steps of the installation changed while it ran. Please start it again."
+msgstr "Kroky instalace se během jejího běhu změnily. Spusťte ji prosím znovu."
+
+#: src/Install/Planner.php:37
+msgid "The number of related posts to link to each post."
+msgstr "Počet souvisejících příspěvků, které se propojí s každým příspěvkem."
+
+#: src/Install/Planner.php:44
+msgid "Only cache the words of the posts, and link nothing."
+msgstr "Pouze uložit slova příspěvků do mezipaměti a nic nepropojovat."
+
+#: src/Install/Planner.php:49
+msgid "Remove every link and all cached words first, and install again."
+msgstr "Nejprve odstranit všechna propojení a všechna slova v mezipaměti a pak instalovat znovu."
+
+#: src/Install/Tasks/CacheWordsTask.php:49
+msgid "Caching posts"
+msgstr "Ukládání příspěvků do mezipaměti"
+
+#: src/Install/Tasks/LinkPostsTask.php:68
+msgid "Linking posts"
+msgstr "Propojování příspěvků"
+
+#: src/Install/Tasks/ResetTask.php:35
+msgid "Removing the old links and words"
+msgstr "Odstraňování starých propojení a slov"
+
+#: src/Install/Tasks/SaveAmountTask.php:54
+msgid "Saving the settings"
+msgstr "Ukládání nastavení"
+
+#: src/Rest/InstallController.php:126
+msgid "No installation is running."
+msgstr "Neprobíhá žádná instalace."
+
+#: src/Rest/SettingsController.php:49
+msgid "The values to save, by field ID. Fields that are left out keep their value."
+msgstr "Hodnoty k uložení podle ID pole. Vynechaná pole si ponechají svou hodnotu."
+
+#. translators: %s: a settings page ID
+#: src/Settings/Schema/Pages.php:164
+msgid "There is no settings page \"%s\"."
+msgstr "Stránka nastavení „%s“ neexistuje."
+
+#: src/Settings/Settings.php:156
+msgid "General"
+msgstr "Obecné"
+
+#: src/Settings/Settings.php:157
+msgid "The following options affect the general behaviour of the plugin."
+msgstr "Následující možnosti ovlivňují obecné chování pluginu."
+
+#: src/Settings/Settings.php:161
+msgid "Enable"
+msgstr "Povolit"
+
+#: src/Settings/Settings.php:162
+msgid "Checking this will enable automatically linking posts to new posts"
+msgstr "Zaškrtnutím povolíte automatické propojování nových příspěvků se souvisejícími příspěvky"
+
+#: src/Settings/Settings.php:168
+msgid "Amount of Posts"
+msgstr "Počet příspěvků"
+
+#: src/Settings/Settings.php:169
+msgid "The amount of automatically linked post"
+msgstr "Počet automaticky propojených příspěvků"
+
+#: src/Settings/Settings.php:178
+msgid "Heading text"
+msgstr "Text nadpisu"
+
+#: src/Settings/Settings.php:179
+msgid "The text that is displayed above the related posts. To disable, leave field empty."
+msgstr "Text zobrazený nad souvisejícími příspěvky. Chcete-li ho vypnout, ponechte pole prázdné."
+
+#: src/Settings/Settings.php:185
+msgid "Excerpt length"
+msgstr "Délka stručného výpisu"
+
+#: src/Settings/Settings.php:186
+msgid "The amount of words to be displayed below the title on website. To disable, set value to 0."
+msgstr "Počet slov zobrazených na webu pod názvem. Chcete-li výpis vypnout, nastavte hodnotu 0."
+
+#: src/Settings/Settings.php:196
+msgid "Styling"
+msgstr "Vzhled"
+
+#: src/Settings/Settings.php:197
+msgid "The following options affect how related posts are displayed on the frontend."
+msgstr "Následující možnosti ovlivňují, jak se související příspěvky zobrazují na webu."
+
+#: src/Settings/Settings.php:201
+msgid "Display Image"
+msgstr "Zobrazit obrázek"
+
+#: src/Settings/Settings.php:202
+msgid "Checking this will enable displaying featured images of related posts."
+msgstr "Zaškrtnutím povolíte zobrazování náhledových obrázků souvisejících příspěvků."
+
+#: src/Settings/Settings.php:208
+msgid "CSS"
+msgstr "CSS"
+
+#: src/Settings/Settings.php:209
+msgid "Warning! This is an advanced feature! An error here will break frontend display. To disable, leave field empty."
+msgstr "Pozor! Toto je pokročilá funkce! Chyba zde naruší zobrazení na webu. Chcete-li ji vypnout, ponechte pole prázdné."
+
+#: src/Settings/Settings.php:218
+msgid "Misc"
+msgstr "Ostatní"
+
+#: src/Settings/Settings.php:219
+msgid "A shelter for options that just don't fit in anywhere else."
+msgstr "Útočiště pro možnosti, které se nikam jinam nehodí."
+
+#: src/Settings/Settings.php:223
+msgid "Remove Data on Uninstall?"
+msgstr "Odstranit data při odinstalaci?"
+
+#: src/Settings/Settings.php:224
+msgid "Check this box if you would like to completely remove all of its data when the plugin is deleted."
+msgstr "Zaškrtněte, pokud chcete při smazání pluginu úplně odstranit všechna jeho data."
+
+#: src/Settings/Settings.php:230
+msgid "Show love?"
+msgstr "Projevit podporu?"
+
+#: src/Settings/Settings.php:231
+msgid "Display a 'Powered by' line under your related posts. <strong>BEWARE! Only for the real fans.</strong>"
+msgstr "Zobrazit pod souvisejícími příspěvky řádek „Powered by“. <strong>POZOR! Jen pro opravdové fanoušky.</strong>"
+
+#: assets/build/admin/index.js:1
+msgid "The settings could not be loaded."
+msgstr "Nastavení se nepodařilo načíst."
+
+#: assets/build/admin/index.js:1
+msgid "The installer could not be reached."
+msgstr "Nepodařilo se spojit s instalátorem."
+
+#: assets/build/admin/index.js:1
+msgid "All set! Your posts are linked."
+msgstr "Hotovo! Vaše příspěvky jsou propojené."
+
+#: assets/build/admin/index.js:1
+msgid "All set! Your posts are read."
+msgstr "Hotovo! Vaše příspěvky jsou přečtené."
+
+#: assets/build/admin/index.js:1
+msgid "Every post shows its related posts now, and new posts are linked when you publish them."
+msgstr "Každý příspěvek nyní zobrazuje své související příspěvky a nové příspěvky se propojí, jakmile je publikujete."
+
+#: assets/build/admin/index.js:1
+msgid "Link them from the Installer tab when you are ready."
+msgstr "Až budete připraveni, propojte je na kartě Instalátor."
+
+#: assets/build/admin/index.js:1
+msgid "Close"
+msgstr "Zavřít"
+
+#: assets/build/admin/index.js:1
+msgid "Less than a minute left"
+msgstr "Zbývá méně než minuta"
+
+#. translators: %s: a number of minutes
+#: assets/build/admin/index.js:4
+msgid "About %s minute left"
+msgid_plural "About %s minutes left"
+msgstr[0] "Zbývá asi %s minuta"
+msgstr[1] "Zbývají asi %s minuty"
+msgstr[2] "Zbývá asi %s minut"
+
+#. translators: 1: posts done, 2: all posts
+#: assets/build/admin/index.js:7
+msgid "%1$s of %2$s posts"
+msgstr "%1$s z %2$s příspěvků"
+
+#: assets/build/admin/index.js:7
+msgid "The installation stopped"
+msgstr "Instalace se zastavila"
+
+#: assets/build/admin/index.js:7
+msgid "The installation was cancelled"
+msgstr "Instalace byla zrušena"
+
+#: assets/build/admin/index.js:7
+msgid "Linking your related posts"
+msgstr "Propojování vašich souvisejících příspěvků"
+
+#: assets/build/admin/index.js:7
+msgid "This runs in the background. You can leave this page; it goes on without you."
+msgstr "Probíhá to na pozadí. Tuto stránku můžete opustit; vše poběží dál i bez vás."
+
+#. translators: %d: how far the installation is, in percent
+#: assets/build/admin/index.js:10
+msgid "%d%%"
+msgstr "%d %%"
+
+#: assets/build/admin/index.js:10
+msgid "Installation progress"
+msgstr "Průběh instalace"
+
+#: assets/build/admin/index.js:10
+msgid "Background processing is slow on this site, so this page is doing the work now. Keep it open to finish sooner, or come back later."
+msgstr "Úlohy na pozadí jsou na tomto webu pomalé, takže práci teď vykonává tato stránka. Nechte ji otevřenou, aby vše skončilo dříve, nebo se vraťte později."
+
+#: assets/build/admin/index.js:10
+msgid "Something went wrong."
+msgstr "Něco se pokazilo."
+
+#: assets/build/admin/index.js:10
+msgid "What was done so far is kept. Resume to finish the rest."
+msgstr "Vše, co už bylo hotovo, zůstane zachováno. Pokračováním dokončíte zbytek."
+
+#: assets/build/admin/index.js:10
+msgid "Cancel"
+msgstr "Zrušit"
+
+#: assets/build/admin/index.js:10
+msgid "The installation could not resume."
+msgstr "V instalaci se nepodařilo pokračovat."
+
+#: assets/build/admin/index.js:10
+msgid "Resume"
+msgstr "Pokračovat"
+
+#: assets/build/admin/index.js:10
+msgid "Cancel the installation?"
+msgstr "Zrušit instalaci?"
+
+#: assets/build/admin/index.js:10
+msgid "Cancel installation"
+msgstr "Zrušit instalaci"
+
+#: assets/build/admin/index.js:10
+msgid "Keep running"
+msgstr "Nechat běžet"
+
+#: assets/build/admin/index.js:10
+msgid "The installation could not be cancelled."
+msgstr "Instalaci se nepodařilo zrušit."
+
+#: assets/build/admin/index.js:10
+msgid "What was done so far is kept, and you can resume later."
+msgstr "Vše, co už bylo hotovo, zůstane zachováno a pokračovat můžete později."
+
+#: assets/build/admin/index.js:10
+msgid "Related posts per post"
+msgstr "Počet souvisejících příspěvků u příspěvku"
+
+#: assets/build/admin/index.js:10
+msgid "Get started"
+msgstr "Začínáme"
+
+#: assets/build/admin/index.js:10
+msgid "Let's link your related posts"
+msgstr "Pojďme propojit vaše související příspěvky"
+
+#: assets/build/admin/index.js:10
+msgid "Related Posts reads your posts once to learn what each one is about, then links every post to the posts that are most related to it."
+msgstr "Related Posts jednou přečte vaše příspěvky, aby zjistil, o čem každý z nich je, a pak propojí každý příspěvek s příspěvky, které s ním nejvíce souvisejí."
+
+#: assets/build/admin/index.js:10
+msgid "It runs in the background, so you can leave this page while it works."
+msgstr "Probíhá to na pozadí, takže tuto stránku můžete mezitím opustit."
+
+#: assets/build/admin/index.js:10
+msgid "You can change this later, and link again at any time."
+msgstr "Později to můžete změnit a kdykoli propojit znovu."
+
+#: assets/build/admin/index.js:10
+msgid "Link the posts right away"
+msgstr "Propojit příspěvky hned"
+
+#: assets/build/admin/index.js:10
+msgid "Turn this off to only read the posts now, and link them later from the Installer tab."
+msgstr "Vypněte, chcete-li příspěvky teď jen přečíst a propojit je později na kartě Instalátor."
+
+#: assets/build/admin/index.js:10 assets/build/admin/index.js:13
+msgid "The installation could not start."
+msgstr "Instalaci se nepodařilo spustit."
+
+#: assets/build/admin/index.js:10
+msgid "Start"
+msgstr "Spustit"
+
+#: assets/build/admin/index.js:10
+msgid "The installation is done."
+msgstr "Instalace je dokončena."
+
+#: assets/build/admin/index.js:10
+msgid "The installation stopped."
+msgstr "Instalace se zastavila."
+
+#. translators: %s: the plugin version
+#: assets/build/admin/index.js:13
+msgid "Version %s"
+msgstr "Verze %s"
+
+#: assets/build/admin/index.js:13
+msgid "Premium"
+msgstr "Premium"
+
+#: assets/build/admin/index.js:13
+msgid "Related Posts settings"
+msgstr "Nastavení Related Posts"
+
+#: assets/build/admin/index.js:13
+msgid "Unsaved changes"
+msgstr "Neuložené změny"
+
+#: assets/build/admin/index.js:13
+msgid "You have unsaved changes."
+msgstr "Máte neuložené změny."
+
+#: assets/build/admin/index.js:13
+msgid "Discard"
+msgstr "Zahodit"
+
+#: assets/build/admin/index.js:13
+msgid "Settings saved."
+msgstr "Nastavení bylo uloženo."
+
+#: assets/build/admin/index.js:13
+msgid "The settings could not be saved."
+msgstr "Nastavení se nepodařilo uložit."
+
+#: assets/build/admin/index.js:13
+msgid "Save changes"
+msgstr "Uložit změny"
+
+#: assets/build/admin/index.js:13
+msgid "This page does not exist."
+msgstr "Tato stránka neexistuje."
+
+#: assets/build/admin/index.js:13
+msgid "This option is overwritten by a filter."
+msgstr "Tato možnost je přepsána filtrem."
+
+#: assets/build/admin/index.js:13
+msgid "Installer"
+msgstr "Instalátor"
+
+#: assets/build/admin/index.js:13
+msgid "An installation is running. You can start another one when it is done."
+msgstr "Probíhá instalace. Další můžete spustit, až bude dokončena."
+
+#: assets/build/admin/index.js:13
+msgid "Link new posts"
+msgstr "Propojit nové příspěvky"
+
+#: assets/build/admin/index.js:13
+msgid "Read and link the posts that are not linked yet, for example posts from before automatic linking was on. Links that exist stay as they are."
+msgstr "Přečte a propojí příspěvky, které ještě nejsou propojené, například příspěvky z doby před zapnutím automatického propojování. Stávající propojení zůstanou beze změny."
+
+#: assets/build/admin/index.js:13
+msgid "Rebuild everything"
+msgstr "Vše znovu sestavit"
+
+#: assets/build/admin/index.js:13
+msgid "Start over: remove every related post link, also the links you added by hand, read all posts again and link them. Your posts themselves are never touched."
+msgstr "Začít znovu: odstraní všechna propojení souvisejících příspěvků, včetně těch, která jste přidali ručně, znovu přečte všechny příspěvky a propojí je. Samotné příspěvky zůstanou vždy nedotčené."
+
+#: assets/build/admin/index.js:13
+msgid "Rebuild everything?"
+msgstr "Vše znovu sestavit?"
+
+#: assets/build/admin/index.js:13
+msgid "Remove links and rebuild"
+msgstr "Odstranit propojení a sestavit znovu"
+
+#: assets/build/admin/index.js:13
+msgid "Keep my links"
+msgstr "Ponechat moje propojení"
+
+#: assets/build/admin/index.js:13
+msgid "Every related post link is removed, including the links you added by hand. This can not be undone."
+msgstr "Všechna propojení souvisejících příspěvků budou odstraněna, včetně těch, která jste přidali ručně. Tuto akci nelze vrátit zpět."

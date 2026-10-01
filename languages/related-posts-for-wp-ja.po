@@ -1,0 +1,601 @@
+# Copyright (C) 2026 Never5
+# This file is distributed under the GPL v3.
+msgid ""
+msgstr ""
+"Project-Id-Version: Related Posts for WordPress\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
+"POT-Creation-Date: 2026-10-01T12:29:25+00:00\n"
+"PO-Revision-Date: 2026-10-01 12:00+0000\n"
+"Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
+"Language-Team: Japanese\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Domain: related-posts-for-wp\n"
+
+#. Plugin Name of the plugin
+#: related-posts-for-wp.php src/Frontend/Widget.php:28
+msgid "Related Posts for WordPress"
+msgstr "Related Posts for WordPress"
+
+#. Plugin URI of the plugin
+#: related-posts-for-wp.php
+msgid "http://www.relatedpostsforwp.com/"
+msgstr "http://www.relatedpostsforwp.com/"
+
+#. Description of the plugin
+#: related-posts-for-wp.php
+msgid "Related Posts for WordPress, the best way to display related posts in WordPress."
+msgstr "Related Posts for WordPress は、WordPress で関連投稿を表示する最良の方法です。"
+
+#. Author of the plugin
+#: related-posts-for-wp.php
+msgid "Never5"
+msgstr "Never5"
+
+#. Author URI of the plugin
+#: related-posts-for-wp.php
+msgid "http://www.never5.com/"
+msgstr "http://www.never5.com/"
+
+#. translators: 1: required PHP version, 2: required WordPress version
+#: related-posts-for-wp.php:66
+msgid "Related Posts for WordPress needs PHP %1$s and WordPress %2$s or newer. It does not run on this site until they are updated."
+msgstr "Related Posts for WordPress には PHP %1$s 以上と WordPress %2$s 以上が必要です。これらが更新されるまで、このサイトでは動作しません。"
+
+#. translators: 1: link opening tag, 2: link closing tag
+#: related-posts-for-wp.php:89
+msgid "Related Posts for WordPress 3.0 works together with Related Posts for WordPress Premium 3.0. Please %1$supdate Premium%2$s. Until then, your current version of Premium keeps working on its own."
+msgstr "Related Posts for WordPress 3.0 は Related Posts for WordPress Premium 3.0 と連携して動作します。%1$sPremium を更新%2$sしてください。それまでは、現在のバージョンの Premium が単独で動作し続けます。"
+
+#: src/Admin/App/Assets.php:104
+msgid "The settings screen of Related Posts for WordPress is missing its scripts. Run npm run build in the plugin folder."
+msgstr "Related Posts for WordPress の設定画面のスクリプトが見つかりません。プラグインフォルダーで npm run build を実行してください。"
+
+#: src/Admin/Assets.php:52
+msgid "Are you sure you want to delete this related post?"
+msgstr "この関連投稿を削除してもよろしいですか ?"
+
+#: src/Admin/LinkScreen/ListTable.php:63 src/Admin/MetaBox/ManageLinks.php:53
+#: src/Admin/Settings/Page.php:51 src/Admin/Wizard/Page.php:73
+#: src/Settings/Settings.php:181 assets/build/admin/index.js:13
+msgid "Related Posts"
+msgstr "関連投稿"
+
+#: src/Admin/LinkScreen/ListTable.php:64
+msgid "All Posts"
+msgstr "すべての投稿"
+
+#: src/Admin/LinkScreen/ListTable.php:118
+msgid "Title"
+msgstr "タイトル"
+
+#: src/Admin/LinkScreen/ListTable.php:119
+msgid "Post Date"
+msgstr "投稿日"
+
+#: src/Admin/LinkScreen/ListTable.php:301
+msgid "Link Post"
+msgstr "投稿を関連付け"
+
+#: src/Admin/LinkScreen/ListTable.php:334
+msgid "Link Posts"
+msgstr "投稿を関連付け"
+
+#: src/Admin/LinkScreen/Page.php:126
+msgid "Posts"
+msgstr "投稿"
+
+#: src/Admin/LinkScreen/Page.php:127
+msgid "Cancel linking"
+msgstr "関連付けをキャンセル"
+
+#: src/Admin/LinkScreen/Page.php:136
+msgid "Search"
+msgstr "検索"
+
+#: src/Admin/MetaBox/ManageLinks.php:81
+msgid "Add Related Posts"
+msgstr "関連投稿を追加"
+
+#: src/Admin/MetaBox/ManageLinks.php:100 src/Admin/MetaBox/ManageLinks.php:101
+msgid "Edit Post"
+msgstr "投稿を編集"
+
+#: src/Admin/MetaBox/ManageLinks.php:103 src/Admin/MetaBox/ManageLinks.php:104
+msgid "Unlink Related Post"
+msgstr "関連投稿の関連付けを解除"
+
+#: src/Admin/MetaBox/ManageLinks.php:115
+msgid "No related posts found."
+msgstr "関連投稿が見つかりませんでした。"
+
+#. translators: %d: how far the installation is, in percent
+#: src/Admin/Notices/Installing.php:70
+msgid "Related Posts for WordPress is linking your posts in the background (%d%%)."
+msgstr "Related Posts for WordPress がバックグラウンドで投稿を関連付けています (%d%%)。"
+
+#: src/Admin/Notices/Installing.php:73
+msgid "View progress"
+msgstr "進行状況を表示"
+
+#: src/Admin/Notices/Installing.php:83
+msgid "The installation of Related Posts for WordPress stopped with an error."
+msgstr "Related Posts for WordPress のインストールがエラーで停止しました。"
+
+#: src/Admin/Notices/Installing.php:84
+msgid "See what happened"
+msgstr "詳細を確認"
+
+#: src/Admin/Notices/Installing.php:95
+msgid "Woah! Looks like we weren't able to finish your Related Posts for WordPress installation wizard!"
+msgstr "Related Posts for WordPress のインストールウィザードが完了していないようです。"
+
+#: src/Admin/Notices/Installing.php:96
+msgid "Finish the installation"
+msgstr "インストールを完了"
+
+#: src/Admin/Notices/Installing.php:145
+msgid "Dismiss"
+msgstr "非表示"
+
+#: src/Admin/Notices/Mbstring.php:37
+msgid "Error:"
+msgstr "エラー:"
+
+#. translators: %s: the name of the PHP extension
+#: src/Admin/Notices/Mbstring.php:40
+msgid "The %s extension needs to be installed and activated for Related Posts for WP to work!"
+msgstr "Related Posts for WP を動作させるには、%s 拡張機能をインストールして有効化する必要があります。"
+
+#. translators: %s: the name of the PHP extension
+#: src/Admin/Notices/Mbstring.php:46
+msgid "Please contact your host and ask them to install the %s PHP extension."
+msgstr "ホスティング会社に連絡して、PHP 拡張機能 %s のインストールを依頼してください。"
+
+#: src/Admin/Notices/Multisite.php:32
+msgid "The free version of Related Posts for WordPress doesn't support WordPress Multisite/Network!"
+msgstr "Related Posts for WordPress の無料版は WordPress マルチサイト/ネットワークに対応していません。"
+
+#. translators: 1: link opening tag, 2: link closing tag
+#: src/Admin/Notices/Multisite.php:36
+msgid "%1$sUpgrade to the premium version%2$s or disable the plugin."
+msgstr "%1$sPremium 版にアップグレード%2$sするか、プラグインを無効化してください。"
+
+#: src/Admin/Notices/Playground.php:40
+msgid ""
+"We noticed you're running the plugin in the WordPress playground.\n"
+"                    Our plugin currently doesn't work there, due to limitation on the side of the WP playground."
+msgstr ""
+"WordPress Playground でプラグインを実行していることを検出しました。\n"
+"                    WP Playground 側の制限により、このプラグインは現在 Playground では動作しません。"
+
+#: src/Admin/Notices/Playground.php:47
+msgid "Related Posts for WP is not available inside the WordPress Playground!"
+msgstr "Related Posts for WP は WordPress Playground では利用できません。"
+
+#: src/Admin/Notices/Playground.php:49
+msgid "For more information regarding our plugin:"
+msgstr "このプラグインの詳細:"
+
+#: src/Admin/Notices/Playground.php:51
+msgid "View the tour on relatedpostsforwp.com"
+msgstr "relatedpostsforwp.com でツアーを見る"
+
+#. translators: 1: bold opening tag, 2: bold closing tag
+#: src/Admin/Notices/Review.php:59
+msgid "You've been using %sRelated Posts for WordPress%s for some time now, could you please give it a review at wordpress.org?"
+msgstr "%sRelated Posts for WordPress%s をしばらくご利用いただいています。wordpress.org でレビューを書いていただけませんか ?"
+
+#. translators: 1: review link opening tag, 2: link closing tag, 3: dismiss link opening tag, 4: link closing tag
+#: src/Admin/Notices/Review.php:66
+msgid "%sYes, take me there!%s - %sI've already done this!%s"
+msgstr "%sはい、レビューを書きます%s - %sすでにレビューしました%s"
+
+#: src/Admin/PluginLinks.php:38
+msgid "Settings"
+msgstr "設定"
+
+#: src/Admin/PluginLinks.php:39
+msgid "Upgrade to Premium"
+msgstr "Premium にアップグレード"
+
+#: src/Admin/Settings/Page.php:74
+msgid "The settings of Related Posts for WordPress need JavaScript."
+msgstr "Related Posts for WordPress の設定には JavaScript が必要です。"
+
+#: src/Admin/Wizard/Page.php:115
+msgid "Go to the settings of Related Posts for WordPress"
+msgstr "Related Posts for WordPress の設定へ移動"
+
+#: src/Frontend/Widget.php:29
+msgid "Display related posts."
+msgstr "関連投稿を表示します。"
+
+#: src/Install/Jobs/Queue.php:89
+msgid "An installation is running already."
+msgstr "インストールはすでに実行中です。"
+
+#: src/Install/Jobs/Queue.php:138
+msgid "There is no stopped installation to resume."
+msgstr "再開できる停止中のインストールはありません。"
+
+#: src/Install/Jobs/Queue.php:279
+msgid "The steps of the installation changed while it ran. Please start it again."
+msgstr "実行中にインストールの手順が変更されました。もう一度開始してください。"
+
+#: src/Install/Planner.php:37
+msgid "The number of related posts to link to each post."
+msgstr "各投稿に関連付ける関連投稿の数。"
+
+#: src/Install/Planner.php:44
+msgid "Only cache the words of the posts, and link nothing."
+msgstr "投稿の単語をキャッシュするだけで、関連付けは行いません。"
+
+#: src/Install/Planner.php:49
+msgid "Remove every link and all cached words first, and install again."
+msgstr "すべての関連付けとキャッシュした単語を先に削除してから、再インストールします。"
+
+#: src/Install/Tasks/CacheWordsTask.php:49
+msgid "Caching posts"
+msgstr "投稿をキャッシュ中"
+
+#: src/Install/Tasks/LinkPostsTask.php:68
+msgid "Linking posts"
+msgstr "投稿を関連付け中"
+
+#: src/Install/Tasks/ResetTask.php:35
+msgid "Removing the old links and words"
+msgstr "古い関連付けと単語を削除中"
+
+#: src/Install/Tasks/SaveAmountTask.php:54
+msgid "Saving the settings"
+msgstr "設定を保存中"
+
+#: src/Rest/InstallController.php:126
+msgid "No installation is running."
+msgstr "実行中のインストールはありません。"
+
+#: src/Rest/SettingsController.php:49
+msgid "The values to save, by field ID. Fields that are left out keep their value."
+msgstr "保存する値 (フィールド ID ごと)。省略したフィールドは現在の値のままになります。"
+
+#. translators: %s: a settings page ID
+#: src/Settings/Schema/Pages.php:164
+msgid "There is no settings page \"%s\"."
+msgstr "設定ページ「%s」は存在しません。"
+
+#: src/Settings/Settings.php:156
+msgid "General"
+msgstr "一般"
+
+#: src/Settings/Settings.php:157
+msgid "The following options affect the general behaviour of the plugin."
+msgstr "以下のオプションは、プラグイン全体の動作に影響します。"
+
+#: src/Settings/Settings.php:161
+msgid "Enable"
+msgstr "有効化"
+
+#: src/Settings/Settings.php:162
+msgid "Checking this will enable automatically linking posts to new posts"
+msgstr "チェックすると、新しい投稿に関連投稿が自動的に関連付けられます"
+
+#: src/Settings/Settings.php:168
+msgid "Amount of Posts"
+msgstr "投稿数"
+
+#: src/Settings/Settings.php:169
+msgid "The amount of automatically linked post"
+msgstr "自動的に関連付ける投稿の数"
+
+#: src/Settings/Settings.php:178
+msgid "Heading text"
+msgstr "見出しテキスト"
+
+#: src/Settings/Settings.php:179
+msgid "The text that is displayed above the related posts. To disable, leave field empty."
+msgstr "関連投稿の上に表示するテキスト。無効にするには空欄にしてください。"
+
+#: src/Settings/Settings.php:185
+msgid "Excerpt length"
+msgstr "抜粋の長さ"
+
+#: src/Settings/Settings.php:186
+msgid "The amount of words to be displayed below the title on website. To disable, set value to 0."
+msgstr "サイト上でタイトルの下に表示する単語数。無効にするには 0 に設定してください。"
+
+#: src/Settings/Settings.php:196
+msgid "Styling"
+msgstr "スタイル"
+
+#: src/Settings/Settings.php:197
+msgid "The following options affect how related posts are displayed on the frontend."
+msgstr "以下のオプションは、フロントエンドでの関連投稿の表示方法に影響します。"
+
+#: src/Settings/Settings.php:201
+msgid "Display Image"
+msgstr "画像を表示"
+
+#: src/Settings/Settings.php:202
+msgid "Checking this will enable displaying featured images of related posts."
+msgstr "チェックすると、関連投稿のアイキャッチ画像を表示します。"
+
+#: src/Settings/Settings.php:208
+msgid "CSS"
+msgstr "CSS"
+
+#: src/Settings/Settings.php:209
+msgid "Warning! This is an advanced feature! An error here will break frontend display. To disable, leave field empty."
+msgstr "警告: これは上級者向けの機能です。ここに誤りがあると、フロントエンドの表示が崩れます。無効にするには空欄にしてください。"
+
+#: src/Settings/Settings.php:218
+msgid "Misc"
+msgstr "その他"
+
+#: src/Settings/Settings.php:219
+msgid "A shelter for options that just don't fit in anywhere else."
+msgstr "ほかのどこにも当てはまらないオプションをまとめています。"
+
+#: src/Settings/Settings.php:223
+msgid "Remove Data on Uninstall?"
+msgstr "アンインストール時にデータを削除しますか ?"
+
+#: src/Settings/Settings.php:224
+msgid "Check this box if you would like to completely remove all of its data when the plugin is deleted."
+msgstr "プラグインの削除時に、そのデータをすべて完全に削除する場合はチェックしてください。"
+
+#: src/Settings/Settings.php:230
+msgid "Show love?"
+msgstr "応援しますか ?"
+
+#: src/Settings/Settings.php:231
+msgid "Display a 'Powered by' line under your related posts. <strong>BEWARE! Only for the real fans.</strong>"
+msgstr "関連投稿の下に「Powered by」の行を表示します。<strong>注意: 真のファン専用です。</strong>"
+
+#: assets/build/admin/index.js:1
+msgid "The settings could not be loaded."
+msgstr "設定を読み込めませんでした。"
+
+#: assets/build/admin/index.js:1
+msgid "The installer could not be reached."
+msgstr "インストーラーに接続できませんでした。"
+
+#: assets/build/admin/index.js:1
+msgid "All set! Your posts are linked."
+msgstr "完了しました。投稿が関連付けられました。"
+
+#: assets/build/admin/index.js:1
+msgid "All set! Your posts are read."
+msgstr "完了しました。投稿を読み込みました。"
+
+#: assets/build/admin/index.js:1
+msgid "Every post shows its related posts now, and new posts are linked when you publish them."
+msgstr "すべての投稿に関連投稿が表示されるようになりました。新しい投稿は公開時に関連付けられます。"
+
+#: assets/build/admin/index.js:1
+msgid "Link them from the Installer tab when you are ready."
+msgstr "準備ができたら、「インストーラー」タブから関連付けてください。"
+
+#: assets/build/admin/index.js:1
+msgid "Close"
+msgstr "閉じる"
+
+#: assets/build/admin/index.js:1
+msgid "Less than a minute left"
+msgstr "残り1分未満"
+
+#. translators: %s: a number of minutes
+#: assets/build/admin/index.js:4
+msgid "About %s minute left"
+msgid_plural "About %s minutes left"
+msgstr[0] "残り約 %s 分"
+
+#. translators: 1: posts done, 2: all posts
+#: assets/build/admin/index.js:7
+msgid "%1$s of %2$s posts"
+msgstr "%1$s / %2$s 件の投稿"
+
+#: assets/build/admin/index.js:7
+msgid "The installation stopped"
+msgstr "インストールが停止しました"
+
+#: assets/build/admin/index.js:7
+msgid "The installation was cancelled"
+msgstr "インストールはキャンセルされました"
+
+#: assets/build/admin/index.js:7
+msgid "Linking your related posts"
+msgstr "関連投稿を関連付けています"
+
+#: assets/build/admin/index.js:7
+msgid "This runs in the background. You can leave this page; it goes on without you."
+msgstr "この処理はバックグラウンドで実行されます。このページを離れても処理は続きます。"
+
+#. translators: %d: how far the installation is, in percent
+#: assets/build/admin/index.js:10
+msgid "%d%%"
+msgstr "%d%%"
+
+#: assets/build/admin/index.js:10
+msgid "Installation progress"
+msgstr "インストールの進行状況"
+
+#: assets/build/admin/index.js:10
+msgid "Background processing is slow on this site, so this page is doing the work now. Keep it open to finish sooner, or come back later."
+msgstr "このサイトではバックグラウンド処理が遅いため、現在このページで処理を行っています。ページを開いたままにすると早く完了します。後で戻ってくることもできます。"
+
+#: assets/build/admin/index.js:10
+msgid "Something went wrong."
+msgstr "問題が発生しました。"
+
+#: assets/build/admin/index.js:10
+msgid "What was done so far is kept. Resume to finish the rest."
+msgstr "ここまでの処理結果は保持されています。再開すると残りを完了します。"
+
+#: assets/build/admin/index.js:10
+msgid "Cancel"
+msgstr "キャンセル"
+
+#: assets/build/admin/index.js:10
+msgid "The installation could not resume."
+msgstr "インストールを再開できませんでした。"
+
+#: assets/build/admin/index.js:10
+msgid "Resume"
+msgstr "再開"
+
+#: assets/build/admin/index.js:10
+msgid "Cancel the installation?"
+msgstr "インストールをキャンセルしますか ?"
+
+#: assets/build/admin/index.js:10
+msgid "Cancel installation"
+msgstr "インストールをキャンセル"
+
+#: assets/build/admin/index.js:10
+msgid "Keep running"
+msgstr "実行を続ける"
+
+#: assets/build/admin/index.js:10
+msgid "The installation could not be cancelled."
+msgstr "インストールをキャンセルできませんでした。"
+
+#: assets/build/admin/index.js:10
+msgid "What was done so far is kept, and you can resume later."
+msgstr "ここまでの処理結果は保持され、後で再開できます。"
+
+#: assets/build/admin/index.js:10
+msgid "Related posts per post"
+msgstr "投稿ごとの関連投稿数"
+
+#: assets/build/admin/index.js:10
+msgid "Get started"
+msgstr "はじめに"
+
+#: assets/build/admin/index.js:10
+msgid "Let's link your related posts"
+msgstr "関連投稿を関連付けましょう"
+
+#: assets/build/admin/index.js:10
+msgid "Related Posts reads your posts once to learn what each one is about, then links every post to the posts that are most related to it."
+msgstr "Related Posts は投稿を一度読み込んで各投稿の内容を把握し、それぞれの投稿を最も関連性の高い投稿に関連付けます。"
+
+#: assets/build/admin/index.js:10
+msgid "It runs in the background, so you can leave this page while it works."
+msgstr "バックグラウンドで実行されるため、処理中にこのページを離れてもかまいません。"
+
+#: assets/build/admin/index.js:10
+msgid "You can change this later, and link again at any time."
+msgstr "これは後で変更でき、いつでも関連付けをやり直せます。"
+
+#: assets/build/admin/index.js:10
+msgid "Link the posts right away"
+msgstr "すぐに投稿を関連付ける"
+
+#: assets/build/admin/index.js:10
+msgid "Turn this off to only read the posts now, and link them later from the Installer tab."
+msgstr "オフにすると、今は投稿の読み込みのみを行い、後で「インストーラー」タブから関連付けます。"
+
+#: assets/build/admin/index.js:10 assets/build/admin/index.js:13
+msgid "The installation could not start."
+msgstr "インストールを開始できませんでした。"
+
+#: assets/build/admin/index.js:10
+msgid "Start"
+msgstr "開始"
+
+#: assets/build/admin/index.js:10
+msgid "The installation is done."
+msgstr "インストールが完了しました。"
+
+#: assets/build/admin/index.js:10
+msgid "The installation stopped."
+msgstr "インストールが停止しました。"
+
+#. translators: %s: the plugin version
+#: assets/build/admin/index.js:13
+msgid "Version %s"
+msgstr "バージョン %s"
+
+#: assets/build/admin/index.js:13
+msgid "Premium"
+msgstr "Premium"
+
+#: assets/build/admin/index.js:13
+msgid "Related Posts settings"
+msgstr "Related Posts 設定"
+
+#: assets/build/admin/index.js:13
+msgid "Unsaved changes"
+msgstr "未保存の変更"
+
+#: assets/build/admin/index.js:13
+msgid "You have unsaved changes."
+msgstr "未保存の変更があります。"
+
+#: assets/build/admin/index.js:13
+msgid "Discard"
+msgstr "破棄"
+
+#: assets/build/admin/index.js:13
+msgid "Settings saved."
+msgstr "設定を保存しました。"
+
+#: assets/build/admin/index.js:13
+msgid "The settings could not be saved."
+msgstr "設定を保存できませんでした。"
+
+#: assets/build/admin/index.js:13
+msgid "Save changes"
+msgstr "変更を保存"
+
+#: assets/build/admin/index.js:13
+msgid "This page does not exist."
+msgstr "このページは存在しません。"
+
+#: assets/build/admin/index.js:13
+msgid "This option is overwritten by a filter."
+msgstr "このオプションはフィルターによって上書きされています。"
+
+#: assets/build/admin/index.js:13
+msgid "Installer"
+msgstr "インストーラー"
+
+#: assets/build/admin/index.js:13
+msgid "An installation is running. You can start another one when it is done."
+msgstr "インストールを実行中です。完了後に別のインストールを開始できます。"
+
+#: assets/build/admin/index.js:13
+msgid "Link new posts"
+msgstr "新しい投稿を関連付け"
+
+#: assets/build/admin/index.js:13
+msgid "Read and link the posts that are not linked yet, for example posts from before automatic linking was on. Links that exist stay as they are."
+msgstr "まだ関連付けられていない投稿 (自動関連付けを有効にする前の投稿など) を読み込んで関連付けます。既存の関連付けはそのまま残ります。"
+
+#: assets/build/admin/index.js:13
+msgid "Rebuild everything"
+msgstr "すべて再構築"
+
+#: assets/build/admin/index.js:13
+msgid "Start over: remove every related post link, also the links you added by hand, read all posts again and link them. Your posts themselves are never touched."
+msgstr "最初からやり直します。手動で追加したものも含めて関連投稿の関連付けをすべて削除し、すべての投稿を読み込み直して関連付けます。投稿そのものが変更されることはありません。"
+
+#: assets/build/admin/index.js:13
+msgid "Rebuild everything?"
+msgstr "すべて再構築しますか ?"
+
+#: assets/build/admin/index.js:13
+msgid "Remove links and rebuild"
+msgstr "関連付けを削除して再構築"
+
+#: assets/build/admin/index.js:13
+msgid "Keep my links"
+msgstr "関連付けを残す"
+
+#: assets/build/admin/index.js:13
+msgid "Every related post link is removed, including the links you added by hand. This can not be undone."
+msgstr "手動で追加したものも含め、関連投稿の関連付けがすべて削除されます。この操作は取り消せません。"

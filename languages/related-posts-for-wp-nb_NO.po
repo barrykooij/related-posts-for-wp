@@ -1,0 +1,602 @@
+# Copyright (C) 2026 Never5
+# This file is distributed under the GPL v3.
+msgid ""
+msgstr ""
+"Project-Id-Version: Related Posts for WordPress\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
+"POT-Creation-Date: 2026-10-01T12:29:25+00:00\n"
+"PO-Revision-Date: 2026-10-01 12:00+0000\n"
+"Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
+"Language-Team: Norwegian (Bokmal)\n"
+"Language: nb_NO\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Domain: related-posts-for-wp\n"
+
+#. Plugin Name of the plugin
+#: related-posts-for-wp.php src/Frontend/Widget.php:28
+msgid "Related Posts for WordPress"
+msgstr "Related Posts for WordPress"
+
+#. Plugin URI of the plugin
+#: related-posts-for-wp.php
+msgid "http://www.relatedpostsforwp.com/"
+msgstr "http://www.relatedpostsforwp.com/"
+
+#. Description of the plugin
+#: related-posts-for-wp.php
+msgid "Related Posts for WordPress, the best way to display related posts in WordPress."
+msgstr "Related Posts for WordPress, den beste måten å vise relaterte innlegg på i WordPress."
+
+#. Author of the plugin
+#: related-posts-for-wp.php
+msgid "Never5"
+msgstr "Never5"
+
+#. Author URI of the plugin
+#: related-posts-for-wp.php
+msgid "http://www.never5.com/"
+msgstr "http://www.never5.com/"
+
+#. translators: 1: required PHP version, 2: required WordPress version
+#: related-posts-for-wp.php:66
+msgid "Related Posts for WordPress needs PHP %1$s and WordPress %2$s or newer. It does not run on this site until they are updated."
+msgstr "Related Posts for WordPress krever PHP %1$s og WordPress %2$s eller nyere. Utvidelsen kjører ikke på dette nettstedet før de er oppdatert."
+
+#. translators: 1: link opening tag, 2: link closing tag
+#: related-posts-for-wp.php:89
+msgid "Related Posts for WordPress 3.0 works together with Related Posts for WordPress Premium 3.0. Please %1$supdate Premium%2$s. Until then, your current version of Premium keeps working on its own."
+msgstr "Related Posts for WordPress 3.0 fungerer sammen med Related Posts for WordPress Premium 3.0. %1$sOppdater Premium%2$s. Inntil da fortsetter din nåværende versjon av Premium å fungere på egen hånd."
+
+#: src/Admin/App/Assets.php:104
+msgid "The settings screen of Related Posts for WordPress is missing its scripts. Run npm run build in the plugin folder."
+msgstr "Innstillingssiden for Related Posts for WordPress mangler skriptene sine. Kjør npm run build i mappen til utvidelsen."
+
+#: src/Admin/Assets.php:52
+msgid "Are you sure you want to delete this related post?"
+msgstr "Er du sikker på at du vil slette dette relaterte innlegget?"
+
+#: src/Admin/LinkScreen/ListTable.php:63 src/Admin/MetaBox/ManageLinks.php:53
+#: src/Admin/Settings/Page.php:51 src/Admin/Wizard/Page.php:73
+#: src/Settings/Settings.php:181 assets/build/admin/index.js:13
+msgid "Related Posts"
+msgstr "Relaterte innlegg"
+
+#: src/Admin/LinkScreen/ListTable.php:64
+msgid "All Posts"
+msgstr "Alle innlegg"
+
+#: src/Admin/LinkScreen/ListTable.php:118
+msgid "Title"
+msgstr "Tittel"
+
+#: src/Admin/LinkScreen/ListTable.php:119
+msgid "Post Date"
+msgstr "Innleggsdato"
+
+#: src/Admin/LinkScreen/ListTable.php:301
+msgid "Link Post"
+msgstr "Koble innlegg"
+
+#: src/Admin/LinkScreen/ListTable.php:334
+msgid "Link Posts"
+msgstr "Koble innlegg"
+
+#: src/Admin/LinkScreen/Page.php:126
+msgid "Posts"
+msgstr "Innlegg"
+
+#: src/Admin/LinkScreen/Page.php:127
+msgid "Cancel linking"
+msgstr "Avbryt kobling"
+
+#: src/Admin/LinkScreen/Page.php:136
+msgid "Search"
+msgstr "Søk"
+
+#: src/Admin/MetaBox/ManageLinks.php:81
+msgid "Add Related Posts"
+msgstr "Legg til relaterte innlegg"
+
+#: src/Admin/MetaBox/ManageLinks.php:100 src/Admin/MetaBox/ManageLinks.php:101
+msgid "Edit Post"
+msgstr "Rediger innlegg"
+
+#: src/Admin/MetaBox/ManageLinks.php:103 src/Admin/MetaBox/ManageLinks.php:104
+msgid "Unlink Related Post"
+msgstr "Fjern koblingen til relatert innlegg"
+
+#: src/Admin/MetaBox/ManageLinks.php:115
+msgid "No related posts found."
+msgstr "Fant ingen relaterte innlegg."
+
+#. translators: %d: how far the installation is, in percent
+#: src/Admin/Notices/Installing.php:70
+msgid "Related Posts for WordPress is linking your posts in the background (%d%%)."
+msgstr "Related Posts for WordPress kobler innleggene dine i bakgrunnen (%d %%)."
+
+#: src/Admin/Notices/Installing.php:73
+msgid "View progress"
+msgstr "Vis fremdrift"
+
+#: src/Admin/Notices/Installing.php:83
+msgid "The installation of Related Posts for WordPress stopped with an error."
+msgstr "Installasjonen av Related Posts for WordPress stoppet på grunn av en feil."
+
+#: src/Admin/Notices/Installing.php:84
+msgid "See what happened"
+msgstr "Se hva som skjedde"
+
+#: src/Admin/Notices/Installing.php:95
+msgid "Woah! Looks like we weren't able to finish your Related Posts for WordPress installation wizard!"
+msgstr "Oi! Det ser ut til at installasjonen av Related Posts for WordPress ikke ble fullført!"
+
+#: src/Admin/Notices/Installing.php:96
+msgid "Finish the installation"
+msgstr "Fullfør installasjonen"
+
+#: src/Admin/Notices/Installing.php:145
+msgid "Dismiss"
+msgstr "Avvis"
+
+#: src/Admin/Notices/Mbstring.php:37
+msgid "Error:"
+msgstr "Feil:"
+
+#. translators: %s: the name of the PHP extension
+#: src/Admin/Notices/Mbstring.php:40
+msgid "The %s extension needs to be installed and activated for Related Posts for WP to work!"
+msgstr "PHP-utvidelsen %s må være installert og aktivert for at Related Posts for WP skal fungere!"
+
+#. translators: %s: the name of the PHP extension
+#: src/Admin/Notices/Mbstring.php:46
+msgid "Please contact your host and ask them to install the %s PHP extension."
+msgstr "Kontakt vertsleverandøren din og be dem installere PHP-utvidelsen %s."
+
+#: src/Admin/Notices/Multisite.php:32
+msgid "The free version of Related Posts for WordPress doesn't support WordPress Multisite/Network!"
+msgstr "Gratisversjonen av Related Posts for WordPress støtter ikke WordPress Multisite/nettverk!"
+
+#. translators: 1: link opening tag, 2: link closing tag
+#: src/Admin/Notices/Multisite.php:36
+msgid "%1$sUpgrade to the premium version%2$s or disable the plugin."
+msgstr "%1$sOppgrader til premiumversjonen%2$s eller deaktiver utvidelsen."
+
+#: src/Admin/Notices/Playground.php:40
+msgid ""
+"We noticed you're running the plugin in the WordPress playground.\n"
+"                    Our plugin currently doesn't work there, due to limitation on the side of the WP playground."
+msgstr ""
+"Vi ser at du kjører utvidelsen i WordPress Playground.\n"
+"                    Utvidelsen vår fungerer foreløpig ikke der, på grunn av en begrensning i WP Playground."
+
+#: src/Admin/Notices/Playground.php:47
+msgid "Related Posts for WP is not available inside the WordPress Playground!"
+msgstr "Related Posts for WP er ikke tilgjengelig i WordPress Playground!"
+
+#: src/Admin/Notices/Playground.php:49
+msgid "For more information regarding our plugin:"
+msgstr "Mer informasjon om utvidelsen vår:"
+
+#: src/Admin/Notices/Playground.php:51
+msgid "View the tour on relatedpostsforwp.com"
+msgstr "Se omvisningen på relatedpostsforwp.com"
+
+#. translators: 1: bold opening tag, 2: bold closing tag
+#: src/Admin/Notices/Review.php:59
+msgid "You've been using %sRelated Posts for WordPress%s for some time now, could you please give it a review at wordpress.org?"
+msgstr "Du har brukt %sRelated Posts for WordPress%s en stund nå. Vil du skrive en anmeldelse på wordpress.org?"
+
+#. translators: 1: review link opening tag, 2: link closing tag, 3: dismiss link opening tag, 4: link closing tag
+#: src/Admin/Notices/Review.php:66
+msgid "%sYes, take me there!%s - %sI've already done this!%s"
+msgstr "%sJa, ta meg dit!%s - %sDet har jeg allerede gjort!%s"
+
+#: src/Admin/PluginLinks.php:38
+msgid "Settings"
+msgstr "Innstillinger"
+
+#: src/Admin/PluginLinks.php:39
+msgid "Upgrade to Premium"
+msgstr "Oppgrader til Premium"
+
+#: src/Admin/Settings/Page.php:74
+msgid "The settings of Related Posts for WordPress need JavaScript."
+msgstr "Innstillingene for Related Posts for WordPress krever JavaScript."
+
+#: src/Admin/Wizard/Page.php:115
+msgid "Go to the settings of Related Posts for WordPress"
+msgstr "Gå til innstillingene for Related Posts for WordPress"
+
+#: src/Frontend/Widget.php:29
+msgid "Display related posts."
+msgstr "Vis relaterte innlegg."
+
+#: src/Install/Jobs/Queue.php:89
+msgid "An installation is running already."
+msgstr "En installasjon kjører allerede."
+
+#: src/Install/Jobs/Queue.php:138
+msgid "There is no stopped installation to resume."
+msgstr "Det finnes ingen stoppet installasjon å gjenoppta."
+
+#: src/Install/Jobs/Queue.php:279
+msgid "The steps of the installation changed while it ran. Please start it again."
+msgstr "Stegene i installasjonen endret seg mens den kjørte. Start den på nytt."
+
+#: src/Install/Planner.php:37
+msgid "The number of related posts to link to each post."
+msgstr "Antall relaterte innlegg som skal kobles til hvert innlegg."
+
+#: src/Install/Planner.php:44
+msgid "Only cache the words of the posts, and link nothing."
+msgstr "Bare mellomlagre ordene i innleggene, uten å koble noe."
+
+#: src/Install/Planner.php:49
+msgid "Remove every link and all cached words first, and install again."
+msgstr "Fjern først alle koblinger og alle mellomlagrede ord, og installer på nytt."
+
+#: src/Install/Tasks/CacheWordsTask.php:49
+msgid "Caching posts"
+msgstr "Mellomlagrer innlegg"
+
+#: src/Install/Tasks/LinkPostsTask.php:68
+msgid "Linking posts"
+msgstr "Kobler innlegg"
+
+#: src/Install/Tasks/ResetTask.php:35
+msgid "Removing the old links and words"
+msgstr "Fjerner de gamle koblingene og ordene"
+
+#: src/Install/Tasks/SaveAmountTask.php:54
+msgid "Saving the settings"
+msgstr "Lagrer innstillingene"
+
+#: src/Rest/InstallController.php:126
+msgid "No installation is running."
+msgstr "Ingen installasjon kjører."
+
+#: src/Rest/SettingsController.php:49
+msgid "The values to save, by field ID. Fields that are left out keep their value."
+msgstr "Verdiene som skal lagres, etter felt-ID. Felt som utelates, beholder verdien sin."
+
+#. translators: %s: a settings page ID
+#: src/Settings/Schema/Pages.php:164
+msgid "There is no settings page \"%s\"."
+msgstr "Det finnes ingen innstillingsside \"%s\"."
+
+#: src/Settings/Settings.php:156
+msgid "General"
+msgstr "Generelt"
+
+#: src/Settings/Settings.php:157
+msgid "The following options affect the general behaviour of the plugin."
+msgstr "Følgende alternativer påvirker den generelle oppførselen til utvidelsen."
+
+#: src/Settings/Settings.php:161
+msgid "Enable"
+msgstr "Aktiver"
+
+#: src/Settings/Settings.php:162
+msgid "Checking this will enable automatically linking posts to new posts"
+msgstr "Kryss av her for å koble relaterte innlegg automatisk til nye innlegg"
+
+#: src/Settings/Settings.php:168
+msgid "Amount of Posts"
+msgstr "Antall innlegg"
+
+#: src/Settings/Settings.php:169
+msgid "The amount of automatically linked post"
+msgstr "Antall automatisk koblede innlegg"
+
+#: src/Settings/Settings.php:178
+msgid "Heading text"
+msgstr "Overskriftstekst"
+
+#: src/Settings/Settings.php:179
+msgid "The text that is displayed above the related posts. To disable, leave field empty."
+msgstr "Teksten som vises over de relaterte innleggene. La feltet stå tomt for å slå det av."
+
+#: src/Settings/Settings.php:185
+msgid "Excerpt length"
+msgstr "Lengde på utdrag"
+
+#: src/Settings/Settings.php:186
+msgid "The amount of words to be displayed below the title on website. To disable, set value to 0."
+msgstr "Antall ord som vises under tittelen på nettstedet. Sett verdien til 0 for å slå det av."
+
+#: src/Settings/Settings.php:196
+msgid "Styling"
+msgstr "Utseende"
+
+#: src/Settings/Settings.php:197
+msgid "The following options affect how related posts are displayed on the frontend."
+msgstr "Følgende alternativer påvirker hvordan relaterte innlegg vises på nettstedet."
+
+#: src/Settings/Settings.php:201
+msgid "Display Image"
+msgstr "Vis bilde"
+
+#: src/Settings/Settings.php:202
+msgid "Checking this will enable displaying featured images of related posts."
+msgstr "Kryss av her for å vise det fremhevede bildet til relaterte innlegg."
+
+#: src/Settings/Settings.php:208
+msgid "CSS"
+msgstr "CSS"
+
+#: src/Settings/Settings.php:209
+msgid "Warning! This is an advanced feature! An error here will break frontend display. To disable, leave field empty."
+msgstr "Advarsel! Dette er en avansert funksjon! En feil her ødelegger visningen på nettstedet. La feltet stå tomt for å slå det av."
+
+#: src/Settings/Settings.php:218
+msgid "Misc"
+msgstr "Diverse"
+
+#: src/Settings/Settings.php:219
+msgid "A shelter for options that just don't fit in anywhere else."
+msgstr "Et tilfluktssted for alternativer som ikke passer inn noe annet sted."
+
+#: src/Settings/Settings.php:223
+msgid "Remove Data on Uninstall?"
+msgstr "Fjerne data ved avinstallering?"
+
+#: src/Settings/Settings.php:224
+msgid "Check this box if you would like to completely remove all of its data when the plugin is deleted."
+msgstr "Kryss av her hvis du vil fjerne alle dataene til utvidelsen fullstendig når utvidelsen slettes."
+
+#: src/Settings/Settings.php:230
+msgid "Show love?"
+msgstr "Vise litt kjærlighet?"
+
+#: src/Settings/Settings.php:231
+msgid "Display a 'Powered by' line under your related posts. <strong>BEWARE! Only for the real fans.</strong>"
+msgstr "Vis en 'Powered by'-linje under de relaterte innleggene dine. <strong>OBS! Bare for de ekte fansen.</strong>"
+
+#: assets/build/admin/index.js:1
+msgid "The settings could not be loaded."
+msgstr "Innstillingene kunne ikke lastes inn."
+
+#: assets/build/admin/index.js:1
+msgid "The installer could not be reached."
+msgstr "Fikk ikke kontakt med installasjonen."
+
+#: assets/build/admin/index.js:1
+msgid "All set! Your posts are linked."
+msgstr "Ferdig! Innleggene dine er koblet."
+
+#: assets/build/admin/index.js:1
+msgid "All set! Your posts are read."
+msgstr "Ferdig! Innleggene dine er lest."
+
+#: assets/build/admin/index.js:1
+msgid "Every post shows its related posts now, and new posts are linked when you publish them."
+msgstr "Hvert innlegg viser nå sine relaterte innlegg, og nye innlegg kobles når du publiserer dem."
+
+#: assets/build/admin/index.js:1
+msgid "Link them from the Installer tab when you are ready."
+msgstr "Koble dem fra fanen Installasjon når du er klar."
+
+#: assets/build/admin/index.js:1
+msgid "Close"
+msgstr "Lukk"
+
+#: assets/build/admin/index.js:1
+msgid "Less than a minute left"
+msgstr "Mindre enn ett minutt igjen"
+
+#. translators: %s: a number of minutes
+#: assets/build/admin/index.js:4
+msgid "About %s minute left"
+msgid_plural "About %s minutes left"
+msgstr[0] "Omtrent %s minutt igjen"
+msgstr[1] "Omtrent %s minutter igjen"
+
+#. translators: 1: posts done, 2: all posts
+#: assets/build/admin/index.js:7
+msgid "%1$s of %2$s posts"
+msgstr "%1$s av %2$s innlegg"
+
+#: assets/build/admin/index.js:7
+msgid "The installation stopped"
+msgstr "Installasjonen stoppet"
+
+#: assets/build/admin/index.js:7
+msgid "The installation was cancelled"
+msgstr "Installasjonen ble avbrutt"
+
+#: assets/build/admin/index.js:7
+msgid "Linking your related posts"
+msgstr "Kobler de relaterte innleggene dine"
+
+#: assets/build/admin/index.js:7
+msgid "This runs in the background. You can leave this page; it goes on without you."
+msgstr "Dette kjører i bakgrunnen. Du kan forlate denne siden; det fortsetter uten deg."
+
+#. translators: %d: how far the installation is, in percent
+#: assets/build/admin/index.js:10
+msgid "%d%%"
+msgstr "%d %%"
+
+#: assets/build/admin/index.js:10
+msgid "Installation progress"
+msgstr "Fremdrift for installasjonen"
+
+#: assets/build/admin/index.js:10
+msgid "Background processing is slow on this site, so this page is doing the work now. Keep it open to finish sooner, or come back later."
+msgstr "Bakgrunnsprosessering er treg på dette nettstedet, så denne siden gjør jobben nå. Hold den åpen for å bli ferdig raskere, eller kom tilbake senere."
+
+#: assets/build/admin/index.js:10
+msgid "Something went wrong."
+msgstr "Noe gikk galt."
+
+#: assets/build/admin/index.js:10
+msgid "What was done so far is kept. Resume to finish the rest."
+msgstr "Det som er gjort så langt, blir beholdt. Gjenoppta for å fullføre resten."
+
+#: assets/build/admin/index.js:10
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: assets/build/admin/index.js:10
+msgid "The installation could not resume."
+msgstr "Installasjonen kunne ikke gjenopptas."
+
+#: assets/build/admin/index.js:10
+msgid "Resume"
+msgstr "Gjenoppta"
+
+#: assets/build/admin/index.js:10
+msgid "Cancel the installation?"
+msgstr "Avbryte installasjonen?"
+
+#: assets/build/admin/index.js:10
+msgid "Cancel installation"
+msgstr "Avbryt installasjonen"
+
+#: assets/build/admin/index.js:10
+msgid "Keep running"
+msgstr "Fortsett"
+
+#: assets/build/admin/index.js:10
+msgid "The installation could not be cancelled."
+msgstr "Installasjonen kunne ikke avbrytes."
+
+#: assets/build/admin/index.js:10
+msgid "What was done so far is kept, and you can resume later."
+msgstr "Det som er gjort så langt, blir beholdt, og du kan gjenoppta senere."
+
+#: assets/build/admin/index.js:10
+msgid "Related posts per post"
+msgstr "Relaterte innlegg per innlegg"
+
+#: assets/build/admin/index.js:10
+msgid "Get started"
+msgstr "Kom i gang"
+
+#: assets/build/admin/index.js:10
+msgid "Let's link your related posts"
+msgstr "La oss koble de relaterte innleggene dine"
+
+#: assets/build/admin/index.js:10
+msgid "Related Posts reads your posts once to learn what each one is about, then links every post to the posts that are most related to it."
+msgstr "Related Posts leser innleggene dine én gang for å finne ut hva hvert av dem handler om, og kobler deretter hvert innlegg til de innleggene som er mest relatert til det."
+
+#: assets/build/admin/index.js:10
+msgid "It runs in the background, so you can leave this page while it works."
+msgstr "Det kjører i bakgrunnen, så du kan forlate denne siden mens det pågår."
+
+#: assets/build/admin/index.js:10
+msgid "You can change this later, and link again at any time."
+msgstr "Du kan endre dette senere, og koble på nytt når som helst."
+
+#: assets/build/admin/index.js:10
+msgid "Link the posts right away"
+msgstr "Koble innleggene med en gang"
+
+#: assets/build/admin/index.js:10
+msgid "Turn this off to only read the posts now, and link them later from the Installer tab."
+msgstr "Slå av dette for bare å lese innleggene nå, og koble dem senere fra fanen Installasjon."
+
+#: assets/build/admin/index.js:10 assets/build/admin/index.js:13
+msgid "The installation could not start."
+msgstr "Installasjonen kunne ikke starte."
+
+#: assets/build/admin/index.js:10
+msgid "Start"
+msgstr "Start"
+
+#: assets/build/admin/index.js:10
+msgid "The installation is done."
+msgstr "Installasjonen er ferdig."
+
+#: assets/build/admin/index.js:10
+msgid "The installation stopped."
+msgstr "Installasjonen stoppet."
+
+#. translators: %s: the plugin version
+#: assets/build/admin/index.js:13
+msgid "Version %s"
+msgstr "Versjon %s"
+
+#: assets/build/admin/index.js:13
+msgid "Premium"
+msgstr "Premium"
+
+#: assets/build/admin/index.js:13
+msgid "Related Posts settings"
+msgstr "Innstillinger for Related Posts"
+
+#: assets/build/admin/index.js:13
+msgid "Unsaved changes"
+msgstr "Ulagrede endringer"
+
+#: assets/build/admin/index.js:13
+msgid "You have unsaved changes."
+msgstr "Du har ulagrede endringer."
+
+#: assets/build/admin/index.js:13
+msgid "Discard"
+msgstr "Forkast"
+
+#: assets/build/admin/index.js:13
+msgid "Settings saved."
+msgstr "Innstillingene er lagret."
+
+#: assets/build/admin/index.js:13
+msgid "The settings could not be saved."
+msgstr "Innstillingene kunne ikke lagres."
+
+#: assets/build/admin/index.js:13
+msgid "Save changes"
+msgstr "Lagre endringer"
+
+#: assets/build/admin/index.js:13
+msgid "This page does not exist."
+msgstr "Denne siden finnes ikke."
+
+#: assets/build/admin/index.js:13
+msgid "This option is overwritten by a filter."
+msgstr "Dette alternativet overstyres av et filter."
+
+#: assets/build/admin/index.js:13
+msgid "Installer"
+msgstr "Installasjon"
+
+#: assets/build/admin/index.js:13
+msgid "An installation is running. You can start another one when it is done."
+msgstr "En installasjon kjører. Du kan starte en ny når den er ferdig."
+
+#: assets/build/admin/index.js:13
+msgid "Link new posts"
+msgstr "Koble nye innlegg"
+
+#: assets/build/admin/index.js:13
+msgid "Read and link the posts that are not linked yet, for example posts from before automatic linking was on. Links that exist stay as they are."
+msgstr "Les og koble innleggene som ikke er koblet ennå, for eksempel innlegg fra før automatisk kobling var slått på. Eksisterende koblinger forblir som de er."
+
+#: assets/build/admin/index.js:13
+msgid "Rebuild everything"
+msgstr "Bygg opp alt på nytt"
+
+#: assets/build/admin/index.js:13
+msgid "Start over: remove every related post link, also the links you added by hand, read all posts again and link them. Your posts themselves are never touched."
+msgstr "Begynn på nytt: fjern alle koblinger til relaterte innlegg, også koblingene du har lagt til manuelt, les alle innleggene på nytt og koble dem. Selve innleggene dine blir aldri endret."
+
+#: assets/build/admin/index.js:13
+msgid "Rebuild everything?"
+msgstr "Bygge opp alt på nytt?"
+
+#: assets/build/admin/index.js:13
+msgid "Remove links and rebuild"
+msgstr "Fjern koblinger og bygg på nytt"
+
+#: assets/build/admin/index.js:13
+msgid "Keep my links"
+msgstr "Behold koblingene mine"
+
+#: assets/build/admin/index.js:13
+msgid "Every related post link is removed, including the links you added by hand. This can not be undone."
+msgstr "Alle koblinger til relaterte innlegg fjernes, også koblingene du har lagt til manuelt. Dette kan ikke angres."
