@@ -35,6 +35,9 @@ export {
 	loadInstall,
 } from './store/install';
 
+/** The settings as the admin edits them: a field can read and change the other fields of its page. */
+export { editField as editSetting, useSettingValue } from './store/settings';
+
 /** Building blocks for screens that look like the rest of the app. */
 export { notify } from './components/Snackbars';
 export { ConfirmModal } from './components/ConfirmModal';

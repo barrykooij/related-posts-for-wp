@@ -22,6 +22,7 @@ describe( 'FieldRow', () => {
 	it( 'shows the label, the description with its markup, and the control', () => {
 		render(
 			<FieldRow
+				page="general"
 				field={ field() }
 				value="Related Posts"
 				onChange={ () => {} }
@@ -37,6 +38,7 @@ describe( 'FieldRow', () => {
 	it( 'locks a field that a filter decides', () => {
 		render(
 			<FieldRow
+				page="general"
 				field={ field( { filtered: true } ) }
 				value="From a filter"
 				onChange={ () => {} }
@@ -56,6 +58,7 @@ describe( 'FieldRow', () => {
 
 		render(
 			<FieldRow
+				page="general"
 				field={ field( {
 					id: 'accent',
 					type: 'colorpicker',
@@ -78,6 +81,7 @@ describe( 'FieldRow', () => {
 	it( 'shows a number field with its number', () => {
 		render(
 			<FieldRow
+				page="general"
 				field={ field( {
 					id: 'excerpt_length',
 					type: 'number',

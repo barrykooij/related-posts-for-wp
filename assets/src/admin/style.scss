@@ -180,6 +180,10 @@ $breakpoint: 782px;
 	}
 }
 
+.rp4wp-field--wide {
+	grid-template-columns: minmax(0, 1fr);
+}
+
 .rp4wp-field__label {
 	display: block;
 	font-weight: 600;

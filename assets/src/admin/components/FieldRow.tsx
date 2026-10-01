@@ -4,6 +4,7 @@ import type { Field, FieldValue } from '../api/types';
 import { useRegistry } from '../registry/useRegistry';
 
 interface Props {
+	page: string;
 	field: Field;
 	value: FieldValue;
 	onChange: ( value: FieldValue ) => void;
@@ -15,11 +16,12 @@ const warned = new Set< string >();
  * One setting: its label and description on the left, its control on the right (stacked on small screens).
  *
  * @param props          The props.
+ * @param props.page     The settings page.
  * @param props.field    The field.
  * @param props.value    Its value.
  * @param props.onChange Called with a new value.
  */
-export function FieldRow( { field, value, onChange }: Props ) {
+export function FieldRow( { page, field, value, onChange }: Props ) {
 	const { fieldTypes } = useRegistry();
 	const Control = fieldTypes[ field.type ] ?? fieldTypes.text;
 	const id = `rp4wp-field-${ field.id }`;
@@ -35,7 +37,9 @@ export function FieldRow( { field, value, onChange }: Props ) {
 	}, [ fieldTypes, field.type, field.id ] );
 
 	return (
-		<div className="rp4wp-field">
+		<div
+			className={ `rp4wp-field${ field.wide ? ' rp4wp-field--wide' : '' }` }
+		>
 			<div className="rp4wp-field__about">
 				<span className="rp4wp-field__label">{ field.label }</span>
 				{ field.description && (
@@ -56,6 +60,7 @@ export function FieldRow( { field, value, onChange }: Props ) {
 				{ Control && (
 					<Control
 						field={ field }
+						page={ page }
 						id={ id }
 						value={ value }
 						onChange={ onChange }

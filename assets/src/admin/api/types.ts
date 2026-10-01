@@ -18,6 +18,8 @@ export interface Field {
 	max?: number;
 	options?: { value: string; label: string }[];
 	href?: string;
+	/** The control takes the width of the card, below the label. */
+	wide?: boolean;
 	[ key: string ]: unknown;
 }
 

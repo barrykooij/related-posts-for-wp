@@ -101,6 +101,11 @@ class Field {
 			}
 		}
 
+		// A control that needs the width of the card, such as the configurator of premium.
+		if ( ! empty( $field['wide'] ) ) {
+			$description['wide'] = true;
+		}
+
 		if ( isset( $field['options'] ) && is_array( $field['options'] ) ) {
 			$description['options'] = [];
 

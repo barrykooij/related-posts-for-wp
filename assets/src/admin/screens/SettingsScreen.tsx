@@ -41,6 +41,7 @@ export function SettingsScreen( { page }: Props ) {
 						{ section.fields.map( ( field ) => (
 							<FieldRow
 								key={ field.id }
+								page={ page }
 								field={ field }
 								value={ valueOf( state, page, field.id ) }
 								onChange={ ( value ) =>

@@ -21,6 +21,8 @@ export interface Route {
 export interface FieldProps< Value = unknown > {
 	/** The field, as the settings schema describes it. */
 	field: Field;
+	/** The settings page the field is on. */
+	page: string;
 	/** An ID for the control, for its label. */
 	id: string;
 	value: Value;

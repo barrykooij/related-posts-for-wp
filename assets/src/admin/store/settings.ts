@@ -113,6 +113,17 @@ export function editField(
 	settingsStore.setState( { edits: next } );
 }
 
+/**
+ * The value of a setting as the admin sees it, updated when it changes.
+ *
+ * @param page  The page ID.
+ * @param field The field ID.
+ * @return The value.
+ */
+export function useSettingValue( page: string, field: string ): FieldValue {
+	return valueOf( useSettings(), page, field );
+}
+
 export function isDirty( state: SettingsState ): boolean {
 	return Object.keys( state.edits ).length > 0;
 }
