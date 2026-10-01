@@ -15,8 +15,8 @@ use LV2\WordPress\RelatedPostsForWP\Main;
  * it takes. The admin screen only starts, follows and cancels it; closing the screen does not stop it.
  *
  * Each background action works on the job until its time budget is used, then queues the next action. When no
- * action runs for a while (WP-Cron is off, or loopback requests fail), the admin screen calls tick() to run the next
- * action in its own request.
+ * action runs for a while (WP-Cron is off, or loopback requests fail), the admin screen calls tick() to work on the
+ * job in its own request.
  */
 class Queue {
 
@@ -150,25 +150,25 @@ class Queue {
 	}
 
 	/**
-	 * Work on the job: the callback of the background action. Runs batches until the job is done or the time budget
-	 * is used, then queues the next action.
+	 * Work on the job: the callback of the background action, and of tick(). Runs batches until the job is done or
+	 * the time budget is used, then queues the next action.
 	 *
 	 * @param string $job_id The job the action was queued for.
 	 *
-	 * @return void
+	 * @return bool Whether this request worked on the job.
 	 */
-	public function run( string $job_id ): void {
+	public function run( string $job_id ): bool {
 		$job = $this->store->get();
 
 		if ( null === $job || $job->id !== $job_id || ! $job->is_running() ) {
-			return;
+			return false;
 		}
 
 		// Another request works on it; if that one dies, this action makes sure the job goes on after the lock expires.
 		if ( ! $this->store->lock( self::LOCK_SECONDS ) ) {
 			$this->enqueue( $job, self::LOCK_SECONDS );
 
-			return;
+			return false;
 		}
 
 		try {
@@ -176,13 +176,19 @@ class Queue {
 		} finally {
 			$this->store->unlock();
 		}
+
+		return true;
 	}
 
 	/**
-	 * Run the next background action of the job in this request. For when no background request runs it: the admin
-	 * screen calls this when the job stalls.
+	 * Work on the job in this request. For when no background request runs it: the admin screen calls this when the
+	 * job stalls.
 	 *
-	 * @return bool Whether an action ran.
+	 * It runs the job itself, under the same lock as the background action, and leaves the queued action where it is.
+	 * Claiming that action through Action Scheduler would be neater, but on a new site Action Scheduler keeps its
+	 * actions in posts for its first minutes, and that store fails on a claim by group.
+	 *
+	 * @return bool Whether this request worked on the job.
 	 */
 	public function tick(): bool {
 		$job = $this->store->get();
@@ -191,21 +197,7 @@ class Queue {
 			return false;
 		}
 
-		$this->enqueue( $job );
-
-		// Claim it through Action Scheduler, so a queue runner that starts meanwhile skips it, and it is logged.
-		$store = \ActionScheduler::store();
-		$claim = $store->stake_claim( 1, null, [ self::HOOK ], self::GROUP );
-
-		try {
-			foreach ( $claim->get_actions() as $action_id ) {
-				\ActionScheduler::runner()->process_action( $action_id, 'Related Posts for WordPress' );
-			}
-		} finally {
-			$store->release_claim( $claim );
-		}
-
-		return count( $claim->get_actions() ) > 0;
+		return $this->run( $job->id );
 	}
 
 	/**
