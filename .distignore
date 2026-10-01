@@ -11,6 +11,8 @@
 /.idea
 /.vscode
 /.tx
+# WordPress.org assets (banner, icons, screenshots); the release workflow deploys them to the assets folder.
+/.wordpress-org
 
 # Local environments
 /.wp-env.json

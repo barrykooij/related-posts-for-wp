@@ -249,8 +249,9 @@ add_action(
 			]
 		);
 
-		// How the background installer behaves: `slow` runs one post per batch with a pause, so the progress can be
-		// followed; `background` false stops Action Scheduler from running it, so only the admin screen's ticks do.
+		// How the background installer behaves: `slow` runs one post per batch with a pause (`pause`, in milliseconds,
+		// 400 by default), so the progress can be followed; `background` false stops Action Scheduler from running it,
+		// so only the admin screen's ticks do.
 		register_rest_route(
 			'rp4wp-e2e/v1',
 			'/installer-mode',
@@ -260,6 +261,7 @@ add_action(
 				'callback'            => static function ( WP_REST_Request $request ) {
 					$mode = [
 						'slow'       => (bool) $request->get_param( 'slow' ),
+						'pause'      => absint( $request->get_param( 'pause' ) ?? 400 ),
 						'background' => false !== $request->get_param( 'background' ),
 					];
 					update_option( 'rp4wp_e2e_installer', $mode, false );
@@ -306,11 +308,12 @@ add_action(
 		}
 
 		if ( ! empty( $mode['slow'] ) ) {
+			$pause = isset( $mode['pause'] ) ? (int) $mode['pause'] : 400;
 			add_filter( 'rp4wp_install_time_budget', '__return_zero' );
 			add_filter(
 				'rp4wp_install_batch_size',
-				static function () {
-					usleep( 400000 ); // Called once per batch: makes each batch take a moment.
+				static function () use ( $pause ) {
+					usleep( $pause * 1000 ); // Called once per batch: makes each batch take a moment.
 
 					return 1;
 				}

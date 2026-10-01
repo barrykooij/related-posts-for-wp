@@ -101,10 +101,12 @@ export class RP4WPUtils {
 	 *
 	 * @param mode            The mode.
 	 * @param mode.slow       One post per batch, with a pause.
+	 * @param mode.pause      The pause in milliseconds, 400 by default.
 	 * @param mode.background Whether Action Scheduler runs it.
 	 */
 	async installerMode( mode: {
 		slow?: boolean;
+		pause?: number;
 		background?: boolean;
 	} ): Promise< void > {
 		await this.requestUtils.rest( {
