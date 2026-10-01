@@ -12,7 +12,7 @@ use LV2\WordPress\RelatedPostsForWP\Module;
 
 /**
  * Builds the settings on init, like 2.x, so `rp4wp_settings_sections` runs at the same moment for code that filters
- * it, and after the current user is known for the nonce in the "Rebuild" link.
+ * it.
  *
  * In REST requests, which have no admin_init, it also registers the option, so saving it through the REST API runs
  * the same sanitize callback as the settings screen.

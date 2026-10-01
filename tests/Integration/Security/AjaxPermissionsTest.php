@@ -8,7 +8,6 @@
 namespace LV2\WordPress\RelatedPostsForWP\Tests\Integration\Security;
 
 use LV2\WordPress\RelatedPostsForWP\Links\LinkRepository;
-use LV2\WordPress\RelatedPostsForWP\Words\Cache;
 
 /**
  * Regression tests for the 2.3.1 security fixes in the AJAX handlers.
@@ -19,7 +18,6 @@ use LV2\WordPress\RelatedPostsForWP\Words\Cache;
  *
  * @group ajax
  * @covers \LV2\WordPress\RelatedPostsForWP\Admin\MetaBox\Ajax
- * @covers \LV2\WordPress\RelatedPostsForWP\Admin\Wizard\Ajax
  */
 final class AjaxPermissionsTest extends \WP_Ajax_UnitTestCase {
 
@@ -139,77 +137,18 @@ final class AjaxPermissionsTest extends \WP_Ajax_UnitTestCase {
 	}
 
 	/**
-	 * The install handlers relink the whole site and change settings.
+	 * The AJAX actions of the 2.x installation wizard are gone (decision D27): the installer runs in the background
+	 * and is started through the REST API, for administrators only.
 	 *
 	 * @dataProvider install_actions
 	 *
 	 * @param string $action The AJAX action.
 	 */
-	public function test_contributor_cannot_run_the_install_wizard( string $action ): void {
-		$this->act_as( 'contributor' );
-
-		$_POST['nonce']      = wp_create_nonce( 'rp4wp-ajax-nonce-omgrandomword' );
-		$_POST['ppr']        = 1;
-		$_POST['rel_amount'] = 3;
-
-		try {
-			$this->_handleAjax( $action );
-			$this->fail( 'Expected wp_die() for a contributor.' );
-		} catch ( \WPAjaxDieStopException $e ) {
-			$this->assertStringContainsString( 'not allowed to run the installation wizard', $e->getMessage() );
-		}
-	}
-
-	public function test_admin_wizard_batches_answer_with_the_posts_left(): void {
+	public function test_the_install_wizard_actions_are_gone( string $action ): void {
 		$this->act_as( 'administrator' );
-		delete_post_meta_by_key( 'rp4wp_auto_linked' );
 
-		$_POST['nonce'] = wp_create_nonce( 'rp4wp-ajax-nonce-omgrandomword' );
-		$_POST['ppr']   = 1000;
-
-		$this->assertSame( '0', $this->handle_expecting_die( 'rp4wp_install_save_words' ) );
-
-		$_POST['rel_amount'] = 2;
-		$this->assertSame( '0', $this->handle_expecting_die( 'rp4wp_install_link_posts' ) );
-
-		// With everything linked, the chosen amount becomes the setting.
-		$this->assertSame( 2, get_option( 'rp4wp' )['automatic_linking_post_amount'] );
-	}
-
-	public function test_a_post_without_words_does_not_keep_the_words_batch_waiting(): void {
-		$this->act_as( 'administrator' );
-		$post_id = self::factory()->post->create(
-			[
-				'post_title'   => 'The',
-				'post_content' => '',
-			]
-		);
-		// A site where the post was never looked at.
-		delete_post_meta( $post_id, Cache::META_NO_WORDS );
-
-		$_POST['nonce'] = wp_create_nonce( 'rp4wp-ajax-nonce-omgrandomword' );
-		$_POST['ppr']   = 1000;
-
-		// 2.x answered 1 here, again and again, so the wizard never finished (known issue P15).
-		$this->assertSame( '0', $this->handle_expecting_die( 'rp4wp_install_save_words' ) );
-		$this->assertSame( '1', get_post_meta( $post_id, Cache::META_NO_WORDS, true ) );
-	}
-
-	/**
-	 * Run an AJAX action that ends with wp_die( $message ), and return the message.
-	 *
-	 * @param string $action The AJAX action.
-	 *
-	 * @return string
-	 */
-	private function handle_expecting_die( string $action ): string {
-		try {
-			$this->_handleAjax( $action );
-		} catch ( \WPAjaxDieStopException $e ) {
-			return $e->getMessage();
-		}
-
-		$this->fail( "{$action} did not end with wp_die()." );
+		$this->assertFalse( has_action( 'wp_ajax_' . $action ) );
+		$this->assertFalse( has_action( 'wp_ajax_nopriv_' . $action ) );
 	}
 
 	/**

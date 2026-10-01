@@ -17,7 +17,7 @@ The best WordPress plugin for related posts. Simple, flexible, powerful algorith
 
 Related Posts for WordPress offers you the ability to link related posts to each other with just 1 click!
 
-Our installation wizard will do all the hard work for you, simply activate the plugin, set the amount of posts that should relate and press the button. Related Posts for WordPress will do the rest. Relating posts in WordPress has never been this easy!
+Our installer will do all the hard work for you: simply activate the plugin, choose how many related posts every post gets and press Start. It runs in the background, so you can keep working while Related Posts for WordPress does the rest. Relating posts in WordPress has never been this easy!
 
 Fully tested and working on PHP 5.3 and up (including PHP 8, 8.1, 8.2, 8.3 & 8.4)!
 
@@ -39,7 +39,7 @@ Fully tested and working on PHP 5.3 and up (including PHP 8, 8.1, 8.2, 8.3 & 8.4
 We believe having related posts shouldn't slow down your website. That's why Related Posts for WordPress creates its own cache and does all the heavy lifting in the admin panel, offering you quality related posts while keeping your website fast!
 
 = Automatically link posts to each other =
-After installing the plugin you will be taking to a wizard that will analyze your posts and link them to each other based on what we think is related. This means you can install Related Posts for WordPress on your website that has thousands of posts and create related connections on the fly, without any manual work!
+After activating the plugin, its settings screen offers to analyze your posts and link them to each other based on what we think is related. This runs in the background, which means you can install Related Posts for WordPress on your website that has thousands of posts and create related connections on the fly, without any manual work!
 
 = Manually add, edit or remove =
 Everyone makes mistakes, so do we. That's why you can easily modify all automatically created related posts. Simply navigate to the post that has incorrect related posts attached to it, select the correct related post and you're done.
@@ -113,25 +113,29 @@ No, the free version does not. [The premium version however does, get it here](h
 There is one custom table created for the post cache, this table will however not be used at the frontend of your website. Related Posts are fetched with normal WP_Query objects.
 
 == Screenshots ==
-1. After activating Related Posts for WordPress, our wizard will automatically start. The first step is indexing and caching your posts.
-2. The second step of the wizard is linking related posts for your existing content! You can of course also skip this step.
-3. That's it! With one click you are good to go!
+1. After activating Related Posts for WordPress, the settings screen offers to link your existing content: choose how many related posts every post gets and press Start.
+2. The installer runs in the background and shows how far it is. You can leave the page while it works.
+3. That's it! The settings are on the same screen, in the style of WordPress.
 4. A new meta box is added to your post edit screens allowing you to link related posts, we will sort them on what we think is related (where top is most related).
 5. Related posts are automatically added below your posts!
 
 == Changelog ==
 
 = 3.0.0: TBD =
+* Feature: A new settings screen, with the installer built in. The installer runs in the background, so the page can be closed while it works, and the screen shows its progress.
+* Feature: Link the posts that are not linked yet, or rebuild every link, from the new Installer tab. Rebuilding asks before it removes any links.
 * Feature: Related Posts for WordPress Premium 3.0 is an add-on for this plugin: keep both installed and active. Next to Premium 2.x, this plugin leaves the related posts to Premium and asks to update it.
 * Fix: Related posts with the same link order keep the order they were added in, so a limit or an offset in the shortcode always shows the same posts.
 * Fix: The related posts meta box skips links to posts that no longer exist.
-* Fix: The installation wizard no longer keeps waiting on posts without words or with emoji.
+* Fix: The installer no longer keeps waiting on posts without words or with emoji.
 * Fix: PHP 8 deprecation notices, and word extraction no longer changes the locale of the rest of the request.
 * Fix: Deleting the plugin with "Remove data on uninstall" on also removes the widget settings, the state of an unfinished installation wizard, the dismissed review notice and the chosen number of links per page.
 * Tweak: Titles, settings and links in the admin are escaped.
 * Tweak: The notices about mbstring and the unfinished installation wizard can be translated.
 * Tweak: The Settings link on the Plugins screen also shows when the plugin folder is renamed.
 * Tweak: Rewritten on a modern, tested code base. The classes of 2.x and RP4WP() still work, and report their use as deprecated when WP_DEBUG is on.
+* Tweak: The installation wizard is replaced by the installer on the settings screen; links to the wizard open it there.
+* Tweak: The notice about an unfinished installation shows its progress, and can only be dismissed with a link that is valid for you.
 * Tweak: Requires WordPress 6.8 or newer and PHP 8.0 or newer.
 
 = 2.3.1: September 23, 2026 =
@@ -402,4 +406,4 @@ There is one custom table created for the post cache, this table will however no
 = 3.0.0 =
 Requires WordPress 6.8 and PHP 8.0. Using Related Posts for WordPress Premium? Update it to 3.0 as well.
 
-This version is safe to upgrade. If all of your related posts are linked automatically, we do recommend rerunning the wizard for better results.
+This version is safe to upgrade. If all of your related posts are linked automatically, we do recommend rebuilding them for better results, from Settings > Related Posts > Installer.

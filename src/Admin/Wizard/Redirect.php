@@ -7,11 +7,12 @@
 
 namespace LV2\WordPress\RelatedPostsForWP\Admin\Wizard;
 
+use LV2\WordPress\RelatedPostsForWP\Admin\Settings\Page as SettingsPage;
 use LV2\WordPress\RelatedPostsForWP\Install\Installer;
 use LV2\WordPress\RelatedPostsForWP\Module;
 
 /**
- * Sends the admin to the installation wizard on the first admin page after activation.
+ * Sends the admin to the first-run card of the settings screen on the first admin page after activation.
  */
 class Redirect implements Module {
 
@@ -27,7 +28,7 @@ class Redirect implements Module {
 
 		delete_option( Installer::OPTION_DO_INSTALL );
 
-		wp_safe_redirect( admin_url() . '?page=' . Page::SLUG . '&rp4wp_nonce=' . wp_create_nonce( Page::NONCE ), 307 );
+		wp_safe_redirect( SettingsPage::url( 'setup' ), 307 );
 		exit;
 	}
 }

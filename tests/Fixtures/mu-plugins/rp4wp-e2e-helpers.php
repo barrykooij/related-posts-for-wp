@@ -142,6 +142,11 @@ add_action(
 						wp_delete_post( $post_id, true );
 					}
 
+					// The background installer: its actions, and (with the options below) its job and the installer mode.
+					if ( function_exists( 'as_unschedule_all_actions' ) ) {
+						as_unschedule_all_actions( '', [], 'rp4wp' );
+					}
+
 					$wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE 'rp4wp%' OR option_name = 'widget_rp4wp_related_posts_widget'" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- Test reset.
 					$wpdb->query( "DELETE FROM {$wpdb->usermeta} WHERE meta_key LIKE 'rp4wp%'" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- Test reset.
 					$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}rp4wp_cache" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.DirectDatabaseQuery.SchemaChange -- Test reset.
@@ -244,6 +249,26 @@ add_action(
 			]
 		);
 
+		// How the background installer behaves: `slow` runs one post per batch with a pause, so the progress can be
+		// followed; `background` false stops Action Scheduler from running it, so only the admin screen's ticks do.
+		register_rest_route(
+			'rp4wp-e2e/v1',
+			'/installer-mode',
+			[
+				'methods'             => 'POST',
+				'permission_callback' => $admin_only,
+				'callback'            => static function ( WP_REST_Request $request ) {
+					$mode = [
+						'slow'       => (bool) $request->get_param( 'slow' ),
+						'background' => false !== $request->get_param( 'background' ),
+					];
+					update_option( 'rp4wp_e2e_installer', $mode, false );
+
+					return $mode;
+				},
+			]
+		);
+
 		// Read or clear the recorded problems.
 		register_rest_route(
 			'rp4wp-e2e/v1',
@@ -267,5 +292,34 @@ add_action(
 				],
 			]
 		);
+	}
+);
+
+// Apply the installer mode (see /installer-mode).
+add_action(
+	'plugins_loaded',
+	static function () {
+		$mode = get_option( 'rp4wp_e2e_installer' );
+
+		if ( ! is_array( $mode ) ) {
+			return;
+		}
+
+		if ( ! empty( $mode['slow'] ) ) {
+			add_filter( 'rp4wp_install_time_budget', '__return_zero' );
+			add_filter(
+				'rp4wp_install_batch_size',
+				static function () {
+					usleep( 400000 ); // Called once per batch: makes each batch take a moment.
+
+					return 1;
+				}
+			);
+		}
+
+		if ( empty( $mode['background'] ) ) {
+			add_filter( 'action_scheduler_allow_async_request_runner', '__return_false' );
+			add_filter( 'action_scheduler_queue_runner_concurrent_batches', '__return_zero' );
+		}
 	}
 );

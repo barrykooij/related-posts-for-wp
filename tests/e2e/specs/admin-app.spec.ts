@@ -1,5 +1,6 @@
 /**
- * The admin app (assets/src/admin), on the page it has while it is being built.
+ * The admin app (assets/src/admin) on Settings > Related Posts: React and the WordPress packages of the site, the API
+ * for other scripts, and the REST API it talks to.
  */
 import { test, expect } from '../fixtures';
 
@@ -16,7 +17,7 @@ test.describe( 'Admin app', () => {
 		const errors: string[] = [];
 		page.on( 'pageerror', ( error ) => errors.push( error.message ) );
 
-		await admin.visitAdminPage( 'admin.php', 'page=rp4wp_app' );
+		await admin.visitAdminPage( 'options-general.php', 'page=rp4wp' );
 
 		await expect(
 			page.getByRole( 'heading', { name: 'Related Posts', level: 1 } )
@@ -24,6 +25,11 @@ test.describe( 'Admin app', () => {
 		await expect(
 			page.getByRole( 'heading', { name: 'General', level: 2 } )
 		).toBeVisible();
+		// The 2.x screen and its scripts are gone.
+		await expect( page.locator( '#rp4wp-settings-form' ) ).toHaveCount( 0 );
+		await expect(
+			page.locator( 'script[src*="assets/js/settings"]' )
+		).toHaveCount( 0 );
 		await expect( page ).toHaveURL( /#\/general$/ );
 		// The first REST responses come with the page.
 		const preloaded = await page
@@ -41,7 +47,7 @@ test.describe( 'Admin app', () => {
 		page,
 		admin,
 	} ) => {
-		await admin.visitAdminPage( 'admin.php', 'page=rp4wp_app' );
+		await admin.visitAdminPage( 'options-general.php', 'page=rp4wp' );
 
 		// The same browser, with the admin's login cookie, but without the nonce: a forged request from another site.
 		const forged = await page.request.get( '/wp-json/rp4wp/v1/settings' );

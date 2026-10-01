@@ -7,8 +7,10 @@
 
 namespace LV2\WordPress\RelatedPostsForWP\Tests\Integration\Contract;
 
+use LV2\WordPress\RelatedPostsForWP\Admin\App\Assets;
 use LV2\WordPress\RelatedPostsForWP\Links\LinkRepository;
 use LV2\WordPress\RelatedPostsForWP\Tests\Integration\TestCase;
+use LV2\WordPress\RelatedPostsForWP\Tests\Support\AdminAppBuild;
 
 /**
  * Code written for 2.x unhooks the plugin through the hook and filter managers:
@@ -22,6 +24,8 @@ use LV2\WordPress\RelatedPostsForWP\Tests\Integration\TestCase;
  */
 final class LegacyUnhookingTest extends TestCase {
 
+	use AdminAppBuild;
+
 	/**
 	 * Every 2.x hook and filter class, with its WordPress hook and priority.
 	 *
@@ -31,8 +35,6 @@ final class LegacyUnhookingTest extends TestCase {
 		$hooks = [
 			'RP4WP_Hook_Admin_Scripts'           => [ 'admin_enqueue_scripts', 10 ],
 			'RP4WP_Hook_Ajax_Delete_Link'        => [ 'wp_ajax_rp4wp_delete_link', 10 ],
-			'RP4WP_Hook_Ajax_Install_Link_Posts' => [ 'wp_ajax_rp4wp_install_link_posts', 10 ],
-			'RP4WP_Hook_Ajax_Install_Save_Words' => [ 'wp_ajax_rp4wp_install_save_words', 10 ],
 			'RP4WP_Hook_Delete_Words'            => [ 'delete_post', 10 ],
 			'RP4WP_Hook_Frontend_Css'            => [ 'wp_head', 10 ],
 			'RP4WP_Hook_Link_Related_Screen'     => [ 'admin_menu', 10 ],
@@ -113,7 +115,7 @@ final class LegacyUnhookingTest extends TestCase {
 		$this->assertStringContainsString( 'A related post', $hook->output( [ 'id' => $parent ] ) );
 	}
 
-	public function test_the_2x_settings_page_object_still_renders_the_screen_and_loads_its_styles(): void {
+	public function test_the_2x_settings_page_object_still_renders_the_screen_and_loads_its_assets(): void {
 		require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		require_once ABSPATH . 'wp-admin/includes/template.php';
 
@@ -125,13 +127,34 @@ final class LegacyUnhookingTest extends TestCase {
 
 		ob_start();
 		$hook->screen();
-		$this->assertStringContainsString( 'id="rp4wp-settings-form"', (string) ob_get_clean() );
+		$this->assertStringContainsString( 'id="rp4wp-admin"', (string) ob_get_clean() );
 
+		$this->stand_in_for_admin_app_build();
 		$hook->enqueue_assets();
-		$enqueued = wp_style_is( 'rp4wp-settings-css' );
-		wp_dequeue_style( 'rp4wp-settings-css' );
+		$enqueued = wp_script_is( Assets::SCRIPT );
+		wp_deregister_script( Assets::SCRIPT );
+		wp_deregister_style( Assets::STYLE );
+		$this->remove_admin_app_build_stand_in();
 
 		$this->assertTrue( $enqueued );
+	}
+
+	/**
+	 * The 2.x wizard actions are gone (D27). Code that unhooks them the 2.x way finds no object, and nothing breaks.
+	 *
+	 * @return void
+	 */
+	public function test_unhooking_the_removed_wizard_actions_the_2x_way_does_nothing(): void {
+		foreach ( [
+			'RP4WP_Hook_Ajax_Install_Link_Posts' => 'wp_ajax_rp4wp_install_link_posts',
+			'RP4WP_Hook_Ajax_Install_Save_Words' => 'wp_ajax_rp4wp_install_save_words',
+		] as $class => $tag ) {
+			$this->setExpectedDeprecated( 'RP4WP_Manager_Hook::get_hook_object' );
+			$hook = \RP4WP_Manager_Hook::get_hook_object( $class );
+
+			$this->assertFalse( remove_action( $tag, [ $hook, 'run' ] ) );
+			$this->assertFalse( has_action( $tag ) );
+		}
 	}
 
 	public function test_the_widget_can_still_be_unregistered_by_its_2x_class_name(): void {

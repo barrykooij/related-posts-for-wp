@@ -40,16 +40,13 @@ final class SettingsRestTest extends RestTestCase {
 
 		$this->assertSame( 'code', array_column( $pages[1]['sections'][0]['fields'], 'type', 'id' )['css'] );
 
-		$misc = array_column( $pages[2]['sections'][0]['fields'], null, 'id' );
-		$this->assertSame( 'link', $misc['restart_wizard_button']['type'] );
-		$this->assertStringContainsString( 'page=rp4wp_install', $misc['restart_wizard_button']['href'] );
+		$this->assertSame( [ 'clean_on_uninstall', 'show_love' ], array_column( $pages[2]['sections'][0]['fields'], 'id' ), 'The rebuild link moved to the installer.' );
 
 		// The values as the app edits them: booleans and numbers, with the defaults for what was never saved.
 		$values = (array) $pages[0]['values'];
 		$this->assertTrue( $values['automatic_linking'] );
 		$this->assertSame( 3, $values['automatic_linking_post_amount'] );
 		$this->assertSame( 'Related Posts', $values['heading_text'] );
-		$this->assertArrayNotHasKey( 'restart_wizard_button', (array) $pages[2]['values'] );
 	}
 
 	public function test_saving_a_page_stores_its_fields_the_way_the_settings_screen_did(): void {
@@ -147,6 +144,32 @@ final class SettingsRestTest extends RestTestCase {
 
 		$this->assertSame( 'From a filter', $response->get_data()['values']->heading_text );
 		$this->assertSame( 'Related Posts', get_option( 'rp4wp' )['heading_text'] );
+	}
+
+	public function test_a_link_added_by_a_filter_is_described_and_never_saved(): void {
+		add_filter(
+			'rp4wp_settings_sections',
+			static function ( array $sections ) {
+				$sections['misc']['fields']['docs'] = [
+					'id'      => 'docs',
+					'label'   => 'Documentation',
+					'type'    => 'button_link',
+					'href'    => 'https://example.com/docs',
+					'default' => 'Read the docs',
+				];
+
+				return $sections;
+			}
+		);
+		$this->fresh_settings();
+
+		$page   = $this->request( 'GET', '/settings' )->get_data()['pages'][2];
+		$fields = array_column( $page['sections'][0]['fields'], null, 'id' );
+		$this->assertSame( 'link', $fields['docs']['type'] );
+		$this->assertSame( 'https://example.com/docs', $fields['docs']['href'] );
+		$this->assertArrayNotHasKey( 'docs', (array) $page['values'] );
+
+		$this->assertSame( 400, $this->request( 'PUT', '/settings/misc', [ 'values' => [ 'docs' => 'x' ] ] )->get_status() );
 	}
 
 	public function test_fields_added_by_a_filter_are_described_and_saved(): void {

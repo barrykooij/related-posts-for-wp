@@ -8,17 +8,18 @@
 namespace LV2\WordPress\RelatedPostsForWP\Tests\Integration\Admin;
 
 use LV2\WordPress\RelatedPostsForWP\Admin\App\Assets;
-use LV2\WordPress\RelatedPostsForWP\Admin\App\Page;
 use LV2\WordPress\RelatedPostsForWP\Main;
 use LV2\WordPress\RelatedPostsForWP\Tests\Integration\TestCase;
+use LV2\WordPress\RelatedPostsForWP\Tests\Support\AdminAppBuild;
 
 /**
- * The page of the admin app and how its build is enqueued.
+ * How the build of the admin app is enqueued.
  *
  * @covers \LV2\WordPress\RelatedPostsForWP\Admin\App\Assets
- * @covers \LV2\WordPress\RelatedPostsForWP\Admin\App\Page
  */
 final class AppTest extends TestCase {
+
+	use AdminAppBuild;
 
 	/**
 	 * The asset file of the build.
@@ -27,33 +28,17 @@ final class AppTest extends TestCase {
 	 */
 	private string $asset_file;
 
-	/**
-	 * Whether this test wrote the asset file, because there was no build.
-	 *
-	 * @var bool
-	 */
-	private bool $wrote_asset_file = false;
-
 	public function set_up(): void {
 		parent::set_up();
 
-		$this->asset_file = dirname( Main::file() ) . '/assets/build/admin/index.asset.php';
-
-		// The integration tests run without `npm run build`; stand in for the build then.
-		if ( ! is_file( $this->asset_file ) ) {
-			wp_mkdir_p( dirname( $this->asset_file ) );
-			file_put_contents( $this->asset_file, "<?php return array( 'dependencies' => array( 'react-jsx-runtime', 'wp-components', 'wp-element' ), 'version' => 'test' );\n" ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents -- Test fixture.
-			$this->wrote_asset_file = true;
-		}
+		$this->asset_file = $this->stand_in_for_admin_app_build();
 
 		wp_deregister_script( Assets::SCRIPT );
 		wp_deregister_style( Assets::STYLE );
 	}
 
 	public function tear_down(): void {
-		if ( $this->wrote_asset_file ) {
-			unlink( $this->asset_file ); // phpcs:ignore WordPress.WP.AlternativeFunctions.unlink_unlink -- Test fixture.
-		}
+		$this->remove_admin_app_build_stand_in();
 
 		wp_deregister_script( Assets::SCRIPT );
 		wp_deregister_style( Assets::STYLE );
@@ -131,14 +116,5 @@ final class AppTest extends TestCase {
 		$this->assertNotFalse( has_action( 'admin_notices', [ Assets::class, 'missing_build_notice' ] ) );
 
 		remove_action( 'admin_notices', [ Assets::class, 'missing_build_notice' ] );
-	}
-
-	public function test_the_page_only_holds_the_element_the_app_mounts_on(): void {
-		ob_start();
-		Page::render();
-		$html = (string) ob_get_clean();
-
-		$this->assertStringContainsString( '<div id="rp4wp-admin"></div>', $html );
-		$this->assertStringContainsString( '<noscript>', $html );
 	}
 }

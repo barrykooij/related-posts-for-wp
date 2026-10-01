@@ -11,15 +11,23 @@ use LV2\WordPress\RelatedPostsForWP\Admin\Settings\Fields;
 use LV2\WordPress\RelatedPostsForWP\Admin\Settings\Page;
 use LV2\WordPress\RelatedPostsForWP\Main;
 use LV2\WordPress\RelatedPostsForWP\Settings\Settings;
+use LV2\WordPress\RelatedPostsForWP\Admin\App\Assets;
+use LV2\WordPress\RelatedPostsForWP\Admin\Wizard\Page as WizardPage;
 use LV2\WordPress\RelatedPostsForWP\Tests\Integration\TestCase;
+use LV2\WordPress\RelatedPostsForWP\Tests\Support\AdminAppBuild;
 
 /**
- * The Settings > Related Posts screen and the settings it registers.
+ * The Settings > Related Posts screen, which holds the admin app, and the settings it registers with the Settings API
+ * for code that still uses it.
  *
  * @covers \LV2\WordPress\RelatedPostsForWP\Admin\Settings\Page
  * @covers \LV2\WordPress\RelatedPostsForWP\Admin\Settings\Fields
+ * @covers \LV2\WordPress\RelatedPostsForWP\Admin\Wizard\Page
+ * @covers \LV2\WordPress\RelatedPostsForWP\Admin\Wizard\Redirect
  */
 final class SettingsPageTest extends TestCase {
+
+	use AdminAppBuild;
 
 	/**
 	 * Globals the admin menu and the Settings API write to; restored after every test.
@@ -61,8 +69,7 @@ final class SettingsPageTest extends TestCase {
 
 		$this->act_as( 'administrator' );
 
-		// The sections are built once, on init, when the test suite has no user yet. Build them again for this user,
-		// so the wizard link has a valid nonce and tests can filter the sections.
+		// The sections are built once, on init. Build them again, so tests can filter them.
 		$this->settings = Main::get()->settings();
 		Main::get()->set_settings( new Settings() );
 	}
@@ -74,8 +81,9 @@ final class SettingsPageTest extends TestCase {
 
 		Main::get()->set_settings( $this->settings );
 
-		wp_dequeue_style( 'rp4wp-settings-css' );
-		wp_deregister_style( 'rp4wp-settings-css' );
+		wp_deregister_script( Assets::SCRIPT );
+		wp_deregister_style( Assets::STYLE );
+		$this->remove_admin_app_build_stand_in();
 
 		parent::tear_down();
 	}
@@ -112,14 +120,35 @@ final class SettingsPageTest extends TestCase {
 		$this->assertFalse( has_action( 'load-' . get_plugin_page_hookname( Page::SLUG, 'options-general.php' ) ) );
 	}
 
-	public function test_the_page_loads_its_styles(): void {
+	public function test_the_page_loads_the_admin_app(): void {
+		$this->stand_in_for_admin_app_build();
+
 		Page::enqueue_assets();
 
-		$this->assertTrue( wp_style_is( 'rp4wp-settings-css' ) );
+		$this->assertTrue( wp_script_is( Assets::SCRIPT ) );
+		$this->assertTrue( wp_style_is( Assets::STYLE ) );
+	}
 
-		$style = wp_styles()->registered['rp4wp-settings-css'];
-		$this->assertStringEndsWith( '/related-posts-for-wp/assets/css/settings.css', $style->src );
-		$this->assertSame( Main::VERSION, $style->ver );
+	public function test_the_page_only_holds_the_element_the_app_mounts_on(): void {
+		ob_start();
+		Page::render();
+		$html = (string) ob_get_clean();
+
+		$this->assertSame( '<div class="wrap"><div id="rp4wp-admin"></div><noscript><p>The settings of Related Posts for WordPress need JavaScript.</p></noscript></div>', $html );
+	}
+
+	public function test_the_page_links_to_a_screen_of_the_app(): void {
+		$this->assertSame( admin_url( 'options-general.php?page=rp4wp' ), Page::url() );
+		$this->assertSame( admin_url( 'options-general.php?page=rp4wp#/setup' ), Page::url( 'setup' ) );
+	}
+
+	public function test_the_address_of_the_2x_wizard_sends_admins_to_the_installer(): void {
+		$this->assertSame( Page::url( 'setup' ), WizardPage::target() );
+
+		// The 2.x "Rebuild" link removed everything right away; now it only opens the installer, which asks first.
+		$_GET['reinstall'] = '1';
+		$this->assertSame( Page::url( 'installer' ), WizardPage::target() );
+		unset( $_GET['reinstall'] );
 	}
 
 	public function test_every_section_and_field_is_registered(): void {
@@ -165,16 +194,8 @@ final class SettingsPageTest extends TestCase {
 		);
 	}
 
-	public function test_the_screen_has_a_tab_and_the_fields_of_every_section(): void {
+	public function test_the_2x_fields_still_render_for_code_that_uses_the_settings_api(): void {
 		$html = $this->render();
-
-		$this->assertStringContainsString( '<form method="post" action="options.php" id="rp4wp-settings-form">', $html );
-		$this->assertStringContainsString( "name='option_page' value='rp4wp'", $html );
-
-		foreach ( [ 'general', 'styling', 'misc' ] as $section ) {
-			$this->assertStringContainsString( '<a href="#rp4wp-settings-' . $section . '" class="nav-tab">', $html );
-			$this->assertStringContainsString( '<div id="rp4wp-settings-' . $section . '" class="rp4wp-settings-section">', $html );
-		}
 
 		$this->assertStringContainsString( '<input type="checkbox" name="rp4wp[automatic_linking]" id="automatic_linking" value="1"  checked=\'checked\' />', $html );
 		$this->assertStringContainsString( '<input type="checkbox" name="rp4wp[display_image]" id="display_image" value="1"  />', $html );
@@ -182,17 +203,7 @@ final class SettingsPageTest extends TestCase {
 		$this->assertStringContainsString( '<textarea name="rp4wp[css]" id="css">.rp4wp-related-posts ul{', $html );
 		$this->assertStringContainsString( '<label class="rp4wp-description" for="excerpt_length">The amount of words to be displayed below the title on website. To disable, set value to 0.</label>', $html );
 		$this->assertStringNotContainsString( 'This option is overwritten by a filter.', $html );
-		$this->assertStringContainsString( 'class="rp4wp-sidebar"', $html );
-	}
-
-	public function test_the_rebuild_button_links_to_the_wizard_with_a_valid_nonce(): void {
-		$this->assertSame( 1, preg_match( '/<a href="([^"]+)" class="button">Rebuild<\/a>/', $this->render(), $matches ) );
-
-		parse_str( (string) wp_parse_url( html_entity_decode( $matches[1] ), PHP_URL_QUERY ), $query );
-
-		$this->assertSame( 'rp4wp_install', $query['page'] );
-		$this->assertSame( '1', $query['reinstall'] );
-		$this->assertSame( 1, wp_verify_nonce( $query['rp4wp_nonce'], 'rp4wp-install-secret' ) );
+		$this->assertStringNotContainsString( 'restart_wizard_button', $html, 'The rebuild link moved to the installer of the app.' );
 	}
 
 	public function test_an_option_set_by_a_filter_is_marked(): void {
@@ -228,7 +239,7 @@ final class SettingsPageTest extends TestCase {
 	}
 
 	/**
-	 * Register the settings and render the page.
+	 * Register the settings and render their sections the way the 2.x screen did, with the Settings API.
 	 *
 	 * @return string
 	 */
@@ -236,7 +247,7 @@ final class SettingsPageTest extends TestCase {
 		Fields::register();
 
 		ob_start();
-		Page::render();
+		do_settings_sections( Page::SLUG );
 
 		return (string) ob_get_clean();
 	}

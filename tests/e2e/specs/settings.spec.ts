@@ -1,5 +1,5 @@
 /**
- * The settings screen.
+ * The settings screen: the tabs, saving and discarding, and what the front end does with the settings.
  */
 import { test, expect } from '../fixtures';
 
@@ -19,20 +19,35 @@ test.describe( 'Settings', () => {
 
 		await admin.visitAdminPage( 'options-general.php', 'page=rp4wp' );
 		await expect(
-			page.getByRole( 'heading', {
-				name: 'Related Posts for WordPress',
-				exact: true,
-			} )
+			page.getByRole( 'heading', { name: 'Related Posts', level: 1 } )
 		).toBeVisible();
 
-		await page.locator( '#heading_text' ).fill( 'You might also like' );
-		await page.locator( '#excerpt_length' ).fill( '0' );
-		await page.getByRole( 'button', { name: 'Save Changes' } ).click();
+		// Nothing to save yet.
+		await expect(
+			page.getByRole( 'button', { name: 'Save changes' } )
+		).toHaveCount( 0 );
 
-		await expect( page.getByText( 'Settings saved.' ) ).toBeVisible();
-		await expect( page.locator( '#heading_text' ) ).toHaveValue(
-			'You might also like'
-		);
+		await page
+			.getByRole( 'textbox', { name: 'Heading text' } )
+			.fill( 'You might also like' );
+		await page
+			.getByRole( 'spinbutton', { name: 'Excerpt length' } )
+			.fill( '0' );
+		await page.getByRole( 'button', { name: 'Save changes' } ).click();
+
+		await expect(
+			page
+				.locator( '.components-snackbar' )
+				.getByText( 'Settings saved.' )
+		).toBeVisible();
+		await expect(
+			page.getByRole( 'button', { name: 'Save changes' } )
+		).toHaveCount( 0 );
+
+		await page.reload();
+		await expect(
+			page.getByRole( 'textbox', { name: 'Heading text' } )
+		).toHaveValue( 'You might also like' );
 
 		await page.goto( posts[ 'banana-bread' ].link );
 		const block = page.locator( '.rp4wp-related-posts' );
@@ -42,23 +57,60 @@ test.describe( 'Settings', () => {
 		await expect( block.locator( 'li p' ) ).toHaveCount( 0 );
 	} );
 
-	test( 'the rebuild button restarts the wizard', async ( {
+	test( 'changes can be discarded', async ( { page, admin, rp4wp } ) => {
+		await rp4wp.install();
+
+		await admin.visitAdminPage( 'options-general.php', 'page=rp4wp' );
+		const heading = page.getByRole( 'textbox', { name: 'Heading text' } );
+		await heading.fill( 'Not this' );
+		await page.getByRole( 'button', { name: 'Discard' } ).click();
+
+		await expect( heading ).toHaveValue( 'Related Posts' );
+		await expect(
+			page.getByRole( 'button', { name: 'Save changes' } )
+		).toHaveCount( 0 );
+	} );
+
+	test( 'every settings section is a tab, with the installer last', async ( {
 		page,
 		admin,
 		rp4wp,
 	} ) => {
-		await rp4wp.createCorpus();
 		await rp4wp.install();
-		await rp4wp.link();
 
 		await admin.visitAdminPage( 'options-general.php', 'page=rp4wp' );
-		await page.getByRole( 'link', { name: 'Misc', exact: true } ).click();
-		await page
-			.getByRole( 'link', { name: 'Rebuild', exact: true } )
-			.click();
+		const tabs = page.getByRole( 'navigation', {
+			name: 'Related Posts settings',
+		} );
+		await expect( tabs.getByRole( 'link' ) ).toHaveText( [
+			'General',
+			'Styling',
+			'Misc',
+			'Installer',
+		] );
 
-		// The reinstall removes all links and starts over at step 1, which moves on to step 2 by itself.
-		await expect( page ).toHaveURL( /page=rp4wp_install/ );
-		await expect( page ).toHaveURL( /step=2/, { timeout: 30_000 } );
+		await tabs.getByRole( 'link', { name: 'Styling' } ).click();
+		await expect( page ).toHaveURL( /#\/styling$/ );
+		await expect(
+			page.getByRole( 'textbox', { name: 'CSS' } )
+		).toHaveValue( /\.rp4wp-related-posts ul/ );
+
+		// A change on one tab is saved with the others.
+		await page.getByLabel( 'Display Image' ).check();
+		await tabs.getByRole( 'link', { name: 'Misc' } ).click();
+		await page.getByLabel( 'Remove Data on Uninstall?' ).check();
+		await page.getByRole( 'button', { name: 'Save changes' } ).click();
+		await expect(
+			page
+				.locator( '.components-snackbar' )
+				.getByText( 'Settings saved.' )
+		).toBeVisible();
+
+		await page.reload();
+		await expect(
+			page.getByLabel( 'Remove Data on Uninstall?' )
+		).toBeChecked();
+		await tabs.getByRole( 'link', { name: 'Styling' } ).click();
+		await expect( page.getByLabel( 'Display Image' ) ).toBeChecked();
 	} );
 } );

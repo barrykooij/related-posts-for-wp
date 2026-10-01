@@ -1,19 +1,30 @@
 // The admin app. Colours follow the admin colour scheme
 // through --wp-admin-theme-color.
 
+$breakpoint: 782px;
+
 .rp4wp-admin {
+	--rp4wp-accent: var(--wp-admin-theme-color, #3858e9);
 	--rp4wp-gap: 24px;
 	--rp4wp-border: #e0e0e0;
 	--rp4wp-muted: #757575;
+	--rp4wp-surface: #fff;
+	--rp4wp-success: #00a32a;
+	--rp4wp-danger: #cc1818;
+	--rp4wp-radius: 8px;
 
-	max-width: 960px;
+	max-width: 1000px;
 	margin: 0 20px 0 0;
-	padding-top: var(--rp4wp-gap);
+	padding: var(--rp4wp-gap) 0 96px;
 
-	@media (max-width: 782px) {
+	@media (max-width: $breakpoint) {
+		--rp4wp-gap: 16px;
+
 		margin-right: 10px;
 	}
 }
+
+// Header
 
 .rp4wp-admin__header {
 	display: flex;
@@ -34,17 +45,29 @@
 .rp4wp-admin__badge {
 	padding: 2px 8px;
 	border-radius: 2px;
-	background: var(--wp-admin-theme-color, #3858e9);
+	background: var(--rp4wp-accent);
 	color: #fff;
 	font-size: 11px;
 	font-weight: 600;
-	text-transform: uppercase;
 	letter-spacing: 0.04em;
+	text-transform: uppercase;
 }
 
 .rp4wp-admin__version {
 	color: var(--rp4wp-muted);
 }
+
+.rp4wp-admin__loading {
+	display: flex;
+	justify-content: center;
+	padding: 48px 0;
+}
+
+.rp4wp-admin > .components-notice {
+	margin: 0 0 var(--rp4wp-gap);
+}
+
+// Tabs
 
 .rp4wp-admin__nav {
 	display: flex;
@@ -63,23 +86,374 @@
 	text-decoration: none;
 
 	&:hover {
-		color: var(--wp-admin-theme-color, #3858e9);
+		color: var(--rp4wp-accent);
 	}
 
 	&:focus {
 		box-shadow: none;
-		outline: 2px solid var(--wp-admin-theme-color, #3858e9);
+		outline: 2px solid var(--rp4wp-accent);
 		outline-offset: -2px;
 	}
 
 	&[aria-current="page"] {
-		border-bottom-color: var(--wp-admin-theme-color, #3858e9);
-		color: var(--wp-admin-theme-color, #3858e9);
+		border-bottom-color: var(--rp4wp-accent);
+		color: var(--rp4wp-accent);
 	}
 }
 
-.rp4wp-admin__card-title {
+// Cards and fields
+
+.rp4wp-page {
+	display: grid;
+	gap: var(--rp4wp-gap);
+}
+
+.rp4wp-card.components-card {
+	overflow: hidden;
+	border-radius: var(--rp4wp-radius);
+}
+
+.rp4wp-card__title {
 	margin: 0;
-	font-size: 14px;
+	font-size: 15px;
 	font-weight: 600;
+}
+
+.rp4wp-card__description,
+.rp4wp-card__description p {
+	margin: 4px 0 0;
+	color: var(--rp4wp-muted);
+}
+
+.rp4wp-card__body.components-card__body {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.rp4wp-card--danger .rp4wp-card__title {
+	color: var(--rp4wp-danger);
+}
+
+.rp4wp-field {
+	display: grid;
+	grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+	gap: 8px 32px;
+	align-items: start;
+	padding: 20px 0;
+
+	& + & {
+		border-top: 1px solid var(--rp4wp-border);
+	}
+
+	@media (max-width: $breakpoint) {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+
+.rp4wp-field__label {
+	display: block;
+	font-weight: 600;
+}
+
+.rp4wp-field__description {
+	margin-top: 4px;
+	color: var(--rp4wp-muted);
+}
+
+.rp4wp-field__filtered {
+	margin: 8px 0 0;
+	color: #b26200;
+	font-style: italic;
+}
+
+.rp4wp-field__control {
+	min-width: 0;
+}
+
+.rp4wp-field__number {
+	max-width: 120px;
+}
+
+.rp4wp-field__code textarea {
+	font-family: Menlo, Consolas, monaco, monospace;
+	font-size: 12px;
+	line-height: 1.6;
+}
+
+// Save bar
+
+.rp4wp-savebar {
+	position: sticky;
+	z-index: 10;
+	bottom: 16px;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+	margin-top: var(--rp4wp-gap);
+	padding: 12px 16px;
+	border: 1px solid var(--rp4wp-border);
+	border-radius: var(--rp4wp-radius);
+	background: var(--rp4wp-surface);
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.rp4wp-savebar__text {
+	margin-right: auto;
+	font-weight: 500;
+}
+
+.rp4wp-admin__snackbars {
+	position: fixed;
+	z-index: 100000;
+	bottom: 24px;
+	left: 50%;
+	width: auto;
+	transform: translateX(-50%);
+}
+
+// Installer
+
+.rp4wp-install:not(:empty) {
+	margin-bottom: var(--rp4wp-gap);
+}
+
+.rp4wp-setup.components-card {
+	border: 0;
+	background: linear-gradient(135deg, var(--rp4wp-accent), #1d2327);
+	box-shadow: 0 12px 32px rgba(0, 0, 0, 0.16);
+	color: #fff;
+}
+
+.rp4wp-setup__body.components-card__body {
+	display: grid;
+	grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+	gap: 32px;
+	padding: 40px;
+
+	@media (max-width: $breakpoint) {
+		grid-template-columns: minmax(0, 1fr);
+		padding: 24px;
+	}
+}
+
+.rp4wp-setup__eyebrow {
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	opacity: 0.8;
+	text-transform: uppercase;
+}
+
+.rp4wp-setup__title {
+	margin: 8px 0 16px;
+	color: inherit;
+	font-size: 28px;
+	font-weight: 600;
+	line-height: 1.25;
+}
+
+.rp4wp-setup__text {
+	max-width: 520px;
+	margin: 0 0 12px;
+	font-size: 14px;
+	line-height: 1.6;
+	opacity: 0.9;
+}
+
+.rp4wp-setup__form {
+	display: grid;
+	gap: 16px;
+	align-content: start;
+	padding: 24px;
+	border-radius: var(--rp4wp-radius);
+	background: var(--rp4wp-surface);
+	color: #1e1e1e;
+}
+
+.rp4wp-setup__start.components-button {
+	justify-content: center;
+	width: 100%;
+}
+
+.rp4wp-amount input {
+	max-width: 120px;
+}
+
+.rp4wp-progress__body.components-card__body,
+.rp4wp-done__body.components-card__body {
+	display: grid;
+	gap: 16px;
+	padding: 28px;
+}
+
+.rp4wp-progress__head {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 16px;
+}
+
+.rp4wp-progress__title,
+.rp4wp-done__title {
+	margin: 0;
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.rp4wp-progress__text {
+	margin: 4px 0 0;
+	color: var(--rp4wp-muted);
+}
+
+.rp4wp-progress__percent {
+	color: var(--rp4wp-accent);
+	font-size: 32px;
+	font-variant-numeric: tabular-nums;
+	font-weight: 600;
+	line-height: 1;
+}
+
+.rp4wp-progress--failed .rp4wp-progress__percent {
+	color: var(--rp4wp-danger);
+}
+
+.rp4wp-progress--cancelled .rp4wp-progress__percent {
+	color: var(--rp4wp-muted);
+}
+
+.rp4wp-progress__eta {
+	margin: -8px 0 0;
+	color: var(--rp4wp-muted);
+	font-size: 12px;
+}
+
+.rp4wp-bar {
+	overflow: hidden;
+	height: 8px;
+	border-radius: 4px;
+	background: #f0f0f0;
+}
+
+.rp4wp-bar__fill {
+	display: block;
+	height: 100%;
+	border-radius: 4px;
+	background: var(--rp4wp-accent);
+	transition: width 0.6s ease;
+
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
+	}
+}
+
+.rp4wp-steps {
+	display: grid;
+	gap: 10px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.rp4wp-step {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin: 0;
+	color: var(--rp4wp-muted);
+}
+
+.rp4wp-step__icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex: none;
+	width: 24px;
+	height: 24px;
+	border: 2px solid var(--rp4wp-border);
+	border-radius: 50%;
+
+	.components-spinner {
+		margin: 0;
+	}
+}
+
+.rp4wp-step--current {
+	color: inherit;
+	font-weight: 600;
+
+	.rp4wp-step__icon {
+		border-color: transparent;
+	}
+}
+
+.rp4wp-step--done {
+	color: inherit;
+
+	.rp4wp-step__icon {
+		border-color: var(--rp4wp-success);
+		background: var(--rp4wp-success);
+		fill: #fff;
+	}
+}
+
+.rp4wp-step__count {
+	margin-left: auto;
+	color: var(--rp4wp-muted);
+	font-variant-numeric: tabular-nums;
+	font-weight: 400;
+}
+
+.rp4wp-progress__actions {
+	display: flex;
+	gap: 8px;
+}
+
+.rp4wp-done.components-card {
+	border-left: 4px solid var(--rp4wp-success);
+}
+
+.rp4wp-done__body.components-card__body {
+	grid-template-columns: auto minmax(0, 1fr) auto;
+	align-items: center;
+
+	@media (max-width: $breakpoint) {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+
+.rp4wp-done__icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	background: var(--rp4wp-success);
+	fill: #fff;
+}
+
+.rp4wp-done__text p {
+	margin: 4px 0 0;
+	color: var(--rp4wp-muted);
+}
+
+.rp4wp-installer.components-card__body {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	gap: 16px;
+}
+
+// Confirm dialog
+
+.rp4wp-modal__body p {
+	margin-top: 0;
+}
+
+.rp4wp-modal__actions {
+	display: flex;
+	justify-content: flex-end;
+	gap: 8px;
+	margin-top: 24px;
 }

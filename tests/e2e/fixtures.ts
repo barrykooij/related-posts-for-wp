@@ -95,6 +95,26 @@ export class RP4WPUtils {
 	}
 
 	/**
+	 * How the background installer behaves until the next reset: `slow` runs one post per batch with a pause, so the
+	 * progress can be followed; `background: false` stops Action Scheduler from running it, so it stalls and only
+	 * the admin screen runs it.
+	 *
+	 * @param mode            The mode.
+	 * @param mode.slow       One post per batch, with a pause.
+	 * @param mode.background Whether Action Scheduler runs it.
+	 */
+	async installerMode( mode: {
+		slow?: boolean;
+		background?: boolean;
+	} ): Promise< void > {
+		await this.requestUtils.rest( {
+			method: 'POST',
+			path: '/rp4wp-e2e/v1/installer-mode',
+			data: mode,
+		} );
+	}
+
+	/**
 	 * Cache words and link all posts, like finishing the wizard.
 	 */
 	async link(): Promise< void > {

@@ -12,7 +12,7 @@ use LV2\WordPress\RelatedPostsForWP\Main;
 use LV2\WordPress\RelatedPostsForWP\Module;
 
 /**
- * Scripts and styles for the post editor and the settings page.
+ * Scripts and styles for the post editor. The settings screen loads the admin app (Admin\App\Assets).
  */
 class Assets implements Module {
 
@@ -39,10 +39,6 @@ class Assets implements Module {
 			wp_enqueue_script( 'rp4wp_edit_post_js', plugins_url( '/assets/js/edit-post' . $suffix . '.js', Main::file() ), [ 'jquery', 'jquery-ui-sortable' ], Main::VERSION, false );
 			wp_localize_script( 'rp4wp_edit_post_js', 'rp4wp_js', self::javascript_strings() );
 			wp_enqueue_style( 'rp4wp_edit_post_css', plugins_url( '/assets/css/edit-post.css', Main::file() ), [], Main::VERSION );
-		}
-
-		if ( 'options-general.php' === $pagenow && isset( $_GET['page'] ) && 'rp4wp' === $_GET['page'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Only decides which assets to load.
-			wp_enqueue_script( 'rp4wp_settings_js', plugins_url( '/assets/js/settings' . $suffix . '.js', Main::file() ), [ 'jquery' ], Main::VERSION, false );
 		}
 	}
 

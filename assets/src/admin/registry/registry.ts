@@ -3,6 +3,7 @@
  * adds its screens and field types through the same functions (window.rp4wp.admin).
  */
 import type { ComponentType } from 'react';
+import type { Field, InstallRequest, InstallState } from '../api/types';
 
 export interface Route {
 	/** The part of the URL after `#/`, for example `general`. */
@@ -16,16 +17,29 @@ export interface Route {
 }
 
 export interface FieldProps< Value = unknown > {
+	/** The field, as the settings schema describes it. */
+	field: Field;
+	/** An ID for the control, for its label. */
 	id: string;
-	label: string;
 	value: Value;
 	onChange: ( value: Value ) => void;
+	/** A filter decides the value. */
+	disabled: boolean;
+}
+
+export interface SetupStepProps {
+	/** What the next installation asks for so far. */
+	request: InstallRequest;
+	/** Change what it asks for. */
+	setRequest: ( changes: InstallRequest ) => void;
+	/** What an installation accepts, as JSON schema per key. */
+	args: InstallState[ 'args' ];
 }
 
 export interface SetupStep {
 	id: string;
 	order: number;
-	component: ComponentType;
+	component: ComponentType< SetupStepProps >;
 }
 
 export interface Snapshot {

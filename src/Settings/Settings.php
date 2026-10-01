@@ -22,11 +22,6 @@ class Settings {
 	public const OPTION = 'rp4wp';
 
 	/**
-	 * Nonce action of the installation wizard.
-	 */
-	private const NONCE_INSTALL = 'rp4wp-install-secret';
-
-	/**
 	 * The setting sections with their fields, once built.
 	 *
 	 * @var array<string, array<string, mixed>>|null
@@ -223,14 +218,6 @@ class Settings {
 				'label'       => __( 'Misc', 'related-posts-for-wp' ),
 				'description' => __( "A shelter for options that just don't fit in anywhere else.", 'related-posts-for-wp' ),
 				'fields'      => [
-					'restart_wizard_button' => [
-						'id'          => 'restart_wizard_button',
-						'label'       => __( 'Rebuild posts linkage?', 'related-posts-for-wp' ),
-						'description' => __( "Click this button if you want to restart the wizard. Please note that this will delete all current related post links, also those you've manually added. Of course, we will never delete your actual posts.", 'related-posts-for-wp' ),
-						'type'        => 'button_link',
-						'href'        => admin_url( '?page=rp4wp_install&reinstall=1&rp4wp_nonce=' . wp_create_nonce( self::NONCE_INSTALL ) ),
-						'default'     => __( 'Rebuild', 'related-posts-for-wp' ),
-					],
 					'clean_on_uninstall'    => [
 						'id'          => 'clean_on_uninstall',
 						'label'       => __( 'Remove Data on Uninstall?', 'related-posts-for-wp' ),

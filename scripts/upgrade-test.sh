@@ -96,7 +96,8 @@ latte="$(wp post list --post_type=post --name=latte-art --field=ID)"
 # No redirect to the installation wizard: the update must not start it again.
 check_admin '/wp-admin/'
 check_admin '/wp-admin/plugins.php' 'related-posts-for-wp'
-check_admin '/wp-admin/options-general.php?page=rp4wp' 'value="You might also like"'
+# The settings screen gets its settings with the page, in the preloaded REST response.
+check_admin '/wp-admin/options-general.php?page=rp4wp' '"heading_text":"You might also like"'
 check_admin "/wp-admin/post.php?post=${latte}&action=edit" 'rp4wp_metabox_related_posts'
 
 echo "== Checking the debug log"

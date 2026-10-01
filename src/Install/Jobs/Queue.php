@@ -31,9 +31,10 @@ class Queue {
 	public const GROUP = 'rp4wp';
 
 	/**
-	 * After this many seconds without progress, a running job counts as stalled.
+	 * After this many seconds without progress, a running job counts as stalled. Background requests start within
+	 * seconds when the site can make them, and a request that works on the job holds the lock.
 	 */
-	public const STALLED_AFTER = 60;
+	public const STALLED_AFTER = 30;
 
 	/**
 	 * How long the lock lasts when the request that holds it dies.

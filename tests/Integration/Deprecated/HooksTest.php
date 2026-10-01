@@ -53,8 +53,6 @@ final class HooksTest extends ShimTestCase {
 		$hooks = [
 			'RP4WP_Hook_Admin_Scripts'           => [ 'admin_enqueue_scripts', 10, 1 ],
 			'RP4WP_Hook_Ajax_Delete_Link'        => [ 'wp_ajax_rp4wp_delete_link', 10, 1 ],
-			'RP4WP_Hook_Ajax_Install_Link_Posts' => [ 'wp_ajax_rp4wp_install_link_posts', 10, 1 ],
-			'RP4WP_Hook_Ajax_Install_Save_Words' => [ 'wp_ajax_rp4wp_install_save_words', 10, 1 ],
 			'RP4WP_Hook_Delete_Words'            => [ 'delete_post', 10, 1 ],
 			'RP4WP_Hook_Frontend_Css'            => [ 'wp_head', 10, 1 ],
 			'RP4WP_Hook_Link_Related_Screen'     => [ 'admin_menu', 10, 1 ],
@@ -102,6 +100,25 @@ final class HooksTest extends ShimTestCase {
 		$this->assertSame( $priority, $hook->get_priority() );
 		$this->assertSame( $args, $hook->get_args() );
 		$this->assertSame( $priority, has_filter( $tag, [ $hook, 'run' ] ) );
+	}
+
+	/**
+	 * The 2.x wizard actions are gone (D27): their hook objects can still be created, but hook nothing and do nothing.
+	 *
+	 * @return void
+	 */
+	public function test_the_hook_objects_of_the_removed_wizard_actions_do_nothing(): void {
+		foreach ( [
+			'RP4WP_Hook_Ajax_Install_Link_Posts' => 'wp_ajax_rp4wp_install_link_posts',
+			'RP4WP_Hook_Ajax_Install_Save_Words' => 'wp_ajax_rp4wp_install_save_words',
+		] as $class => $tag ) {
+			$this->expect_deprecated( $class, "{$class}::run" );
+
+			$hook = new $class();
+			$hook->run();
+
+			$this->assertFalse( has_action( $tag ) );
+		}
 	}
 
 	public function test_the_css_hook_prints_the_css(): void {
