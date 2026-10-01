@@ -6,722 +6,629 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
-"Report-Msgid-Bugs-To: https://github.com/barrykooij/related-posts-for-wp/issues\n"
-"POT-Creation-Date: 2017-09-06 17:17:09+00:00\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
+"POT-Creation-Date: 2026-10-01T12:29:25+00:00\n"
 "PO-Revision-Date: 2017-09-06 17:20+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Serbian (Serbia) (http://www.transifex.com/barrykooijplugins/related-posts-for-wordpress/language/sr_RS/)\n"
+"Language: sr_RS\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: sr_RS\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: grunt-wp-i18n1.0.0\n"
 
-#: classes/class-dependencies.php:27
-msgid "Error:"
-msgstr ""
-
-#: classes/class-is-installing-notice.php:74
-msgid ""
-"Woah! Looks like we weren't able to finish your Related Posts for WordPress "
-"installation wizard!"
-msgstr "Ау! Изгледа да нисмо могли да завршимо твоју инсталацију Повезаних чланака!"
-
-#: classes/class-is-installing-notice.php:76
-msgid "%sResume the installation wizard%s or %sdismiss this notice%s"
-msgstr "%sНастави са инсталацијом%s или %sугаси ово обавештење%s"
-
-#: classes/class-javascript-strings.php:14
-msgid "Are you sure you want to delete this related post?"
-msgstr "Да ли сте сигурни да желите да избришете овај повезани чланак?"
-
-#: classes/class-javascript-strings.php:15
-msgid "Delete this post type"
-msgstr ""
-
-#: classes/class-javascript-strings.php:16
-msgid "Relink related posts"
-msgstr ""
-
-#: classes/class-javascript-strings.php:17
-msgid "Reinstall this post type"
-msgstr ""
-
-#: classes/class-javascript-strings.php:18
-msgid "Save post type"
-msgstr ""
-
-#: classes/class-javascript-strings.php:19
-msgid "Add post type"
-msgstr ""
-
-#: classes/class-link-related-table.php:45
-#: classes/hooks/class-hook-settings-page.php:20
-#: classes/meta-boxes/class-meta-box-manage.php:37
-#: classes/settings/class-settings-general.php:60
-msgid "Related Posts"
-msgstr "Повезани чланци"
-
-#: classes/class-link-related-table.php:46
-msgid "All Posts"
-msgstr "Сви чланци"
-
-#: classes/class-link-related-table.php:95
-#: classes/settings/class-settings-weights.php:37
-msgid "Title"
-msgstr "Наслов"
-
-#: classes/class-link-related-table.php:96
-#: classes/hooks/class-hook-page-install.php:191
-#: classes/hooks/class-hook-settings-page.php:155
-msgid "Post Type"
-msgstr "Post Type"
-
-#: classes/class-link-related-table.php:97
-msgid "Post Date"
-msgstr ""
-
-#: classes/class-link-related-table.php:270
-msgid "Link Post"
-msgstr "Повежи чланак"
-
-#: classes/class-link-related-table.php:278
-msgid "View Post"
-msgstr ""
-
-#: classes/class-link-related-table.php:317
-msgid "Link Posts"
-msgstr "Повежи чланке"
-
-#: classes/class-post-type-manager.php:21
-#: classes/hooks/class-hook-link-related-screen.php:187
-msgid "Posts"
-msgstr "Чланци"
-
-#: classes/class-post-type-manager.php:22
-msgid "Pages"
-msgstr "Странице"
-
-#: classes/class-related-posts-widget.php:13
+#. Plugin Name of the plugin
+#: related-posts-for-wp.php src/Frontend/Widget.php:28
 msgid "Related Posts for WordPress"
 msgstr "Повезани чланци за Вордпрес"
 
-#: classes/class-related-posts-widget.php:14
-msgid "Display related posts."
-msgstr "Прикажи повезане чланке."
-
-#: classes/class-related-posts-widget.php:52
-msgid "Output template"
-msgstr ""
-
-#: classes/filters/class-filter-plugin-links.php:29
-msgid "Settings"
-msgstr "Подешавања"
-
-#: classes/hooks/class-hook-link-related-screen.php:189
-msgid "Cancel linking"
-msgstr "Прекини линковање"
-
-#: classes/hooks/class-hook-link-related-screen.php:205
-msgid "Search"
-msgstr "Претражи"
-
-#: classes/hooks/class-hook-page-install.php:59
-msgid "Welcome"
-msgstr "Добродошли"
-
-#: classes/hooks/class-hook-page-install.php:60
-msgid "Caching Posts"
-msgstr "Кеширани чланци"
-
-#: classes/hooks/class-hook-page-install.php:61
-msgid "Linking Posts"
-msgstr "Повезани чланци"
-
-#: classes/hooks/class-hook-page-install.php:62
-msgid "Finished"
-msgstr "Завршено."
-
-#: classes/hooks/class-hook-page-install.php:73
-msgid ""
-"Missing post type parameter, please report this incident via %sour "
-"website%s."
-msgstr ""
-
-#: classes/hooks/class-hook-page-install.php:121
-msgid "Installation"
-msgstr "Инсталација"
-
-#: classes/hooks/class-hook-page-install.php:172
-#: classes/hooks/class-hook-page-install.php:243
-msgid "Thank you for choosing Related Posts for WordPress!"
-msgstr "Хвала што сте изабрали Повезане чланке за Вордпрес!"
-
-#: classes/hooks/class-hook-page-install.php:173
-msgid ""
-"Below you'll find your post types available for installation, by installing "
-"a post type we'll set up a cache and offer you the ability to automatic link"
-" (custom) posts. To install a post type, simply click the 'Install Post "
-"Type' button."
-msgstr "Испод ћете наћи ваше доступне post types за инсталацију, инсталирањем post type ми ћемо све кеширати и понудити Вам могућност да аутоматски повежете (подешене) чланке. Да инсталирате post type, једноставно кликните 'Инсталирај Post Type' дугме."
-
-#: classes/hooks/class-hook-page-install.php:192
-msgid "Related to Post Types"
-msgstr ""
-
-#: classes/hooks/class-hook-page-install.php:227
-msgid "Edit this post type"
-msgstr ""
-
-#: classes/hooks/class-hook-page-install.php:244
-msgid ""
-"Before you can start using Related Posts for WordPress we need to cache your"
-" current posts."
-msgstr "Пре него што почнете са коришћењем Повезаних чланака за Вордпрес морамо да кеширамо све Ваше чланке."
-
-#: classes/hooks/class-hook-page-install.php:245
-msgid ""
-"This is a one time process which might take some time now, depending on the "
-"amount of posts you have, but will ensure your website's performance when "
-"using the plugin."
-msgstr "Ово је процес који може да узме мало више времена сада, зависно од броја Ваших чланака, али ће осигурати боље перформансе Вашег вебсајта када се додатак користи."
-
-#: classes/hooks/class-hook-page-install.php:247
-msgid ""
-"Do NOT close this window, wait for this process to finish and this wizard to"
-" take you to the next step."
-msgstr "Немојте да затварате овај прозор, сачекајте да се процес заврши и да вас одведе на следећи корак."
-
-#: classes/hooks/class-hook-page-install.php:273
-msgid "Great! All your posts were successfully cached!"
-msgstr "Одлично! Сви твоји чланци су успешно кеширани!"
-
-#: classes/hooks/class-hook-page-install.php:274
-msgid ""
-"You can let me link your posts, based on what I think is related, to each "
-"other. And don't worry, if I made a mistake at one of your posts you can "
-"easily correct this by editing it manually!"
-msgstr "Можете ме пустити да повежем Ваше чланке, судећи по томе како ја мислим да треба бити повезани. И не брините, ако погрешим, увек можете ручно исправити!"
-
-#: classes/hooks/class-hook-page-install.php:275
-msgid ""
-"Want me to start linking posts to each other? Fill in the amount of related "
-"posts each post should have and click on the \"Link now\" button. Rather "
-"link your posts manually? Click \"Skip linking\"."
-msgstr "Желите да отпочнемо са повезивањем чланака? Попуните колико повезаних чланака сваки чланак треба да има и кликните ”Повежи сада” дугме. Ипак желите сами да повежите своје чланке? Кликните ”Прескочи повезивање”."
-
-#: classes/hooks/class-hook-page-install.php:276
-msgid ""
-"Do NOT close this window if you click the \"Link now\" button, wait for this"
-" process to finish and this wizard to take you to the next step."
-msgstr "Немојте да затварате овај прозор, сачекајте да се процес заврши и да вас одведе на следећи корак."
-
-#: classes/hooks/class-hook-page-install.php:283
-msgid "Amount of related posts:"
-msgstr ""
-
-#: classes/hooks/class-hook-page-install.php:287
-msgid "The amount of related items per %s"
-msgstr ""
-
-#: classes/hooks/class-hook-page-install.php:293
-msgid "Maximum Post Age:"
-msgstr ""
-
-#: classes/hooks/class-hook-page-install.php:297
-msgid "The maximum age in days of %s that will be linked. (0 = unlimited)"
-msgstr ""
-
-#: classes/hooks/class-hook-page-install.php:304
-msgid "Link now"
-msgstr "Повежи сада"
-
-#: classes/hooks/class-hook-page-install.php:306
-msgid "Skip linking"
-msgstr "Прескочи повезивање"
-
-#: classes/hooks/class-hook-page-install.php:324
-msgid "That's it, you're good to go!"
-msgstr "То је то, готово је за сада!"
-
-#: classes/hooks/class-hook-page-install.php:325
-msgid ""
-"Thanks again for using Related Posts for WordPress and if you have any "
-"questions be sure to ask them at the %sWordPress.org forums.%s"
-msgstr "Хвала још једном што користите Повезане чланке за Вордпрес и ако имате питања слободно их поставите на %sWordPress.org forums.%s"
-
-#: classes/hooks/class-hook-page-install.php:328
-msgid "Click here to return to step 1"
-msgstr "Кликните овде за повратак на корак 1"
-
-#: classes/hooks/class-hook-page-install.php:334
-msgid "Click here to go to the settings page"
-msgstr "Кликните овде за страницу са подешавањима"
-
-#: classes/hooks/class-hook-settings-page.php:58
-msgid "Plugin version"
-msgstr "Верзија додатка"
-
-#: classes/hooks/class-hook-settings-page.php:64
-msgid ""
-"Got a question? Simply send us an email at "
-"%ssupport@relatedpostsforwp.com%s. Please note that support requires an "
-"active license."
-msgstr ""
-
-#: classes/hooks/class-hook-settings-page.php:68
-msgid "More information"
-msgstr "Више информација"
-
-#: classes/hooks/class-hook-settings-page.php:70
-msgid "<a href='%s'>Documentation</a>"
-msgstr ""
-
-#: classes/hooks/class-hook-settings-page.php:72
-msgid "<a href='%s'>Changelog</a>"
-msgstr ""
-
-#: classes/hooks/class-hook-settings-page.php:74
-msgid "<a href='%s'>Give us a review</a>"
-msgstr "<a href='%s'>Дајте нам рецензију</a>"
-
-#: classes/hooks/class-hook-settings-page.php:76
-msgid "Check out our other plugins at Never5.com"
-msgstr ""
-
-#: classes/hooks/class-hook-settings-page.php:81
-msgid "About Never5"
-msgstr ""
-
-#: classes/hooks/class-hook-settings-page.php:85
-msgid ""
-"At %sNever5%s we create high quality premium WordPress plugins, with "
-"extensive support. We offer solutions in related posts, advanced download "
-"management, vehicle management and connecting post types."
-msgstr ""
-
-#: classes/hooks/class-hook-settings-page.php:87
-msgid "%sFollow Never5 on Twitter%s"
-msgstr ""
-
-#: classes/hooks/class-hook-settings-page.php:113
-msgid "General"
-msgstr "Опште"
-
-#: classes/hooks/class-hook-settings-page.php:133
-msgid "Installer"
-msgstr "Инсталациони програм"
-
-#: classes/meta-boxes/class-meta-box-manage.php:80
-msgid "Add Related Posts"
-msgstr "Додај Повезани чланак"
-
-#: classes/meta-boxes/class-meta-box-manage.php:108
-#: classes/meta-boxes/class-meta-box-manage.php:109
-msgid "Edit Post"
-msgstr "Уреди чланак"
-
-#: classes/meta-boxes/class-meta-box-manage.php:111
-#: classes/meta-boxes/class-meta-box-manage.php:112
-msgid "Unlink Related Post"
-msgstr "Прекини везу Повезаних чланака"
-
-#: classes/meta-boxes/class-meta-box-manage.php:125
-msgid "No related posts found."
-msgstr "Нема пронађених повезаних чланака."
-
-#: classes/meta-boxes/class-meta-box-options.php:37
-msgid "Related Posts Options"
-msgstr ""
-
-#: classes/meta-boxes/class-meta-box-options.php:62
-msgid "Exclude"
-msgstr ""
-
-#: classes/settings/class-settings-categories.php:18
-#: classes/settings/class-settings-weights.php:51
-msgid "Categories"
-msgstr ""
-
-#: classes/settings/class-settings-categories.php:27
-msgid "Limit Post Categories"
-msgstr ""
-
-#: classes/settings/class-settings-categories.php:28
-msgid "Limit the categories related content is selected from."
-msgstr ""
-
-#: classes/settings/class-settings-categories.php:34
-msgid "Select Categories"
-msgstr ""
-
-#: classes/settings/class-settings-categories.php:35
-msgid "Select what categories we need to select related content from."
-msgstr ""
-
-#: classes/settings/class-settings-configurator.php:18
-msgid "Styling"
-msgstr "Стилизовање"
-
-#: classes/settings/class-settings-configurator.php:24
-msgid "Full control on how your related posts are displayed."
-msgstr ""
-
-#: classes/settings/class-settings-configurator.php:33
-msgid "Posts per row"
-msgstr ""
-
-#: classes/settings/class-settings-configurator.php:34
-msgid "The amount of related posts per row."
-msgstr ""
-
-#: classes/settings/class-settings-configurator.php:46
-msgid "Row fixed height"
-msgstr ""
-
-#: classes/settings/class-settings-configurator.php:47
-msgid ""
-"The fixed height per row in pixels, set to 0 to allow dynamic heights.."
-msgstr ""
-
-#: classes/settings/class-settings-configurator.php:53
-msgid "Custom CSS"
-msgstr "Прилагођени CSS"
-
-#: classes/settings/class-settings-configurator.php:54
-msgid ""
-"Add custom CSS to selected theme. Warning! This is an advanced feature! An "
-"error here will break frontend display. To disable, leave field empty."
-msgstr "Додајте подешени CSS означеној теми. Упозорење! Ово је напредна функционалност! Грешка овде може направити проблем у корисничком интерфејсу."
-
-#: classes/settings/class-settings-general.php:18
-msgid "General settings for %s"
-msgstr "Општа подешавања за %s"
-
-#: classes/settings/class-settings-general.php:24
-msgid "Automatic %ss linking"
-msgstr "Аутоматско %s повезивање"
-
-#: classes/settings/class-settings-general.php:25
-msgid ""
-"The following options affect how related posts are automatically linked for "
-"%ss."
-msgstr "Опције које следе ће утицати како се повезани чланци аутоматски повезују за %s"
-
-#: classes/settings/class-settings-general.php:29
-msgid "Enable"
-msgstr "Омогући"
-
-#: classes/settings/class-settings-general.php:30
-msgid "Checking this will enable automatically linking posts to new %ss"
-msgstr "Означавање овога ће одобрити аутоматско повезивање чланака са новим %s"
-
-#: classes/settings/class-settings-general.php:36
-msgid "Amount of Posts"
-msgstr "Количина чланака"
-
-#: classes/settings/class-settings-general.php:37
-msgid "The amount of automatically linked %ss"
-msgstr "Број аутоматско повезаних %s"
-
-#: classes/settings/class-settings-general.php:43
-msgid "Maximum Post Age"
-msgstr ""
-
-#: classes/settings/class-settings-general.php:44
-msgid "The maximum age in days of %ss that will be linked. (0 = unlimited)"
-msgstr ""
-
-#: classes/settings/class-settings-general.php:52
-msgid "Frontend Settings"
-msgstr "Подешавања корисничког интерфејса"
-
-#: classes/settings/class-settings-general.php:53
-msgid ""
-"The following options affect how related %ss are displayed on the frontend."
-msgstr "Опције које следе утичу на то како ће повезани %s бити приказани у корисничком интерфејсу."
-
-#: classes/settings/class-settings-general.php:57
-msgid "Heading text"
-msgstr "Главни текст"
-
-#: classes/settings/class-settings-general.php:58
-msgid ""
-"The text that is displayed above the related %ss. To disable, leave field "
-"empty."
-msgstr "Текст који се приказује изнад повезаних %s. Да онемогућите, оставите празно поље."
-
-#: classes/settings/class-settings-general.php:64
-msgid "Excerpt length"
-msgstr "Дужина одломка"
-
-#: classes/settings/class-settings-general.php:65
-msgid ""
-"The amount of words to be displayed below the title on website. To disable, "
-"set value to 0."
-msgstr "Број речи које се приказују испод наслова на вебсајту. Да онемогућите, поставите вредност на 0."
-
-#: classes/settings/class-settings-general.php:73
-msgid "Thumbnail size"
-msgstr ""
-
-#: classes/settings/class-settings-general.php:74
-msgid ""
-"These settings affect the display and dimensions of your related post "
-"thumbnails – the display on the front-end will still be affected by CSS "
-"styles. After changing these settings you may need to %sregenerate your "
-"thumbnails.%s"
-msgstr ""
-
-#: classes/settings/class-settings-general.php:78
-msgid "Width"
-msgstr ""
-
-#: classes/settings/class-settings-general.php:79
-msgid "Thumbnail's width in pixels."
-msgstr ""
-
-#: classes/settings/class-settings-general.php:85
-msgid "Height"
-msgstr ""
-
-#: classes/settings/class-settings-general.php:86
-msgid "Thumbnail's height in pixels."
-msgstr ""
-
-#: classes/settings/class-settings-general.php:92
-msgid "Crop"
-msgstr ""
-
-#: classes/settings/class-settings-general.php:93
-msgid "Crop the image from the center."
-msgstr ""
-
-#: classes/settings/class-settings-general.php:101
-msgid "Thumbnail Placeholder"
-msgstr ""
-
-#: classes/settings/class-settings-general.php:102
-msgid ""
-"The placeholder will be used if no featured image is set and no images could"
-" be found in the content."
-msgstr ""
-
-#: classes/settings/class-settings-general.php:106
-msgid "Placeholder"
-msgstr ""
-
-#: classes/settings/class-settings-general.php:107
-msgid ""
-"Thumbnail placeholder, the image that will be used if no other image is "
-"found."
-msgstr ""
-
-#: classes/settings/class-settings-license.php:18
-msgid "License"
-msgstr ""
-
-#: classes/settings/class-settings-license.php:29
-msgid "License Status"
-msgstr ""
-
-#: classes/settings/class-settings-license.php:36
-msgid "License Key"
-msgstr ""
-
-#: classes/settings/class-settings-license.php:37
-msgid ""
-"Your license key. You can find your license key in your %sMy Account%s page."
-msgstr ""
-
-#: classes/settings/class-settings-license.php:44
-msgid "Activation Email"
-msgstr ""
-
-#: classes/settings/class-settings-license.php:45
-msgid ""
-"Your activation email address. You can find your activation email address in"
-" your %sMy Account%s page."
-msgstr ""
-
-#: classes/settings/class-settings-misc.php:18
-msgid "Misc"
-msgstr "Разно"
-
-#: classes/settings/class-settings-misc.php:24
-msgid "Miscellaneous Settings"
-msgstr "Остала подешавања"
-
-#: classes/settings/class-settings-misc.php:25
-msgid "A shelter for options that just don't fit in."
-msgstr "Склониште за опције које се једноставно не уклапају."
-
-#: classes/settings/class-settings-misc.php:29
-msgid "Remove Data on Uninstall?"
-msgstr "Избрисати податке при уклањању?"
-
-#: classes/settings/class-settings-misc.php:30
-msgid ""
-"Check this box if you would like to completely remove all of its data when "
-"the plugin is deleted."
-msgstr "Означите овај квадратић ако желите да комплетно избришете све његове податке када је додатак избрисан."
-
-#: classes/settings/class-settings-misc.php:36
-msgid "Show love?"
-msgstr ""
-
-#: classes/settings/class-settings-misc.php:37
-msgid ""
-"Display a 'Powered by' line under your related posts. <strong>BEWARE! Only "
-"for the real fans.</strong>"
-msgstr ""
-
-#: classes/settings/class-settings-misc.php:43
-msgid "Disable SSL Verification"
-msgstr ""
-
-#: classes/settings/class-settings-misc.php:44
-msgid ""
-"Disable SSL verification in license requests. Check this if you've got "
-"problems connecting to licensing server."
-msgstr ""
-
-#: classes/settings/class-settings-page.php:212
-msgid "Image URL"
-msgstr ""
-
-#: classes/settings/class-settings-page.php:213
-msgid "Upload Image"
-msgstr ""
-
-#: classes/settings/class-settings-page.php:471
-msgid "ACTIVATED"
-msgstr ""
-
-#: classes/settings/class-settings-page.php:473
-msgid "NOT ACTIVE"
-msgstr ""
-
-#: classes/settings/class-settings-weights.php:18
-msgid "Weights"
-msgstr ""
-
-#: classes/settings/class-settings-weights.php:24
-msgid "Weight settings"
-msgstr ""
-
-#: classes/settings/class-settings-weights.php:25
-msgid ""
-"Easily adjust the weights by using the sliders below. Please note that you "
-"need to rerun the installer after changing weights."
-msgstr ""
-
-#: classes/settings/class-settings-weights.php:29
-#: classes/settings/class-settings-weights.php:33
-msgid "Reset Weight"
-msgstr ""
-
-#: classes/settings/class-settings-weights.php:30
-msgid ""
-"Reset the weights back to their defaults. Don't forget to Save the Changes "
-"after resetting the weights."
-msgstr ""
-
-#: classes/settings/class-settings-weights.php:38
-msgid "The weight of the title."
-msgstr ""
-
-#: classes/settings/class-settings-weights.php:44
-msgid "Links"
-msgstr ""
-
-#: classes/settings/class-settings-weights.php:45
-msgid "The weight of the links found in the content."
-msgstr ""
-
-#: classes/settings/class-settings-weights.php:52
-msgid "The weight of the categories."
-msgstr ""
-
-#: classes/settings/class-settings-weights.php:58
-msgid "Tags"
-msgstr ""
-
-#: classes/settings/class-settings-weights.php:59
-msgid "The weight of the tags."
-msgstr ""
-
-#: classes/settings/class-settings-weights.php:65
-msgid "Custom Taxonomies"
-msgstr ""
-
-#: classes/settings/class-settings-weights.php:66
-msgid "The weight of custom taxonomies."
-msgstr ""
-
-#: classes/settings/class-settings-words.php:18
-msgid "Words"
-msgstr ""
-
-#: classes/settings/class-settings-words.php:24
-msgid "Word related options"
-msgstr ""
-
-#: classes/settings/class-settings-words.php:25
-msgid ""
-"Control what extra words should be excluded and what word combinations "
-"should be parsed as a single word."
-msgstr ""
-
-#: classes/settings/class-settings-words.php:29
-msgid "Extra Ignored Words"
-msgstr ""
-
-#: classes/settings/class-settings-words.php:30
-msgid ""
-"By default we already ignore a lot of words based on your language that are "
-"not related to your content. In English this would be words like %s and %s."
-msgstr ""
-
-#: classes/settings/class-settings-words.php:30
-msgid "Add the extra words you would to ignore here, one word per row."
-msgstr ""
-
-#: classes/settings/class-settings-words.php:36
-msgid "Joined Words"
-msgstr ""
-
-#: classes/settings/class-settings-words.php:37
-msgid ""
-"By default we split content per word but some word combinations should be "
-"considered as one word. An example of this would be %s."
-msgstr ""
-
-#: classes/settings/class-settings-words.php:37
-msgid "Add your joined words here, one joined word per row."
-msgstr ""
-
-#: includes/updater/class-rp4wp-updater.php:131
-msgid "Hide notice"
-msgstr "Сакриј обавештење"
-
-#. Plugin Name of the plugin/theme
-msgid "Related Posts for WordPress Premium"
-msgstr "Related Posts for WordPress Premium"
-
-#. Plugin URI of the plugin/theme
+#. Plugin URI of the plugin
+#: related-posts-for-wp.php
 msgid "http://www.relatedpostsforwp.com/"
 msgstr "http://www.relatedpostsforwp.com/"
 
-#. Description of the plugin/theme
-msgid "The best way to display related posts in WordPress."
+#. Description of the plugin
+#: related-posts-for-wp.php
+#, fuzzy
+msgid "Related Posts for WordPress, the best way to display related posts in WordPress."
 msgstr "Најбољи начин да прикажете повезане чланке у Вордпресу."
 
-#. Author of the plugin/theme
+#. Author of the plugin
+#: related-posts-for-wp.php
 msgid "Never5"
 msgstr ""
 
-#. Author URI of the plugin/theme
+#. Author URI of the plugin
+#: related-posts-for-wp.php
 msgid "http://www.never5.com/"
+msgstr ""
+
+#. translators: 1: required PHP version, 2: required WordPress version
+#: related-posts-for-wp.php:66
+msgid "Related Posts for WordPress needs PHP %1$s and WordPress %2$s or newer. It does not run on this site until they are updated."
+msgstr ""
+
+#. translators: 1: link opening tag, 2: link closing tag
+#: related-posts-for-wp.php:89
+msgid "Related Posts for WordPress 3.0 works together with Related Posts for WordPress Premium 3.0. Please %1$supdate Premium%2$s. Until then, your current version of Premium keeps working on its own."
+msgstr ""
+
+#: src/Admin/App/Assets.php:104
+msgid "The settings screen of Related Posts for WordPress is missing its scripts. Run npm run build in the plugin folder."
+msgstr ""
+
+#: src/Admin/Assets.php:52
+msgid "Are you sure you want to delete this related post?"
+msgstr "Да ли сте сигурни да желите да избришете овај повезани чланак?"
+
+#: src/Admin/LinkScreen/ListTable.php:63 src/Admin/MetaBox/ManageLinks.php:53
+#: src/Admin/Settings/Page.php:51 src/Admin/Wizard/Page.php:73
+#: src/Settings/Settings.php:181 assets/build/admin/index.js:13
+msgid "Related Posts"
+msgstr "Повезани чланци"
+
+#: src/Admin/LinkScreen/ListTable.php:64
+msgid "All Posts"
+msgstr "Сви чланци"
+
+#: src/Admin/LinkScreen/ListTable.php:118
+msgid "Title"
+msgstr "Наслов"
+
+#: src/Admin/LinkScreen/ListTable.php:119
+msgid "Post Date"
+msgstr ""
+
+#: src/Admin/LinkScreen/ListTable.php:301
+msgid "Link Post"
+msgstr "Повежи чланак"
+
+#: src/Admin/LinkScreen/ListTable.php:334
+msgid "Link Posts"
+msgstr "Повежи чланке"
+
+#: src/Admin/LinkScreen/Page.php:126
+msgid "Posts"
+msgstr "Чланци"
+
+#: src/Admin/LinkScreen/Page.php:127
+msgid "Cancel linking"
+msgstr "Прекини линковање"
+
+#: src/Admin/LinkScreen/Page.php:136
+msgid "Search"
+msgstr "Претражи"
+
+#: src/Admin/MetaBox/ManageLinks.php:81
+msgid "Add Related Posts"
+msgstr "Додај Повезани чланак"
+
+#: src/Admin/MetaBox/ManageLinks.php:100 src/Admin/MetaBox/ManageLinks.php:101
+msgid "Edit Post"
+msgstr "Уреди чланак"
+
+#: src/Admin/MetaBox/ManageLinks.php:103 src/Admin/MetaBox/ManageLinks.php:104
+msgid "Unlink Related Post"
+msgstr "Прекини везу Повезаних чланака"
+
+#: src/Admin/MetaBox/ManageLinks.php:115
+msgid "No related posts found."
+msgstr "Нема пронађених повезаних чланака."
+
+#. translators: %d: how far the installation is, in percent
+#: src/Admin/Notices/Installing.php:70
+msgid "Related Posts for WordPress is linking your posts in the background (%d%%)."
+msgstr ""
+
+#: src/Admin/Notices/Installing.php:73
+msgid "View progress"
+msgstr ""
+
+#: src/Admin/Notices/Installing.php:83
+#, fuzzy
+msgid "The installation of Related Posts for WordPress stopped with an error."
+msgstr "Пре него што почнете са коришћењем Повезаних чланака за Вордпрес морамо да кеширамо све Ваше чланке."
+
+#: src/Admin/Notices/Installing.php:84
+msgid "See what happened"
+msgstr ""
+
+#: src/Admin/Notices/Installing.php:95
+msgid "Woah! Looks like we weren't able to finish your Related Posts for WordPress installation wizard!"
+msgstr "Ау! Изгледа да нисмо могли да завршимо твоју инсталацију Повезаних чланака!"
+
+#: src/Admin/Notices/Installing.php:96
+#, fuzzy
+msgid "Finish the installation"
+msgstr "Инсталација"
+
+#: src/Admin/Notices/Installing.php:145
+msgid "Dismiss"
+msgstr ""
+
+#: src/Admin/Notices/Mbstring.php:37
+msgid "Error:"
+msgstr ""
+
+#. translators: %s: the name of the PHP extension
+#: src/Admin/Notices/Mbstring.php:40
+msgid "The %s extension needs to be installed and activated for Related Posts for WP to work!"
+msgstr ""
+
+#. translators: %s: the name of the PHP extension
+#: src/Admin/Notices/Mbstring.php:46
+msgid "Please contact your host and ask them to install the %s PHP extension."
+msgstr ""
+
+#: src/Admin/Notices/Multisite.php:32
+msgid "The free version of Related Posts for WordPress doesn't support WordPress Multisite/Network!"
+msgstr ""
+
+#. translators: 1: link opening tag, 2: link closing tag
+#: src/Admin/Notices/Multisite.php:36
+msgid "%1$sUpgrade to the premium version%2$s or disable the plugin."
+msgstr ""
+
+#: src/Admin/Notices/Playground.php:40
+msgid ""
+"We noticed you're running the plugin in the WordPress playground.\n"
+"                    Our plugin currently doesn't work there, due to limitation on the side of the WP playground."
+msgstr ""
+
+#: src/Admin/Notices/Playground.php:47
+msgid "Related Posts for WP is not available inside the WordPress Playground!"
+msgstr ""
+
+#: src/Admin/Notices/Playground.php:49
+msgid "For more information regarding our plugin:"
+msgstr ""
+
+#: src/Admin/Notices/Playground.php:51
+#, fuzzy
+msgid "View the tour on relatedpostsforwp.com"
+msgstr "http://www.relatedpostsforwp.com/"
+
+#. translators: 1: bold opening tag, 2: bold closing tag
+#: src/Admin/Notices/Review.php:59
+msgid "You've been using %sRelated Posts for WordPress%s for some time now, could you please give it a review at wordpress.org?"
+msgstr ""
+
+#. translators: 1: review link opening tag, 2: link closing tag, 3: dismiss link opening tag, 4: link closing tag
+#: src/Admin/Notices/Review.php:66
+msgid "%sYes, take me there!%s - %sI've already done this!%s"
+msgstr ""
+
+#: src/Admin/PluginLinks.php:38
+msgid "Settings"
+msgstr "Подешавања"
+
+#: src/Admin/PluginLinks.php:39
+msgid "Upgrade to Premium"
+msgstr ""
+
+#: src/Admin/Settings/Page.php:74
+#, fuzzy
+msgid "The settings of Related Posts for WordPress need JavaScript."
+msgstr "Пре него што почнете са коришћењем Повезаних чланака за Вордпрес морамо да кеширамо све Ваше чланке."
+
+#: src/Admin/Wizard/Page.php:115
+#, fuzzy
+msgid "Go to the settings of Related Posts for WordPress"
+msgstr "Хвала што сте изабрали Повезане чланке за Вордпрес!"
+
+#: src/Frontend/Widget.php:29
+msgid "Display related posts."
+msgstr "Прикажи повезане чланке."
+
+#: src/Install/Jobs/Queue.php:89
+msgid "An installation is running already."
+msgstr ""
+
+#: src/Install/Jobs/Queue.php:138
+msgid "There is no stopped installation to resume."
+msgstr ""
+
+#: src/Install/Jobs/Queue.php:279
+msgid "The steps of the installation changed while it ran. Please start it again."
+msgstr ""
+
+#: src/Install/Planner.php:37
+#, fuzzy
+msgid "The number of related posts to link to each post."
+msgstr "Најбољи начин да прикажете повезане чланке у Вордпресу."
+
+#: src/Install/Planner.php:44
+msgid "Only cache the words of the posts, and link nothing."
+msgstr ""
+
+#: src/Install/Planner.php:49
+msgid "Remove every link and all cached words first, and install again."
+msgstr ""
+
+#: src/Install/Tasks/CacheWordsTask.php:49
+#, fuzzy
+msgid "Caching posts"
+msgstr "Кеширани чланци"
+
+#: src/Install/Tasks/LinkPostsTask.php:68
+#, fuzzy
+msgid "Linking posts"
+msgstr "Повезани чланци"
+
+#: src/Install/Tasks/ResetTask.php:35
+msgid "Removing the old links and words"
+msgstr ""
+
+#: src/Install/Tasks/SaveAmountTask.php:54
+#, fuzzy
+msgid "Saving the settings"
+msgstr "Подешавања корисничког интерфејса"
+
+#: src/Rest/InstallController.php:126
+msgid "No installation is running."
+msgstr ""
+
+#: src/Rest/SettingsController.php:49
+msgid "The values to save, by field ID. Fields that are left out keep their value."
+msgstr ""
+
+#. translators: %s: a settings page ID
+#: src/Settings/Schema/Pages.php:164
+#, fuzzy
+msgid "There is no settings page \"%s\"."
+msgstr "Кликните овде за страницу са подешавањима"
+
+#: src/Settings/Settings.php:156
+msgid "General"
+msgstr "Опште"
+
+#: src/Settings/Settings.php:157
+#, fuzzy
+msgid "The following options affect the general behaviour of the plugin."
+msgstr "Опције које следе утичу на то како ће повезани %s бити приказани у корисничком интерфејсу."
+
+#: src/Settings/Settings.php:161
+msgid "Enable"
+msgstr "Омогући"
+
+#: src/Settings/Settings.php:162
+#, fuzzy
+msgid "Checking this will enable automatically linking posts to new posts"
+msgstr "Означавање овога ће одобрити аутоматско повезивање чланака са новим %s"
+
+#: src/Settings/Settings.php:168
+msgid "Amount of Posts"
+msgstr "Количина чланака"
+
+#: src/Settings/Settings.php:169
+#, fuzzy
+msgid "The amount of automatically linked post"
+msgstr "Број аутоматско повезаних %s"
+
+#: src/Settings/Settings.php:178
+msgid "Heading text"
+msgstr "Главни текст"
+
+#: src/Settings/Settings.php:179
+#, fuzzy
+msgid "The text that is displayed above the related posts. To disable, leave field empty."
+msgstr "Текст који се приказује изнад повезаних %s. Да онемогућите, оставите празно поље."
+
+#: src/Settings/Settings.php:185
+msgid "Excerpt length"
+msgstr "Дужина одломка"
+
+#: src/Settings/Settings.php:186
+msgid "The amount of words to be displayed below the title on website. To disable, set value to 0."
+msgstr "Број речи које се приказују испод наслова на вебсајту. Да онемогућите, поставите вредност на 0."
+
+#: src/Settings/Settings.php:196
+msgid "Styling"
+msgstr "Стилизовање"
+
+#: src/Settings/Settings.php:197
+#, fuzzy
+msgid "The following options affect how related posts are displayed on the frontend."
+msgstr "Опције које следе утичу на то како ће повезани %s бити приказани у корисничком интерфејсу."
+
+#: src/Settings/Settings.php:201
+msgid "Display Image"
+msgstr ""
+
+#: src/Settings/Settings.php:202
+#, fuzzy
+msgid "Checking this will enable displaying featured images of related posts."
+msgstr "Означавање овога ће одобрити аутоматско повезивање чланака са новим %s"
+
+#: src/Settings/Settings.php:208
+msgid "CSS"
+msgstr ""
+
+#: src/Settings/Settings.php:209
+#, fuzzy
+msgid "Warning! This is an advanced feature! An error here will break frontend display. To disable, leave field empty."
+msgstr "Додајте подешени CSS означеној теми. Упозорење! Ово је напредна функционалност! Грешка овде може направити проблем у корисничком интерфејсу."
+
+#: src/Settings/Settings.php:218
+msgid "Misc"
+msgstr "Разно"
+
+#: src/Settings/Settings.php:219
+#, fuzzy
+msgid "A shelter for options that just don't fit in anywhere else."
+msgstr "Склониште за опције које се једноставно не уклапају."
+
+#: src/Settings/Settings.php:223
+msgid "Remove Data on Uninstall?"
+msgstr "Избрисати податке при уклањању?"
+
+#: src/Settings/Settings.php:224
+msgid "Check this box if you would like to completely remove all of its data when the plugin is deleted."
+msgstr "Означите овај квадратић ако желите да комплетно избришете све његове податке када је додатак избрисан."
+
+#: src/Settings/Settings.php:230
+msgid "Show love?"
+msgstr ""
+
+#: src/Settings/Settings.php:231
+msgid "Display a 'Powered by' line under your related posts. <strong>BEWARE! Only for the real fans.</strong>"
+msgstr ""
+
+#: assets/build/admin/index.js:1
+msgid "The settings could not be loaded."
+msgstr ""
+
+#: assets/build/admin/index.js:1
+msgid "The installer could not be reached."
+msgstr ""
+
+#: assets/build/admin/index.js:1
+msgid "All set! Your posts are linked."
+msgstr ""
+
+#: assets/build/admin/index.js:1
+msgid "All set! Your posts are read."
+msgstr ""
+
+#: assets/build/admin/index.js:1
+msgid "Every post shows its related posts now, and new posts are linked when you publish them."
+msgstr ""
+
+#: assets/build/admin/index.js:1
+msgid "Link them from the Installer tab when you are ready."
+msgstr ""
+
+#: assets/build/admin/index.js:1
+msgid "Close"
+msgstr ""
+
+#: assets/build/admin/index.js:1
+msgid "Less than a minute left"
+msgstr ""
+
+#. translators: %s: a number of minutes
+#: assets/build/admin/index.js:4
+msgid "About %s minute left"
+msgid_plural "About %s minutes left"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#. translators: 1: posts done, 2: all posts
+#: assets/build/admin/index.js:7
+msgid "%1$s of %2$s posts"
+msgstr ""
+
+#: assets/build/admin/index.js:7
+#, fuzzy
+msgid "The installation stopped"
+msgstr "Инсталација"
+
+#: assets/build/admin/index.js:7
+msgid "The installation was cancelled"
+msgstr ""
+
+#: assets/build/admin/index.js:7
+#, fuzzy
+msgid "Linking your related posts"
+msgstr "Прикажи повезане чланке."
+
+#: assets/build/admin/index.js:7
+msgid "This runs in the background. You can leave this page; it goes on without you."
+msgstr ""
+
+#. translators: %d: how far the installation is, in percent
+#: assets/build/admin/index.js:10
+msgid "%d%%"
+msgstr ""
+
+#: assets/build/admin/index.js:10
+#, fuzzy
+msgid "Installation progress"
+msgstr "Инсталација"
+
+#: assets/build/admin/index.js:10
+msgid "Background processing is slow on this site, so this page is doing the work now. Keep it open to finish sooner, or come back later."
+msgstr ""
+
+#: assets/build/admin/index.js:10
+msgid "Something went wrong."
+msgstr ""
+
+#: assets/build/admin/index.js:10
+msgid "What was done so far is kept. Resume to finish the rest."
+msgstr ""
+
+#: assets/build/admin/index.js:10
+#, fuzzy
+msgid "Cancel"
+msgstr "Прекини линковање"
+
+#: assets/build/admin/index.js:10
+msgid "The installation could not resume."
+msgstr ""
+
+#: assets/build/admin/index.js:10
+msgid "Resume"
+msgstr ""
+
+#: assets/build/admin/index.js:10
+#, fuzzy
+msgid "Cancel the installation?"
+msgstr "Инсталација"
+
+#: assets/build/admin/index.js:10
+#, fuzzy
+msgid "Cancel installation"
+msgstr "Инсталација"
+
+#: assets/build/admin/index.js:10
+msgid "Keep running"
+msgstr ""
+
+#: assets/build/admin/index.js:10
+msgid "The installation could not be cancelled."
+msgstr ""
+
+#: assets/build/admin/index.js:10
+msgid "What was done so far is kept, and you can resume later."
+msgstr ""
+
+#: assets/build/admin/index.js:10
+#, fuzzy
+msgid "Related posts per post"
+msgstr "Повезани чланци за Вордпрес"
+
+#: assets/build/admin/index.js:10
+msgid "Get started"
+msgstr ""
+
+#: assets/build/admin/index.js:10
+#, fuzzy
+msgid "Let's link your related posts"
+msgstr "Прикажи повезане чланке."
+
+#: assets/build/admin/index.js:10
+msgid "Related Posts reads your posts once to learn what each one is about, then links every post to the posts that are most related to it."
+msgstr ""
+
+#: assets/build/admin/index.js:10
+msgid "It runs in the background, so you can leave this page while it works."
+msgstr ""
+
+#: assets/build/admin/index.js:10
+msgid "You can change this later, and link again at any time."
+msgstr ""
+
+#: assets/build/admin/index.js:10
+msgid "Link the posts right away"
+msgstr ""
+
+#: assets/build/admin/index.js:10
+msgid "Turn this off to only read the posts now, and link them later from the Installer tab."
+msgstr ""
+
+#: assets/build/admin/index.js:10 assets/build/admin/index.js:13
+msgid "The installation could not start."
+msgstr ""
+
+#: assets/build/admin/index.js:10
+msgid "Start"
+msgstr ""
+
+#: assets/build/admin/index.js:10
+msgid "The installation is done."
+msgstr ""
+
+#: assets/build/admin/index.js:10
+msgid "The installation stopped."
+msgstr ""
+
+#. translators: %s: the plugin version
+#: assets/build/admin/index.js:13
+msgid "Version %s"
+msgstr ""
+
+#: assets/build/admin/index.js:13
+msgid "Premium"
+msgstr ""
+
+#: assets/build/admin/index.js:13
+#, fuzzy
+msgid "Related Posts settings"
+msgstr "Повезани чланци"
+
+#: assets/build/admin/index.js:13
+msgid "Unsaved changes"
+msgstr ""
+
+#: assets/build/admin/index.js:13
+msgid "You have unsaved changes."
+msgstr ""
+
+#: assets/build/admin/index.js:13
+msgid "Discard"
+msgstr ""
+
+#: assets/build/admin/index.js:13
+#, fuzzy
+msgid "Settings saved."
+msgstr "Подешавања"
+
+#: assets/build/admin/index.js:13
+msgid "The settings could not be saved."
+msgstr ""
+
+#: assets/build/admin/index.js:13
+msgid "Save changes"
+msgstr ""
+
+#: assets/build/admin/index.js:13
+msgid "This page does not exist."
+msgstr ""
+
+#: assets/build/admin/index.js:13
+msgid "This option is overwritten by a filter."
+msgstr ""
+
+#: assets/build/admin/index.js:13
+msgid "Installer"
+msgstr "Инсталациони програм"
+
+#: assets/build/admin/index.js:13
+msgid "An installation is running. You can start another one when it is done."
+msgstr ""
+
+#: assets/build/admin/index.js:13
+#, fuzzy
+msgid "Link new posts"
+msgstr "Повежи чланке"
+
+#: assets/build/admin/index.js:13
+msgid "Read and link the posts that are not linked yet, for example posts from before automatic linking was on. Links that exist stay as they are."
+msgstr ""
+
+#: assets/build/admin/index.js:13
+msgid "Rebuild everything"
+msgstr ""
+
+#: assets/build/admin/index.js:13
+msgid "Start over: remove every related post link, also the links you added by hand, read all posts again and link them. Your posts themselves are never touched."
+msgstr ""
+
+#: assets/build/admin/index.js:13
+msgid "Rebuild everything?"
+msgstr ""
+
+#: assets/build/admin/index.js:13
+msgid "Remove links and rebuild"
+msgstr ""
+
+#: assets/build/admin/index.js:13
+msgid "Keep my links"
+msgstr ""
+
+#: assets/build/admin/index.js:13
+msgid "Every related post link is removed, including the links you added by hand. This can not be undone."
 msgstr ""
