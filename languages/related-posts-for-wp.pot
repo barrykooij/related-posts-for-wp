@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-01T12:29:25+00:00\n"
+"POT-Creation-Date: 2026-10-01T20:48:48+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: related-posts-for-wp\n"
@@ -60,10 +60,9 @@ msgstr ""
 
 #: src/Admin/LinkScreen/ListTable.php:63
 #: src/Admin/MetaBox/ManageLinks.php:53
-#: src/Admin/Settings/Page.php:51
-#: src/Admin/Wizard/Page.php:73
+#: src/Admin/Settings/Page.php:55
+#: src/Admin/Wizard/Page.php:77
 #: src/Settings/Settings.php:181
-#: assets/build/admin/index.js:13
 msgid "Related Posts"
 msgstr ""
 
@@ -205,11 +204,19 @@ msgstr ""
 msgid "Upgrade to Premium"
 msgstr ""
 
-#: src/Admin/Settings/Page.php:74
+#. translators: The title of the settings page: the name of the plugin, best left as it is.
+#: src/Admin/Settings/Page.php:54
+#: src/Admin/Wizard/Page.php:76
+#: assets/build/admin/index.js:16
+msgctxt "page title"
+msgid "Related Posts"
+msgstr ""
+
+#: src/Admin/Settings/Page.php:82
 msgid "The settings of Related Posts for WordPress need JavaScript."
 msgstr ""
 
-#: src/Admin/Wizard/Page.php:115
+#: src/Admin/Wizard/Page.php:123
 msgid "Go to the settings of Related Posts for WordPress"
 msgstr ""
 
@@ -504,7 +511,7 @@ msgid "Turn this off to only read the posts now, and link them later from the In
 msgstr ""
 
 #: assets/build/admin/index.js:10
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "The installation could not start."
 msgstr ""
 
@@ -525,82 +532,82 @@ msgstr ""
 msgid "Version %s"
 msgstr ""
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Premium"
 msgstr ""
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Related Posts settings"
 msgstr ""
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Unsaved changes"
 msgstr ""
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "You have unsaved changes."
 msgstr ""
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Discard"
 msgstr ""
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Settings saved."
 msgstr ""
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "The settings could not be saved."
 msgstr ""
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Save changes"
 msgstr ""
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "This page does not exist."
 msgstr ""
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "This option is overwritten by a filter."
 msgstr ""
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Installer"
 msgstr ""
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "An installation is running. You can start another one when it is done."
 msgstr ""
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Link new posts"
 msgstr ""
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Read and link the posts that are not linked yet, for example posts from before automatic linking was on. Links that exist stay as they are."
 msgstr ""
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Rebuild everything"
 msgstr ""
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Start over: remove every related post link, also the links you added by hand, read all posts again and link them. Your posts themselves are never touched."
 msgstr ""
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Rebuild everything?"
 msgstr ""
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Remove links and rebuild"
 msgstr ""
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Keep my links"
 msgstr ""
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Every related post link is removed, including the links you added by hand. This can not be undone."
 msgstr ""

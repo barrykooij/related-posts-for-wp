@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
-"POT-Creation-Date: 2026-10-01T12:29:25+00:00\n"
+"POT-Creation-Date: 2026-10-01T20:48:48+00:00\n"
 "PO-Revision-Date: 2026-10-01 12:00+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Turkish\n"
@@ -59,8 +59,8 @@ msgid "Are you sure you want to delete this related post?"
 msgstr "Bu ilgili yazıyı silmek istediğinizden emin misiniz?"
 
 #: src/Admin/LinkScreen/ListTable.php:63 src/Admin/MetaBox/ManageLinks.php:53
-#: src/Admin/Settings/Page.php:51 src/Admin/Wizard/Page.php:73
-#: src/Settings/Settings.php:181 assets/build/admin/index.js:13
+#: src/Admin/Settings/Page.php:55 src/Admin/Wizard/Page.php:77
+#: src/Settings/Settings.php:181
 msgid "Related Posts"
 msgstr "İlgili yazılar"
 
@@ -202,11 +202,18 @@ msgstr "Ayarlar"
 msgid "Upgrade to Premium"
 msgstr "Premium'a yükselt"
 
-#: src/Admin/Settings/Page.php:74
+#. translators: The title of the settings page: the name of the plugin, best left as it is.
+#: src/Admin/Settings/Page.php:54 src/Admin/Wizard/Page.php:76
+#: assets/build/admin/index.js:16
+msgctxt "page title"
+msgid "Related Posts"
+msgstr "Related Posts"
+
+#: src/Admin/Settings/Page.php:82
 msgid "The settings of Related Posts for WordPress need JavaScript."
 msgstr "Related Posts for WordPress ayarları için JavaScript gerekir."
 
-#: src/Admin/Wizard/Page.php:115
+#: src/Admin/Wizard/Page.php:123
 msgid "Go to the settings of Related Posts for WordPress"
 msgstr "Related Posts for WordPress ayarlarına git"
 
@@ -500,7 +507,7 @@ msgstr "Yazıları hemen bağla"
 msgid "Turn this off to only read the posts now, and link them later from the Installer tab."
 msgstr "Yazıları şimdi yalnızca okumak ve daha sonra Kurulum sekmesinden bağlamak için bunu kapatın."
 
-#: assets/build/admin/index.js:10 assets/build/admin/index.js:13
+#: assets/build/admin/index.js:10 assets/build/admin/index.js:16
 msgid "The installation could not start."
 msgstr "Kurulum başlatılamadı."
 
@@ -521,82 +528,82 @@ msgstr "Kurulum durdu."
 msgid "Version %s"
 msgstr "Sürüm %s"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Premium"
 msgstr "Premium"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Related Posts settings"
 msgstr "Related Posts ayarları"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Unsaved changes"
 msgstr "Kaydedilmemiş değişiklikler"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "You have unsaved changes."
 msgstr "Kaydedilmemiş değişiklikleriniz var."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Discard"
 msgstr "Vazgeç"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Settings saved."
 msgstr "Ayarlar kaydedildi."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "The settings could not be saved."
 msgstr "Ayarlar kaydedilemedi."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Save changes"
 msgstr "Değişiklikleri kaydet"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "This page does not exist."
 msgstr "Bu sayfa mevcut değil."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "This option is overwritten by a filter."
 msgstr "Bu seçenek bir filtre tarafından geçersiz kılınıyor."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Installer"
 msgstr "Kurulum"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "An installation is running. You can start another one when it is done."
 msgstr "Bir kurulum çalışıyor. O tamamlandığında yenisini başlatabilirsiniz."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Link new posts"
 msgstr "Yeni yazıları bağla"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Read and link the posts that are not linked yet, for example posts from before automatic linking was on. Links that exist stay as they are."
 msgstr "Henüz bağlanmamış yazıları, örneğin otomatik bağlama açılmadan önceki yazıları okuyun ve bağlayın. Mevcut bağlantılar olduğu gibi kalır."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Rebuild everything"
 msgstr "Her şeyi yeniden oluştur"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Start over: remove every related post link, also the links you added by hand, read all posts again and link them. Your posts themselves are never touched."
 msgstr "Baştan başlayın: elle eklediğiniz bağlantılar dahil tüm ilgili yazı bağlantılarını kaldırın, tüm yazıları yeniden okuyun ve bağlayın. Yazılarınızın kendisine asla dokunulmaz."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Rebuild everything?"
 msgstr "Her şey yeniden oluşturulsun mu?"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Remove links and rebuild"
 msgstr "Bağlantıları kaldır ve yeniden oluştur"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Keep my links"
 msgstr "Bağlantılarımı koru"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Every related post link is removed, including the links you added by hand. This can not be undone."
 msgstr "Elle eklediğiniz bağlantılar dahil tüm ilgili yazı bağlantıları kaldırılır. Bu işlem geri alınamaz."

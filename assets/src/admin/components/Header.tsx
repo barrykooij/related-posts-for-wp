@@ -1,4 +1,4 @@
-import { __, sprintf } from '@wordpress/i18n';
+import { __, _x, sprintf } from '@wordpress/i18n';
 
 export function Header() {
 	const data = window.rp4wpAdminData;
@@ -13,7 +13,10 @@ export function Header() {
 	return (
 		<header className="rp4wp-admin__header">
 			<h1 className="rp4wp-admin__title">
-				{ __( 'Related Posts', 'related-posts-for-wp' ) }
+				{
+					/** translators: The title of the settings page: the name of the plugin, best left as it is. */
+					_x( 'Related Posts', 'page title', 'related-posts-for-wp' )
+				}
 			</h1>
 			{ 'premium' === data?.edition && (
 				<span className="rp4wp-admin__badge">

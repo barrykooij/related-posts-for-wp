@@ -48,7 +48,15 @@ class Page implements Module {
 	 * @return void
 	 */
 	public static function register(): void {
-		$hook = add_submenu_page( 'options-general.php', __( 'Related Posts', 'related-posts-for-wp' ), __( 'Related Posts', 'related-posts-for-wp' ), Routes::capability(), self::SLUG, [ self::class, 'render' ] );
+		$hook = add_submenu_page(
+			'options-general.php',
+			/* translators: The title of the settings page: the name of the plugin, best left as it is. */
+			_x( 'Related Posts', 'page title', 'related-posts-for-wp' ),
+			__( 'Related Posts', 'related-posts-for-wp' ),
+			Routes::capability(),
+			self::SLUG,
+			[ self::class, 'render' ]
+		);
 
 		if ( false !== $hook ) {
 			add_action( 'load-' . $hook, [ self::class, 'enqueue_assets' ] );

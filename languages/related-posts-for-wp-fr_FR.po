@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
-"POT-Creation-Date: 2026-10-01T12:29:25+00:00\n"
+"POT-Creation-Date: 2026-10-01T20:48:48+00:00\n"
 "PO-Revision-Date: 2017-09-06 17:20+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: French (France) (http://www.transifex.com/barrykooijplugins/related-posts-for-wordpress/language/fr_FR/)\n"
@@ -62,8 +62,8 @@ msgid "Are you sure you want to delete this related post?"
 msgstr "Etes-vous sûr de vouloir supprimer cet article lié ?"
 
 #: src/Admin/LinkScreen/ListTable.php:63 src/Admin/MetaBox/ManageLinks.php:53
-#: src/Admin/Settings/Page.php:51 src/Admin/Wizard/Page.php:73
-#: src/Settings/Settings.php:181 assets/build/admin/index.js:13
+#: src/Admin/Settings/Page.php:55 src/Admin/Wizard/Page.php:77
+#: src/Settings/Settings.php:181
 msgid "Related Posts"
 msgstr "Articles Liés"
 
@@ -205,11 +205,18 @@ msgstr "Paramètres"
 msgid "Upgrade to Premium"
 msgstr "Passer à Premium"
 
-#: src/Admin/Settings/Page.php:74
+#. translators: The title of the settings page: the name of the plugin, best left as it is.
+#: src/Admin/Settings/Page.php:54 src/Admin/Wizard/Page.php:76
+#: assets/build/admin/index.js:16
+msgctxt "page title"
+msgid "Related Posts"
+msgstr "Related Posts"
+
+#: src/Admin/Settings/Page.php:82
 msgid "The settings of Related Posts for WordPress need JavaScript."
 msgstr "Les paramètres de Related Posts for WordPress nécessitent JavaScript."
 
-#: src/Admin/Wizard/Page.php:115
+#: src/Admin/Wizard/Page.php:123
 msgid "Go to the settings of Related Posts for WordPress"
 msgstr "Aller aux paramètres de Related Posts for WordPress"
 
@@ -503,7 +510,7 @@ msgstr "Lier les articles immédiatement"
 msgid "Turn this off to only read the posts now, and link them later from the Installer tab."
 msgstr "Désactivez cette option pour seulement analyser les articles maintenant, et les lier plus tard depuis l’onglet Installation."
 
-#: assets/build/admin/index.js:10 assets/build/admin/index.js:13
+#: assets/build/admin/index.js:10 assets/build/admin/index.js:16
 msgid "The installation could not start."
 msgstr "Impossible de démarrer l’installation."
 
@@ -524,82 +531,82 @@ msgstr "L’installation s’est arrêtée."
 msgid "Version %s"
 msgstr "Version %s"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Premium"
 msgstr "Premium"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Related Posts settings"
 msgstr "Paramètres de Related Posts"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Unsaved changes"
 msgstr "Modifications non enregistrées"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "You have unsaved changes."
 msgstr "Vous avez des modifications non enregistrées."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Discard"
 msgstr "Abandonner"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Settings saved."
 msgstr "Paramètres enregistrés."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "The settings could not be saved."
 msgstr "Impossible d’enregistrer les paramètres."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Save changes"
 msgstr "Enregistrer les modifications"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "This page does not exist."
 msgstr "Cette page n’existe pas."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "This option is overwritten by a filter."
 msgstr "Cette option est remplacée par un filtre."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Installer"
 msgstr "Installation"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "An installation is running. You can start another one when it is done."
 msgstr "Une installation est en cours. Vous pourrez en lancer une autre une fois celle-ci terminée."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Link new posts"
 msgstr "Lier les nouveaux articles"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Read and link the posts that are not linked yet, for example posts from before automatic linking was on. Links that exist stay as they are."
 msgstr "Analyser et lier les articles qui ne sont pas encore liés, par exemple ceux publiés avant l’activation de la liaison automatique. Les liaisons existantes restent inchangées."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Rebuild everything"
 msgstr "Tout reconstruire"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Start over: remove every related post link, also the links you added by hand, read all posts again and link them. Your posts themselves are never touched."
 msgstr "Repartir de zéro : supprimer toutes les liaisons d’articles liés, y compris celles ajoutées à la main, analyser à nouveau tous les articles et les lier. Vos articles eux-mêmes ne sont jamais modifiés."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Rebuild everything?"
 msgstr "Tout reconstruire ?"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Remove links and rebuild"
 msgstr "Supprimer les liaisons et reconstruire"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Keep my links"
 msgstr "Conserver mes liaisons"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Every related post link is removed, including the links you added by hand. This can not be undone."
 msgstr "Toutes les liaisons d’articles liés sont supprimées, y compris celles ajoutées à la main. Cette action est irréversible."

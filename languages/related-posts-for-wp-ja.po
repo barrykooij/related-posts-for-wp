@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
-"POT-Creation-Date: 2026-10-01T12:29:25+00:00\n"
+"POT-Creation-Date: 2026-10-01T20:48:48+00:00\n"
 "PO-Revision-Date: 2026-10-01 12:00+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Japanese\n"
@@ -59,8 +59,8 @@ msgid "Are you sure you want to delete this related post?"
 msgstr "この関連投稿を削除してもよろしいですか ?"
 
 #: src/Admin/LinkScreen/ListTable.php:63 src/Admin/MetaBox/ManageLinks.php:53
-#: src/Admin/Settings/Page.php:51 src/Admin/Wizard/Page.php:73
-#: src/Settings/Settings.php:181 assets/build/admin/index.js:13
+#: src/Admin/Settings/Page.php:55 src/Admin/Wizard/Page.php:77
+#: src/Settings/Settings.php:181
 msgid "Related Posts"
 msgstr "関連投稿"
 
@@ -202,11 +202,18 @@ msgstr "設定"
 msgid "Upgrade to Premium"
 msgstr "Premium にアップグレード"
 
-#: src/Admin/Settings/Page.php:74
+#. translators: The title of the settings page: the name of the plugin, best left as it is.
+#: src/Admin/Settings/Page.php:54 src/Admin/Wizard/Page.php:76
+#: assets/build/admin/index.js:16
+msgctxt "page title"
+msgid "Related Posts"
+msgstr "Related Posts"
+
+#: src/Admin/Settings/Page.php:82
 msgid "The settings of Related Posts for WordPress need JavaScript."
 msgstr "Related Posts for WordPress の設定には JavaScript が必要です。"
 
-#: src/Admin/Wizard/Page.php:115
+#: src/Admin/Wizard/Page.php:123
 msgid "Go to the settings of Related Posts for WordPress"
 msgstr "Related Posts for WordPress の設定へ移動"
 
@@ -499,7 +506,7 @@ msgstr "すぐに投稿を関連付ける"
 msgid "Turn this off to only read the posts now, and link them later from the Installer tab."
 msgstr "オフにすると、今は投稿の読み込みのみを行い、後で「インストーラー」タブから関連付けます。"
 
-#: assets/build/admin/index.js:10 assets/build/admin/index.js:13
+#: assets/build/admin/index.js:10 assets/build/admin/index.js:16
 msgid "The installation could not start."
 msgstr "インストールを開始できませんでした。"
 
@@ -520,82 +527,82 @@ msgstr "インストールが停止しました。"
 msgid "Version %s"
 msgstr "バージョン %s"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Premium"
 msgstr "Premium"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Related Posts settings"
 msgstr "Related Posts 設定"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Unsaved changes"
 msgstr "未保存の変更"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "You have unsaved changes."
 msgstr "未保存の変更があります。"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Discard"
 msgstr "破棄"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Settings saved."
 msgstr "設定を保存しました。"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "The settings could not be saved."
 msgstr "設定を保存できませんでした。"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Save changes"
 msgstr "変更を保存"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "This page does not exist."
 msgstr "このページは存在しません。"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "This option is overwritten by a filter."
 msgstr "このオプションはフィルターによって上書きされています。"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Installer"
 msgstr "インストーラー"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "An installation is running. You can start another one when it is done."
 msgstr "インストールを実行中です。完了後に別のインストールを開始できます。"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Link new posts"
 msgstr "新しい投稿を関連付け"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Read and link the posts that are not linked yet, for example posts from before automatic linking was on. Links that exist stay as they are."
 msgstr "まだ関連付けられていない投稿 (自動関連付けを有効にする前の投稿など) を読み込んで関連付けます。既存の関連付けはそのまま残ります。"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Rebuild everything"
 msgstr "すべて再構築"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Start over: remove every related post link, also the links you added by hand, read all posts again and link them. Your posts themselves are never touched."
 msgstr "最初からやり直します。手動で追加したものも含めて関連投稿の関連付けをすべて削除し、すべての投稿を読み込み直して関連付けます。投稿そのものが変更されることはありません。"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Rebuild everything?"
 msgstr "すべて再構築しますか ?"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Remove links and rebuild"
 msgstr "関連付けを削除して再構築"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Keep my links"
 msgstr "関連付けを残す"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Every related post link is removed, including the links you added by hand. This can not be undone."
 msgstr "手動で追加したものも含め、関連投稿の関連付けがすべて削除されます。この操作は取り消せません。"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
-"POT-Creation-Date: 2026-10-01T12:29:25+00:00\n"
+"POT-Creation-Date: 2026-10-01T20:48:48+00:00\n"
 "PO-Revision-Date: 2017-09-06 17:20+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Swedish (Sweden) (http://www.transifex.com/barrykooijplugins/related-posts-for-wordpress/language/sv_SE/)\n"
@@ -62,8 +62,8 @@ msgid "Are you sure you want to delete this related post?"
 msgstr "Är du säker på att du vill radera det här relaterade inlägget?"
 
 #: src/Admin/LinkScreen/ListTable.php:63 src/Admin/MetaBox/ManageLinks.php:53
-#: src/Admin/Settings/Page.php:51 src/Admin/Wizard/Page.php:73
-#: src/Settings/Settings.php:181 assets/build/admin/index.js:13
+#: src/Admin/Settings/Page.php:55 src/Admin/Wizard/Page.php:77
+#: src/Settings/Settings.php:181
 msgid "Related Posts"
 msgstr "Relaterade inlägg"
 
@@ -205,11 +205,18 @@ msgstr "Inställningar"
 msgid "Upgrade to Premium"
 msgstr "Uppgradera till Premium"
 
-#: src/Admin/Settings/Page.php:74
+#. translators: The title of the settings page: the name of the plugin, best left as it is.
+#: src/Admin/Settings/Page.php:54 src/Admin/Wizard/Page.php:76
+#: assets/build/admin/index.js:16
+msgctxt "page title"
+msgid "Related Posts"
+msgstr "Related Posts"
+
+#: src/Admin/Settings/Page.php:82
 msgid "The settings of Related Posts for WordPress need JavaScript."
 msgstr "Inställningarna för Related Posts for WordPress kräver JavaScript."
 
-#: src/Admin/Wizard/Page.php:115
+#: src/Admin/Wizard/Page.php:123
 msgid "Go to the settings of Related Posts for WordPress"
 msgstr "Gå till inställningarna för Related Posts for WordPress"
 
@@ -503,7 +510,7 @@ msgstr "Länka inläggen direkt"
 msgid "Turn this off to only read the posts now, and link them later from the Installer tab."
 msgstr "Stäng av detta för att bara läsa in inläggen nu och länka dem senare från fliken Installation."
 
-#: assets/build/admin/index.js:10 assets/build/admin/index.js:13
+#: assets/build/admin/index.js:10 assets/build/admin/index.js:16
 msgid "The installation could not start."
 msgstr "Installationen kunde inte starta."
 
@@ -524,82 +531,82 @@ msgstr "Installationen stoppades."
 msgid "Version %s"
 msgstr "Version %s"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Premium"
 msgstr "Premium"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Related Posts settings"
 msgstr "Inställningar för Related Posts"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Unsaved changes"
 msgstr "Osparade ändringar"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "You have unsaved changes."
 msgstr "Du har osparade ändringar."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Discard"
 msgstr "Förkasta"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Settings saved."
 msgstr "Inställningarna har sparats."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "The settings could not be saved."
 msgstr "Inställningarna kunde inte sparas."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Save changes"
 msgstr "Spara ändringar"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "This page does not exist."
 msgstr "Den här sidan finns inte."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "This option is overwritten by a filter."
 msgstr "Detta alternativ skrivs över av ett filter."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Installer"
 msgstr "Installation"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "An installation is running. You can start another one when it is done."
 msgstr "En installation pågår. Du kan starta en ny när den är klar."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Link new posts"
 msgstr "Länka nya inlägg"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Read and link the posts that are not linked yet, for example posts from before automatic linking was on. Links that exist stay as they are."
 msgstr "Läs in och länka de inlägg som inte är länkade än, till exempel inlägg från innan automatisk länkning var aktiverad. Befintliga länkar lämnas som de är."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Rebuild everything"
 msgstr "Bygg om allt"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Start over: remove every related post link, also the links you added by hand, read all posts again and link them. Your posts themselves are never touched."
 msgstr "Börja om: ta bort alla länkar till relaterade inlägg, även dem du har lagt till manuellt, läs in alla inlägg igen och länka dem. Själva inläggen påverkas aldrig."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Rebuild everything?"
 msgstr "Bygga om allt?"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Remove links and rebuild"
 msgstr "Ta bort länkar och bygg om"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Keep my links"
 msgstr "Behåll mina länkar"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Every related post link is removed, including the links you added by hand. This can not be undone."
 msgstr "Alla länkar till relaterade inlägg tas bort, även dem du har lagt till manuellt. Detta kan inte ångras."
