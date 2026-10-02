@@ -120,40 +120,47 @@ export function wpScripts( options: WpScriptsOptions = {} ): Plugin {
 			};
 		},
 
-		generateBundle( _options, bundle ) {
-			for ( const chunk of Object.values( bundle ) ) {
-				if ( 'chunk' !== chunk.type || ! chunk.isEntry ) {
-					continue;
-				}
-
-				const handles = chunk.imports
-					.map( ( id ) => externalOf( id, extra )?.handle )
-					.filter(
-						( handle ): handle is string => undefined !== handle
-					)
-					.sort();
-
-				// The version changes with the script and with its styles.
-				const hash = createHash( 'sha256' ).update( chunk.code );
-
-				for ( const asset of Object.values( bundle ) ) {
-					if (
-						'asset' === asset.type &&
-						asset.fileName.endsWith( '.css' )
-					) {
-						hash.update( asset.source );
+		// After the other plugins, so the styles are in the bundle when the version is made.
+		generateBundle: {
+			order: 'post',
+			handler( _options, bundle ) {
+				for ( const chunk of Object.values( bundle ) ) {
+					if ( 'chunk' !== chunk.type || ! chunk.isEntry ) {
+						continue;
 					}
-				}
 
-				this.emitFile( {
-					type: 'asset',
-					fileName: chunk.fileName.replace( /\.js$/, '.asset.php' ),
-					source: assetFile(
-						[ ...new Set( handles ) ],
-						hash.digest( 'hex' ).slice( 0, 20 )
-					),
-				} );
-			}
+					const handles = chunk.imports
+						.map( ( id ) => externalOf( id, extra )?.handle )
+						.filter(
+							( handle ): handle is string => undefined !== handle
+						)
+						.sort();
+
+					// The version changes with the script and with its styles.
+					const hash = createHash( 'sha256' ).update( chunk.code );
+
+					for ( const asset of Object.values( bundle ) ) {
+						if (
+							'asset' === asset.type &&
+							asset.fileName.endsWith( '.css' )
+						) {
+							hash.update( asset.source );
+						}
+					}
+
+					this.emitFile( {
+						type: 'asset',
+						fileName: chunk.fileName.replace(
+							/\.js$/,
+							'.asset.php'
+						),
+						source: assetFile(
+							[ ...new Set( handles ) ],
+							hash.digest( 'hex' ).slice( 0, 20 )
+						),
+					} );
+				}
+			},
 		},
 	};
 }
