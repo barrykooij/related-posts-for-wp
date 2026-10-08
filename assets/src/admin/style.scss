@@ -356,12 +356,6 @@ $breakpoint: 782px;
 	color: var(--rp4wp-muted);
 }
 
-.rp4wp-progress__eta {
-	margin: -8px 0 0;
-	color: var(--rp4wp-muted);
-	font-size: 12px;
-}
-
 .rp4wp-bar {
 	overflow: hidden;
 	height: 8px;
@@ -381,61 +375,21 @@ $breakpoint: 782px;
 	}
 }
 
-.rp4wp-steps {
-	display: grid;
-	gap: 10px;
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-
-.rp4wp-step {
+.rp4wp-progress__status {
 	display: flex;
-	align-items: center;
-	gap: 10px;
-	margin: 0;
+	flex-wrap: wrap;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 4px 16px;
+	margin-top: -8px;
 	color: var(--rp4wp-muted);
-}
-
-.rp4wp-step__icon {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	flex: none;
-	width: 24px;
-	height: 24px;
-	border: 2px solid var(--rp4wp-border);
-	border-radius: 50%;
-
-	.components-spinner {
-		margin: 0;
-	}
-}
-
-.rp4wp-step--current {
-	color: inherit;
-	font-weight: 600;
-
-	.rp4wp-step__icon {
-		border-color: transparent;
-	}
-}
-
-.rp4wp-step--done {
-	color: inherit;
-
-	.rp4wp-step__icon {
-		border-color: var(--rp4wp-success);
-		background: var(--rp4wp-success);
-		fill: #fff;
-	}
-}
-
-.rp4wp-step__count {
-	margin-left: auto;
-	color: var(--rp4wp-muted);
+	font-size: 12px;
 	font-variant-numeric: tabular-nums;
-	font-weight: 400;
+}
+
+.rp4wp-progress__count::before {
+	content: "\00b7";
+	margin: 0 6px;
 }
 
 .rp4wp-progress__actions {

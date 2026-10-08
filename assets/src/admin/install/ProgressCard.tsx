@@ -1,7 +1,6 @@
-import { Button, Card, CardBody, Notice, Spinner } from '@wordpress/components';
+import { Button, Card, CardBody, Notice } from '@wordpress/components';
 import { useEffect, useState } from '@wordpress/element';
 import { __, _n, sprintf } from '@wordpress/i18n';
-import { Icon, check } from '@wordpress/icons';
 import { errorMessage } from '../api/client';
 import type { InstallStep, Job } from '../api/types';
 import { ConfirmModal } from '../components/ConfirmModal';
@@ -41,28 +40,52 @@ function timeLeft( seconds: number ): string {
 	);
 }
 
-function StepRow( { step }: { step: InstallStep } ) {
+/**
+ * The step a job is at: the one that runs now, or else the first one not done.
+ *
+ * @param steps The steps.
+ * @return The step and its index, or null without steps.
+ */
+function stepAt(
+	steps: InstallStep[]
+): { step: InstallStep; index: number } | null {
+	let index = steps.findIndex( ( step ) => step.current );
+
+	if ( index < 0 ) {
+		index = steps.findIndex( ( step ) => ! step.done );
+	}
+
+	if ( index < 0 ) {
+		index = steps.length - 1;
+	}
+
+	return index < 0 ? null : { step: steps[ index ], index };
+}
+
+function StepStatus( { steps }: { steps: InstallStep[] } ) {
+	const at = stepAt( steps );
+
+	if ( ! at ) {
+		return null;
+	}
+
+	const { step, index } = at;
 	const done =
 		step.total !== null && step.remaining !== null
 			? Math.max( 0, step.total - step.remaining )
 			: null;
-	let state = 'pending';
-
-	if ( step.done ) {
-		state = 'done';
-	} else if ( step.current ) {
-		state = 'current';
-	}
 
 	return (
-		<li className={ `rp4wp-step rp4wp-step--${ state }` }>
-			<span className="rp4wp-step__icon" aria-hidden="true">
-				{ step.done && <Icon icon={ check } size={ 20 } /> }
-				{ step.current && ! step.done && <Spinner /> }
-			</span>
-			<span className="rp4wp-step__label">{ step.label }</span>
+		<span className="rp4wp-progress__step">
+			{ sprintf(
+				/** translators: 1: what the installation does now, 2: the number of that step, 3: the number of steps */
+				__( '%1$s (%2$s/%3$s)', 'related-posts-for-wp' ),
+				step.label,
+				number( index + 1 ),
+				number( steps.length )
+			) }
 			{ step.current && done !== null && step.total ? (
-				<span className="rp4wp-step__count">
+				<span className="rp4wp-progress__count">
 					{ sprintf(
 						/** translators: 1: posts done, 2: all posts */
 						__( '%1$s of %2$s posts', 'related-posts-for-wp' ),
@@ -71,7 +94,7 @@ function StepRow( { step }: { step: InstallStep } ) {
 					) }
 				</span>
 			) : null }
-		</li>
+		</span>
 	);
 }
 
@@ -187,15 +210,14 @@ export function ProgressCard( { job }: { job: Job } ) {
 					/>
 				</div>
 
-				{ left !== null && (
-					<p className="rp4wp-progress__eta">{ timeLeft( left ) }</p>
-				) }
-
-				<ol className="rp4wp-steps">
-					{ job.steps.map( ( step ) => (
-						<StepRow key={ step.id } step={ step } />
-					) ) }
-				</ol>
+				<div className="rp4wp-progress__status">
+					<StepStatus steps={ job.steps } />
+					{ left !== null && (
+						<span className="rp4wp-progress__eta">
+							{ timeLeft( left ) }
+						</span>
+					) }
+				</div>
 
 				{ running && ( job.stalled || helping ) && (
 					<Notice status="warning" isDismissible={ false }>

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
-"POT-Creation-Date: 2026-10-01T22:38:07+00:00\n"
+"POT-Creation-Date: 2026-10-08T13:19:03+00:00\n"
 "PO-Revision-Date: 2026-10-01 12:00+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Japanese\n"
@@ -203,7 +203,7 @@ msgstr "Premium にアップグレード"
 
 #. translators: The title of the settings page: the name of the plugin, best left as it is.
 #: src/Admin/Settings/Page.php:54 src/Admin/Wizard/Page.php:76
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgctxt "page title"
 msgid "Related Posts"
 msgstr "Related Posts"
@@ -375,7 +375,7 @@ msgstr "設定を読み込めませんでした。"
 msgid "The installer could not be reached."
 msgstr "インストーラーに接続できませんでした。"
 
-#: assets/build/admin/index.js:1 assets/build/admin/index.js:22
+#: assets/build/admin/index.js:1 assets/build/admin/index.js:25
 msgid "Installer"
 msgstr "インストーラー"
 
@@ -410,206 +410,211 @@ msgid "About %s minute left"
 msgid_plural "About %s minutes left"
 msgstr[0] "残り約 %s 分"
 
-#. translators: 1: posts done, 2: all posts
+#. translators: 1: what the installation does now, 2: the number of that step, 3: the number of steps
 #: assets/build/admin/index.js:10
+msgid "%1$s (%2$s/%3$s)"
+msgstr "%1$s (%2$s/%3$s)"
+
+#. translators: 1: posts done, 2: all posts
+#: assets/build/admin/index.js:13
 msgid "%1$s of %2$s posts"
 msgstr "%1$s / %2$s 件の投稿"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "The installation stopped"
 msgstr "インストールが停止しました"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "The installation was cancelled"
 msgstr "インストールはキャンセルされました"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Linking your related posts"
 msgstr "関連投稿を関連付けています"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "This runs in the background. You can leave this page; it goes on without you."
 msgstr "この処理はバックグラウンドで実行されます。このページを離れても処理は続きます。"
 
 #. translators: %d: how far the installation is, in percent
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "%d%%"
 msgstr "%d%%"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Installation progress"
 msgstr "インストールの進行状況"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Background processing is slow on this site, so this page is doing the work now. Keep it open to finish sooner, or come back later."
 msgstr "このサイトではバックグラウンド処理が遅いため、現在このページで処理を行っています。ページを開いたままにすると早く完了します。後で戻ってくることもできます。"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Something went wrong."
 msgstr "問題が発生しました。"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "What was done so far is kept. Resume to finish the rest."
 msgstr "ここまでの処理結果は保持されています。再開すると残りを完了します。"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Cancel"
 msgstr "キャンセル"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "The installation could not resume."
 msgstr "インストールを再開できませんでした。"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Resume"
 msgstr "再開"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Cancel the installation?"
 msgstr "インストールをキャンセルしますか ?"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Cancel installation"
 msgstr "インストールをキャンセル"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Keep running"
 msgstr "実行を続ける"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "The installation could not be cancelled."
 msgstr "インストールをキャンセルできませんでした。"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "What was done so far is kept, and you can resume later."
 msgstr "ここまでの処理結果は保持され、後で再開できます。"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Related posts per post"
 msgstr "投稿ごとの関連投稿数"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Get started"
 msgstr "はじめに"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Let's link your related posts"
 msgstr "関連投稿を関連付けましょう"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Related Posts reads your posts once to learn what each one is about, then links every post to the posts that are most related to it."
 msgstr "Related Posts は投稿を一度読み込んで各投稿の内容を把握し、それぞれの投稿を最も関連性の高い投稿に関連付けます。"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "It runs in the background, so you can leave this page while it works."
 msgstr "バックグラウンドで実行されるため、処理中にこのページを離れてもかまいません。"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "You can change this later, and link again at any time."
 msgstr "これは後で変更でき、いつでも関連付けをやり直せます。"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Link the posts right away"
 msgstr "すぐに投稿を関連付ける"
 
 #. translators: %s: the name of a tab of the settings screen, for example Installer
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:19
 msgid "Turn this off to only read the posts now, and link them later from the %s tab."
 msgstr "オフにすると、今は投稿の読み込みのみを行い、後で「%s」タブから関連付けます。"
 
-#: assets/build/admin/index.js:16 assets/build/admin/index.js:22
+#: assets/build/admin/index.js:19 assets/build/admin/index.js:25
 msgid "The installation could not start."
 msgstr "インストールを開始できませんでした。"
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:19
 msgid "Start"
 msgstr "開始"
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:19
 msgid "The installation is done."
 msgstr "インストールが完了しました。"
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:19
 msgid "The installation stopped."
 msgstr "インストールが停止しました。"
 
 #. translators: %s: the plugin version
-#: assets/build/admin/index.js:19
+#: assets/build/admin/index.js:22
 msgid "Version %s"
 msgstr "バージョン %s"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Premium"
 msgstr "Premium"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Related Posts settings"
 msgstr "Related Posts 設定"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Unsaved changes"
 msgstr "未保存の変更"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "You have unsaved changes."
 msgstr "未保存の変更があります。"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Discard"
 msgstr "破棄"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Settings saved."
 msgstr "設定を保存しました。"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "The settings could not be saved."
 msgstr "設定を保存できませんでした。"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Save changes"
 msgstr "変更を保存"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "This page does not exist."
 msgstr "このページは存在しません。"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "This option is overwritten by a filter."
 msgstr "このオプションはフィルターによって上書きされています。"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "An installation is running. You can start another one when it is done."
 msgstr "インストールを実行中です。完了後に別のインストールを開始できます。"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Link new posts"
 msgstr "新しい投稿を関連付け"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Read and link the posts that are not linked yet, for example posts from before automatic linking was on. Links that exist stay as they are."
 msgstr "まだ関連付けられていない投稿 (自動関連付けを有効にする前の投稿など) を読み込んで関連付けます。既存の関連付けはそのまま残ります。"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Rebuild everything"
 msgstr "すべて再構築"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Start over: remove every related post link, also the links you added by hand, read all posts again and link them. Your posts themselves are never touched."
 msgstr "最初からやり直します。手動で追加したものも含めて関連投稿の関連付けをすべて削除し、すべての投稿を読み込み直して関連付けます。投稿そのものが変更されることはありません。"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Rebuild everything?"
 msgstr "すべて再構築しますか ?"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Remove links and rebuild"
 msgstr "関連付けを削除して再構築"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Keep my links"
 msgstr "関連付けを残す"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Every related post link is removed, including the links you added by hand. This can not be undone."
 msgstr "手動で追加したものも含め、関連投稿の関連付けがすべて削除されます。この操作は取り消せません。"

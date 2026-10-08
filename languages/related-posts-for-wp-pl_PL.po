@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
-"POT-Creation-Date: 2026-10-01T22:38:07+00:00\n"
+"POT-Creation-Date: 2026-10-08T13:19:03+00:00\n"
 "PO-Revision-Date: 2026-10-01 12:00+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Polish\n"
@@ -203,7 +203,7 @@ msgstr "Przejdź na Premium"
 
 #. translators: The title of the settings page: the name of the plugin, best left as it is.
 #: src/Admin/Settings/Page.php:54 src/Admin/Wizard/Page.php:76
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgctxt "page title"
 msgid "Related Posts"
 msgstr "Related Posts"
@@ -375,7 +375,7 @@ msgstr "Nie udało się wczytać ustawień."
 msgid "The installer could not be reached."
 msgstr "Instalator jest niedostępny."
 
-#: assets/build/admin/index.js:1 assets/build/admin/index.js:22
+#: assets/build/admin/index.js:1 assets/build/admin/index.js:25
 msgid "Installer"
 msgstr "Instalator"
 
@@ -412,206 +412,211 @@ msgstr[0] "Pozostała mniej więcej %s minuta"
 msgstr[1] "Pozostały mniej więcej %s minuty"
 msgstr[2] "Pozostało mniej więcej %s minut"
 
-#. translators: 1: posts done, 2: all posts
+#. translators: 1: what the installation does now, 2: the number of that step, 3: the number of steps
 #: assets/build/admin/index.js:10
+msgid "%1$s (%2$s/%3$s)"
+msgstr "%1$s (%2$s/%3$s)"
+
+#. translators: 1: posts done, 2: all posts
+#: assets/build/admin/index.js:13
 msgid "%1$s of %2$s posts"
 msgstr "%1$s z %2$s wpisów"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "The installation stopped"
 msgstr "Instalacja została zatrzymana"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "The installation was cancelled"
 msgstr "Instalacja została anulowana"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Linking your related posts"
 msgstr "Łączenie powiązanych wpisów"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "This runs in the background. You can leave this page; it goes on without you."
 msgstr "Działa to w tle. Można opuścić tę stronę; instalacja będzie kontynuowana."
 
 #. translators: %d: how far the installation is, in percent
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "%d%%"
 msgstr "%d%%"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Installation progress"
 msgstr "Postęp instalacji"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Background processing is slow on this site, so this page is doing the work now. Keep it open to finish sooner, or come back later."
 msgstr "Przetwarzanie w tle działa w tej witrynie wolno, więc teraz pracę wykonuje ta strona. Pozostawienie jej otwartej przyspieszy zakończenie; można też wrócić później."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Something went wrong."
 msgstr "Coś poszło nie tak."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "What was done so far is kept. Resume to finish the rest."
 msgstr "Dotychczasowa praca została zachowana. Wznów, aby dokończyć resztę."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Cancel"
 msgstr "Anuluj"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "The installation could not resume."
 msgstr "Nie udało się wznowić instalacji."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Resume"
 msgstr "Wznów"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Cancel the installation?"
 msgstr "Anulować instalację?"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Cancel installation"
 msgstr "Anuluj instalację"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Keep running"
 msgstr "Kontynuuj"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "The installation could not be cancelled."
 msgstr "Nie udało się anulować instalacji."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "What was done so far is kept, and you can resume later."
 msgstr "Dotychczasowa praca została zachowana, a instalację można wznowić później."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Related posts per post"
 msgstr "Liczba powiązanych wpisów na wpis"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Get started"
 msgstr "Pierwsze kroki"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Let's link your related posts"
 msgstr "Połączmy powiązane wpisy"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Related Posts reads your posts once to learn what each one is about, then links every post to the posts that are most related to it."
 msgstr "Related Posts jednorazowo odczytuje wpisy, aby poznać tematykę każdego z nich, a następnie łączy każdy wpis z najbardziej powiązanymi wpisami."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "It runs in the background, so you can leave this page while it works."
 msgstr "Działa to w tle, więc w trakcie pracy można opuścić tę stronę."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "You can change this later, and link again at any time."
 msgstr "Można to zmienić później i w każdej chwili ponownie połączyć wpisy."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Link the posts right away"
 msgstr "Połącz wpisy od razu"
 
 #. translators: %s: the name of a tab of the settings screen, for example Installer
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:19
 msgid "Turn this off to only read the posts now, and link them later from the %s tab."
 msgstr "Po wyłączeniu tej opcji wpisy zostaną teraz tylko odczytane, a połączyć je będzie można później na karcie %s."
 
-#: assets/build/admin/index.js:16 assets/build/admin/index.js:22
+#: assets/build/admin/index.js:19 assets/build/admin/index.js:25
 msgid "The installation could not start."
 msgstr "Nie udało się uruchomić instalacji."
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:19
 msgid "Start"
 msgstr "Rozpocznij"
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:19
 msgid "The installation is done."
 msgstr "Instalacja została zakończona."
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:19
 msgid "The installation stopped."
 msgstr "Instalacja została zatrzymana."
 
 #. translators: %s: the plugin version
-#: assets/build/admin/index.js:19
+#: assets/build/admin/index.js:22
 msgid "Version %s"
 msgstr "Wersja %s"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Premium"
 msgstr "Premium"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Related Posts settings"
 msgstr "Ustawienia Related Posts"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Unsaved changes"
 msgstr "Niezapisane zmiany"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "You have unsaved changes."
 msgstr "Wprowadzone zmiany nie zostały zapisane."
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Discard"
 msgstr "Odrzuć"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Settings saved."
 msgstr "Ustawienia zostały zapisane."
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "The settings could not be saved."
 msgstr "Nie udało się zapisać ustawień."
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Save changes"
 msgstr "Zapisz zmiany"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "This page does not exist."
 msgstr "Ta strona nie istnieje."
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "This option is overwritten by a filter."
 msgstr "Ta opcja jest nadpisana przez filtr."
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "An installation is running. You can start another one when it is done."
 msgstr "Instalacja jest w toku. Nową można rozpocząć po jej zakończeniu."
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Link new posts"
 msgstr "Połącz nowe wpisy"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Read and link the posts that are not linked yet, for example posts from before automatic linking was on. Links that exist stay as they are."
 msgstr "Odczytuje i łączy wpisy, które nie są jeszcze połączone, na przykład wpisy sprzed włączenia automatycznego łączenia. Istniejące połączenia pozostają bez zmian."
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Rebuild everything"
 msgstr "Zbuduj wszystko od nowa"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Start over: remove every related post link, also the links you added by hand, read all posts again and link them. Your posts themselves are never touched."
 msgstr "Zaczyna od nowa: usuwa każde połączenie z powiązanymi wpisami, także te dodane ręcznie, ponownie odczytuje wszystkie wpisy i je łączy. Same wpisy nigdy nie są zmieniane."
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Rebuild everything?"
 msgstr "Zbudować wszystko od nowa?"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Remove links and rebuild"
 msgstr "Usuń połączenia i zbuduj od nowa"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Keep my links"
 msgstr "Zachowaj moje połączenia"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Every related post link is removed, including the links you added by hand. This can not be undone."
 msgstr "Każde połączenie z powiązanymi wpisami zostanie usunięte, także te dodane ręcznie. Tej operacji nie można cofnąć."

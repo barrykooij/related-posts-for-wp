@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
-"POT-Creation-Date: 2026-10-01T22:38:07+00:00\n"
+"POT-Creation-Date: 2026-10-08T13:19:03+00:00\n"
 "PO-Revision-Date: 2017-09-06 17:23+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/barrykooijplugins/related-posts-for-wordpress/language/nl_NL/)\n"
@@ -205,7 +205,7 @@ msgstr "Upgrade naar Premium"
 
 #. translators: The title of the settings page: the name of the plugin, best left as it is.
 #: src/Admin/Settings/Page.php:54 src/Admin/Wizard/Page.php:76
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgctxt "page title"
 msgid "Related Posts"
 msgstr "Related Posts"
@@ -377,7 +377,7 @@ msgstr "De instellingen konden niet worden geladen."
 msgid "The installer could not be reached."
 msgstr "De installatie kon niet worden bereikt."
 
-#: assets/build/admin/index.js:1 assets/build/admin/index.js:22
+#: assets/build/admin/index.js:1 assets/build/admin/index.js:25
 msgid "Installer"
 msgstr "Installatie"
 
@@ -413,206 +413,211 @@ msgid_plural "About %s minutes left"
 msgstr[0] "Nog ongeveer %s minuut"
 msgstr[1] "Nog ongeveer %s minuten"
 
-#. translators: 1: posts done, 2: all posts
+#. translators: 1: what the installation does now, 2: the number of that step, 3: the number of steps
 #: assets/build/admin/index.js:10
+msgid "%1$s (%2$s/%3$s)"
+msgstr "%1$s (%2$s/%3$s)"
+
+#. translators: 1: posts done, 2: all posts
+#: assets/build/admin/index.js:13
 msgid "%1$s of %2$s posts"
 msgstr "%1$s van %2$s berichten"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "The installation stopped"
 msgstr "De installatie is gestopt"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "The installation was cancelled"
 msgstr "De installatie is geannuleerd"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "Linking your related posts"
 msgstr "Uw gerelateerde berichten koppelen"
 
-#: assets/build/admin/index.js:10
+#: assets/build/admin/index.js:13
 msgid "This runs in the background. You can leave this page; it goes on without you."
 msgstr "Dit loopt op de achtergrond. U kunt deze pagina verlaten; het gaat zonder u verder."
 
 #. translators: %d: how far the installation is, in percent
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "%d%%"
 msgstr "%d%%"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Installation progress"
 msgstr "Voortgang van de installatie"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Background processing is slow on this site, so this page is doing the work now. Keep it open to finish sooner, or come back later."
 msgstr "Taken op de achtergrond zijn traag op deze site, dus deze pagina doet nu het werk. Houd de pagina open om sneller klaar te zijn, of kom later terug."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Something went wrong."
 msgstr "Er ging iets mis."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "What was done so far is kept. Resume to finish the rest."
 msgstr "Wat al gedaan is, blijft bewaard. Hervat om de rest af te maken."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Cancel"
 msgstr "Annuleren"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "The installation could not resume."
 msgstr "De installatie kon niet worden hervat."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Resume"
 msgstr "Hervatten"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Cancel the installation?"
 msgstr "De installatie annuleren?"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Cancel installation"
 msgstr "Installatie annuleren"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Keep running"
 msgstr "Laten doorlopen"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "The installation could not be cancelled."
 msgstr "De installatie kon niet worden geannuleerd."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "What was done so far is kept, and you can resume later."
 msgstr "Wat al gedaan is, blijft bewaard, en u kunt later hervatten."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Related posts per post"
 msgstr "Gerelateerde berichten per bericht"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Get started"
 msgstr "Aan de slag"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Let's link your related posts"
 msgstr "Laten we uw gerelateerde berichten koppelen"
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Related Posts reads your posts once to learn what each one is about, then links every post to the posts that are most related to it."
 msgstr "Related Posts leest uw berichten één keer om te leren waar elk bericht over gaat, en koppelt daarna elk bericht aan de berichten die er het meest aan verwant zijn."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "It runs in the background, so you can leave this page while it works."
 msgstr "Dit loopt op de achtergrond, dus u kunt deze pagina verlaten terwijl het bezig is."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "You can change this later, and link again at any time."
 msgstr "U kunt dit later wijzigen, en op elk moment opnieuw koppelen."
 
-#: assets/build/admin/index.js:13
+#: assets/build/admin/index.js:16
 msgid "Link the posts right away"
 msgstr "De berichten meteen koppelen"
 
 #. translators: %s: the name of a tab of the settings screen, for example Installer
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:19
 msgid "Turn this off to only read the posts now, and link them later from the %s tab."
 msgstr "Zet dit uit om de berichten nu alleen te lezen, en ze later te koppelen vanaf het tabblad %s."
 
-#: assets/build/admin/index.js:16 assets/build/admin/index.js:22
+#: assets/build/admin/index.js:19 assets/build/admin/index.js:25
 msgid "The installation could not start."
 msgstr "De installatie kon niet starten."
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:19
 msgid "Start"
 msgstr "Starten"
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:19
 msgid "The installation is done."
 msgstr "De installatie is klaar."
 
-#: assets/build/admin/index.js:16
+#: assets/build/admin/index.js:19
 msgid "The installation stopped."
 msgstr "De installatie is gestopt."
 
 #. translators: %s: the plugin version
-#: assets/build/admin/index.js:19
+#: assets/build/admin/index.js:22
 msgid "Version %s"
 msgstr "Versie %s"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Premium"
 msgstr "Premium"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Related Posts settings"
 msgstr "Instellingen van Related Posts"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Unsaved changes"
 msgstr "Niet-opgeslagen wijzigingen"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "You have unsaved changes."
 msgstr "U hebt niet-opgeslagen wijzigingen."
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Discard"
 msgstr "Verwerpen"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Settings saved."
 msgstr "Instellingen opgeslagen."
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "The settings could not be saved."
 msgstr "De instellingen konden niet worden opgeslagen."
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Save changes"
 msgstr "Wijzigingen opslaan"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "This page does not exist."
 msgstr "Deze pagina bestaat niet."
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "This option is overwritten by a filter."
 msgstr "Deze optie wordt overschreven door een filter."
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "An installation is running. You can start another one when it is done."
 msgstr "Er loopt een installatie. U kunt een nieuwe starten zodra die klaar is."
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Link new posts"
 msgstr "Nieuwe berichten koppelen"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Read and link the posts that are not linked yet, for example posts from before automatic linking was on. Links that exist stay as they are."
 msgstr "Lees en koppel de berichten die nog niet gekoppeld zijn, bijvoorbeeld berichten van voordat automatisch koppelen aan stond. Bestaande koppelingen blijven zoals ze zijn."
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Rebuild everything"
 msgstr "Alles opnieuw opbouwen"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Start over: remove every related post link, also the links you added by hand, read all posts again and link them. Your posts themselves are never touched."
 msgstr "Begin opnieuw: verwijder elke koppeling naar gerelateerde berichten, ook de koppelingen die u zelf hebt toegevoegd, lees alle berichten opnieuw en koppel ze. Uw berichten zelf blijven altijd onaangeroerd."
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Rebuild everything?"
 msgstr "Alles opnieuw opbouwen?"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Remove links and rebuild"
 msgstr "Koppelingen verwijderen en opnieuw opbouwen"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Keep my links"
 msgstr "Mijn koppelingen behouden"
 
-#: assets/build/admin/index.js:22
+#: assets/build/admin/index.js:25
 msgid "Every related post link is removed, including the links you added by hand. This can not be undone."
 msgstr "Elke koppeling naar gerelateerde berichten wordt verwijderd, ook de koppelingen die u zelf hebt toegevoegd. Dit kan niet ongedaan worden gemaakt."
