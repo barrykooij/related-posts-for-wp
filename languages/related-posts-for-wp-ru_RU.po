@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
-"POT-Creation-Date: 2026-10-08T13:19:03+00:00\n"
+"POT-Creation-Date: 2026-10-08T15:49:37+00:00\n"
 "PO-Revision-Date: 2026-10-01 12:00+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Russian\n"
@@ -16,27 +16,23 @@ msgstr ""
 "X-Domain: related-posts-for-wp\n"
 
 #. Plugin Name of the plugin
-#: related-posts-for-wp.php src/Frontend/Widget.php:28
+#: src/Frontend/Widget.php:28
 msgid "Related Posts for WordPress"
 msgstr "Related Posts for WordPress"
 
 #. Plugin URI of the plugin
-#: related-posts-for-wp.php
 msgid "http://www.relatedpostsforwp.com/"
 msgstr "http://www.relatedpostsforwp.com/"
 
 #. Description of the plugin
-#: related-posts-for-wp.php
 msgid "Related Posts for WordPress, the best way to display related posts in WordPress."
 msgstr "Related Posts for WordPress: лучший способ показывать связанные записи в WordPress."
 
 #. Author of the plugin
-#: related-posts-for-wp.php
 msgid "Never5"
 msgstr "Never5"
 
 #. Author URI of the plugin
-#: related-posts-for-wp.php
 msgid "http://www.never5.com/"
 msgstr "http://www.never5.com/"
 
@@ -59,7 +55,7 @@ msgid "Are you sure you want to delete this related post?"
 msgstr "Вы уверены, что хотите удалить эту связанную запись?"
 
 #: src/Admin/LinkScreen/ListTable.php:63 src/Admin/MetaBox/ManageLinks.php:53
-#: src/Admin/Wizard/Page.php:77 src/Settings/Settings.php:181
+#: src/Admin/Wizard/Page.php:77 src/Settings/Settings.php:231
 msgid "Related Posts"
 msgstr "Связанные записи"
 
@@ -279,91 +275,96 @@ msgstr "Значения для сохранения по ID поля. Поля,
 msgid "There is no settings page \"%s\"."
 msgstr "Страница настроек «%s» не существует."
 
-#: src/Settings/Settings.php:156
+#: src/Settings/Settings.php:206
 msgid "General"
 msgstr "Общее"
 
-#: src/Settings/Settings.php:157
+#: src/Settings/Settings.php:207
 msgid "The following options affect the general behaviour of the plugin."
 msgstr "Следующие параметры влияют на общее поведение плагина."
 
-#: src/Settings/Settings.php:161
+#: src/Settings/Settings.php:211
 msgid "Enable"
 msgstr "Вкл"
 
-#: src/Settings/Settings.php:162
+#: src/Settings/Settings.php:212
 msgid "Checking this will enable automatically linking posts to new posts"
 msgstr "Установив эту галочку, вы включите автоматическую привязку записей к новым публикациям"
 
-#: src/Settings/Settings.php:168
+#: src/Settings/Settings.php:218
 msgid "Amount of Posts"
 msgstr "Количество записей"
 
-#: src/Settings/Settings.php:169
+#: src/Settings/Settings.php:219
 msgid "The amount of automatically linked post"
 msgstr "Количество автоматически связанных записей"
 
-#: src/Settings/Settings.php:178
+#: src/Settings/Settings.php:228
 msgid "Heading text"
 msgstr "Текст заголовка"
 
-#: src/Settings/Settings.php:179
+#: src/Settings/Settings.php:229
 msgid "The text that is displayed above the related posts. To disable, leave field empty."
 msgstr "Текст, отображаемый выше связанных записей. Чтобы отключить, оставьте поле пустым."
 
-#: src/Settings/Settings.php:185
+#: src/Settings/Settings.php:235
 msgid "Excerpt length"
 msgstr "Длина отрывка"
 
-#: src/Settings/Settings.php:186
+#: src/Settings/Settings.php:236
 msgid "The amount of words to be displayed below the title on website. To disable, set value to 0."
 msgstr "Количество слов, отображаемых на сайте под названием записи. Чтобы отключить, укажите 0."
 
-#: src/Settings/Settings.php:196
+#: src/Settings/Settings.php:246
 msgid "Styling"
 msgstr "Стилизация"
 
-#: src/Settings/Settings.php:197
+#: src/Settings/Settings.php:247
 msgid "The following options affect how related posts are displayed on the frontend."
 msgstr "Следующие параметры влияют на то, как связанные записи отображаются на внешнем интерфейсе."
 
-#: src/Settings/Settings.php:201
+#: src/Settings/Settings.php:251
 msgid "Display Image"
 msgstr "Отображать изображение"
 
-#: src/Settings/Settings.php:202
+#: src/Settings/Settings.php:252
 msgid "Checking this will enable displaying featured images of related posts."
 msgstr "Установив этот флажок, вы включите отображение избранных изображений в связанных записях."
 
-#: src/Settings/Settings.php:208
+#: src/Settings/Settings.php:258
 msgid "CSS"
 msgstr "CSS"
 
-#: src/Settings/Settings.php:209
+#: src/Settings/Settings.php:259
 msgid "Warning! This is an advanced feature! An error here will break frontend display. To disable, leave field empty."
 msgstr "Внимание! Это расширенная особенность! Ошибка в этом поле приведёт к сбою отображения на внешнем интерфейсе. Чтобы отключить эту особенность, оставьте поле пустым."
 
-#: src/Settings/Settings.php:218
+#. translators: 1: the custom property for the space between posts, 2: the custom property for the image width
+#: src/Settings/Settings.php:261
+msgid "To change only the space between posts or the image width, set %1$s or %2$s in your theme instead."
+msgstr "Чтобы изменить только расстояние между записями или ширину изображения, задайте %1$s или %2$s в своей теме."
+
+#: src/Settings/Settings.php:273
 msgid "Misc"
 msgstr "Разное"
 
-#: src/Settings/Settings.php:219
+#: src/Settings/Settings.php:274
 msgid "A shelter for options that just don't fit in anywhere else."
 msgstr "Место, где находят приют параметры, которые просто не вписываются никуда больше."
 
-#: src/Settings/Settings.php:223
+#: src/Settings/Settings.php:278
 msgid "Remove Data on Uninstall?"
 msgstr "Удалить данные при удалении программы?"
 
-#: src/Settings/Settings.php:224
+#: src/Settings/Settings.php:279
 msgid "Check this box if you would like to completely remove all of its data when the plugin is deleted."
 msgstr "Установите этот бокс, если вы хотите полностью удалить все данные при удалении плагина."
 
-#: src/Settings/Settings.php:230
+#: src/Settings/Settings.php:285
 msgid "Show love?"
 msgstr "Показать любовь?"
 
-#: src/Settings/Settings.php:231
+#: src/Settings/Settings.php:286
 msgid "Display a 'Powered by' line under your related posts. <strong>BEWARE! Only for the real fans.</strong>"
 msgstr "Показывать строку «Powered by» под связанными записями. <strong>ВНИМАНИЕ! Только для настоящих поклонников.</strong>"
 
@@ -580,6 +581,10 @@ msgstr "Сохранить изменения"
 #: assets/build/admin/index.js:25
 msgid "This page does not exist."
 msgstr "Эта страница не существует."
+
+#: assets/build/admin/index.js:25
+msgid "Restore default"
+msgstr "Восстановить по умолчанию"
 
 #: assets/build/admin/index.js:25
 msgid "This option is overwritten by a filter."

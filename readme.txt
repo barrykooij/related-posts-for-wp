@@ -88,10 +88,10 @@ Settings > Related Posts.
 Yes, set the excerpt length to 0 in the Related Posts for WordPress settings screen.
 
 = Is there any way to custom CSS ? =
-Yes, it's in the Related Posts for WordPress settings screen.
+Yes, it's in the Related Posts for WordPress settings screen. To change only the space between the posts or the width of the images, set the CSS custom properties `--rp4wp-gap` and `--rp4wp-image-width` in your theme, for example `.rp4wp-related-posts { --rp4wp-gap: 2rem; --rp4wp-image-width: 25%; }`.
 
 = Can the automatically outputted CSS be disabled? =
-Yes, clear the CSS field in the Related Posts for WordPress settings screen.
+Yes, clear the CSS field in the Related Posts for WordPress settings screen, or use the `rp4wp_disable_css` filter: `add_filter( 'rp4wp_disable_css', '__return_true' );`.
 
 = Is there a theme function so I can output this list anywhere in my theme I want? =
 Yes, you can use `rp4wp_children();`.<br />
@@ -124,6 +124,9 @@ There is one custom table created for the post cache, this table will however no
 = 3.0.0: TBD =
 * Feature: A new settings screen, with the installer built in. The installer runs in the background, so the page can be closed while it works, and the screen shows its progress.
 * Feature: Link the posts that are not linked yet, or rebuild every link, from the new Installer tab. Rebuilding asks before it removes any links.
+* Feature: A modern default layout for the related posts, built with flexbox instead of floats. It works for right-to-left languages without a separate stylesheet, and themes can change the spacing and the image width with the CSS custom properties --rp4wp-gap and --rp4wp-image-width. Sites that changed the CSS, or style the related posts in the Additional CSS of the Customizer, keep their CSS as it is; the CSS field has a "Restore default" button to switch.
+* Feature: Related posts shown by the shortcode or the widget outside single posts, on pages and archives for example, get the CSS too.
+* Feature: The rp4wp_disable_css filter turns the CSS off, as in Premium.
 * Feature: Related Posts for WordPress Premium 3.0 is an add-on for this plugin: keep both installed and active. Next to Premium 2.x, this plugin leaves the related posts to Premium and asks to update it.
 * Fix: Related posts with the same link order keep the order they were added in, so a limit or an offset in the shortcode always shows the same posts.
 * Fix: The related posts meta box skips links to posts that no longer exist.

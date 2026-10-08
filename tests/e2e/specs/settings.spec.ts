@@ -113,4 +113,45 @@ test.describe( 'Settings', () => {
 		await tabs.getByRole( 'link', { name: 'Styling' } ).click();
 		await expect( page.getByLabel( 'Display Image' ) ).toBeChecked();
 	} );
+
+	test( 'custom CSS can be put back to the default', async ( {
+		page,
+		admin,
+		rp4wp,
+		requestUtils,
+	} ) => {
+		await rp4wp.install();
+		await requestUtils.rest( {
+			method: 'PUT',
+			path: '/rp4wp/v1/settings/styling',
+			data: { values: { css: '.rp4wp-related-posts h3{color:red;}' } },
+		} );
+
+		await admin.visitAdminPage(
+			'options-general.php',
+			'page=rp4wp#/styling'
+		);
+		const css = page.getByRole( 'textbox', { name: 'CSS' } );
+		await expect( css ).toHaveValue(
+			'.rp4wp-related-posts h3{color:red;}'
+		);
+
+		await page.getByRole( 'button', { name: 'Restore default' } ).click();
+		await expect( css ).toHaveValue( /display:flex/ );
+		await expect(
+			page.getByRole( 'button', { name: 'Restore default' } )
+		).toHaveCount( 0 );
+
+		await page.getByRole( 'button', { name: 'Save changes' } ).click();
+		await expect(
+			page
+				.locator( '.components-snackbar' )
+				.getByText( 'Settings saved.' )
+		).toBeVisible();
+
+		const saved = ( await requestUtils.rest( {
+			path: '/rp4wp/v1/settings/styling',
+		} ) ) as { values: { css: string } };
+		expect( saved.values.css ).toContain( 'display:flex' );
+	} );
 } );

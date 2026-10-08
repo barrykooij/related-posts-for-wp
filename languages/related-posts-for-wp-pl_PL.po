@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
-"POT-Creation-Date: 2026-10-08T13:19:03+00:00\n"
+"POT-Creation-Date: 2026-10-08T15:49:37+00:00\n"
 "PO-Revision-Date: 2026-10-01 12:00+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Polish\n"
@@ -16,27 +16,23 @@ msgstr ""
 "X-Domain: related-posts-for-wp\n"
 
 #. Plugin Name of the plugin
-#: related-posts-for-wp.php src/Frontend/Widget.php:28
+#: src/Frontend/Widget.php:28
 msgid "Related Posts for WordPress"
 msgstr "Related Posts for WordPress"
 
 #. Plugin URI of the plugin
-#: related-posts-for-wp.php
 msgid "http://www.relatedpostsforwp.com/"
 msgstr "http://www.relatedpostsforwp.com/"
 
 #. Description of the plugin
-#: related-posts-for-wp.php
 msgid "Related Posts for WordPress, the best way to display related posts in WordPress."
 msgstr "Related Posts for WordPress: najlepszy sposób na wyświetlanie powiązanych wpisów w witrynie WordPress."
 
 #. Author of the plugin
-#: related-posts-for-wp.php
 msgid "Never5"
 msgstr "Never5"
 
 #. Author URI of the plugin
-#: related-posts-for-wp.php
 msgid "http://www.never5.com/"
 msgstr "http://www.never5.com/"
 
@@ -59,7 +55,7 @@ msgid "Are you sure you want to delete this related post?"
 msgstr "Czy na pewno usunąć ten powiązany wpis?"
 
 #: src/Admin/LinkScreen/ListTable.php:63 src/Admin/MetaBox/ManageLinks.php:53
-#: src/Admin/Wizard/Page.php:77 src/Settings/Settings.php:181
+#: src/Admin/Wizard/Page.php:77 src/Settings/Settings.php:231
 msgid "Related Posts"
 msgstr "Powiązane wpisy"
 
@@ -279,91 +275,96 @@ msgstr "Wartości do zapisania według ID pola. Pominięte pola zachowają swoj�
 msgid "There is no settings page \"%s\"."
 msgstr "Nie ma strony ustawień „%s”."
 
-#: src/Settings/Settings.php:156
+#: src/Settings/Settings.php:206
 msgid "General"
 msgstr "Ogólne"
 
-#: src/Settings/Settings.php:157
+#: src/Settings/Settings.php:207
 msgid "The following options affect the general behaviour of the plugin."
 msgstr "Poniższe opcje wpływają na ogólne działanie wtyczki."
 
-#: src/Settings/Settings.php:161
+#: src/Settings/Settings.php:211
 msgid "Enable"
 msgstr "Włącz"
 
-#: src/Settings/Settings.php:162
+#: src/Settings/Settings.php:212
 msgid "Checking this will enable automatically linking posts to new posts"
 msgstr "Zaznaczenie tej opcji włączy automatyczne łączenie nowych wpisów z powiązanymi wpisami"
 
-#: src/Settings/Settings.php:168
+#: src/Settings/Settings.php:218
 msgid "Amount of Posts"
 msgstr "Liczba wpisów"
 
-#: src/Settings/Settings.php:169
+#: src/Settings/Settings.php:219
 msgid "The amount of automatically linked post"
 msgstr "Liczba automatycznie łączonych wpisów"
 
-#: src/Settings/Settings.php:178
+#: src/Settings/Settings.php:228
 msgid "Heading text"
 msgstr "Tekst nagłówka"
 
-#: src/Settings/Settings.php:179
+#: src/Settings/Settings.php:229
 msgid "The text that is displayed above the related posts. To disable, leave field empty."
 msgstr "Tekst wyświetlany nad powiązanymi wpisami. Aby go wyłączyć, należy pozostawić pole puste."
 
-#: src/Settings/Settings.php:185
+#: src/Settings/Settings.php:235
 msgid "Excerpt length"
 msgstr "Długość zajawki"
 
-#: src/Settings/Settings.php:186
+#: src/Settings/Settings.php:236
 msgid "The amount of words to be displayed below the title on website. To disable, set value to 0."
 msgstr "Liczba słów wyświetlanych pod tytułem w witrynie. Aby wyłączyć, należy ustawić wartość 0."
 
-#: src/Settings/Settings.php:196
+#: src/Settings/Settings.php:246
 msgid "Styling"
 msgstr "Wygląd"
 
-#: src/Settings/Settings.php:197
+#: src/Settings/Settings.php:247
 msgid "The following options affect how related posts are displayed on the frontend."
 msgstr "Poniższe opcje wpływają na sposób wyświetlania powiązanych wpisów w witrynie."
 
-#: src/Settings/Settings.php:201
+#: src/Settings/Settings.php:251
 msgid "Display Image"
 msgstr "Wyświetlanie obrazka"
 
-#: src/Settings/Settings.php:202
+#: src/Settings/Settings.php:252
 msgid "Checking this will enable displaying featured images of related posts."
 msgstr "Zaznaczenie tej opcji włączy wyświetlanie obrazków wyróżniających powiązanych wpisów."
 
-#: src/Settings/Settings.php:208
+#: src/Settings/Settings.php:258
 msgid "CSS"
 msgstr "CSS"
 
-#: src/Settings/Settings.php:209
+#: src/Settings/Settings.php:259
 msgid "Warning! This is an advanced feature! An error here will break frontend display. To disable, leave field empty."
 msgstr "Uwaga! To jest funkcja zaawansowana! Błąd w tym miejscu zepsuje wyświetlanie w witrynie. Aby wyłączyć, należy pozostawić pole puste."
 
-#: src/Settings/Settings.php:218
+#. translators: 1: the custom property for the space between posts, 2: the custom property for the image width
+#: src/Settings/Settings.php:261
+msgid "To change only the space between posts or the image width, set %1$s or %2$s in your theme instead."
+msgstr "Aby zmienić tylko odstęp między wpisami lub szerokość obrazka, ustaw zamiast tego %1$s lub %2$s w swoim motywie."
+
+#: src/Settings/Settings.php:273
 msgid "Misc"
 msgstr "Różne"
 
-#: src/Settings/Settings.php:219
+#: src/Settings/Settings.php:274
 msgid "A shelter for options that just don't fit in anywhere else."
 msgstr "Miejsce na opcje, które nie pasują nigdzie indziej."
 
-#: src/Settings/Settings.php:223
+#: src/Settings/Settings.php:278
 msgid "Remove Data on Uninstall?"
 msgstr "Usunąć dane przy odinstalowaniu?"
 
-#: src/Settings/Settings.php:224
+#: src/Settings/Settings.php:279
 msgid "Check this box if you would like to completely remove all of its data when the plugin is deleted."
 msgstr "Po zaznaczeniu tego pola wszystkie dane wtyczki zostaną całkowicie usunięte podczas jej usuwania."
 
-#: src/Settings/Settings.php:230
+#: src/Settings/Settings.php:285
 msgid "Show love?"
 msgstr "Okazać wsparcie?"
 
-#: src/Settings/Settings.php:231
+#: src/Settings/Settings.php:286
 msgid "Display a 'Powered by' line under your related posts. <strong>BEWARE! Only for the real fans.</strong>"
 msgstr "Wyświetla wiersz „Powered by” pod powiązanymi wpisami. <strong>UWAGA! Tylko dla prawdziwych fanów.</strong>"
 
@@ -580,6 +581,10 @@ msgstr "Zapisz zmiany"
 #: assets/build/admin/index.js:25
 msgid "This page does not exist."
 msgstr "Ta strona nie istnieje."
+
+#: assets/build/admin/index.js:25
+msgid "Restore default"
+msgstr "Przywróć domyślne"
 
 #: assets/build/admin/index.js:25
 msgid "This option is overwritten by a filter."

@@ -14,6 +14,7 @@ use LV2\WordPress\RelatedPostsForWP\Links\LinkRepository;
 use LV2\WordPress\RelatedPostsForWP\Main;
 use LV2\WordPress\RelatedPostsForWP\Related\Finder;
 use LV2\WordPress\RelatedPostsForWP\Related\Linker;
+use LV2\WordPress\RelatedPostsForWP\Settings\Settings;
 use LV2\WordPress\RelatedPostsForWP\Tests\Integration\Contract\LinkManagerApi;
 use LV2\WordPress\RelatedPostsForWP\Tests\Integration\TestCase;
 use LV2\WordPress\RelatedPostsForWP\Tests\Support\Golden;
@@ -173,7 +174,10 @@ final class GoldenMasterTest extends TestCase {
 
 		$recorder->stop();
 
-		Golden::assert_json_matches( self::SET, 'hooks-fired.json', $recorder->hooks() );
+		// Hooks that 3.0 adds; every 2.x hook must still fire, with the same argument counts.
+		$hooks = array_diff_key( $recorder->hooks(), array_flip( [ 'rp4wp_disable_css' ] ) );
+
+		Golden::assert_json_matches( self::SET, 'hooks-fired.json', $hooks );
 	}
 
 	/**
@@ -540,13 +544,17 @@ final class GoldenMasterTest extends TestCase {
 	/**
 	 * The CSS the plugin prints in wp_head.
 	 *
+	 * 3.0 serves a new default CSS where 2.x printed its own default (D32, an intentional deviation that
+	 * `Frontend\CssTest` and the settings unit tests cover). The golden files hold 2.x output, so the new default is
+	 * mapped back to the 2.x one here; custom CSS is compared as is.
+	 *
 	 * @return string
 	 */
 	public function frontend_css(): string {
 		ob_start();
 		Css::print_css();
 
-		return (string) ob_get_clean();
+		return str_replace( Main::get()->settings()->defaults()['css'], Settings::LEGACY_DEFAULT_CSS['ltr'], (string) ob_get_clean() );
 	}
 
 	/**

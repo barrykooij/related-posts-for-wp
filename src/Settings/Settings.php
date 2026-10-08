@@ -22,6 +22,21 @@ class Settings {
 	public const OPTION = 'rp4wp';
 
 	/**
+	 * The default CSS of 2.x, for left-to-right and right-to-left sites. Saving the settings stored it, so most sites
+	 * that never touched it hold one of these; they get the current default instead (D32).
+	 */
+	public const LEGACY_DEFAULT_CSS = [
+		'ltr' => '.rp4wp-related-posts ul{width:100%;padding:0;margin:0;float:left;}
+.rp4wp-related-posts ul>li{list-style:none;padding:0;margin:0;padding-bottom:20px;clear:both;}
+.rp4wp-related-posts ul>li>p{margin:0;padding:0;}
+.rp4wp-related-post-image{width:35%;padding-right:25px;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;float:left;}',
+		'rtl' => '.rp4wp-related-posts ul{width:100%;padding:0;margin:0;float:right;}
+.rp4wp-related-posts ul>li{list-style:none;padding:0;margin:0;padding-bottom:20px;float:right;}
+.rp4wp-related-posts ul>li>p{margin:0;padding:0;}
+.rp4wp-related-post-image{width:35%;padding-left:25px;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;float:right;}',
+	];
+
+	/**
 	 * The setting sections with their fields, once built.
 	 *
 	 * @var array<string, array<string, mixed>>|null
@@ -88,7 +103,42 @@ class Settings {
 		 *
 		 * @param array $options The settings.
 		 */
-		return apply_filters( 'rp4wp_options', wp_parse_args( get_option( self::OPTION, [] ), $this->defaults() ) );
+		$options = wp_parse_args( get_option( self::OPTION, [] ), $this->defaults() );
+
+		if ( isset( $options['css'] ) && is_string( $options['css'] ) && self::is_legacy_default_css( $options['css'] ) && ! self::is_styled_elsewhere() ) {
+			$options['css'] = $this->defaults()['css'];
+		}
+
+		return apply_filters( 'rp4wp_options', $options );
+	}
+
+	/**
+	 * Whether CSS is one of the 2.x defaults. Whitespace does not count: browsers post textareas with `\r\n`.
+	 *
+	 * @param string $css The CSS.
+	 *
+	 * @return bool
+	 */
+	public static function is_legacy_default_css( string $css ): bool {
+		$css = (string) preg_replace( '/\s+/', '', $css );
+
+		foreach ( self::LEGACY_DEFAULT_CSS as $legacy ) {
+			if ( (string) preg_replace( '/\s+/', '', $legacy ) === $css ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Whether the Additional CSS of the Customizer styles the related posts. Such a site was styled on top of the 2.x
+	 * default, so it keeps that default (D34).
+	 *
+	 * @return bool
+	 */
+	public static function is_styled_elsewhere(): bool {
+		return false !== stripos( (string) wp_get_custom_css(), 'rp4wp' );
 	}
 
 	/**
@@ -206,7 +256,12 @@ class Settings {
 					'css'           => [
 						'id'          => 'css',
 						'label'       => __( 'CSS', 'related-posts-for-wp' ),
-						'description' => __( 'Warning! This is an advanced feature! An error here will break frontend display. To disable, leave field empty.', 'related-posts-for-wp' ),
+						'description' => __( 'Warning! This is an advanced feature! An error here will break frontend display. To disable, leave field empty.', 'related-posts-for-wp' ) . ' ' . sprintf(
+							/* translators: 1: the custom property for the space between posts, 2: the custom property for the image width */
+							__( 'To change only the space between posts or the image width, set %1$s or %2$s in your theme instead.', 'related-posts-for-wp' ),
+							'<code>--rp4wp-gap</code>',
+							'<code>--rp4wp-image-width</code>'
+						),
 						'type'        => 'textarea',
 						'ui'          => 'code',
 						'default'     => $this->default_css(),
@@ -238,26 +293,19 @@ class Settings {
 	}
 
 	/**
-	 * The default front-end CSS, mirrored for right-to-left languages.
+	 * The default front-end CSS: a flexbox row per post, with the image on the side where the text starts, so it suits
+	 * right-to-left languages too. The custom properties let a theme change the gap and the image width.
 	 *
 	 * @return string
 	 */
 	private function default_css(): string {
-		if ( is_rtl() ) {
-			$lines = [
-				'.rp4wp-related-posts ul{width:100%;padding:0;margin:0;float:right;}',
-				'.rp4wp-related-posts ul>li{list-style:none;padding:0;margin:0;padding-bottom:20px;float:right;}',
-				'.rp4wp-related-posts ul>li>p{margin:0;padding:0;}',
-				'.rp4wp-related-post-image{width:35%;padding-left:25px;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;float:right;}',
-			];
-		} else {
-			$lines = [
-				'.rp4wp-related-posts ul{width:100%;padding:0;margin:0;float:left;}',
-				'.rp4wp-related-posts ul>li{list-style:none;padding:0;margin:0;padding-bottom:20px;clear:both;}',
-				'.rp4wp-related-posts ul>li>p{margin:0;padding:0;}',
-				'.rp4wp-related-post-image{width:35%;padding-right:25px;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;float:left;}',
-			];
-		}
+		$lines = [
+			'.rp4wp-related-posts ul{display:grid;gap:var(--rp4wp-gap,1.25rem);margin:0;padding:0;list-style:none;}',
+			'.rp4wp-related-posts li{display:flex;gap:var(--rp4wp-gap,1.25rem);align-items:flex-start;margin:0;padding:0;}',
+			'.rp4wp-related-post-image{flex:0 0 var(--rp4wp-image-width,35%);}',
+			'.rp4wp-related-post-image img{display:block;max-width:100%;height:auto;}',
+			'.rp4wp-related-post-content{flex:1;min-width:0;}',
+		];
 
 		return implode( PHP_EOL, $lines );
 	}

@@ -222,6 +222,8 @@ class Renderer implements RendererContract {
 
 		// phpcs:enable
 
+		Css::needed();
+
 		return trim( (string) ob_get_clean() );
 	}
 

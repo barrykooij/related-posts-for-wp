@@ -9,6 +9,7 @@ import {
 	ToggleControl,
 	VisuallyHidden,
 } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
 import type { FieldProps } from '../registry/registry';
 import { registry } from '../registry/registry';
 
@@ -94,19 +95,34 @@ function Textarea( {
 	);
 }
 
+// The default can be restored when it is not empty: an empty default means "none", which clearing the field does.
 function Code( { field, value, onChange, disabled }: FieldProps< string > ) {
+	const fallback = typeof field.default === 'string' ? field.default : '';
+
 	return (
-		<TextareaControl
-			__nextHasNoMarginBottom
-			label={ field.label }
-			hideLabelFromVision
-			value={ String( value ?? '' ) }
-			onChange={ onChange }
-			disabled={ disabled }
-			rows={ 10 }
-			spellCheck={ false }
-			className="rp4wp-field__code"
-		/>
+		<>
+			<TextareaControl
+				__nextHasNoMarginBottom
+				label={ field.label }
+				hideLabelFromVision
+				value={ String( value ?? '' ) }
+				onChange={ onChange }
+				disabled={ disabled }
+				rows={ 10 }
+				spellCheck={ false }
+				className="rp4wp-field__code"
+			/>
+			{ fallback !== '' && value !== fallback && ! disabled && (
+				<Button
+					variant="secondary"
+					size="compact"
+					onClick={ () => onChange( fallback ) }
+					className="rp4wp-field__restore"
+				>
+					{ __( 'Restore default', 'related-posts-for-wp' ) }
+				</Button>
+			) }
+		</>
 	);
 }
 
