@@ -80,6 +80,9 @@ echo "== Updating ${before} to this checkout"
 # Only the notices of the new code count.
 wp_env run cli bash -c ': > wp-content/debug.log' > /dev/null 2>&1
 rsync -a --delete --delete-excluded --exclude-from="$root/.distignore" "$root/" "$plugin/"
+# The web server's opcache checks the files for changes at most every 2 seconds (opcache.revalidate_freq), so a page
+# asked for right away can still run the 2.x code.
+sleep 3
 after="$(wp plugin get related-posts-for-wp --field=version)"
 snapshot after
 
