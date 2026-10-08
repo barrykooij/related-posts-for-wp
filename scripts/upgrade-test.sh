@@ -83,6 +83,15 @@ rsync -a --delete --delete-excluded --exclude-from="$root/.distignore" "$root/" 
 after="$(wp plugin get related-posts-for-wp --field=version)"
 snapshot after
 
+echo "== Checking the new default CSS"
+# 3.0 serves its new default CSS where the 2.x default is stored (D32): the 2.x floats before, flexbox after, and the
+# stored option stays as it was (site.txt). The style element is masked for the comparison below.
+for slug in espresso-at-home latte-art growing-tomatoes mountain-huts; do
+	grep -q 'rp4wp-related-post-image{width:35%;padding-right:25px;' "$work/before/front-$slug.html" || fail "$slug did not have the 2.x CSS before the update"
+	grep -q '.rp4wp-related-posts li{display:flex;' "$work/after/front-$slug.html" || fail "$slug does not have the new default CSS after the update"
+	perl -0pi -e "s#<style type='text/css'>\\.rp4wp-related-posts ul\\{.*?</style>#<style type='text/css'>(the related posts CSS)</style>#s" "$work/before/front-$slug.html" "$work/after/front-$slug.html"
+done
+
 echo "== Comparing the site before and after"
 if ! diff -ru "$work/before" "$work/after" > "$work/changes.diff"; then
 	cat "$work/changes.diff"
