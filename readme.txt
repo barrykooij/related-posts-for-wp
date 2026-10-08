@@ -128,6 +128,7 @@ There is one custom table created for the post cache, this table will however no
 * Feature: Related posts shown by the shortcode or the widget outside single posts, on pages and archives for example, get the CSS too.
 * Feature: The rp4wp_disable_css filter turns the CSS off, as in Premium.
 * Feature: Related Posts for WordPress Premium 3.0 is an add-on for this plugin: keep both installed and active. Next to Premium 2.x, this plugin leaves the related posts to Premium and asks to update it.
+* Tweak: Related posts you add by hand are marked as such, so the refresh of Premium keeps them, also on a site that gets Premium later.
 * Fix: Related posts with the same link order keep the order they were added in, so a limit or an offset in the shortcode always shows the same posts.
 * Fix: The related posts meta box skips links to posts that no longer exist.
 * Fix: The installer no longer keeps waiting on posts without words or with emoji.
