@@ -70,6 +70,20 @@ export interface Job {
 	error: string | null;
 	/** Running, but no progress for a while and no request works on it. */
 	stalled: boolean;
+	/** Whether the job installs the plugin; false for other background work, such as premium's refresh. */
+	install?: boolean;
+	/** What the screen calls a job that is not an installation; keys that are left out get the installation's words. */
+	labels?: JobLabels;
+}
+
+export interface JobLabels {
+	running?: string;
+	done?: string;
+	failed?: string;
+	cancelled?: string;
+	/** The question before cancelling. */
+	cancel?: string;
+	cancel_button?: string;
 }
 
 export interface ArgSchema {

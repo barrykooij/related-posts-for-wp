@@ -98,6 +98,30 @@ final class QueueTest extends TestCase {
 		delete_option( 'rp4wp_is_installing' );
 	}
 
+	public function test_the_status_says_whether_the_job_is_an_installation_and_brings_its_labels(): void {
+		$this->queue->start( [] );
+
+		$status = $this->queue->status();
+		$this->assertTrue( $status['install'] );
+		$this->assertEquals( (object) [], $status['labels'] );
+
+		$filter = static function ( array $labels, Job $job ): array {
+			return [
+				'running' => 'Refreshing',
+				'ignored' => [ 'not', 'a', 'string' ],
+			];
+		};
+		add_filter( 'rp4wp_job_is_install', '__return_false' );
+		add_filter( 'rp4wp_job_labels', $filter, 10, 2 );
+
+		$status = $this->queue->status();
+
+		remove_filter( 'rp4wp_job_labels', $filter, 10 );
+		remove_filter( 'rp4wp_job_is_install', '__return_false' );
+		$this->assertFalse( $status['install'] );
+		$this->assertEquals( (object) [ 'running' => 'Refreshing' ], $status['labels'] );
+	}
+
 	public function test_a_second_installation_can_not_start_while_one_runs(): void {
 		$this->queue->start( [] );
 

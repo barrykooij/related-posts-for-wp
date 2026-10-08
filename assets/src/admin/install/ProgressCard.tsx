@@ -103,25 +103,31 @@ function Title( { job }: { job: Job } ) {
 		case 'failed':
 			return (
 				<>
-					{ __( 'The installation stopped', 'related-posts-for-wp' ) }
+					{ job.labels?.failed ??
+						__(
+							'The installation stopped',
+							'related-posts-for-wp'
+						) }
 				</>
 			);
 		case 'cancelled':
 			return (
 				<>
-					{ __(
-						'The installation was cancelled',
-						'related-posts-for-wp'
-					) }
+					{ job.labels?.cancelled ??
+						__(
+							'The installation was cancelled',
+							'related-posts-for-wp'
+						) }
 				</>
 			);
 		default:
 			return (
 				<>
-					{ __(
-						'Linking your related posts',
-						'related-posts-for-wp'
-					) }
+					{ job.labels?.running ??
+						__(
+							'Linking your related posts',
+							'related-posts-for-wp'
+						) }
 				</>
 			);
 	}
@@ -282,14 +288,14 @@ export function ProgressCard( { job }: { job: Job } ) {
 
 			{ confirming && (
 				<ConfirmModal
-					title={ __(
-						'Cancel the installation?',
-						'related-posts-for-wp'
-					) }
-					confirmLabel={ __(
-						'Cancel installation',
-						'related-posts-for-wp'
-					) }
+					title={
+						job.labels?.cancel ??
+						__( 'Cancel the installation?', 'related-posts-for-wp' )
+					}
+					confirmLabel={
+						job.labels?.cancel_button ??
+						__( 'Cancel installation', 'related-posts-for-wp' )
+					}
 					cancelLabel={ __( 'Keep running', 'related-posts-for-wp' ) }
 					isDestructive
 					onCancel={ () => setConfirming( false ) }

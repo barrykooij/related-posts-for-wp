@@ -64,8 +64,8 @@ function usePolling( running: boolean ): void {
 }
 
 /**
- * The installer at the top of the settings screen: the first-run card, the progress of a job, or that it is done.
- * Nothing once the site is installed and the last job was seen.
+ * The installer at the top of the settings screen: the first-run card, the progress of a job, or that an installation
+ * is done. Nothing once the site is installed and the last job was seen.
  */
 export function InstallPanel() {
 	const { loaded, state } = useInstall();
@@ -91,7 +91,11 @@ export function InstallPanel() {
 		if ( ended ) {
 			if ( status === 'done' ) {
 				speak(
-					__( 'The installation is done.', 'related-posts-for-wp' )
+					job.labels?.done ??
+						__(
+							'The installation is done.',
+							'related-posts-for-wp'
+						)
 				);
 
 				if ( ! isDirty( settingsStore.getState() ) ) {
@@ -99,7 +103,11 @@ export function InstallPanel() {
 				}
 			} else if ( status === 'failed' ) {
 				speak(
-					__( 'The installation stopped.', 'related-posts-for-wp' ),
+					job.labels?.failed ??
+						__(
+							'The installation stopped.',
+							'related-posts-for-wp'
+						),
 					'assertive'
 				);
 			}
@@ -123,7 +131,13 @@ export function InstallPanel() {
 
 	if ( job && job.status !== 'done' ) {
 		content = <ProgressCard job={ job } />;
-	} else if ( job && job.status === 'done' && dismissed !== job.id ) {
+	} else if (
+		job &&
+		job.status === 'done' &&
+		job.install !== false &&
+		dismissed !== job.id
+	) {
+		// Other background jobs, such as premium's refresh, show when they ran on their own screen.
 		content = (
 			<DoneCard
 				job={ job }

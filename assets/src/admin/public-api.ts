@@ -20,6 +20,7 @@ export type {
 	InstallRequest,
 	InstallState,
 	Job,
+	JobLabels,
 } from './api/types';
 
 export const apiVersion = 1;

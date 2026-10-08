@@ -244,7 +244,33 @@ class Queue {
 			'ended'         => $job->ended,
 			'error'         => $job->error,
 			'stalled'       => $this->is_stalled( $job ),
+			'install'       => $job->is_install(),
+			'labels'        => (object) $this->labels( $job ),
 		];
+	}
+
+	/**
+	 * What the admin screen calls a job that is not an installation, such as premium's refresh: by key, `running`,
+	 * `done`, `failed`, `cancelled`, `cancel` (the question before cancelling) and `cancel_button`. Keys that are left
+	 * out get the installation's words.
+	 *
+	 * @param Job $job The job.
+	 *
+	 * @return array<string, string>
+	 */
+	private function labels( Job $job ): array {
+		/**
+		 * Filters what the admin screen calls a background job, by key: `running`, `done`, `failed`, `cancelled`,
+		 * `cancel` and `cancel_button`. Keys that are left out get the words of an installation.
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param array<string, string> $labels The labels. Default none.
+		 * @param Job                   $job    The job.
+		 */
+		$labels = apply_filters( 'rp4wp_job_labels', [], $job );
+
+		return array_map( 'strval', array_filter( (array) $labels, 'is_scalar' ) );
 	}
 
 	/**
