@@ -13,7 +13,10 @@ namespace LV2\WordPress\RelatedPostsForWP\Links;
 class LinkRepository {
 
 	/**
-	 * Link a related post to a post.
+	 * Link a related post to a post, by hand.
+	 *
+	 * The link is marked as added by hand. The free plugin does not read the mark; premium's refresh keeps such links
+	 * when it links the posts again, also when the site gets premium later.
 	 *
 	 * @param int $parent_id The post that shows the related post.
 	 * @param int $child_id  The related post.
@@ -21,7 +24,10 @@ class LinkRepository {
 	 * @return int The link ID.
 	 */
 	public function add( int $parent_id, int $child_id ): int {
-		return $this->insert( $this->insert_data( $parent_id, $child_id ) );
+		$data           = $this->insert_data( $parent_id, $child_id );
+		$data['meta'][] = "(%d, '" . LinkPostType::META_MANUAL . "', '1')";
+
+		return $this->insert( $data );
 	}
 
 	/**

@@ -62,6 +62,11 @@ class Installing implements Module {
 		$queue = new Queue();
 		$job   = $queue->job();
 
+		// Other background jobs, such as premium's refresh, show their progress on their own screen.
+		if ( null !== $job && ! $job->is_install() ) {
+			$job = null;
+		}
+
 		if ( null !== $job && $job->is_running() ) {
 			self::print_notice(
 				'info',

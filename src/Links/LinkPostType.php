@@ -36,6 +36,11 @@ class LinkPostType implements Module {
 	public const META_PARENT_POST_TYPE = 'rp4wp_pt_parent';
 
 	/**
+	 * Meta key on a link: it was added by hand. Premium's refresh keeps these links.
+	 */
+	public const META_MANUAL = 'rp4wp_manual';
+
+	/**
 	 * Meta key on a content post: its related posts were linked automatically.
 	 */
 	public const META_AUTO_LINKED = 'rp4wp_auto_linked';

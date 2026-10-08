@@ -78,6 +78,26 @@ final class QueueTest extends TestCase {
 		$this->assertSame( '1', (string) get_option( 'rp4wp_is_installing' ) );
 	}
 
+	public function test_a_job_that_is_not_an_installation_leaves_the_installing_flag_alone(): void {
+		$filter = static function ( bool $is_install, Job $job ): bool {
+			return empty( $job->request['other'] );
+		};
+		add_filter( 'rp4wp_job_is_install', $filter, 10, 2 );
+
+		$job = $this->queue->start( [ 'other' => true ] );
+
+		$this->assertFalse( get_option( 'rp4wp_is_installing' ) );
+
+		update_option( 'rp4wp_is_installing', 1 );
+		$this->queue->cancel();
+
+		$this->assertSame( '1', (string) get_option( 'rp4wp_is_installing' ) );
+		$this->assertFalse( $job->is_install() );
+
+		remove_filter( 'rp4wp_job_is_install', $filter );
+		delete_option( 'rp4wp_is_installing' );
+	}
+
 	public function test_a_second_installation_can_not_start_while_one_runs(): void {
 		$this->queue->start( [] );
 

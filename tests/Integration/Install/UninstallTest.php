@@ -58,6 +58,8 @@ final class UninstallTest extends TestCase {
 
 		update_post_meta( $this->parent, 'rp4wp_auto_linked', 1 );
 		update_post_meta( $this->parent, 'rp4wp_cached', 1 );
+		update_post_meta( $this->parent, 'rp4wp_relinked', 1700000000 );
+		update_post_meta( $this->parent, 'rp4wp_words_cached', 1700000000 );
 		update_option( 'rp4wp_do_install', 1 );
 		update_option( 'rp4wp_is_installing', 1 );
 		update_option( 'rp4wp_install_date', '2024-01-01' );
@@ -106,6 +108,8 @@ final class UninstallTest extends TestCase {
 		$this->assertInstanceOf( \WP_Post::class, get_post( $this->parent ) );
 		$this->assertSame( '', get_post_meta( $this->parent, 'rp4wp_auto_linked', true ) );
 		$this->assertSame( '', get_post_meta( $this->parent, 'rp4wp_cached', true ) );
+		$this->assertSame( '', get_post_meta( $this->parent, 'rp4wp_relinked', true ) );
+		$this->assertSame( '', get_post_meta( $this->parent, 'rp4wp_words_cached', true ) );
 
 		// Options.
 		foreach ( [ 'rp4wp', 'rp4wp_do_install', 'rp4wp_is_installing', 'rp4wp_install_date', 'rp4wp_hide_nag', 'widget_rp4wp_related_posts_widget', 'rp4wp_install_job', 'rp4wp_install_lock' ] as $option ) {

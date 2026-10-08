@@ -57,8 +57,8 @@ if ( ! function_exists( 'rp4wp_uninstall' ) ) {
 		delete_metadata( 'user', 0, 'rp4wp_hide_nag', '', true );
 		delete_metadata( 'user', 0, 'rp4wp_per_page', '', true );
 
-		// The post meta on content posts.
-		$wpdb->query( "DELETE FROM {$wpdb->postmeta} WHERE `meta_key` IN ( 'rp4wp_auto_linked', 'rp4wp_cached', 'rp4wp_no_words' )" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- One-off cleanup.
+		// The post meta on content posts, including the marks of premium's refresh, which belong to the links and words.
+		$wpdb->query( "DELETE FROM {$wpdb->postmeta} WHERE `meta_key` IN ( 'rp4wp_auto_linked', 'rp4wp_cached', 'rp4wp_no_words', 'rp4wp_relinked', 'rp4wp_words_cached' )" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- One-off cleanup.
 
 		// The word cache table.
 		$wpdb->query( "DROP TABLE {$wpdb->prefix}rp4wp_cache" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- One-off cleanup of our own table.

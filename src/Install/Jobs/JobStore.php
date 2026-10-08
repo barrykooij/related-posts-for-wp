@@ -39,7 +39,7 @@ class JobStore {
 	}
 
 	/**
-	 * Save the job.
+	 * Save the job. A running installation sets the 2.x flag, and an installation that ended removes it.
 	 *
 	 * @param Job $job The job.
 	 *
@@ -47,6 +47,11 @@ class JobStore {
 	 */
 	public function save( Job $job ): void {
 		update_option( self::OPTION, $job->to_array(), false );
+
+		// Other background jobs, such as premium's refresh, leave the flag alone.
+		if ( ! $job->is_install() ) {
+			return;
+		}
 
 		if ( $job->is_running() ) {
 			update_option( self::IS_INSTALLING, 1, false );

@@ -170,6 +170,25 @@ final class Job {
 	}
 
 	/**
+	 * Whether the job installs the plugin, as opposed to other background work on the links, such as premium's refresh.
+	 * Only an installation sets `rp4wp_is_installing` and shows the installation notices.
+	 *
+	 * @return bool
+	 */
+	public function is_install(): bool {
+		/**
+		 * Filters whether a background job is an installation. Only an installation sets `rp4wp_is_installing` and
+		 * shows the notices about the installation on other admin screens.
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param bool $is_install Whether the job is an installation. Default true.
+		 * @param Job  $job        The job.
+		 */
+		return (bool) apply_filters( 'rp4wp_job_is_install', true, $this );
+	}
+
+	/**
 	 * Whether every step is done.
 	 *
 	 * @return bool

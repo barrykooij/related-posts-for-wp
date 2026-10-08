@@ -74,6 +74,34 @@ final class InstallingNoticeTest extends TestCase {
 		$this->assertStringContainsString( 'notice-error', $this->display() );
 	}
 
+	public function test_other_background_jobs_show_no_notice(): void {
+		add_filter( 'rp4wp_job_is_install', '__return_false' );
+
+		$queue = new Queue();
+		$queue->start( [] );
+
+		$this->assertSame( '', $this->display() );
+
+		$job = $queue->job();
+		$job->end( Job::FAILED, 'Out of memory.' );
+		( new JobStore() )->save( $job );
+
+		$this->assertStringNotContainsString( 'notice-error', $this->display() );
+
+		remove_filter( 'rp4wp_job_is_install', '__return_false' );
+	}
+
+	public function test_a_2x_wizard_left_unfinished_still_shows_while_another_background_job_runs(): void {
+		add_filter( 'rp4wp_job_is_install', '__return_false' );
+		update_option( Page::OPTION_IS_INSTALLING, '1' );
+
+		( new Queue() )->start( [] );
+
+		$this->assertStringContainsString( 'Finish the installation', $this->display() );
+
+		remove_filter( 'rp4wp_job_is_install', '__return_false' );
+	}
+
 	public function test_a_2x_wizard_that_was_left_unfinished_can_be_finished_or_dismissed(): void {
 		update_option( Page::OPTION_IS_INSTALLING, '1' );
 
