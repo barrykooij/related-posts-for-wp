@@ -1,22 +1,27 @@
 {
     "publish": {
         "words": {
-            "coffee": "0.309527",
-            "espresso": "0.315566",
-            "fresh": "0.036765",
-            "italian": "0.154764",
-            "italy": "0.367653",
-            "pasta": "0.588245",
-            "plate": "0.064568",
-            "rome": "0.273539",
-            "taste": "0.052594",
-            "travel": "0.462893",
-            "walk": "0.045590"
+            "cat:travel": "0.285905",
+            "coffee": "0.191179",
+            "espresso": "0.389817",
+            "fresh": "0.045416",
+            "italian": "0.191179",
+            "italy": "0.227080",
+            "pasta": "0.499576",
+            "plate": "0.079761",
+            "post:lifecycle-new-post": "0.079761",
+            "rome": "0.337901",
+            "tag:coffee": "0.207626",
+            "tag:italy": "0.227080",
+            "tag:pasta": "0.281584",
+            "taste": "0.064969",
+            "travel": "0.285905",
+            "walk": "0.056317"
         },
         "children": [
             "rome-in-three-days",
             "fresh-pasta-dough",
-            "hiking-the-dolomites"
+            "espresso-at-home"
         ]
     },
     "unpublish": {
@@ -27,8 +32,8 @@
         "parents_after": [],
         "children_of": {
             "fresh-pasta-dough": [
-                "focaccia-with-rosemary",
                 "homemade-pizza-dough",
+                "focaccia-with-rosemary",
                 "lifecycle-new-post"
             ],
             "saving-tomato-seeds": [

@@ -211,7 +211,7 @@ final class QueueTest extends TestCase {
 				'post_content' => '',
 			]
 		);
-		PostState::unmark_indexed( $post_id );
+		( new Cache() )->delete_post( $post_id );
 
 		$job = $this->queue->start( [ 'skip_linking' => true ] );
 		$this->run_until_done( $job->id );

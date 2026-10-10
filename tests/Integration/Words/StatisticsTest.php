@@ -119,8 +119,10 @@ final class StatisticsTest extends TestCase {
 		}
 		$post_id = $this->post( 'Sourdough notebook', implode( ' ', $words ) );
 
-		$this->assertCount( 25, $this->rows( $post_id ) );
-		$this->assertArrayHasKey( 'sourdough', $this->rows( $post_id ), 'A title word counts 5 times.' );
+		$rows = $this->rows( $post_id );
+		$this->assertCount( 25, array_filter( array_keys( $rows ), static fn( $word ) => false === strpos( (string) $word, ':' ) ), '25 words.' );
+		$this->assertArrayHasKey( 'post:' . $post_id, $rows, 'And on top of them its own token.' );
+		$this->assertArrayHasKey( 'sourdough', $rows, 'A title word counts 5 times.' );
 	}
 
 	public function test_the_score_is_a_cosine_and_ties_go_by_id(): void {
@@ -132,7 +134,9 @@ final class StatisticsTest extends TestCase {
 		$related = ( new Finder() )->related_posts( $third, 5 );
 
 		$this->assertSame( [ $first, $second ], array_map( 'intval', array_column( $related, 'ID' ) ) );
-		$this->assertEqualsWithDelta( 1.0, (float) $related[0]->CMS, 1e-4, 'The same words give a score of 1.' );
+		$this->assertEqualsWithDelta( (float) $related[0]->CMS, (float) $related[1]->CMS, 1e-6, 'The same score.' );
+		$this->assertGreaterThan( 0.5, (float) $related[0]->CMS, 'The same words; only their own tokens differ.' );
+		$this->assertLessThan( 1.0, (float) $related[0]->CMS );
 		$this->assertSame( 'Climbing roses', $related[0]->post_title );
 	}
 

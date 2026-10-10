@@ -28,12 +28,12 @@
                 "manual": false
             },
             {
-                "child": "focaccia-with-rosemary",
+                "child": "homemade-pizza-dough",
                 "position": 1,
                 "manual": false
             },
             {
-                "child": "homemade-pizza-dough",
+                "child": "focaccia-with-rosemary",
                 "position": 2,
                 "manual": false
             }
@@ -48,12 +48,12 @@
                 "manual": false
             },
             {
-                "child": "growing-tomatoes",
+                "child": "saving-tomato-seeds",
                 "position": 1,
                 "manual": false
             },
             {
-                "child": "saving-tomato-seeds",
+                "child": "growing-tomatoes",
                 "position": 2,
                 "manual": false
             }
@@ -88,12 +88,12 @@
                 "manual": false
             },
             {
-                "child": "cold-brew-coffee",
+                "child": "coffee-and-code",
                 "position": 1,
                 "manual": false
             },
             {
-                "child": "coffee-and-code",
+                "child": "cold-brew-coffee",
                 "position": 2,
                 "manual": false
             }
@@ -133,7 +133,7 @@
                 "manual": false
             },
             {
-                "child": "homemade-pizza-dough",
+                "child": "wordpress-hooks-explained",
                 "position": 2,
                 "manual": false
             }
@@ -163,12 +163,12 @@
         "auto_linked": true,
         "children": [
             {
-                "child": "espresso-at-home",
+                "child": "pour-over-coffee",
                 "position": 0,
                 "manual": false
             },
             {
-                "child": "pour-over-coffee",
+                "child": "espresso-at-home",
                 "position": 1,
                 "manual": false
             },
@@ -183,12 +183,12 @@
         "auto_linked": true,
         "children": [
             {
-                "child": "sourdough-bread-at-home",
+                "child": "fresh-pasta-dough",
                 "position": 0,
                 "manual": false
             },
             {
-                "child": "fresh-pasta-dough",
+                "child": "sourdough-bread-at-home",
                 "position": 1,
                 "manual": false
             },
@@ -203,12 +203,12 @@
         "auto_linked": true,
         "children": [
             {
-                "child": "rome-in-three-days",
+                "child": "hiking-gear-checklist",
                 "position": 0,
                 "manual": false
             },
             {
-                "child": "hiking-gear-checklist",
+                "child": "rome-in-three-days",
                 "position": 1,
                 "manual": false
             },
@@ -248,12 +248,12 @@
                 "manual": false
             },
             {
-                "child": "rome-in-three-days",
+                "child": "hiking-the-dolomites",
                 "position": 1,
                 "manual": false
             },
             {
-                "child": "hiking-the-dolomites",
+                "child": "rome-in-three-days",
                 "position": 2,
                 "manual": false
             }
@@ -273,7 +273,7 @@
                 "manual": false
             },
             {
-                "child": "rome-in-three-days",
+                "child": "hiking-the-dolomites",
                 "position": 2,
                 "manual": false
             }
@@ -468,12 +468,12 @@
                 "manual": false
             },
             {
-                "child": "php-8-features",
+                "child": "unit-testing-wordpress",
                 "position": 1,
                 "manual": false
             },
             {
-                "child": "unit-testing-wordpress",
+                "child": "php-8-features",
                 "position": 2,
                 "manual": false
             }
@@ -488,12 +488,12 @@
                 "manual": false
             },
             {
-                "child": "unit-testing-wordpress",
+                "child": "wordpress-plugin-basics",
                 "position": 1,
                 "manual": false
             },
             {
-                "child": "wordpress-plugin-basics",
+                "child": "unit-testing-wordpress",
                 "position": 2,
                 "manual": false
             }
@@ -523,12 +523,12 @@
         "auto_linked": true,
         "children": [
             {
-                "child": "wordpress-hooks-explained",
+                "child": "wordpress-plugin-basics",
                 "position": 0,
                 "manual": false
             },
             {
-                "child": "wordpress-plugin-basics",
+                "child": "wordpress-hooks-explained",
                 "position": 1,
                 "manual": false
             },
@@ -648,12 +648,12 @@
                 "manual": false
             },
             {
-                "child": "raised-vegetable-beds",
+                "child": "japanese-garden-design",
                 "position": 1,
                 "manual": false
             },
             {
-                "child": "japanese-garden-design",
+                "child": "raised-vegetable-beds",
                 "position": 2,
                 "manual": false
             }
@@ -688,12 +688,12 @@
                 "manual": false
             },
             {
-                "child": "growing-tomatoes",
+                "child": "herb-garden-basil",
                 "position": 1,
                 "manual": false
             },
             {
-                "child": "herb-garden-basil",
+                "child": "growing-tomatoes",
                 "position": 2,
                 "manual": false
             }
@@ -748,12 +748,12 @@
                 "manual": false
             },
             {
-                "child": "herb-garden-basil",
+                "child": "composting-for-beginners",
                 "position": 1,
                 "manual": false
             },
             {
-                "child": "composting-for-beginners",
+                "child": "herb-garden-basil",
                 "position": 2,
                 "manual": false
             }

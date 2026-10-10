@@ -41,7 +41,7 @@ final class CacheTest extends TestCase {
 
 		$this->assertSame( 0, $this->cache->uncached_post_count() );
 		$this->assertGreaterThan( 0, PostState::indexed_at( $post_id ) );
-		$this->assertSame( 0, $this->word_count( $post_id ) );
+		$this->assertSame( 1, $this->word_count( $post_id ), 'Only its own token, so posts that link to it find it.' );
 	}
 
 	public function test_a_post_with_emoji_gets_its_words(): void {

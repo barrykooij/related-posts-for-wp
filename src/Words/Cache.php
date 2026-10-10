@@ -77,15 +77,17 @@ class Cache {
 		global $wpdb;
 
 		$words = $this->extractor->post_words( $post_id );
-		if ( null === $words || count( $words->counts ) < 1 ) {
+		if ( null === $words || count( $words->counts ) + count( $words->terms ) < 1 ) {
 			PostState::mark_indexed( $post_id, false, null, null === $words ? '' : $words->language, null === $words ? 0 : $words->tokens );
 
 			return;
 		}
 
 		$post_type = $post_type ?? (string) get_post_type( $post_id );
-		$picked    = Statistics::pick( $words->counts, $this->statistics->df( array_keys( $words->counts ) ), $this->statistics->posts(), Statistics::amount() );
 		$params    = [];
+
+		// The words that say most about the post, and on top of them its tokens for what it is part of and points to.
+		$picked = Statistics::pick( $words->counts, $this->statistics->df( array_keys( $words->counts ) ), $this->statistics->posts(), Statistics::amount() ) + $words->terms;
 		foreach ( $picked as $word => $count ) {
 			array_push( $params, $post_id, (string) $word, 0, $post_type, $count, Tokenizer::VERSION );
 		}

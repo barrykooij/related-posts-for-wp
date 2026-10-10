@@ -196,7 +196,7 @@ final class GoldenMasterTest extends TestCase {
 			$cache[ $this->normalizer()->name( (int) $row['post_id'] ) ][ $row['word'] ] = number_format( (float) $row['weight'], 6, '.', '' ) . ' ' . $row['post_type'];
 		}
 
-		return $cache;
+		return array_map( [ $this->normalizer(), 'tokens' ], $cache );
 	}
 
 	/**
@@ -414,7 +414,7 @@ final class GoldenMasterTest extends TestCase {
 		);
 		$names  = array_merge( self::$ids, [ 'lifecycle-new-post' => $new_id ] );
 
-		$result['publish']['words']    = $this->words_of( $new_id );
+		$result['publish']['words']    = $this->words_of( $new_id, $names );
 		$result['publish']['children'] = $this->children_of( $new_id, $names );
 
 		// Moving an auto-linked post away from publish removes the links to it and relinks the posts that pointed to it.
@@ -571,16 +571,17 @@ final class GoldenMasterTest extends TestCase {
 	/**
 	 * The cached words of a post.
 	 *
-	 * @param int $post_id The post ID.
+	 * @param int                $post_id The post ID.
+	 * @param array<string, int> $names   More post IDs by name, for the tokens.
 	 *
 	 * @return array<string, string>
 	 */
-	private function words_of( int $post_id ): array {
+	private function words_of( int $post_id, array $names = [] ): array {
 		global $wpdb;
 
 		$rows = $wpdb->get_results( $wpdb->prepare( 'SELECT word, weight FROM ' . Table::name() . ' WHERE post_id = %d ORDER BY word', $post_id ), ARRAY_A ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.NotPrepared -- Reading our own table; the table name cannot be a placeholder.
 
-		return array_column(
+		$words = array_column(
 			array_map(
 				static function ( $row ) {
 					return [ $row['word'], number_format( (float) $row['weight'], 6, '.', '' ) ];
@@ -590,6 +591,8 @@ final class GoldenMasterTest extends TestCase {
 			1,
 			0
 		);
+
+		return ( new Normalizer() )->with_ids( array_merge( self::$ids, $names ) )->tokens( $words );
 	}
 
 	/**

@@ -35,15 +35,25 @@ final class PostWords {
 	public int $tokens;
 
 	/**
+	 * The tokens of the post for what it is part of and points to (`cat:12`, `tag:7`, `post:42`), with how many times
+	 * each counts. They are stored on top of the words.
+	 *
+	 * @var array<string, int>
+	 */
+	public array $terms;
+
+	/**
 	 * Constructor.
 	 *
 	 * @param array<int|string, int> $counts   The words and how many times they count.
 	 * @param string                 $language The language.
 	 * @param int                    $tokens   How many words the sources have.
+	 * @param array<string, int>     $terms    The tokens for what it is part of and points to.
 	 */
-	public function __construct( array $counts, string $language, int $tokens ) {
+	public function __construct( array $counts, string $language, int $tokens, array $terms = [] ) {
 		$this->counts   = $counts;
 		$this->language = $language;
 		$this->tokens   = $tokens;
+		$this->terms    = $terms;
 	}
 }

@@ -49,6 +49,46 @@ final class Normalizer {
 	}
 
 	/**
+	 * A word of the word cache with the IDs in its token replaced by names: `post:{ID}` by the name of the post,
+	 * `cat:{ID}`, `tag:{ID}` and `tax:{taxonomy}:{ID}` by the slug of the term. Other words stay.
+	 *
+	 * @param string $word The word.
+	 *
+	 * @return string
+	 */
+	public function token( string $word ): string {
+		if ( 1 === preg_match( '/^post:(\d+)$/', $word, $match ) ) {
+			return 'post:' . $this->name( (int) $match[1] );
+		}
+
+		if ( 1 === preg_match( '/^((?:cat|tag|tax:[^:]+):)(\d+)$/', $word, $match ) ) {
+			$term = get_term( (int) $match[2] );
+
+			return $match[1] . ( $term instanceof \WP_Term ? $term->slug : 'unknown' );
+		}
+
+		return $word;
+	}
+
+	/**
+	 * Words of the word cache by word, with the IDs in the tokens replaced by names (see token()), sorted.
+	 *
+	 * @param array<int|string, mixed> $words The words and what is known about each.
+	 *
+	 * @return array<string, mixed>
+	 */
+	public function tokens( array $words ): array {
+		$named = [];
+		foreach ( $words as $word => $value ) {
+			$named[ $this->token( (string) $word ) ] = $value;
+		}
+
+		ksort( $named, SORT_STRING );
+
+		return $named;
+	}
+
+	/**
 	 * Normalize a piece of HTML.
 	 *
 	 * @param string $html The HTML.

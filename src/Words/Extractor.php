@@ -10,17 +10,39 @@ namespace LV2\WordPress\RelatedPostsForWP\Words;
 /**
  * Finds the words that say most about a post, with a relative weight each.
  *
- * The sources of a post are its content, the titles of the posts it links to, its title, tags and categories; each
- * has a weight, how many times its words count (a title word counts 80 times). The tokenizer turns every source into
- * words, and the ignored words of the post's language go. The word cache keeps the words with the highest `tf * idf`
- * and weighs them (see Statistics). The premium add-on extends this class with its own sources and weights.
+ * The words of a post come from its content, its title, the names of its tags and categories and the titles of the
+ * posts it links to; each source has a weight, how many times its words count (a word in the content counts once). The
+ * tokenizer turns them into words, and the ignored words of the post's language go. The word cache keeps the words with
+ * the highest `tf * idf` and weighs them (see Statistics).
+ *
+ * On top of its words a post has tokens for what it is part of and points to (decision D53): `cat:{term_id}` for each
+ * category but the default one, `tag:{term_id}` for each tag, `post:{ID}` for itself and `post:{ID}` for each post it
+ * links to, each counting as many times as the weight of its kind. So posts in the same category, with the same tag,
+ * that link to each other or to the same post are related, and a category that half the posts are in counts for
+ * little. The names stay words too: they match the content of related posts that do not have the term (the quality
+ * plan, section 13.4). The premium add-on extends this class with its own sources, tokens and weights.
  */
 class Extractor {
 
 	/**
-	 * Weight of a word in a title of a post linked from the content.
+	 * How many times a post linked from the content counts: its token, and the words of its title.
 	 */
-	private const LINKED_TITLE_WEIGHT = 20;
+	private const LINK_WEIGHT = 10;
+
+	/**
+	 * The start of the token of a post: the post itself, or a post it links to.
+	 */
+	public const TOKEN_POST = 'post:';
+
+	/**
+	 * The start of the token of a category.
+	 */
+	public const TOKEN_CATEGORY = 'cat:';
+
+	/**
+	 * The start of the token of a tag.
+	 */
+	public const TOKEN_TAG = 'tag:';
 
 	/**
 	 * The ignored words.
@@ -42,6 +64,13 @@ class Extractor {
 	 * @var Language
 	 */
 	protected Language $language;
+
+	/**
+	 * The posts the last post links to, by post and content.
+	 *
+	 * @var array<string, int[]>
+	 */
+	private array $linked = [];
 
 	/**
 	 * Constructor.
@@ -83,7 +112,7 @@ class Extractor {
 	 */
 	public function words_of_post( int $post_id ): array {
 		$words = $this->post_words( $post_id );
-		if ( null === $words || count( $words->counts ) < 1 ) {
+		if ( null === $words || count( $words->counts ) + count( $words->terms ) < 1 ) {
 			return [];
 		}
 
@@ -91,7 +120,9 @@ class Extractor {
 		$df         = $statistics->df( array_keys( $words->counts ) );
 		$posts      = $statistics->posts();
 
-		return Statistics::weights( Statistics::pick( $words->counts, $df, $posts, Statistics::amount() ), $df, $posts );
+		$df = $df + $statistics->df( array_keys( $words->terms ) );
+
+		return Statistics::weights( Statistics::pick( $words->counts, $df, $posts, Statistics::amount() ) + $words->terms, $df, $posts );
 	}
 
 	/**
@@ -140,7 +171,7 @@ class Extractor {
 		// Most frequent first. Since PHP 8.0 this sort keeps the order of words with the same count.
 		arsort( $counts );
 
-		return new PostWords( $counts, $language, $tokens );
+		return new PostWords( $counts, $language, $tokens, $this->terms( $post ) );
 	}
 
 	/**
@@ -158,49 +189,83 @@ class Extractor {
 				'weight' => 1,
 				'detect' => true,
 			],
-		];
-
-		foreach ( $this->linked_titles( $post ) as $title ) {
-			$sources[] = [
-				'text'   => $title,
-				'weight' => $this->weight( 'link' ),
-			];
-		}
-
-		$sources[] = [
-			'text'   => (string) $post->post_title,
-			'weight' => $this->weight( 'title' ),
-			'detect' => true,
+			[
+				'text'   => (string) $post->post_title,
+				'weight' => $this->weight( 'title' ),
+				'detect' => true,
+			],
 		];
 
 		$tags = wp_get_post_tags( $post->ID, [ 'fields' => 'names' ] );
-		if ( is_array( $tags ) ) {
-			foreach ( $tags as $tag ) {
+		foreach ( is_array( $tags ) ? $tags : [] as $name ) {
+			$sources[] = [
+				'text'   => (string) $name,
+				'weight' => $this->weight( 'tag' ),
+			];
+		}
+
+		$default = (int) get_option( 'default_category' );
+		foreach ( (array) wp_get_post_categories( $post->ID, [ 'fields' => 'all' ] ) as $category ) {
+			if ( $category instanceof \WP_Term && $category->term_id !== $default ) {
 				$sources[] = [
-					'text'   => (string) $tag,
-					'weight' => $this->weight( 'tag' ),
+					'text'   => $category->name,
+					'weight' => $this->weight( 'cat' ),
 				];
 			}
 		}
 
-		$categories = wp_get_post_categories( $post->ID, [ 'fields' => 'all' ] );
-		if ( is_array( $categories ) ) {
-			foreach ( $categories as $category ) {
-				// Skip the default "Uncategorized" category.
-				if ( $category instanceof \WP_Term && 1 !== $category->term_id ) {
-					$sources[] = [
-						'text'   => $category->name,
-						'weight' => $this->weight( 'cat' ),
-					];
-				}
-			}
+		foreach ( $this->linked_post_ids( $post ) as $linked_post_id ) {
+			$sources[] = [
+				'text'   => (string) get_post_field( 'post_title', $linked_post_id ),
+				'weight' => $this->weight( 'link' ),
+			];
 		}
 
 		return $sources;
 	}
 
 	/**
-	 * How many times a word of a kind of source counts: `title`, `tag`, `cat` or `link`.
+	 * The tokens of a post for what it is part of and points to, with how many times each counts: itself, the posts it
+	 * links to, its categories but the default one, and its tags.
+	 *
+	 * @param \WP_Post $post The post.
+	 *
+	 * @return array<string, int> Token => how many times it counts.
+	 */
+	protected function terms( \WP_Post $post ): array {
+		$terms = [ self::TOKEN_POST . $post->ID => 1 ];
+
+		$link = (int) $this->weight( 'link' );
+		if ( $link > 0 ) {
+			foreach ( $this->linked_post_ids( $post ) as $linked_post_id ) {
+				$terms[ self::TOKEN_POST . $linked_post_id ] = $link;
+			}
+		}
+
+		$category = (int) $this->weight( 'cat' );
+		if ( $category > 0 ) {
+			$default = (int) get_option( 'default_category' );
+			foreach ( (array) wp_get_post_categories( $post->ID ) as $term_id ) {
+				if ( (int) $term_id !== $default ) {
+					$terms[ self::TOKEN_CATEGORY . (int) $term_id ] = $category;
+				}
+			}
+		}
+
+		$tag = (int) $this->weight( 'tag' );
+		if ( $tag > 0 ) {
+			$tags = wp_get_post_tags( $post->ID, [ 'fields' => 'ids' ] );
+			foreach ( is_array( $tags ) ? $tags : [] as $term_id ) {
+				$terms[ self::TOKEN_TAG . (int) $term_id ] = $tag;
+			}
+		}
+
+		return $terms;
+	}
+
+	/**
+	 * How many times a kind of source counts, its words and its token: `title` (a word of the title), `tag`, `cat` or
+	 * `link` (a post the content links to).
 	 *
 	 * @param string $type The kind of source.
 	 *
@@ -221,24 +286,26 @@ class Extractor {
 				return apply_filters( 'rp4wp_weight_title', 5 );
 			case 'tag':
 				/**
-				 * Filters how many times a word in a tag of the post counts.
+				 * Filters how many times a tag of the post counts: the words of its name, and its token.
 				 *
 				 * @since 1.0.0
+				 * @since 3.0.0 The tag also counts as a token, `tag:{term_id}`. The default is 5.
+				 *
+				 * @param int $weight The weight. Default 5.
+				 */
+				return apply_filters( 'rp4wp_weight_tag', 5 );
+			case 'cat':
+				/**
+				 * Filters how many times a category of the post counts: the words of its name, and its token.
+				 *
+				 * @since 1.0.0
+				 * @since 3.0.0 The category also counts as a token, `cat:{term_id}`. The default is 10.
 				 *
 				 * @param int $weight The weight. Default 10.
 				 */
-				return apply_filters( 'rp4wp_weight_tag', 10 );
-			case 'cat':
-				/**
-				 * Filters how many times a word in a category of the post counts.
-				 *
-				 * @since 1.0.0
-				 *
-				 * @param int $weight The weight. Default 20.
-				 */
-				return apply_filters( 'rp4wp_weight_cat', 20 );
+				return apply_filters( 'rp4wp_weight_cat', 10 );
 			case 'link':
-				return self::LINKED_TITLE_WEIGHT;
+				return self::LINK_WEIGHT;
 			default:
 				return 1;
 		}
@@ -268,32 +335,36 @@ class Extractor {
 	}
 
 	/**
-	 * The titles of the posts this post links to from its content.
+	 * The posts this post links to from its content, each once.
 	 *
 	 * @param \WP_Post $post The post.
 	 *
-	 * @return string[]
+	 * @return int[]
 	 */
-	private function linked_titles( \WP_Post $post ): array {
-		if ( false === stripos( (string) $post->post_content, '<a' ) ) {
+	protected function linked_post_ids( \WP_Post $post ): array {
+		$content = (string) $post->post_content;
+		if ( false === stripos( $content, '<a' ) ) {
 			return [];
 		}
 
-		preg_match_all( '`<a[^>]*href="([^"]+)"[^>]*>[^<]*</a>`iS', (string) preg_replace( '/\s+/', ' ', (string) $post->post_content ), $matches );
+		// The words and the tokens of a post both need them.
+		$key = $post->ID . ':' . md5( $content );
+		if ( isset( $this->linked[ $key ] ) ) {
+			return $this->linked[ $key ];
+		}
 
-		$titles = [];
-		foreach ( $matches[1] as $url ) {
-			$linked_post_id = url_to_postid( $url );
-			if ( 0 === $linked_post_id ) {
-				continue;
-			}
+		preg_match_all( '`<a\s[^>]*href\s*=\s*["\']([^"\']+)["\']`iS', $content, $matches );
 
-			$linked_post = get_post( $linked_post_id );
-			if ( null !== $linked_post ) {
-				$titles[] = (string) $linked_post->post_title;
+		$post_ids = [];
+		foreach ( array_unique( $matches[1] ) as $url ) {
+			$linked_post_id = url_to_postid( html_entity_decode( (string) $url ) );
+			if ( $linked_post_id > 0 && $linked_post_id !== (int) $post->ID && null !== get_post( $linked_post_id ) ) {
+				$post_ids[ $linked_post_id ] = $linked_post_id;
 			}
 		}
 
-		return $titles;
+		$this->linked = [ $key => array_values( $post_ids ) ];
+
+		return $this->linked[ $key ];
 	}
 }
