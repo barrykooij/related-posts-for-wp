@@ -14,7 +14,7 @@ npm run test:quality
 - `test:quality` runs the suite inside wp-env and prints `artifacts/quality/results/summary.md`, with the difference to the recorded baseline in brackets. It takes about a minute.
 - `test:quality:record` records the results as the new baseline in `tests/Quality/baseline/`. Record only when the algorithm is meant to change, and commit the baseline with that change.
 - `test:quality:gate` fails when a corpus is not better than its baseline: precision at 3 must go up, coverage must not drop by more than a point, and under 1 percent of the stored words may be stop words.
-- Premium runs the same commands from its own folder, on the corpora the free plugin built.
+- Premium runs the same commands from its own folder, on the corpora the free plugin built. Premium also has `test:quality:extras`, which measures its extras in about ten minutes and writes `artifacts/quality/results/extras.md`: freshness on publish (the posts published one by one, with precision over the oldest third), the fallback of force fill against random picks, and a maximum of links to a post.
 
 Environment variables, passed with `bash -c` inside wp-env:
 
