@@ -109,8 +109,14 @@ Yes there is!
 = Does Related Posts for WordPress supports WordPress Network / Multisite websites? =
 No, the free version does not. [The premium version however does, get it here](https://www.relatedpostsforwp.com/checkout/?utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=faq-item).
 
-= Does Related Posts for WordPress uses it's own database table? =
-There is one custom table created for the post cache, this table will however not be used at the frontend of your website. Related Posts are fetched with normal WP_Query objects.
+= How does Related Posts for WordPress find related posts? =
+It keeps the 25 most telling words of every post: words that are in the post often and in few other posts, so a word that is in every post on your site says little. The words of the title count 5 times, and the categories, tags and posts a post links to count as well. Common words like "the" and "and" are ignored in the language of each post, in 57 languages. Posts that share the most telling words are related; every post gets as many related posts as you chose, most related first.
+
+= Does Related Posts for WordPress use its own database tables? =
+Yes. It keeps the words of your posts, how many posts each word is in, the links between posts and when each post was read and linked in tables of its own, and records its changes to them in one more. Showing related posts reads only the links, so it stays fast.
+
+= What happens to my related posts when I update to 3.0? =
+On the first request after the update, the links move to the new tables. Then every post is read again and linked again in the background, one post at a time. No post shows fewer related posts meanwhile, related posts you added by hand keep their place, and a notice says when it is done.
 
 == Screenshots ==
 1. After activating Related Posts for WordPress, the settings screen offers to link your existing content: choose how many related posts every post gets and press Start.
@@ -128,6 +134,18 @@ There is one custom table created for the post cache, this table will however no
 * Feature: Related posts shown by the shortcode or the widget outside single posts, on pages and archives for example, get the CSS too.
 * Feature: The rp4wp_disable_css filter turns the CSS off, as in Premium.
 * Feature: Related Posts for WordPress Premium 3.0 is an add-on for this plugin: keep both installed and active. Next to Premium 2.x, this plugin leaves the related posts to Premium and asks to update it.
+* Feature: Better related posts. The words of a post count by how often they are in it and how rare they are on your site, and posts are compared as a whole, so words that are in every post decide little and long posts are recommended as often as short ones. Every post keeps its 25 most telling words (it was 6).
+* Feature: Categories, tags and the posts a post links to count when finding related posts: the words of their names, and the category, tag or linked post itself. A category with most posts in it counts for little.
+* Feature: The ignored words follow the language of each post, from WPML or Polylang or from the words of the post, with the ignored words of 57 languages. Posts in Chinese, Japanese and Korean get related posts, and accented letters match their plain form.
+* Feature: After the update, every post is read again and linked again in the background, one post at a time. No post shows fewer related posts meanwhile, related posts you added by hand keep their place, and a notice shows how far it is and when it is done.
+* Tweak: A word of the title counts 5 times (it was 80), a tag 5 (10) and a category 10 (20), so the content of a post counts too.
+* Tweak: Every post gets as many related posts as set, sorted from most to least related.
+* Tweak: A post published while the installer or the update runs is linked when it is done, with the words of every post in place.
+* Tweak: The links and the marks on posts move from posts and post meta to tables of their own, which makes showing related posts faster. The update moves them, and wp rp4wp migrate shows and undoes the changes to the database.
+* Tweak: The filters rp4wp_get_related_posts_sql, rp4wp_get_children_link_args and rp4wp_get_parents_link_args are removed; rp4wp_finder_clauses and rp4wp_links_query take their place.
+* Fix: The words of a post are removed when it is deleted or unpublished, also from WP-CLI and cron.
+* Fix: Words with 4-byte letters are stored, and HTML entities no longer count as words.
+* Fix: The rp4wp_after_link_add and rp4wp_after_link_delete actions fire for every link, also when posts are linked in batches or a post is removed.
 * Tweak: Related posts you add by hand are marked as such, so the refresh of Premium keeps them, also on a site that gets Premium later.
 * Fix: Related posts with the same link order keep the order they were added in, so a limit or an offset in the shortcode always shows the same posts.
 * Fix: The related posts meta box skips links to posts that no longer exist.

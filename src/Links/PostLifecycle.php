@@ -8,6 +8,7 @@
 namespace LV2\WordPress\RelatedPostsForWP\Links;
 
 use LV2\WordPress\RelatedPostsForWP\Compat\LegacyHooks;
+use LV2\WordPress\RelatedPostsForWP\Install\Jobs\Queue;
 use LV2\WordPress\RelatedPostsForWP\Main;
 use LV2\WordPress\RelatedPostsForWP\Module;
 use LV2\WordPress\RelatedPostsForWP\PostTypes;
@@ -43,7 +44,8 @@ class PostLifecycle implements Module {
 	 * @return void
 	 */
 	public static function run_deferred(): void {
-		if ( ! ( new LinkRepository() )->can_write() || ! Deferred::has() ) {
+		// Not while a job runs: it would link posts before every post has its words.
+		if ( ! Deferred::has() || ! ( new LinkRepository() )->can_write() || Queue::running() ) {
 			return;
 		}
 
@@ -111,7 +113,9 @@ class PostLifecycle implements Module {
 		}
 
 		$links = new LinkRepository();
-		if ( ! $links->can_write() ) {
+		if ( ! $links->can_write() || Queue::running() ) {
+			// While the links move, or while a job (such as an installation or the update) caches the words of every
+			// post, the post waits, and is linked when that is done, with the words of every post in place.
 			Deferred::add( (int) $post->ID, Deferred::LINK );
 
 			return;

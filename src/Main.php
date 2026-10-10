@@ -202,6 +202,7 @@ class Main {
 			Admin\Settings\Fields::class,
 			Admin\Settings\Page::class,
 			Install\Jobs\Runner::class,
+			Install\Update::class,
 			Rest\Routes::class,
 			Admin\PluginLinks::class,
 			Integrations\YoastDuplicatePost::class,

@@ -83,6 +83,17 @@ class Queue {
 	}
 
 	/**
+	 * Whether a background job runs now: an installation, premium's refresh or the update of 3.0.
+	 *
+	 * @return bool
+	 */
+	public static function running(): bool {
+		$job = ( new JobStore() )->get();
+
+		return null !== $job && $job->is_running();
+	}
+
+	/**
 	 * Start an installation.
 	 *
 	 * @param array<string, mixed> $request What the admin asked for, validated against the planner's args().

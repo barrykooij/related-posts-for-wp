@@ -113,6 +113,49 @@ class Finder {
 	}
 
 	/**
+	 * Published posts of the supported post types that were linked automatically before a time, newest first: the
+	 * posts the update of 3.0 links again.
+	 *
+	 * @param int $since The time, in milliseconds.
+	 * @param int $limit The maximum number of posts.
+	 *
+	 * @return int[]
+	 */
+	public function linked_before_post_ids( int $since, int $limit ): array {
+		global $wpdb;
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.NotPrepared -- Escaped post types, a condition from PostState and an integer.
+		return array_map( 'intval', $wpdb->get_col( $this->posts_sql( 'P.ID', PostState::linked_before_sql( 'P', $since ) ) . ' ORDER BY P.ID DESC LIMIT ' . max( 1, $limit ) ) );
+	}
+
+	/**
+	 * How many published posts of the supported post types were linked automatically before a time.
+	 *
+	 * @param int $since The time, in milliseconds.
+	 *
+	 * @return int
+	 */
+	public function linked_before_post_count( int $since ): int {
+		global $wpdb;
+
+		return (int) $wpdb->get_var( $this->posts_sql( 'COUNT(P.ID)', PostState::linked_before_sql( 'P', $since ) ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.NotPrepared -- See linked_before_post_ids().
+	}
+
+	/**
+	 * The query for published posts of the supported post types that meet a condition.
+	 *
+	 * @param string $select    What to select.
+	 * @param string $condition The condition.
+	 *
+	 * @return string
+	 */
+	private function posts_sql( string $select, string $condition ): string {
+		global $wpdb;
+
+		return "SELECT {$select} FROM {$wpdb->posts} P WHERE P.post_type IN ('" . implode( "','", array_map( 'esc_sql', PostTypes::supported() ) ) . "') AND P.post_status = 'publish' AND " . $condition;
+	}
+
+	/**
 	 * The query for published posts of the supported post types that were not linked automatically yet.
 	 *
 	 * @param string $select What to select.

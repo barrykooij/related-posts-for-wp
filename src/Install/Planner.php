@@ -10,6 +10,8 @@ namespace LV2\WordPress\RelatedPostsForWP\Install;
 use LV2\WordPress\RelatedPostsForWP\Contracts\InstallPlanner;
 use LV2\WordPress\RelatedPostsForWP\Install\Tasks\CacheWordsTask;
 use LV2\WordPress\RelatedPostsForWP\Install\Tasks\LinkPostsTask;
+use LV2\WordPress\RelatedPostsForWP\Install\Tasks\ReindexWordsTask;
+use LV2\WordPress\RelatedPostsForWP\Install\Tasks\RelinkPostsTask;
 use LV2\WordPress\RelatedPostsForWP\Install\Tasks\ResetTask;
 use LV2\WordPress\RelatedPostsForWP\Install\Tasks\SaveAmountTask;
 use LV2\WordPress\RelatedPostsForWP\Install\Tasks\WeighWordsTask;
@@ -71,6 +73,10 @@ class Planner implements InstallPlanner {
 	 * @return \LV2\WordPress\RelatedPostsForWP\Contracts\InstallTask[]
 	 */
 	public function plan( array $request ): array {
+		if ( ! empty( $request['update'] ) ) {
+			return $this->update_plan( (int) ( $request['generation'] ?? 0 ) );
+		}
+
 		$amount = max( 1, min( self::max_amount(), (int) ( $request['amount'] ?? 3 ) ) );
 		$tasks  = [];
 
@@ -87,6 +93,22 @@ class Planner implements InstallPlanner {
 		}
 
 		return $tasks;
+	}
+
+	/**
+	 * The tasks of the update of 3.0 (see Update): read every post again, weigh the words, and link every post that
+	 * was linked automatically again, by difference.
+	 *
+	 * @param int $generation When the update started, in milliseconds.
+	 *
+	 * @return \LV2\WordPress\RelatedPostsForWP\Contracts\InstallTask[]
+	 */
+	private function update_plan( int $generation ): array {
+		return [
+			new ReindexWordsTask( $generation ),
+			new WeighWordsTask( $generation ),
+			new RelinkPostsTask( self::current_amount(), $generation ),
+		];
 	}
 
 	/**

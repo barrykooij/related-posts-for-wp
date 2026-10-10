@@ -95,6 +95,15 @@ final class Migrations implements Module {
 	}
 
 	/**
+	 * Whether migrations were left for later in this request: they go on in the background.
+	 *
+	 * @return bool
+	 */
+	public static function unfinished(): bool {
+		return self::$unfinished;
+	}
+
+	/**
 	 * Run the pending migrations when the plugin sets up, before the modules: the callback of `rp4wp_setup_database`.
 	 *
 	 * @return void

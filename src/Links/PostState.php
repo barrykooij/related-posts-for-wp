@@ -279,6 +279,25 @@ final class PostState {
 	}
 
 	/**
+	 * An SQL condition: the post was linked, but before a time. For queries over posts.
+	 *
+	 * Without the state table no post matches: the mark on a post does not say when it was linked, so a relink could
+	 * never tell that it is done. The update, which asks for these posts, starts after the migrations anyway.
+	 *
+	 * @param string $alias The alias of the posts table in the query.
+	 * @param int    $since The time, in milliseconds.
+	 *
+	 * @return string
+	 */
+	public static function linked_before_sql( string $alias, int $since ): string {
+		if ( ! Schema::has_post_state() ) {
+			return '1 = 0';
+		}
+
+		return 'EXISTS ( SELECT 1 FROM ' . self::table() . " RP4WP_S WHERE RP4WP_S.post_id = {$alias}.ID AND RP4WP_S.linked_at > 0 AND RP4WP_S.linked_at < " . (int) $since . ' )';
+	}
+
+	/**
 	 * An SQL condition: the words of the post were not cached since a time, or never; with time 0, they were never
 	 * cached (a post without words counts as cached). For queries over posts.
 	 *

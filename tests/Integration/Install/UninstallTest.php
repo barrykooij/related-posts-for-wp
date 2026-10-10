@@ -108,7 +108,7 @@ final class UninstallTest extends TestCase {
 		$this->assertSame( '', get_post_meta( $this->parent, 'rp4wp_words_cached', true ) );
 
 		// Options.
-		foreach ( [ 'rp4wp', 'rp4wp_do_install', 'rp4wp_is_installing', 'rp4wp_install_date', 'rp4wp_hide_nag', 'widget_rp4wp_related_posts_widget', 'rp4wp_install_job', 'rp4wp_install_lock', 'rp4wp_storage', 'rp4wp_db_state', 'rp4wp_deferred_links', 'rp4wp_cached_posts', 'rp4wp_weigh_cursor' ] as $option ) {
+		foreach ( [ 'rp4wp', 'rp4wp_do_install', 'rp4wp_is_installing', 'rp4wp_install_date', 'rp4wp_hide_nag', 'widget_rp4wp_related_posts_widget', 'rp4wp_install_job', 'rp4wp_install_lock', 'rp4wp_storage', 'rp4wp_db_state', 'rp4wp_deferred_links', 'rp4wp_cached_posts', 'rp4wp_weigh_cursor', 'rp4wp_update' ] as $option ) {
 			$this->assertFalse( get_option( $option ), "Option {$option} should be deleted." );
 		}
 
