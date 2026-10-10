@@ -10,6 +10,7 @@ namespace LV2\WordPress\RelatedPostsForWP\Related;
 use LV2\WordPress\RelatedPostsForWP\Install\Table;
 use LV2\WordPress\RelatedPostsForWP\Links\PostState;
 use LV2\WordPress\RelatedPostsForWP\PostTypes;
+use LV2\WordPress\RelatedPostsForWP\Words\Tokenizer;
 
 /**
  * Finds related posts through the word cache: posts that share the most important words score highest.
@@ -19,7 +20,8 @@ class Finder {
 	/**
 	 * The posts related to a post, most related first.
 	 *
-	 * Each result has ID, post_title and CMS (the score).
+	 * Each result has ID, post_title and CMS (the score). Only words of the current version of the tokenizer count, so a
+	 * post never gets related posts from a mix of old and new words.
 	 *
 	 * @param int   $post_id The post.
 	 * @param int   $limit   The maximum number of posts; -1 for all.
@@ -40,6 +42,8 @@ class Finder {
 		INNER JOIN `{$wpdb->posts}` P ON P.`ID` = R.`post_id`
 		WHERE 1=1
 		AND O.`post_id` = %d
+		AND O.`version` = %d
+		AND R.`version` = %d
 		AND R.`post_type` = %s
 		AND R.`post_id` != %d
 		AND P.`post_status` = 'publish'
@@ -50,9 +54,9 @@ class Finder {
 
 		// phpcs:disable WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.DirectDatabaseQuery -- Our own table; values go through prepare().
 		if ( -1 !== $limit ) {
-			$sql = $wpdb->prepare( $sql . 'LIMIT 0,%d', $post_id, get_post_type( $post_id ), $post_id, $limit );
+			$sql = $wpdb->prepare( $sql . 'LIMIT 0,%d', $post_id, Tokenizer::VERSION, Tokenizer::VERSION, get_post_type( $post_id ), $post_id, $limit );
 		} else {
-			$sql = $wpdb->prepare( $sql, $post_id, get_post_type( $post_id ), $post_id );
+			$sql = $wpdb->prepare( $sql, $post_id, Tokenizer::VERSION, Tokenizer::VERSION, get_post_type( $post_id ), $post_id );
 		}
 
 		return (array) $wpdb->get_results( $sql );

@@ -1,12 +1,12 @@
 {
     "publish": {
         "words": {
-            "coffee": "0.018215",
-            "espresso": "0.147541",
-            "italian": "0.145719",
-            "pasta": "0.165756",
-            "rome": "0.147541",
-            "travel": "0.036430"
+            "coffee": "0.018349",
+            "espresso": "0.148624",
+            "italian": "0.146789",
+            "pasta": "0.166972",
+            "rome": "0.148624",
+            "travel": "0.036697"
         },
         "children": [
             "fresh-pasta-dough",

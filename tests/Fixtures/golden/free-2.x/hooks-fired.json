@@ -51,6 +51,9 @@
         1
     ],
     "rp4wp_ignored_words": [
+        2
+    ],
+    "rp4wp_language_detection_threshold": [
         1
     ],
     "rp4wp_links_query": [
@@ -60,6 +63,9 @@
         1
     ],
     "rp4wp_post_excerpt": [
+        2
+    ],
+    "rp4wp_post_language": [
         2
     ],
     "rp4wp_post_link": [
@@ -84,6 +90,12 @@
         1
     ],
     "rp4wp_thumbnail_size": [
+        1
+    ],
+    "rp4wp_tokenizer_use_intl": [
+        1
+    ],
+    "rp4wp_use_transactions": [
         1
     ],
     "rp4wp_weight_cat": [

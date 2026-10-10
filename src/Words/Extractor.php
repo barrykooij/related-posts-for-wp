@@ -10,9 +10,10 @@ namespace LV2\WordPress\RelatedPostsForWP\Words;
 /**
  * Finds the words that say most about a post, with a relative weight each.
  *
- * Words from the title, tags, categories and the titles of linked posts count several times (their weight); words
- * from the content count once. Ignored words and words shorter than two bytes are left out. The most frequent words
- * are kept, each weighted by its share of all words.
+ * The sources of a post are its content, the titles of the posts it links to, its title, tags and categories; each
+ * has a weight, how many times its words count (a title word counts 80 times). The tokenizer turns every source into
+ * words, the ignored words of the post's language go, and the most frequent words are kept, each weighted by its share
+ * of all words. The premium add-on extends this class with its own sources and weights.
  */
 class Extractor {
 
@@ -26,15 +27,50 @@ class Extractor {
 	 *
 	 * @var IgnoredWords
 	 */
-	private IgnoredWords $ignored_words;
+	protected IgnoredWords $ignored_words;
+
+	/**
+	 * The tokenizer.
+	 *
+	 * @var Tokenizer
+	 */
+	protected Tokenizer $tokenizer;
+
+	/**
+	 * The language detection.
+	 *
+	 * @var Language
+	 */
+	protected Language $language;
 
 	/**
 	 * Constructor.
 	 *
 	 * @param IgnoredWords|null $ignored_words The ignored words; a new list when null.
+	 * @param Tokenizer|null    $tokenizer     The tokenizer; a new one when null.
 	 */
-	public function __construct( ?IgnoredWords $ignored_words = null ) {
-		$this->ignored_words = $ignored_words ?? new IgnoredWords();
+	public function __construct( ?IgnoredWords $ignored_words = null, ?Tokenizer $tokenizer = null ) {
+		$this->tokenizer     = $tokenizer ?? new Tokenizer();
+		$this->ignored_words = $ignored_words ?? new IgnoredWords( $this->tokenizer );
+		$this->language      = new Language( $this->ignored_words );
+	}
+
+	/**
+	 * The ignored words this extractor uses.
+	 *
+	 * @return IgnoredWords
+	 */
+	public function ignored_words(): IgnoredWords {
+		return $this->ignored_words;
+	}
+
+	/**
+	 * The tokenizer this extractor uses.
+	 *
+	 * @return Tokenizer
+	 */
+	public function tokenizer(): Tokenizer {
+		return $this->tokenizer;
 	}
 
 	/**
@@ -45,133 +81,59 @@ class Extractor {
 	 * @return array<string, float> Word => weight.
 	 */
 	public function words_of_post( int $post_id ): array {
-		// 2.x sets this locale for the character conversion; restore the previous one afterwards.
-		$previous_locale = setlocale( LC_CTYPE, '0' );
-		setlocale( LC_CTYPE, 'en_US.UTF8' );
+		$words = $this->post_words( $post_id );
 
-		try {
-			return $this->extract( $post_id );
-		} finally {
-			if ( false !== $previous_locale ) {
-				setlocale( LC_CTYPE, $previous_locale );
-			}
-		}
+		return null === $words ? [] : $words->weights;
 	}
 
 	/**
-	 * Convert a string to plain UTF-8 words: accented letters lose their accent and punctuation becomes a space.
-	 *
-	 * @param string $text The text.
-	 *
-	 * @return string
-	 */
-	public function convert_characters( string $text ): string {
-		// Only encode when the text is not UTF-8 yet. This is what 2.x did with utf8_encode().
-		if ( 'UTF-8' !== mb_detect_encoding( $text, 'UTF-8', true ) ) {
-			$text = mb_convert_encoding( $text, 'UTF-8', 'ISO-8859-1' );
-		}
-
-		// The word cache table can't store 4-byte characters, such as emoji, and WordPress refuses the whole insert when
-		// one word has one (known issues K14 and P15). They separate words, like punctuation.
-		$text = (string) ( preg_replace( '/[\x{10000}-\x{10FFFF}]/u', ' ', $text ) ?? $text );
-
-		// Replace accented characters with their plain letter.
-		$text = htmlentities( $text, ENT_QUOTES, 'UTF-8' );
-		if ( false !== strpos( $text, '&' ) ) {
-			$text = html_entity_decode( (string) preg_replace( '~&([a-z]{1,2})(?:acute|cedil|circ|grave|lig|orn|ring|slash|tilde|uml);~iS', '$1', $text ), ENT_QUOTES, 'UTF-8' );
-		}
-
-		// Punctuation separates words.
-		return (string) preg_replace( '/[;:\'\"\[\]\-\_=\+\.,\/\\<>`~\(\)\!@#$%\^&\*\?\|]+/i', ' ', $text );
-	}
-
-	/**
-	 * Extract the words of a post.
+	 * The most important words of a post, with their weight, how many times they count, and the post's language.
 	 *
 	 * @param int $post_id The post ID.
 	 *
-	 * @return array<string, float>
+	 * @return PostWords|null Null when there is no such post.
 	 */
-	private function extract( int $post_id ): array {
+	public function post_words( int $post_id ): ?PostWords {
 		$post = get_post( $post_id );
 		if ( ! $post instanceof \WP_Post ) {
-			return [];
+			return null;
 		}
 
-		/**
-		 * Filters how many times a word in the post title counts.
-		 *
-		 * @since 1.0.0
-		 *
-		 * @param int $weight The weight. Default 80.
-		 */
-		$title_weight = apply_filters( 'rp4wp_weight_title', 80 );
+		$sources   = [];
+		$detection = [];
+		$tokens    = 0;
+		foreach ( $this->sources( $post ) as $source ) {
+			$words     = $this->tokenize( $source['text'] );
+			$sources[] = [ $words, (int) $source['weight'] ];
+			$tokens   += count( $words );
 
-		/**
-		 * Filters how many times a word in a tag of the post counts.
-		 *
-		 * @since 1.0.0
-		 *
-		 * @param int $weight The weight. Default 10.
-		 */
-		$tag_weight = apply_filters( 'rp4wp_weight_tag', 10 );
-
-		/**
-		 * Filters how many times a word in a category of the post counts.
-		 *
-		 * @since 1.0.0
-		 *
-		 * @param int $weight The weight. Default 20.
-		 */
-		$cat_weight = apply_filters( 'rp4wp_weight_cat', 20 );
-
-		$raw_words = $this->content_words( $post );
-
-		$raw_words = $this->add_words( $raw_words, explode( ' ', $this->convert_characters( $post->post_title ) ), $title_weight );
-
-		$tags = wp_get_post_tags( $post->ID, [ 'fields' => 'names' ] );
-		if ( is_array( $tags ) && count( $tags ) > 0 ) {
-			foreach ( $tags as $tag ) {
-				$raw_words = $this->add_words( $raw_words, explode( ' ', $this->convert_characters( $tag ) ), $tag_weight );
+			if ( ! empty( $source['detect'] ) ) {
+				$detection = array_merge( $detection, $words );
 			}
 		}
 
-		$categories = wp_get_post_categories( $post->ID, [ 'fields' => 'all' ] );
-		if ( is_array( $categories ) && count( $categories ) > 0 ) {
-			foreach ( $categories as $category ) {
-				// Skip the default "Uncategorized" category.
-				if ( 1 === $category->term_id ) {
-					continue;
-				}
+		$language = $this->language_of( $post, $detection );
+		$ignored  = $this->ignored_words->lookup( $language );
 
-				$raw_words = $this->add_words( $raw_words, explode( ' ', $this->convert_characters( $category->name ) ), $cat_weight );
+		// Count every word, as many times as the weight of its source. Ignored words count in the total.
+		$counts = [];
+		$total  = 0;
+		foreach ( $sources as [ $words, $weight ] ) {
+			if ( $weight <= 0 ) {
+				continue;
 			}
-		}
 
-		// Count every word.
-		$words = [];
-		if ( count( $raw_words ) > 0 ) {
-			$ignored_words = $this->ignored_words->get();
+			foreach ( $words as $word ) {
+				$total += $weight;
 
-			foreach ( $raw_words as $word ) {
-				$word = mb_strtolower( trim( $word ) );
-
-				// Words of one byte say nothing.
-				if ( strlen( $word ) < 2 ) {
-					continue;
+				if ( ! isset( $ignored[ $word ] ) ) {
+					$counts[ $word ] = ( $counts[ $word ] ?? 0 ) + $weight;
 				}
-
-				// 2.x compares loosely here, so for example "01" matches the ignored word "1". Keep it that way.
-				if ( in_array( $word, $ignored_words ) ) { // phpcs:ignore WordPress.PHP.StrictInArray.MissingTrueStrict -- See above.
-					continue;
-				}
-
-				$words[ $word ] = isset( $words[ $word ] ) ? $words[ $word ] + 1 : 1;
 			}
 		}
 
 		// Most frequent first. Since PHP 8.0 this sort keeps the order of words with the same count.
-		arsort( $words );
+		arsort( $counts );
 
 		/**
 		 * Filters how many words are stored per post.
@@ -180,36 +142,155 @@ class Extractor {
 		 *
 		 * @param int $amount The number of words. Default 6.
 		 */
-		$amount    = apply_filters( 'rp4wp_cache_word_amount', 6 );
-		$total     = count( $raw_words );
-		$new_words = [];
-		$added     = 0;
+		$amount = (int) apply_filters( 'rp4wp_cache_word_amount', 6 );
 
-		foreach ( $words as $word => $count ) {
-			$new_words[ (string) $word ] = $count / $total;
-
-			++$added;
-			if ( $added >= $amount ) {
-				break;
-			}
+		$kept    = [];
+		$weights = [];
+		foreach ( array_slice( $counts, 0, max( 0, $amount ), true ) as $word => $count ) {
+			$kept[ (string) $word ]    = (int) $count;
+			$weights[ (string) $word ] = $count / $total;
 		}
 
-		return $new_words;
+		return new PostWords( $weights, $kept, $language, $tokens );
 	}
 
 	/**
-	 * The words of the post content, plus the words of the titles of posts linked from the content.
+	 * The texts of a post with their weight: how many times each of their words counts, and whether they say which
+	 * language the post is in.
+	 *
+	 * @param \WP_Post $post The post.
+	 *
+	 * @return array<int, array{text: string, weight: mixed, detect?: bool}>
+	 */
+	protected function sources( \WP_Post $post ): array {
+		$sources = [
+			[
+				'text'   => (string) $post->post_content,
+				'weight' => 1,
+				'detect' => true,
+			],
+		];
+
+		foreach ( $this->linked_titles( $post ) as $title ) {
+			$sources[] = [
+				'text'   => $title,
+				'weight' => $this->weight( 'link' ),
+			];
+		}
+
+		$sources[] = [
+			'text'   => (string) $post->post_title,
+			'weight' => $this->weight( 'title' ),
+			'detect' => true,
+		];
+
+		$tags = wp_get_post_tags( $post->ID, [ 'fields' => 'names' ] );
+		if ( is_array( $tags ) ) {
+			foreach ( $tags as $tag ) {
+				$sources[] = [
+					'text'   => (string) $tag,
+					'weight' => $this->weight( 'tag' ),
+				];
+			}
+		}
+
+		$categories = wp_get_post_categories( $post->ID, [ 'fields' => 'all' ] );
+		if ( is_array( $categories ) ) {
+			foreach ( $categories as $category ) {
+				// Skip the default "Uncategorized" category.
+				if ( $category instanceof \WP_Term && 1 !== $category->term_id ) {
+					$sources[] = [
+						'text'   => $category->name,
+						'weight' => $this->weight( 'cat' ),
+					];
+				}
+			}
+		}
+
+		return $sources;
+	}
+
+	/**
+	 * How many times a word of a kind of source counts: `title`, `tag`, `cat` or `link`.
+	 *
+	 * @param string $type The kind of source.
+	 *
+	 * @return mixed From a filter, so not always an int.
+	 */
+	protected function weight( string $type ) {
+		switch ( $type ) {
+			case 'title':
+				/**
+				 * Filters how many times a word in the post title counts.
+				 *
+				 * @since 1.0.0
+				 *
+				 * @param int $weight The weight. Default 80.
+				 */
+				return apply_filters( 'rp4wp_weight_title', 80 );
+			case 'tag':
+				/**
+				 * Filters how many times a word in a tag of the post counts.
+				 *
+				 * @since 1.0.0
+				 *
+				 * @param int $weight The weight. Default 10.
+				 */
+				return apply_filters( 'rp4wp_weight_tag', 10 );
+			case 'cat':
+				/**
+				 * Filters how many times a word in a category of the post counts.
+				 *
+				 * @since 1.0.0
+				 *
+				 * @param int $weight The weight. Default 20.
+				 */
+				return apply_filters( 'rp4wp_weight_cat', 20 );
+			case 'link':
+				return self::LINKED_TITLE_WEIGHT;
+			default:
+				return 1;
+		}
+	}
+
+	/**
+	 * The words of a text.
+	 *
+	 * @param string $text The text.
+	 *
+	 * @return string[]
+	 */
+	protected function tokenize( string $text ): array {
+		return $this->tokenizer->tokens( $text );
+	}
+
+	/**
+	 * The language of a post.
+	 *
+	 * @param \WP_Post $post   The post.
+	 * @param string[] $tokens The words of its title and content.
+	 *
+	 * @return string
+	 */
+	protected function language_of( \WP_Post $post, array $tokens ): string {
+		return $this->language->of_post( $post, $tokens );
+	}
+
+	/**
+	 * The titles of the posts this post links to from its content.
 	 *
 	 * @param \WP_Post $post The post.
 	 *
 	 * @return string[]
 	 */
-	private function content_words( \WP_Post $post ): array {
-		$content = trim( (string) preg_replace( '/\s+/', ' ', $post->post_content ) );
+	private function linked_titles( \WP_Post $post ): array {
+		if ( false === stripos( (string) $post->post_content, '<a' ) ) {
+			return [];
+		}
 
-		// Titles of posts this post links to.
-		$linked_words = [];
-		preg_match_all( '`<a[^>]*href="([^"]+)"[^>]*>[^<]*</a>`iS', $content, $matches );
+		preg_match_all( '`<a[^>]*href="([^"]+)"[^>]*>[^<]*</a>`iS', (string) preg_replace( '/\s+/', ' ', (string) $post->post_content ), $matches );
+
+		$titles = [];
 		foreach ( $matches[1] as $url ) {
 			$linked_post_id = url_to_postid( $url );
 			if ( 0 === $linked_post_id ) {
@@ -218,41 +299,10 @@ class Extractor {
 
 			$linked_post = get_post( $linked_post_id );
 			if ( null !== $linked_post ) {
-				$linked_words = $this->add_words( $linked_words, explode( ' ', $this->convert_characters( $linked_post->post_title ) ), self::LINKED_TITLE_WEIGHT );
+				$titles[] = (string) $linked_post->post_title;
 			}
 		}
 
-		// strip_tags(), not wp_strip_all_tags(): the latter also drops the contents of script and style tags.
-		$content = strip_tags( $content ); // phpcs:ignore WordPress.WP.AlternativeFunctions.strip_tags_strip_tags -- Same result as 2.x.
-		$content = strip_shortcodes( $content );
-		$content = str_ireplace( '<!--more-->', '', $content );
-		$content = $this->convert_characters( $content );
-
-		return array_merge( explode( ' ', $content ), $linked_words );
-	}
-
-	/**
-	 * Add words to a list as many times as their weight.
-	 *
-	 * @param string[] $base   The list to add to.
-	 * @param string[] $words  The words to add.
-	 * @param mixed    $weight How many times each word counts; from a filter, so not always an int.
-	 *
-	 * @return string[]
-	 */
-	private function add_words( array $base, array $words, $weight ): array {
-		if ( $weight <= 0 ) {
-			return $base;
-		}
-
-		foreach ( $words as $word ) {
-			if ( empty( $word ) ) {
-				continue;
-			}
-
-			$base = array_merge( $base, array_fill( 0, (int) $weight, $word ) );
-		}
-
-		return $base;
+		return $titles;
 	}
 }

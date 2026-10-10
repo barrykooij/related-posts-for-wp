@@ -1,7 +1,12 @@
 <?php
+/**
+ * The ignored words of 2.x for this locale: since 3.0 an alias of the list of its language. Removed in 4.0.
+ *
+ * @package RelatedPostsForWP
+ */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
-return array( 'alle', 'andre', 'arbeid', 'av', 'begge', 'bort', 'bra', 'bruke', 'da', 'denne', 'der', 'deres', 'det', 'din', 'disse', 'du', 'eller', 'en', 'ene', 'eneste', 'enhver', 'enn', 'er', 'et', 'folk', 'for', 'fordi', 'forsÛke', 'fra', 'fÅ', 'fÛr', 'fÛrst', 'gjorde', 'gjÛre', 'god', 'gÅ', 'ha', 'hadde', 'han', 'hans', 'hennes', 'her', 'hva', 'hvem', 'hver', 'hvilken', 'hvis', 'hvor', 'hvordan', 'hvorfor', 'i', 'ikke', 'inn', 'innen', 'kan', 'kunne', 'lage', 'lang', 'lik', 'like', 'makt', 'mange', 'med', 'meg', 'meget', 'men', 'mens', 'mer', 'mest', 'min', 'mye', 'mÅ', 'mÅte', 'navn', 'nei', 'ny', 'nÅ', 'nÅr', 'og', 'ogsÅ', 'om', 'opp', 'oss', 'over', 'part', 'punkt', 'pÅ', 'rett', 'riktig', 'samme', 'sant', 'si', 'siden', 'sist', 'skulle', 'slik', 'slutt', 'som', 'start', 'stille', 'sÅ', 'tid', 'til', 'tilbake', 'tilstand', 'under', 'ut', 'uten', 'var', 'ved', 'verdi', 'vi', 'vil', 'ville', 'vite', 'vÅr', 'vÖre', 'vÖrt', 'Å',);
+return require __DIR__ . '/no.php';

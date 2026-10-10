@@ -8,6 +8,7 @@
 namespace LV2\WordPress\RelatedPostsForWP\Tests\Quality;
 
 use LV2\WordPress\RelatedPostsForWP\Install\Table;
+use LV2\WordPress\RelatedPostsForWP\Words\Tokenizer;
 use LV2\WordPress\RelatedPostsForWP\Related\Finder;
 use LV2\WordPress\RelatedPostsForWP\Words\Cache;
 
@@ -84,12 +85,12 @@ final class CoreAlgorithm implements Algorithm {
 		$values = [];
 		foreach ( $vectors as $post_id => $words ) {
 			foreach ( $words as $word => $weight ) {
-				$values[] = $wpdb->prepare( '(%d, %s, %f, %s)', $post_id, (string) $word, $weight, 'post' );
+				$values[] = $wpdb->prepare( '(%d, %s, %f, %s, %d)', $post_id, (string) $word, $weight, 'post', Tokenizer::VERSION );
 			}
 		}
 
 		foreach ( array_chunk( $values, 5000 ) as $chunk ) {
-			$wpdb->query( 'INSERT INTO ' . Table::name() . ' (post_id, word, weight, post_type) VALUES ' . implode( ',', $chunk ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.NotPrepared -- Each row is prepared above.
+			$wpdb->query( 'INSERT INTO ' . Table::name() . ' (post_id, word, weight, post_type, version) VALUES ' . implode( ',', $chunk ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.NotPrepared -- Each row is prepared above.
 		}
 	}
 }

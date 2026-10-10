@@ -13,7 +13,7 @@
                 "manual": false
             },
             {
-                "child": "espresso-at-home",
+                "child": "risotto-technique",
                 "position": 2,
                 "manual": false
             }
@@ -63,17 +63,17 @@
         "auto_linked": true,
         "children": [
             {
-                "child": "sourdough-bread-at-home",
+                "child": "pour-over-coffee",
                 "position": 0,
                 "manual": false
             },
             {
-                "child": "pour-over-coffee",
+                "child": "cold-brew-coffee",
                 "position": 1,
                 "manual": false
             },
             {
-                "child": "cold-brew-coffee",
+                "child": "coffee-and-code",
                 "position": 2,
                 "manual": false
             }
@@ -248,12 +248,12 @@
                 "manual": false
             },
             {
-                "child": "cold-brew-coffee",
+                "child": "coffee-and-code",
                 "position": 1,
                 "manual": false
             },
             {
-                "child": "coffee-and-code",
+                "child": "cold-brew-coffee",
                 "position": 2,
                 "manual": false
             }
@@ -513,7 +513,7 @@
                 "manual": false
             },
             {
-                "child": "unit-testing-wordpress",
+                "child": "php-8-features",
                 "position": 2,
                 "manual": false
             }
@@ -573,7 +573,7 @@
                 "manual": false
             },
             {
-                "child": "unit-testing-wordpress",
+                "child": "php-8-features",
                 "position": 2,
                 "manual": false
             }
@@ -648,12 +648,12 @@
                 "manual": false
             },
             {
-                "child": "climbing-roses",
+                "child": "composting-for-beginners",
                 "position": 1,
                 "manual": false
             },
             {
-                "child": "saving-tomato-seeds",
+                "child": "climbing-roses",
                 "position": 2,
                 "manual": false
             }
@@ -668,12 +668,12 @@
                 "manual": false
             },
             {
-                "child": "lawn-care-autumn",
+                "child": "herb-garden-basil",
                 "position": 1,
                 "manual": false
             },
             {
-                "child": "raised-vegetable-beds",
+                "child": "lawn-care-autumn",
                 "position": 2,
                 "manual": false
             }

@@ -8,7 +8,8 @@
 namespace LV2\WordPress\RelatedPostsForWP\Install;
 
 /**
- * The word cache table: the most important words of every post, with their weight.
+ * The word cache table: the most important words of every post, with their weight, how many times they count and the
+ * version of the tokenizer that found them. The migrations of 3.0 create and upgrade it (see the migrations folder).
  */
 class Table {
 
@@ -29,7 +30,7 @@ class Table {
 	}
 
 	/**
-	 * Create the table if it does not exist. The schema is the same as in 2.x.
+	 * Create the table if it does not exist, in the shape the migrations give it.
 	 *
 	 * @return void
 	 */
@@ -42,10 +43,13 @@ class Table {
 		$wpdb->query(
 			"CREATE TABLE IF NOT EXISTS `{$table}` (
   `post_id` bigint(20) unsigned NOT NULL,
-  `word` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `weight` float unsigned NOT NULL,
-  `post_type` varchar(20) CHARACTER SET utf8 NOT NULL,
-  PRIMARY KEY (`post_id`,`word`) ) ENGINE=InnoDB DEFAULT CHARSET=utf8;"
+  `word` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `weight` float unsigned NOT NULL DEFAULT 0,
+  `post_type` varchar(20) NOT NULL,
+  `tf` float unsigned NOT NULL DEFAULT 0,
+  `version` tinyint(3) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`post_id`,`word`),
+  KEY `word_cover` (`word`,`version`,`post_type`,`post_id`,`weight`) ) " . $wpdb->get_charset_collate() . ';'
 		);
 		// phpcs:enable
 	}

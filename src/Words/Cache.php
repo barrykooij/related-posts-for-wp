@@ -7,6 +7,7 @@
 
 namespace LV2\WordPress\RelatedPostsForWP\Words;
 
+use LV2\WordPress\RelatedPostsForWP\Database\Transaction;
 use LV2\WordPress\RelatedPostsForWP\Install\Table;
 use LV2\WordPress\RelatedPostsForWP\Links\PostState;
 use LV2\WordPress\RelatedPostsForWP\PostTypes;
@@ -52,40 +53,50 @@ class Cache {
 	/**
 	 * Store the words of a post, replacing the words stored before.
 	 *
-	 * A post without words keeps its previous words, like in 2.x. Either way the post is marked as cached.
+	 * The old words go and the new words come in one transaction, so finding the related posts of another post never
+	 * sees this post without words; when the new words can't be stored, the old ones stay. A post without words keeps
+	 * its previous words, like in 2.x. Either way the post is marked as cached, with its language.
 	 *
-	 * @param int $post_id The post ID.
+	 * @param int         $post_id   The post ID.
+	 * @param string|null $post_type The post type the words are stored for; the post's own by default.
 	 *
 	 * @return void
 	 */
-	public function save_post( int $post_id ): void {
+	public function save_post( int $post_id, ?string $post_type = null ): void {
 		global $wpdb;
 
-		$words = $this->extractor->words_of_post( $post_id );
-		if ( count( $words ) < 1 ) {
-			PostState::mark_indexed( $post_id, false );
+		$words = $this->extractor->post_words( $post_id );
+		if ( null === $words || count( $words->weights ) < 1 ) {
+			PostState::mark_indexed( $post_id, false, null, null === $words ? '' : $words->language, null === $words ? 0 : $words->tokens );
 
 			return;
 		}
 
-		$post_type = get_post_type( $post_id );
-
-		$this->delete_post( $post_id );
-
-		$params = [];
-		foreach ( $words as $word => $weight ) {
-			$params[] = $post_id;
-			$params[] = $word;
-			$params[] = $weight;
-			$params[] = $post_type;
+		$post_type = $post_type ?? (string) get_post_type( $post_id );
+		$params    = [];
+		foreach ( $words->weights as $word => $weight ) {
+			array_push( $params, $post_id, (string) $word, $weight, $post_type, $words->counts[ $word ] ?? 0, Tokenizer::VERSION );
 		}
 
-		$values = rtrim( str_repeat( '( %d, %s, %f, %s ),', count( $words ) ), ',' );
+		$values = rtrim( str_repeat( '( %d, %s, %f, %s, %d, %d ),', count( $words->weights ) ), ',' );
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare -- Our own table; the VALUES placeholders are built from the word count.
-		$stored = false !== $wpdb->query( $wpdb->prepare( 'INSERT INTO ' . Table::name() . " (post_id, word, weight, post_type ) VALUES {$values}", $params ) );
+		try {
+			Transaction::run(
+				function () use ( $wpdb, $post_id, $values, $params ) {
+					Transaction::query( $wpdb->prepare( 'DELETE FROM ' . Table::name() . ' WHERE post_id = %d', $post_id ) ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- Our own table.
 
-		PostState::mark_indexed( $post_id, $stored );
+					// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare -- Our own table; the VALUES placeholders are built from the word count.
+					Transaction::query( $wpdb->prepare( 'INSERT INTO ' . Table::name() . " (post_id, word, weight, post_type, tf, version) VALUES {$values}", $params ) );
+				}
+			);
+		} catch ( \RuntimeException $error ) {
+			// Marked as cached all the same, so an installation does not wait for it (known issue P15).
+			PostState::mark_indexed( $post_id, false, null, $words->language, $words->tokens );
+
+			return;
+		}
+
+		PostState::mark_indexed( $post_id, true, null, $words->language, $words->tokens );
 	}
 
 	/**

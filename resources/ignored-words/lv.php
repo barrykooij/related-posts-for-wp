@@ -1,0 +1,7 @@
+<?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+} // Exit if accessed directly
+
+return array( 'aiz', 'ap', 'apaks', 'apakspus', 'ar', 'ari', 'arpus', 'augspus', 'bet', 'bez', 'bija', 'bijam', 'bijat', 'biji', 'biju', 'bus', 'busi', 'busiet', 'busim', 'busu', 'but', 'caur', 'del', 'diemzel', 'diezin', 'drosi', 'esam', 'esat', 'esi', 'esmu', 'gan', 'gar', 'iekam', 'iekams', 'ieks', 'iekspus', 'ik', 'ir', 'it', 'itin', 'iz', 'ja', 'jau', 'jeb', 'jebsu', 'jel', 'jo', 'ka', 'kamer', 'kaut', 'klus', 'klusi', 'klusiet', 'klusim', 'klust', 'klustam', 'klustat', 'klusti', 'klustu', 'klusu', 'klut', 'kluva', 'kluvam', 'kluvat', 'kluvi', 'kluvu', 'kolidz', 'kops', 'labad', 'lai', 'lejpus', 'lidz', 'lidzko', 'ne', 'nebut', 'nedz', 'neka', 'nevis', 'nezin', 'no', 'nu', 'otrpus', 'pa', 'par', 'pat', 'pec', 'pie', 'pirms', 'pret', 'prieks', 'saipus', 'starp', 'ta', 'tacu', 'tad', 'tadel', 'tak', 'talab', 'tapat', 'tapec', 'tapi', 'taps', 'tapsi', 'tapsiet', 'tapsim', 'tapsu', 'tapt', 'te', 'tiec', 'tiek', 'tiekam', 'tiekat', 'tieku', 'tik', 'tika', 'tikai', 'tikam', 'tikat', 'tiki', 'tikko', 'tiklab', 'tiklidz', 'tiks', 'tiksiet', 'tiksim', 'tiksu', 'tikt', 'tiku', 'tikvien', 'tomer', 'topat', 'turpreti', 'turpretim', 'un', 'uz', 'vai', 'var', 'varat', 'vareja', 'varejam', 'varejat', 'vareji', 'vareju', 'vares', 'varesi', 'varesiet', 'varesim', 'varesu', 'varet', 'vien', 'vinpus', 'virs', 'virspus', 'vis', 'zem' );

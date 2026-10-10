@@ -58,6 +58,7 @@
     "test:integration": "phpunit -c phpunit-integration.xml.dist",
     "test:coverage": "phpunit --testsuite Unit --coverage-html coverage/",
     "legacy:classmap": "php scripts/legacy-classmap.php",
+    "words:normalize": "php scripts/ignored-words.php",
     "qa": [
       "@lint",
       "@lint:bootstrap",
@@ -76,6 +77,7 @@
     "test:integration": "Run the PHPUnit integration suite. Needs WordPress, so run it inside wp-env with `npm run test:integration`.",
     "test:coverage": "Run the unit suite with an HTML coverage report.",
     "legacy:classmap": "Write deprecated/classmap.php, the map LegacyClassLoader loads the 2.x classes from.",
+    "words:normalize": "Normalize the lists in resources/ignored-words the way the tokenizer normalizes words; --import=<folder> takes the lists of another folder first.",
     "qa": "Run lint, the bootstrap compatibility check, stan and the unit tests."
   }
 }

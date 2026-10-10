@@ -23,6 +23,7 @@ Environment variables, passed with `bash -c` inside wp-env:
 | `RP4WP_QUALITY_ONLY` | Comma-separated corpora to run, for example `golden,blog` |
 | `RP4WP_QUALITY_SCALE` | Posts in the scale test; `0` skips it. Default 50,000 |
 | `RP4WP_QUALITY_CORPORA` | Another corpora folder |
+| `RP4WP_QUALITY_NO_INTL` | `1` runs the tokenizer as on a server without intl: no NFKC, and pairs of characters for Chinese and Japanese |
 
 The GitHub workflow `quality.yml` runs the suite on pushes that change the algorithm and on demand, and nightly once it is on the default branch. The summary is on the run's summary page.
 

@@ -9,6 +9,7 @@ namespace LV2\WordPress\RelatedPostsForWP\Links;
 
 use LV2\WordPress\RelatedPostsForWP\Database\Schema;
 use LV2\WordPress\RelatedPostsForWP\Words\Cache;
+use LV2\WordPress\RelatedPostsForWP\Words\Tokenizer;
 
 /**
  * What the plugin knows per post: when its words were cached (indexed), and when it was linked to its related posts.
@@ -21,9 +22,9 @@ use LV2\WordPress\RelatedPostsForWP\Words\Cache;
 final class PostState {
 
 	/**
-	 * The version of the word extraction that writes the rows; the tokenizer of the quality plan raises it.
+	 * The version of the words a row says the post was indexed with: the version of the tokenizer.
 	 */
-	public const WORDS_VERSION = 1;
+	public const WORDS_VERSION = Tokenizer::VERSION;
 
 	/**
 	 * The time to mark something with: milliseconds since the Unix epoch, so two marks in the same second still come
@@ -79,7 +80,7 @@ final class PostState {
 			return;
 		}
 
-		self::upsert( $post_id, 'linked_at', $time ?? self::now() );
+		self::upsert( $post_id, [ 'linked_at' => $time ?? self::now() ] );
 	}
 
 	/**
@@ -126,10 +127,12 @@ final class PostState {
 	 * @param bool     $has_words Whether words were stored; a post without words is marked so it does not count as a
 	 *                            post to cache (known issue P15).
 	 * @param int|null $time      When, in milliseconds; now by default.
+	 * @param string   $language  The language of the post, which picked its ignored words.
+	 * @param int      $tokens    How many words its sources have.
 	 *
 	 * @return void
 	 */
-	public static function mark_indexed( int $post_id, bool $has_words, ?int $time = null ): void {
+	public static function mark_indexed( int $post_id, bool $has_words, ?int $time = null, string $language = '', int $tokens = 0 ): void {
 		if ( ! Schema::has_post_state() ) {
 			// 2.x knows a post with words by its words; only a post without words gets a mark.
 			if ( ! $has_words ) {
@@ -139,7 +142,33 @@ final class PostState {
 			return;
 		}
 
-		self::upsert( $post_id, 'indexed_at', $time ?? self::now() );
+		self::upsert(
+			$post_id,
+			[
+				'indexed_at' => $time ?? self::now(),
+				'version'    => self::WORDS_VERSION,
+				'language'   => substr( $language, 0, 12 ),
+				'tokens'     => max( 0, $tokens ),
+			]
+		);
+	}
+
+	/**
+	 * The language a post was indexed in; empty when it is not known.
+	 *
+	 * @param int $post_id The post.
+	 *
+	 * @return string
+	 */
+	public static function language( int $post_id ): string {
+		global $wpdb;
+
+		if ( ! Schema::has_post_state() ) {
+			return '';
+		}
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQL.NotPrepared -- The plugin's own table, read past caches.
+		return (string) $wpdb->get_var( $wpdb->prepare( 'SELECT language FROM ' . self::table() . ' WHERE post_id = %d', $post_id ) );
 	}
 
 	/**
@@ -269,28 +298,36 @@ final class PostState {
 	}
 
 	/**
-	 * Write one time of a post, adding its row when it has none.
+	 * Write columns of a post's row, adding the row when it has none.
 	 *
-	 * @param int    $post_id The post.
-	 * @param string $column  `linked_at` or `indexed_at`.
-	 * @param int    $time    The time, in milliseconds.
+	 * @param int                       $post_id The post.
+	 * @param array<string, int|string> $columns Column => value; the columns come from this class.
 	 *
 	 * @return void
 	 */
-	private static function upsert( int $post_id, string $column, int $time ): void {
+	private static function upsert( int $post_id, array $columns ): void {
 		global $wpdb;
 
-		$version = 'indexed_at' === $column ? self::WORDS_VERSION : 0;
+		$names   = array_keys( $columns );
+		$formats = array_map(
+			static function ( $value ): string {
+				return is_int( $value ) ? '%d' : '%s';
+			},
+			array_values( $columns )
+		);
+		$updates = array_map(
+			static function ( string $name ): string {
+				return "{$name} = VALUES( {$name} )";
+			},
+			$names
+		);
 
-		// phpcs:disable WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQL.NotPrepared -- The plugin's own table; the column comes from this class.
+		// phpcs:disable WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare -- The plugin's own table; the columns come from this class.
 		$wpdb->query(
 			$wpdb->prepare(
-				'INSERT INTO ' . self::table() . " ( post_id, post_type, {$column}, version ) VALUES ( %d, %s, %d, %d )
-				ON DUPLICATE KEY UPDATE {$column} = VALUES( {$column} ), post_type = VALUES( post_type )" . ( $version > 0 ? ', version = VALUES( version )' : '' ),
-				$post_id,
-				(string) get_post_type( $post_id ),
-				$time,
-				$version
+				'INSERT INTO ' . self::table() . ' ( post_id, post_type, ' . implode( ', ', $names ) . ' ) VALUES ( %d, %s, ' . implode( ', ', $formats ) . ' )
+				ON DUPLICATE KEY UPDATE post_type = VALUES( post_type ), ' . implode( ', ', $updates ),
+				array_merge( [ $post_id, (string) get_post_type( $post_id ) ], array_values( $columns ) )
 			)
 		);
 		// phpcs:enable

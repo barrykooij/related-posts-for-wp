@@ -1,30 +1,28 @@
 {
     "get_children": [
-        "sourdough-bread-at-home",
+        "pour-over-coffee",
+        "cold-brew-coffee",
+        "coffee-and-code"
+    ],
+    "get_children limit 2": [
         "pour-over-coffee",
         "cold-brew-coffee"
     ],
-    "get_children limit 2": [
-        "sourdough-bread-at-home",
+    "get_children order DESC": [
+        "coffee-and-code",
+        "cold-brew-coffee",
         "pour-over-coffee"
     ],
-    "get_children order DESC": [
-        "cold-brew-coffee",
-        "pour-over-coffee",
-        "sourdough-bread-at-home"
-    ],
     "get_children orderby title": [
-        "sourdough-bread-at-home",
+        "coffee-and-code",
         "cold-brew-coffee",
         "pour-over-coffee"
     ],
     "get_children post_status any": [
-        "sourdough-bread-at-home",
         "pour-over-coffee",
-        "cold-brew-coffee"
+        "cold-brew-coffee",
+        "coffee-and-code"
     ],
-    "get_parents": [
-        "sourdough-bread-at-home"
-    ],
-    "generate_children_list limit": "<div class='rp4wp-related-posts'>\n<h3>Related Posts</h3>\n<ul>\n<li><div class='rp4wp-related-post-content'>\n<a href='http://example.org/sourdough-bread-at-home/'>Baking sourdough bread at home</a><p>A sourdough starter needs flour, water and patience. Feed the starter daily and bake the&hellip;</p></div>\n</li>\n</ul>\n</div>"
+    "get_parents": [],
+    "generate_children_list limit": "<div class='rp4wp-related-posts'>\n<h3>Related Posts</h3>\n<ul>\n<li><div class='rp4wp-related-post-content'>\n<a href='http://example.org/pour-over-coffee/'>Pour over coffee for beginners</a><p>Pour over coffee is slow and calm. Rinse the paper filter, bloom the coffee grounds,&hellip;</p></div>\n</li>\n</ul>\n</div>"
 }

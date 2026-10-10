@@ -33,6 +33,7 @@ class PostLifecycle implements Module {
 		LegacyHooks::add_action( 'RP4WP_Hook_Related_Update_Link', 'transition_post_status', [ self::class, 'update_links' ], 11, 3 );
 		LegacyHooks::add_action( 'RP4WP_Hook_Related_Save_Words', 'transition_post_status', [ self::class, 'save_words' ], 10, 3 );
 
+		add_action( 'transition_post_status', [ self::class, 'remove_words' ], 10, 3 );
 		add_action( 'init', [ self::class, 'run_deferred' ], 20 );
 	}
 
@@ -75,6 +76,24 @@ class PostLifecycle implements Module {
 		}
 
 		( new Cache() )->save_post( (int) $post->ID );
+	}
+
+	/**
+	 * Remove the cached words of a post that stops being published (a draft, private, scheduled or in the trash), so
+	 * it is not found as a related post by its words, and no words of it are left behind (known issue K5).
+	 *
+	 * @param string   $new_status The new status.
+	 * @param string   $old_status The old status.
+	 * @param \WP_Post $post       The post.
+	 *
+	 * @return void
+	 */
+	public static function remove_words( $new_status, $old_status, $post ): void {
+		if ( ! $post instanceof \WP_Post || 'publish' !== $old_status || 'publish' === $new_status ) {
+			return;
+		}
+
+		( new Cache() )->delete_post( (int) $post->ID );
 	}
 
 	/**
@@ -148,17 +167,14 @@ class PostLifecycle implements Module {
 	}
 
 	/**
-	 * Remove the cached words of a deleted post, for users who can delete posts (known issue K5).
+	 * Remove the cached words and the marks of a deleted post, whoever deletes it: 2.x only did it for users who can
+	 * delete posts, so posts deleted by cron or WP-CLI left their words (known issue K5).
 	 *
 	 * @param int $post_id The post.
 	 *
 	 * @return void
 	 */
 	public static function delete_words( $post_id ): void {
-		if ( ! current_user_can( 'delete_posts' ) ) {
-			return;
-		}
-
 		( new Cache() )->delete_post( (int) $post_id );
 		PostState::forget( (int) $post_id );
 	}

@@ -7,6 +7,8 @@
 
 namespace LV2\WordPress\RelatedPostsForWP\Tests\Quality;
 
+use LV2\WordPress\RelatedPostsForWP\Words\Tokenizer;
+
 /**
  * Runs an algorithm on every corpus that was built, and reports how good its related posts are.
  *
@@ -112,6 +114,11 @@ abstract class QualityTestCase extends \WP_UnitTestCase {
 
 		if ( null !== $corpus->permalink_structure ) {
 			$this->set_permalink_structure( $corpus->permalink_structure );
+		}
+
+		// The words a server without intl gets.
+		if ( '1' === getenv( 'RP4WP_QUALITY_NO_INTL' ) ) {
+			add_filter( 'rp4wp_tokenizer_use_intl', '__return_false' );
 		}
 
 		$this->prepare( $corpus );
@@ -234,7 +241,7 @@ abstract class QualityTestCase extends \WP_UnitTestCase {
 				'php'       => PHP_VERSION,
 				'database'  => $wpdb->db_server_info(),
 				'wordpress' => get_bloginfo( 'version' ),
-				'intl'      => extension_loaded( 'intl' ),
+				'intl'      => ( new Tokenizer() )->uses_intl(),
 			],
 			'metrics'      => $metrics,
 		];

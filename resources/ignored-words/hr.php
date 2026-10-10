@@ -1,0 +1,7 @@
+<?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+} // Exit if accessed directly
+
+return array( 'ako', 'ali', 'bi', 'bih', 'bila', 'bili', 'bilo', 'bio', 'bismo', 'biste', 'biti', 'bumo', 'ce', 'cemo', 'ces', 'cete', 'cu', 'da', 'do', 'duz', 'ga', 'hoce', 'hocemo', 'hoces', 'hocete', 'hocu', 'iako', 'ih', 'ili', 'iz', 'ja', 'je', 'jedna', 'jedne', 'jedno', 'jer', 'jesam', 'jesi', 'jesmo', 'jest', 'jeste', 'jesu', 'jim', 'joj', 'jos', 'ju', 'kada', 'kako', 'kao', 'koja', 'koje', 'koji', 'kojima', 'koju', 'kroz', 'li', 'me', 'mene', 'meni', 'mi', 'mimo', 'moj', 'moja', 'moje', 'mu', 'na', 'nad', 'nakon', 'nam', 'nama', 'nas', 'nasa', 'nase', 'naseg', 'ne', 'nece', 'necemo', 'neces', 'necete', 'necu', 'nego', 'neka', 'neki', 'nekog', 'neku', 'nema', 'nesto', 'netko', 'ni', 'nije', 'nikoga', 'nikoje', 'nikoju', 'nisam', 'nisi', 'nismo', 'niste', 'nisu', 'njega', 'njegov', 'njegova', 'njegovo', 'njemu', 'njezin', 'njezina', 'njezino', 'njih', 'njihov', 'njihova', 'njihovo', 'njim', 'njima', 'njoj', 'nju', 'no', 'od', 'odmah', 'on', 'ona', 'oni', 'ono', 'ova', 'pa', 'pak', 'po', 'pod', 'pored', 'prije', 'sa', 'sam', 'samo', 'se', 'sebe', 'sebi', 'si', 'smo', 'ste', 'sto', 'su', 'sve', 'svi', 'svog', 'svoj', 'svoja', 'svoje', 'svom', 'ta', 'tada', 'taj', 'tako', 'te', 'tebe', 'tebi', 'ti', 'to', 'toj', 'tome', 'tu', 'tvoj', 'tvoja', 'tvoje', 'uz', 'vam', 'vama', 'vas', 'vasa', 'vase', 'vec', 'vi', 'vrlo', 'za', 'zar' );
