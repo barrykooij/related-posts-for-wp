@@ -145,11 +145,14 @@ add_action(
 					// The background installer: its actions, and (with the options below) its job and the installer mode.
 					if ( function_exists( 'as_unschedule_all_actions' ) ) {
 						as_unschedule_all_actions( '', [], 'rp4wp' );
+						as_unschedule_all_actions( '', [], 'rp4wp-db' );
 					}
 
 					$wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE 'rp4wp%' OR option_name = 'widget_rp4wp_related_posts_widget'" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- Test reset.
 					$wpdb->query( "DELETE FROM {$wpdb->usermeta} WHERE meta_key LIKE 'rp4wp%'" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- Test reset.
-					$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}rp4wp_cache" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.DirectDatabaseQuery.SchemaChange -- Test reset.
+					foreach ( [ 'rp4wp_cache', 'rp4wp_links', 'rp4wp_post_state', 'rp4wp_migrations' ] as $table ) {
+						$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}{$table}" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.DirectDatabaseQuery.SchemaChange,WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Test reset.
+					}
 					wp_cache_flush();
 
 					// Take the related posts widget out of every sidebar.

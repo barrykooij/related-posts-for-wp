@@ -8,6 +8,7 @@
 namespace LV2\WordPress\RelatedPostsForWP\Links;
 
 use LV2\WordPress\RelatedPostsForWP\Database\Schema;
+use LV2\WordPress\RelatedPostsForWP\Database\Transaction;
 
 /**
  * Stores and reads links between posts: "post A shows post B as related", at a position, added by hand or not.
@@ -102,8 +103,7 @@ class LinkRepository {
 			$values[] = $wpdb->prepare( '(%d, %d, %d, %d, %s, %s)', $parent_id, $child_id, max( 0, (int) $position ), $manual ? 1 : 0, $parent_type, $created );
 		}
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQL.NotPrepared -- The plugin's own table; each row is prepared above.
-		$wpdb->query( 'INSERT IGNORE INTO ' . $this->table() . ' (parent_id, child_id, position, is_manual, parent_type, created) VALUES ' . implode( ',', $values ) );
+		$this->write( 'INSERT IGNORE INTO ' . $this->table() . ' (parent_id, child_id, position, is_manual, parent_type, created) VALUES ' . implode( ',', $values ) );
 
 		// The IDs by related post: auto-increment steps can be larger than 1 (known issue P23).
 		$ids   = implode( ',', array_map( 'intval', array_keys( $children ) ) );
@@ -147,8 +147,6 @@ class LinkRepository {
 	 * @return void
 	 */
 	public function delete_many( array $link_ids ): void {
-		global $wpdb;
-
 		$link_ids = array_values( array_unique( array_filter( array_map( 'intval', $link_ids ) ) ) );
 		if ( ! $this->can_write() || count( $link_ids ) < 1 ) {
 			return;
@@ -166,7 +164,7 @@ class LinkRepository {
 		}
 
 		foreach ( array_chunk( $link_ids, 1000 ) as $chunk ) {
-			$wpdb->query( 'DELETE FROM ' . $this->table() . ' WHERE id IN (' . implode( ',', $chunk ) . ')' ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQL.NotPrepared -- The plugin's own table; integers.
+			$this->write( 'DELETE FROM ' . $this->table() . ' WHERE id IN (' . implode( ',', $chunk ) . ')' );
 		}
 
 		foreach ( $link_ids as $link_id ) {
@@ -226,8 +224,6 @@ class LinkRepository {
 	 * @return void
 	 */
 	public function set_positions( array $positions ): void {
-		global $wpdb;
-
 		if ( ! $this->can_write() || count( $positions ) < 1 ) {
 			return;
 		}
@@ -237,8 +233,7 @@ class LinkRepository {
 			$cases .= sprintf( ' WHEN %d THEN %d', $link_id, max( 0, (int) $position ) );
 		}
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQL.NotPrepared -- The plugin's own table; integers.
-		$wpdb->query( 'UPDATE ' . $this->table() . " SET position = CASE id{$cases} END WHERE id IN (" . implode( ',', array_map( 'intval', array_keys( $positions ) ) ) . ')' );
+		$this->write( 'UPDATE ' . $this->table() . " SET position = CASE id{$cases} END WHERE id IN (" . implode( ',', array_map( 'intval', array_keys( $positions ) ) ) . ')' );
 	}
 
 	/**
@@ -249,14 +244,12 @@ class LinkRepository {
 	 * @return void
 	 */
 	public function mark_manual( array $link_ids ): void {
-		global $wpdb;
-
 		$link_ids = array_filter( array_map( 'intval', $link_ids ) );
 		if ( ! $this->can_write() || count( $link_ids ) < 1 ) {
 			return;
 		}
 
-		$wpdb->query( 'UPDATE ' . $this->table() . ' SET is_manual = 1 WHERE id IN (' . implode( ',', $link_ids ) . ')' ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQL.NotPrepared -- The plugin's own table; integers.
+		$this->write( 'UPDATE ' . $this->table() . ' SET is_manual = 1 WHERE id IN (' . implode( ',', $link_ids ) . ')' );
 	}
 
 	/**
@@ -497,6 +490,28 @@ class LinkRepository {
 		}
 
 		return $links;
+	}
+
+	/**
+	 * Run a write to the links table. Inside Transaction::run() a write that fails throws, so the writes after it do
+	 * not happen and the transaction rolls back; otherwise it fails quietly, like the writes of WordPress.
+	 *
+	 * @param string $sql The query, prepared.
+	 *
+	 * @return bool Whether it worked.
+	 *
+	 * @throws \RuntimeException When it fails inside Transaction::run().
+	 */
+	protected function write( string $sql ): bool {
+		global $wpdb;
+
+		if ( Transaction::running() ) {
+			Transaction::query( $sql );
+
+			return true;
+		}
+
+		return false !== $wpdb->query( $sql ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.NotPrepared -- The plugin's own table; the callers prepare it.
 	}
 
 	/**

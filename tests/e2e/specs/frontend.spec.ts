@@ -134,7 +134,7 @@ test.describe( 'Front end', () => {
 		const all = await blocks.nth( 0 ).locator( 'li a' ).allTextContents();
 		expect( all ).toHaveLength( 3 );
 
-		// Links are ordered by menu_order, then ID (the relevance order), so the offset picks the second post.
+		// Links are ordered by position, then ID (the relevance order), so the offset picks the second post.
 		await expect( blocks.nth( 1 ).locator( 'li a' ) ).toHaveText( [
 			all[ 1 ],
 		] );

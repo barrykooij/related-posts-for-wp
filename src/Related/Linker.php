@@ -21,11 +21,11 @@ use LV2\WordPress\RelatedPostsForWP\Links\PostState;
 class Linker {
 
 	/**
-	 * The related posts finder.
+	 * The related posts finder. The premium add-on brings its own.
 	 *
 	 * @var Finder
 	 */
-	protected $finder;
+	private Finder $finder;
 
 	/**
 	 * The link repository.

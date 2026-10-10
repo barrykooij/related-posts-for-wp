@@ -14,7 +14,7 @@ use LV2\WordPress\RelatedPostsForWP\Module;
 /**
  * The hidden screen that adds related posts to a post by hand, one at a time or in bulk.
  *
- * The premium add-on extends this class: it adds links and builds the table through add_link() and list_table(), and
+ * The premium add-on extends this class: it builds the table through list_table(), add_link() can be replaced too, and
  * every callback is registered for the class that set up the module.
  */
 class Page implements Module {

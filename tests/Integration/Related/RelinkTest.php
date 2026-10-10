@@ -18,6 +18,7 @@ use LV2\WordPress\RelatedPostsForWP\Tests\Integration\TestCase;
  * still right stay, the others are replaced, and a post never ends up with fewer related posts than it had.
  *
  * @covers \LV2\WordPress\RelatedPostsForWP\Related\Linker
+ * @covers \LV2\WordPress\RelatedPostsForWP\Database\Transaction
  */
 final class RelinkTest extends TestCase {
 
@@ -111,6 +112,64 @@ final class RelinkTest extends TestCase {
 		$this->assertSame( $post, $seen[0] );
 		$this->assertSame( array_keys( $links->child_ids( $post ) ), $seen[1] );
 		$this->assertSame( [ $old ], $seen[2] );
+	}
+
+	public function test_a_write_that_fails_undoes_the_relink(): void {
+		global $wpdb;
+
+		[ $post, $a, $b, $c ] = self::factory()->post->create_many( 4 );
+		$links                = new LinkRepository();
+		$old                  = $links->insert(
+			$post,
+			[
+				$a => 0,
+				$b => 1,
+			]
+		);
+
+		// The old links can't be removed: the relink stops, and the new link is rolled back.
+		$break = static function ( $query ) {
+			return preg_match( '/^\s*DELETE FROM \S*rp4wp_links\b/', (string) $query ) ? 'DELETE FROM `no_such_table`' : $query;
+		};
+		add_filter( 'query', $break );
+		$suppress = $wpdb->suppress_errors( true );
+
+		$this->related[ $post ] = [ $c ];
+		$linked_at              = PostState::linked_at( $post );
+		$thrown                 = null;
+		try {
+			$this->linker()->relink_post( $post, 1 );
+		} catch ( \RuntimeException $error ) {
+			$thrown = $error;
+		}
+
+		remove_filter( 'query', $break );
+		$wpdb->suppress_errors( $suppress );
+
+		$this->assertInstanceOf( \RuntimeException::class, $thrown );
+		$this->assertSame( array_flip( $old ), $links->child_ids( $post ) );
+		$this->assertSame( $linked_at, PostState::linked_at( $post ), 'It is not marked as linked again.' );
+	}
+
+	public function test_a_write_that_fails_outside_a_relink_fails_quietly(): void {
+		global $wpdb;
+
+		[ $post, $a ] = self::factory()->post->create_many( 2 );
+		$links        = new LinkRepository();
+		$link         = $links->link( $post, $a, true );
+
+		$break = static function ( $query ) {
+			return preg_match( '/^\s*DELETE FROM \S*rp4wp_links\b/', (string) $query ) ? 'DELETE FROM `no_such_table`' : $query;
+		};
+		add_filter( 'query', $break );
+		$suppress = $wpdb->suppress_errors( true );
+
+		$links->delete( $link );
+
+		remove_filter( 'query', $break );
+		$wpdb->suppress_errors( $suppress );
+
+		$this->assertNotNull( $links->find( $link ) );
 	}
 
 	/**

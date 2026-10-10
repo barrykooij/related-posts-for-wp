@@ -10,8 +10,8 @@ namespace LV2\WordPress\RelatedPostsForWP\Cli;
 use LV2\WordPress\RelatedPostsForWP\Module;
 
 /**
- * The WP-CLI commands of the free plugin: `wp rp4wp migrate`. The premium add-on adds its commands to the same `rp4wp`
- * namespace, one by one.
+ * The WP-CLI commands of the free plugin: `wp rp4wp migrate`. The premium add-on registers its commands as `rp4wp`;
+ * WP-CLI keeps `migrate` under it, whichever of the two is registered first.
  */
 final class Commands implements Module {
 

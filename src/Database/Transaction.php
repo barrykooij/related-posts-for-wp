@@ -24,6 +24,13 @@ final class Transaction {
 	private static int $depth = 0;
 
 	/**
+	 * How many calls of run() are working now, with or without a database transaction.
+	 *
+	 * @var int
+	 */
+	private static int $running = 0;
+
+	/**
 	 * Run the work in a transaction. A write that fails, or anything the work throws, rolls it back.
 	 *
 	 * @template T
@@ -35,6 +42,37 @@ final class Transaction {
 	 * @throws \Throwable What the work throws, after the rollback.
 	 */
 	public static function run( callable $work ) {
+		++self::$running;
+
+		try {
+			return self::in_transaction( $work );
+		} finally {
+			--self::$running;
+		}
+	}
+
+	/**
+	 * Whether writes run inside run() now: a write that fails must throw then (see query()), so the writes after it
+	 * do not happen and the transaction rolls back.
+	 *
+	 * @return bool
+	 */
+	public static function running(): bool {
+		return self::$running > 0;
+	}
+
+	/**
+	 * Run the work in a database transaction, unless transactions are turned off.
+	 *
+	 * @template T
+	 *
+	 * @param callable(): T $work The writes.
+	 *
+	 * @return T What the work returns.
+	 *
+	 * @throws \Throwable What the work throws, after the rollback.
+	 */
+	private static function in_transaction( callable $work ) {
 		global $wpdb;
 
 		/**
