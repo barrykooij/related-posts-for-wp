@@ -97,7 +97,7 @@ class Cache {
 		try {
 			$had_words = Transaction::run(
 				function () use ( $wpdb, $post_id, $values, $params, $picked ): bool {
-					$old = $this->current_words( $post_id );
+					$old = $this->words( $post_id );
 
 					Transaction::query( $wpdb->prepare( 'DELETE FROM ' . Table::name() . ' WHERE post_id = %d', $post_id ) ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- Our own table.
 
@@ -195,7 +195,7 @@ class Cache {
 		try {
 			$had_words = Transaction::run(
 				function () use ( $wpdb, $post_id ): bool {
-					$old = $this->current_words( $post_id );
+					$old = $this->words( $post_id );
 
 					Transaction::query( $wpdb->prepare( 'DELETE FROM ' . Table::name() . ' WHERE post_id = %d', $post_id ) ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- Our own table.
 					$this->statistics->change( $old, [] );
@@ -216,13 +216,13 @@ class Cache {
 	}
 
 	/**
-	 * The words of the current version a post has stored.
+	 * The words and tokens of the current version a post has stored.
 	 *
 	 * @param int $post_id The post.
 	 *
 	 * @return string[]
 	 */
-	private function current_words( int $post_id ): array {
+	public function words( int $post_id ): array {
 		global $wpdb;
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.NotPrepared -- Our own table.

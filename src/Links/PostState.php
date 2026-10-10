@@ -263,6 +263,17 @@ final class PostState {
 	}
 
 	/**
+	 * An SQL condition: the post was linked automatically. For queries over posts.
+	 *
+	 * @param string $alias The alias of the posts table in the query.
+	 *
+	 * @return string
+	 */
+	public static function linked_sql( string $alias ): string {
+		return 'NOT ' . self::not_linked_sql( $alias );
+	}
+
+	/**
 	 * An SQL condition: the post was not linked since a time, or never. For queries over posts.
 	 *
 	 * @param string $alias The alias of the posts table in the query.
