@@ -221,6 +221,7 @@ final class Corpus {
 
 	/**
 	 * The hand labels of a label set: `{ "posts": { "<id>": { "good": [ "<id>", ... ] } } }`, or `{ "<id>": [ ... ] }`.
+	 * A label with `"reviewed": false` is a suggestion that was not confirmed, and is left out.
 	 *
 	 * @param string $set The label set.
 	 *
@@ -237,6 +238,11 @@ final class Corpus {
 		$labels = [];
 
 		foreach ( $posts as $id => $label ) {
+			// Suggested labels the owner has not confirmed yet don't count.
+			if ( is_array( $label ) && false === ( $label['reviewed'] ?? true ) ) {
+				continue;
+			}
+
 			$good = is_array( $label ) && isset( $label['good'] ) ? $label['good'] : $label;
 			if ( is_array( $good ) && count( $good ) > 0 ) {
 				$labels[ (string) $id ] = array_values( array_map( 'strval', $good ) );
