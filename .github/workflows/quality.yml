@@ -1,0 +1,66 @@
+name: Quality
+
+# How good the related posts are: the quality harness on the public corpora (see tests/Quality/README.md). It takes a
+# few minutes and downloads data, so it is not part of QA. The summary, with the difference to the recorded baseline,
+# is on the run's summary page; the results are an artifact.
+#
+# The schedule only runs from the default branch, so the nightly run starts once this workflow is merged there.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 3 * * *'
+  push:
+    branches: [ 3.x, feat/improved-related ]
+    paths:
+      - 'src/**'
+      - 'resources/ignored-words/**'
+      - 'tests/Quality/**'
+      - 'scripts/quality/**'
+      - 'phpunit-quality.xml.dist'
+      - '.github/workflows/quality.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Quality harness
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          coverage: none
+          tools: composer:v2
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: composer install --no-interaction --no-progress
+      - run: npm ci --no-audit --no-fund
+      - name: Corpus download cache
+        uses: actions/cache@v4
+        with:
+          path: artifacts/quality/raw
+          key: quality-raw-${{ hashFiles( 'scripts/quality/fetch-corpora.sh' ) }}
+      - name: Download and build the corpora
+        run: npm run quality:prepare
+      - name: Start wp-env
+        run: npm run env:test:start
+      - name: Quality harness
+        run: npm run test:quality
+      - name: Summary
+        if: always()
+        run: cat artifacts/quality/results/summary.md >> "$GITHUB_STEP_SUMMARY" || true
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: quality-results
+          path: artifacts/quality/results/

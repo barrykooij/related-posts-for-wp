@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<phpunit
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.6/phpunit.xsd"
+	bootstrap="tests/bootstrap-integration.php"
+	cacheResultFile=".phpunit-quality.result.cache"
+	colors="true"
+	beStrictAboutOutputDuringTests="true"
+	beStrictAboutTestsThatDoNotTestAnything="true"
+	failOnRisky="true"
+	failOnWarning="true"
+	verbose="true">
+
+	<testsuites>
+		<!--
+			The quality harness: how good the related posts are, on the corpora built by `npm run quality:prepare`.
+			Takes minutes and needs downloaded data, so it is not part of the integration suite. Run it inside wp-env with
+			`npm run test:quality`; see tests/Quality/README.md.
+		-->
+		<testsuite name="Quality">
+			<directory suffix="Test.php">tests/Quality</directory>
+		</testsuite>
+	</testsuites>
+
+	<extensions>
+		<extension class="LV2\WordPress\RelatedPostsForWP\Tests\Support\ExitGuard"/>
+	</extensions>
+</phpunit>

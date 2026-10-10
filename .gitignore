@@ -11,6 +11,7 @@
 /.phpstan.cache/
 /.phpunit.result.cache
 /.phpunit-integration.result.cache
+/.phpunit-quality.result.cache
 /coverage/
 /coverage-integration/
 /coverage.xml

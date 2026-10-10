@@ -1,0 +1,13 @@
+{
+    "kind": "scale",
+    "algorithm": "free",
+    "corpus": "synthetic-50000",
+    "run": "2026-10-10 17:16:01",
+    "metrics": {
+        "posts": 50000,
+        "related_ms_median": 194.77,
+        "related_ms_p90": 224.04,
+        "related_ms_max": 266.4,
+        "seed_seconds": 2.6
+    }
+}

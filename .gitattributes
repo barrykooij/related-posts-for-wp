@@ -28,6 +28,7 @@
 /phpstan-baseline.neon        export-ignore
 /phpunit.xml.dist             export-ignore
 /phpunit-integration.xml.dist export-ignore
+/phpunit-quality.xml.dist     export-ignore
 /composer.json                export-ignore
 /composer.lock                export-ignore
 /package.json                 export-ignore

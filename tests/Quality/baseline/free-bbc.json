@@ -1,0 +1,33 @@
+{
+    "kind": "quality",
+    "algorithm": "free",
+    "corpus": "bbc",
+    "corpus_title": "BBC News (2,225 articles, 5 topics)",
+    "locale": "en_US",
+    "order": 1,
+    "run": "2026-10-10 17:15:22",
+    "environment": {
+        "php": "8.0.30",
+        "database": "12.3.3-MariaDB-ubu2404",
+        "wordpress": "7.1.3",
+        "intl": true
+    },
+    "metrics": {
+        "evaluated": 2225,
+        "precision_at_3": 0.7196,
+        "precision_at_5": 0.6778,
+        "success_at_3": 0.916,
+        "random_precision_at_3": 0.2026,
+        "full_lists": 0.9996,
+        "coverage": 0.7901,
+        "hub_share": 0.0844,
+        "max_inbound": 35,
+        "symmetry": 0.4385,
+        "stop_word_leak": 0.1578,
+        "title_share": 0.7115,
+        "words_per_post": 6.0,
+        "posts": 2225,
+        "index_ms_per_post": 1.04,
+        "related_ms_per_post": 7.17
+    }
+}

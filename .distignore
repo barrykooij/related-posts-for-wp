@@ -27,6 +27,7 @@
 /phpstan-baseline.neon
 /phpunit.xml.dist
 /phpunit-integration.xml.dist
+/phpunit-quality.xml.dist
 /composer.json
 /composer.lock
 /package.json
@@ -47,6 +48,7 @@
 /.phpstan.cache
 /.phpunit.result.cache
 /.phpunit-integration.result.cache
+/.phpunit-quality.result.cache
 /coverage
 /coverage-integration
 /coverage.xml

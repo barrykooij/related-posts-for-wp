@@ -1,0 +1,33 @@
+{
+    "kind": "quality",
+    "algorithm": "free",
+    "corpus": "gnad",
+    "corpus_title": "10kGNAD German news (222 per topic, 9 topics)",
+    "locale": "de_DE",
+    "order": 2,
+    "run": "2026-10-10 17:15:43",
+    "environment": {
+        "php": "8.0.30",
+        "database": "12.3.3-MariaDB-ubu2404",
+        "wordpress": "7.1.3",
+        "intl": true
+    },
+    "metrics": {
+        "evaluated": 1998,
+        "precision_at_3": 0.2574,
+        "precision_at_5": 0.2331,
+        "success_at_3": 0.5175,
+        "random_precision_at_3": 0.1107,
+        "full_lists": 0.951,
+        "coverage": 0.7272,
+        "hub_share": 0.2141,
+        "max_inbound": 185,
+        "symmetry": 0.3006,
+        "stop_word_leak": 0.1108,
+        "title_share": 0.904,
+        "words_per_post": 6.0,
+        "posts": 1998,
+        "index_ms_per_post": 1.13,
+        "related_ms_per_post": 6.57
+    }
+}
