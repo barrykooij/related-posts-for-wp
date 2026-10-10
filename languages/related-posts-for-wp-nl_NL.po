@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
-"POT-Creation-Date: 2026-10-08T15:49:37+00:00\n"
+"POT-Creation-Date: 2026-10-10T22:46:56+00:00\n"
 "PO-Revision-Date: 2017-09-06 17:23+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/barrykooijplugins/related-posts-for-wordpress/language/nl_NL/)\n"
@@ -93,6 +93,10 @@ msgstr "Annuleer linken"
 msgid "Search"
 msgstr "Zoeken"
 
+#: src/Admin/LinkScreen/Page.php:245 src/Admin/MetaBox/Ajax.php:113
+msgid "Related Posts for WordPress is moving its links to a new database table. Please try again in a moment."
+msgstr "Related Posts for WordPress verplaatst zijn links naar een nieuwe databasetabel. Probeer het zo meteen opnieuw."
+
 #: src/Admin/MetaBox/ManageLinks.php:81
 msgid "Add Related Posts"
 msgstr "Voeg gerelateerde posts toe"
@@ -110,31 +114,31 @@ msgid "No related posts found."
 msgstr "Geen gerelateerde berichten gevonden."
 
 #. translators: %d: how far the installation is, in percent
-#: src/Admin/Notices/Installing.php:70
+#: src/Admin/Notices/Installing.php:75
 msgid "Related Posts for WordPress is linking your posts in the background (%d%%)."
 msgstr "Related Posts for WordPress koppelt je berichten op de achtergrond (%d%%)."
 
-#: src/Admin/Notices/Installing.php:73
+#: src/Admin/Notices/Installing.php:78 src/Install/Update.php:170
 msgid "View progress"
 msgstr "Voortgang bekijken"
 
-#: src/Admin/Notices/Installing.php:83
+#: src/Admin/Notices/Installing.php:88
 msgid "The installation of Related Posts for WordPress stopped with an error."
 msgstr "De installatie van Related Posts for WordPress is gestopt met een fout."
 
-#: src/Admin/Notices/Installing.php:84
+#: src/Admin/Notices/Installing.php:89
 msgid "See what happened"
 msgstr "Bekijk wat er gebeurde"
 
-#: src/Admin/Notices/Installing.php:95
+#: src/Admin/Notices/Installing.php:100
 msgid "Woah! Looks like we weren't able to finish your Related Posts for WordPress installation wizard!"
 msgstr "Woah! Het ziet eruit dat de Related Posts for WordPress wizard nog niet klaar is!"
 
-#: src/Admin/Notices/Installing.php:96
+#: src/Admin/Notices/Installing.php:101
 msgid "Finish the installation"
 msgstr "De installatie afronden"
 
-#: src/Admin/Notices/Installing.php:145
+#: src/Admin/Notices/Installing.php:150 src/Install/Update.php:193
 msgid "Dismiss"
 msgstr "Verbergen"
 
@@ -220,31 +224,44 @@ msgstr "De instellingen van Related Posts for WordPress hebben JavaScript nodig.
 msgid "Go to the settings of Related Posts for WordPress"
 msgstr "Ga naar de instellingen van Related Posts for WordPress"
 
+#: src/Database/Migrations.php:222
+msgid "Related Posts for WordPress could not update its database tables. It keeps working with the data it has, and tries again every ten minutes."
+msgstr "Related Posts for WordPress kon zijn databasetabellen niet bijwerken. Het werkt verder met de gegevens die het heeft en probeert het elke tien minuten opnieuw."
+
+#: src/Database/Migrations.php:224
+msgid "Try again"
+msgstr "Opnieuw proberen"
+
+#: src/Database/Migrations.php:239 src/Install/Update.php:208
+#: src/Install/Update.php:229
+msgid "Sorry, you are not allowed to do that."
+msgstr "Je hebt geen toestemming om dat te doen."
+
 #: src/Frontend/Widget.php:29
 msgid "Display related posts."
 msgstr "Toon gerelateerde berichten."
 
-#: src/Install/Jobs/Queue.php:89
+#: src/Install/Jobs/Queue.php:107
 msgid "An installation is running already."
 msgstr "Er loopt al een installatie."
 
-#: src/Install/Jobs/Queue.php:138
+#: src/Install/Jobs/Queue.php:159
 msgid "There is no stopped installation to resume."
 msgstr "Er is geen gestopte installatie om te hervatten."
 
-#: src/Install/Jobs/Queue.php:279
+#: src/Install/Jobs/Queue.php:333
 msgid "The steps of the installation changed while it ran. Please start it again."
 msgstr "De stappen van de installatie zijn veranderd terwijl die liep. Start de installatie opnieuw."
 
-#: src/Install/Planner.php:37
+#: src/Install/Planner.php:40
 msgid "The number of related posts to link to each post."
 msgstr "Het aantal gerelateerde berichten dat aan elk bericht wordt gekoppeld."
 
-#: src/Install/Planner.php:44
+#: src/Install/Planner.php:47
 msgid "Only cache the words of the posts, and link nothing."
 msgstr "Alleen de woorden van de berichten cachen, en niets koppelen."
 
-#: src/Install/Planner.php:49
+#: src/Install/Planner.php:52
 msgid "Remove every link and all cached words first, and install again."
 msgstr "Eerst alle koppelingen en alle gecachete woorden verwijderen, en opnieuw installeren."
 
@@ -256,13 +273,70 @@ msgstr "Berichten cachen"
 msgid "Linking posts"
 msgstr "Berichten koppelen"
 
-#: src/Install/Tasks/ResetTask.php:35
+#: src/Install/Tasks/ReindexWordsTask.php:62
+msgid "Reading your posts again"
+msgstr "Je berichten opnieuw lezen"
+
+#: src/Install/Tasks/RelinkPostsTask.php:62
+msgid "Linking your posts again"
+msgstr "Je berichten opnieuw koppelen"
+
+#: src/Install/Tasks/ResetTask.php:37
 msgid "Removing the old links and words"
 msgstr "De oude koppelingen en woorden verwijderen"
 
 #: src/Install/Tasks/SaveAmountTask.php:54
 msgid "Saving the settings"
 msgstr "De instellingen opslaan"
+
+#: src/Install/Tasks/WeighWordsTask.php:69
+msgid "Weighing the words"
+msgstr "Woorden wegen"
+
+#: src/Install/Update.php:124
+msgid "Updating your related posts"
+msgstr "Je gerelateerde berichten worden bijgewerkt"
+
+#: src/Install/Update.php:125
+msgid "Your related posts are up to date."
+msgstr "Je gerelateerde berichten zijn bijgewerkt."
+
+#: src/Install/Update.php:126
+msgid "The update of your related posts stopped"
+msgstr "Het bijwerken van je gerelateerde berichten is gestopt"
+
+#: src/Install/Update.php:127
+msgid "The update of your related posts was cancelled"
+msgstr "Het bijwerken van je gerelateerde berichten is geannuleerd"
+
+#: src/Install/Update.php:128
+msgid "Cancel the update of your related posts? Posts it did not reach keep their old related posts."
+msgstr "Het bijwerken van je gerelateerde berichten annuleren? Berichten waar het nog niet aan toe kwam, houden hun oude gerelateerde berichten."
+
+#: src/Install/Update.php:129
+msgid "Cancel update"
+msgstr "Bijwerken annuleren"
+
+#. translators: %d: how far the update is, in percent
+#: src/Install/Update.php:167
+msgid "Related Posts for WordPress is updating your related posts in the background (%d%%). Every post keeps its related posts until it gets its new ones."
+msgstr "Related Posts for WordPress werkt je gerelateerde berichten op de achtergrond bij (%d%%). Elk bericht houdt zijn gerelateerde berichten tot het de nieuwe krijgt."
+
+#: src/Install/Update.php:180
+msgid "The update of your related posts stopped. Posts it did not reach keep their old related posts until you resume it."
+msgstr "Het bijwerken van je gerelateerde berichten is gestopt. Berichten waar het nog niet aan toe kwam, houden hun oude gerelateerde berichten tot je het hervat."
+
+#: src/Install/Update.php:181 assets/build/admin/index.js:16
+msgid "Resume"
+msgstr "Hervatten"
+
+#: src/Install/Update.php:190
+msgid "Your related posts are up to date. Related Posts for WordPress 3.0 finds related posts in a new, more precise way, and linked your posts again; the related posts you added by hand kept their place."
+msgstr "Je gerelateerde berichten zijn bijgewerkt. Related Posts for WordPress 3.0 vindt gerelateerde berichten op een nieuwe, preciezere manier en heeft je berichten opnieuw gekoppeld; de gerelateerde berichten die je zelf hebt toegevoegd, staan nog op hun plek."
+
+#: src/Install/Update.php:192
+msgid "What changed"
+msgstr "Wat er is veranderd"
 
 #: src/Rest/InstallController.php:126
 msgid "No installation is running."
@@ -468,10 +542,6 @@ msgstr "Annuleren"
 #: assets/build/admin/index.js:16
 msgid "The installation could not resume."
 msgstr "De installatie kon niet worden hervat."
-
-#: assets/build/admin/index.js:16
-msgid "Resume"
-msgstr "Hervatten"
 
 #: assets/build/admin/index.js:16
 msgid "Cancel the installation?"

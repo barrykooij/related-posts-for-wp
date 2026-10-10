@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
-"POT-Creation-Date: 2026-10-08T15:49:37+00:00\n"
+"POT-Creation-Date: 2026-10-10T22:46:56+00:00\n"
 "PO-Revision-Date: 2026-10-01 12:00+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Japanese\n"
@@ -91,6 +91,10 @@ msgstr "関連付けをキャンセル"
 msgid "Search"
 msgstr "検索"
 
+#: src/Admin/LinkScreen/Page.php:245 src/Admin/MetaBox/Ajax.php:113
+msgid "Related Posts for WordPress is moving its links to a new database table. Please try again in a moment."
+msgstr "Related Posts for WordPress はリンクを新しいデータベーステーブルに移動しています。しばらくしてからもう一度お試しください。"
+
 #: src/Admin/MetaBox/ManageLinks.php:81
 msgid "Add Related Posts"
 msgstr "関連投稿を追加"
@@ -108,31 +112,31 @@ msgid "No related posts found."
 msgstr "関連投稿が見つかりませんでした。"
 
 #. translators: %d: how far the installation is, in percent
-#: src/Admin/Notices/Installing.php:70
+#: src/Admin/Notices/Installing.php:75
 msgid "Related Posts for WordPress is linking your posts in the background (%d%%)."
 msgstr "Related Posts for WordPress がバックグラウンドで投稿を関連付けています (%d%%)。"
 
-#: src/Admin/Notices/Installing.php:73
+#: src/Admin/Notices/Installing.php:78 src/Install/Update.php:170
 msgid "View progress"
 msgstr "進行状況を表示"
 
-#: src/Admin/Notices/Installing.php:83
+#: src/Admin/Notices/Installing.php:88
 msgid "The installation of Related Posts for WordPress stopped with an error."
 msgstr "Related Posts for WordPress のインストールがエラーで停止しました。"
 
-#: src/Admin/Notices/Installing.php:84
+#: src/Admin/Notices/Installing.php:89
 msgid "See what happened"
 msgstr "詳細を確認"
 
-#: src/Admin/Notices/Installing.php:95
+#: src/Admin/Notices/Installing.php:100
 msgid "Woah! Looks like we weren't able to finish your Related Posts for WordPress installation wizard!"
 msgstr "Related Posts for WordPress のインストールウィザードが完了していないようです。"
 
-#: src/Admin/Notices/Installing.php:96
+#: src/Admin/Notices/Installing.php:101
 msgid "Finish the installation"
 msgstr "インストールを完了"
 
-#: src/Admin/Notices/Installing.php:145
+#: src/Admin/Notices/Installing.php:150 src/Install/Update.php:193
 msgid "Dismiss"
 msgstr "非表示"
 
@@ -218,31 +222,44 @@ msgstr "Related Posts for WordPress の設定には JavaScript が必要です�
 msgid "Go to the settings of Related Posts for WordPress"
 msgstr "Related Posts for WordPress の設定へ移動"
 
+#: src/Database/Migrations.php:222
+msgid "Related Posts for WordPress could not update its database tables. It keeps working with the data it has, and tries again every ten minutes."
+msgstr "Related Posts for WordPress はデータベーステーブルを更新できませんでした。現在のデータで動作を続け、10分ごとに再試行します。"
+
+#: src/Database/Migrations.php:224
+msgid "Try again"
+msgstr "再試行"
+
+#: src/Database/Migrations.php:239 src/Install/Update.php:208
+#: src/Install/Update.php:229
+msgid "Sorry, you are not allowed to do that."
+msgstr "この操作を行う権限がありません。"
+
 #: src/Frontend/Widget.php:29
 msgid "Display related posts."
 msgstr "関連投稿を表示します。"
 
-#: src/Install/Jobs/Queue.php:89
+#: src/Install/Jobs/Queue.php:107
 msgid "An installation is running already."
 msgstr "インストールはすでに実行中です。"
 
-#: src/Install/Jobs/Queue.php:138
+#: src/Install/Jobs/Queue.php:159
 msgid "There is no stopped installation to resume."
 msgstr "再開できる停止中のインストールはありません。"
 
-#: src/Install/Jobs/Queue.php:279
+#: src/Install/Jobs/Queue.php:333
 msgid "The steps of the installation changed while it ran. Please start it again."
 msgstr "実行中にインストールの手順が変更されました。もう一度開始してください。"
 
-#: src/Install/Planner.php:37
+#: src/Install/Planner.php:40
 msgid "The number of related posts to link to each post."
 msgstr "各投稿に関連付ける関連投稿の数。"
 
-#: src/Install/Planner.php:44
+#: src/Install/Planner.php:47
 msgid "Only cache the words of the posts, and link nothing."
 msgstr "投稿の単語をキャッシュするだけで、関連付けは行いません。"
 
-#: src/Install/Planner.php:49
+#: src/Install/Planner.php:52
 msgid "Remove every link and all cached words first, and install again."
 msgstr "すべての関連付けとキャッシュした単語を先に削除してから、再インストールします。"
 
@@ -254,13 +271,70 @@ msgstr "投稿をキャッシュ中"
 msgid "Linking posts"
 msgstr "投稿を関連付け中"
 
-#: src/Install/Tasks/ResetTask.php:35
+#: src/Install/Tasks/ReindexWordsTask.php:62
+msgid "Reading your posts again"
+msgstr "投稿を再読み込み中"
+
+#: src/Install/Tasks/RelinkPostsTask.php:62
+msgid "Linking your posts again"
+msgstr "投稿を再度関連付け中"
+
+#: src/Install/Tasks/ResetTask.php:37
 msgid "Removing the old links and words"
 msgstr "古い関連付けと単語を削除中"
 
 #: src/Install/Tasks/SaveAmountTask.php:54
 msgid "Saving the settings"
 msgstr "設定を保存中"
+
+#: src/Install/Tasks/WeighWordsTask.php:69
+msgid "Weighing the words"
+msgstr "単語の重みを計算中"
+
+#: src/Install/Update.php:124
+msgid "Updating your related posts"
+msgstr "関連投稿を 3.0 に移行中"
+
+#: src/Install/Update.php:125
+msgid "Your related posts are up to date."
+msgstr "関連投稿は最新の状態です。"
+
+#: src/Install/Update.php:126
+msgid "The update of your related posts stopped"
+msgstr "関連投稿の 3.0 への移行が停止しました"
+
+#: src/Install/Update.php:127
+msgid "The update of your related posts was cancelled"
+msgstr "関連投稿の 3.0 への移行がキャンセルされました"
+
+#: src/Install/Update.php:128
+msgid "Cancel the update of your related posts? Posts it did not reach keep their old related posts."
+msgstr "関連投稿の 3.0 への移行をキャンセルしますか ? まだ処理されていない投稿は、以前の関連投稿を保持します。"
+
+#: src/Install/Update.php:129
+msgid "Cancel update"
+msgstr "移行をキャンセル"
+
+#. translators: %d: how far the update is, in percent
+#: src/Install/Update.php:167
+msgid "Related Posts for WordPress is updating your related posts in the background (%d%%). Every post keeps its related posts until it gets its new ones."
+msgstr "Related Posts for WordPress はバックグラウンドで関連投稿を 3.0 に移行しています (%d%%)。各投稿は新しい関連投稿を受け取るまで、現在の関連投稿を保持します。"
+
+#: src/Install/Update.php:180
+msgid "The update of your related posts stopped. Posts it did not reach keep their old related posts until you resume it."
+msgstr "関連投稿の 3.0 への移行が停止しました。まだ処理されていない投稿は、再開するまで以前の関連投稿を保持します。"
+
+#: src/Install/Update.php:181 assets/build/admin/index.js:16
+msgid "Resume"
+msgstr "再開"
+
+#: src/Install/Update.php:190
+msgid "Your related posts are up to date. Related Posts for WordPress 3.0 finds related posts in a new, more precise way, and linked your posts again; the related posts you added by hand kept their place."
+msgstr "関連投稿は最新の状態です。Related Posts for WordPress 3.0 は新しい、より正確な方法で関連投稿を見つけ、投稿を再度関連付けました。手動で追加した関連投稿はその位置を保っています。"
+
+#: src/Install/Update.php:192
+msgid "What changed"
+msgstr "変更内容"
 
 #: src/Rest/InstallController.php:126
 msgid "No installation is running."
@@ -465,10 +539,6 @@ msgstr "キャンセル"
 #: assets/build/admin/index.js:16
 msgid "The installation could not resume."
 msgstr "インストールを再開できませんでした。"
-
-#: assets/build/admin/index.js:16
-msgid "Resume"
-msgstr "再開"
 
 #: assets/build/admin/index.js:16
 msgid "Cancel the installation?"

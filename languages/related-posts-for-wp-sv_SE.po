@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
-"POT-Creation-Date: 2026-10-08T15:49:37+00:00\n"
+"POT-Creation-Date: 2026-10-10T22:46:56+00:00\n"
 "PO-Revision-Date: 2017-09-06 17:20+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Swedish (Sweden) (http://www.transifex.com/barrykooijplugins/related-posts-for-wordpress/language/sv_SE/)\n"
@@ -94,6 +94,10 @@ msgstr "Avbryt länkning"
 msgid "Search"
 msgstr "Sök"
 
+#: src/Admin/LinkScreen/Page.php:245 src/Admin/MetaBox/Ajax.php:113
+msgid "Related Posts for WordPress is moving its links to a new database table. Please try again in a moment."
+msgstr "Related Posts for WordPress flyttar sina länkar till en ny databastabell. Försök igen om en stund."
+
 #: src/Admin/MetaBox/ManageLinks.php:81
 msgid "Add Related Posts"
 msgstr "Lägg till relaterade inlägg"
@@ -111,31 +115,31 @@ msgid "No related posts found."
 msgstr "Inga relaterade inlägg hittades"
 
 #. translators: %d: how far the installation is, in percent
-#: src/Admin/Notices/Installing.php:70
+#: src/Admin/Notices/Installing.php:75
 msgid "Related Posts for WordPress is linking your posts in the background (%d%%)."
 msgstr "Related Posts for WordPress länkar dina inlägg i bakgrunden (%d%%)."
 
-#: src/Admin/Notices/Installing.php:73
+#: src/Admin/Notices/Installing.php:78 src/Install/Update.php:170
 msgid "View progress"
 msgstr "Visa förlopp"
 
-#: src/Admin/Notices/Installing.php:83
+#: src/Admin/Notices/Installing.php:88
 msgid "The installation of Related Posts for WordPress stopped with an error."
 msgstr "Installationen av Related Posts for WordPress stoppades på grund av ett fel."
 
-#: src/Admin/Notices/Installing.php:84
+#: src/Admin/Notices/Installing.php:89
 msgid "See what happened"
 msgstr "Se vad som hände"
 
-#: src/Admin/Notices/Installing.php:95
+#: src/Admin/Notices/Installing.php:100
 msgid "Woah! Looks like we weren't able to finish your Related Posts for WordPress installation wizard!"
 msgstr "Oj! Det ser ut som att installationen av Related Posts for WordPress inte slutfördes!"
 
-#: src/Admin/Notices/Installing.php:96
+#: src/Admin/Notices/Installing.php:101
 msgid "Finish the installation"
 msgstr "Slutför installationen"
 
-#: src/Admin/Notices/Installing.php:145
+#: src/Admin/Notices/Installing.php:150 src/Install/Update.php:193
 msgid "Dismiss"
 msgstr "Avfärda"
 
@@ -221,31 +225,44 @@ msgstr "Inställningarna för Related Posts for WordPress kräver JavaScript."
 msgid "Go to the settings of Related Posts for WordPress"
 msgstr "Gå till inställningarna för Related Posts for WordPress"
 
+#: src/Database/Migrations.php:222
+msgid "Related Posts for WordPress could not update its database tables. It keeps working with the data it has, and tries again every ten minutes."
+msgstr "Related Posts for WordPress kunde inte uppdatera sina databastabeller. Det fortsätter att fungera med de data det har och försöker igen var tionde minut."
+
+#: src/Database/Migrations.php:224
+msgid "Try again"
+msgstr "Försök igen"
+
+#: src/Database/Migrations.php:239 src/Install/Update.php:208
+#: src/Install/Update.php:229
+msgid "Sorry, you are not allowed to do that."
+msgstr "Du har tyvärr inte behörighet att göra det."
+
 #: src/Frontend/Widget.php:29
 msgid "Display related posts."
 msgstr "Visa relaterade inlägg."
 
-#: src/Install/Jobs/Queue.php:89
+#: src/Install/Jobs/Queue.php:107
 msgid "An installation is running already."
 msgstr "En installation pågår redan."
 
-#: src/Install/Jobs/Queue.php:138
+#: src/Install/Jobs/Queue.php:159
 msgid "There is no stopped installation to resume."
 msgstr "Det finns ingen stoppad installation att återuppta."
 
-#: src/Install/Jobs/Queue.php:279
+#: src/Install/Jobs/Queue.php:333
 msgid "The steps of the installation changed while it ran. Please start it again."
 msgstr "Installationens steg ändrades medan den kördes. Starta den igen."
 
-#: src/Install/Planner.php:37
+#: src/Install/Planner.php:40
 msgid "The number of related posts to link to each post."
 msgstr "Antalet relaterade inlägg som ska länkas till varje inlägg."
 
-#: src/Install/Planner.php:44
+#: src/Install/Planner.php:47
 msgid "Only cache the words of the posts, and link nothing."
 msgstr "Cacha bara inläggens ord, och länka ingenting."
 
-#: src/Install/Planner.php:49
+#: src/Install/Planner.php:52
 msgid "Remove every link and all cached words first, and install again."
 msgstr "Ta först bort alla länkar och alla cachade ord, och installera sedan igen."
 
@@ -257,13 +274,70 @@ msgstr "Cachar inlägg"
 msgid "Linking posts"
 msgstr "Länkar inlägg"
 
-#: src/Install/Tasks/ResetTask.php:35
+#: src/Install/Tasks/ReindexWordsTask.php:62
+msgid "Reading your posts again"
+msgstr "Läser dina inlägg igen"
+
+#: src/Install/Tasks/RelinkPostsTask.php:62
+msgid "Linking your posts again"
+msgstr "Länkar dina inlägg igen"
+
+#: src/Install/Tasks/ResetTask.php:37
 msgid "Removing the old links and words"
 msgstr "Tar bort gamla länkar och ord"
 
 #: src/Install/Tasks/SaveAmountTask.php:54
 msgid "Saving the settings"
 msgstr "Sparar inställningarna"
+
+#: src/Install/Tasks/WeighWordsTask.php:69
+msgid "Weighing the words"
+msgstr "Viktar orden"
+
+#: src/Install/Update.php:124
+msgid "Updating your related posts"
+msgstr "Uppdaterar dina relaterade inlägg till 3.0"
+
+#: src/Install/Update.php:125
+msgid "Your related posts are up to date."
+msgstr "Dina relaterade inlägg är uppdaterade."
+
+#: src/Install/Update.php:126
+msgid "The update of your related posts stopped"
+msgstr "Uppdateringen av dina relaterade inlägg till 3.0 stoppades"
+
+#: src/Install/Update.php:127
+msgid "The update of your related posts was cancelled"
+msgstr "Uppdateringen av dina relaterade inlägg till 3.0 avbröts"
+
+#: src/Install/Update.php:128
+msgid "Cancel the update of your related posts? Posts it did not reach keep their old related posts."
+msgstr "Avbryta uppdateringen av dina relaterade inlägg till 3.0? Inlägg som den inte har nått behåller sina gamla relaterade inlägg."
+
+#: src/Install/Update.php:129
+msgid "Cancel update"
+msgstr "Avbryt uppdateringen till 3.0"
+
+#. translators: %d: how far the update is, in percent
+#: src/Install/Update.php:167
+msgid "Related Posts for WordPress is updating your related posts in the background (%d%%). Every post keeps its related posts until it gets its new ones."
+msgstr "Related Posts for WordPress uppdaterar dina relaterade inlägg till 3.0 i bakgrunden (%d %%). Varje inlägg behåller sina relaterade inlägg tills det får sina nya."
+
+#: src/Install/Update.php:180
+msgid "The update of your related posts stopped. Posts it did not reach keep their old related posts until you resume it."
+msgstr "Uppdateringen av dina relaterade inlägg till 3.0 stoppades. Inlägg som den inte har nått behåller sina gamla relaterade inlägg tills du återupptar den."
+
+#: src/Install/Update.php:181 assets/build/admin/index.js:16
+msgid "Resume"
+msgstr "Återuppta"
+
+#: src/Install/Update.php:190
+msgid "Your related posts are up to date. Related Posts for WordPress 3.0 finds related posts in a new, more precise way, and linked your posts again; the related posts you added by hand kept their place."
+msgstr "Dina relaterade inlägg är uppdaterade. Related Posts for WordPress 3.0 hittar relaterade inlägg på ett nytt, mer exakt sätt och har länkat dina inlägg igen; de relaterade inlägg som du har lagt till för hand har behållit sin plats."
+
+#: src/Install/Update.php:192
+msgid "What changed"
+msgstr "Vad som har ändrats"
 
 #: src/Rest/InstallController.php:126
 msgid "No installation is running."
@@ -469,10 +543,6 @@ msgstr "Avbryt"
 #: assets/build/admin/index.js:16
 msgid "The installation could not resume."
 msgstr "Installationen kunde inte återupptas."
-
-#: assets/build/admin/index.js:16
-msgid "Resume"
-msgstr "Återuppta"
 
 #: assets/build/admin/index.js:16
 msgid "Cancel the installation?"

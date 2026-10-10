@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
-"POT-Creation-Date: 2026-10-08T15:49:37+00:00\n"
+"POT-Creation-Date: 2026-10-10T22:46:56+00:00\n"
 "PO-Revision-Date: 2026-10-01 12:00+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Russian\n"
@@ -91,6 +91,10 @@ msgstr "Отменить связывание"
 msgid "Search"
 msgstr "Поиск"
 
+#: src/Admin/LinkScreen/Page.php:245 src/Admin/MetaBox/Ajax.php:113
+msgid "Related Posts for WordPress is moving its links to a new database table. Please try again in a moment."
+msgstr "Related Posts for WordPress переносит свои ссылки в новую таблицу базы данных. Повторите попытку через минуту."
+
 #: src/Admin/MetaBox/ManageLinks.php:81
 msgid "Add Related Posts"
 msgstr "Добавить связанные записи"
@@ -108,31 +112,31 @@ msgid "No related posts found."
 msgstr "Связанных записей не найдено."
 
 #. translators: %d: how far the installation is, in percent
-#: src/Admin/Notices/Installing.php:70
+#: src/Admin/Notices/Installing.php:75
 msgid "Related Posts for WordPress is linking your posts in the background (%d%%)."
 msgstr "Related Posts for WordPress связывает ваши записи в фоновом режиме (%d%%)."
 
-#: src/Admin/Notices/Installing.php:73
+#: src/Admin/Notices/Installing.php:78 src/Install/Update.php:170
 msgid "View progress"
 msgstr "Показать ход установки"
 
-#: src/Admin/Notices/Installing.php:83
+#: src/Admin/Notices/Installing.php:88
 msgid "The installation of Related Posts for WordPress stopped with an error."
 msgstr "Установка Related Posts for WordPress остановлена из-за ошибки."
 
-#: src/Admin/Notices/Installing.php:84
+#: src/Admin/Notices/Installing.php:89
 msgid "See what happened"
 msgstr "Посмотреть, что произошло"
 
-#: src/Admin/Notices/Installing.php:95
+#: src/Admin/Notices/Installing.php:100
 msgid "Woah! Looks like we weren't able to finish your Related Posts for WordPress installation wizard!"
 msgstr "Ой! Похоже, нам не удалось завершить работу мастера установки Related Posts for WordPress!"
 
-#: src/Admin/Notices/Installing.php:96
+#: src/Admin/Notices/Installing.php:101
 msgid "Finish the installation"
 msgstr "Завершить установку"
 
-#: src/Admin/Notices/Installing.php:145
+#: src/Admin/Notices/Installing.php:150 src/Install/Update.php:193
 msgid "Dismiss"
 msgstr "Скрыть"
 
@@ -218,31 +222,44 @@ msgstr "Для настроек Related Posts for WordPress требуется J
 msgid "Go to the settings of Related Posts for WordPress"
 msgstr "Перейти к настройкам Related Posts for WordPress"
 
+#: src/Database/Migrations.php:222
+msgid "Related Posts for WordPress could not update its database tables. It keeps working with the data it has, and tries again every ten minutes."
+msgstr "Related Posts for WordPress не удалось обновить свои таблицы в базе данных. Плагин продолжает работать с имеющимися данными и повторяет попытку каждые десять минут."
+
+#: src/Database/Migrations.php:224
+msgid "Try again"
+msgstr "Повторить попытку"
+
+#: src/Database/Migrations.php:239 src/Install/Update.php:208
+#: src/Install/Update.php:229
+msgid "Sorry, you are not allowed to do that."
+msgstr "У вас нет прав на это действие."
+
 #: src/Frontend/Widget.php:29
 msgid "Display related posts."
 msgstr "Отобразить связанные записи."
 
-#: src/Install/Jobs/Queue.php:89
+#: src/Install/Jobs/Queue.php:107
 msgid "An installation is running already."
 msgstr "Установка уже выполняется."
 
-#: src/Install/Jobs/Queue.php:138
+#: src/Install/Jobs/Queue.php:159
 msgid "There is no stopped installation to resume."
 msgstr "Нет остановленной установки, которую можно возобновить."
 
-#: src/Install/Jobs/Queue.php:279
+#: src/Install/Jobs/Queue.php:333
 msgid "The steps of the installation changed while it ran. Please start it again."
 msgstr "Шаги установки изменились во время её выполнения. Запустите её заново."
 
-#: src/Install/Planner.php:37
+#: src/Install/Planner.php:40
 msgid "The number of related posts to link to each post."
 msgstr "Количество связанных записей для каждой записи."
 
-#: src/Install/Planner.php:44
+#: src/Install/Planner.php:47
 msgid "Only cache the words of the posts, and link nothing."
 msgstr "Только кэшировать слова записей, ничего не связывая."
 
-#: src/Install/Planner.php:49
+#: src/Install/Planner.php:52
 msgid "Remove every link and all cached words first, and install again."
 msgstr "Сначала удалить все связи и все кэшированные слова, затем установить заново."
 
@@ -254,13 +271,70 @@ msgstr "Кэширование записей"
 msgid "Linking posts"
 msgstr "Связывание записей"
 
-#: src/Install/Tasks/ResetTask.php:35
+#: src/Install/Tasks/ReindexWordsTask.php:62
+msgid "Reading your posts again"
+msgstr "Повторное чтение ваших записей"
+
+#: src/Install/Tasks/RelinkPostsTask.php:62
+msgid "Linking your posts again"
+msgstr "Повторное связывание ваших записей"
+
+#: src/Install/Tasks/ResetTask.php:37
 msgid "Removing the old links and words"
 msgstr "Удаление старых связей и слов"
 
 #: src/Install/Tasks/SaveAmountTask.php:54
 msgid "Saving the settings"
 msgstr "Сохранение настроек"
+
+#: src/Install/Tasks/WeighWordsTask.php:69
+msgid "Weighing the words"
+msgstr "Взвешивание слов"
+
+#: src/Install/Update.php:124
+msgid "Updating your related posts"
+msgstr "Обновление связанных записей до версии 3.0"
+
+#: src/Install/Update.php:125
+msgid "Your related posts are up to date."
+msgstr "Ваши связанные записи в актуальном состоянии."
+
+#: src/Install/Update.php:126
+msgid "The update of your related posts stopped"
+msgstr "Обновление связанных записей до версии 3.0 остановлено"
+
+#: src/Install/Update.php:127
+msgid "The update of your related posts was cancelled"
+msgstr "Обновление связанных записей до версии 3.0 отменено"
+
+#: src/Install/Update.php:128
+msgid "Cancel the update of your related posts? Posts it did not reach keep their old related posts."
+msgstr "Отменить обновление связанных записей до версии 3.0? Записи, до которых оно не дошло, сохранят свои прежние связанные записи."
+
+#: src/Install/Update.php:129
+msgid "Cancel update"
+msgstr "Отменить обновление до 3.0"
+
+#. translators: %d: how far the update is, in percent
+#: src/Install/Update.php:167
+msgid "Related Posts for WordPress is updating your related posts in the background (%d%%). Every post keeps its related posts until it gets its new ones."
+msgstr "Related Posts for WordPress обновляет ваши связанные записи до версии 3.0 в фоновом режиме (%d%%). Каждая запись сохраняет свои связанные записи, пока не получит новые."
+
+#: src/Install/Update.php:180
+msgid "The update of your related posts stopped. Posts it did not reach keep their old related posts until you resume it."
+msgstr "Обновление связанных записей до версии 3.0 остановлено. Записи, до которых оно не дошло, сохранят свои прежние связанные записи, пока вы его не возобновите."
+
+#: src/Install/Update.php:181 assets/build/admin/index.js:16
+msgid "Resume"
+msgstr "Возобновить"
+
+#: src/Install/Update.php:190
+msgid "Your related posts are up to date. Related Posts for WordPress 3.0 finds related posts in a new, more precise way, and linked your posts again; the related posts you added by hand kept their place."
+msgstr "Ваши связанные записи в актуальном состоянии. Related Posts for WordPress 3.0 находит связанные записи новым, более точным способом и заново связал ваши записи; связанные записи, добавленные вами вручную, остались на своих местах."
+
+#: src/Install/Update.php:192
+msgid "What changed"
+msgstr "Что изменилось"
 
 #: src/Rest/InstallController.php:126
 msgid "No installation is running."
@@ -467,10 +541,6 @@ msgstr "Отмена"
 #: assets/build/admin/index.js:16
 msgid "The installation could not resume."
 msgstr "Не удалось возобновить установку."
-
-#: assets/build/admin/index.js:16
-msgid "Resume"
-msgstr "Возобновить"
 
 #: assets/build/admin/index.js:16
 msgid "Cancel the installation?"

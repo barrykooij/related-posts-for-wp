@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
-"POT-Creation-Date: 2026-10-08T15:49:37+00:00\n"
+"POT-Creation-Date: 2026-10-10T22:46:56+00:00\n"
 "PO-Revision-Date: 2026-10-01 12:00+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Polish\n"
@@ -91,6 +91,10 @@ msgstr "Anuluj łączenie"
 msgid "Search"
 msgstr "Szukaj"
 
+#: src/Admin/LinkScreen/Page.php:245 src/Admin/MetaBox/Ajax.php:113
+msgid "Related Posts for WordPress is moving its links to a new database table. Please try again in a moment."
+msgstr "Related Posts for WordPress przenosi swoje odnośniki do nowej tabeli bazy danych. Spróbuj ponownie za chwilę."
+
 #: src/Admin/MetaBox/ManageLinks.php:81
 msgid "Add Related Posts"
 msgstr "Dodaj powiązane wpisy"
@@ -108,31 +112,31 @@ msgid "No related posts found."
 msgstr "Nie znaleziono powiązanych wpisów."
 
 #. translators: %d: how far the installation is, in percent
-#: src/Admin/Notices/Installing.php:70
+#: src/Admin/Notices/Installing.php:75
 msgid "Related Posts for WordPress is linking your posts in the background (%d%%)."
 msgstr "Related Posts for WordPress łączy wpisy w tle (%d%%)."
 
-#: src/Admin/Notices/Installing.php:73
+#: src/Admin/Notices/Installing.php:78 src/Install/Update.php:170
 msgid "View progress"
 msgstr "Zobacz postęp"
 
-#: src/Admin/Notices/Installing.php:83
+#: src/Admin/Notices/Installing.php:88
 msgid "The installation of Related Posts for WordPress stopped with an error."
 msgstr "Instalacja Related Posts for WordPress została przerwana z powodu błędu."
 
-#: src/Admin/Notices/Installing.php:84
+#: src/Admin/Notices/Installing.php:89
 msgid "See what happened"
 msgstr "Zobacz, co się stało"
 
-#: src/Admin/Notices/Installing.php:95
+#: src/Admin/Notices/Installing.php:100
 msgid "Woah! Looks like we weren't able to finish your Related Posts for WordPress installation wizard!"
 msgstr "Ojej! Wygląda na to, że nie udało się ukończyć kreatora instalacji Related Posts for WordPress!"
 
-#: src/Admin/Notices/Installing.php:96
+#: src/Admin/Notices/Installing.php:101
 msgid "Finish the installation"
 msgstr "Dokończ instalację"
 
-#: src/Admin/Notices/Installing.php:145
+#: src/Admin/Notices/Installing.php:150 src/Install/Update.php:193
 msgid "Dismiss"
 msgstr "Ukryj"
 
@@ -218,31 +222,44 @@ msgstr "Ustawienia Related Posts for WordPress wymagają JavaScript."
 msgid "Go to the settings of Related Posts for WordPress"
 msgstr "Przejdź do ustawień Related Posts for WordPress"
 
+#: src/Database/Migrations.php:222
+msgid "Related Posts for WordPress could not update its database tables. It keeps working with the data it has, and tries again every ten minutes."
+msgstr "Related Posts for WordPress nie mógł zaktualizować swoich tabel bazy danych. Działa dalej na posiadanych danych i ponawia próbę co dziesięć minut."
+
+#: src/Database/Migrations.php:224
+msgid "Try again"
+msgstr "Spróbuj ponownie"
+
+#: src/Database/Migrations.php:239 src/Install/Update.php:208
+#: src/Install/Update.php:229
+msgid "Sorry, you are not allowed to do that."
+msgstr "Niestety nie masz uprawnień, aby to zrobić."
+
 #: src/Frontend/Widget.php:29
 msgid "Display related posts."
 msgstr "Wyświetla powiązane wpisy."
 
-#: src/Install/Jobs/Queue.php:89
+#: src/Install/Jobs/Queue.php:107
 msgid "An installation is running already."
 msgstr "Instalacja jest już w toku."
 
-#: src/Install/Jobs/Queue.php:138
+#: src/Install/Jobs/Queue.php:159
 msgid "There is no stopped installation to resume."
 msgstr "Nie ma zatrzymanej instalacji do wznowienia."
 
-#: src/Install/Jobs/Queue.php:279
+#: src/Install/Jobs/Queue.php:333
 msgid "The steps of the installation changed while it ran. Please start it again."
 msgstr "Kroki instalacji zmieniły się w trakcie jej trwania. Prosimy uruchomić ją ponownie."
 
-#: src/Install/Planner.php:37
+#: src/Install/Planner.php:40
 msgid "The number of related posts to link to each post."
 msgstr "Liczba powiązanych wpisów łączonych z każdym wpisem."
 
-#: src/Install/Planner.php:44
+#: src/Install/Planner.php:47
 msgid "Only cache the words of the posts, and link nothing."
 msgstr "Zapisuje tylko słowa wpisów w pamięci podręcznej i niczego nie łączy."
 
-#: src/Install/Planner.php:49
+#: src/Install/Planner.php:52
 msgid "Remove every link and all cached words first, and install again."
 msgstr "Najpierw usuwa wszystkie połączenia i wszystkie słowa z pamięci podręcznej, a potem instaluje ponownie."
 
@@ -254,13 +271,70 @@ msgstr "Zapisywanie wpisów w pamięci podręcznej"
 msgid "Linking posts"
 msgstr "Łączenie wpisów"
 
-#: src/Install/Tasks/ResetTask.php:35
+#: src/Install/Tasks/ReindexWordsTask.php:62
+msgid "Reading your posts again"
+msgstr "Ponowne odczytywanie wpisów"
+
+#: src/Install/Tasks/RelinkPostsTask.php:62
+msgid "Linking your posts again"
+msgstr "Ponowne łączenie wpisów"
+
+#: src/Install/Tasks/ResetTask.php:37
 msgid "Removing the old links and words"
 msgstr "Usuwanie starych połączeń i słów"
 
 #: src/Install/Tasks/SaveAmountTask.php:54
 msgid "Saving the settings"
 msgstr "Zapisywanie ustawień"
+
+#: src/Install/Tasks/WeighWordsTask.php:69
+msgid "Weighing the words"
+msgstr "Ważenie słów"
+
+#: src/Install/Update.php:124
+msgid "Updating your related posts"
+msgstr "Aktualizacja powiązanych wpisów"
+
+#: src/Install/Update.php:125
+msgid "Your related posts are up to date."
+msgstr "Powiązane wpisy są aktualne."
+
+#: src/Install/Update.php:126
+msgid "The update of your related posts stopped"
+msgstr "Aktualizacja powiązanych wpisów została zatrzymana"
+
+#: src/Install/Update.php:127
+msgid "The update of your related posts was cancelled"
+msgstr "Aktualizacja powiązanych wpisów została anulowana"
+
+#: src/Install/Update.php:128
+msgid "Cancel the update of your related posts? Posts it did not reach keep their old related posts."
+msgstr "Anulować aktualizację powiązanych wpisów? Wpisy, do których jeszcze nie dotarła, zachowają swoje dotychczasowe powiązane wpisy."
+
+#: src/Install/Update.php:129
+msgid "Cancel update"
+msgstr "Anuluj aktualizację"
+
+#. translators: %d: how far the update is, in percent
+#: src/Install/Update.php:167
+msgid "Related Posts for WordPress is updating your related posts in the background (%d%%). Every post keeps its related posts until it gets its new ones."
+msgstr "Related Posts for WordPress aktualizuje powiązane wpisy w tle (%d%%). Każdy wpis zachowuje swoje powiązane wpisy, dopóki nie otrzyma nowych."
+
+#: src/Install/Update.php:180
+msgid "The update of your related posts stopped. Posts it did not reach keep their old related posts until you resume it."
+msgstr "Aktualizacja powiązanych wpisów została zatrzymana. Wpisy, do których jeszcze nie dotarła, zachowają swoje dotychczasowe powiązane wpisy, dopóki jej nie wznowisz."
+
+#: src/Install/Update.php:181 assets/build/admin/index.js:16
+msgid "Resume"
+msgstr "Wznów"
+
+#: src/Install/Update.php:190
+msgid "Your related posts are up to date. Related Posts for WordPress 3.0 finds related posts in a new, more precise way, and linked your posts again; the related posts you added by hand kept their place."
+msgstr "Powiązane wpisy są aktualne. Related Posts for WordPress 3.0 znajduje powiązane wpisy w nowy, dokładniejszy sposób i ponownie połączył Twoje wpisy; powiązane wpisy dodane przez Ciebie ręcznie zachowały swoje miejsce."
+
+#: src/Install/Update.php:192
+msgid "What changed"
+msgstr "Co się zmieniło"
 
 #: src/Rest/InstallController.php:126
 msgid "No installation is running."
@@ -467,10 +541,6 @@ msgstr "Anuluj"
 #: assets/build/admin/index.js:16
 msgid "The installation could not resume."
 msgstr "Nie udało się wznowić instalacji."
-
-#: assets/build/admin/index.js:16
-msgid "Resume"
-msgstr "Wznów"
 
 #: assets/build/admin/index.js:16
 msgid "Cancel the installation?"

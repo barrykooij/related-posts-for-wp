@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
-"POT-Creation-Date: 2026-10-08T15:49:37+00:00\n"
+"POT-Creation-Date: 2026-10-10T22:46:56+00:00\n"
 "PO-Revision-Date: 2026-10-01 12:00+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Spanish (Spain)\n"
@@ -91,6 +91,10 @@ msgstr "Cancelar el enlazado"
 msgid "Search"
 msgstr "Buscar"
 
+#: src/Admin/LinkScreen/Page.php:245 src/Admin/MetaBox/Ajax.php:113
+msgid "Related Posts for WordPress is moving its links to a new database table. Please try again in a moment."
+msgstr "Related Posts for WordPress está moviendo sus enlaces a una nueva tabla de la base de datos. Inténtalo de nuevo en un momento."
+
 #: src/Admin/MetaBox/ManageLinks.php:81
 msgid "Add Related Posts"
 msgstr "Añadir entradas relacionadas"
@@ -108,31 +112,31 @@ msgid "No related posts found."
 msgstr "No se han encontrado entradas relacionadas."
 
 #. translators: %d: how far the installation is, in percent
-#: src/Admin/Notices/Installing.php:70
+#: src/Admin/Notices/Installing.php:75
 msgid "Related Posts for WordPress is linking your posts in the background (%d%%)."
 msgstr "Related Posts for WordPress está enlazando tus entradas en segundo plano (%d %%)."
 
-#: src/Admin/Notices/Installing.php:73
+#: src/Admin/Notices/Installing.php:78 src/Install/Update.php:170
 msgid "View progress"
 msgstr "Ver el progreso"
 
-#: src/Admin/Notices/Installing.php:83
+#: src/Admin/Notices/Installing.php:88
 msgid "The installation of Related Posts for WordPress stopped with an error."
 msgstr "La instalación de Related Posts for WordPress se ha detenido por un error."
 
-#: src/Admin/Notices/Installing.php:84
+#: src/Admin/Notices/Installing.php:89
 msgid "See what happened"
 msgstr "Ver qué ha pasado"
 
-#: src/Admin/Notices/Installing.php:95
+#: src/Admin/Notices/Installing.php:100
 msgid "Woah! Looks like we weren't able to finish your Related Posts for WordPress installation wizard!"
 msgstr "¡Vaya! Parece que no hemos podido terminar el asistente de instalación de Related Posts for WordPress."
 
-#: src/Admin/Notices/Installing.php:96
+#: src/Admin/Notices/Installing.php:101
 msgid "Finish the installation"
 msgstr "Terminar la instalación"
 
-#: src/Admin/Notices/Installing.php:145
+#: src/Admin/Notices/Installing.php:150 src/Install/Update.php:193
 msgid "Dismiss"
 msgstr "Descartar"
 
@@ -218,31 +222,44 @@ msgstr "Los ajustes de Related Posts for WordPress necesitan JavaScript."
 msgid "Go to the settings of Related Posts for WordPress"
 msgstr "Ir a los ajustes de Related Posts for WordPress"
 
+#: src/Database/Migrations.php:222
+msgid "Related Posts for WordPress could not update its database tables. It keeps working with the data it has, and tries again every ten minutes."
+msgstr "Related Posts for WordPress no ha podido actualizar sus tablas de la base de datos. Sigue funcionando con los datos que tiene y lo vuelve a intentar cada diez minutos."
+
+#: src/Database/Migrations.php:224
+msgid "Try again"
+msgstr "Intentar de nuevo"
+
+#: src/Database/Migrations.php:239 src/Install/Update.php:208
+#: src/Install/Update.php:229
+msgid "Sorry, you are not allowed to do that."
+msgstr "Lo siento, no tienes permisos para hacer eso."
+
 #: src/Frontend/Widget.php:29
 msgid "Display related posts."
 msgstr "Muestra entradas relacionadas."
 
-#: src/Install/Jobs/Queue.php:89
+#: src/Install/Jobs/Queue.php:107
 msgid "An installation is running already."
 msgstr "Ya hay una instalación en curso."
 
-#: src/Install/Jobs/Queue.php:138
+#: src/Install/Jobs/Queue.php:159
 msgid "There is no stopped installation to resume."
 msgstr "No hay ninguna instalación detenida que reanudar."
 
-#: src/Install/Jobs/Queue.php:279
+#: src/Install/Jobs/Queue.php:333
 msgid "The steps of the installation changed while it ran. Please start it again."
 msgstr "Los pasos de la instalación cambiaron mientras se ejecutaba. Vuelve a iniciarla."
 
-#: src/Install/Planner.php:37
+#: src/Install/Planner.php:40
 msgid "The number of related posts to link to each post."
 msgstr "El número de entradas relacionadas que se enlazan a cada entrada."
 
-#: src/Install/Planner.php:44
+#: src/Install/Planner.php:47
 msgid "Only cache the words of the posts, and link nothing."
 msgstr "Solo guardar en caché las palabras de las entradas, sin enlazar nada."
 
-#: src/Install/Planner.php:49
+#: src/Install/Planner.php:52
 msgid "Remove every link and all cached words first, and install again."
 msgstr "Eliminar primero todos los enlaces y todas las palabras guardadas en caché, y volver a instalar."
 
@@ -254,13 +271,70 @@ msgstr "Guardando en caché las entradas"
 msgid "Linking posts"
 msgstr "Enlazando las entradas"
 
-#: src/Install/Tasks/ResetTask.php:35
+#: src/Install/Tasks/ReindexWordsTask.php:62
+msgid "Reading your posts again"
+msgstr "Leyendo de nuevo tus entradas"
+
+#: src/Install/Tasks/RelinkPostsTask.php:62
+msgid "Linking your posts again"
+msgstr "Enlazando de nuevo tus entradas"
+
+#: src/Install/Tasks/ResetTask.php:37
 msgid "Removing the old links and words"
 msgstr "Eliminando los enlaces y las palabras antiguos"
 
 #: src/Install/Tasks/SaveAmountTask.php:54
 msgid "Saving the settings"
 msgstr "Guardando los ajustes"
+
+#: src/Install/Tasks/WeighWordsTask.php:69
+msgid "Weighing the words"
+msgstr "Ponderando las palabras"
+
+#: src/Install/Update.php:124
+msgid "Updating your related posts"
+msgstr "Actualizando tus entradas relacionadas a la 3.0"
+
+#: src/Install/Update.php:125
+msgid "Your related posts are up to date."
+msgstr "Tus entradas relacionadas están al día."
+
+#: src/Install/Update.php:126
+msgid "The update of your related posts stopped"
+msgstr "La actualización de tus entradas relacionadas a la 3.0 se ha detenido"
+
+#: src/Install/Update.php:127
+msgid "The update of your related posts was cancelled"
+msgstr "La actualización de tus entradas relacionadas a la 3.0 se ha cancelado"
+
+#: src/Install/Update.php:128
+msgid "Cancel the update of your related posts? Posts it did not reach keep their old related posts."
+msgstr "¿Cancelar la actualización de tus entradas relacionadas a la 3.0? Las entradas a las que aún no ha llegado conservan sus entradas relacionadas anteriores."
+
+#: src/Install/Update.php:129
+msgid "Cancel update"
+msgstr "Cancelar la actualización a la 3.0"
+
+#. translators: %d: how far the update is, in percent
+#: src/Install/Update.php:167
+msgid "Related Posts for WordPress is updating your related posts in the background (%d%%). Every post keeps its related posts until it gets its new ones."
+msgstr "Related Posts for WordPress está actualizando tus entradas relacionadas a la 3.0 en segundo plano (%d %%). Cada entrada conserva sus entradas relacionadas hasta que recibe las nuevas."
+
+#: src/Install/Update.php:180
+msgid "The update of your related posts stopped. Posts it did not reach keep their old related posts until you resume it."
+msgstr "La actualización de tus entradas relacionadas a la 3.0 se ha detenido. Las entradas a las que aún no ha llegado conservan sus entradas relacionadas anteriores hasta que la reanudes."
+
+#: src/Install/Update.php:181 assets/build/admin/index.js:16
+msgid "Resume"
+msgstr "Reanudar"
+
+#: src/Install/Update.php:190
+msgid "Your related posts are up to date. Related Posts for WordPress 3.0 finds related posts in a new, more precise way, and linked your posts again; the related posts you added by hand kept their place."
+msgstr "Tus entradas relacionadas están al día. Related Posts for WordPress 3.0 encuentra las entradas relacionadas de una forma nueva y más precisa, y ha vuelto a enlazar tus entradas; las entradas relacionadas que añadiste a mano mantienen su lugar."
+
+#: src/Install/Update.php:192
+msgid "What changed"
+msgstr "Qué ha cambiado"
 
 #: src/Rest/InstallController.php:126
 msgid "No installation is running."
@@ -466,10 +540,6 @@ msgstr "Cancelar"
 #: assets/build/admin/index.js:16
 msgid "The installation could not resume."
 msgstr "No se ha podido reanudar la instalación."
-
-#: assets/build/admin/index.js:16
-msgid "Resume"
-msgstr "Reanudar"
 
 #: assets/build/admin/index.js:16
 msgid "Cancel the installation?"
