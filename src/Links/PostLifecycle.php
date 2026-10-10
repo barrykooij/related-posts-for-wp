@@ -16,6 +16,9 @@ use LV2\WordPress\RelatedPostsForWP\Words\Cache;
 
 /**
  * Keeps words and links up to date when posts are published, unpublished and deleted.
+ *
+ * While the links can't be written (a migration moves them into the links table), a post that is published, or a
+ * linked post that is unpublished, waits (see Deferred), and is handled on the first request after the move.
  */
 class PostLifecycle implements Module {
 
@@ -29,6 +32,32 @@ class PostLifecycle implements Module {
 		LegacyHooks::add_action( 'RP4WP_Hook_Related_Auto_Link', 'transition_post_status', [ self::class, 'auto_link' ], 11, 3 );
 		LegacyHooks::add_action( 'RP4WP_Hook_Related_Update_Link', 'transition_post_status', [ self::class, 'update_links' ], 11, 3 );
 		LegacyHooks::add_action( 'RP4WP_Hook_Related_Save_Words', 'transition_post_status', [ self::class, 'save_words' ], 10, 3 );
+
+		add_action( 'init', [ self::class, 'run_deferred' ], 20 );
+	}
+
+	/**
+	 * Handle the posts that waited while the links could not be written.
+	 *
+	 * @return void
+	 */
+	public static function run_deferred(): void {
+		if ( ! ( new LinkRepository() )->can_write() || ! Deferred::has() ) {
+			return;
+		}
+
+		foreach ( Deferred::take() as $post_id => $what ) {
+			$post = get_post( $post_id );
+			if ( ! $post instanceof \WP_Post ) {
+				continue;
+			}
+
+			if ( Deferred::LINK === $what && 'publish' === $post->post_status ) {
+				self::auto_link( 'publish', 'new', $post );
+			} elseif ( Deferred::UNLINK === $what && 'publish' !== $post->post_status ) {
+				self::update_links( $post->post_status, 'publish', $post );
+			}
+		}
 	}
 
 	/**
@@ -62,13 +91,19 @@ class PostLifecycle implements Module {
 			return;
 		}
 
-		if ( 1 == get_post_meta( $post->ID, LinkPostType::META_AUTO_LINKED, true ) ) { // phpcs:ignore Universal.Operators.StrictComparisons.LooseEqual -- Meta is stored as "1".
+		$links = new LinkRepository();
+		if ( ! $links->can_write() ) {
+			Deferred::add( (int) $post->ID, Deferred::LINK );
+
 			return;
 		}
 
-		( new Linker() )->link_post( (int) $post->ID, (int) Main::get()->settings()->get( 'automatic_linking_post_amount' ) );
+		if ( PostState::is_linked( (int) $post->ID ) ) {
+			return;
+		}
 
-		update_post_meta( $post->ID, LinkPostType::META_AUTO_LINKED, 1 );
+		// Marks the post as linked.
+		( new Linker( null, $links ) )->link_post( (int) $post->ID, (int) Main::get()->settings()->get( 'automatic_linking_post_amount' ) );
 	}
 
 	/**
@@ -86,16 +121,22 @@ class PostLifecycle implements Module {
 			return;
 		}
 
-		if ( 1 != get_post_meta( $post->ID, LinkPostType::META_AUTO_LINKED, true ) ) { // phpcs:ignore Universal.Operators.StrictComparisons.LooseNotEqual -- Meta is stored as "1".
+		$links = new LinkRepository();
+		if ( ! $links->can_write() ) {
+			Deferred::add( (int) $post->ID, Deferred::UNLINK );
+
 			return;
 		}
 
-		$links   = new LinkRepository();
+		if ( ! PostState::is_linked( (int) $post->ID ) ) {
+			return;
+		}
+
 		$parents = $links->get_parents( (int) $post->ID );
 
 		$links->delete_links_related_to( (int) $post->ID );
 
-		$linker = new Linker();
+		$linker = new Linker( null, $links );
 		foreach ( $parents as $parent ) {
 			// 2.x keeps links to deleted posts (known issue K2); there is nothing to relink for those.
 			if ( null !== $parent ) {
@@ -103,7 +144,7 @@ class PostLifecycle implements Module {
 			}
 		}
 
-		delete_post_meta( $post->ID, LinkPostType::META_AUTO_LINKED );
+		PostState::unmark_linked( (int) $post->ID );
 	}
 
 	/**
@@ -119,6 +160,7 @@ class PostLifecycle implements Module {
 		}
 
 		( new Cache() )->delete_post( (int) $post_id );
+		PostState::forget( (int) $post_id );
 	}
 
 	/**

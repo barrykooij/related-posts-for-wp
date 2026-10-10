@@ -9,11 +9,12 @@ namespace LV2\WordPress\RelatedPostsForWP\Install\Tasks;
 
 use LV2\WordPress\RelatedPostsForWP\Contracts\InstallTask;
 use LV2\WordPress\RelatedPostsForWP\Install\Table;
-use LV2\WordPress\RelatedPostsForWP\Links\LinkPostType;
-use LV2\WordPress\RelatedPostsForWP\Words\Cache;
+use LV2\WordPress\RelatedPostsForWP\Links\LinkRepository;
+use LV2\WordPress\RelatedPostsForWP\Links\PostState;
 
 /**
- * Remove every link, the "linked automatically" flags and the word cache, so an installation starts over.
+ * Remove the automatic links, the marks of linked and cached posts, and the word cache, so an installation starts
+ * over. Links added by hand stay (2.x removed them too).
  */
 class ResetTask implements InstallTask {
 
@@ -52,26 +53,10 @@ class ResetTask implements InstallTask {
 	public function run_batch(): bool {
 		global $wpdb;
 
-		$link_ids = get_posts(
-			[
-				'post_type'      => LinkPostType::POST_TYPE,
-				'post_status'    => 'any',
-				'fields'         => 'ids',
-				'posts_per_page' => -1,
-			]
-		);
+		( new LinkRepository() )->delete_automatic();
+		PostState::reset();
 
-		// phpcs:disable WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQL.NotPrepared -- Bulk removal, like 2.x; the placeholders are built from the ID count.
-		if ( count( $link_ids ) > 0 ) {
-			$placeholders = implode( ',', array_fill( 0, count( $link_ids ), '%d' ) );
-
-			$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->posts} WHERE `ID` IN ({$placeholders})", $link_ids ) );
-			$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->postmeta} WHERE `post_id` IN ({$placeholders})", $link_ids ) );
-		}
-
-		$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->postmeta} WHERE `meta_key` IN ( %s, 'rp4wp_cached', %s )", LinkPostType::META_AUTO_LINKED, Cache::META_NO_WORDS ) );
-		$wpdb->query( 'DELETE FROM ' . Table::name() . ' WHERE 1=1' );
-		// phpcs:enable
+		$wpdb->query( 'DELETE FROM ' . Table::name() . ' WHERE 1=1' ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.NotPrepared -- Our own table.
 
 		return true;
 	}

@@ -51,7 +51,7 @@ final class AjaxPermissionsTest extends \WP_Ajax_UnitTestCase {
 
 		$this->_handleAjax( 'rp4wp_delete_link' );
 
-		$this->assertInstanceOf( \WP_Post::class, get_post( $this->admin_link ) );
+		$this->assertNotNull( ( new LinkRepository() )->find( $this->admin_link ) );
 	}
 
 	public function test_delete_ignores_posts_that_are_not_links(): void {
@@ -89,7 +89,7 @@ final class AjaxPermissionsTest extends \WP_Ajax_UnitTestCase {
 		}
 
 		$this->assertSame( '{"success":true}', $this->_last_response );
-		$this->assertNull( get_post( $this->admin_link ) );
+		$this->assertNull( ( new LinkRepository() )->find( $this->admin_link ) );
 	}
 
 	public function test_admin_sort_gets_the_2x_response(): void {
@@ -108,32 +108,36 @@ final class AjaxPermissionsTest extends \WP_Ajax_UnitTestCase {
 	}
 
 	public function test_contributor_cannot_reorder_normal_posts_or_other_users_links(): void {
-		$this->set_menu_order( [ $this->admin_post, $this->admin_link ], 7 );
-		$sentinel = $this->sentinel_link();
+		$links = new LinkRepository();
+		$links->set_positions( [ $this->admin_link => 7 ] );
 
 		$this->act_as( 'contributor' );
-		$_POST['rp4wp_items'] = implode( ',', [ $this->admin_post, $this->admin_link, $sentinel ] );
+		$_POST['rp4wp_items'] = implode( ',', [ $this->admin_post, $this->admin_link ] );
 		$_POST['nonce']       = wp_create_nonce( 'rp4wp-ajax-nonce-omgrandomword' );
 
-		$this->handle_until_sentinel( 'rp4wp_related_sort' );
+		$this->handle( 'rp4wp_related_sort' );
 
-		$this->assertSame( 7, $this->get_menu_order( $this->admin_post ) );
-		$this->assertSame( 7, $this->get_menu_order( $this->admin_link ) );
+		$this->assertSame( 7, $links->find( $this->admin_link )['position'] );
 	}
 
 	public function test_admin_can_reorder_links(): void {
-		$second = ( new LinkRepository() )->add( $this->admin_post, self::factory()->post->create() );
-		$this->set_menu_order( [ $this->admin_link, $second ], 7 );
-		$sentinel = $this->sentinel_link();
+		$links  = new LinkRepository();
+		$second = $links->add( $this->admin_post, self::factory()->post->create() );
+		$links->set_positions(
+			[
+				$this->admin_link => 7,
+				$second           => 7,
+			]
+		);
 
 		$this->act_as( 'administrator' );
-		$_POST['rp4wp_items'] = implode( ',', [ $second, $this->admin_link, $sentinel ] );
+		$_POST['rp4wp_items'] = implode( ',', [ $second, $this->admin_link ] );
 		$_POST['nonce']       = wp_create_nonce( 'rp4wp-ajax-nonce-omgrandomword' );
 
-		$this->handle_until_sentinel( 'rp4wp_related_sort' );
+		$this->handle( 'rp4wp_related_sort' );
 
-		$this->assertSame( 0, $this->get_menu_order( $second ) );
-		$this->assertSame( 1, $this->get_menu_order( $this->admin_link ) );
+		$this->assertSame( 0, $links->find( $second )['position'] );
+		$this->assertSame( 1, $links->find( $this->admin_link )['position'] );
 	}
 
 	/**
@@ -178,78 +182,17 @@ final class AjaxPermissionsTest extends \WP_Ajax_UnitTestCase {
 	}
 
 	/**
-	 * Set menu_order directly, like the sort handler does.
-	 *
-	 * @param int[] $post_ids The posts.
-	 * @param int   $order    The order value.
-	 *
-	 * @return void
-	 */
-	private function set_menu_order( array $post_ids, int $order ): void {
-		global $wpdb;
-
-		foreach ( $post_ids as $post_id ) {
-			$wpdb->update( $wpdb->posts, [ 'menu_order' => $order ], [ 'ID' => $post_id ] ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- Test setup.
-			clean_post_cache( $post_id );
-		}
-	}
-
-	/**
-	 * Run an AJAX action that is expected to hit the sentinel link, and close the output buffer _handleAjax() opened.
+	 * Run an AJAX action to its end: wp_send_json() dies, which the test suite turns into an exception.
 	 *
 	 * @param string $action The AJAX action.
 	 *
 	 * @return void
 	 */
-	private function handle_until_sentinel( string $action ): void {
-		$level = ob_get_level();
-
+	private function handle( string $action ): void {
 		try {
 			$this->_handleAjax( $action );
-			$this->fail( 'The sentinel link should have stopped the handler before exit().' );
-		} catch ( SentinelReachedException $e ) {
+		} catch ( \WPAjaxDieContinueException $e ) {
 			unset( $e );
 		}
-
-		while ( ob_get_level() > $level ) {
-			ob_end_clean();
-		}
-	}
-
-	/**
-	 * Read menu_order from the database. The handler writes with $wpdb and does not clear the post cache.
-	 *
-	 * @param int $post_id The post ID.
-	 *
-	 * @return int
-	 */
-	private function get_menu_order( int $post_id ): int {
-		global $wpdb;
-
-		return (int) $wpdb->get_var( $wpdb->prepare( "SELECT menu_order FROM {$wpdb->posts} WHERE ID = %d", $post_id ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- Reading past the stale object cache.
-	}
-
-	/**
-	 * A link whose parent lookup throws, so the sort loop stops right before the handler's exit().
-	 *
-	 * @return int The sentinel link ID.
-	 */
-	private function sentinel_link(): int {
-		$sentinel = ( new LinkRepository() )->add( $this->admin_post, self::factory()->post->create() );
-
-		add_filter(
-			'get_post_metadata',
-			static function ( $value, $object_id, $meta_key ) use ( $sentinel ) {
-				if ( $sentinel === (int) $object_id && 'rp4wp_parent' === $meta_key ) {
-					throw new SentinelReachedException();
-				}
-
-				return $value;
-			},
-			10,
-			3
-		);
-
-		return $sentinel;
 	}
 }

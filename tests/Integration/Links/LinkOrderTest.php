@@ -11,8 +11,8 @@ use LV2\WordPress\RelatedPostsForWP\Links\LinkRepository;
 use LV2\WordPress\RelatedPostsForWP\Tests\Integration\TestCase;
 
 /**
- * Links with the same menu_order come back in the order they were added, also with a limit (known issue K1), while
- * the 2.x query filters keep getting the 2.x arguments.
+ * Links with the same position come back in the order they were added, also with a limit (known issue K1); the links
+ * of 2.x all have position 0. `rp4wp_links_query` can change which links are read.
  *
  * @covers \LV2\WordPress\RelatedPostsForWP\Links\LinkRepository
  */
@@ -38,10 +38,8 @@ final class LinkOrderTest extends TestCase {
 		$this->parent   = self::factory()->post->create();
 		$this->children = self::factory()->post->create_many( 4 );
 
-		$links = new LinkRepository();
-		foreach ( $this->children as $child ) {
-			$links->add( $this->parent, $child );
-		}
+		// All at position 0, like the links the 2.x wizard wrote.
+		( new LinkRepository() )->insert( $this->parent, array_fill_keys( $this->children, 0 ) );
 	}
 
 	public function test_ties_keep_the_order_the_links_were_added_in(): void {
@@ -70,47 +68,62 @@ final class LinkOrderTest extends TestCase {
 		$this->assertSame( array_reverse( $this->children ), $this->child_ids( ( new LinkRepository() )->get_children( $this->parent, [ 'order' => 'DESC' ] ) ) );
 	}
 
-	public function test_menu_order_still_comes_first(): void {
-		global $wpdb;
+	public function test_the_position_comes_first(): void {
+		$repository = new LinkRepository();
+		$links      = array_keys( $repository->get_children( $this->parent ) );
 
-		$links = array_keys( ( new LinkRepository() )->get_children( $this->parent ) );
-		$wpdb->update( $wpdb->posts, [ 'menu_order' => -1 ], [ 'ID' => $links[3] ] ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- Same write as the sort handler.
-		clean_post_cache( $links[3] );
+		$repository->set_positions( array_fill_keys( array_slice( $links, 0, 3 ), 1 ) );
 
-		$this->assertSame( $this->children[3], $this->child_ids( ( new LinkRepository() )->get_children( $this->parent ) )[0] );
+		$this->assertSame( $this->children[3], $this->child_ids( $repository->get_children( $this->parent ) )[0] );
 	}
 
-	public function test_filters_get_the_2x_arguments_and_can_still_set_the_order(): void {
+	public function test_an_offset_without_a_limit_is_ignored_like_in_2x(): void {
+		$this->assertSame( $this->children, $this->child_ids( ( new LinkRepository() )->get_children( $this->parent, [ 'offset' => 2 ] ) ) );
+	}
+
+	public function test_the_links_query_filter_gets_the_query_and_can_set_the_order(): void {
 		$seen = null;
 		add_filter(
-			'rp4wp_get_children_link_args',
-			static function ( $args ) use ( &$seen ) {
-				$seen          = $args;
-				$args['order'] = 'DESC';
+			'rp4wp_links_query',
+			static function ( $query, $post_id, $direction ) use ( &$seen ) {
+				$seen           = [ $query, $post_id, $direction ];
+				$query['order'] = 'DESC';
 
-				return $args;
-			}
+				return $query;
+			},
+			10,
+			3
 		);
 
 		$children = $this->child_ids( ( new LinkRepository() )->get_children( $this->parent ) );
 
-		$this->assertSame( 'menu_order', $seen['orderby'] );
-		$this->assertSame( 'ASC', $seen['order'] );
+		$this->assertSame(
+			[
+				[
+					'limit'  => -1,
+					'offset' => 0,
+					'order'  => 'ASC',
+				],
+				$this->parent,
+				'children',
+			],
+			$seen
+		);
 		$this->assertSame( array_reverse( $this->children ), $children );
 	}
 
-	public function test_a_filter_can_replace_the_order_completely(): void {
+	public function test_the_links_query_filter_can_limit_the_links(): void {
 		add_filter(
-			'rp4wp_get_children_link_args',
-			static function ( $args ) {
-				$args['orderby'] = 'ID';
-				$args['order']   = 'DESC';
+			'rp4wp_links_query',
+			static function ( $query ) {
+				$query['limit']  = 2;
+				$query['offset'] = 1;
 
-				return $args;
+				return $query;
 			}
 		);
 
-		$this->assertSame( array_reverse( $this->children ), $this->child_ids( ( new LinkRepository() )->get_children( $this->parent ) ) );
+		$this->assertSame( [ $this->children[1], $this->children[2] ], $this->child_ids( ( new LinkRepository() )->get_children( $this->parent ) ) );
 	}
 
 	/**

@@ -45,17 +45,20 @@ class RP4WP_Post_Link_Manager {
 	 *
 	 * @deprecated 3.0.0
 	 *
+	 * In 2.x, `$batch` returned the SQL to insert a link post later, for automatic linking. Since 3.0 links are rows of
+	 * a table, so a batch add adds an automatic link at once and returns its ID.
+	 *
 	 * @param int  $parent_id The parent post.
 	 * @param int  $child_id  The child post.
-	 * @param bool $batch     Whether to return the insert data instead of inserting the link.
+	 * @param bool $batch     Whether the link is added by the automatic linking (2.x: return the insert data).
 	 *
-	 * @return int|array The link ID, or the insert data when $batch is true.
+	 * @return int The link ID; 0 while a migration moves the links.
 	 */
 	public function add( $parent_id, $child_id, $batch = false ) {
 		Deprecation::method( __METHOD__, LinkRepository::class . '::add()' );
 
 		if ( true === $batch ) {
-			return $this->links->insert_data( absint( $parent_id ), absint( $child_id ) );
+			return $this->links->link( absint( $parent_id ), absint( $child_id ), false );
 		}
 
 		return $this->links->add( absint( $parent_id ), absint( $child_id ) );

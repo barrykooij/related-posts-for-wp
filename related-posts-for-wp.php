@@ -139,6 +139,9 @@ function rp4wp_load_plugin() {
 	require __DIR__ . '/deprecated/functions.php';
 	require __DIR__ . '/includes/template-tags.php';
 
+	// The database is brought up to date before the modules read it.
+	add_action( 'rp4wp_setup_database', array( 'LV2\\WordPress\\RelatedPostsForWP\\Database\\Migrations', 'on_setup' ), 10, 0 );
+
 	\LV2\WordPress\RelatedPostsForWP\Main::get()->setup();
 }
 

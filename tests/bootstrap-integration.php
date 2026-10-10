@@ -35,6 +35,20 @@ tests_add_filter(
 	}
 );
 
+// The test suite installs WordPress again for every run but only drops its own tables. Drop the plugin's tables too,
+// so every run starts like a new site and the migrations create them.
+tests_add_filter(
+	'muplugins_loaded',
+	static function () {
+		global $wpdb;
+
+		foreach ( [ 'rp4wp_links', 'rp4wp_post_state', 'rp4wp_migrations' ] as $table ) {
+			$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}{$table}" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Test setup.
+		}
+	},
+	5
+);
+
 // Load the plugin like WordPress would, so it boots on plugins_loaded exactly as on a real site.
 tests_add_filter(
 	'muplugins_loaded',

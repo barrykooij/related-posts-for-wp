@@ -44,12 +44,6 @@
     "rp4wp_get_children_child_args": [
         2
     ],
-    "rp4wp_get_children_link_args": [
-        2
-    ],
-    "rp4wp_get_parents_link_args": [
-        2
-    ],
     "rp4wp_heading": [
         1
     ],
@@ -58,6 +52,9 @@
     ],
     "rp4wp_ignored_words": [
         1
+    ],
+    "rp4wp_links_query": [
+        3
     ],
     "rp4wp_options": [
         1

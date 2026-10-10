@@ -8,6 +8,7 @@
 namespace LV2\WordPress\RelatedPostsForWP\Tests\Integration\Security;
 
 use LV2\WordPress\RelatedPostsForWP\Admin\LinkScreen\Page;
+use LV2\WordPress\RelatedPostsForWP\Links\LinkRepository;
 use LV2\WordPress\RelatedPostsForWP\Tests\Integration\TestCase;
 
 /**
@@ -83,14 +84,7 @@ final class LinkPermissionsTest extends TestCase {
 			$this->assertStringContainsString( "post={$own_post}&action=edit", $e->getMessage() );
 		}
 
-		$children = array_map(
-			static function ( $link_id ) {
-				return (int) get_post_meta( $link_id, 'rp4wp_child', true );
-			},
-			$this->get_link_ids( $own_post )
-		);
-
-		$this->assertSame( $this->children, $children );
+		$this->assertSame( $this->children, array_values( ( new LinkRepository() )->child_ids( $own_post ) ) );
 	}
 
 	public function test_contributor_cannot_create_a_single_link_on_someone_elses_post(): void {

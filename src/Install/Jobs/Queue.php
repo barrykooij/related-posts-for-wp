@@ -8,6 +8,7 @@
 namespace LV2\WordPress\RelatedPostsForWP\Install\Jobs;
 
 use LV2\WordPress\RelatedPostsForWP\Contracts\InstallPlanner;
+use LV2\WordPress\RelatedPostsForWP\Database\Schema;
 use LV2\WordPress\RelatedPostsForWP\Main;
 
 /**
@@ -40,6 +41,11 @@ class Queue {
 	 * How long the lock lasts when the request that holds it dies.
 	 */
 	private const LOCK_SECONDS = 120;
+
+	/**
+	 * How long a job waits, in seconds, while a migration moves the links into their table.
+	 */
+	private const MIGRATION_WAIT = 30;
 
 	/**
 	 * The planner.
@@ -161,6 +167,13 @@ class Queue {
 		$job = $this->store->get();
 
 		if ( null === $job || $job->id !== $job_id || ! $job->is_running() ) {
+			return false;
+		}
+
+		// A migration moves the links into their table; the job goes on once it is done.
+		if ( ! Schema::has_links() ) {
+			$this->enqueue( $job, self::MIGRATION_WAIT );
+
 			return false;
 		}
 

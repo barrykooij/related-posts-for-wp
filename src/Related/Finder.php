@@ -8,7 +8,7 @@
 namespace LV2\WordPress\RelatedPostsForWP\Related;
 
 use LV2\WordPress\RelatedPostsForWP\Install\Table;
-use LV2\WordPress\RelatedPostsForWP\Links\LinkPostType;
+use LV2\WordPress\RelatedPostsForWP\Links\PostState;
 use LV2\WordPress\RelatedPostsForWP\PostTypes;
 
 /**
@@ -21,15 +21,17 @@ class Finder {
 	 *
 	 * Each result has ID, post_title and CMS (the score).
 	 *
-	 * @param int $post_id The post.
-	 * @param int $limit   The maximum number of posts; -1 for all.
+	 * @param int   $post_id The post.
+	 * @param int   $limit   The maximum number of posts; -1 for all.
+	 * @param int[] $exclude Posts to leave out, such as the posts a relink keeps.
 	 *
 	 * @return object[]
 	 */
-	public function related_posts( int $post_id, int $limit = -1 ): array {
+	public function related_posts( int $post_id, int $limit = -1, array $exclude = [] ): array {
 		global $wpdb;
 
-		$table = Table::name();
+		$table   = Table::name();
+		$exclude = count( $exclude ) > 0 ? 'AND R.`post_id` NOT IN (' . implode( ',', array_map( 'intval', $exclude ) ) . ')' : '';
 
 		$sql = "
 		SELECT P.`ID`, P.`post_title`, ( SUM( O.`weight` ) *  SUM( R.`weight` ) ) AS `CMS`
@@ -41,6 +43,7 @@ class Finder {
 		AND R.`post_type` = %s
 		AND R.`post_id` != %d
 		AND P.`post_status` = 'publish'
+		{$exclude}
 		GROUP BY P.`id`
 		ORDER BY `CMS` DESC
 		";
@@ -57,28 +60,17 @@ class Finder {
 	}
 
 	/**
-	 * Published posts of the supported post types that were not linked automatically yet.
+	 * Published posts of the supported post types that were not linked automatically yet, newest first.
 	 *
 	 * @param int $limit The maximum number of posts; -1 for all.
 	 *
 	 * @return int[]
 	 */
 	public function not_auto_linked_post_ids( int $limit ): array {
-		return get_posts(
-			[
-				'fields'         => 'ids',
-				'post_type'      => PostTypes::supported(),
-				'posts_per_page' => $limit,
-				'post_status'    => 'publish',
-				'meta_query'     => [ // phpcs:ignore WordPress.DB.SlowDBQuery.slow_query_meta_query -- Finds posts without the flag.
-					[
-						'key'     => LinkPostType::META_AUTO_LINKED,
-						'compare' => 'NOT EXISTS',
-						'value'   => '',
-					],
-				],
-			]
-		);
+		global $wpdb;
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.NotPrepared -- Escaped post types, and conditions from PostState.
+		return array_map( 'intval', $wpdb->get_col( $this->not_linked_sql( 'P.ID' ) . ' ORDER BY P.post_date DESC, P.ID DESC' . ( $limit > 0 ? $wpdb->prepare( ' LIMIT %d', $limit ) : '' ) ) );
 	}
 
 	/**
@@ -89,9 +81,19 @@ class Finder {
 	public function unlinked_post_count(): int {
 		global $wpdb;
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.NotPrepared -- Constants and escaped post types.
-		$count = $wpdb->get_var( 'SELECT COUNT(P.ID) FROM ' . $wpdb->posts . ' P LEFT JOIN ' . $wpdb->postmeta . " PM ON (P.ID = PM.post_id AND PM.meta_key = '" . LinkPostType::META_AUTO_LINKED . "') WHERE 1=1 AND P.post_type IN ('" . implode( "','", PostTypes::supported() ) . "') AND P.post_status = 'publish' AND PM.post_id IS NULL GROUP BY P.post_status" );
+		return (int) $wpdb->get_var( $this->not_linked_sql( 'COUNT(P.ID)' ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.NotPrepared -- See not_auto_linked_post_ids().
+	}
 
-		return is_numeric( $count ) ? (int) $count : 0;
+	/**
+	 * The query for published posts of the supported post types that were not linked automatically yet.
+	 *
+	 * @param string $select What to select.
+	 *
+	 * @return string
+	 */
+	private function not_linked_sql( string $select ): string {
+		global $wpdb;
+
+		return "SELECT {$select} FROM {$wpdb->posts} P WHERE P.post_type IN ('" . implode( "','", PostTypes::supported() ) . "') AND P.post_status = 'publish' AND " . PostState::not_linked_sql( 'P' );
 	}
 }

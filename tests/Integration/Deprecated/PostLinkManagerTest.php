@@ -54,17 +54,18 @@ final class PostLinkManagerTest extends ShimTestCase {
 
 		$link_id = $this->manager->add( $this->parent, $this->children[0] );
 
-		$this->assertSame( 'rp4wp_link', get_post_type( $link_id ) );
+		$this->assertSame( $this->children[0], ( new LinkRepository() )->find( $link_id )['child'] );
 		$this->assertSame( [ $this->children[0] ], $this->ids( ( new LinkRepository() )->get_children( $this->parent ) ) );
 	}
 
-	public function test_add_in_a_batch_returns_the_data_to_insert(): void {
+	public function test_add_in_a_batch_adds_an_automatic_link_since_3_0(): void {
 		$this->expect_deprecated( 'RP4WP_Post_Link_Manager::add' );
 
-		$data = $this->manager->add( $this->parent, $this->children[0], true );
+		$link_id = $this->manager->add( $this->parent, $this->children[0], true );
 
-		$this->assertIsArray( $data );
-		$this->assertSame( [], ( new LinkRepository() )->get_children( $this->parent ) );
+		$link = ( new LinkRepository() )->find( $link_id );
+		$this->assertSame( $this->children[0], $link['child'] );
+		$this->assertFalse( $link['manual'] );
 	}
 
 	public function test_add_does_not_run_sql_from_the_child_id(): void {
@@ -77,9 +78,11 @@ final class PostLinkManagerTest extends ShimTestCase {
 
 		$injected = (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$wpdb->postmeta} WHERE meta_key = 'rp4wp_injected'" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- Verifying the raw table.
 
+		$link = ( new LinkRepository() )->find( $link_id );
+
 		$this->assertSame( 0, $injected );
-		$this->assertSame( (string) $this->children[0], get_post_meta( $link_id, 'rp4wp_child', true ) );
-		$this->assertSame( (string) $this->parent, get_post_meta( $link_id, 'rp4wp_parent', true ) );
+		$this->assertSame( $this->children[0], $link['child'] );
+		$this->assertSame( $this->parent, $link['parent'] );
 	}
 
 	public function test_add_does_not_run_sql_from_the_parent_id(): void {

@@ -5,6 +5,7 @@
 	<file>src</file>
 	<file>deprecated</file>
 	<file>includes</file>
+	<file>migrations</file>
 	<file>tests</file>
 	<file>related-posts-for-wp.php</file>
 	<file>uninstall.php</file>

@@ -11,6 +11,7 @@ use LV2\WordPress\RelatedPostsForWP\Compat\LegacyHooks;
 use LV2\WordPress\RelatedPostsForWP\Frontend\Css;
 use LV2\WordPress\RelatedPostsForWP\Install\Table;
 use LV2\WordPress\RelatedPostsForWP\Links\LinkRepository;
+use LV2\WordPress\RelatedPostsForWP\Links\PostState;
 use LV2\WordPress\RelatedPostsForWP\Main;
 use LV2\WordPress\RelatedPostsForWP\Related\Finder;
 use LV2\WordPress\RelatedPostsForWP\Related\Linker;
@@ -199,28 +200,29 @@ final class GoldenMasterTest extends TestCase {
 	}
 
 	/**
-	 * The links of every post: children in order, plus the link post fields that 2.x writes.
+	 * The links of every post: children in order, with the position and the mark of a link added by hand. 2.x kept
+	 * the links as posts; since 3.0 they are rows of the links table.
 	 *
 	 * @return array<string, mixed>
 	 */
 	private function links(): array {
-		$links = [];
+		$links      = [];
+		$repository = new LinkRepository();
 
 		foreach ( self::$ids as $slug => $post_id ) {
+			$rows     = $repository->link_rows( $post_id );
 			$children = [];
-			foreach ( $this->get_link_ids( $post_id ) as $link_id ) {
-				$link       = get_post( $link_id );
+
+			foreach ( $repository->child_ids( $post_id ) as $link_id => $child_id ) {
 				$children[] = [
-					'child'      => $this->normalizer()->name( (int) get_post_meta( $link_id, 'rp4wp_child', true ) ),
-					'menu_order' => $link->menu_order,
-					'title'      => $link->post_title,
-					'status'     => $link->post_status,
-					'meta'       => array_keys( get_post_meta( $link_id ) ),
+					'child'    => $this->normalizer()->name( $child_id ),
+					'position' => $rows[ $link_id ]['position'],
+					'manual'   => $rows[ $link_id ]['manual'],
 				];
 			}
 
 			$links[ $slug ] = [
-				'auto_linked' => get_post_meta( $post_id, 'rp4wp_auto_linked', true ),
+				'auto_linked' => PostState::is_linked( $post_id ),
 				'children'    => $children,
 			];
 		}
@@ -450,11 +452,7 @@ final class GoldenMasterTest extends TestCase {
 		$result['after_add'] = $this->children_of( $parent, self::$ids );
 
 		// Reverse the order, like the sort handler does.
-		global $wpdb;
-		foreach ( array_reverse( $this->get_link_ids( $parent ) ) as $order => $link_id ) {
-			$wpdb->update( $wpdb->posts, [ 'menu_order' => $order ], [ 'ID' => $link_id ] ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- Same write as the sort handler.
-			clean_post_cache( $link_id );
-		}
+		$links->set_positions( array_flip( array_reverse( $this->get_link_ids( $parent ) ) ) );
 		$result['after_reverse'] = $this->children_of( $parent, self::$ids );
 
 		$links->delete( $link );
@@ -605,11 +603,13 @@ final class GoldenMasterTest extends TestCase {
 	private function children_of( int $post_id, array $names ): array {
 		$normalizer = ( new Normalizer() )->with_ids( $names );
 
-		return array_map(
-			static function ( $link_id ) use ( $normalizer ) {
-				return $normalizer->name( (int) get_post_meta( $link_id, 'rp4wp_child', true ) );
-			},
-			$this->get_link_ids( $post_id )
+		return array_values(
+			array_map(
+				static function ( $child_id ) use ( $normalizer ) {
+					return $normalizer->name( $child_id );
+				},
+				( new LinkRepository() )->child_ids( $post_id )
+			)
 		);
 	}
 

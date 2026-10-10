@@ -1,1401 +1,801 @@
 {
     "sourdough-bread-at-home": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "banana-bread-recipe",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "focaccia-with-rosemary",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "espresso-at-home",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "fresh-pasta-dough": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "tomato-sauce-basics",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "homemade-pizza-dough",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "risotto-technique",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "tomato-sauce-basics": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "saving-tomato-seeds",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "fresh-pasta-dough",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "wordpress-plugin-basics",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "espresso-at-home": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "sourdough-bread-at-home",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "pour-over-coffee",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "cold-brew-coffee",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "pour-over-coffee": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "cold-brew-coffee",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "composting-for-beginners",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "coffee-and-code",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "focaccia-with-rosemary": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "banana-bread-recipe",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "sourdough-bread-at-home",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "risotto-technique",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "risotto-technique": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "wordpress-hooks-explained",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "focaccia-with-rosemary",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "fresh-pasta-dough",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "banana-bread-recipe": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "sourdough-bread-at-home",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "focaccia-with-rosemary",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "risotto-technique",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "cold-brew-coffee": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "pour-over-coffee",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "coffee-and-code",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "tokyo-coffee-shops",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "homemade-pizza-dough": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "fresh-pasta-dough",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "mysql-index-tips",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "risotto-technique",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "hiking-the-dolomites": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "hiking-gear-checklist",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "train-travel-europe",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "florence-food-tour",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "rome-in-three-days": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "train-travel-europe",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "florence-food-tour",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "amsterdam-by-bike",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "tokyo-coffee-shops": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "pour-over-coffee",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "cold-brew-coffee",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "coffee-and-code",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "kyoto-temples": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "train-travel-europe",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "japanese-garden-design",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "osaka-street-food",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "packing-light": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "hiking-gear-checklist",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "train-travel-europe",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "florence-food-tour",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "train-travel-europe": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "amsterdam-by-bike",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "florence-food-tour",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "hiking-gear-checklist",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "amsterdam-by-bike": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "train-travel-europe",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "rome-in-three-days",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "florence-food-tour",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "hiking-gear-checklist": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "hiking-the-dolomites",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "packing-light",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "train-travel-europe",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "florence-food-tour": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "osaka-street-food",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "train-travel-europe",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "rome-in-three-days",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "osaka-street-food": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "florence-food-tour",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "train-travel-europe",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "kyoto-temples",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "wordpress-plugin-basics": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "unit-testing-wordpress",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "wordpress-hooks-explained",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "caching-wordpress",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "php-8-features": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "static-analysis-php",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "wordpress-hooks-explained",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "wordpress-plugin-basics",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "mysql-index-tips": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "database-backups",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "homemade-pizza-dough",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "wordpress-hooks-explained",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "wordpress-hooks-explained": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "wordpress-plugin-basics",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "unit-testing-wordpress",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "caching-wordpress",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "static-analysis-php": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "php-8-features",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "wordpress-hooks-explained",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "wordpress-plugin-basics",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "database-backups": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "mysql-index-tips",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "wordpress-hooks-explained",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "unit-testing-wordpress",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "unit-testing-wordpress": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "wordpress-plugin-basics",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "wordpress-hooks-explained",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "caching-wordpress",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "coffee-and-code": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "pour-over-coffee",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "cold-brew-coffee",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "tokyo-coffee-shops",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "git-branching": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "wordpress-hooks-explained",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "mysql-index-tips",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "unit-testing-wordpress",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "caching-wordpress": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "wordpress-hooks-explained",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "unit-testing-wordpress",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "wordpress-plugin-basics",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "growing-tomatoes": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "olive-trees-in-pots",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "saving-tomato-seeds",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "tomato-sauce-basics",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "pruning-roses": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "climbing-roses",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "saving-tomato-seeds",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "composting-for-beginners",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "herb-garden-basil": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "japanese-garden-design",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "climbing-roses",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "saving-tomato-seeds",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "composting-for-beginners": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "pour-over-coffee",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "lawn-care-autumn",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "raised-vegetable-beds",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "japanese-garden-design": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "herb-garden-basil",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "kyoto-temples",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "climbing-roses",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "raised-vegetable-beds": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "composting-for-beginners",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "lawn-care-autumn",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "climbing-roses",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "climbing-roses": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "pruning-roses",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "saving-tomato-seeds",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "composting-for-beginners",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "olive-trees-in-pots": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "growing-tomatoes",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "climbing-roses",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "saving-tomato-seeds",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "saving-tomato-seeds": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "tomato-sauce-basics",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "growing-tomatoes",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "climbing-roses",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     },
     "lawn-care-autumn": {
-        "auto_linked": "1",
+        "auto_linked": true,
         "children": [
             {
                 "child": "composting-for-beginners",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 0,
+                "manual": false
             },
             {
                 "child": "raised-vegetable-beds",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 1,
+                "manual": false
             },
             {
                 "child": "climbing-roses",
-                "menu_order": 0,
-                "title": "Related Posts for WordPress Link",
-                "status": "publish",
-                "meta": [
-                    "rp4wp_parent",
-                    "rp4wp_child"
-                ]
+                "position": 2,
+                "manual": false
             }
         ]
     }

@@ -29,13 +29,11 @@
             ],
             "growing-tomatoes": [
                 "olive-trees-in-pots",
-                "saving-tomato-seeds",
-                "olive-trees-in-pots"
+                "saving-tomato-seeds"
             ],
             "saving-tomato-seeds": [
                 "growing-tomatoes",
-                "climbing-roses",
-                "growing-tomatoes"
+                "climbing-roses"
             ]
         }
     },

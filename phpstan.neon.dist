@@ -18,6 +18,7 @@ parameters:
         - src
         - deprecated
         - includes
+        - migrations
         - tests
         - related-posts-for-wp.php
         - uninstall.php

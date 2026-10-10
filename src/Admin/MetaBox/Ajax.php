@@ -8,7 +8,6 @@
 namespace LV2\WordPress\RelatedPostsForWP\Admin\MetaBox;
 
 use LV2\WordPress\RelatedPostsForWP\Compat\LegacyHooks;
-use LV2\WordPress\RelatedPostsForWP\Links\LinkPostType;
 use LV2\WordPress\RelatedPostsForWP\Links\LinkRepository;
 use LV2\WordPress\RelatedPostsForWP\Module;
 
@@ -50,12 +49,17 @@ class Ajax implements Module {
 			return;
 		}
 
-		$link = get_post( $link_id );
-		if ( null === $link || LinkPostType::POST_TYPE !== $link->post_type || ! self::can_edit_parent( $link->ID ) ) {
+		$links = new LinkRepository();
+		if ( ! $links->can_write() ) {
+			self::moving();
+		}
+
+		$link = $links->find( $link_id );
+		if ( null === $link || ! current_user_can( 'edit_post', $link['parent'] ) ) {
 			return;
 		}
 
-		( new LinkRepository() )->delete( $link->ID );
+		$links->delete( $link_id );
 
 		wp_send_json( [ 'success' => true ] );
 	}
@@ -66,8 +70,6 @@ class Ajax implements Module {
 	 * @return void
 	 */
 	public static function sort(): void {
-		global $wpdb;
-
 		check_ajax_referer( self::NONCE, 'nonce' );
 
 		if ( ! current_user_can( 'edit_posts' ) ) {
@@ -80,28 +82,36 @@ class Ajax implements Module {
 
 		$items = explode( ',', sanitize_text_field( wp_unslash( $_POST['rp4wp_items'] ) ) );
 
-		$order = 0;
-		foreach ( $items as $item_id ) {
-			$link = get_post( absint( $item_id ) );
-
-			if ( null !== $link && LinkPostType::POST_TYPE === $link->post_type && self::can_edit_parent( $link->ID ) ) {
-				$wpdb->update( $wpdb->posts, [ 'menu_order' => $order ], [ 'ID' => $link->ID ] ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- One column, like 2.x.
-			}
-
-			++$order;
+		$links = new LinkRepository();
+		if ( ! $links->can_write() ) {
+			self::moving();
 		}
+
+		$positions = [];
+		foreach ( $items as $order => $item_id ) {
+			$link = $links->find( absint( $item_id ) );
+
+			if ( null !== $link && current_user_can( 'edit_post', $link['parent'] ) ) {
+				$positions[ absint( $item_id ) ] = (int) $order;
+			}
+		}
+
+		$links->set_positions( $positions );
 
 		wp_send_json( [ 'success' => true ] );
 	}
 
 	/**
-	 * Whether the current user can edit the post a link belongs to.
+	 * Answer that links can't be changed now, because a migration moves them into the links table.
 	 *
-	 * @param int $link_id The link.
-	 *
-	 * @return bool
+	 * @return void
 	 */
-	private static function can_edit_parent( int $link_id ): bool {
-		return current_user_can( 'edit_post', absint( get_post_meta( $link_id, LinkPostType::META_PARENT, true ) ) );
+	private static function moving(): void {
+		wp_send_json(
+			[
+				'success' => false,
+				'message' => __( 'Related Posts for WordPress is moving its links to a new database table. Please try again in a moment.', 'related-posts-for-wp' ),
+			]
+		);
 	}
 }

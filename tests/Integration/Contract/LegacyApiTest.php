@@ -35,6 +35,15 @@ final class LegacyApiTest extends TestCase {
 		'rp4wp_settings_sections'         => 'Settings are built on init, before a test can attach a recorder; covered by the E2E settings spec.',
 	];
 
+	/**
+	 * Legacy hooks that are gone on purpose, with the decision. They handed out the WP_Query arguments of the link posts
+	 * of 2.x; since 3.0 links are rows of a table, and `rp4wp_links_query` replaces them (D62).
+	 */
+	private const HOOKS_REMOVED = [
+		'rp4wp_get_children_link_args' => 'D62: removed with the link posts; see rp4wp_links_query.',
+		'rp4wp_get_parents_link_args'  => 'D62: removed with the link posts; see rp4wp_links_query.',
+	];
+
 	public function test_legacy_api_is_still_compatible(): void {
 		// The list table class extends WP_List_Table, which WordPress only loads in the admin.
 		require_once ABSPATH . 'wp-admin/includes/class-wp-list-table.php';
@@ -69,7 +78,7 @@ final class LegacyApiTest extends TestCase {
 		$uncovered = [];
 
 		foreach ( array_keys( $this->read( $file ) ) as $hook ) {
-			if ( isset( self::HOOKS_NOT_EXERCISED[ $hook ] ) || in_array( $hook, $fired, true ) ) {
+			if ( isset( self::HOOKS_NOT_EXERCISED[ $hook ] ) || isset( self::HOOKS_REMOVED[ $hook ] ) || in_array( $hook, $fired, true ) ) {
 				continue;
 			}
 

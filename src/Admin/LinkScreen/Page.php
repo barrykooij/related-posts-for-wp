@@ -159,6 +159,8 @@ class Page implements Module {
 			wp_die( 'There was a problem creating the links, please try again. (nonce failed)' );
 		}
 
+		self::check_if_writable();
+
 		static::add_link( $parent, absint( $_GET['rp4wp_create_link'] ) );
 		// phpcs:enable
 
@@ -183,6 +185,8 @@ class Page implements Module {
 		if ( ! isset( $_POST['_wpnonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ) ), 'bulk-admin_page_' . self::SLUG ) ) {
 			wp_die( 'There was a problem creating the link, please try again. (nonce failed)' );
 		}
+
+		self::check_if_writable();
 
 		if ( is_array( $_POST['rp4wp_bulk'] ) ) {
 			foreach ( array_map( 'absint', wp_unslash( $_POST['rp4wp_bulk'] ) ) as $child_id ) {
@@ -229,6 +233,17 @@ class Page implements Module {
 	 */
 	protected static function add_link( int $parent, int $child ): void {
 		( new LinkRepository() )->add( $parent, $child );
+	}
+
+	/**
+	 * Stop when links can't be written now, because a migration moves them into the links table.
+	 *
+	 * @return void
+	 */
+	private static function check_if_writable(): void {
+		if ( ! ( new LinkRepository() )->can_write() ) {
+			wp_die( esc_html__( 'Related Posts for WordPress is moving its links to a new database table. Please try again in a moment.', 'related-posts-for-wp' ) );
+		}
 	}
 
 	/**

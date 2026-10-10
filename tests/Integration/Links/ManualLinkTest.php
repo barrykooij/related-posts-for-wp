@@ -7,7 +7,6 @@
 
 namespace LV2\WordPress\RelatedPostsForWP\Tests\Integration\Links;
 
-use LV2\WordPress\RelatedPostsForWP\Links\LinkPostType;
 use LV2\WordPress\RelatedPostsForWP\Links\LinkRepository;
 use LV2\WordPress\RelatedPostsForWP\Related\Linker;
 use LV2\WordPress\RelatedPostsForWP\Tests\Integration\TestCase;
@@ -21,9 +20,10 @@ use LV2\WordPress\RelatedPostsForWP\Words\Cache;
 final class ManualLinkTest extends TestCase {
 
 	public function test_a_link_added_by_hand_is_marked(): void {
-		$link_id = ( new LinkRepository() )->add( self::factory()->post->create(), self::factory()->post->create() );
+		$links   = new LinkRepository();
+		$link_id = $links->add( self::factory()->post->create(), self::factory()->post->create() );
 
-		$this->assertSame( '1', get_post_meta( $link_id, LinkPostType::META_MANUAL, true ) );
+		$this->assertTrue( $links->find( $link_id )['manual'] );
 	}
 
 	public function test_automatic_links_are_not_marked(): void {
@@ -39,15 +39,39 @@ final class ManualLinkTest extends TestCase {
 
 		( new Linker() )->link_post( $posts[0], 1 );
 
-		$children = ( new LinkRepository() )->get_children( $posts[0] );
+		$links    = new LinkRepository();
+		$children = $links->get_children( $posts[0] );
 
 		$this->assertCount( 1, $children );
-		$this->assertSame( '', get_post_meta( (int) array_key_first( $children ), LinkPostType::META_MANUAL, true ) );
+		$this->assertFalse( $links->find( (int) array_key_first( $children ) )['manual'] );
 	}
 
-	public function test_the_batch_data_of_automatic_linking_is_not_marked(): void {
-		$data = ( new LinkRepository() )->insert_data( 1, 2 );
+	public function test_a_link_that_exists_is_not_added_twice(): void {
+		$links  = new LinkRepository();
+		$parent = self::factory()->post->create();
+		$child  = self::factory()->post->create();
 
-		$this->assertStringNotContainsString( LinkPostType::META_MANUAL, implode( ',', $data['meta'] ) );
+		$first  = $links->add( $parent, $child );
+		$second = $links->add( $parent, $child );
+
+		$this->assertSame( $first, $second );
+		$this->assertSame( 1, $links->children_count( $parent ) );
+	}
+
+	public function test_a_link_added_by_hand_comes_after_the_links_there_are(): void {
+		$links    = new LinkRepository();
+		$parent   = self::factory()->post->create();
+		$children = self::factory()->post->create_many( 3 );
+
+		$links->insert(
+			$parent,
+			[
+				$children[0] => 0,
+				$children[1] => 0,
+			]
+		);
+		$links->add( $parent, $children[2] );
+
+		$this->assertSame( $children, array_values( $links->child_ids( $parent ) ) );
 	}
 }

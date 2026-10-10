@@ -130,6 +130,14 @@ class Main {
 		}
 
 		/**
+		 * Fires first when the plugin sets up, before services can be replaced and the modules set up, because they
+		 * read the database. The plugin's main file brings the database up to date here (Database\Migrations::boot()).
+		 *
+		 * @since 3.0.0
+		 */
+		do_action( 'rp4wp_setup_database' );
+
+		/**
 		 * Fires before the modules are set up, so services can be replaced.
 		 *
 		 * @since 3.0.0
@@ -175,6 +183,7 @@ class Main {
 		$modules = [
 			// Runs first: it may redirect to the installation wizard and stop.
 			Admin\Wizard\Redirect::class,
+			Database\Migrations::class,
 			Admin\Notices\Installing::class,
 			Admin\Notices\Mbstring::class,
 			Admin\Notices\Review::class,
@@ -196,6 +205,7 @@ class Main {
 			Rest\Routes::class,
 			Admin\PluginLinks::class,
 			Integrations\YoastDuplicatePost::class,
+			Cli\Commands::class,
 		];
 
 		/**

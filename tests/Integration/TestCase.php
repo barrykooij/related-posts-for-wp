@@ -7,7 +7,9 @@
 
 namespace LV2\WordPress\RelatedPostsForWP\Tests\Integration;
 
+use LV2\WordPress\RelatedPostsForWP\Database\Schema;
 use LV2\WordPress\RelatedPostsForWP\Install\Table;
+use LV2\WordPress\RelatedPostsForWP\Links\LinkRepository;
 
 /**
  * Base class for integration tests. Runs inside WordPress with the plugin booted.
@@ -15,8 +17,8 @@ use LV2\WordPress\RelatedPostsForWP\Install\Table;
 abstract class TestCase extends \WP_UnitTestCase {
 
 	/**
-	 * Start every test class with an empty word cache. Rows written by committed fixtures would otherwise leak between
-	 * classes, because the WordPress test suite only cleans up its own tables.
+	 * Start every test class with an empty word cache, links table and post state table. Rows written by committed
+	 * fixtures would otherwise leak between classes, because the WordPress test suite only cleans up its own tables.
 	 *
 	 * @return void
 	 */
@@ -43,7 +45,9 @@ abstract class TestCase extends \WP_UnitTestCase {
 	protected static function truncate_cache(): void {
 		global $wpdb;
 
-		$wpdb->query( 'TRUNCATE TABLE ' . Table::name() ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.NotPrepared -- Test cleanup of our own table.
+		foreach ( [ Table::name(), Schema::table( Schema::LINKS ), Schema::table( Schema::POST_STATE ) ] as $table ) {
+			$wpdb->query( "TRUNCATE TABLE {$table}" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Test cleanup of our own tables.
+		}
 	}
 
 	/**
@@ -61,32 +65,13 @@ abstract class TestCase extends \WP_UnitTestCase {
 	}
 
 	/**
-	 * Get the post IDs of all link posts that belong to a parent post, in menu order.
-	 *
-	 * Links created by the wizard or automatic linking all have menu_order 0, and 2.x orders by menu_order only, so the
-	 * database decides the order of ties. In practice that is insertion order (most related first), so ties are broken
-	 * by ID here to keep snapshots stable.
+	 * The link IDs of a parent post, in their order: by position, then by ID.
 	 *
 	 * @param int $parent_id The parent post ID.
 	 *
 	 * @return int[]
 	 */
 	protected function get_link_ids( int $parent_id ): array {
-		return array_map(
-			'intval',
-			get_posts(
-				[
-					'post_type'      => 'rp4wp_link',
-					'fields'         => 'ids',
-					'posts_per_page' => -1,
-					'orderby'        => [
-						'menu_order' => 'ASC',
-						'ID'         => 'ASC',
-					],
-					'meta_key'       => 'rp4wp_parent', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_query_meta_key -- Test helper.
-					'meta_value'     => (string) $parent_id, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_query_meta_value -- Test helper.
-				]
-			)
-		);
+		return array_keys( ( new LinkRepository() )->child_ids( $parent_id ) );
 	}
 }

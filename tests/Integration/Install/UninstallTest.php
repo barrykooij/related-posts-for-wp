@@ -82,8 +82,9 @@ final class UninstallTest extends TestCase {
 
 		$this->uninstall();
 
-		$this->assertInstanceOf( \WP_Post::class, get_post( $this->link ) );
+		$this->assertNotNull( ( new LinkRepository() )->find( $this->link ) );
 		$this->assertSame( '1', get_post_meta( $this->parent, 'rp4wp_auto_linked', true ) );
+		$this->assertNotFalse( get_option( 'rp4wp_storage' ) );
 		$this->assertNotFalse( get_option( 'rp4wp' ) );
 		$this->assertNotFalse( get_option( 'rp4wp_install_date' ) );
 		$this->assertNotFalse( get_option( 'rp4wp_is_installing' ) );
@@ -99,11 +100,6 @@ final class UninstallTest extends TestCase {
 
 		$this->uninstall();
 
-		// Link posts and their meta.
-		clean_post_cache( $this->link );
-		$this->assertNull( get_post( $this->link ) );
-		$this->assertSame( [], get_post_meta( $this->link ) );
-
 		// Plugin meta on content posts; the content itself stays.
 		$this->assertInstanceOf( \WP_Post::class, get_post( $this->parent ) );
 		$this->assertSame( '', get_post_meta( $this->parent, 'rp4wp_auto_linked', true ) );
@@ -112,7 +108,7 @@ final class UninstallTest extends TestCase {
 		$this->assertSame( '', get_post_meta( $this->parent, 'rp4wp_words_cached', true ) );
 
 		// Options.
-		foreach ( [ 'rp4wp', 'rp4wp_do_install', 'rp4wp_is_installing', 'rp4wp_install_date', 'rp4wp_hide_nag', 'widget_rp4wp_related_posts_widget', 'rp4wp_install_job', 'rp4wp_install_lock' ] as $option ) {
+		foreach ( [ 'rp4wp', 'rp4wp_do_install', 'rp4wp_is_installing', 'rp4wp_install_date', 'rp4wp_hide_nag', 'widget_rp4wp_related_posts_widget', 'rp4wp_install_job', 'rp4wp_install_lock', 'rp4wp_storage', 'rp4wp_db_state', 'rp4wp_deferred_links' ] as $option ) {
 			$this->assertFalse( get_option( $option ), "Option {$option} should be deleted." );
 		}
 
@@ -124,9 +120,12 @@ final class UninstallTest extends TestCase {
 		$this->assertSame( [], as_get_scheduled_actions( [ 'group' => 'rp4wp' ], 'ids' ) );
 		$this->assertCount( 1, as_get_scheduled_actions( [ 'group' => 'another-plugin' ], 'ids' ) );
 
-		// The word cache table.
-		$this->assertCount( 1, $this->drop_queries() );
-		$this->assertStringContainsString( 'rp4wp_cache', $this->drop_queries()[0] );
+		// The tables: the word cache, the links, the post state and the record of the migrations.
+		$dropped = implode( ' ', $this->drop_queries() );
+		$this->assertCount( 4, $this->drop_queries() );
+		foreach ( [ 'rp4wp_cache', 'rp4wp_links', 'rp4wp_post_state', 'rp4wp_migrations' ] as $table ) {
+			$this->assertStringContainsString( $table, $dropped );
+		}
 	}
 
 	/**

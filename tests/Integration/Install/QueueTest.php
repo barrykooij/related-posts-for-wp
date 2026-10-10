@@ -14,6 +14,7 @@ use LV2\WordPress\RelatedPostsForWP\Install\Jobs\JobStore;
 use LV2\WordPress\RelatedPostsForWP\Install\Jobs\Queue;
 use LV2\WordPress\RelatedPostsForWP\Install\Planner;
 use LV2\WordPress\RelatedPostsForWP\Links\LinkRepository;
+use LV2\WordPress\RelatedPostsForWP\Links\PostState;
 use LV2\WordPress\RelatedPostsForWP\Main;
 use LV2\WordPress\RelatedPostsForWP\Related\Finder;
 use LV2\WordPress\RelatedPostsForWP\Tests\Integration\TestCase;
@@ -210,13 +211,13 @@ final class QueueTest extends TestCase {
 				'post_content' => '',
 			]
 		);
-		delete_post_meta( $post_id, Cache::META_NO_WORDS );
+		PostState::unmark_indexed( $post_id );
 
 		$job = $this->queue->start( [ 'skip_linking' => true ] );
 		$this->run_until_done( $job->id );
 
 		$this->assertSame( Job::DONE, $this->queue->job()->status );
-		$this->assertSame( '1', get_post_meta( $post_id, Cache::META_NO_WORDS, true ) );
+		$this->assertGreaterThan( 0, PostState::indexed_at( $post_id ) );
 	}
 
 	public function test_rebuilding_removes_the_old_links_and_words_first(): void {

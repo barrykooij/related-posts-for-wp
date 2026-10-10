@@ -8,6 +8,7 @@
 namespace LV2\WordPress\RelatedPostsForWP\Tests\Integration\Words;
 
 use LV2\WordPress\RelatedPostsForWP\Install\Table;
+use LV2\WordPress\RelatedPostsForWP\Links\PostState;
 use LV2\WordPress\RelatedPostsForWP\Tests\Integration\TestCase;
 use LV2\WordPress\RelatedPostsForWP\Words\Cache;
 
@@ -39,7 +40,7 @@ final class CacheTest extends TestCase {
 		$this->cache->save_all();
 
 		$this->assertSame( 0, $this->cache->uncached_post_count() );
-		$this->assertSame( '1', get_post_meta( $post_id, Cache::META_NO_WORDS, true ) );
+		$this->assertGreaterThan( 0, PostState::indexed_at( $post_id ) );
 		$this->assertSame( 0, $this->word_count( $post_id ) );
 	}
 
@@ -56,10 +57,10 @@ final class CacheTest extends TestCase {
 
 		// 2.x lost every word here: WordPress refuses an insert with a character the table can't store.
 		$this->assertGreaterThan( 0, $this->word_count( $post_id ) );
-		$this->assertSame( '', get_post_meta( $post_id, Cache::META_NO_WORDS, true ) );
+		$this->assertGreaterThan( 0, PostState::indexed_at( $post_id ) );
 	}
 
-	public function test_words_that_come_back_clear_the_mark(): void {
+	public function test_words_that_come_back_are_stored(): void {
 		$post_id = $this->post_without_words();
 		$this->cache->save_post( $post_id );
 
@@ -72,7 +73,7 @@ final class CacheTest extends TestCase {
 		$this->cache->save_post( $post_id );
 
 		$this->assertGreaterThan( 0, $this->word_count( $post_id ) );
-		$this->assertSame( '', get_post_meta( $post_id, Cache::META_NO_WORDS, true ) );
+		$this->assertSame( 0, $this->cache->uncached_post_count() );
 	}
 
 	public function test_deleting_the_words_of_a_post_clears_the_mark(): void {
@@ -81,7 +82,7 @@ final class CacheTest extends TestCase {
 
 		$this->cache->delete_post( $post_id );
 
-		$this->assertSame( '', get_post_meta( $post_id, Cache::META_NO_WORDS, true ) );
+		$this->assertSame( 0, PostState::indexed_at( $post_id ) );
 		$this->assertSame( 1, $this->cache->uncached_post_count() );
 	}
 

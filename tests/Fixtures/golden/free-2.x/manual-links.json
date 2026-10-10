@@ -7,11 +7,12 @@
     "after_add": [
         "climbing-roses",
         "saving-tomato-seeds",
-        "composting-for-beginners"
+        "composting-for-beginners",
+        "kyoto-temples"
     ],
     "after_reverse": [
-        "composting-for-beginners",
         "kyoto-temples",
+        "composting-for-beginners",
         "saving-tomato-seeds",
         "climbing-roses"
     ],
