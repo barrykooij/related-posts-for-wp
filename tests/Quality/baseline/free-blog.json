@@ -4,8 +4,8 @@
     "corpus": "blog",
     "corpus_title": "The author's blog, barrykooij.com (86 posts, 2013 to 2025)",
     "locale": "en_US",
-    "order": 4,
-    "run": "2026-10-10 17:15:52",
+    "order": 0,
+    "run": "2026-10-10 20:05:40",
     "environment": {
         "php": "8.0.30",
         "database": "12.3.3-MariaDB-ubu2404",
@@ -13,11 +13,11 @@
         "intl": true
     },
     "metrics": {
-        "evaluated": 0,
-        "precision_at_3": null,
-        "precision_at_5": null,
-        "success_at_3": null,
-        "random_precision_at_3": null,
+        "evaluated": 30,
+        "precision_at_3": 0.4222,
+        "precision_at_5": 0.4183,
+        "success_at_3": 0.7333,
+        "random_precision_at_3": 0.0529,
         "full_lists": 0.9419,
         "coverage": 0.7209,
         "hub_share": 0.0772,
@@ -27,7 +27,7 @@
         "title_share": 0.6376,
         "words_per_post": 6.0,
         "posts": 86,
-        "index_ms_per_post": 1.4,
-        "related_ms_per_post": 0.56
+        "index_ms_per_post": 1.65,
+        "related_ms_per_post": 0.61
     }
 }

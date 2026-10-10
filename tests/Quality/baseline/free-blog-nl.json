@@ -4,8 +4,8 @@
     "corpus": "blog-nl",
     "corpus_title": "The author's blog, barrykooij.com (86 posts, 2013 to 2025), with the site locale nl_NL",
     "locale": "nl_NL",
-    "order": 5,
-    "run": "2026-10-10 17:15:53",
+    "order": 1,
+    "run": "2026-10-10 20:05:41",
     "environment": {
         "php": "8.0.30",
         "database": "12.3.3-MariaDB-ubu2404",
@@ -13,11 +13,11 @@
         "intl": true
     },
     "metrics": {
-        "evaluated": 0,
-        "precision_at_3": null,
-        "precision_at_5": null,
-        "success_at_3": null,
-        "random_precision_at_3": null,
+        "evaluated": 30,
+        "precision_at_3": 0.3667,
+        "precision_at_5": 0.3767,
+        "success_at_3": 0.6667,
+        "random_precision_at_3": 0.0529,
         "full_lists": 0.9884,
         "coverage": 0.7907,
         "hub_share": 0.0706,
@@ -27,7 +27,7 @@
         "title_share": 0.7694,
         "words_per_post": 6.0,
         "posts": 86,
-        "index_ms_per_post": 1.45,
-        "related_ms_per_post": 0.54
+        "index_ms_per_post": 1.68,
+        "related_ms_per_post": 0.55
     }
 }
