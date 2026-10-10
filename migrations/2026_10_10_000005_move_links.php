@@ -38,11 +38,12 @@ return new class() extends Migration {
 	 * @return string
 	 */
 	public function description(): string {
-		return 'Copy the link posts into the links table, with their IDs, and tell the links added by hand from the automatic ones. The link posts stay until the next migration.';
+		return 'Copy the link posts into the links table, with their IDs and their order, and tell the links added by hand from the automatic ones. The link posts stay until the next migration.';
 	}
 
 	/**
-	 * Copy the links in slices, sort out the links without a mark, then switch to the table.
+	 * Copy the links in slices, put the links of posts whose order the positions can't hold in order, sort out the
+	 * links without a mark, then switch to the table.
 	 *
 	 * While this runs, the links are read from the link posts, and nothing writes links (see LinkRepository).
 	 *
@@ -54,8 +55,18 @@ return new class() extends Migration {
 		}
 
 		while ( $this->time_left() ) {
-			if ( 'copy' === $this->cursor( 'stage', 'copy' ) ) {
+			$stage = $this->cursor( 'stage', 'copy' );
+
+			if ( 'copy' === $stage ) {
 				if ( $this->copy() ) {
+					$this->save_cursor( 'stage', 'order' );
+				}
+
+				continue;
+			}
+
+			if ( 'order' === $stage ) {
+				if ( $this->order() ) {
 					$this->save_cursor( 'stage', 'sort' );
 				}
 
@@ -170,6 +181,52 @@ return new class() extends Migration {
 		$this->save_cursor( 'last', (int) end( $rows )->id );
 
 		return count( $rows ) < self::BATCH;
+	}
+
+	/**
+	 * Put the links of the next posts in order whose links have a `menu_order` the positions can't hold (below 0 or
+	 * above 65535, which code could write; the meta box of 2.x writes 0 and up): their positions become 0, 1, 2 and so
+	 * on, in the order of 2.x, by `menu_order` and then by ID. The link posts are still there.
+	 *
+	 * @return bool Whether every post is done.
+	 */
+	private function order(): bool {
+		$table = $this->table( Schema::LINKS );
+		$last  = (int) $this->cursor( 'ordered', 0 );
+
+		// phpcs:disable WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- A migration; integers.
+		$parents = array_map(
+			'intval',
+			$this->db->get_col(
+				$this->db->prepare(
+					"SELECT DISTINCT L.parent_id FROM `{$table}` L JOIN {$this->db->posts} P ON P.ID = L.id
+					WHERE ( P.menu_order < 0 OR P.menu_order > 65535 ) AND L.parent_id > %d
+					ORDER BY L.parent_id LIMIT %d",
+					$last,
+					self::PARENTS
+				)
+			)
+		);
+
+		foreach ( $parents as $parent_id ) {
+			$ids = array_map( 'intval', $this->db->get_col( $this->db->prepare( "SELECT L.id FROM `{$table}` L JOIN {$this->db->posts} P ON P.ID = L.id WHERE L.parent_id = %d ORDER BY P.menu_order, L.id", $parent_id ) ) );
+
+			$cases = '';
+			foreach ( $ids as $position => $id ) {
+				$cases .= ' WHEN ' . $id . ' THEN ' . min( 65535, $position );
+			}
+
+			if ( '' !== $cases ) {
+				$this->query( "UPDATE `{$table}` SET position = CASE id{$cases} END WHERE id IN (" . implode( ',', $ids ) . ')' );
+			}
+		}
+		// phpcs:enable
+
+		if ( count( $parents ) > 0 ) {
+			$this->save_cursor( 'ordered', (int) end( $parents ) );
+		}
+
+		return count( $parents ) < self::PARENTS;
 	}
 
 	/**

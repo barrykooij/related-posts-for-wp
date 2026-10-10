@@ -183,6 +183,20 @@ final class MoveToTablesTest extends TestCase {
 		$this->assertSame( 0, $repository->add( $this->posts['wizard'], $this->posts['e'] ) );
 	}
 
+	public function test_links_keep_their_order_when_the_positions_can_not_hold_it(): void {
+		$p     = $this->posts;
+		$first = $this->legacy_link( $p['e'], $p['a'], '2024-01-01 10:00:00' );
+		$moved = $this->legacy_link( $p['e'], $p['b'], '2024-01-02 10:00:00', -1 );
+		$last  = $this->legacy_link( $p['e'], $p['c'], '2024-01-03 10:00:00', 70000 );
+
+		$this->up();
+
+		$repository = new LinkRepository();
+		$this->assertSame( [ $moved, $first, $last ], array_keys( $repository->child_ids( $p['e'] ) ), 'The order of 2.x: by menu_order, then by ID.' );
+		$this->assertSame( [ 0, 1, 2 ], array_column( array_map( [ $repository, 'find' ], [ $moved, $first, $last ] ), 'position' ) );
+		$this->assertSame( 5, $repository->find( $this->links['wizard-4'] )['position'], 'Positions that fit stay as they were.' );
+	}
+
 	public function test_down_puts_the_link_posts_and_the_marks_back(): void {
 		$this->up();
 		$before = $this->children_by_parent();
