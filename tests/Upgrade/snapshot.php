@@ -1,8 +1,8 @@
 <?php
 /**
  * Prints what the plugin stores and shows on the upgrade test site, to compare before and after the upgrade. Runs with
- * `wp eval-file` against 2.x and 3.x, so it only uses what both have: WordPress, the options, the table, the template
- * tag, the shortcode and the widget.
+ * `wp eval-file` against 2.x and 3.x, so it only uses what both have: WordPress, the options, the cache table, the
+ * template tag, the shortcode and the widget; the links are counted where each version keeps them.
  *
  * @package RelatedPostsForWP
  */
@@ -34,6 +34,11 @@ $rp4wp_links = get_posts(
 		'fields'         => 'ids',
 	]
 );
+// 3.0 keeps the links in a table of their own; 2.x kept them as posts.
+$rp4wp_table = $wpdb->prefix . 'rp4wp_links';
+if ( $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $rp4wp_table ) ) === $rp4wp_table ) { // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- Test snapshot.
+	$rp4wp_links = array_merge( $rp4wp_links, $wpdb->get_col( "SELECT id FROM {$rp4wp_table}" ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Test snapshot.
+}
 echo 'links: ' . count( $rp4wp_links ) . "\n";
 
 foreach ( $rp4wp_posts as $rp4wp_post ) {

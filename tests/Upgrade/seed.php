@@ -42,7 +42,9 @@ wp_insert_post(
 	]
 );
 
-// A link added by hand, moved to the top like the meta box does.
+// A link added by hand, moved to the top like the meta box does. It comes later than the automatic links of the post:
+// 2.x did not mark links added by hand, and the update tells them apart by when they were written (decision D39).
+sleep( 3 );
 $rp4wp_trail = get_page_by_path( 'trail-running', OBJECT, 'post' );
 $rp4wp_link  = ( new RP4WP_Post_Link_Manager() )->add( $rp4wp_latte, $rp4wp_trail->ID );
 wp_update_post(

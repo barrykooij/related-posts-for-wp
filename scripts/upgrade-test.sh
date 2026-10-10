@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 #
 # Upgrade test: builds a site with a 2.x release, then replaces the plugin files with this checkout the way a plugin
-# update does. The site must store and show the same, load its admin screens, and log no notices from the plugin.
+# update does. The site must store and show the same, load its admin screens, and log no notices from the plugin. Then
+# the update of 3.0 runs in the background: it must read every post again, keep the related posts added by hand in
+# their place, link a post published while it runs, and say when it is done.
 #
 # Usage: npm run test:upgrade -- <2.x tag>, for example 2.3.1. Needs Docker, like the other wp-env suites, and a built
 # checkout (composer install, npm run build). The site runs on http://localhost:8712; the snapshots and a diff of any
@@ -112,6 +114,38 @@ check_admin '/wp-admin/plugins.php' 'related-posts-for-wp'
 check_admin '/wp-admin/options-general.php?page=rp4wp' '"heading_text":"You might also like"'
 check_admin "/wp-admin/post.php?post=${latte}&action=edit" 'rp4wp_metabox_related_posts'
 
+echo "== Updating the related posts"
+# The first request after the migrations started the update of 3.0 in the background; the site above is what it shows
+# until each post gets its new related posts.
+[ "$(wp option pluck rp4wp_update notice)" = running ] || fail 'the update of the related posts did not start'
+check_admin '/wp-admin/' 'is updating your related posts in the background'
+
+# A post published while the update runs is linked once it is done.
+brew="$(wp post create --post_title='Moka pot coffee' --post_content='A moka pot brews a strong espresso style coffee shot at home on the stove.' --post_status=publish --porcelain)"
+[ -n "$brew" ] || fail 'the post published during the update was not created'
+
+for _ in $(seq 1 30); do
+	[ "$(wp option pluck rp4wp_update notice)" = done ] && break
+	wp action-scheduler run --hooks=rp4wp_install_run > /dev/null
+done
+[ "$(wp option pluck rp4wp_update notice)" = done ] || fail 'the update of the related posts did not finish'
+
+# Every word in the cache was found the way 3.0 finds them.
+old="$(wp db query "SELECT COUNT(*) FROM wp_rp4wp_cache WHERE version <> 2" --skip-column-names)"
+[ "$old" = 0 ] || fail "${old} words of the cache come from before the update"
+
+# The link added by hand keeps its place at the top of Latte art.
+curl -sfL "$url/?name=latte-art" > "$work/updated-latte-art.html" || fail 'the front end of Latte art did not load'
+first="$(sed -n "/class='rp4wp-related-posts'/,/<\/ul>/p" "$work/updated-latte-art.html" | grep -o "<a href='[^']*'" | head -1)"
+grep -q 'trail-running' <<< "$first" || fail "Latte art does not show the related post added by hand first: ${first}"
+
+# The post published during the update is linked on the first request after it.
+wp eval '1;' > /dev/null
+linked="$(wp eval "echo count( ( new \\LV2\\WordPress\\RelatedPostsForWP\\Links\\LinkRepository() )->child_ids( ${brew} ) );")"
+[ "${linked:-0}" -gt 0 ] || fail 'the post published during the update has no related posts'
+
+check_admin '/wp-admin/' 'Your related posts are up to date.'
+
 echo "== Checking the debug log"
 log="$(wp_env run cli bash -c 'cat wp-content/debug.log 2> /dev/null || true' 2> /dev/null | tr -d '\r')"
 if grep -F 'related-posts-for-wp' <<< "$log"; then
@@ -119,4 +153,4 @@ if grep -F 'related-posts-for-wp' <<< "$log"; then
 fi
 
 wp_env stop
-echo "PASS: the update from ${before} to ${after} keeps the site as it was."
+echo "PASS: the update from ${before} to ${after} keeps the site as it was, then updates its related posts."
