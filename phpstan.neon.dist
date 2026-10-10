@@ -26,6 +26,9 @@ parameters:
         analyse:
             - tests/Fixtures/*
             - tests/e2e/*
+        analyseAndScan:
+            # A stand-in for WP_Post in the unit suite; the WordPress stubs describe the real class.
+            - tests/Fixtures/wp-post-stub.php
     treatPhpDocTypesAsCertain: false
     reportUnmatchedIgnoredErrors: true
     tmpDir: .phpstan.cache

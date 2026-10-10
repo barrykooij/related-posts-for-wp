@@ -41,6 +41,9 @@
     "rp4wp_excerpt_length": [
         1
     ],
+    "rp4wp_finder_clauses": [
+        3
+    ],
     "rp4wp_get_children_child_args": [
         2
     ],
@@ -106,5 +109,8 @@
     ],
     "rp4wp_weight_title": [
         1
+    ],
+    "rp4wp_word_df_ceiling": [
+        2
     ]
 }

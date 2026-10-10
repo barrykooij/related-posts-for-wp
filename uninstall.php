@@ -60,8 +60,8 @@ if ( ! function_exists( 'rp4wp_uninstall' ) ) {
 		// The post meta on content posts, including the marks of premium's refresh, which belong to the links and words.
 		$wpdb->query( "DELETE FROM {$wpdb->postmeta} WHERE `meta_key` IN ( 'rp4wp_auto_linked', 'rp4wp_cached', 'rp4wp_no_words', 'rp4wp_relinked', 'rp4wp_words_cached' )" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- One-off cleanup.
 
-		// The tables: the word cache, the links, the post state and the record of the migrations.
-		foreach ( [ 'rp4wp_cache', 'rp4wp_links', 'rp4wp_post_state', 'rp4wp_migrations' ] as $table ) {
+		// The tables: the word cache, its words, the links, the post state and the record of the migrations.
+		foreach ( [ 'rp4wp_cache', 'rp4wp_words', 'rp4wp_links', 'rp4wp_post_state', 'rp4wp_migrations' ] as $table ) {
 			$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}{$table}" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- One-off cleanup of our own tables.
 		}
 
@@ -70,6 +70,10 @@ if ( ! function_exists( 'rp4wp_uninstall' ) ) {
 		delete_option( 'rp4wp_db_state' );
 		delete_option( 'rp4wp_deferred_links' );
 		delete_option( 'rp4wp_migrate_lock' );
+
+		// The word statistics, and the progress of their last weighing.
+		delete_option( 'rp4wp_cached_posts' );
+		delete_option( 'rp4wp_weigh_cursor' );
 		$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->options} WHERE option_name LIKE %s", $wpdb->esc_like( 'rp4wp_migration_' ) . '%' ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- One-off cleanup.
 
 		// The actions of the background installer. The Action Scheduler tables stay: other plugins may use them.

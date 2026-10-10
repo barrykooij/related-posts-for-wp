@@ -1,28 +1,29 @@
 {
     "before": [
         "climbing-roses",
-        "saving-tomato-seeds",
-        "composting-for-beginners"
+        "growing-tomatoes",
+        "herb-garden-basil"
     ],
     "after_add": [
         "climbing-roses",
-        "saving-tomato-seeds",
-        "composting-for-beginners",
+        "growing-tomatoes",
+        "herb-garden-basil",
         "kyoto-temples"
     ],
     "after_reverse": [
         "kyoto-temples",
-        "composting-for-beginners",
-        "saving-tomato-seeds",
+        "herb-garden-basil",
+        "growing-tomatoes",
         "climbing-roses"
     ],
     "after_delete": [
-        "composting-for-beginners",
-        "saving-tomato-seeds",
+        "herb-garden-basil",
+        "growing-tomatoes",
         "climbing-roses"
     ],
     "parents_of_kyoto_temples": [
         "japanese-garden-design",
-        "osaka-street-food"
+        "osaka-street-food",
+        "tokyo-coffee-shops"
     ]
 }

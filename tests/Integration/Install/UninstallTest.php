@@ -108,7 +108,7 @@ final class UninstallTest extends TestCase {
 		$this->assertSame( '', get_post_meta( $this->parent, 'rp4wp_words_cached', true ) );
 
 		// Options.
-		foreach ( [ 'rp4wp', 'rp4wp_do_install', 'rp4wp_is_installing', 'rp4wp_install_date', 'rp4wp_hide_nag', 'widget_rp4wp_related_posts_widget', 'rp4wp_install_job', 'rp4wp_install_lock', 'rp4wp_storage', 'rp4wp_db_state', 'rp4wp_deferred_links' ] as $option ) {
+		foreach ( [ 'rp4wp', 'rp4wp_do_install', 'rp4wp_is_installing', 'rp4wp_install_date', 'rp4wp_hide_nag', 'widget_rp4wp_related_posts_widget', 'rp4wp_install_job', 'rp4wp_install_lock', 'rp4wp_storage', 'rp4wp_db_state', 'rp4wp_deferred_links', 'rp4wp_cached_posts', 'rp4wp_weigh_cursor' ] as $option ) {
 			$this->assertFalse( get_option( $option ), "Option {$option} should be deleted." );
 		}
 
@@ -120,10 +120,10 @@ final class UninstallTest extends TestCase {
 		$this->assertSame( [], as_get_scheduled_actions( [ 'group' => 'rp4wp' ], 'ids' ) );
 		$this->assertCount( 1, as_get_scheduled_actions( [ 'group' => 'another-plugin' ], 'ids' ) );
 
-		// The tables: the word cache, the links, the post state and the record of the migrations.
+		// The tables: the word cache, its words, the links, the post state and the record of the migrations.
 		$dropped = implode( ' ', $this->drop_queries() );
-		$this->assertCount( 4, $this->drop_queries() );
-		foreach ( [ 'rp4wp_cache', 'rp4wp_links', 'rp4wp_post_state', 'rp4wp_migrations' ] as $table ) {
+		$this->assertCount( 5, $this->drop_queries() );
+		foreach ( [ 'rp4wp_cache', 'rp4wp_words', 'rp4wp_links', 'rp4wp_post_state', 'rp4wp_migrations' ] as $table ) {
 			$this->assertStringContainsString( $table, $dropped );
 		}
 	}

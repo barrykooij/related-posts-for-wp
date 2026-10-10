@@ -42,7 +42,7 @@ tests_add_filter(
 	static function () {
 		global $wpdb;
 
-		foreach ( [ 'rp4wp_cache', 'rp4wp_links', 'rp4wp_post_state', 'rp4wp_migrations' ] as $table ) {
+		foreach ( [ 'rp4wp_cache', 'rp4wp_words', 'rp4wp_links', 'rp4wp_post_state', 'rp4wp_migrations' ] as $table ) {
 			$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}{$table}" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Test setup.
 		}
 	},

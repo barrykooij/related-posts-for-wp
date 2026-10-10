@@ -23,6 +23,9 @@
         "cold-brew-coffee",
         "coffee-and-code"
     ],
-    "get_parents": [],
+    "get_parents": [
+        "cold-brew-coffee",
+        "pour-over-coffee"
+    ],
     "generate_children_list limit": "<div class='rp4wp-related-posts'>\n<h3>Related Posts</h3>\n<ul>\n<li><div class='rp4wp-related-post-content'>\n<a href='http://example.org/pour-over-coffee/'>Pour over coffee for beginners</a><p>Pour over coffee is slow and calm. Rinse the paper filter, bloom the coffee grounds,&hellip;</p></div>\n</li>\n</ul>\n</div>"
 }

@@ -121,30 +121,30 @@ final class LanguageTest extends TestCase {
 	public function test_what_wpml_reports_comes_first(): void {
 		Filters\expectApplied( 'wpml_post_language_details' )->with( null, 7 )->andReturn( [ 'language_code' => 'de' ] );
 
-		$this->assertSame( 'de', $this->language->of_post( new \WP_Post( 7 ), $this->tokenizer->tokens( 'The bread and the oven' ) ) );
+		$this->assertSame( 'de', $this->language->of_post( new \WP_Post( (object) [ 'ID' => 7 ] ), $this->tokenizer->tokens( 'The bread and the oven' ) ) );
 	}
 
 	public function test_what_polylang_reports_comes_next(): void {
 		Functions\when( 'pll_get_post_language' )->justReturn( 'nl_NL' );
 
-		$this->assertSame( 'nl', $this->language->of_post( new \WP_Post( 7 ), $this->tokenizer->tokens( 'The bread and the oven' ) ) );
+		$this->assertSame( 'nl', $this->language->of_post( new \WP_Post( (object) [ 'ID' => 7 ] ), $this->tokenizer->tokens( 'The bread and the oven' ) ) );
 	}
 
 	public function test_without_a_report_the_words_decide(): void {
 		Functions\when( 'get_locale' )->justReturn( 'nl_NL' );
 
-		$this->assertSame( 'en', $this->language->of_post( new \WP_Post( 7 ), $this->tokenizer->tokens( 'The bread and the oven' ) ) );
+		$this->assertSame( 'en', $this->language->of_post( new \WP_Post( (object) [ 'ID' => 7 ] ), $this->tokenizer->tokens( 'The bread and the oven' ) ) );
 	}
 
 	public function test_without_a_report_or_enough_words_the_site_decides(): void {
 		Functions\when( 'get_locale' )->justReturn( 'nl_NL' );
 
-		$this->assertSame( 'nl', $this->language->of_post( new \WP_Post( 7 ), $this->tokenizer->tokens( 'Sourdough starter hydration' ) ) );
+		$this->assertSame( 'nl', $this->language->of_post( new \WP_Post( (object) [ 'ID' => 7 ] ), $this->tokenizer->tokens( 'Sourdough starter hydration' ) ) );
 	}
 
 	public function test_a_filter_has_the_last_word(): void {
 		Filters\expectApplied( 'rp4wp_post_language' )->with( 'en', 7 )->andReturn( 'fr_FR' );
 
-		$this->assertSame( 'fr', $this->language->of_post( new \WP_Post( 7 ), $this->tokenizer->tokens( 'The bread and the oven' ) ) );
+		$this->assertSame( 'fr', $this->language->of_post( new \WP_Post( (object) [ 'ID' => 7 ] ), $this->tokenizer->tokens( 'The bread and the oven' ) ) );
 	}
 }

@@ -33,12 +33,21 @@ class Cache {
 	private Extractor $extractor;
 
 	/**
+	 * The word statistics.
+	 *
+	 * @var Statistics
+	 */
+	private Statistics $statistics;
+
+	/**
 	 * Constructor.
 	 *
-	 * @param Extractor|null $extractor The word extractor; a new one when null.
+	 * @param Extractor|null  $extractor  The word extractor; a new one when null.
+	 * @param Statistics|null $statistics The word statistics; new ones when null.
 	 */
-	public function __construct( ?Extractor $extractor = null ) {
-		$this->extractor = $extractor ?? new Extractor();
+	public function __construct( ?Extractor $extractor = null, ?Statistics $statistics = null ) {
+		$this->extractor  = $extractor ?? new Extractor();
+		$this->statistics = $statistics ?? new Statistics();
 	}
 
 	/**
@@ -51,11 +60,13 @@ class Cache {
 	}
 
 	/**
-	 * Store the words of a post, replacing the words stored before.
+	 * Store the words of a post, replacing the words stored before (pass one), and weigh them (pass two for one post).
 	 *
-	 * The old words go and the new words come in one transaction, so finding the related posts of another post never
-	 * sees this post without words; when the new words can't be stored, the old ones stay. A post without words keeps
-	 * its previous words, like in 2.x. Either way the post is marked as cached, with its language.
+	 * The post keeps the words with the highest `tf * idf`, with the document frequencies as they are now. The old
+	 * words go and the new words come in one transaction, with the document frequencies, so finding the related posts
+	 * of another post never sees this post without words; when the new words can't be stored, the old ones stay. A
+	 * post without words keeps its previous words, like in 2.x. Either way the post is marked as cached, with its
+	 * language.
 	 *
 	 * @param int         $post_id   The post ID.
 	 * @param string|null $post_type The post type the words are stored for; the post's own by default.
@@ -66,27 +77,35 @@ class Cache {
 		global $wpdb;
 
 		$words = $this->extractor->post_words( $post_id );
-		if ( null === $words || count( $words->weights ) < 1 ) {
+		if ( null === $words || count( $words->counts ) < 1 ) {
 			PostState::mark_indexed( $post_id, false, null, null === $words ? '' : $words->language, null === $words ? 0 : $words->tokens );
 
 			return;
 		}
 
 		$post_type = $post_type ?? (string) get_post_type( $post_id );
+		$picked    = Statistics::pick( $words->counts, $this->statistics->df( array_keys( $words->counts ) ), $this->statistics->posts(), Statistics::amount() );
 		$params    = [];
-		foreach ( $words->weights as $word => $weight ) {
-			array_push( $params, $post_id, (string) $word, $weight, $post_type, $words->counts[ $word ] ?? 0, Tokenizer::VERSION );
+		foreach ( $picked as $word => $count ) {
+			array_push( $params, $post_id, (string) $word, 0, $post_type, $count, Tokenizer::VERSION );
 		}
 
-		$values = rtrim( str_repeat( '( %d, %s, %f, %s, %d, %d ),', count( $words->weights ) ), ',' );
+		$values = rtrim( str_repeat( '( %d, %s, %f, %s, %d, %d ),', count( $picked ) ), ',' );
 
 		try {
-			Transaction::run(
-				function () use ( $wpdb, $post_id, $values, $params ) {
+			$had_words = Transaction::run(
+				function () use ( $wpdb, $post_id, $values, $params, $picked ): bool {
+					$old = $this->current_words( $post_id );
+
 					Transaction::query( $wpdb->prepare( 'DELETE FROM ' . Table::name() . ' WHERE post_id = %d', $post_id ) ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- Our own table.
 
 					// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare -- Our own table; the VALUES placeholders are built from the word count.
 					Transaction::query( $wpdb->prepare( 'INSERT INTO ' . Table::name() . " (post_id, word, weight, post_type, tf, version) VALUES {$values}", $params ) );
+
+					$new = array_map( 'strval', array_keys( $picked ) );
+					$this->statistics->change( array_diff( $old, $new ), array_diff( $new, $old ) );
+
+					return count( $old ) > 0;
 				}
 			);
 		} catch ( \RuntimeException $error ) {
@@ -95,6 +114,12 @@ class Cache {
 
 			return;
 		}
+
+		if ( ! $had_words ) {
+			$this->statistics->add_posts( 1 );
+		}
+
+		$this->statistics->weigh( [ $post_id ] );
 
 		PostState::mark_indexed( $post_id, true, null, $words->language, $words->tokens );
 	}
@@ -165,8 +190,41 @@ class Cache {
 	public function delete_post( int $post_id ): void {
 		global $wpdb;
 
-		$wpdb->delete( Table::name(), [ 'post_id' => $post_id ], [ '%d' ] ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- Our own table.
+		try {
+			$had_words = Transaction::run(
+				function () use ( $wpdb, $post_id ): bool {
+					$old = $this->current_words( $post_id );
+
+					Transaction::query( $wpdb->prepare( 'DELETE FROM ' . Table::name() . ' WHERE post_id = %d', $post_id ) ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- Our own table.
+					$this->statistics->change( $old, [] );
+
+					return count( $old ) > 0;
+				}
+			);
+
+			if ( $had_words ) {
+				$this->statistics->add_posts( -1 );
+			}
+		} catch ( \RuntimeException $error ) {
+			// The words stay; the next recount corrects the document frequencies.
+			unset( $error );
+		}
+
 		PostState::unmark_indexed( $post_id );
+	}
+
+	/**
+	 * The words of the current version a post has stored.
+	 *
+	 * @param int $post_id The post.
+	 *
+	 * @return string[]
+	 */
+	private function current_words( int $post_id ): array {
+		global $wpdb;
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.NotPrepared -- Our own table.
+		return array_map( 'strval', (array) $wpdb->get_col( $wpdb->prepare( 'SELECT word FROM ' . Table::name() . ' WHERE post_id = %d AND version = %d', $post_id, Tokenizer::VERSION ) ) );
 	}
 
 	/**

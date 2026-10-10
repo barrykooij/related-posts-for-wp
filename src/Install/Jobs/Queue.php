@@ -9,6 +9,7 @@ namespace LV2\WordPress\RelatedPostsForWP\Install\Jobs;
 
 use LV2\WordPress\RelatedPostsForWP\Contracts\InstallPlanner;
 use LV2\WordPress\RelatedPostsForWP\Database\Schema;
+use LV2\WordPress\RelatedPostsForWP\Links\PostState;
 use LV2\WordPress\RelatedPostsForWP\Main;
 
 /**
@@ -94,6 +95,9 @@ class Queue {
 		if ( null !== $current && $current->is_running() ) {
 			return new \WP_Error( 'rp4wp_install_running', __( 'An installation is running already.', 'related-posts-for-wp' ), [ 'status' => 409 ] );
 		}
+
+		// The generation tells this job's progress apart from an earlier job's (see WeighWordsTask).
+		$request['generation'] = (int) ( $request['generation'] ?? PostState::now() );
 
 		$job = Job::start( $request, $this->planner->plan( $request ) );
 		$this->store->save( $job );

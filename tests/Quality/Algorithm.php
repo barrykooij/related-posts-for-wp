@@ -21,7 +21,8 @@ interface Algorithm {
 	public function name(): string;
 
 	/**
-	 * Cache the words of the posts, as an installation does once every post is in place.
+	 * Cache the words of the posts, as an installation does once every post is in place: pass one for every post, then
+	 * pass two over all of them.
 	 *
 	 * @param int[] $post_ids The posts.
 	 *
@@ -49,11 +50,18 @@ interface Algorithm {
 	public function tokens( int $post_id ): array;
 
 	/**
-	 * Store word vectors directly, without extracting them, for the scale test.
+	 * Store the words of posts directly, without extracting them, for the scale test.
 	 *
-	 * @param array<int, array<string, float>> $vectors Post ID => word => weight.
+	 * @param array<int, array<string, int>> $vectors Post ID => word => how many times it counts.
 	 *
 	 * @return void
 	 */
 	public function seed( array $vectors ): void;
+
+	/**
+	 * Finish seeding: count the document frequencies and weigh the words of every seeded post.
+	 *
+	 * @return void
+	 */
+	public function seeded(): void;
 }

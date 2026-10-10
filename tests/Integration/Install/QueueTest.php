@@ -73,7 +73,7 @@ final class QueueTest extends TestCase {
 		$job = $this->queue->start( [ 'amount' => 2 ] );
 
 		$this->assertInstanceOf( Job::class, $job );
-		$this->assertSame( [ 'cache_words', 'save_amount', 'link_posts' ], array_column( $job->steps, 'id' ) );
+		$this->assertSame( [ 'cache_words', 'weigh_words', 'save_amount', 'link_posts' ], array_column( $job->steps, 'id' ) );
 		$this->assertSame( Job::RUNNING, $job->status );
 		$this->assertSame( [ $job->id ], $this->pending_action_args() );
 		$this->assertSame( '1', (string) get_option( 'rp4wp_is_installing' ) );
@@ -137,7 +137,7 @@ final class QueueTest extends TestCase {
 		$planner = new Planner();
 
 		$this->assertSame(
-			[ 'reset', 'cache_words', 'save_amount' ],
+			[ 'reset', 'cache_words', 'weigh_words', 'save_amount' ],
 			$this->ids(
 				$planner->plan(
 					[

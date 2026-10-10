@@ -12,6 +12,7 @@ use LV2\WordPress\RelatedPostsForWP\Install\Tasks\CacheWordsTask;
 use LV2\WordPress\RelatedPostsForWP\Install\Tasks\LinkPostsTask;
 use LV2\WordPress\RelatedPostsForWP\Install\Tasks\ResetTask;
 use LV2\WordPress\RelatedPostsForWP\Install\Tasks\SaveAmountTask;
+use LV2\WordPress\RelatedPostsForWP\Install\Tasks\WeighWordsTask;
 use LV2\WordPress\RelatedPostsForWP\Main;
 use LV2\WordPress\RelatedPostsForWP\Words\Cache;
 
@@ -78,6 +79,7 @@ class Planner implements InstallPlanner {
 		}
 
 		$tasks[] = new CacheWordsTask();
+		$tasks[] = new WeighWordsTask( (int) ( $request['generation'] ?? 0 ) );
 		$tasks[] = new SaveAmountTask( $amount );
 
 		if ( empty( $request['skip_linking'] ) ) {

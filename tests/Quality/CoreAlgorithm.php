@@ -8,6 +8,8 @@
 namespace LV2\WordPress\RelatedPostsForWP\Tests\Quality;
 
 use LV2\WordPress\RelatedPostsForWP\Install\Table;
+use LV2\WordPress\RelatedPostsForWP\Install\Tasks\WeighWordsTask;
+use LV2\WordPress\RelatedPostsForWP\Words\Statistics;
 use LV2\WordPress\RelatedPostsForWP\Words\Tokenizer;
 use LV2\WordPress\RelatedPostsForWP\Related\Finder;
 use LV2\WordPress\RelatedPostsForWP\Words\Cache;
@@ -39,6 +41,9 @@ final class CoreAlgorithm implements Algorithm {
 		foreach ( $post_ids as $post_id ) {
 			$cache->save_post( (int) $post_id );
 		}
+
+		// Pass two over every post, as the installation's weighing step does.
+		( new WeighWordsTask( 0 ) )->run_batch();
 	}
 
 	/**
@@ -75,7 +80,7 @@ final class CoreAlgorithm implements Algorithm {
 	/**
 	 * Store word vectors directly.
 	 *
-	 * @param array<int, array<string, float>> $vectors Post ID => word => weight.
+	 * @param array<int, array<string, int>> $vectors Post ID => word => how many times it counts.
 	 *
 	 * @return void
 	 */
@@ -84,13 +89,31 @@ final class CoreAlgorithm implements Algorithm {
 
 		$values = [];
 		foreach ( $vectors as $post_id => $words ) {
-			foreach ( $words as $word => $weight ) {
-				$values[] = $wpdb->prepare( '(%d, %s, %f, %s, %d)', $post_id, (string) $word, $weight, 'post', Tokenizer::VERSION );
+			foreach ( $words as $word => $count ) {
+				$values[] = $wpdb->prepare( '(%d, %s, 0, %s, %d, %d)', $post_id, (string) $word, 'post', $count, Tokenizer::VERSION );
 			}
 		}
 
 		foreach ( array_chunk( $values, 5000 ) as $chunk ) {
-			$wpdb->query( 'INSERT INTO ' . Table::name() . ' (post_id, word, weight, post_type, version) VALUES ' . implode( ',', $chunk ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.NotPrepared -- Each row is prepared above.
+			$wpdb->query( 'INSERT INTO ' . Table::name() . ' (post_id, word, weight, post_type, tf, version) VALUES ' . implode( ',', $chunk ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.NotPrepared -- Each row is prepared above.
+		}
+	}
+
+	/**
+	 * Count the document frequencies and weigh the words of every seeded post.
+	 *
+	 * @return void
+	 */
+	public function seeded(): void {
+		global $wpdb;
+
+		$statistics = new Statistics();
+		$statistics->recount();
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.NotPrepared -- The plugin's own table.
+		$post_ids = array_map( 'intval', $wpdb->get_col( $wpdb->prepare( 'SELECT DISTINCT post_id FROM ' . Table::name() . ' WHERE version = %d ORDER BY post_id', Tokenizer::VERSION ) ) );
+		foreach ( array_chunk( $post_ids, 1000 ) as $chunk ) {
+			$statistics->weigh( $chunk );
 		}
 	}
 }

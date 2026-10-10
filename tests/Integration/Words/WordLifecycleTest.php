@@ -30,7 +30,7 @@ final class WordLifecycleTest extends TestCase {
 		$rows = $this->rows( $post_id );
 
 		$this->assertArrayHasKey( 'sourdough', $rows );
-		$this->assertSame( 81, (int) $rows['sourdough']['tf'], 'Once in the content, 80 times in the title.' );
+		$this->assertSame( 6, (int) $rows['sourdough']['tf'], 'Once in the content, 5 times in the title.' );
 		$this->assertSame( Tokenizer::VERSION, (int) $rows['sourdough']['version'] );
 		$this->assertArrayNotHasKey( 'the', $rows );
 		$this->assertSame( 'en', PostState::language( $post_id ) );

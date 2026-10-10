@@ -42,6 +42,8 @@ final class InstallRestTest extends RestTestCase {
 		$this->assertSame( 201, $response->get_status() );
 		$job = $response->get_data()['job'];
 		$this->assertSame( 'running', $job['status'] );
+		$this->assertGreaterThan( 0, $job['request']['generation'], 'Every job gets a generation.' );
+		unset( $job['request']['generation'] );
 		$this->assertSame(
 			[
 				'amount' => 2,
@@ -50,7 +52,7 @@ final class InstallRestTest extends RestTestCase {
 			],
 			$job['request']
 		);
-		$this->assertSame( [ 'cache_words', 'save_amount', 'link_posts' ], array_column( $job['steps'], 'id' ) );
+		$this->assertSame( [ 'cache_words', 'weigh_words', 'save_amount', 'link_posts' ], array_column( $job['steps'], 'id' ) );
 	}
 
 	/**

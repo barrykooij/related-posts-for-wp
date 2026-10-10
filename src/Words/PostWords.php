@@ -8,21 +8,15 @@
 namespace LV2\WordPress\RelatedPostsForWP\Words;
 
 /**
- * The words the extractor kept for a post, with what the word cache stores about them.
+ * The words of a post as the extractor found them, with what the word cache stores about the post.
  */
 final class PostWords {
 
 	/**
-	 * The words, most important first: word => weight (the share of all words of the post).
+	 * Every word of the post that is not an ignored word, with how many times it counts (with the weights of the
+	 * sources: a title word counts 80 times), most first. The word cache picks the words it stores from these.
 	 *
-	 * @var array<string, float>
-	 */
-	public array $weights;
-
-	/**
-	 * How many times each word counts: word => count, with the weights of the sources (a title word counts 80 times).
-	 *
-	 * @var array<string, int>
+	 * @var array<int|string, int>
 	 */
 	public array $counts;
 
@@ -43,13 +37,11 @@ final class PostWords {
 	/**
 	 * Constructor.
 	 *
-	 * @param array<string, float> $weights  The words and their weight.
-	 * @param array<string, int>   $counts   The words and how many times they count.
-	 * @param string               $language The language.
-	 * @param int                  $tokens   How many words the sources have.
+	 * @param array<int|string, int> $counts   The words and how many times they count.
+	 * @param string                 $language The language.
+	 * @param int                    $tokens   How many words the sources have.
 	 */
-	public function __construct( array $weights, array $counts, string $language, int $tokens ) {
-		$this->weights  = $weights;
+	public function __construct( array $counts, string $language, int $tokens ) {
 		$this->counts   = $counts;
 		$this->language = $language;
 		$this->tokens   = $tokens;

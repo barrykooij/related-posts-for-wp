@@ -27,6 +27,11 @@ final class Schema {
 	public const CACHE = 'rp4wp_cache';
 
 	/**
+	 * The words of the word cache, with in how many posts each is (its document frequency).
+	 */
+	public const WORDS = 'rp4wp_words';
+
+	/**
 	 * The links between posts.
 	 */
 	public const LINKS = 'rp4wp_links';

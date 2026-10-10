@@ -7,21 +7,20 @@
 
 namespace LV2\WordPress\RelatedPostsForWP\Related;
 
-use LV2\WordPress\RelatedPostsForWP\Install\Table;
 use LV2\WordPress\RelatedPostsForWP\Links\PostState;
 use LV2\WordPress\RelatedPostsForWP\PostTypes;
-use LV2\WordPress\RelatedPostsForWP\Words\Tokenizer;
 
 /**
- * Finds related posts through the word cache: posts that share the most important words score highest.
+ * Finds related posts through the word cache: posts whose words are most like the post's words score highest.
  */
 class Finder {
 
 	/**
-	 * The posts related to a post, most related first.
+	 * The posts related to a post, most related first: those of its post type whose words are most like its words (see
+	 * FinderQuery). Only words of the current version count, so a post never gets related posts from a mix of old and
+	 * new words.
 	 *
-	 * Each result has ID, post_title and CMS (the score). Only words of the current version of the tokenizer count, so a
-	 * post never gets related posts from a mix of old and new words.
+	 * Each result has ID, post_title and CMS (the score, from 0 to 1).
 	 *
 	 * @param int   $post_id The post.
 	 * @param int   $limit   The maximum number of posts; -1 for all.
@@ -32,35 +31,60 @@ class Finder {
 	public function related_posts( int $post_id, int $limit = -1, array $exclude = [] ): array {
 		global $wpdb;
 
-		$table   = Table::name();
-		$exclude = count( $exclude ) > 0 ? 'AND R.`post_id` NOT IN (' . implode( ',', array_map( 'intval', $exclude ) ) . ')' : '';
+		$post_type = (string) get_post_type( $post_id );
+		$clauses   = [
+			'join'  => [],
+			'where' => [],
+		];
 
-		$sql = "
-		SELECT P.`ID`, P.`post_title`, ( SUM( O.`weight` ) *  SUM( R.`weight` ) ) AS `CMS`
-		FROM `{$table}` O
-		INNER JOIN `{$table}` R ON R.`word` = O.`word`
-		INNER JOIN `{$wpdb->posts}` P ON P.`ID` = R.`post_id`
-		WHERE 1=1
-		AND O.`post_id` = %d
-		AND O.`version` = %d
-		AND R.`version` = %d
-		AND R.`post_type` = %s
-		AND R.`post_id` != %d
-		AND P.`post_status` = 'publish'
-		{$exclude}
-		GROUP BY P.`id`
-		ORDER BY `CMS` DESC
-		";
-
-		// phpcs:disable WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.DirectDatabaseQuery -- Our own table; values go through prepare().
-		if ( -1 !== $limit ) {
-			$sql = $wpdb->prepare( $sql . 'LIMIT 0,%d', $post_id, Tokenizer::VERSION, Tokenizer::VERSION, get_post_type( $post_id ), $post_id, $limit );
-		} else {
-			$sql = $wpdb->prepare( $sql, $post_id, Tokenizer::VERSION, Tokenizer::VERSION, get_post_type( $post_id ), $post_id );
+		if ( count( $exclude ) > 0 ) {
+			$clauses['where'][] = 'R.post_id NOT IN (' . implode( ',', array_map( 'intval', $exclude ) ) . ')';
 		}
 
-		return (array) $wpdb->get_results( $sql );
-		// phpcs:enable
+		/**
+		 * Filters the extra joins and conditions of the query that finds the related posts of a post. The query
+		 * names the post's words `O`, the related posts' words `R`, the words table `S` and the related posts `P`.
+		 * Replaces `rp4wp_get_related_posts_sql` of 2.x, which got the finished query.
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param array  $clauses   `join` and `where`: lists of SQL, escaped already.
+		 * @param int    $post_id   The post.
+		 * @param string $post_type The post type of the post.
+		 */
+		$clauses = (array) apply_filters( 'rp4wp_finder_clauses', $clauses, $post_id, $post_type );
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.NotPrepared -- Built by FinderQuery from integers and escaped values.
+		$results = (array) $wpdb->get_results( FinderQuery::sql( $post_id, [ $post_type ], $clauses, $limit ) );
+
+		return $this->with_titles( $results );
+	}
+
+	/**
+	 * The results with the title of each post. A second query: the title in the grouped query of the finder would make
+	 * the database sort on disk.
+	 *
+	 * @param object[] $results The results.
+	 *
+	 * @return object[]
+	 */
+	private function with_titles( array $results ): array {
+		global $wpdb;
+
+		if ( count( $results ) < 1 ) {
+			return $results;
+		}
+
+		$ids = implode( ',', array_map( 'intval', array_column( $results, 'ID' ) ) );
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQL.NotPrepared -- Integers.
+		$titles = (array) $wpdb->get_results( "SELECT ID, post_title FROM {$wpdb->posts} WHERE ID IN ({$ids})", OBJECT_K );
+
+		foreach ( $results as $result ) {
+			$result->post_title = isset( $titles[ $result->ID ] ) ? (string) $titles[ $result->ID ]->post_title : '';
+		}
+
+		return $results;
 	}
 
 	/**

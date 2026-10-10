@@ -11,10 +11,11 @@ use LV2\WordPress\RelatedPostsForWP\Contracts\InstallTask;
 use LV2\WordPress\RelatedPostsForWP\Install\Table;
 use LV2\WordPress\RelatedPostsForWP\Links\LinkRepository;
 use LV2\WordPress\RelatedPostsForWP\Links\PostState;
+use LV2\WordPress\RelatedPostsForWP\Words\Statistics;
 
 /**
- * Remove the automatic links, the marks of linked and cached posts, and the word cache, so an installation starts
- * over. Links added by hand stay (2.x removed them too).
+ * Remove the automatic links, the marks of linked and cached posts, the word cache and its statistics, so an
+ * installation starts over. Links added by hand stay (2.x removed them too).
  */
 class ResetTask implements InstallTask {
 
@@ -57,6 +58,8 @@ class ResetTask implements InstallTask {
 		PostState::reset();
 
 		$wpdb->query( 'DELETE FROM ' . Table::name() . ' WHERE 1=1' ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.NotPrepared -- Our own table.
+		$wpdb->query( 'DELETE FROM ' . Statistics::words_table() ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.NotPrepared -- Our own table.
+		update_option( Statistics::OPTION_POSTS, 0, true );
 
 		return true;
 	}

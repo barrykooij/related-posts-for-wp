@@ -20,12 +20,12 @@ if ( ! class_exists( 'WP_Post' ) ) {
 		public $ID = 0;
 
 		/**
-		 * Set up.
+		 * Set up, like WordPress: from an object with the fields of the post.
 		 *
-		 * @param int $id The post ID.
+		 * @param object $post The fields.
 		 */
-		public function __construct( int $id = 0 ) {
-			$this->ID = $id;
+		public function __construct( $post ) {
+			$this->ID = (int) ( $post->ID ?? 0 );
 		}
 	}
 }

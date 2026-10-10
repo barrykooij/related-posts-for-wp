@@ -12,8 +12,8 @@ namespace LV2\WordPress\RelatedPostsForWP\Words;
  *
  * The sources of a post are its content, the titles of the posts it links to, its title, tags and categories; each
  * has a weight, how many times its words count (a title word counts 80 times). The tokenizer turns every source into
- * words, the ignored words of the post's language go, and the most frequent words are kept, each weighted by its share
- * of all words. The premium add-on extends this class with its own sources and weights.
+ * words, and the ignored words of the post's language go. The word cache keeps the words with the highest `tf * idf`
+ * and weighs them (see Statistics). The premium add-on extends this class with its own sources and weights.
  */
 class Extractor {
 
@@ -74,7 +74,8 @@ class Extractor {
 	}
 
 	/**
-	 * The most important words of a post, with their relative weight, most important first.
+	 * The words of a post the word cache would store, with their weight as the word statistics are now, most
+	 * important first.
 	 *
 	 * @param int $post_id The post ID.
 	 *
@@ -82,12 +83,19 @@ class Extractor {
 	 */
 	public function words_of_post( int $post_id ): array {
 		$words = $this->post_words( $post_id );
+		if ( null === $words || count( $words->counts ) < 1 ) {
+			return [];
+		}
 
-		return null === $words ? [] : $words->weights;
+		$statistics = new Statistics();
+		$df         = $statistics->df( array_keys( $words->counts ) );
+		$posts      = $statistics->posts();
+
+		return Statistics::weights( Statistics::pick( $words->counts, $df, $posts, Statistics::amount() ), $df, $posts );
 	}
 
 	/**
-	 * The most important words of a post, with their weight, how many times they count, and the post's language.
+	 * Every word of a post that is not an ignored word, with how many times it counts, and the post's language.
 	 *
 	 * @param int $post_id The post ID.
 	 *
@@ -115,17 +123,14 @@ class Extractor {
 		$language = $this->language_of( $post, $detection );
 		$ignored  = $this->ignored_words->lookup( $language );
 
-		// Count every word, as many times as the weight of its source. Ignored words count in the total.
+		// Count every word, as many times as the weight of its source.
 		$counts = [];
-		$total  = 0;
 		foreach ( $sources as [ $words, $weight ] ) {
 			if ( $weight <= 0 ) {
 				continue;
 			}
 
 			foreach ( $words as $word ) {
-				$total += $weight;
-
 				if ( ! isset( $ignored[ $word ] ) ) {
 					$counts[ $word ] = ( $counts[ $word ] ?? 0 ) + $weight;
 				}
@@ -135,23 +140,7 @@ class Extractor {
 		// Most frequent first. Since PHP 8.0 this sort keeps the order of words with the same count.
 		arsort( $counts );
 
-		/**
-		 * Filters how many words are stored per post.
-		 *
-		 * @since 1.0.0
-		 *
-		 * @param int $amount The number of words. Default 6.
-		 */
-		$amount = (int) apply_filters( 'rp4wp_cache_word_amount', 6 );
-
-		$kept    = [];
-		$weights = [];
-		foreach ( array_slice( $counts, 0, max( 0, $amount ), true ) as $word => $count ) {
-			$kept[ (string) $word ]    = (int) $count;
-			$weights[ (string) $word ] = $count / $total;
-		}
-
-		return new PostWords( $weights, $kept, $language, $tokens );
+		return new PostWords( $counts, $language, $tokens );
 	}
 
 	/**
@@ -224,10 +213,12 @@ class Extractor {
 				 * Filters how many times a word in the post title counts.
 				 *
 				 * @since 1.0.0
+				 * @since 3.0.0 The default is 5: the word statistics weigh rare words up, and a title word that counts 80
+				 *              times outweighs the rest of the post.
 				 *
-				 * @param int $weight The weight. Default 80.
+				 * @param int $weight The weight. Default 5.
 				 */
-				return apply_filters( 'rp4wp_weight_title', 80 );
+				return apply_filters( 'rp4wp_weight_title', 5 );
 			case 'tag':
 				/**
 				 * Filters how many times a word in a tag of the post counts.

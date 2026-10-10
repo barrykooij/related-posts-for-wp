@@ -24,6 +24,11 @@ require dirname( __DIR__ ) . '/vendor/autoload.php';
  */
 const RP4WP_HTML_ARTIFACTS = [ 'amp', 'gt', 'lt', 'div', 'nbsp', 'quot', '39', 'apos', 'hellip', 'ndash', 'mdash', 'rsquo', 'lsquo', 'rdquo', 'ldquo' ];
 
+/**
+ * Words before "n't" that are words of their own, and stay.
+ */
+const RP4WP_WORDS_OF_THEIR_OWN = [ 'can', 'won' ];
+
 $rp4wp_options   = getopt( '', [ 'import:' ] );
 $rp4wp_directory = dirname( __DIR__ ) . '/resources/ignored-words';
 $rp4wp_source    = isset( $rp4wp_options['import'] ) ? rtrim( (string) $rp4wp_options['import'], '/' ) : $rp4wp_directory;
@@ -40,8 +45,9 @@ foreach ( (array) glob( $rp4wp_source . '/[a-z][a-z].php' ) as $rp4wp_file ) {
 	$rp4wp_halves   = [];
 
 	// "don" and "doesn" were the halves of "don't" and "doesn't"; the tokenizer keeps "dont" and "doesnt" whole now.
+	// "can" and "won" are words of their own as well.
 	foreach ( $rp4wp_raw as $rp4wp_word ) {
-		if ( 1 === preg_match( "/^(\\p{L}+n)['\x{2019}]t$/u", $rp4wp_word, $rp4wp_match ) ) {
+		if ( 1 === preg_match( "/^(\\p{L}+n)['\x{2019}]t$/u", $rp4wp_word, $rp4wp_match ) && ! in_array( mb_strtolower( $rp4wp_match[1] ), RP4WP_WORDS_OF_THEIR_OWN, true ) ) {
 			$rp4wp_halves[ mb_strtolower( $rp4wp_match[1] ) ] = true;
 		}
 	}

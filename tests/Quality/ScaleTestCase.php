@@ -8,9 +8,10 @@
 namespace LV2\WordPress\RelatedPostsForWP\Tests\Quality;
 
 /**
- * How fast an algorithm finds related posts on a large site: 50,000 posts (RP4WP_QUALITY_SCALE to change it) with 6
- * words each, drawn from Zipf's law over 20,000 words, so a few words are in a large share of the posts, as on a real
- * site. The posts and their words are written straight to the database once for the class, outside the transaction of
+ * How fast an algorithm finds related posts on a large site: 50,000 posts (RP4WP_QUALITY_SCALE to change it) with 25
+ * words each (the default since 3.0), drawn from Zipf's law over 20,000 words, so a few words are in a large share of
+ * the posts, as on a real site. The first word counts like a title word; the plugin counts the document frequencies
+ * and weighs the words. The posts and their words are written straight to the database once for the class, outside the transaction of
  * the test, and the tables are analyzed, so the database plans the queries with real statistics, as on a site that is
  * up; the WordPress test suite removes the posts after the class. Then the related posts of 25 random posts are timed.
  *
@@ -27,7 +28,7 @@ abstract class ScaleTestCase extends \WP_UnitTestCase {
 	/**
 	 * The words per post.
 	 */
-	private const WORDS = 6;
+	private const WORDS = 25;
 
 	/**
 	 * How many posts are timed.
@@ -94,7 +95,7 @@ abstract class ScaleTestCase extends \WP_UnitTestCase {
 
 		// phpcs:disable WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Statistics of the test tables.
 		$wpdb->query( 'COMMIT' );
-		$wpdb->query( "ANALYZE TABLE {$wpdb->posts}, {$wpdb->postmeta}, {$wpdb->prefix}rp4wp_cache" );
+		$wpdb->query( "ANALYZE TABLE {$wpdb->posts}, {$wpdb->postmeta}, {$wpdb->prefix}rp4wp_cache, {$wpdb->prefix}rp4wp_words" );
 		// phpcs:enable
 
 		self::$seed_seconds = microtime( true ) - $start;
@@ -112,7 +113,9 @@ abstract class ScaleTestCase extends \WP_UnitTestCase {
 
 		// phpcs:disable WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Cleanup of the test tables.
 		$wpdb->query( "TRUNCATE TABLE {$wpdb->prefix}rp4wp_cache" );
-		$wpdb->query( "ANALYZE TABLE {$wpdb->posts}, {$wpdb->postmeta}, {$wpdb->prefix}rp4wp_cache" );
+		$wpdb->query( "TRUNCATE TABLE {$wpdb->prefix}rp4wp_words" );
+		delete_option( 'rp4wp_cached_posts' );
+		$wpdb->query( "ANALYZE TABLE {$wpdb->posts}, {$wpdb->postmeta}, {$wpdb->prefix}rp4wp_cache, {$wpdb->prefix}rp4wp_words" );
 		// phpcs:enable
 	}
 
@@ -216,7 +219,7 @@ abstract class ScaleTestCase extends \WP_UnitTestCase {
 
 			$position = 0;
 			foreach ( array_keys( $words ) as $word ) {
-				$vectors[ $post_id ][ $word ] = 0.25 / ( ++$position ) + mt_rand( 0, 20 ) / 1000; // phpcs:ignore WordPress.WP.AlternativeFunctions.rand_mt_rand -- Seeded.
+				$vectors[ $post_id ][ $word ] = 0 === $position++ ? 81 : 1 + mt_rand( 0, 4 ); // phpcs:ignore WordPress.WP.AlternativeFunctions.rand_mt_rand -- Seeded.
 			}
 
 			if ( count( $posts ) >= 2000 || $i === $last ) {
@@ -228,6 +231,8 @@ abstract class ScaleTestCase extends \WP_UnitTestCase {
 				$vectors = [];
 			}
 		}
+
+		$algorithm->seeded();
 
 		return $first;
 	}

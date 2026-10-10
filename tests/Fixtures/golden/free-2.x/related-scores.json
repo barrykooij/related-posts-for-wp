@@ -2,881 +2,881 @@
     "sourdough-bread-at-home": [
         {
             "post": "banana-bread-recipe",
-            "score": "0.13492011"
+            "score": "0.56387945"
         },
         {
             "post": "focaccia-with-rosemary",
-            "score": "0.06835051"
+            "score": "0.41602310"
         },
         {
-            "post": "risotto-technique",
-            "score": "0.00281755"
+            "post": "homemade-pizza-dough",
+            "score": "0.25514644"
         },
         {
-            "post": "espresso-at-home",
-            "score": "0.00229022"
+            "post": "fresh-pasta-dough",
+            "score": "0.20890688"
         },
         {
-            "post": "pour-over-coffee",
-            "score": "0.00187839"
+            "post": "tomato-sauce-basics",
+            "score": "0.15101607"
         }
     ],
     "fresh-pasta-dough": [
         {
             "post": "tomato-sauce-basics",
-            "score": "0.05686153"
-        },
-        {
-            "post": "homemade-pizza-dough",
-            "score": "0.04031649"
-        },
-        {
-            "post": "risotto-technique",
-            "score": "0.00675459"
+            "score": "0.38672951"
         },
         {
             "post": "focaccia-with-rosemary",
-            "score": "0.00531965"
+            "score": "0.25936562"
         },
         {
-            "post": "espresso-at-home",
-            "score": "0.00228530"
+            "post": "homemade-pizza-dough",
+            "score": "0.24786359"
+        },
+        {
+            "post": "sourdough-bread-at-home",
+            "score": "0.20890688"
+        },
+        {
+            "post": "risotto-technique",
+            "score": "0.18169062"
         }
     ],
     "tomato-sauce-basics": [
         {
-            "post": "saving-tomato-seeds",
-            "score": "0.06093596"
-        },
-        {
             "post": "fresh-pasta-dough",
-            "score": "0.05686153"
-        },
-        {
-            "post": "wordpress-plugin-basics",
-            "score": "0.03647201"
+            "score": "0.38672951"
         },
         {
             "post": "growing-tomatoes",
-            "score": "0.00575193"
+            "score": "0.30294076"
         },
         {
-            "post": "risotto-technique",
-            "score": "0.00284189"
+            "post": "saving-tomato-seeds",
+            "score": "0.25842711"
+        },
+        {
+            "post": "sourdough-bread-at-home",
+            "score": "0.15101607"
+        },
+        {
+            "post": "homemade-pizza-dough",
+            "score": "0.05353151"
         }
     ],
     "espresso-at-home": [
         {
             "post": "pour-over-coffee",
-            "score": "0.02035845"
+            "score": "0.60916963"
         },
         {
             "post": "cold-brew-coffee",
-            "score": "0.01748299"
+            "score": "0.50522573"
         },
         {
             "post": "coffee-and-code",
-            "score": "0.00586964"
+            "score": "0.41474255"
         },
         {
             "post": "tokyo-coffee-shops",
-            "score": "0.00495648"
+            "score": "0.30230234"
         },
         {
-            "post": "risotto-technique",
-            "score": "0.00351813"
+            "post": "sourdough-bread-at-home",
+            "score": "0.12995447"
         }
     ],
     "pour-over-coffee": [
         {
-            "post": "cold-brew-coffee",
-            "score": "0.05180564"
+            "post": "espresso-at-home",
+            "score": "0.60916963"
         },
         {
-            "post": "composting-for-beginners",
-            "score": "0.04527466"
+            "post": "cold-brew-coffee",
+            "score": "0.48153959"
         },
         {
             "post": "coffee-and-code",
-            "score": "0.04026324"
+            "score": "0.41946411"
         },
         {
             "post": "tokyo-coffee-shops",
-            "score": "0.03399938"
+            "score": "0.29684434"
         },
         {
-            "post": "espresso-at-home",
-            "score": "0.02035845"
+            "post": "sourdough-bread-at-home",
+            "score": "0.09680439"
         }
     ],
     "focaccia-with-rosemary": [
         {
-            "post": "banana-bread-recipe",
-            "score": "0.08269306"
-        },
-        {
             "post": "sourdough-bread-at-home",
-            "score": "0.06835051"
+            "score": "0.41602310"
         },
         {
-            "post": "risotto-technique",
-            "score": "0.00818945"
+            "post": "banana-bread-recipe",
+            "score": "0.36969564"
         },
         {
             "post": "fresh-pasta-dough",
-            "score": "0.00531965"
+            "score": "0.25936562"
         },
         {
-            "post": "espresso-at-home",
-            "score": "0.00277075"
+            "post": "homemade-pizza-dough",
+            "score": "0.16758448"
+        },
+        {
+            "post": "risotto-technique",
+            "score": "0.16138916"
         }
     ],
     "risotto-technique": [
         {
-            "post": "wordpress-hooks-explained",
-            "score": "0.07017555"
+            "post": "fresh-pasta-dough",
+            "score": "0.18169062"
         },
         {
             "post": "focaccia-with-rosemary",
-            "score": "0.00818945"
+            "score": "0.16138916"
         },
         {
-            "post": "fresh-pasta-dough",
-            "score": "0.00675459"
+            "post": "homemade-pizza-dough",
+            "score": "0.11157606"
         },
         {
-            "post": "espresso-at-home",
-            "score": "0.00351813"
+            "post": "wordpress-hooks-explained",
+            "score": "0.06493969"
         },
         {
-            "post": "banana-bread-recipe",
-            "score": "0.00340873"
+            "post": "sourdough-bread-at-home",
+            "score": "0.05332075"
         }
     ],
     "banana-bread-recipe": [
         {
             "post": "sourdough-bread-at-home",
-            "score": "0.13492011"
+            "score": "0.56387945"
         },
         {
             "post": "focaccia-with-rosemary",
-            "score": "0.08269306"
+            "score": "0.36969564"
         },
         {
-            "post": "risotto-technique",
-            "score": "0.00340873"
+            "post": "homemade-pizza-dough",
+            "score": "0.19887508"
         },
         {
-            "post": "espresso-at-home",
-            "score": "0.00277075"
+            "post": "fresh-pasta-dough",
+            "score": "0.02420030"
         },
         {
-            "post": "pour-over-coffee",
-            "score": "0.00227252"
+            "post": "tomato-sauce-basics",
+            "score": "0.01679814"
         }
     ],
     "cold-brew-coffee": [
         {
+            "post": "espresso-at-home",
+            "score": "0.50522573"
+        },
+        {
             "post": "pour-over-coffee",
-            "score": "0.05180564"
+            "score": "0.48153959"
         },
         {
             "post": "coffee-and-code",
-            "score": "0.03457641"
+            "score": "0.35855625"
         },
         {
             "post": "tokyo-coffee-shops",
-            "score": "0.02919727"
+            "score": "0.23294118"
         },
         {
-            "post": "espresso-at-home",
-            "score": "0.01748299"
-        },
-        {
-            "post": "risotto-technique",
-            "score": "0.00247794"
+            "post": "sourdough-bread-at-home",
+            "score": "0.04376613"
         }
     ],
     "homemade-pizza-dough": [
         {
+            "post": "sourdough-bread-at-home",
+            "score": "0.25514644"
+        },
+        {
             "post": "fresh-pasta-dough",
-            "score": "0.04031649"
+            "score": "0.24786359"
         },
         {
-            "post": "mysql-index-tips",
-            "score": "0.03894223"
-        },
-        {
-            "post": "risotto-technique",
-            "score": "0.00240985"
-        },
-        {
-            "post": "espresso-at-home",
-            "score": "0.00195883"
+            "post": "banana-bread-recipe",
+            "score": "0.19887508"
         },
         {
             "post": "focaccia-with-rosemary",
-            "score": "0.00189791"
+            "score": "0.16758448"
+        },
+        {
+            "post": "risotto-technique",
+            "score": "0.11157606"
         }
     ],
     "hiking-the-dolomites": [
         {
-            "post": "hiking-gear-checklist",
-            "score": "0.08999707"
+            "post": "rome-in-three-days",
+            "score": "0.60338621"
         },
         {
-            "post": "train-travel-europe",
-            "score": "0.01133246"
+            "post": "hiking-gear-checklist",
+            "score": "0.58570979"
+        },
+        {
+            "post": "tokyo-coffee-shops",
+            "score": "0.38890884"
+        },
+        {
+            "post": "packing-light",
+            "score": "0.32100526"
         },
         {
             "post": "florence-food-tour",
-            "score": "0.00677777"
-        },
-        {
-            "post": "rome-in-three-days",
-            "score": "0.00526963"
-        },
-        {
-            "post": "amsterdam-by-bike",
-            "score": "0.00287640"
+            "score": "0.30118304"
         }
     ],
     "rome-in-three-days": [
         {
-            "post": "train-travel-europe",
-            "score": "0.01370575"
-        },
-        {
-            "post": "florence-food-tour",
-            "score": "0.00793272"
+            "post": "hiking-the-dolomites",
+            "score": "0.60338621"
         },
         {
             "post": "amsterdam-by-bike",
-            "score": "0.00782733"
+            "score": "0.53204971"
         },
         {
-            "post": "hiking-the-dolomites",
-            "score": "0.00526963"
+            "post": "tokyo-coffee-shops",
+            "score": "0.39110373"
         },
         {
-            "post": "hiking-gear-checklist",
-            "score": "0.00386104"
+            "post": "kyoto-temples",
+            "score": "0.30372402"
+        },
+        {
+            "post": "packing-light",
+            "score": "0.30002129"
         }
     ],
     "tokyo-coffee-shops": [
         {
-            "post": "pour-over-coffee",
-            "score": "0.03399938"
+            "post": "kyoto-temples",
+            "score": "0.41203855"
         },
         {
-            "post": "coffee-and-code",
-            "score": "0.03363066"
+            "post": "rome-in-three-days",
+            "score": "0.39110373"
         },
         {
-            "post": "cold-brew-coffee",
-            "score": "0.02919727"
+            "post": "hiking-the-dolomites",
+            "score": "0.38890884"
         },
         {
-            "post": "train-travel-europe",
-            "score": "0.00969555"
+            "post": "osaka-street-food",
+            "score": "0.32741532"
         },
         {
             "post": "espresso-at-home",
-            "score": "0.00495648"
+            "score": "0.30230234"
         }
     ],
     "kyoto-temples": [
         {
-            "post": "train-travel-europe",
-            "score": "0.01374162"
+            "post": "japanese-garden-design",
+            "score": "0.44920751"
         },
         {
-            "post": "japanese-garden-design",
-            "score": "0.00691385"
+            "post": "tokyo-coffee-shops",
+            "score": "0.41203855"
+        },
+        {
+            "post": "rome-in-three-days",
+            "score": "0.30372402"
+        },
+        {
+            "post": "hiking-the-dolomites",
+            "score": "0.30045046"
         },
         {
             "post": "osaka-street-food",
-            "score": "0.00624920"
-        },
-        {
-            "post": "florence-food-tour",
-            "score": "0.00353488"
-        },
-        {
-            "post": "hiking-gear-checklist",
-            "score": "0.00351126"
+            "score": "0.23819940"
         }
     ],
     "packing-light": [
         {
             "post": "hiking-gear-checklist",
-            "score": "0.02463977"
+            "score": "0.55053801"
         },
         {
-            "post": "train-travel-europe",
-            "score": "0.01158324"
+            "post": "hiking-the-dolomites",
+            "score": "0.32100526"
         },
         {
-            "post": "florence-food-tour",
-            "score": "0.00297966"
+            "post": "rome-in-three-days",
+            "score": "0.30002129"
         },
         {
-            "post": "amsterdam-by-bike",
-            "score": "0.00294006"
+            "post": "tokyo-coffee-shops",
+            "score": "0.26271826"
         },
         {
-            "post": "osaka-street-food",
-            "score": "0.00234116"
+            "post": "kyoto-temples",
+            "score": "0.19047578"
         }
     ],
     "train-travel-europe": [
         {
             "post": "amsterdam-by-bike",
-            "score": "0.04983400"
+            "score": "0.53534068"
         },
         {
-            "post": "florence-food-tour",
-            "score": "0.01762827"
+            "post": "rome-in-three-days",
+            "score": "0.28684929"
         },
         {
-            "post": "hiking-gear-checklist",
-            "score": "0.01751046"
+            "post": "hiking-the-dolomites",
+            "score": "0.27591629"
         },
         {
-            "post": "osaka-street-food",
-            "score": "0.01385078"
+            "post": "tokyo-coffee-shops",
+            "score": "0.22802586"
         },
         {
             "post": "kyoto-temples",
-            "score": "0.01374162"
+            "score": "0.17616076"
         }
     ],
     "amsterdam-by-bike": [
         {
             "post": "train-travel-europe",
-            "score": "0.04983400"
+            "score": "0.53534068"
         },
         {
             "post": "rome-in-three-days",
-            "score": "0.00782733"
+            "score": "0.53204971"
         },
         {
-            "post": "florence-food-tour",
-            "score": "0.00447441"
+            "post": "hiking-the-dolomites",
+            "score": "0.29441784"
         },
         {
-            "post": "hiking-gear-checklist",
-            "score": "0.00444451"
+            "post": "tokyo-coffee-shops",
+            "score": "0.25405098"
         },
         {
-            "post": "osaka-street-food",
-            "score": "0.00351560"
+            "post": "kyoto-temples",
+            "score": "0.19021313"
         }
     ],
     "hiking-gear-checklist": [
         {
             "post": "hiking-the-dolomites",
-            "score": "0.08999707"
+            "score": "0.58570979"
         },
         {
             "post": "packing-light",
-            "score": "0.02463977"
+            "score": "0.55053801"
         },
         {
-            "post": "train-travel-europe",
-            "score": "0.01751046"
+            "post": "rome-in-three-days",
+            "score": "0.24181131"
         },
         {
-            "post": "florence-food-tour",
-            "score": "0.00450437"
+            "post": "tokyo-coffee-shops",
+            "score": "0.19696278"
         },
         {
-            "post": "amsterdam-by-bike",
-            "score": "0.00444451"
+            "post": "kyoto-temples",
+            "score": "0.15216306"
         }
     ],
     "florence-food-tour": [
         {
             "post": "osaka-street-food",
-            "score": "0.10974824"
-        },
-        {
-            "post": "train-travel-europe",
-            "score": "0.01762827"
-        },
-        {
-            "post": "rome-in-three-days",
-            "score": "0.00793272"
+            "score": "0.62399369"
         },
         {
             "post": "hiking-the-dolomites",
-            "score": "0.00677777"
+            "score": "0.30118304"
         },
         {
-            "post": "hiking-gear-checklist",
-            "score": "0.00450437"
+            "post": "rome-in-three-days",
+            "score": "0.29272506"
+        },
+        {
+            "post": "tokyo-coffee-shops",
+            "score": "0.15054678"
+        },
+        {
+            "post": "kyoto-temples",
+            "score": "0.11630451"
         }
     ],
     "osaka-street-food": [
         {
             "post": "florence-food-tour",
-            "score": "0.10974824"
+            "score": "0.62399369"
         },
         {
-            "post": "train-travel-europe",
-            "score": "0.01385078"
+            "post": "tokyo-coffee-shops",
+            "score": "0.32741532"
         },
         {
             "post": "kyoto-temples",
-            "score": "0.00624920"
+            "score": "0.23819940"
         },
         {
-            "post": "hiking-gear-checklist",
-            "score": "0.00353915"
+            "post": "rome-in-three-days",
+            "score": "0.18763928"
         },
         {
-            "post": "amsterdam-by-bike",
-            "score": "0.00351560"
+            "post": "hiking-the-dolomites",
+            "score": "0.18658624"
         }
     ],
     "wordpress-plugin-basics": [
         {
-            "post": "unit-testing-wordpress",
-            "score": "0.15478374"
-        },
-        {
             "post": "wordpress-hooks-explained",
-            "score": "0.13089689"
-        },
-        {
-            "post": "caching-wordpress",
-            "score": "0.08677798"
-        },
-        {
-            "post": "tomato-sauce-basics",
-            "score": "0.03647201"
+            "score": "0.88123847"
         },
         {
             "post": "php-8-features",
-            "score": "0.02482636"
+            "score": "0.71185860"
+        },
+        {
+            "post": "unit-testing-wordpress",
+            "score": "0.60167848"
+        },
+        {
+            "post": "static-analysis-php",
+            "score": "0.53059233"
+        },
+        {
+            "post": "caching-wordpress",
+            "score": "0.52865399"
         }
     ],
     "php-8-features": [
         {
             "post": "static-analysis-php",
-            "score": "0.07390117"
-        },
-        {
-            "post": "wordpress-hooks-explained",
-            "score": "0.03035230"
+            "score": "0.72005970"
         },
         {
             "post": "wordpress-plugin-basics",
-            "score": "0.02482636"
+            "score": "0.71185860"
+        },
+        {
+            "post": "wordpress-hooks-explained",
+            "score": "0.63498889"
         },
         {
             "post": "coffee-and-code",
-            "score": "0.02041040"
+            "score": "0.62298611"
         },
         {
             "post": "mysql-index-tips",
-            "score": "0.00360139"
+            "score": "0.40708678"
         }
     ],
     "mysql-index-tips": [
         {
             "post": "database-backups",
-            "score": "0.04360268"
-        },
-        {
-            "post": "homemade-pizza-dough",
-            "score": "0.03894223"
-        },
-        {
-            "post": "wordpress-hooks-explained",
-            "score": "0.00442969"
+            "score": "0.84375070"
         },
         {
             "post": "php-8-features",
-            "score": "0.00360139"
+            "score": "0.40708678"
         },
         {
-            "post": "unit-testing-wordpress",
-            "score": "0.00352491"
+            "post": "wordpress-plugin-basics",
+            "score": "0.37024848"
+        },
+        {
+            "post": "wordpress-hooks-explained",
+            "score": "0.32394503"
+        },
+        {
+            "post": "static-analysis-php",
+            "score": "0.29088469"
         }
     ],
     "wordpress-hooks-explained": [
         {
             "post": "wordpress-plugin-basics",
-            "score": "0.13089689"
-        },
-        {
-            "post": "unit-testing-wordpress",
-            "score": "0.10992034"
-        },
-        {
-            "post": "caching-wordpress",
-            "score": "0.10865087"
-        },
-        {
-            "post": "risotto-technique",
-            "score": "0.07017555"
+            "score": "0.88123847"
         },
         {
             "post": "php-8-features",
-            "score": "0.03035230"
+            "score": "0.63498889"
+        },
+        {
+            "post": "unit-testing-wordpress",
+            "score": "0.60220758"
+        },
+        {
+            "post": "caching-wordpress",
+            "score": "0.53837306"
+        },
+        {
+            "post": "static-analysis-php",
+            "score": "0.47394330"
         }
     ],
     "static-analysis-php": [
         {
             "post": "php-8-features",
-            "score": "0.07390117"
-        },
-        {
-            "post": "wordpress-hooks-explained",
-            "score": "0.02434780"
-        },
-        {
-            "post": "wordpress-plugin-basics",
-            "score": "0.01991504"
+            "score": "0.72005970"
         },
         {
             "post": "unit-testing-wordpress",
-            "score": "0.01920178"
+            "score": "0.53079292"
+        },
+        {
+            "post": "wordpress-plugin-basics",
+            "score": "0.53059233"
+        },
+        {
+            "post": "wordpress-hooks-explained",
+            "score": "0.47394330"
         },
         {
             "post": "coffee-and-code",
-            "score": "0.01637268"
+            "score": "0.46836986"
         }
     ],
     "database-backups": [
         {
             "post": "mysql-index-tips",
-            "score": "0.04360268"
-        },
-        {
-            "post": "wordpress-hooks-explained",
-            "score": "0.00352735"
+            "score": "0.84375070"
         },
         {
             "post": "php-8-features",
-            "score": "0.00286777"
+            "score": "0.39133476"
         },
         {
-            "post": "unit-testing-wordpress",
-            "score": "0.00280688"
+            "post": "wordpress-plugin-basics",
+            "score": "0.35592190"
         },
         {
-            "post": "caching-wordpress",
-            "score": "0.00279947"
+            "post": "wordpress-hooks-explained",
+            "score": "0.31141014"
+        },
+        {
+            "post": "static-analysis-php",
+            "score": "0.27962905"
         }
     ],
     "unit-testing-wordpress": [
         {
-            "post": "wordpress-plugin-basics",
-            "score": "0.15478374"
-        },
-        {
             "post": "wordpress-hooks-explained",
-            "score": "0.10992034"
+            "score": "0.60220758"
         },
         {
-            "post": "caching-wordpress",
-            "score": "0.08723843"
+            "post": "wordpress-plugin-basics",
+            "score": "0.60167848"
         },
         {
             "post": "static-analysis-php",
-            "score": "0.01920178"
+            "score": "0.53079292"
         },
         {
-            "post": "mysql-index-tips",
-            "score": "0.00352491"
+            "post": "caching-wordpress",
+            "score": "0.43218268"
+        },
+        {
+            "post": "php-8-features",
+            "score": "0.29656066"
         }
     ],
     "coffee-and-code": [
         {
-            "post": "pour-over-coffee",
-            "score": "0.04026324"
-        },
-        {
-            "post": "cold-brew-coffee",
-            "score": "0.03457641"
-        },
-        {
-            "post": "tokyo-coffee-shops",
-            "score": "0.03363066"
-        },
-        {
             "post": "php-8-features",
-            "score": "0.02041040"
+            "score": "0.62298611"
+        },
+        {
+            "post": "wordpress-plugin-basics",
+            "score": "0.48002958"
         },
         {
             "post": "static-analysis-php",
-            "score": "0.01637268"
+            "score": "0.46836986"
+        },
+        {
+            "post": "wordpress-hooks-explained",
+            "score": "0.43580784"
+        },
+        {
+            "post": "pour-over-coffee",
+            "score": "0.41946411"
         }
     ],
     "git-branching": [
         {
+            "post": "php-8-features",
+            "score": "0.26669397"
+        },
+        {
+            "post": "wordpress-plugin-basics",
+            "score": "0.24371990"
+        },
+        {
             "post": "wordpress-hooks-explained",
-            "score": "0.00296955"
+            "score": "0.21362397"
         },
         {
             "post": "mysql-index-tips",
-            "score": "0.00295966"
-        },
-        {
-            "post": "php-8-features",
-            "score": "0.00241428"
-        },
-        {
-            "post": "unit-testing-wordpress",
-            "score": "0.00236301"
+            "score": "0.20355926"
         },
         {
             "post": "database-backups",
-            "score": "0.00235677"
+            "score": "0.19568263"
         }
     ],
     "caching-wordpress": [
         {
             "post": "wordpress-hooks-explained",
-            "score": "0.10865087"
-        },
-        {
-            "post": "unit-testing-wordpress",
-            "score": "0.08723843"
+            "score": "0.53837306"
         },
         {
             "post": "wordpress-plugin-basics",
-            "score": "0.08677798"
+            "score": "0.52865399"
         },
         {
-            "post": "mysql-index-tips",
-            "score": "0.00351560"
+            "post": "unit-testing-wordpress",
+            "score": "0.43218268"
         },
         {
             "post": "php-8-features",
-            "score": "0.00286777"
+            "score": "0.26056829"
+        },
+        {
+            "post": "database-backups",
+            "score": "0.20641149"
         }
     ],
     "growing-tomatoes": [
         {
-            "post": "olive-trees-in-pots",
-            "score": "0.06990835"
+            "post": "herb-garden-basil",
+            "score": "0.58659003"
+        },
+        {
+            "post": "raised-vegetable-beds",
+            "score": "0.52364957"
         },
         {
             "post": "saving-tomato-seeds",
-            "score": "0.03045635"
+            "score": "0.44069631"
         },
         {
-            "post": "tomato-sauce-basics",
-            "score": "0.00575193"
+            "post": "japanese-garden-design",
+            "score": "0.41696753"
         },
         {
-            "post": "climbing-roses",
-            "score": "0.00352055"
-        },
-        {
-            "post": "composting-for-beginners",
-            "score": "0.00339561"
+            "post": "pruning-roses",
+            "score": "0.41685134"
         }
     ],
     "pruning-roses": [
         {
             "post": "climbing-roses",
-            "score": "0.17790344"
-        },
-        {
-            "post": "saving-tomato-seeds",
-            "score": "0.00289228"
-        },
-        {
-            "post": "composting-for-beginners",
-            "score": "0.00279896"
+            "score": "0.85364529"
         },
         {
             "post": "growing-tomatoes",
-            "score": "0.00228339"
+            "score": "0.41685134"
+        },
+        {
+            "post": "herb-garden-basil",
+            "score": "0.35596127"
         },
         {
             "post": "japanese-garden-design",
-            "score": "0.00228339"
+            "score": "0.32719160"
+        },
+        {
+            "post": "composting-for-beginners",
+            "score": "0.32264433"
         }
     ],
     "herb-garden-basil": [
         {
+            "post": "growing-tomatoes",
+            "score": "0.58659003"
+        },
+        {
+            "post": "raised-vegetable-beds",
+            "score": "0.45059840"
+        },
+        {
             "post": "japanese-garden-design",
-            "score": "0.05835818"
+            "score": "0.41414863"
         },
         {
             "post": "composting-for-beginners",
-            "score": "0.01472650"
+            "score": "0.36917012"
         },
         {
-            "post": "climbing-roses",
-            "score": "0.00290824"
-        },
-        {
-            "post": "saving-tomato-seeds",
-            "score": "0.00289855"
-        },
-        {
-            "post": "growing-tomatoes",
-            "score": "0.00228833"
+            "post": "pruning-roses",
+            "score": "0.35596127"
         }
     ],
     "composting-for-beginners": [
         {
-            "post": "pour-over-coffee",
-            "score": "0.04527466"
+            "post": "raised-vegetable-beds",
+            "score": "0.54752284"
         },
         {
-            "post": "herb-garden-basil",
-            "score": "0.01472650"
+            "post": "growing-tomatoes",
+            "score": "0.41067345"
         },
         {
             "post": "lawn-care-autumn",
-            "score": "0.00813640"
+            "score": "0.39410724"
         },
         {
-            "post": "raised-vegetable-beds",
-            "score": "0.00811520"
+            "post": "herb-garden-basil",
+            "score": "0.36917012"
         },
         {
-            "post": "climbing-roses",
-            "score": "0.00431548"
+            "post": "japanese-garden-design",
+            "score": "0.33037375"
         }
     ],
     "japanese-garden-design": [
         {
-            "post": "herb-garden-basil",
-            "score": "0.05835818"
-        },
-        {
             "post": "kyoto-temples",
-            "score": "0.00691385"
+            "score": "0.44920751"
         },
         {
-            "post": "climbing-roses",
-            "score": "0.00352055"
+            "post": "growing-tomatoes",
+            "score": "0.41696753"
         },
         {
-            "post": "saving-tomato-seeds",
-            "score": "0.00350882"
+            "post": "herb-garden-basil",
+            "score": "0.41414863"
         },
         {
             "post": "composting-for-beginners",
-            "score": "0.00339561"
+            "score": "0.33037375"
+        },
+        {
+            "post": "pruning-roses",
+            "score": "0.32719160"
         }
     ],
     "raised-vegetable-beds": [
         {
             "post": "composting-for-beginners",
-            "score": "0.00811520"
-        },
-        {
-            "post": "lawn-care-autumn",
-            "score": "0.00660285"
-        },
-        {
-            "post": "climbing-roses",
-            "score": "0.00350209"
-        },
-        {
-            "post": "saving-tomato-seeds",
-            "score": "0.00349042"
+            "score": "0.54752284"
         },
         {
             "post": "growing-tomatoes",
-            "score": "0.00275560"
+            "score": "0.52364957"
+        },
+        {
+            "post": "herb-garden-basil",
+            "score": "0.45059840"
+        },
+        {
+            "post": "lawn-care-autumn",
+            "score": "0.34180659"
+        },
+        {
+            "post": "pruning-roses",
+            "score": "0.29550372"
         }
     ],
     "climbing-roses": [
         {
             "post": "pruning-roses",
-            "score": "0.17790344"
-        },
-        {
-            "post": "saving-tomato-seeds",
-            "score": "0.00445936"
-        },
-        {
-            "post": "composting-for-beginners",
-            "score": "0.00431548"
+            "score": "0.85364529"
         },
         {
             "post": "growing-tomatoes",
-            "score": "0.00352055"
+            "score": "0.32914215"
+        },
+        {
+            "post": "herb-garden-basil",
+            "score": "0.28106388"
         },
         {
             "post": "japanese-garden-design",
-            "score": "0.00352055"
+            "score": "0.25834760"
+        },
+        {
+            "post": "composting-for-beginners",
+            "score": "0.25475712"
         }
     ],
     "olive-trees-in-pots": [
         {
             "post": "growing-tomatoes",
-            "score": "0.06990835"
+            "score": "0.35793891"
         },
         {
-            "post": "climbing-roses",
-            "score": "0.00348383"
-        },
-        {
-            "post": "saving-tomato-seeds",
-            "score": "0.00347222"
+            "post": "herb-garden-basil",
+            "score": "0.26184848"
         },
         {
             "post": "composting-for-beginners",
-            "score": "0.00336019"
+            "score": "0.25346520"
+        },
+        {
+            "post": "pruning-roses",
+            "score": "0.23977790"
         },
         {
             "post": "japanese-garden-design",
-            "score": "0.00274123"
+            "score": "0.23955359"
         }
     ],
     "saving-tomato-seeds": [
         {
-            "post": "tomato-sauce-basics",
-            "score": "0.06093596"
-        },
-        {
             "post": "growing-tomatoes",
-            "score": "0.03045635"
+            "score": "0.44069631"
         },
         {
-            "post": "climbing-roses",
-            "score": "0.00445936"
+            "post": "tomato-sauce-basics",
+            "score": "0.25842711"
         },
         {
-            "post": "composting-for-beginners",
-            "score": "0.00430109"
+            "post": "herb-garden-basil",
+            "score": "0.24410776"
+        },
+        {
+            "post": "pruning-roses",
+            "score": "0.21950588"
         },
         {
             "post": "japanese-garden-design",
-            "score": "0.00350882"
+            "score": "0.21930053"
         }
     ],
     "lawn-care-autumn": [
         {
             "post": "composting-for-beginners",
-            "score": "0.00813640"
+            "score": "0.39410724"
         },
         {
             "post": "raised-vegetable-beds",
-            "score": "0.00660285"
-        },
-        {
-            "post": "climbing-roses",
-            "score": "0.00351126"
-        },
-        {
-            "post": "saving-tomato-seeds",
-            "score": "0.00349955"
+            "score": "0.34180659"
         },
         {
             "post": "growing-tomatoes",
-            "score": "0.00276281"
+            "score": "0.26772021"
+        },
+        {
+            "post": "herb-garden-basil",
+            "score": "0.22776969"
+        },
+        {
+            "post": "pruning-roses",
+            "score": "0.20955682"
         }
     ]
 }

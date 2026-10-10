@@ -45,9 +45,12 @@ abstract class TestCase extends \WP_UnitTestCase {
 	protected static function truncate_cache(): void {
 		global $wpdb;
 
-		foreach ( [ Table::name(), Schema::table( Schema::LINKS ), Schema::table( Schema::POST_STATE ) ] as $table ) {
+		foreach ( [ Table::name(), Schema::table( Schema::WORDS ), Schema::table( Schema::LINKS ), Schema::table( Schema::POST_STATE ) ] as $table ) {
 			$wpdb->query( "TRUNCATE TABLE {$table}" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Test cleanup of our own tables.
 		}
+
+		// The number of posts with words is counted again when it is needed.
+		delete_option( 'rp4wp_cached_posts' );
 	}
 
 	/**
