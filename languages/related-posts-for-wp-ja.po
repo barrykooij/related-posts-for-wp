@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
-"POT-Creation-Date: 2026-10-10T22:46:56+00:00\n"
+"POT-Creation-Date: 2026-10-11T18:23:08+00:00\n"
 "PO-Revision-Date: 2026-10-01 12:00+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Japanese\n"
@@ -16,23 +16,27 @@ msgstr ""
 "X-Domain: related-posts-for-wp\n"
 
 #. Plugin Name of the plugin
-#: src/Frontend/Widget.php:28
+#: related-posts-for-wp.php src/Frontend/Widget.php:28
 msgid "Related Posts for WordPress"
 msgstr "Related Posts for WordPress"
 
 #. Plugin URI of the plugin
+#: related-posts-for-wp.php
 msgid "http://www.relatedpostsforwp.com/"
 msgstr "http://www.relatedpostsforwp.com/"
 
 #. Description of the plugin
+#: related-posts-for-wp.php
 msgid "Related Posts for WordPress, the best way to display related posts in WordPress."
 msgstr "Related Posts for WordPress は、WordPress で関連投稿を表示する最良の方法です。"
 
 #. Author of the plugin
+#: related-posts-for-wp.php
 msgid "Never5"
 msgstr "Never5"
 
 #. Author URI of the plugin
+#: related-posts-for-wp.php
 msgid "http://www.never5.com/"
 msgstr "http://www.never5.com/"
 
@@ -46,7 +50,7 @@ msgstr "Related Posts for WordPress には PHP %1$s 以上と WordPress %2$s 以
 msgid "Related Posts for WordPress 3.0 works together with Related Posts for WordPress Premium 3.0. Please %1$supdate Premium%2$s. Until then, your current version of Premium keeps working on its own."
 msgstr "Related Posts for WordPress 3.0 は Related Posts for WordPress Premium 3.0 と連携して動作します。%1$sPremium を更新%2$sしてください。それまでは、現在のバージョンの Premium が単独で動作し続けます。"
 
-#: src/Admin/App/Assets.php:104
+#: src/Admin/App/Assets.php:106
 msgid "The settings screen of Related Posts for WordPress is missing its scripts. Run npm run build in the plugin folder."
 msgstr "Related Posts for WordPress の設定画面のスクリプトが見つかりません。プラグインフォルダーで npm run build を実行してください。"
 
@@ -116,7 +120,7 @@ msgstr "関連投稿が見つかりませんでした。"
 msgid "Related Posts for WordPress is linking your posts in the background (%d%%)."
 msgstr "Related Posts for WordPress がバックグラウンドで投稿を関連付けています (%d%%)。"
 
-#: src/Admin/Notices/Installing.php:78 src/Install/Update.php:170
+#: src/Admin/Notices/Installing.php:78 src/Install/Update.php:190
 msgid "View progress"
 msgstr "進行状況を表示"
 
@@ -136,7 +140,7 @@ msgstr "Related Posts for WordPress のインストールウィザードが完�
 msgid "Finish the installation"
 msgstr "インストールを完了"
 
-#: src/Admin/Notices/Installing.php:150 src/Install/Update.php:193
+#: src/Admin/Notices/Installing.php:150 src/Install/Update.php:213
 msgid "Dismiss"
 msgstr "非表示"
 
@@ -197,7 +201,7 @@ msgstr "%sはい、レビューを書きます%s - %sすでにレビューしま
 msgid "Settings"
 msgstr "設定"
 
-#: src/Admin/PluginLinks.php:39
+#: src/Admin/PluginLinks.php:39 assets/build/admin/index.js:25
 msgid "Upgrade to Premium"
 msgstr "Premium にアップグレード"
 
@@ -230,8 +234,8 @@ msgstr "Related Posts for WordPress はデータベーステーブルを更新�
 msgid "Try again"
 msgstr "再試行"
 
-#: src/Database/Migrations.php:239 src/Install/Update.php:208
-#: src/Install/Update.php:229
+#: src/Database/Migrations.php:239 src/Install/Update.php:228
+#: src/Install/Update.php:249
 msgid "Sorry, you are not allowed to do that."
 msgstr "この操作を行う権限がありません。"
 
@@ -291,48 +295,48 @@ msgstr "設定を保存中"
 msgid "Weighing the words"
 msgstr "単語の重みを計算中"
 
-#: src/Install/Update.php:124
+#: src/Install/Update.php:138
 msgid "Updating your related posts"
 msgstr "関連投稿を 3.0 に移行中"
 
-#: src/Install/Update.php:125
+#: src/Install/Update.php:139
 msgid "Your related posts are up to date."
 msgstr "関連投稿は最新の状態です。"
 
-#: src/Install/Update.php:126
+#: src/Install/Update.php:140
 msgid "The update of your related posts stopped"
 msgstr "関連投稿の 3.0 への移行が停止しました"
 
-#: src/Install/Update.php:127
+#: src/Install/Update.php:141
 msgid "The update of your related posts was cancelled"
 msgstr "関連投稿の 3.0 への移行がキャンセルされました"
 
-#: src/Install/Update.php:128
+#: src/Install/Update.php:142
 msgid "Cancel the update of your related posts? Posts it did not reach keep their old related posts."
 msgstr "関連投稿の 3.0 への移行をキャンセルしますか ? まだ処理されていない投稿は、以前の関連投稿を保持します。"
 
-#: src/Install/Update.php:129
+#: src/Install/Update.php:143
 msgid "Cancel update"
 msgstr "移行をキャンセル"
 
 #. translators: %d: how far the update is, in percent
-#: src/Install/Update.php:167
+#: src/Install/Update.php:187
 msgid "Related Posts for WordPress is updating your related posts in the background (%d%%). Every post keeps its related posts until it gets its new ones."
 msgstr "Related Posts for WordPress はバックグラウンドで関連投稿を 3.0 に移行しています (%d%%)。各投稿は新しい関連投稿を受け取るまで、現在の関連投稿を保持します。"
 
-#: src/Install/Update.php:180
+#: src/Install/Update.php:200
 msgid "The update of your related posts stopped. Posts it did not reach keep their old related posts until you resume it."
 msgstr "関連投稿の 3.0 への移行が停止しました。まだ処理されていない投稿は、再開するまで以前の関連投稿を保持します。"
 
-#: src/Install/Update.php:181 assets/build/admin/index.js:16
+#: src/Install/Update.php:201 assets/build/admin/index.js:16
 msgid "Resume"
 msgstr "再開"
 
-#: src/Install/Update.php:190
+#: src/Install/Update.php:210
 msgid "Your related posts are up to date. Related Posts for WordPress 3.0 finds related posts in a new, more precise way, and linked your posts again; the related posts you added by hand kept their place."
 msgstr "関連投稿は最新の状態です。Related Posts for WordPress 3.0 は新しい、より正確な方法で関連投稿を見つけ、投稿を再度関連付けました。手動で追加した関連投稿はその位置を保っています。"
 
-#: src/Install/Update.php:192
+#: src/Install/Update.php:212
 msgid "What changed"
 msgstr "変更内容"
 
@@ -645,6 +649,94 @@ msgstr "設定を保存できませんでした。"
 #: assets/build/admin/index.js:25
 msgid "Save changes"
 msgstr "変更を保存"
+
+#: assets/build/admin/index.js:25
+msgid "More about Related Posts"
+msgstr "Related Posts について"
+
+#: assets/build/admin/index.js:25
+msgid "Design the layout in the visual configurator"
+msgstr "ビジュアル設定ツールでレイアウトをデザイン"
+
+#: assets/build/admin/index.js:25
+msgid "Relate pages, products and custom post types"
+msgstr "固定ページ、商品、カスタム投稿タイプを関連付け"
+
+#: assets/build/admin/index.js:25
+msgid "Choose what counts with adjustable weights"
+msgstr "調整可能な重みで何を重視するかを指定"
+
+#: assets/build/admin/index.js:25
+msgid "Exclude posts and whole categories"
+msgstr "投稿やカテゴリー全体を除外"
+
+#: assets/build/admin/index.js:25
+msgid "Older posts get your new posts too"
+msgstr "古い投稿にも新しい投稿を関連付け"
+
+#: assets/build/admin/index.js:25
+msgid "See why posts are related"
+msgstr "投稿が関連する理由を確認"
+
+#: assets/build/admin/index.js:25
+msgid "Priority email support"
+msgstr "優先メールサポート"
+
+#: assets/build/admin/index.js:25
+msgid "Take your related posts further"
+msgstr "関連投稿をさらに活用しましょう"
+
+#: assets/build/admin/index.js:25
+msgid "Premium gives you control over what gets related and how it looks. It is an add-on for this plugin, so your settings and links stay as they are."
+msgstr "Premium では、何を関連付けるか、どのように表示するかを自由に設定できます。このプラグインのアドオンなので、設定と関連付けはそのまま残ります。"
+
+#: assets/build/admin/index.js:25
+msgid "See all features"
+msgstr "すべての機能を見る"
+
+#: assets/build/admin/index.js:25
+msgid "14 day money back guarantee"
+msgstr "14日間返金保証"
+
+#: assets/build/admin/index.js:25
+msgid "Getting started"
+msgstr "はじめに"
+
+#: assets/build/admin/index.js:25
+msgid "Show related posts in your theme"
+msgstr "テーマに関連投稿を表示する"
+
+#: assets/build/admin/index.js:25
+msgid "Style the related posts with CSS"
+msgstr "CSS で関連投稿のスタイルを設定する"
+
+#: assets/build/admin/index.js:25
+msgid "All documentation"
+msgstr "すべてのドキュメント"
+
+#: assets/build/admin/index.js:25
+msgid "Need help?"
+msgstr "お困りですか？"
+
+#: assets/build/admin/index.js:25
+msgid "The documentation answers most questions."
+msgstr "ほとんどの質問はドキュメントで解決できます。"
+
+#: assets/build/admin/index.js:25
+msgid "Ask on the support forum"
+msgstr "サポートフォーラムで質問する"
+
+#: assets/build/admin/index.js:25
+msgid "Enjoying Related Posts?"
+msgstr "Related Posts を気に入っていただけましたか？"
+
+#: assets/build/admin/index.js:25
+msgid "A review on WordPress.org helps other people find the plugin, and keeps it going."
+msgstr "WordPress.org でのレビューは、ほかの方がプラグインを見つける助けになり、開発の励みにもなります。"
+
+#: assets/build/admin/index.js:25
+msgid "Leave a review"
+msgstr "レビューを書く"
 
 #: assets/build/admin/index.js:25
 msgid "This page does not exist."

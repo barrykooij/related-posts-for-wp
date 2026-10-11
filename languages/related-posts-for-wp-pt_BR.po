@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
-"POT-Creation-Date: 2026-10-10T22:46:56+00:00\n"
+"POT-Creation-Date: 2026-10-11T18:23:08+00:00\n"
 "PO-Revision-Date: 2017-09-06 17:20+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/barrykooijplugins/related-posts-for-wordpress/language/pt_BR/)\n"
@@ -19,23 +19,27 @@ msgstr ""
 "X-Generator: grunt-wp-i18n1.0.0\n"
 
 #. Plugin Name of the plugin
-#: src/Frontend/Widget.php:28
+#: related-posts-for-wp.php src/Frontend/Widget.php:28
 msgid "Related Posts for WordPress"
 msgstr "Related Posts for WordPress"
 
 #. Plugin URI of the plugin
+#: related-posts-for-wp.php
 msgid "http://www.relatedpostsforwp.com/"
 msgstr "http://www.relatedpostsforwp.com/"
 
 #. Description of the plugin
+#: related-posts-for-wp.php
 msgid "Related Posts for WordPress, the best way to display related posts in WordPress."
 msgstr "Related Posts for WordPress, a melhor maneira de exibir posts relacionados no WordPress."
 
 #. Author of the plugin
+#: related-posts-for-wp.php
 msgid "Never5"
 msgstr "Never5"
 
 #. Author URI of the plugin
+#: related-posts-for-wp.php
 msgid "http://www.never5.com/"
 msgstr "http://www.never5.com/"
 
@@ -49,7 +53,7 @@ msgstr "O Related Posts for WordPress requer PHP %1$s e WordPress %2$s ou superi
 msgid "Related Posts for WordPress 3.0 works together with Related Posts for WordPress Premium 3.0. Please %1$supdate Premium%2$s. Until then, your current version of Premium keeps working on its own."
 msgstr "O Related Posts for WordPress 3.0 funciona em conjunto com o Related Posts for WordPress Premium 3.0. %1$sAtualize o Premium%2$s. Até lá, sua versão atual do Premium continua funcionando de forma independente."
 
-#: src/Admin/App/Assets.php:104
+#: src/Admin/App/Assets.php:106
 msgid "The settings screen of Related Posts for WordPress is missing its scripts. Run npm run build in the plugin folder."
 msgstr "Os scripts da tela de configurações do Related Posts for WordPress estão faltando. Execute npm run build na pasta do plugin."
 
@@ -119,7 +123,7 @@ msgstr "Nenhum post relacionado foi encontrado."
 msgid "Related Posts for WordPress is linking your posts in the background (%d%%)."
 msgstr "O Related Posts for WordPress está vinculando seus posts em segundo plano (%d%%)."
 
-#: src/Admin/Notices/Installing.php:78 src/Install/Update.php:170
+#: src/Admin/Notices/Installing.php:78 src/Install/Update.php:190
 msgid "View progress"
 msgstr "Ver progresso"
 
@@ -139,7 +143,7 @@ msgstr "Woah! Parece que não fomos capazes de terminar a instalação do Posts 
 msgid "Finish the installation"
 msgstr "Concluir a instalação"
 
-#: src/Admin/Notices/Installing.php:150 src/Install/Update.php:193
+#: src/Admin/Notices/Installing.php:150 src/Install/Update.php:213
 msgid "Dismiss"
 msgstr "Dispensar"
 
@@ -200,7 +204,7 @@ msgstr "%sSim, me leve até lá!%s - %sEu já fiz isso!%s"
 msgid "Settings"
 msgstr "Configurações"
 
-#: src/Admin/PluginLinks.php:39
+#: src/Admin/PluginLinks.php:39 assets/build/admin/index.js:25
 msgid "Upgrade to Premium"
 msgstr "Fazer upgrade para o Premium"
 
@@ -233,8 +237,8 @@ msgstr "O Related Posts for WordPress não conseguiu atualizar suas tabelas do b
 msgid "Try again"
 msgstr "Tentar novamente"
 
-#: src/Database/Migrations.php:239 src/Install/Update.php:208
-#: src/Install/Update.php:229
+#: src/Database/Migrations.php:239 src/Install/Update.php:228
+#: src/Install/Update.php:249
 msgid "Sorry, you are not allowed to do that."
 msgstr "Desculpe, você não tem permissão para fazer isso."
 
@@ -294,48 +298,48 @@ msgstr "Salvando as configurações"
 msgid "Weighing the words"
 msgstr "Ponderando as palavras"
 
-#: src/Install/Update.php:124
+#: src/Install/Update.php:138
 msgid "Updating your related posts"
 msgstr "Atualizando seus posts relacionados para a 3.0"
 
-#: src/Install/Update.php:125
+#: src/Install/Update.php:139
 msgid "Your related posts are up to date."
 msgstr "Seus posts relacionados estão em dia."
 
-#: src/Install/Update.php:126
+#: src/Install/Update.php:140
 msgid "The update of your related posts stopped"
 msgstr "A atualização dos seus posts relacionados para a 3.0 parou"
 
-#: src/Install/Update.php:127
+#: src/Install/Update.php:141
 msgid "The update of your related posts was cancelled"
 msgstr "A atualização dos seus posts relacionados para a 3.0 foi cancelada"
 
-#: src/Install/Update.php:128
+#: src/Install/Update.php:142
 msgid "Cancel the update of your related posts? Posts it did not reach keep their old related posts."
 msgstr "Cancelar a atualização dos seus posts relacionados para a 3.0? Os posts que ela ainda não alcançou mantêm seus posts relacionados antigos."
 
-#: src/Install/Update.php:129
+#: src/Install/Update.php:143
 msgid "Cancel update"
 msgstr "Cancelar a atualização para a 3.0"
 
 #. translators: %d: how far the update is, in percent
-#: src/Install/Update.php:167
+#: src/Install/Update.php:187
 msgid "Related Posts for WordPress is updating your related posts in the background (%d%%). Every post keeps its related posts until it gets its new ones."
 msgstr "O Related Posts for WordPress está atualizando seus posts relacionados para a 3.0 em segundo plano (%d%%). Cada post mantém seus posts relacionados até receber os novos."
 
-#: src/Install/Update.php:180
+#: src/Install/Update.php:200
 msgid "The update of your related posts stopped. Posts it did not reach keep their old related posts until you resume it."
 msgstr "A atualização dos seus posts relacionados para a 3.0 parou. Os posts que ela ainda não alcançou mantêm seus posts relacionados antigos até você retomá-la."
 
-#: src/Install/Update.php:181 assets/build/admin/index.js:16
+#: src/Install/Update.php:201 assets/build/admin/index.js:16
 msgid "Resume"
 msgstr "Retomar"
 
-#: src/Install/Update.php:190
+#: src/Install/Update.php:210
 msgid "Your related posts are up to date. Related Posts for WordPress 3.0 finds related posts in a new, more precise way, and linked your posts again; the related posts you added by hand kept their place."
 msgstr "Seus posts relacionados estão em dia. O Related Posts for WordPress 3.0 encontra posts relacionados de uma forma nova e mais precisa e vinculou seus posts novamente; os posts relacionados que você adicionou manualmente mantiveram seu lugar."
 
-#: src/Install/Update.php:192
+#: src/Install/Update.php:212
 msgid "What changed"
 msgstr "O que mudou"
 
@@ -649,6 +653,94 @@ msgstr "Não foi possível salvar as configurações."
 #: assets/build/admin/index.js:25
 msgid "Save changes"
 msgstr "Salvar alterações"
+
+#: assets/build/admin/index.js:25
+msgid "More about Related Posts"
+msgstr "Mais sobre o Related Posts"
+
+#: assets/build/admin/index.js:25
+msgid "Design the layout in the visual configurator"
+msgstr "Crie o layout no configurador visual"
+
+#: assets/build/admin/index.js:25
+msgid "Relate pages, products and custom post types"
+msgstr "Relacione páginas, produtos e tipos de post personalizados"
+
+#: assets/build/admin/index.js:25
+msgid "Choose what counts with adjustable weights"
+msgstr "Escolha o que conta com prioridades ajustáveis"
+
+#: assets/build/admin/index.js:25
+msgid "Exclude posts and whole categories"
+msgstr "Exclua posts e categorias inteiras"
+
+#: assets/build/admin/index.js:25
+msgid "Older posts get your new posts too"
+msgstr "Posts antigos também recebem seus novos posts"
+
+#: assets/build/admin/index.js:25
+msgid "See why posts are related"
+msgstr "Veja por que os posts estão relacionados"
+
+#: assets/build/admin/index.js:25
+msgid "Priority email support"
+msgstr "Suporte prioritário por e-mail"
+
+#: assets/build/admin/index.js:25
+msgid "Take your related posts further"
+msgstr "Tire mais proveito dos seus posts relacionados"
+
+#: assets/build/admin/index.js:25
+msgid "Premium gives you control over what gets related and how it looks. It is an add-on for this plugin, so your settings and links stay as they are."
+msgstr "O Premium dá a você controle sobre o que é relacionado e como aparece. Ele é um complemento deste plugin, então suas configurações e vínculos continuam como estão."
+
+#: assets/build/admin/index.js:25
+msgid "See all features"
+msgstr "Ver todos os recursos"
+
+#: assets/build/admin/index.js:25
+msgid "14 day money back guarantee"
+msgstr "Garantia de reembolso de 14 dias"
+
+#: assets/build/admin/index.js:25
+msgid "Getting started"
+msgstr "Primeiros passos"
+
+#: assets/build/admin/index.js:25
+msgid "Show related posts in your theme"
+msgstr "Mostre posts relacionados no seu tema"
+
+#: assets/build/admin/index.js:25
+msgid "Style the related posts with CSS"
+msgstr "Estilize os posts relacionados com CSS"
+
+#: assets/build/admin/index.js:25
+msgid "All documentation"
+msgstr "Toda a documentação"
+
+#: assets/build/admin/index.js:25
+msgid "Need help?"
+msgstr "Precisa de ajuda?"
+
+#: assets/build/admin/index.js:25
+msgid "The documentation answers most questions."
+msgstr "A documentação responde à maioria das perguntas."
+
+#: assets/build/admin/index.js:25
+msgid "Ask on the support forum"
+msgstr "Pergunte no fórum de suporte"
+
+#: assets/build/admin/index.js:25
+msgid "Enjoying Related Posts?"
+msgstr "Está gostando do Related Posts?"
+
+#: assets/build/admin/index.js:25
+msgid "A review on WordPress.org helps other people find the plugin, and keeps it going."
+msgstr "Uma avaliação no WordPress.org ajuda outras pessoas a encontrar o plugin e o mantém vivo."
+
+#: assets/build/admin/index.js:25
+msgid "Leave a review"
+msgstr "Deixe uma avaliação"
 
 #: assets/build/admin/index.js:25
 msgid "This page does not exist."

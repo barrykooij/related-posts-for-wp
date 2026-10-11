@@ -12,8 +12,10 @@ $breakpoint: 782px;
 	--rp4wp-success: #00a32a;
 	--rp4wp-danger: #cc1818;
 	--rp4wp-radius: 8px;
+	--rp4wp-sidebar: 300px;
 
-	max-width: 1000px;
+	// The settings at up to 1000px, and the sidebar next to them.
+	max-width: calc(1000px + 40px + var(--rp4wp-sidebar));
 	margin: 0 20px 0 0;
 	padding: var(--rp4wp-gap) 0 96px;
 
@@ -65,6 +67,21 @@ $breakpoint: 782px;
 
 .rp4wp-admin > .components-notice {
 	margin: 0 0 var(--rp4wp-gap);
+}
+
+// The settings and the sidebar. Without room for both, the sidebar wraps
+// below the settings.
+
+.rp4wp-admin__layout {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	gap: var(--rp4wp-gap) 40px;
+}
+
+.rp4wp-admin__content {
+	flex: 999 1 600px;
+	min-width: 0;
 }
 
 // Tabs
@@ -448,4 +465,255 @@ $breakpoint: 782px;
 	justify-content: flex-end;
 	gap: 8px;
 	margin-top: 24px;
+}
+
+// Sidebar
+
+.rp4wp-sidebar {
+	display: grid;
+	flex: 1 1 var(--rp4wp-sidebar);
+	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+	gap: var(--rp4wp-gap);
+	align-items: start;
+	min-width: 0;
+}
+
+.rp4wp-sidebar__body.components-card__body {
+	padding: 20px 24px 24px;
+}
+
+// What Premium adds
+
+.rp4wp-promo.components-card {
+	border: 0;
+	background: #1d2327;
+	background:
+		radial-gradient(120% 60% at 100% 0%, color-mix(in srgb, var(--rp4wp-accent) 55%, transparent), transparent),
+		#1d2327;
+	box-shadow: 0 12px 32px rgba(0, 0, 0, 0.16);
+	color: #f0f0f1;
+}
+
+.rp4wp-promo__body.components-card__body {
+	padding: 24px;
+}
+
+.rp4wp-promo__eyebrow {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 4px 10px 4px 8px;
+	border-radius: 999px;
+	background: rgba(255, 255, 255, 0.12);
+	color: #fff;
+	font-size: 11px;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+
+	svg {
+		fill: #f0c33c;
+	}
+}
+
+.rp4wp-promo__title {
+	margin: 16px 0 8px;
+	color: #fff;
+	font-size: 20px;
+	font-weight: 600;
+	line-height: 1.3;
+}
+
+.rp4wp-promo__text {
+	margin: 0;
+	color: rgba(255, 255, 255, 0.78);
+	font-size: 13px;
+	line-height: 1.6;
+}
+
+.rp4wp-promo__features {
+	display: grid;
+	gap: 10px;
+	margin: 20px 0 24px;
+	padding: 0;
+	list-style: none;
+
+	li {
+		display: flex;
+		align-items: flex-start;
+		gap: 10px;
+		margin: 0;
+		line-height: 1.45;
+	}
+}
+
+.rp4wp-promo__check {
+	display: inline-flex;
+	flex: none;
+	align-items: center;
+	justify-content: center;
+	width: 18px;
+	height: 18px;
+	margin-top: 1px;
+	border-radius: 50%;
+	background: var(--rp4wp-accent);
+
+	svg {
+		fill: #fff;
+	}
+}
+
+.rp4wp-promo .rp4wp-promo__cta {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+	min-height: 40px;
+	padding: 8px 16px;
+	border-radius: 4px;
+	background: #fff;
+	color: #1d2327;
+	font-size: 14px;
+	font-weight: 600;
+	text-decoration: none;
+	transition: background-color 0.15s ease, transform 0.15s ease;
+
+	&:hover,
+	&:active {
+		background: #f0f0f1;
+		color: #1d2327;
+		transform: translateY(-1px);
+	}
+
+	&:focus {
+		box-shadow: none;
+		outline: 2px solid #fff;
+		outline-offset: 2px;
+	}
+
+	.components-external-link__contents {
+		text-decoration: none;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
+
+		&:hover {
+			transform: none;
+		}
+	}
+}
+
+.rp4wp-promo .rp4wp-promo__more {
+	display: block;
+	margin-top: 12px;
+	color: rgba(255, 255, 255, 0.85);
+	text-align: center;
+
+	&:hover,
+	&:active {
+		color: #fff;
+	}
+
+	&:focus {
+		box-shadow: none;
+		outline: 2px solid #fff;
+		outline-offset: 2px;
+	}
+}
+
+.rp4wp-promo__guarantee {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+	margin: 20px 0 0;
+	padding-top: 16px;
+	border-top: 1px solid rgba(255, 255, 255, 0.12);
+	color: rgba(255, 255, 255, 0.7);
+	font-size: 12px;
+
+	svg {
+		flex: none;
+		fill: currentcolor;
+	}
+}
+
+// Help
+
+.rp4wp-help__links {
+	margin: 12px 0 0;
+	padding: 0;
+	list-style: none;
+
+	li {
+		margin: 0;
+	}
+}
+
+.rp4wp-help__links .rp4wp-help__ask {
+	margin-top: 8px;
+	padding-top: 8px;
+	border-top: 1px solid var(--rp4wp-border);
+}
+
+.rp4wp-help .rp4wp-help__link {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+	margin: 0 -8px;
+	padding: 7px 8px;
+	border-radius: 4px;
+	color: inherit;
+	text-decoration: none;
+
+	.components-external-link__contents {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+		text-decoration: none;
+	}
+
+	.components-external-link__icon {
+		color: var(--rp4wp-muted);
+	}
+
+	svg {
+		flex: none;
+		fill: var(--rp4wp-muted);
+	}
+
+	&:hover {
+		background: #f6f7f7;
+		color: var(--rp4wp-accent);
+
+		svg {
+			fill: var(--rp4wp-accent);
+		}
+	}
+
+	&:focus {
+		box-shadow: none;
+		outline: 2px solid var(--rp4wp-accent);
+		outline-offset: -2px;
+	}
+}
+
+// Review
+
+.rp4wp-review__stars {
+	display: flex;
+	gap: 2px;
+	margin: 0 0 8px -2px;
+
+	svg {
+		fill: #dba617;
+	}
+}
+
+.rp4wp-review .rp4wp-review__link {
+	display: inline-block;
+	margin-top: 12px;
+	font-weight: 600;
 }

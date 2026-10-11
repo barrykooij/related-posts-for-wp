@@ -131,6 +131,7 @@ On the first request after the update, the links move to the new tables. Then ev
 
 = 3.0.0: October 11, 2026 =
 * Feature: A new settings screen, with the installer built in. The installer runs in the background, so the page can be closed while it works, and the screen shows its progress.
+* Feature: The settings screen has a sidebar again, with links to the documentation and the support forum, and what Premium adds.
 * Feature: Link the posts that are not linked yet, or rebuild every link, from the new Installer tab. Rebuilding asks first, and keeps the related posts you added by hand (2.x removed them).
 * Feature: A modern default layout for the related posts, built with flexbox instead of floats. It works for right-to-left languages without a separate stylesheet, and themes can change the spacing and the image width with the CSS custom properties --rp4wp-gap and --rp4wp-image-width. Sites that changed the CSS, or style the related posts in the Additional CSS of the Customizer, keep their CSS as it is; the CSS field has a "Restore default" button to switch.
 * Feature: Related posts shown by the shortcode or the widget outside single posts, on pages and archives for example, get the CSS too.

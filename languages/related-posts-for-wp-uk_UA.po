@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
-"POT-Creation-Date: 2026-10-10T22:46:56+00:00\n"
+"POT-Creation-Date: 2026-10-11T18:23:08+00:00\n"
 "PO-Revision-Date: 2017-09-06 17:20+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Ukrainian (Ukraine) (http://www.transifex.com/barrykooijplugins/related-posts-for-wordpress/language/uk_UA/)\n"
@@ -17,23 +17,27 @@ msgstr ""
 "X-Generator: grunt-wp-i18n1.0.0\n"
 
 #. Plugin Name of the plugin
-#: src/Frontend/Widget.php:28
+#: related-posts-for-wp.php src/Frontend/Widget.php:28
 msgid "Related Posts for WordPress"
 msgstr "Related Posts for WordPress"
 
 #. Plugin URI of the plugin
+#: related-posts-for-wp.php
 msgid "http://www.relatedpostsforwp.com/"
 msgstr "http://www.relatedpostsforwp.com/"
 
 #. Description of the plugin
+#: related-posts-for-wp.php
 msgid "Related Posts for WordPress, the best way to display related posts in WordPress."
 msgstr "Related Posts for WordPress: найкращий спосіб показувати схожі записи у WordPress."
 
 #. Author of the plugin
+#: related-posts-for-wp.php
 msgid "Never5"
 msgstr "Never5"
 
 #. Author URI of the plugin
+#: related-posts-for-wp.php
 msgid "http://www.never5.com/"
 msgstr "http://www.never5.com/"
 
@@ -47,7 +51,7 @@ msgstr "Related Posts for WordPress потребує PHP %1$s і WordPress %2$s 
 msgid "Related Posts for WordPress 3.0 works together with Related Posts for WordPress Premium 3.0. Please %1$supdate Premium%2$s. Until then, your current version of Premium keeps working on its own."
 msgstr "Related Posts for WordPress 3.0 працює разом із Related Posts for WordPress Premium 3.0. Будь ласка, %1$sоновіть Premium%2$s. До того часу ваша поточна версія Premium працюватиме самостійно."
 
-#: src/Admin/App/Assets.php:104
+#: src/Admin/App/Assets.php:106
 msgid "The settings screen of Related Posts for WordPress is missing its scripts. Run npm run build in the plugin folder."
 msgstr "Екрану налаштувань Related Posts for WordPress бракує скриптів. Виконайте npm run build у теці плагіна."
 
@@ -117,7 +121,7 @@ msgstr "Схожих записів не знайдено."
 msgid "Related Posts for WordPress is linking your posts in the background (%d%%)."
 msgstr "Related Posts for WordPress пов'язує ваші записи у фоновому режимі (%d%%)."
 
-#: src/Admin/Notices/Installing.php:78 src/Install/Update.php:170
+#: src/Admin/Notices/Installing.php:78 src/Install/Update.php:190
 msgid "View progress"
 msgstr "Переглянути хід виконання"
 
@@ -137,7 +141,7 @@ msgstr "Ого! Схоже, нам не вдалося завершити май
 msgid "Finish the installation"
 msgstr "Завершити встановлення"
 
-#: src/Admin/Notices/Installing.php:150 src/Install/Update.php:193
+#: src/Admin/Notices/Installing.php:150 src/Install/Update.php:213
 msgid "Dismiss"
 msgstr "Приховати"
 
@@ -198,7 +202,7 @@ msgstr "%sТак, перейти туди!%s - %sВже зроблено!%s"
 msgid "Settings"
 msgstr "Налаштування"
 
-#: src/Admin/PluginLinks.php:39
+#: src/Admin/PluginLinks.php:39 assets/build/admin/index.js:25
 msgid "Upgrade to Premium"
 msgstr "Перейти на Premium"
 
@@ -231,8 +235,8 @@ msgstr "Related Posts for WordPress не вдалося оновити свої 
 msgid "Try again"
 msgstr "Спробувати ще раз"
 
-#: src/Database/Migrations.php:239 src/Install/Update.php:208
-#: src/Install/Update.php:229
+#: src/Database/Migrations.php:239 src/Install/Update.php:228
+#: src/Install/Update.php:249
 msgid "Sorry, you are not allowed to do that."
 msgstr "Вибачте, у вас немає дозволу на цю дію."
 
@@ -292,48 +296,48 @@ msgstr "Збереження налаштувань"
 msgid "Weighing the words"
 msgstr "Зважування слів"
 
-#: src/Install/Update.php:124
+#: src/Install/Update.php:138
 msgid "Updating your related posts"
 msgstr "Оновлення схожих записів до версії 3.0"
 
-#: src/Install/Update.php:125
+#: src/Install/Update.php:139
 msgid "Your related posts are up to date."
 msgstr "Ваші схожі записи в актуальному стані."
 
-#: src/Install/Update.php:126
+#: src/Install/Update.php:140
 msgid "The update of your related posts stopped"
 msgstr "Оновлення схожих записів до версії 3.0 зупинено"
 
-#: src/Install/Update.php:127
+#: src/Install/Update.php:141
 msgid "The update of your related posts was cancelled"
 msgstr "Оновлення схожих записів до версії 3.0 скасовано"
 
-#: src/Install/Update.php:128
+#: src/Install/Update.php:142
 msgid "Cancel the update of your related posts? Posts it did not reach keep their old related posts."
 msgstr "Скасувати оновлення схожих записів до версії 3.0? Записи, до яких воно не дійшло, збережуть свої попередні схожі записи."
 
-#: src/Install/Update.php:129
+#: src/Install/Update.php:143
 msgid "Cancel update"
 msgstr "Скасувати оновлення до 3.0"
 
 #. translators: %d: how far the update is, in percent
-#: src/Install/Update.php:167
+#: src/Install/Update.php:187
 msgid "Related Posts for WordPress is updating your related posts in the background (%d%%). Every post keeps its related posts until it gets its new ones."
 msgstr "Related Posts for WordPress оновлює ваші схожі записи до версії 3.0 у фоновому режимі (%d%%). Кожен запис зберігає свої схожі записи, доки не отримає нові."
 
-#: src/Install/Update.php:180
+#: src/Install/Update.php:200
 msgid "The update of your related posts stopped. Posts it did not reach keep their old related posts until you resume it."
 msgstr "Оновлення схожих записів до версії 3.0 зупинено. Записи, до яких воно не дійшло, збережуть свої попередні схожі записи, доки ви його не відновите."
 
-#: src/Install/Update.php:181 assets/build/admin/index.js:16
+#: src/Install/Update.php:201 assets/build/admin/index.js:16
 msgid "Resume"
 msgstr "Продовжити"
 
-#: src/Install/Update.php:190
+#: src/Install/Update.php:210
 msgid "Your related posts are up to date. Related Posts for WordPress 3.0 finds related posts in a new, more precise way, and linked your posts again; the related posts you added by hand kept their place."
 msgstr "Ваші схожі записи в актуальному стані. Related Posts for WordPress 3.0 знаходить схожі записи новим, точнішим способом і заново пов'язав ваші записи; схожі записи, які ви додали вручну, залишилися на своїх місцях."
 
-#: src/Install/Update.php:192
+#: src/Install/Update.php:212
 msgid "What changed"
 msgstr "Що змінилося"
 
@@ -648,6 +652,94 @@ msgstr "Не вдалося зберегти налаштування."
 #: assets/build/admin/index.js:25
 msgid "Save changes"
 msgstr "Зберегти зміни"
+
+#: assets/build/admin/index.js:25
+msgid "More about Related Posts"
+msgstr "Докладніше про Related Posts"
+
+#: assets/build/admin/index.js:25
+msgid "Design the layout in the visual configurator"
+msgstr "Налаштування макета у візуальному конструкторі"
+
+#: assets/build/admin/index.js:25
+msgid "Relate pages, products and custom post types"
+msgstr "Зв'язки між сторінками, товарами та власними типами записів"
+
+#: assets/build/admin/index.js:25
+msgid "Choose what counts with adjustable weights"
+msgstr "Регульовані ваги: ви вирішуєте, що важливо"
+
+#: assets/build/admin/index.js:25
+msgid "Exclude posts and whole categories"
+msgstr "Виключення записів і цілих рубрик"
+
+#: assets/build/admin/index.js:25
+msgid "Older posts get your new posts too"
+msgstr "Старі записи теж отримують ваші нові записи"
+
+#: assets/build/admin/index.js:25
+msgid "See why posts are related"
+msgstr "Пояснення, чому записи схожі"
+
+#: assets/build/admin/index.js:25
+msgid "Priority email support"
+msgstr "Пріоритетна підтримка електронною поштою"
+
+#: assets/build/admin/index.js:25
+msgid "Take your related posts further"
+msgstr "Більше можливостей для схожих записів"
+
+#: assets/build/admin/index.js:25
+msgid "Premium gives you control over what gets related and how it looks. It is an add-on for this plugin, so your settings and links stay as they are."
+msgstr "Premium дає змогу керувати тим, що пов'язується і як це виглядає. Це доповнення до цього плагіна, тож ваші налаштування та зв'язки залишаються як є."
+
+#: assets/build/admin/index.js:25
+msgid "See all features"
+msgstr "Усі можливості"
+
+#: assets/build/admin/index.js:25
+msgid "14 day money back guarantee"
+msgstr "Гарантія повернення коштів 14 днів"
+
+#: assets/build/admin/index.js:25
+msgid "Getting started"
+msgstr "Початок роботи"
+
+#: assets/build/admin/index.js:25
+msgid "Show related posts in your theme"
+msgstr "Виведення схожих записів у темі"
+
+#: assets/build/admin/index.js:25
+msgid "Style the related posts with CSS"
+msgstr "Оформлення схожих записів за допомогою CSS"
+
+#: assets/build/admin/index.js:25
+msgid "All documentation"
+msgstr "Уся документація"
+
+#: assets/build/admin/index.js:25
+msgid "Need help?"
+msgstr "Потрібна допомога?"
+
+#: assets/build/admin/index.js:25
+msgid "The documentation answers most questions."
+msgstr "Документація відповідає на більшість запитань."
+
+#: assets/build/admin/index.js:25
+msgid "Ask on the support forum"
+msgstr "Запитати на форумі підтримки"
+
+#: assets/build/admin/index.js:25
+msgid "Enjoying Related Posts?"
+msgstr "Подобається Related Posts?"
+
+#: assets/build/admin/index.js:25
+msgid "A review on WordPress.org helps other people find the plugin, and keeps it going."
+msgstr "Відгук на WordPress.org допомагає іншим знайти плагін і підтримує його розвиток."
+
+#: assets/build/admin/index.js:25
+msgid "Leave a review"
+msgstr "Залишити відгук"
 
 #: assets/build/admin/index.js:25
 msgid "This page does not exist."

@@ -9,6 +9,7 @@ import { useSettings } from '../store/settings';
 import { Header } from './Header';
 import { GroupSwitcher, Navigation } from './Navigation';
 import { SaveBar } from './SaveBar';
+import { Sidebar } from './Sidebar';
 import { Snackbars } from './Snackbars';
 
 /**
@@ -62,22 +63,30 @@ export function App() {
 				<>
 					<InstallPanel />
 					<Navigation routes={ routes } current={ route } />
-					<main className="rp4wp-admin__main">
-						<GroupSwitcher routes={ routes } current={ route } />
-						{ Screen ? (
-							<Screen />
-						) : (
-							'' !== path && (
-								<p>
-									{ __(
-										'This page does not exist.',
-										'related-posts-for-wp'
-									) }
-								</p>
-							)
-						) }
-					</main>
-					<SaveBar />
+					<div className="rp4wp-admin__layout">
+						<div className="rp4wp-admin__content">
+							<main className="rp4wp-admin__main">
+								<GroupSwitcher
+									routes={ routes }
+									current={ route }
+								/>
+								{ Screen ? (
+									<Screen />
+								) : (
+									'' !== path && (
+										<p>
+											{ __(
+												'This page does not exist.',
+												'related-posts-for-wp'
+											) }
+										</p>
+									)
+								) }
+							</main>
+							<SaveBar />
+						</div>
+						<Sidebar />
+					</div>
 				</>
 			) }
 

@@ -9,29 +9,34 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-11T17:23:44+00:00\n"
+"POT-Creation-Date: 2026-10-11T18:23:08+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.9.0\n"
+"X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: related-posts-for-wp\n"
 
 #. Plugin Name of the plugin
+#: related-posts-for-wp.php
 #: src/Frontend/Widget.php:28
 msgid "Related Posts for WordPress"
 msgstr ""
 
 #. Plugin URI of the plugin
+#: related-posts-for-wp.php
 msgid "http://www.relatedpostsforwp.com/"
 msgstr ""
 
 #. Description of the plugin
+#: related-posts-for-wp.php
 msgid "Related Posts for WordPress, the best way to display related posts in WordPress."
 msgstr ""
 
 #. Author of the plugin
+#: related-posts-for-wp.php
 msgid "Never5"
 msgstr ""
 
 #. Author URI of the plugin
+#: related-posts-for-wp.php
 msgid "http://www.never5.com/"
 msgstr ""
 
@@ -45,7 +50,7 @@ msgstr ""
 msgid "Related Posts for WordPress 3.0 works together with Related Posts for WordPress Premium 3.0. Please %1$supdate Premium%2$s. Until then, your current version of Premium keeps working on its own."
 msgstr ""
 
-#: src/Admin/App/Assets.php:104
+#: src/Admin/App/Assets.php:106
 msgid "The settings screen of Related Posts for WordPress is missing its scripts. Run npm run build in the plugin folder."
 msgstr ""
 
@@ -202,6 +207,7 @@ msgid "Settings"
 msgstr ""
 
 #: src/Admin/PluginLinks.php:39
+#: assets/build/admin/index.js:25
 msgid "Upgrade to Premium"
 msgstr ""
 
@@ -654,6 +660,94 @@ msgstr ""
 
 #: assets/build/admin/index.js:25
 msgid "Save changes"
+msgstr ""
+
+#: assets/build/admin/index.js:25
+msgid "More about Related Posts"
+msgstr ""
+
+#: assets/build/admin/index.js:25
+msgid "Design the layout in the visual configurator"
+msgstr ""
+
+#: assets/build/admin/index.js:25
+msgid "Relate pages, products and custom post types"
+msgstr ""
+
+#: assets/build/admin/index.js:25
+msgid "Choose what counts with adjustable weights"
+msgstr ""
+
+#: assets/build/admin/index.js:25
+msgid "Exclude posts and whole categories"
+msgstr ""
+
+#: assets/build/admin/index.js:25
+msgid "Older posts get your new posts too"
+msgstr ""
+
+#: assets/build/admin/index.js:25
+msgid "See why posts are related"
+msgstr ""
+
+#: assets/build/admin/index.js:25
+msgid "Priority email support"
+msgstr ""
+
+#: assets/build/admin/index.js:25
+msgid "Take your related posts further"
+msgstr ""
+
+#: assets/build/admin/index.js:25
+msgid "Premium gives you control over what gets related and how it looks. It is an add-on for this plugin, so your settings and links stay as they are."
+msgstr ""
+
+#: assets/build/admin/index.js:25
+msgid "See all features"
+msgstr ""
+
+#: assets/build/admin/index.js:25
+msgid "14 day money back guarantee"
+msgstr ""
+
+#: assets/build/admin/index.js:25
+msgid "Getting started"
+msgstr ""
+
+#: assets/build/admin/index.js:25
+msgid "Show related posts in your theme"
+msgstr ""
+
+#: assets/build/admin/index.js:25
+msgid "Style the related posts with CSS"
+msgstr ""
+
+#: assets/build/admin/index.js:25
+msgid "All documentation"
+msgstr ""
+
+#: assets/build/admin/index.js:25
+msgid "Need help?"
+msgstr ""
+
+#: assets/build/admin/index.js:25
+msgid "The documentation answers most questions."
+msgstr ""
+
+#: assets/build/admin/index.js:25
+msgid "Ask on the support forum"
+msgstr ""
+
+#: assets/build/admin/index.js:25
+msgid "Enjoying Related Posts?"
+msgstr ""
+
+#: assets/build/admin/index.js:25
+msgid "A review on WordPress.org helps other people find the plugin, and keeps it going."
+msgstr ""
+
+#: assets/build/admin/index.js:25
+msgid "Leave a review"
 msgstr ""
 
 #: assets/build/admin/index.js:25
