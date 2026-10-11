@@ -1,10 +1,15 @@
 name: Release plugin
 
-# Publishing a GitHub release builds the plugin zip and attaches it to the release. A normal release is also deployed to
-# WordPress.org, which needs the repository secrets SVN_USERNAME and SVN_PASSWORD. A pre-release is never deployed: mark
-# the release as a pre-release, or use a tag with a hyphen, for example 3.0.0-rc.1.
+# Publishing a GitHub release builds the plugin and hands it to the WordPress.org deploy action, which needs the
+# repository secrets SVN_USERNAME and SVN_PASSWORD. Only a normal release is committed to WordPress.org. A pre-release
+# (marked as one, or with a hyphen in its tag, for example 3.0.0-rc.1) is a dry run: the action does everything but the
+# commit, and its zip of the would-be trunk is attached to the release. So the zip of a pre-release is exactly what
+# WordPress.org would get.
 #
-# Run the workflow by hand (Actions > Release plugin > Run workflow) to build a zip of any branch; the zip is attached to
+# A pre-release may also carry a suffix on the version of the plugin: tag 3.0.0-rc.14 on a commit whose plugin header says
+# 3.0.0 is a dry run of 3.0.0, to inspect its zip before the real release.
+#
+# Run the workflow by hand (Actions > Release plugin > Run workflow) for a dry run of any branch; the zip is attached to
 # the run.
 
 on:
@@ -21,30 +26,42 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Release tag matches the plugin version
+      - name: Version, and whether to deploy
         id: version
-        if: github.event_name == 'release'
         env:
+          EVENT: ${{ github.event_name }}
           TAG: ${{ github.event.release.tag_name }}
           PRERELEASE: ${{ github.event.release.prerelease }}
         run: |
           header=$(sed -n 's/^[[:space:]]*\*\{0,1\}[[:space:]]*Version:[[:space:]]*//p' related-posts-for-wp.php | head -1 | tr -d '[:space:]')
           stable=$(sed -n 's/^Stable tag:[[:space:]]*//p' readme.txt | head -1 | tr -d '[:space:]')
+          echo "version=$header" >> "$GITHUB_OUTPUT"
+
+          if [ "$EVENT" != "release" ]; then
+            echo "Run by hand: a dry run of version $header."
+            echo "deploy=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
           echo "Tag: $TAG, plugin header: $header, readme stable tag: $stable, marked pre-release: $PRERELEASE"
+
+          # A tag with a hyphen is a pre-release even when the release is not marked as one, so it never reaches
+          # WordPress.org by accident.
+          if [ "$PRERELEASE" = "true" ] || [[ "$TAG" == *-* ]]; then
+            if [ "$TAG" != "$header" ] && [[ "$TAG" != "$header"-* ]]; then
+              echo "::error::The tag of a pre-release must be the plugin header Version, or that version with a suffix (for example $header-rc.1)."
+              exit 1
+            fi
+
+            echo "Pre-release: a dry run of version $header, nothing is committed to WordPress.org."
+            echo "deploy=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
 
           if [ "$TAG" != "$header" ]; then
             echo "::error::The release tag and the plugin header Version must be the same."
             exit 1
           fi
-
-          # A tag with a hyphen is a pre-release even when the release is not marked as one, so it never reaches
-          # WordPress.org by accident.
-          if [ "$PRERELEASE" = "true" ] || [[ "$TAG" == *-* ]]; then
-            echo "Pre-release: building the zip only."
-            echo "deploy=false" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
           if [ "$TAG" != "$stable" ]; then
             echo "::error::The release tag and the readme Stable tag must be the same."
             exit 1
@@ -70,33 +87,31 @@ jobs:
           npm ci --no-audit --no-fund
           npm run build
 
-      # The files WordPress.org gets, in a related-posts-for-wp folder, so the zip installs under the right name.
-      - name: Build the zip
-        id: zip
-        run: |
-          mkdir -p artifacts/build/related-posts-for-wp
-          rsync -a --exclude-from=.distignore ./ artifacts/build/related-posts-for-wp/
-          (cd artifacts/build && zip -qr ../related-posts-for-wp.zip related-posts-for-wp)
-          echo "path=artifacts/related-posts-for-wp.zip" >> "$GITHUB_OUTPUT"
-
-      - name: Deploy to WordPress.org
-        if: steps.version.outputs.deploy == 'true'
+      # The action copies the files into trunk with .distignore, and the assets in .wordpress-org. Its zip is that trunk,
+      # in a related-posts-for-wp folder. It only commits when this is a normal release; otherwise its log shows what
+      # would change on WordPress.org (svn status).
+      - name: Deploy to WordPress.org, or a dry run
+        id: deploy
         uses: 10up/action-wordpress-plugin-deploy@stable
+        with:
+          generate-zip: true
+          dry-run: ${{ steps.version.outputs.deploy != 'true' }}
         env:
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
           SLUG: related-posts-for-wp
+          VERSION: ${{ steps.version.outputs.version }}
 
       - name: Attach the zip to the release
         if: github.event_name == 'release'
         env:
           GH_TOKEN: ${{ github.token }}
           TAG: ${{ github.event.release.tag_name }}
-        run: gh release upload "$TAG" "${{ steps.zip.outputs.path }}" --clobber
+        run: gh release upload "$TAG" "${{ steps.deploy.outputs.zip-path }}" --clobber
 
       - name: Attach the zip to the run
         if: github.event_name == 'workflow_dispatch'
         uses: actions/upload-artifact@v4
         with:
-          name: related-posts-for-wp-${{ github.sha }}
-          path: ${{ steps.zip.outputs.path }}
+          name: related-posts-for-wp-${{ steps.version.outputs.version }}-${{ github.sha }}
+          path: ${{ steps.deploy.outputs.zip-path }}
