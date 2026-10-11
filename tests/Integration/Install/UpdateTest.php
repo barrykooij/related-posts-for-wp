@@ -330,7 +330,7 @@ final class UpdateTest extends TestCase {
 		}
 
 		$html = $this->notice();
-		$this->assertStringContainsString( '<a href="https://www.relatedpostsforwp.com/version-3-what-changed/?utm_source=plugin&#038;utm_medium=link&#038;utm_campaign=update-notice" target="_blank" rel="noopener">What changed</a>', $html );
+		$this->assertStringContainsString( '<a href="https://www.relatedpostsforwp.com/related-posts-for-wordpress-version-3-0/?utm_source=plugin&#038;utm_medium=link&#038;utm_campaign=update-notice" target="_blank" rel="noopener">What changed</a>', $html );
 		$this->assertMatchesRegularExpression( '/<a href="[^"]*action=' . Update::DISMISS . '[^"]*">Dismiss<\/a>/', $html, 'The Dismiss link stays in the admin.' );
 
 		add_filter(

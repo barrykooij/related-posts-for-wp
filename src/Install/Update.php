@@ -268,7 +268,7 @@ final class Update implements Module {
 		 *
 		 * @param string $url The address. Default the page about version 3 on relatedpostsforwp.com.
 		 */
-		return (string) apply_filters( 'rp4wp_update_notes_url', 'https://www.relatedpostsforwp.com/version-3-what-changed/?utm_source=plugin&utm_medium=link&utm_campaign=update-notice' );
+		return (string) apply_filters( 'rp4wp_update_notes_url', 'https://www.relatedpostsforwp.com/related-posts-for-wordpress-version-3-0/?utm_source=plugin&utm_medium=link&utm_campaign=update-notice' );
 	}
 
 	/**
