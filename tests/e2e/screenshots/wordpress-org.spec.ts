@@ -194,10 +194,22 @@ test( 'WordPress.org screenshots', async ( {
 		} );
 	} );
 
+	// The screenshots never show the offer of Premium in the sidebar, on any page.
+	await page.addInitScript( () => {
+		document.addEventListener( 'DOMContentLoaded', () => {
+			const style = document.createElement( 'style' );
+			style.textContent = '.rp4wp-promo { display: none !important; }';
+			document.head.append( style );
+		} );
+	} );
+
 	// 1. The first-run card.
 	await page.goto( '/wp-admin/options-general.php?page=rp4wp' );
 	const start = page.getByRole( 'button', { name: 'Start' } );
 	await expect( start ).toBeVisible();
+	await expect(
+		page.getByRole( 'link', { name: /Upgrade to Premium/ } )
+	).toBeHidden();
 	await shoot( page, 1 );
 
 	// 2. The installer at work. Once it is half way through linking, hold the status requests so the card stands still.
