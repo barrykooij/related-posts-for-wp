@@ -2,14 +2,14 @@
 # This file is distributed under the GPL v3.
 msgid ""
 msgstr ""
-"Project-Id-Version: Related Posts for WordPress 3.0.0-rc.9\n"
+"Project-Id-Version: Related Posts for WordPress 3.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-10T22:46:56+00:00\n"
+"POT-Creation-Date: 2026-10-11T17:23:44+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 "X-Domain: related-posts-for-wp\n"
@@ -121,7 +121,7 @@ msgid "Related Posts for WordPress is linking your posts in the background (%d%%
 msgstr ""
 
 #: src/Admin/Notices/Installing.php:78
-#: src/Install/Update.php:170
+#: src/Install/Update.php:190
 msgid "View progress"
 msgstr ""
 
@@ -142,7 +142,7 @@ msgid "Finish the installation"
 msgstr ""
 
 #: src/Admin/Notices/Installing.php:150
-#: src/Install/Update.php:193
+#: src/Install/Update.php:213
 msgid "Dismiss"
 msgstr ""
 
@@ -236,8 +236,8 @@ msgid "Try again"
 msgstr ""
 
 #: src/Database/Migrations.php:239
-#: src/Install/Update.php:208
-#: src/Install/Update.php:229
+#: src/Install/Update.php:228
+#: src/Install/Update.php:249
 msgid "Sorry, you are not allowed to do that."
 msgstr ""
 
@@ -297,49 +297,49 @@ msgstr ""
 msgid "Weighing the words"
 msgstr ""
 
-#: src/Install/Update.php:124
+#: src/Install/Update.php:138
 msgid "Updating your related posts"
 msgstr ""
 
-#: src/Install/Update.php:125
+#: src/Install/Update.php:139
 msgid "Your related posts are up to date."
 msgstr ""
 
-#: src/Install/Update.php:126
+#: src/Install/Update.php:140
 msgid "The update of your related posts stopped"
 msgstr ""
 
-#: src/Install/Update.php:127
+#: src/Install/Update.php:141
 msgid "The update of your related posts was cancelled"
 msgstr ""
 
-#: src/Install/Update.php:128
+#: src/Install/Update.php:142
 msgid "Cancel the update of your related posts? Posts it did not reach keep their old related posts."
 msgstr ""
 
-#: src/Install/Update.php:129
+#: src/Install/Update.php:143
 msgid "Cancel update"
 msgstr ""
 
 #. translators: %d: how far the update is, in percent
-#: src/Install/Update.php:167
+#: src/Install/Update.php:187
 msgid "Related Posts for WordPress is updating your related posts in the background (%d%%). Every post keeps its related posts until it gets its new ones."
 msgstr ""
 
-#: src/Install/Update.php:180
+#: src/Install/Update.php:200
 msgid "The update of your related posts stopped. Posts it did not reach keep their old related posts until you resume it."
 msgstr ""
 
-#: src/Install/Update.php:181
+#: src/Install/Update.php:201
 #: assets/build/admin/index.js:16
 msgid "Resume"
 msgstr ""
 
-#: src/Install/Update.php:190
+#: src/Install/Update.php:210
 msgid "Your related posts are up to date. Related Posts for WordPress 3.0 finds related posts in a new, more precise way, and linked your posts again; the related posts you added by hand kept their place."
 msgstr ""
 
-#: src/Install/Update.php:192
+#: src/Install/Update.php:212
 msgid "What changed"
 msgstr ""
 

@@ -9,6 +9,7 @@ namespace LV2\WordPress\RelatedPostsForWP\Admin\App;
 
 use LV2\WordPress\RelatedPostsForWP\Main;
 use LV2\WordPress\RelatedPostsForWP\Rest\Routes;
+use LV2\WordPress\RelatedPostsForWP\TextDomain;
 
 /**
  * The script and styles of the admin app, built from assets/src/admin into assets/build/admin (npm run build).
@@ -50,7 +51,8 @@ class Assets {
 		$dependencies = array_values( array_unique( array_merge( $asset['dependencies'], [ 'wp-api-fetch' ] ) ) );
 		wp_enqueue_script( self::SCRIPT, self::url( 'index.js' ), $dependencies, $asset['version'], [ 'in_footer' => true ] );
 		wp_add_inline_script( self::SCRIPT, 'window.rp4wpAdminData = ' . wp_json_encode( self::data() ) . ';', 'before' );
-		wp_set_script_translations( self::SCRIPT, 'related-posts-for-wp' );
+		// The translations in the plugin come first, like those of PHP (see TextDomain).
+		wp_set_script_translations( self::SCRIPT, TextDomain::DOMAIN, untrailingslashit( TextDomain::directory() ) );
 		wp_enqueue_style( self::STYLE, self::url( 'index.css' ), [ 'wp-components' ], $asset['version'] );
 
 		/**

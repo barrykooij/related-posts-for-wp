@@ -154,7 +154,8 @@ On the first request after the update, the links move to the new tables. Then ev
 * Fix: Deleting the plugin with "Remove data on uninstall" on also removes the widget settings, the state of an unfinished installation wizard, the dismissed review notice and the chosen number of links per page.
 * Tweak: Titles, settings and links in the admin are escaped.
 * Tweak: The notices about mbstring and the unfinished installation wizard can be translated.
-* Tweak: The bundled Dutch, French, German, Italian, Portuguese (Brazil and Portugal), Serbian, Swedish and Ukrainian translations are updated for 3.0.
+* Tweak: The bundled Dutch, French, German, Italian, Portuguese (Brazil and Portugal), Serbian, Swedish and Ukrainian translations are updated for 3.0, the new settings screen included.
+* Tweak: The translations that come with the plugin are used first, so they are complete for this version; a language pack from translate.wordpress.org only adds strings they lack.
 * Feature: New translations in Bulgarian, Czech, Dutch (formal), German (formal), Japanese, Norwegian (Bokmål), Polish, Russian, Spanish (Spain) and Turkish.
 * Tweak: The Settings link on the Plugins screen also shows when the plugin folder is renamed.
 * Tweak: Rewritten on a modern, tested code base. The classes of 2.x and RP4WP() still work, and report their use as deprecated when WP_DEBUG is on.

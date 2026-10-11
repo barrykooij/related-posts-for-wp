@@ -11,6 +11,7 @@ use LV2\WordPress\RelatedPostsForWP\Admin\App\Assets;
 use LV2\WordPress\RelatedPostsForWP\Main;
 use LV2\WordPress\RelatedPostsForWP\Tests\Integration\TestCase;
 use LV2\WordPress\RelatedPostsForWP\Tests\Support\AdminAppBuild;
+use LV2\WordPress\RelatedPostsForWP\TextDomain;
 
 /**
  * How the build of the admin app is enqueued.
@@ -66,6 +67,24 @@ final class AppTest extends TestCase {
 		$style = wp_styles()->query( Assets::STYLE );
 		$this->assertInstanceOf( \_WP_Dependency::class, $style );
 		$this->assertSame( [ 'wp-components' ], $style->deps );
+	}
+
+	public function test_the_app_gets_the_translations_in_the_plugin(): void {
+		$dutch = static function (): string {
+			return 'nl_NL';
+		};
+		add_filter( 'determine_locale', $dutch );
+
+		Assets::enqueue();
+
+		$script = wp_scripts()->query( Assets::SCRIPT );
+		$this->assertInstanceOf( \_WP_Dependency::class, $script );
+		$this->assertSame( untrailingslashit( TextDomain::directory() ), $script->translations_path );
+
+		$translations = (string) load_script_textdomain( Assets::SCRIPT, TextDomain::DOMAIN, $script->translations_path );
+		remove_filter( 'determine_locale', $dutch );
+
+		$this->assertStringContainsString( '"Resume":["Hervatten"]', $translations );
 	}
 
 	public function test_the_app_gets_its_data_and_the_filters_can_add_to_it(): void {
