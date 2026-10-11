@@ -112,13 +112,13 @@ Yes there is!
 No, the free version does not. [The premium version however does, get it here](https://www.relatedpostsforwp.com/checkout/?utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=faq-item).
 
 = How does Related Posts for WordPress find related posts? =
-It keeps the 25 most telling words of every post: words that are in the post often and in few other posts, so a word that is in every post on your site says little. The words of the title count 5 times, and the categories, tags and posts a post links to count as well. Common words like "the" and "and" are ignored in the language of each post, in 57 languages. Posts that share the most telling words are related, the most related first. There is no minimum score, so a post gets as many related posts as you chose whenever enough posts share a word, a category, a tag or a link with it.
+It keeps the 25 most telling words of every post: words that are in the post often and in few other posts, so a word that is in every post on your site says little. The words of the title count 5 times, and the categories, tags and posts a post links to count as well. Common words like "the" and "and" are ignored in the language of each post, in 57 languages. Posts that share the most telling words are related, the most related first. There is no minimum score, so a post gets as many related posts as you chose whenever enough posts share a telling word, a category, a tag or a link with it. Words that are in very many posts don't count for this.
 
 = Does Related Posts for WordPress use its own database tables? =
 Yes. It keeps the words of your posts, how many posts each word is in, the links between posts and when each post was read and linked in tables of its own, and records its changes to them in one more. Showing related posts reads only the links, so it stays fast.
 
 = What happens to my related posts when I update to 3.0? =
-On the first request after the update, the links move to the new tables. Then every post is read again and linked again in the background, one post at a time. No post shows fewer related posts meanwhile, related posts you added by hand keep their place, and a notice says when it is done.
+On the first request after the update, the links move to the new tables. Then every post is read again in the background, and the posts that were linked automatically are linked again, one post at a time. Each post keeps its related posts until its new ones are in place, related posts you added by hand keep their place and count toward the number of related posts, and a notice says when it is done.
 
 == Screenshots ==
 1. After activating Related Posts for WordPress, the settings screen offers to link your existing content: choose how many related posts every post gets and press Start.
@@ -129,6 +129,9 @@ On the first request after the update, the links move to the new tables. Then ev
 
 == Changelog ==
 
+= 3.0.1: Unreleased =
+* Tweak: The readme says more precisely what the update to 3.0 does, which posts get better related posts and which filters were removed.
+
 = 3.0.0: October 11, 2026 =
 * Feature: A new settings screen, with the installer built in. The installer runs in the background, so the page can be closed while it works, and the screen shows its progress.
 * Feature: The settings screen has a sidebar again, with links to the documentation and the support forum, and what Premium adds.
@@ -137,14 +140,14 @@ On the first request after the update, the links move to the new tables. Then ev
 * Feature: Related posts shown by the shortcode or the widget outside single posts, on pages and archives for example, get the CSS too.
 * Feature: The rp4wp_disable_css filter turns the CSS off, as in Premium.
 * Feature: Related Posts for WordPress Premium 3.0 is an add-on for this plugin: keep both installed and active. Next to Premium 2.x, this plugin leaves the related posts to Premium and asks to update it.
-* Feature: Better related posts. The words of a post count by how often they are in it and how rare they are on your site, and posts are compared as a whole, so words that are in every post decide little and long posts are recommended as often as short ones. Every post keeps its 25 most telling words (it was 6).
+* Feature: Better related posts. The words of a post count by how often they are in it and how rare they are on your site, and posts are compared as a whole, so words that are in every post decide little and long posts no longer lose out to short ones. Every post keeps its 25 most telling words (it was 6).
 * Feature: Categories, tags and the posts a post links to count when finding related posts: the words of their names, and the category, tag or linked post itself. A category with most posts in it counts for little.
-* Feature: The ignored words follow the language of each post, from WPML or Polylang or from the words of the post, with the ignored words of 57 languages. Posts in Chinese, Japanese and Korean get related posts, and accented letters match their plain form.
-* Feature: After the update, every post is read again and linked again in the background, one post at a time. No post shows fewer related posts meanwhile, related posts you added by hand keep their place, and a notice shows how far it is and when it is done.
+* Feature: The ignored words follow the language of each post, from WPML or Polylang or from the words of the post, with the ignored words of 57 languages. Chinese and Japanese, written without spaces, are split into words, so their posts get much better related posts, and more accented letters match their plain form.
+* Feature: After the update, every post is read again in the background, and the posts that were linked automatically are linked again, one post at a time. Each post keeps its related posts until its new ones are in place, related posts you added by hand keep their place and count toward the number of related posts, and a notice shows how far it is and when it is done.
 * Tweak: A word of the title counts 5 times (it was 80), a tag 5 (10) and a category 10 (20), so the content of a post counts too.
 * Tweak: A post published while the installer or the update runs is linked when it is done, with the words of every post in place.
 * Tweak: The links and the marks on posts move from posts and post meta to tables of their own, which makes showing related posts faster. The update moves them, and wp rp4wp migrate shows and undoes the changes to the database.
-* Tweak: The filters rp4wp_get_related_posts_sql, rp4wp_get_children_link_args and rp4wp_get_parents_link_args are removed; rp4wp_finder_clauses and rp4wp_links_query take their place.
+* Tweak: The filters rp4wp_get_children_link_args and rp4wp_get_parents_link_args are removed; rp4wp_links_query takes their place. The new filter rp4wp_finder_clauses changes the query that finds related posts.
 * Tweak: Related posts you add by hand are marked as such, so the refresh of Premium keeps them, also on a site that gets Premium later.
 * Fix: The words of a post are removed when it is deleted or unpublished, also from WP-CLI and cron.
 * Fix: Words with 4-byte letters are stored, and HTML entities no longer count as words.
