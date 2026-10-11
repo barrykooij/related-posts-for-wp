@@ -1,15 +1,15 @@
 === Related Posts for WordPress ===
 Contributors: never5, barrykooij
-Donate link: http://www.barrykooij.com/donate/
+Donate link: https://www.barrykooij.com/donate/
 Tags: related, inline related posts, similar posts, contextual relations, seo bounce rate, internal links
 Requires at least: 6.8
 Tested up to: 7.1
 Stable tag: 3.0.0
 License: GPLv3 or later
-License URI: http://www.gnu.org/licenses/gpl-3.0.html
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Requires PHP: 8.0
 
-The best WordPress plugin for related posts. Simple, flexible, powerful algorithm, and built-in caching. Fully setup with only 1 click!
+The best WordPress plugin for related posts. Simple, flexible, powerful algorithm, and built-in caching. Fully set up with only 1 click!
 
 == Description ==
 
@@ -29,20 +29,21 @@ Fully tested and working on PHP 8.0 and up (including PHP 8.1, 8.2, 8.3, 8.4 & 8
 > - Overwritable templates<br />
 > - Custom Taxonomy Support<br />
 > - Adjustable Weights<br />
+> - Older posts get your new posts as related posts, right away and on a schedule<br />
+> - See why posts are related<br />
 > - WordPress Network / Multisite support<br />
-> - Keep manually created links<br />
 > - Priority Email Support<br />
 >
 > [More information](https://www.relatedpostsforwp.com/features/?utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=after-features-info-link) | [Upgrade >>](https://www.relatedpostsforwp.com/upgrade-premium/?utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=after-features-purchase-link)
 
 = Related Posts for WordPress won't lag your server! =
-We believe having related posts shouldn't slow down your website. That's why Related Posts for WordPress creates its own cache and does all the heavy lifting in the admin panel, offering you quality related posts while keeping your website fast!
+We believe having related posts shouldn't slow down your website. That's why Related Posts for WordPress keeps its own tables and does the heavy lifting in the background and when you publish a post. Showing related posts only reads the links stored for a post, offering you quality related posts while keeping your website fast!
 
 = Automatically link posts to each other =
 After activating the plugin, its settings screen offers to analyze your posts and link them to each other based on what we think is related. This runs in the background, which means you can install Related Posts for WordPress on your website that has thousands of posts and create related connections on the fly, without any manual work!
 
 = Manually add, edit or remove =
-Everyone makes mistakes, so do we. That's why you can easily modify all automatically created related posts. Simply navigate to the post that has incorrect related posts attached to it, select the correct related post and you're done.
+Everyone makes mistakes, so do we. That's why you can easily modify all automatically created related posts. Simply navigate to the post that has incorrect related posts attached to it, select the correct related post and you're done. Related posts you add by hand keep their place when the plugin links your posts again.
 
 = Shortcode =
 Related Posts for WordPress has a related post shortcode allowing you to display related posts on any position within your content.
@@ -52,16 +53,16 @@ Related Posts for WordPress has a related post widget allowing you to display re
 
 **More information**
 
-- Visit the [Related Posts for WordPress website](http://www.relatedpostsforwp.com/?utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=more-information)
-- Other [WordPress plugins](http://profiles.wordpress.org/barrykooij/) by [Barry Kooij](http://www.barrykooij.com/)
-- Contact Barry on Twitter: [@barry_kooij](http://twitter.com/barry_kooij)
+- Visit the [Related Posts for WordPress website](https://www.relatedpostsforwp.com/?utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=more-information)
+- Other [WordPress plugins](https://profiles.wordpress.org/barrykooij/) by [Barry Kooij](https://www.barrykooij.com/)
+- Contact Barry on Twitter: [@barry_kooij](https://twitter.com/barry_kooij)
 - If you're a dev, follow or contribute to the [Related Posts for WordPress plugin on GitHub](https://github.com/barrykooij/related-posts-for-wp)
 
 
 == Installation ==
 
 = Installing the plugin =
-1. In your WordPress admin panel, go to *Plugins > New Plugin*, search for *Related Posts for WordPress* and click "Install now"
+1. In your WordPress admin panel, go to *Plugins > Add Plugin*, search for *Related Posts for WordPress* and click "Install now"
 1. Alternatively, download the plugin and upload the contents of `related-posts-for-wp.zip` to your plugins directory, which usually is `/wp-content/plugins/`.
 1. Activate the plugin
 
@@ -70,13 +71,14 @@ Related Posts for WordPress has a related post widget allowing you to display re
 > #### Related Posts for WordPress Premium
 > There's an even better version of this plugin that comes with the following extra features:<br />
 >
+> - Full Styling Control With Our Configurator<br />
 > - Cross Custom Post Type Support<br />
-> - Multiple Related Post Styles<br />
 > - Overwritable templates<br />
 > - Custom Taxonomy Support<br />
 > - Adjustable Weights<br />
+> - Older posts get your new posts as related posts, right away and on a schedule<br />
+> - See why posts are related<br />
 > - WordPress Network / Multisite support<br />
-> - Keep manually created links<br />
 > - Priority Email Support<br />
 >
 > [More information](https://www.relatedpostsforwp.com/features/?utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=faq-info-link) | [Upgrade >>](https://www.relatedpostsforwp.com/upgrade-premium/?utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=faq-purchase-link)
@@ -87,7 +89,7 @@ Settings > Related Posts.
 = Can the displaying of excerpt be disabled? =
 Yes, set the excerpt length to 0 in the Related Posts for WordPress settings screen.
 
-= Is there any way to custom CSS ? =
+= Can I use custom CSS? =
 Yes, it's in the Related Posts for WordPress settings screen. To change only the space between the posts or the width of the images, set the CSS custom properties `--rp4wp-gap` and `--rp4wp-image-width` in your theme, for example `.rp4wp-related-posts { --rp4wp-gap: 2rem; --rp4wp-image-width: 25%; }`.
 
 = Can the automatically outputted CSS be disabled? =
@@ -101,16 +103,16 @@ Yes, you can use `rp4wp_children();`.<br />
 Yes. To display your related posts via a shortcode use: `[rp4wp]`
 
 = Can I limit the amount of related posts in the shortcode? =
-Yes. Use the limit attribute, for example `[rp4wp limit=1]` for one related post.
+Yes. Use the limit attribute, for example `[rp4wp limit=1]` for one related post, and the offset attribute to skip the first ones, for example `[rp4wp limit=3 offset=3]` for the fourth to the sixth.
 
 = Is there a widget? =
 Yes there is!
 
-= Does Related Posts for WordPress supports WordPress Network / Multisite websites? =
+= Does Related Posts for WordPress support WordPress Network / Multisite websites? =
 No, the free version does not. [The premium version however does, get it here](https://www.relatedpostsforwp.com/checkout/?utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=faq-item).
 
 = How does Related Posts for WordPress find related posts? =
-It keeps the 25 most telling words of every post: words that are in the post often and in few other posts, so a word that is in every post on your site says little. The words of the title count 5 times, and the categories, tags and posts a post links to count as well. Common words like "the" and "and" are ignored in the language of each post, in 57 languages. Posts that share the most telling words are related; every post gets as many related posts as you chose, most related first.
+It keeps the 25 most telling words of every post: words that are in the post often and in few other posts, so a word that is in every post on your site says little. The words of the title count 5 times, and the categories, tags and posts a post links to count as well. Common words like "the" and "and" are ignored in the language of each post, in 57 languages. Posts that share the most telling words are related, the most related first. There is no minimum score, so a post gets as many related posts as you chose whenever enough posts share a word, a category, a tag or a link with it.
 
 = Does Related Posts for WordPress use its own database tables? =
 Yes. It keeps the words of your posts, how many posts each word is in, the links between posts and when each post was read and linked in tables of its own, and records its changes to them in one more. Showing related posts reads only the links, so it stays fast.
@@ -129,7 +131,7 @@ On the first request after the update, the links move to the new tables. Then ev
 
 = 3.0.0: October 11, 2026 =
 * Feature: A new settings screen, with the installer built in. The installer runs in the background, so the page can be closed while it works, and the screen shows its progress.
-* Feature: Link the posts that are not linked yet, or rebuild every link, from the new Installer tab. Rebuilding asks before it removes any links.
+* Feature: Link the posts that are not linked yet, or rebuild every link, from the new Installer tab. Rebuilding asks first, and keeps the related posts you added by hand (2.x removed them).
 * Feature: A modern default layout for the related posts, built with flexbox instead of floats. It works for right-to-left languages without a separate stylesheet, and themes can change the spacing and the image width with the CSS custom properties --rp4wp-gap and --rp4wp-image-width. Sites that changed the CSS, or style the related posts in the Additional CSS of the Customizer, keep their CSS as it is; the CSS field has a "Restore default" button to switch.
 * Feature: Related posts shown by the shortcode or the widget outside single posts, on pages and archives for example, get the CSS too.
 * Feature: The rp4wp_disable_css filter turns the CSS off, as in Premium.
@@ -139,14 +141,13 @@ On the first request after the update, the links move to the new tables. Then ev
 * Feature: The ignored words follow the language of each post, from WPML or Polylang or from the words of the post, with the ignored words of 57 languages. Posts in Chinese, Japanese and Korean get related posts, and accented letters match their plain form.
 * Feature: After the update, every post is read again and linked again in the background, one post at a time. No post shows fewer related posts meanwhile, related posts you added by hand keep their place, and a notice shows how far it is and when it is done.
 * Tweak: A word of the title counts 5 times (it was 80), a tag 5 (10) and a category 10 (20), so the content of a post counts too.
-* Tweak: Every post gets as many related posts as set, sorted from most to least related.
 * Tweak: A post published while the installer or the update runs is linked when it is done, with the words of every post in place.
 * Tweak: The links and the marks on posts move from posts and post meta to tables of their own, which makes showing related posts faster. The update moves them, and wp rp4wp migrate shows and undoes the changes to the database.
 * Tweak: The filters rp4wp_get_related_posts_sql, rp4wp_get_children_link_args and rp4wp_get_parents_link_args are removed; rp4wp_finder_clauses and rp4wp_links_query take their place.
+* Tweak: Related posts you add by hand are marked as such, so the refresh of Premium keeps them, also on a site that gets Premium later.
 * Fix: The words of a post are removed when it is deleted or unpublished, also from WP-CLI and cron.
 * Fix: Words with 4-byte letters are stored, and HTML entities no longer count as words.
 * Fix: The rp4wp_after_link_add and rp4wp_after_link_delete actions fire for every link, also when posts are linked in batches or a post is removed.
-* Tweak: Related posts you add by hand are marked as such, so the refresh of Premium keeps them, also on a site that gets Premium later.
 * Fix: Related posts with the same link order keep the order they were added in, so a limit or an offset in the shortcode always shows the same posts.
 * Fix: The related posts meta box skips links to posts that no longer exist.
 * Fix: The installer no longer keeps waiting on posts without words or with emoji.
@@ -173,7 +174,7 @@ On the first request after the update, the links move to the new tables. Then ev
 = 2.3.0: May 10th, 2025 =
 * Feature: Added support for an offset in the [rp4wp] shortcode.
 
-= 2.2.5: November 28, 2024
+= 2.2.5: November 28, 2024 =
 * Tweak: Load translation in init hook, fixes debug notice.
 
 = 2.2.4: September 27, 2024 =
@@ -425,10 +426,3 @@ On the first request after the update, the links move to the new tables. Then ev
 
 = 1.0.0 : August 7, 2014 =
 * Initial version
-
-== Upgrade Notice ==
-
-= 3.0.0 =
-Requires WordPress 6.8 and PHP 8.0. Using Related Posts for WordPress Premium? Update it to 3.0 as well.
-
-This version is safe to upgrade. If all of your related posts are linked automatically, we do recommend rebuilding them for better results, from Settings > Related Posts > Installer.
