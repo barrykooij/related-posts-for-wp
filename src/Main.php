@@ -20,7 +20,7 @@ class Main {
 	/**
 	 * The plugin version.
 	 */
-	public const VERSION = '3.0.0-rc.11';
+	public const VERSION = '3.0.0-rc.12';
 
 	/**
 	 * The shared instance.
