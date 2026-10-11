@@ -4,7 +4,7 @@ Donate link: http://www.barrykooij.com/donate/
 Tags: related, inline related posts, similar posts, contextual relations, seo bounce rate, internal links
 Requires at least: 6.8
 Tested up to: 7.1
-Stable tag: 2.3.1
+Stable tag: 3.0.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Requires PHP: 8.0
@@ -19,7 +19,7 @@ Related Posts for WordPress offers you the ability to link related posts to each
 
 Our installer will do all the hard work for you: simply activate the plugin, choose how many related posts every post gets and press Start. It runs in the background, so you can keep working while Related Posts for WordPress does the rest. Relating posts in WordPress has never been this easy!
 
-Fully tested and working on PHP 5.3 and up (including PHP 8, 8.1, 8.2, 8.3 & 8.4)!
+Fully tested and working on PHP 8.0 and up (including PHP 8.1, 8.2, 8.3, 8.4 & 8.5) and WordPress 6.8 and up!
 
 > #### Related Posts for WordPress Premium
 > There's an even better version of this plugin that comes with the following extra features:<br />
@@ -127,7 +127,7 @@ On the first request after the update, the links move to the new tables. Then ev
 
 == Changelog ==
 
-= 3.0.0: TBD =
+= 3.0.0: October 11, 2026 =
 * Feature: A new settings screen, with the installer built in. The installer runs in the background, so the page can be closed while it works, and the screen shows its progress.
 * Feature: Link the posts that are not linked yet, or rebuild every link, from the new Installer tab. Rebuilding asks before it removes any links.
 * Feature: A modern default layout for the related posts, built with flexbox instead of floats. It works for right-to-left languages without a separate stylesheet, and themes can change the spacing and the image width with the CSS custom properties --rp4wp-gap and --rp4wp-image-width. Sites that changed the CSS, or style the related posts in the Additional CSS of the Customizer, keep their CSS as it is; the CSS field has a "Restore default" button to switch.
