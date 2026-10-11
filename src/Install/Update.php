@@ -23,14 +23,25 @@ use LV2\WordPress\RelatedPostsForWP\Module;
  * A migration asks for the job on a site that has data from 2.x or an earlier 3.0 build; this module starts it on the
  * next request, when no other job runs. The job is no installation: it does not start the wizard. A notice tells the
  * admin what is happening, and when it is done.
+ *
+ * With a persistent object cache, an autoloaded option can come back stale: every autoloaded option sits in one cached
+ * entry, and a request that loaded it earlier can write its older copy back. So the notice keeps its state in an option
+ * of its own that is not autoloaded, the notice trusts the job over that state, and the job only starts when the
+ * database, not just the cache, says it should.
  */
 final class Update implements Module {
 
 	/**
-	 * The option with the state of the update: whether its job still has to start, and what the notice shows.
-	 * Autoloaded, so the check on every request costs nothing.
+	 * The option that says whether the job of the update still has to start, as `pending`. Autoloaded, so the check on
+	 * every request costs nothing.
 	 */
 	public const OPTION = 'rp4wp_update';
+
+	/**
+	 * The option with what the notice shows: `running` or `done`; gone once the notice is dismissed. Not autoloaded, so
+	 * it has a cache entry of its own, and only the admin reads it.
+	 */
+	public const NOTICE_OPTION = 'rp4wp_update_notice';
 
 	/**
 	 * The admin-post action of the Resume button.
@@ -75,8 +86,15 @@ final class Update implements Module {
 	 * @return void
 	 */
 	public static function maybe_start(): void {
-		$state = self::state();
-		if ( empty( $state['pending'] ) || Migrations::unfinished() || Queue::running() ) {
+		if ( ! self::pending() || Migrations::unfinished() || Queue::running() ) {
+			return;
+		}
+
+		// The cache can say pending after the job started; only the database decides.
+		if ( ! self::pending_in_database() ) {
+			wp_cache_delete( 'alloptions', 'options' );
+			wp_cache_delete( self::OPTION, 'options' );
+
 			return;
 		}
 
@@ -85,12 +103,8 @@ final class Update implements Module {
 			return;
 		}
 
-		self::save(
-			[
-				'pending' => false,
-				'notice'  => 'running',
-			]
-		);
+		update_option( self::OPTION, [ 'pending' => false ], true );
+		self::set_notice( 'running' );
 	}
 
 	/**
@@ -140,7 +154,7 @@ final class Update implements Module {
 	 */
 	public static function done( $job ): void {
 		if ( $job instanceof Job && self::is_update( $job ) ) {
-			self::save( [ 'notice' => 'done' ] );
+			self::set_notice( 'done' );
 		}
 	}
 
@@ -150,13 +164,19 @@ final class Update implements Module {
 	 * @return void
 	 */
 	public static function notice(): void {
-		$state = self::state();
-		if ( empty( $state['notice'] ) || ! current_user_can( 'manage_options' ) ) {
+		$notice = (string) get_option( self::NOTICE_OPTION, '' );
+		if ( '' === $notice || ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
 
 		$queue = new Queue();
 		$job   = $queue->job();
+
+		// The job is the truth: when the update is done but the notice did not hear of it, it is done.
+		if ( 'running' === $notice && self::is_update( $job ) && null !== $job && Job::DONE === $job->status ) {
+			$notice = 'done';
+			self::set_notice( $notice );
+		}
 
 		if ( self::is_update( $job ) && null !== $job && $job->is_running() ) {
 			if ( ! self::on_settings_screen() ) {
@@ -184,7 +204,7 @@ final class Update implements Module {
 			return;
 		}
 
-		if ( 'done' === $state['notice'] ) {
+		if ( 'done' === $notice ) {
 			self::print_notice(
 				'success',
 				__( 'Your related posts are up to date. Related Posts for WordPress 3.0 finds related posts in a new, more precise way, and linked your posts again; the related posts you added by hand kept their place.', 'related-posts-for-wp' ),
@@ -229,7 +249,7 @@ final class Update implements Module {
 			wp_die( esc_html__( 'Sorry, you are not allowed to do that.', 'related-posts-for-wp' ), 403 );
 		}
 
-		self::save( [ 'notice' => '' ] );
+		delete_option( self::NOTICE_OPTION );
 
 		wp_safe_redirect( wp_get_referer() ? wp_get_referer() : admin_url() );
 		exit;
@@ -252,25 +272,38 @@ final class Update implements Module {
 	}
 
 	/**
-	 * The state of the update.
+	 * Whether the job of the update still has to start, as the options (and so the cache) say.
 	 *
-	 * @return array{pending?: bool, notice?: string}
+	 * @return bool
 	 */
-	private static function state(): array {
+	private static function pending(): bool {
 		$state = get_option( self::OPTION, [] );
 
-		return is_array( $state ) ? $state : [];
+		return is_array( $state ) && ! empty( $state['pending'] );
 	}
 
 	/**
-	 * Change the state of the update.
+	 * Whether the job of the update still has to start, as the database says.
 	 *
-	 * @param array<string, mixed> $changes The keys to change.
+	 * @return bool
+	 */
+	private static function pending_in_database(): bool {
+		global $wpdb;
+
+		$value = maybe_unserialize( (string) $wpdb->get_var( $wpdb->prepare( "SELECT option_value FROM {$wpdb->options} WHERE option_name = %s", self::OPTION ) ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- Past the cache on purpose.
+
+		return is_array( $value ) && ! empty( $value['pending'] );
+	}
+
+	/**
+	 * Set what the notice shows.
+	 *
+	 * @param string $notice `running` or `done`.
 	 *
 	 * @return void
 	 */
-	private static function save( array $changes ): void {
-		update_option( self::OPTION, array_merge( self::state(), $changes ), true );
+	private static function set_notice( string $notice ): void {
+		update_option( self::NOTICE_OPTION, $notice, false );
 	}
 
 	/**

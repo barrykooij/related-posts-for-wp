@@ -67,6 +67,7 @@ final class UpdateTest extends TestCase {
 		$this->queue->unschedule();
 		delete_option( JobStore::OPTION );
 		delete_option( Update::OPTION );
+		delete_option( Update::NOTICE_OPTION );
 		( new JobStore() )->unlock();
 		Deferred::take();
 
@@ -153,13 +154,8 @@ final class UpdateTest extends TestCase {
 		$this->assertSame( [ 'reindex_words', 'weigh_words', 'relink_posts' ], array_column( $job->steps, 'id' ) );
 		$this->assertFalse( $job->is_install() );
 		$this->assertFalse( get_option( 'rp4wp_is_installing' ) );
-		$this->assertSame(
-			[
-				'pending' => false,
-				'notice'  => 'running',
-			],
-			get_option( Update::OPTION )
-		);
+		$this->assertSame( [ 'pending' => false ], get_option( Update::OPTION ) );
+		$this->assertSame( 'running', get_option( Update::NOTICE_OPTION ) );
 
 		$status = $this->queue->status();
 		$this->assertFalse( $status['install'] );
@@ -243,7 +239,7 @@ final class UpdateTest extends TestCase {
 
 		$this->assertNotNull( $links->find( $manual ), 'The link added by hand stays.' );
 		$this->assertTrue( $links->find( $manual )['manual'] );
-		$this->assertSame( 'done', $this->state()['notice'] );
+		$this->assertSame( 'done', get_option( Update::NOTICE_OPTION ) );
 	}
 
 	public function test_a_post_published_while_a_job_runs_is_linked_when_it_is_done(): void {
@@ -359,6 +355,66 @@ final class UpdateTest extends TestCase {
 		}
 	}
 
+	public function test_a_stale_notice_state_shows_the_update_as_done_once_its_job_is_done(): void {
+		$this->act_as( 'administrator' );
+		update_option( Update::OPTION, [ 'pending' => true ] );
+		Update::maybe_start();
+		$job = $this->queue->job();
+		for ( $i = 0; $i < 50 && $this->queue->job()->is_running(); $i++ ) {
+			do_action( Queue::HOOK, $job->id );
+		}
+
+		// What an object cache with an older copy says.
+		update_option( Update::NOTICE_OPTION, 'running', false );
+
+		$this->assertStringContainsString( 'notice-success', $this->notice() );
+		$this->assertSame( 'done', get_option( Update::NOTICE_OPTION ), 'The state follows the job.' );
+	}
+
+	public function test_a_cache_that_still_says_pending_does_not_start_the_job_again(): void {
+		update_option( Update::OPTION, [ 'pending' => false ] );
+		$this->stale_cache( [ 'pending' => true ] );
+		$this->assertTrue( $this->state()['pending'], 'The cache says pending.' );
+
+		Update::maybe_start();
+
+		$this->assertNull( $this->queue->job() );
+		$this->assertFalse( $this->state()['pending'], 'The stale copy is gone from the cache.' );
+	}
+
+	public function test_a_migration_moves_the_notice_into_an_option_of_its_own_from_the_database(): void {
+		update_option(
+			Update::OPTION,
+			[
+				'pending' => false,
+				'notice'  => 'done',
+			]
+		);
+		$this->stale_cache(
+			[
+				'pending' => false,
+				'notice'  => 'running',
+			]
+		);
+		$migration = ( new Migrator( 'free', dirname( __DIR__, 3 ) . '/migrations' ) )->migration( '2026_10_11_000010_split_update_notice' );
+
+		$this->assertTrue( $migration->up() );
+
+		$this->assertSame( 'done', get_option( Update::NOTICE_OPTION ) );
+		$this->assertSame( [ 'pending' => false ], get_option( Update::OPTION ) );
+
+		$migration->down();
+
+		$this->assertSame(
+			[
+				'pending' => false,
+				'notice'  => 'done',
+			],
+			get_option( Update::OPTION )
+		);
+		$this->assertFalse( get_option( Update::NOTICE_OPTION ) );
+	}
+
 	public function test_another_job_keeps_its_own_labels(): void {
 		$this->queue->start( [ 'amount' => 2 ] );
 
@@ -380,6 +436,20 @@ final class UpdateTest extends TestCase {
 		throw new RedirectException( $location ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Test-only exception.
 	}
 	// phpcs:enable
+
+	/**
+	 * Put an older copy of the state of the update in the cache of the autoloaded options, as an object cache can have
+	 * it when another request writes back what it loaded earlier.
+	 *
+	 * @param array<string, mixed> $state The older state.
+	 *
+	 * @return void
+	 */
+	private function stale_cache( array $state ): void {
+		$alloptions                   = wp_load_alloptions();
+		$alloptions[ Update::OPTION ] = maybe_serialize( $state );
+		wp_cache_set( 'alloptions', $alloptions, 'options' );
+	}
 
 	/**
 	 * The state of the update, as stored now.

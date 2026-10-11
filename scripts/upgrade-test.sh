@@ -117,7 +117,7 @@ check_admin "/wp-admin/post.php?post=${latte}&action=edit" 'rp4wp_metabox_relate
 echo "== Updating the related posts"
 # The first request after the migrations started the update of 3.0 in the background; the site above is what it shows
 # until each post gets its new related posts.
-[ "$(wp option pluck rp4wp_update notice)" = running ] || fail 'the update of the related posts did not start'
+[ "$(wp option get rp4wp_update_notice)" = running ] || fail 'the update of the related posts did not start'
 check_admin '/wp-admin/' 'is updating your related posts in the background'
 
 # A post published while the update runs is linked once it is done.
@@ -125,10 +125,10 @@ brew="$(wp post create --post_title='Moka pot coffee' --post_content='A moka pot
 [ -n "$brew" ] || fail 'the post published during the update was not created'
 
 for _ in $(seq 1 30); do
-	[ "$(wp option pluck rp4wp_update notice)" = done ] && break
+	[ "$(wp option get rp4wp_update_notice)" = done ] && break
 	wp action-scheduler run --hooks=rp4wp_install_run > /dev/null
 done
-[ "$(wp option pluck rp4wp_update notice)" = done ] || fail 'the update of the related posts did not finish'
+[ "$(wp option get rp4wp_update_notice)" = done ] || fail 'the update of the related posts did not finish'
 
 # Every word in the cache was found the way 3.0 finds them.
 old="$(wp db query "SELECT COUNT(*) FROM wp_rp4wp_cache WHERE version <> 2" --skip-column-names)"

@@ -75,8 +75,9 @@ if ( ! function_exists( 'rp4wp_uninstall' ) ) {
 		delete_option( 'rp4wp_cached_posts' );
 		delete_option( 'rp4wp_weigh_cursor' );
 
-		// The state of the update to 3.0.
+		// The state of the update to 3.0, and what its notice shows.
 		delete_option( 'rp4wp_update' );
+		delete_option( 'rp4wp_update_notice' );
 		$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->options} WHERE option_name LIKE %s", $wpdb->esc_like( 'rp4wp_migration_' ) . '%' ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- One-off cleanup.
 
 		// The actions of the background installer. The Action Scheduler tables stay: other plugins may use them.
