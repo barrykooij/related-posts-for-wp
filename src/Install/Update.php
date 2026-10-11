@@ -266,9 +266,9 @@ final class Update implements Module {
 		 *
 		 * @since 3.0.0
 		 *
-		 * @param string $url The address. Default the releases of the plugin on GitHub.
+		 * @param string $url The address. Default the page about version 3 on relatedpostsforwp.com.
 		 */
-		return (string) apply_filters( 'rp4wp_update_notes_url', 'https://github.com/barrykooij/related-posts-for-wp/releases' );
+		return (string) apply_filters( 'rp4wp_update_notes_url', 'https://www.relatedpostsforwp.com/version-3-what-changed/?utm_source=plugin&utm_medium=link&utm_campaign=update-notice' );
 	}
 
 	/**
@@ -327,7 +327,9 @@ final class Update implements Module {
 	private static function print_notice( string $type, string $message, array $links ): void {
 		$anchors = [];
 		foreach ( $links as $label => $url ) {
-			$anchors[] = '<a href="' . esc_url( $url ) . '">' . esc_html( $label ) . '</a>';
+			// A page outside the admin opens in a new tab, like the other links to relatedpostsforwp.com.
+			$target    = 0 === strpos( $url, admin_url() ) ? '' : ' target="_blank" rel="noopener"';
+			$anchors[] = '<a href="' . esc_url( $url ) . '"' . $target . '>' . esc_html( $label ) . '</a>';
 		}
 
 		echo '<div class="notice notice-' . esc_attr( $type ) . '"><p>' . esc_html( $message ) . ' ' . implode( ' | ', $anchors ) . '</p></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped above.

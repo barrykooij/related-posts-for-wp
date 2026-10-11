@@ -329,6 +329,10 @@ final class UpdateTest extends TestCase {
 			do_action( Queue::HOOK, $job->id );
 		}
 
+		$html = $this->notice();
+		$this->assertStringContainsString( '<a href="https://www.relatedpostsforwp.com/version-3-what-changed/?utm_source=plugin&#038;utm_medium=link&#038;utm_campaign=update-notice" target="_blank" rel="noopener">What changed</a>', $html );
+		$this->assertMatchesRegularExpression( '/<a href="[^"]*action=' . Update::DISMISS . '[^"]*">Dismiss<\/a>/', $html, 'The Dismiss link stays in the admin.' );
+
 		add_filter(
 			'rp4wp_update_notes_url',
 			static function () {
