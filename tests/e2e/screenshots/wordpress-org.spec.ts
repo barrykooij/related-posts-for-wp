@@ -178,6 +178,22 @@ test( 'WordPress.org screenshots', async ( {
 		data: { values: { display_image: true } },
 	} );
 
+	// The screenshots go to WordPress.org with a stable release, so the settings screen shows that version and not the
+	// release candidate they are taken from: 3.0.0 for 3.0.0-rc.12.
+	await page.addInitScript( () => {
+		let data: { version?: string } | undefined;
+		Object.defineProperty( window, 'rp4wpAdminData', {
+			configurable: true,
+			get: () => data,
+			set: ( value: { version?: string } | undefined ) => {
+				if ( value?.version ) {
+					value.version = value.version.replace( /-.*$/, '' );
+				}
+				data = value;
+			},
+		} );
+	} );
+
 	// 1. The first-run card.
 	await page.goto( '/wp-admin/options-general.php?page=rp4wp' );
 	const start = page.getByRole( 'button', { name: 'Start' } );
@@ -188,8 +204,8 @@ test( 'WordPress.org screenshots', async ( {
 	await rp4wp.installerMode( { slow: true, pause: 1500 } );
 	await start.click();
 	const linked = page
-		.locator( '.rp4wp-step', { hasText: 'Linking posts' } )
-		.locator( '.rp4wp-step__count' );
+		.locator( '.rp4wp-progress__step', { hasText: 'Linking posts' } )
+		.locator( '.rp4wp-progress__count' );
 	let held: Route[] = [];
 	await expect
 		.poll(
