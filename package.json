@@ -73,5 +73,14 @@
     "typescript": "~6.0.3",
     "vite": "^8.3.1",
     "vitest": "^5.0.3"
+  },
+  "overrides": {
+    "markdownlint-cli": {
+      "js-yaml": "^5.4.1",
+      "smol-toml": "^1.9.0"
+    },
+    "micromark-extension-math": {
+      "katex": "^0.18.2"
+    }
   }
 }
