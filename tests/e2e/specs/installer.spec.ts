@@ -217,7 +217,7 @@ test.describe( 'Installer', () => {
 		).toBeVisible();
 	} );
 
-	test( 'rebuilding asks first, then removes the links and links every post again', async ( {
+	test( 'rebuilding asks first, then removes the automatic links and links every post again', async ( {
 		page,
 		rp4wp,
 	} ) => {
@@ -235,7 +235,7 @@ test.describe( 'Installer', () => {
 			.getByRole( 'button', { name: 'Rebuild everything' } )
 			.click();
 		const dialog = page.getByRole( 'dialog' );
-		await expect( dialog ).toContainText( 'This can not be undone.' );
+		await expect( dialog ).toContainText( 'Links you added by hand stay.' );
 		await dialog.getByRole( 'button', { name: 'Keep my links' } ).click();
 		await expect( dialog ).toHaveCount( 0 );
 
