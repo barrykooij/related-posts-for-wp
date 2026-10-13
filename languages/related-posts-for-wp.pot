@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-11T18:23:08+00:00\n"
+"POT-Creation-Date: 2026-10-12T22:27:18+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: related-posts-for-wp\n"
@@ -779,7 +779,7 @@ msgid "Rebuild everything"
 msgstr ""
 
 #: assets/build/admin/index.js:25
-msgid "Start over: remove every related post link, also the links you added by hand, read all posts again and link them. Your posts themselves are never touched."
+msgid "Start over: remove the automatic related post links, read all posts again and link them. Links you added by hand stay, and your posts themselves are never touched."
 msgstr ""
 
 #: assets/build/admin/index.js:25
@@ -795,5 +795,5 @@ msgid "Keep my links"
 msgstr ""
 
 #: assets/build/admin/index.js:25
-msgid "Every related post link is removed, including the links you added by hand. This can not be undone."
+msgid "The automatic related post links of every post type are removed, and all posts are read and linked again. Links you added by hand stay."
 msgstr ""

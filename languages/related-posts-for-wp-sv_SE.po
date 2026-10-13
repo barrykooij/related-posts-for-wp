@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
-"POT-Creation-Date: 2026-10-11T18:23:08+00:00\n"
+"POT-Creation-Date: 2026-10-12T22:27:18+00:00\n"
 "PO-Revision-Date: 2017-09-06 17:20+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Swedish (Sweden) (http://www.transifex.com/barrykooijplugins/related-posts-for-wordpress/language/sv_SE/)\n"
@@ -771,8 +771,8 @@ msgid "Rebuild everything"
 msgstr "Bygg om allt"
 
 #: assets/build/admin/index.js:25
-msgid "Start over: remove every related post link, also the links you added by hand, read all posts again and link them. Your posts themselves are never touched."
-msgstr "Börja om: ta bort alla länkar till relaterade inlägg, även dem du har lagt till manuellt, läs in alla inlägg igen och länka dem. Själva inläggen påverkas aldrig."
+msgid "Start over: remove the automatic related post links, read all posts again and link them. Links you added by hand stay, and your posts themselves are never touched."
+msgstr "Börja om: ta bort de automatiska länkarna till relaterade inlägg, läs in alla inlägg igen och länka dem. Länkar som du har lagt till manuellt finns kvar, och själva inläggen påverkas aldrig."
 
 #: assets/build/admin/index.js:25
 msgid "Rebuild everything?"
@@ -787,5 +787,5 @@ msgid "Keep my links"
 msgstr "Behåll mina länkar"
 
 #: assets/build/admin/index.js:25
-msgid "Every related post link is removed, including the links you added by hand. This can not be undone."
-msgstr "Alla länkar till relaterade inlägg tas bort, även dem du har lagt till manuellt. Detta kan inte ångras."
+msgid "The automatic related post links of every post type are removed, and all posts are read and linked again. Links you added by hand stay."
+msgstr "De automatiska länkarna till relaterade inlägg för alla inläggstyper tas bort, och alla inlägg läses in och länkas igen. Länkar som du har lagt till manuellt finns kvar."

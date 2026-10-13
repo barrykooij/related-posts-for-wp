@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
-"POT-Creation-Date: 2026-10-11T18:23:08+00:00\n"
+"POT-Creation-Date: 2026-10-12T22:27:18+00:00\n"
 "PO-Revision-Date: 2017-09-06 17:20+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/barrykooijplugins/related-posts-for-wordpress/language/pt_PT/)\n"
@@ -772,8 +772,8 @@ msgid "Rebuild everything"
 msgstr "Reconstruir tudo"
 
 #: assets/build/admin/index.js:25
-msgid "Start over: remove every related post link, also the links you added by hand, read all posts again and link them. Your posts themselves are never touched."
-msgstr "Recomeçar: remover todos os vínculos a artigos relacionados, incluindo os que adicionou manualmente, ler novamente todos os artigos e vinculá-los. Os seus artigos nunca são alterados."
+msgid "Start over: remove the automatic related post links, read all posts again and link them. Links you added by hand stay, and your posts themselves are never touched."
+msgstr "Recomeçar: remover os vínculos automáticos a artigos relacionados, ler novamente todos os artigos e vinculá-los. Os vínculos que adicionou manualmente mantêm-se e os seus artigos nunca são alterados."
 
 #: assets/build/admin/index.js:25
 msgid "Rebuild everything?"
@@ -788,5 +788,5 @@ msgid "Keep my links"
 msgstr "Manter os meus vínculos"
 
 #: assets/build/admin/index.js:25
-msgid "Every related post link is removed, including the links you added by hand. This can not be undone."
-msgstr "Todos os vínculos a artigos relacionados são removidos, incluindo os que adicionou manualmente. Esta ação não pode ser desfeita."
+msgid "The automatic related post links of every post type are removed, and all posts are read and linked again. Links you added by hand stay."
+msgstr "Os vínculos automáticos a artigos relacionados de todos os tipos de conteúdo são removidos e todos os artigos são lidos e vinculados novamente. Os vínculos que adicionou manualmente mantêm-se."

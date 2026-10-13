@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
-"POT-Creation-Date: 2026-10-11T18:23:08+00:00\n"
+"POT-Creation-Date: 2026-10-12T22:27:18+00:00\n"
 "PO-Revision-Date: 2026-10-01 12:00+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Czech\n"
@@ -769,8 +769,8 @@ msgid "Rebuild everything"
 msgstr "Vše znovu sestavit"
 
 #: assets/build/admin/index.js:25
-msgid "Start over: remove every related post link, also the links you added by hand, read all posts again and link them. Your posts themselves are never touched."
-msgstr "Začít znovu: odstraní všechna propojení souvisejících příspěvků, včetně těch, která jste přidali ručně, znovu přečte všechny příspěvky a propojí je. Samotné příspěvky zůstanou vždy nedotčené."
+msgid "Start over: remove the automatic related post links, read all posts again and link them. Links you added by hand stay, and your posts themselves are never touched."
+msgstr "Začít znovu: odstraní automatická propojení souvisejících příspěvků, znovu přečte všechny příspěvky a propojí je. Propojení, která jste přidali ručně, zůstanou zachována a samotné příspěvky zůstanou vždy nedotčené."
 
 #: assets/build/admin/index.js:25
 msgid "Rebuild everything?"
@@ -785,5 +785,5 @@ msgid "Keep my links"
 msgstr "Ponechat moje propojení"
 
 #: assets/build/admin/index.js:25
-msgid "Every related post link is removed, including the links you added by hand. This can not be undone."
-msgstr "Všechna propojení souvisejících příspěvků budou odstraněna, včetně těch, která jste přidali ručně. Tuto akci nelze vrátit zpět."
+msgid "The automatic related post links of every post type are removed, and all posts are read and linked again. Links you added by hand stay."
+msgstr "Automatická propojení souvisejících příspěvků u všech typů obsahu budou odstraněna a všechny příspěvky budou znovu přečteny a propojeny. Propojení, která jste přidali ručně, zůstanou zachována."

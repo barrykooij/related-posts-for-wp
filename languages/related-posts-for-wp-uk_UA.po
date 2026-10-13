@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
-"POT-Creation-Date: 2026-10-11T18:23:08+00:00\n"
+"POT-Creation-Date: 2026-10-12T22:27:18+00:00\n"
 "PO-Revision-Date: 2017-09-06 17:20+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Ukrainian (Ukraine) (http://www.transifex.com/barrykooijplugins/related-posts-for-wordpress/language/uk_UA/)\n"
@@ -770,8 +770,8 @@ msgid "Rebuild everything"
 msgstr "Перебудувати все"
 
 #: assets/build/admin/index.js:25
-msgid "Start over: remove every related post link, also the links you added by hand, read all posts again and link them. Your posts themselves are never touched."
-msgstr "Почати з нуля: видалити всі зв'язки схожих записів, зокрема додані вручну, знову прочитати всі записи й пов'язати їх. Самі записи ніколи не змінюються."
+msgid "Start over: remove the automatic related post links, read all posts again and link them. Links you added by hand stay, and your posts themselves are never touched."
+msgstr "Почати з нуля: видалити автоматичні зв'язки схожих записів, знову прочитати всі записи й пов'язати їх. Зв'язки, додані вручну, залишаться, а самі записи ніколи не змінюються."
 
 #: assets/build/admin/index.js:25
 msgid "Rebuild everything?"
@@ -786,5 +786,5 @@ msgid "Keep my links"
 msgstr "Залишити мої зв'язки"
 
 #: assets/build/admin/index.js:25
-msgid "Every related post link is removed, including the links you added by hand. This can not be undone."
-msgstr "Усі зв'язки схожих записів буде видалено, зокрема додані вручну. Цю дію неможливо скасувати."
+msgid "The automatic related post links of every post type are removed, and all posts are read and linked again. Links you added by hand stay."
+msgstr "Автоматичні зв'язки схожих записів для всіх типів записів буде видалено, а всі записи буде знову прочитано й пов'язано. Зв'язки, додані вручну, залишаться."

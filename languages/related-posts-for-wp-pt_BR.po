@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
-"POT-Creation-Date: 2026-10-11T18:23:08+00:00\n"
+"POT-Creation-Date: 2026-10-12T22:27:18+00:00\n"
 "PO-Revision-Date: 2017-09-06 17:20+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/barrykooijplugins/related-posts-for-wordpress/language/pt_BR/)\n"
@@ -771,8 +771,8 @@ msgid "Rebuild everything"
 msgstr "Reconstruir tudo"
 
 #: assets/build/admin/index.js:25
-msgid "Start over: remove every related post link, also the links you added by hand, read all posts again and link them. Your posts themselves are never touched."
-msgstr "Começar do zero: remover todos os vínculos de posts relacionados, inclusive os que você adicionou manualmente, ler todos os posts novamente e vinculá-los. Os seus posts em si nunca são alterados."
+msgid "Start over: remove the automatic related post links, read all posts again and link them. Links you added by hand stay, and your posts themselves are never touched."
+msgstr "Começar do zero: remover os vínculos automáticos de posts relacionados, ler todos os posts novamente e vinculá-los. Os vínculos que você adicionou manualmente permanecem, e os seus posts em si nunca são alterados."
 
 #: assets/build/admin/index.js:25
 msgid "Rebuild everything?"
@@ -787,5 +787,5 @@ msgid "Keep my links"
 msgstr "Manter meus vínculos"
 
 #: assets/build/admin/index.js:25
-msgid "Every related post link is removed, including the links you added by hand. This can not be undone."
-msgstr "Todos os vínculos de posts relacionados serão removidos, inclusive os que você adicionou manualmente. Isso não pode ser desfeito."
+msgid "The automatic related post links of every post type are removed, and all posts are read and linked again. Links you added by hand stay."
+msgstr "Os vínculos automáticos de posts relacionados de todos os tipos de post serão removidos, e todos os posts serão lidos e vinculados novamente. Os vínculos que você adicionou manualmente permanecem."

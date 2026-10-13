@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
-"POT-Creation-Date: 2026-10-11T18:23:08+00:00\n"
+"POT-Creation-Date: 2026-10-12T22:27:18+00:00\n"
 "PO-Revision-Date: 2026-10-01 12:00+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Turkish\n"
@@ -768,8 +768,8 @@ msgid "Rebuild everything"
 msgstr "Her şeyi yeniden oluştur"
 
 #: assets/build/admin/index.js:25
-msgid "Start over: remove every related post link, also the links you added by hand, read all posts again and link them. Your posts themselves are never touched."
-msgstr "Baştan başlayın: elle eklediğiniz bağlantılar dahil tüm ilgili yazı bağlantılarını kaldırın, tüm yazıları yeniden okuyun ve bağlayın. Yazılarınızın kendisine asla dokunulmaz."
+msgid "Start over: remove the automatic related post links, read all posts again and link them. Links you added by hand stay, and your posts themselves are never touched."
+msgstr "Baştan başlayın: otomatik ilgili yazı bağlantılarını kaldırın, tüm yazıları yeniden okuyun ve bağlayın. Elle eklediğiniz bağlantılar kalır ve yazılarınızın kendisine asla dokunulmaz."
 
 #: assets/build/admin/index.js:25
 msgid "Rebuild everything?"
@@ -784,5 +784,5 @@ msgid "Keep my links"
 msgstr "Bağlantılarımı koru"
 
 #: assets/build/admin/index.js:25
-msgid "Every related post link is removed, including the links you added by hand. This can not be undone."
-msgstr "Elle eklediğiniz bağlantılar dahil tüm ilgili yazı bağlantıları kaldırılır. Bu işlem geri alınamaz."
+msgid "The automatic related post links of every post type are removed, and all posts are read and linked again. Links you added by hand stay."
+msgstr "Tüm yazı türlerinin otomatik ilgili yazı bağlantıları kaldırılır ve tüm yazılar yeniden okunup bağlanır. Elle eklediğiniz bağlantılar kalır."

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
-"POT-Creation-Date: 2026-10-11T18:23:08+00:00\n"
+"POT-Creation-Date: 2026-10-12T22:27:18+00:00\n"
 "PO-Revision-Date: 2017-09-06 17:20+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: German (Germany) (http://www.transifex.com/barrykooijplugins/related-posts-for-wordpress/language/de_DE/)\n"
@@ -773,8 +773,8 @@ msgid "Rebuild everything"
 msgstr "Alles neu aufbauen"
 
 #: assets/build/admin/index.js:25
-msgid "Start over: remove every related post link, also the links you added by hand, read all posts again and link them. Your posts themselves are never touched."
-msgstr "Von vorn beginnen: Entfernt alle Verknüpfungen zu verwandten Beiträgen, auch die von Hand hinzugefügten, liest alle Beiträge erneut ein und verknüpft sie. Deine Beiträge selbst bleiben immer unverändert."
+msgid "Start over: remove the automatic related post links, read all posts again and link them. Links you added by hand stay, and your posts themselves are never touched."
+msgstr "Von vorn beginnen: Entfernt die automatischen Verknüpfungen zu verwandten Beiträgen, liest alle Beiträge erneut ein und verknüpft sie. Von Hand hinzugefügte Verknüpfungen bleiben erhalten, und deine Beiträge selbst bleiben immer unverändert."
 
 #: assets/build/admin/index.js:25
 msgid "Rebuild everything?"
@@ -789,5 +789,5 @@ msgid "Keep my links"
 msgstr "Meine Verknüpfungen behalten"
 
 #: assets/build/admin/index.js:25
-msgid "Every related post link is removed, including the links you added by hand. This can not be undone."
-msgstr "Alle Verknüpfungen zu verwandten Beiträgen werden entfernt, auch die von Hand hinzugefügten. Das kann nicht rückgängig gemacht werden."
+msgid "The automatic related post links of every post type are removed, and all posts are read and linked again. Links you added by hand stay."
+msgstr "Die automatischen Verknüpfungen zu verwandten Beiträgen aller Inhaltstypen werden entfernt, und alle Beiträge werden erneut eingelesen und verknüpft. Von Hand hinzugefügte Verknüpfungen bleiben erhalten."

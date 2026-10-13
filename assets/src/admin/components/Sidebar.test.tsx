@@ -60,11 +60,21 @@ describe( 'Sidebar', () => {
 	it( 'links the documentation', () => {
 		render( <Sidebar /> );
 
-		expect(
-			screen
-				.getByRole( 'link', { name: /All documentation/ } )
-				.getAttribute( 'href' )
-		).toContain( 'relatedpostsforwp.com/documentation/' );
+		const href = ( name: RegExp ) =>
+			screen.getByRole( 'link', { name } ).getAttribute( 'href' );
+
+		expect( href( /Getting started/ ) ).toContain(
+			'https://docs.relatedpostsforwp.com/getting-started/installation-guide/?'
+		);
+		expect( href( /Show related posts in your theme/ ) ).toContain(
+			'https://docs.relatedpostsforwp.com/showing-related-posts/theme-functions-to-display-related-posts/?'
+		);
+		expect( href( /Style the related posts with CSS/ ) ).toContain(
+			'https://docs.relatedpostsforwp.com/styling/adding-custom-css-theme/?'
+		);
+		expect( href( /All documentation/ ) ).toContain(
+			'https://docs.relatedpostsforwp.com/?'
+		);
 	} );
 
 	it( 'asks for a review only once the posts are installed', () => {

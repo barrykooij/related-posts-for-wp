@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
-"POT-Creation-Date: 2026-10-11T18:23:08+00:00\n"
+"POT-Creation-Date: 2026-10-12T22:27:18+00:00\n"
 "PO-Revision-Date: 2017-09-06 17:23+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/barrykooijplugins/related-posts-for-wordpress/language/nl_NL/)\n"
@@ -770,8 +770,8 @@ msgid "Rebuild everything"
 msgstr "Alles opnieuw opbouwen"
 
 #: assets/build/admin/index.js:25
-msgid "Start over: remove every related post link, also the links you added by hand, read all posts again and link them. Your posts themselves are never touched."
-msgstr "Begin opnieuw: verwijder elke koppeling naar gerelateerde berichten, ook de koppelingen die je zelf hebt toegevoegd, lees alle berichten opnieuw en koppel ze. Je berichten zelf blijven altijd onaangeroerd."
+msgid "Start over: remove the automatic related post links, read all posts again and link them. Links you added by hand stay, and your posts themselves are never touched."
+msgstr "Begin opnieuw: verwijder de automatische koppelingen naar gerelateerde berichten, lees alle berichten opnieuw en koppel ze. Koppelingen die je zelf hebt toegevoegd blijven bestaan, en je berichten zelf blijven altijd onaangeroerd."
 
 #: assets/build/admin/index.js:25
 msgid "Rebuild everything?"
@@ -786,5 +786,5 @@ msgid "Keep my links"
 msgstr "Mijn koppelingen behouden"
 
 #: assets/build/admin/index.js:25
-msgid "Every related post link is removed, including the links you added by hand. This can not be undone."
-msgstr "Elke koppeling naar gerelateerde berichten wordt verwijderd, ook de koppelingen die je zelf hebt toegevoegd. Dit kan niet ongedaan worden gemaakt."
+msgid "The automatic related post links of every post type are removed, and all posts are read and linked again. Links you added by hand stay."
+msgstr "De automatische koppelingen naar gerelateerde berichten van elk berichttype worden verwijderd, en alle berichten worden opnieuw gelezen en gekoppeld. Koppelingen die je zelf hebt toegevoegd, blijven bestaan."

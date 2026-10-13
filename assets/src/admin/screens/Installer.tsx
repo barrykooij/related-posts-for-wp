@@ -97,7 +97,7 @@ export function Installer() {
 						</h2>
 						<p className="rp4wp-card__description">
 							{ __(
-								'Start over: remove every related post link, also the links you added by hand, read all posts again and link them. Your posts themselves are never touched.',
+								'Start over: remove the automatic related post links, read all posts again and link them. Links you added by hand stay, and your posts themselves are never touched.',
 								'related-posts-for-wp'
 							) }
 						</p>
@@ -139,7 +139,7 @@ export function Installer() {
 				>
 					<p>
 						{ __(
-							'Every related post link is removed, including the links you added by hand. This can not be undone.',
+							'The automatic related post links of every post type are removed, and all posts are read and linked again. Links you added by hand stay.',
 							'related-posts-for-wp'
 						) }
 					</p>

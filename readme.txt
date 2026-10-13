@@ -54,6 +54,7 @@ Related Posts for WordPress has a related post widget allowing you to display re
 **More information**
 
 - Visit the [Related Posts for WordPress website](https://www.relatedpostsforwp.com/?utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=more-information)
+- Read the [documentation](https://docs.relatedpostsforwp.com/?utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=more-information)
 - Other [WordPress plugins](https://profiles.wordpress.org/barrykooij/) by [Barry Kooij](https://www.barrykooij.com/)
 - Contact Barry on X: [@barry_kooij](https://x.com/barry_kooij)
 - If you're a dev, follow or contribute to the [Related Posts for WordPress plugin on GitHub](https://github.com/barrykooij/related-posts-for-wp)
@@ -97,7 +98,7 @@ Yes, clear the CSS field in the Related Posts for WordPress settings screen, or 
 
 = Is there a theme function so I can output this list anywhere in my theme I want? =
 Yes, you can use `rp4wp_children();`.<br />
-[More information on the theme function can be found here](https://www.relatedpostsforwp.com/documentation/theme-functions-to-display-related-posts/?utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=faq-item).
+[More information on the theme function can be found here](https://docs.relatedpostsforwp.com/showing-related-posts/theme-functions-to-display-related-posts/?utm_source=wp-plugin-repo&utm_medium=link&utm_campaign=faq-item).
 
 = Is there a shortcode? =
 Yes. To display your related posts via a shortcode use: `[rp4wp]`
@@ -131,6 +132,8 @@ On the first request after the update, the links move to the new tables. Then ev
 
 = 3.0.1: Unreleased =
 * Tweak: The readme says more precisely what the update to 3.0 does, which posts get better related posts and which filters were removed.
+* Fix: The Rebuild everything card and its confirmation on the Installer tab say that links you added by hand stay, as they do, instead of that they are removed. Translated in all 19 bundled languages.
+* Tweak: The documentation links on the settings screen and in the readme go to the new documentation site, docs.relatedpostsforwp.com.
 
 = 3.0.0: October 11, 2026 =
 * Feature: A new settings screen, with the installer built in. The installer runs in the background, so the page can be closed while it works, and the screen shows its progress.

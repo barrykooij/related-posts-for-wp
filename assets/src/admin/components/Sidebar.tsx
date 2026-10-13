@@ -13,12 +13,23 @@ import { useInstall } from '../store/install';
 /**
  * A page on relatedpostsforwp.com, tagged so the site can tell visits from the plugin apart.
  *
- * @param path     The path, for example `documentation/`.
+ * @param path     The path, for example `upgrade-premium/`.
  * @param campaign What on this screen links to it.
  * @return The URL.
  */
 function siteUrl( path: string, campaign: string ): string {
 	return `https://www.relatedpostsforwp.com/${ path }?utm_source=plugin&utm_medium=link&utm_campaign=${ campaign }`;
+}
+
+/**
+ * A page of the documentation on docs.relatedpostsforwp.com, tagged like siteUrl().
+ *
+ * @param path     The path, for example `styling/adding-custom-css-theme/`; empty for the home page.
+ * @param campaign What on this screen links to it.
+ * @return The URL.
+ */
+function docsUrl( path: string, campaign: string ): string {
+	return `https://docs.relatedpostsforwp.com/${ path }?utm_source=plugin&utm_medium=link&utm_campaign=${ campaign }`;
 }
 
 const REVIEW_URL =
@@ -141,25 +152,25 @@ interface HelpCardProps {
 function HelpCard( { premium }: HelpCardProps ) {
 	const docs = [
 		{
-			path: 'documentation/installation-guide/',
+			path: 'getting-started/installation-guide/',
 			label: __( 'Getting started', 'related-posts-for-wp' ),
 		},
 		{
-			path: 'documentation/theme-functions-to-display-related-posts/',
+			path: 'showing-related-posts/theme-functions-to-display-related-posts/',
 			label: __(
 				'Show related posts in your theme',
 				'related-posts-for-wp'
 			),
 		},
 		{
-			path: 'documentation/adding-custom-css-theme/',
+			path: 'styling/adding-custom-css-theme/',
 			label: __(
 				'Style the related posts with CSS',
 				'related-posts-for-wp'
 			),
 		},
 		{
-			path: 'documentation/',
+			path: '',
 			label: __( 'All documentation', 'related-posts-for-wp' ),
 		},
 	];
@@ -178,10 +189,10 @@ function HelpCard( { premium }: HelpCardProps ) {
 				</p>
 				<ul className="rp4wp-help__links">
 					{ docs.map( ( doc ) => (
-						<li key={ doc.path }>
+						<li key={ doc.label }>
 							<ExternalLink
 								className="rp4wp-help__link"
-								href={ siteUrl( doc.path, 'help' ) }
+								href={ docsUrl( doc.path, 'help' ) }
 							>
 								<Icon icon={ page } size={ 20 } />
 								{ doc.label }

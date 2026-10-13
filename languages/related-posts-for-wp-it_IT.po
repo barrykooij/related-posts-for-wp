@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
-"POT-Creation-Date: 2026-10-11T18:23:08+00:00\n"
+"POT-Creation-Date: 2026-10-12T22:27:18+00:00\n"
 "PO-Revision-Date: 2017-09-06 17:20+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Italian (Italy) (http://www.transifex.com/barrykooijplugins/related-posts-for-wordpress/language/it_IT/)\n"
@@ -771,8 +771,8 @@ msgid "Rebuild everything"
 msgstr "Ricostruisci tutto"
 
 #: assets/build/admin/index.js:25
-msgid "Start over: remove every related post link, also the links you added by hand, read all posts again and link them. Your posts themselves are never touched."
-msgstr "Ricomincia da capo: rimuovi tutti i collegamenti agli articoli correlati, anche quelli aggiunti manualmente, rileggi tutti gli articoli e collegali. I tuoi articoli non vengono mai modificati."
+msgid "Start over: remove the automatic related post links, read all posts again and link them. Links you added by hand stay, and your posts themselves are never touched."
+msgstr "Ricomincia da capo: rimuovi i collegamenti automatici agli articoli correlati, rileggi tutti gli articoli e collegali. I collegamenti aggiunti manualmente restano e i tuoi articoli non vengono mai modificati."
 
 #: assets/build/admin/index.js:25
 msgid "Rebuild everything?"
@@ -787,5 +787,5 @@ msgid "Keep my links"
 msgstr "Mantieni i miei collegamenti"
 
 #: assets/build/admin/index.js:25
-msgid "Every related post link is removed, including the links you added by hand. This can not be undone."
-msgstr "Tutti i collegamenti agli articoli correlati verranno rimossi, compresi quelli aggiunti manualmente. L'operazione non può essere annullata."
+msgid "The automatic related post links of every post type are removed, and all posts are read and linked again. Links you added by hand stay."
+msgstr "I collegamenti automatici agli articoli correlati di tutti i tipi di contenuto verranno rimossi e tutti gli articoli verranno riletti e collegati di nuovo. I collegamenti aggiunti manualmente restano."

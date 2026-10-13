@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
-"POT-Creation-Date: 2026-10-11T18:23:08+00:00\n"
+"POT-Creation-Date: 2026-10-12T22:27:18+00:00\n"
 "PO-Revision-Date: 2026-10-01 12:00+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Bulgarian\n"
@@ -768,8 +768,8 @@ msgid "Rebuild everything"
 msgstr "Изграждане на всичко наново"
 
 #: assets/build/admin/index.js:25
-msgid "Start over: remove every related post link, also the links you added by hand, read all posts again and link them. Your posts themselves are never touched."
-msgstr "Започване отначало: премахване на всички връзки към свързани публикации, включително добавените ръчно, повторно прочитане на всички публикации и свързването им. Самите публикации никога не се променят."
+msgid "Start over: remove the automatic related post links, read all posts again and link them. Links you added by hand stay, and your posts themselves are never touched."
+msgstr "Започване отначало: премахване на автоматичните връзки към свързани публикации, повторно прочитане на всички публикации и свързването им. Добавените ръчно връзки остават, а самите публикации никога не се променят."
 
 #: assets/build/admin/index.js:25
 msgid "Rebuild everything?"
@@ -784,5 +784,5 @@ msgid "Keep my links"
 msgstr "Запазване на връзките ми"
 
 #: assets/build/admin/index.js:25
-msgid "Every related post link is removed, including the links you added by hand. This can not be undone."
-msgstr "Всички връзки към свързани публикации ще бъдат премахнати, включително добавените ръчно. Това действие е необратимо."
+msgid "The automatic related post links of every post type are removed, and all posts are read and linked again. Links you added by hand stay."
+msgstr "Автоматичните връзки към свързани публикации на всички видове публикации ще бъдат премахнати, а всички публикации ще бъдат прочетени и свързани отново. Добавените ръчно връзки остават."

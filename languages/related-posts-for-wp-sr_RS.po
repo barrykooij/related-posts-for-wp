@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
-"POT-Creation-Date: 2026-10-11T18:23:08+00:00\n"
+"POT-Creation-Date: 2026-10-12T22:27:18+00:00\n"
 "PO-Revision-Date: 2017-09-06 17:20+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Serbian (Serbia) (http://www.transifex.com/barrykooijplugins/related-posts-for-wordpress/language/sr_RS/)\n"
@@ -772,8 +772,8 @@ msgid "Rebuild everything"
 msgstr "Поново изгради све"
 
 #: assets/build/admin/index.js:25
-msgid "Start over: remove every related post link, also the links you added by hand, read all posts again and link them. Your posts themselves are never touched."
-msgstr "Све из почетка: уклања сваку везу ка повезаним чланцима, укључујући и оне које сте ручно додали, па поново чита и повезује све чланке. Сами чланци остају нетакнути."
+msgid "Start over: remove the automatic related post links, read all posts again and link them. Links you added by hand stay, and your posts themselves are never touched."
+msgstr "Све из почетка: уклања аутоматске везе ка повезаним чланцима, па поново чита и повезује све чланке. Везе које сте ручно додали се задржавају, а сами чланци остају нетакнути."
 
 #: assets/build/admin/index.js:25
 msgid "Rebuild everything?"
@@ -788,5 +788,5 @@ msgid "Keep my links"
 msgstr "Задржи моје везе"
 
 #: assets/build/admin/index.js:25
-msgid "Every related post link is removed, including the links you added by hand. This can not be undone."
-msgstr "Свака веза ка повезаним чланцима биће уклоњена, укључујући и оне које сте ручно додали. Ово се не може опозвати."
+msgid "The automatic related post links of every post type are removed, and all posts are read and linked again. Links you added by hand stay."
+msgstr "Аутоматске везе ка повезаним чланцима за све врсте чланака биће уклоњене, а сви чланци биће поново прочитани и повезани. Везе које сте ручно додали остају."

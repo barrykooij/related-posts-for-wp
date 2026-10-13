@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
-"POT-Creation-Date: 2026-10-11T18:23:08+00:00\n"
+"POT-Creation-Date: 2026-10-12T22:27:18+00:00\n"
 "PO-Revision-Date: 2026-10-01 12:00+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Japanese\n"
@@ -767,8 +767,8 @@ msgid "Rebuild everything"
 msgstr "すべて再構築"
 
 #: assets/build/admin/index.js:25
-msgid "Start over: remove every related post link, also the links you added by hand, read all posts again and link them. Your posts themselves are never touched."
-msgstr "最初からやり直します。手動で追加したものも含めて関連投稿の関連付けをすべて削除し、すべての投稿を読み込み直して関連付けます。投稿そのものが変更されることはありません。"
+msgid "Start over: remove the automatic related post links, read all posts again and link them. Links you added by hand stay, and your posts themselves are never touched."
+msgstr "最初からやり直します。関連投稿の自動の関連付けを削除し、すべての投稿を読み込み直して関連付けます。手動で追加した関連付けは残り、投稿そのものが変更されることはありません。"
 
 #: assets/build/admin/index.js:25
 msgid "Rebuild everything?"
@@ -783,5 +783,5 @@ msgid "Keep my links"
 msgstr "関連付けを残す"
 
 #: assets/build/admin/index.js:25
-msgid "Every related post link is removed, including the links you added by hand. This can not be undone."
-msgstr "手動で追加したものも含め、関連投稿の関連付けがすべて削除されます。この操作は取り消せません。"
+msgid "The automatic related post links of every post type are removed, and all posts are read and linked again. Links you added by hand stay."
+msgstr "すべての投稿タイプの、関連投稿の自動の関連付けが削除され、すべての投稿が読み込み直されて関連付けられます。手動で追加した関連付けは残ります。"

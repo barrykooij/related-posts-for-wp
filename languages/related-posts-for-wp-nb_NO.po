@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
-"POT-Creation-Date: 2026-10-11T18:23:08+00:00\n"
+"POT-Creation-Date: 2026-10-12T22:27:18+00:00\n"
 "PO-Revision-Date: 2026-10-01 12:00+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Norwegian (Bokmal)\n"
@@ -768,8 +768,8 @@ msgid "Rebuild everything"
 msgstr "Bygg opp alt på nytt"
 
 #: assets/build/admin/index.js:25
-msgid "Start over: remove every related post link, also the links you added by hand, read all posts again and link them. Your posts themselves are never touched."
-msgstr "Begynn på nytt: fjern alle koblinger til relaterte innlegg, også koblingene du har lagt til manuelt, les alle innleggene på nytt og koble dem. Selve innleggene dine blir aldri endret."
+msgid "Start over: remove the automatic related post links, read all posts again and link them. Links you added by hand stay, and your posts themselves are never touched."
+msgstr "Begynn på nytt: fjern de automatiske koblingene til relaterte innlegg, les alle innleggene på nytt og koble dem. Koblinger du har lagt til manuelt, blir værende, og selve innleggene dine blir aldri endret."
 
 #: assets/build/admin/index.js:25
 msgid "Rebuild everything?"
@@ -784,5 +784,5 @@ msgid "Keep my links"
 msgstr "Behold koblingene mine"
 
 #: assets/build/admin/index.js:25
-msgid "Every related post link is removed, including the links you added by hand. This can not be undone."
-msgstr "Alle koblinger til relaterte innlegg fjernes, også koblingene du har lagt til manuelt. Dette kan ikke angres."
+msgid "The automatic related post links of every post type are removed, and all posts are read and linked again. Links you added by hand stay."
+msgstr "De automatiske koblingene til relaterte innlegg for alle innleggstyper fjernes, og alle innleggene leses og kobles på nytt. Koblinger du har lagt til manuelt, blir værende."
