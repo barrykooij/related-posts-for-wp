@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
-"POT-Creation-Date: 2026-10-12T22:27:18+00:00\n"
+"POT-Creation-Date: 2026-10-14T17:38:55+00:00\n"
 "PO-Revision-Date: 2017-09-06 17:20+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Italian (Italy) (http://www.transifex.com/barrykooijplugins/related-posts-for-wordpress/language/it_IT/)\n"
@@ -49,9 +49,18 @@ msgid "Related Posts for WordPress needs PHP %1$s and WordPress %2$s or newer. I
 msgstr "Related Posts for WordPress richiede PHP %1$s e WordPress %2$s o versioni successive. Il plugin non funzionerà su questo sito finché non saranno aggiornati."
 
 #. translators: 1: link opening tag, 2: link closing tag
-#: related-posts-for-wp.php:89
+#: related-posts-for-wp.php:96
 msgid "Related Posts for WordPress 3.0 works together with Related Posts for WordPress Premium 3.0. Please %1$supdate Premium%2$s. Until then, your current version of Premium keeps working on its own."
 msgstr "Related Posts for WordPress 3.0 funziona insieme a Related Posts for WordPress Premium 3.0. %1$sAggiorna Premium%2$s. Nel frattempo, la versione attuale di Premium continua a funzionare in modo autonomo."
+
+#. translators: 1: link opening tag to the customer's account, 2: link closing tag, 3: link opening tag to the screen that uploads a plugin, 4: link closing tag
+#: related-posts-for-wp.php:103
+msgid "Related Posts for WordPress 3.0 works together with Related Posts for WordPress Premium 3.0. WordPress only offers the update of Premium while its license is activated, so please download Premium 3.0 from %1$syour account%2$s and %3$supload it%4$s. Until then, your current version of Premium keeps working on its own."
+msgstr "Related Posts for WordPress 3.0 funziona insieme a Related Posts for WordPress Premium 3.0. WordPress offre l'aggiornamento di Premium solo quando la sua licenza è attivata, quindi scarica Premium 3.0 dal %1$stuo account%2$s e %3$scaricalo%4$s. Nel frattempo, la versione attuale di Premium continua a funzionare in modo autonomo."
+
+#: related-posts-for-wp.php:109
+msgid "How to update Premium"
+msgstr "Come aggiornare Premium"
 
 #: src/Admin/App/Assets.php:106
 msgid "The settings screen of Related Posts for WordPress is missing its scripts. Run npm run build in the plugin folder."

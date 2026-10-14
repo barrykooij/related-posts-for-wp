@@ -73,6 +73,9 @@ function rp4wp_requirements_notice() {
 /**
  * Ask admins to update premium 2.x, next to which this plugin stays dormant. Shown where plugins are updated.
  *
+ * Premium 2.x only offers its update while its license is activated. Without that update, the notice asks to download
+ * Premium 3.0 and upload it, instead of linking to a screen that has nothing to update.
+ *
  * @return void
  */
 function rp4wp_premium_update_notice() {
@@ -83,13 +86,28 @@ function rp4wp_premium_update_notice() {
 		return;
 	}
 
+	$updates = get_site_transient( 'update_plugins' );
+	$premium = plugin_basename( RP4WP_PLUGIN_FILE );
+
 	echo '<div class="notice notice-warning"><p>';
-	printf(
-		/* translators: 1: link opening tag, 2: link closing tag */
-		esc_html__( 'Related Posts for WordPress 3.0 works together with Related Posts for WordPress Premium 3.0. Please %1$supdate Premium%2$s. Until then, your current version of Premium keeps working on its own.', 'related-posts-for-wp' ),
-		'<a href="' . esc_url( self_admin_url( 'plugins.php' ) ) . '">',
-		'</a>'
-	);
+	if ( is_object( $updates ) && isset( $updates->response[ $premium ] ) ) {
+		printf(
+			/* translators: 1: link opening tag, 2: link closing tag */
+			esc_html__( 'Related Posts for WordPress 3.0 works together with Related Posts for WordPress Premium 3.0. Please %1$supdate Premium%2$s. Until then, your current version of Premium keeps working on its own.', 'related-posts-for-wp' ),
+			'<a href="' . esc_url( self_admin_url( 'update-core.php' ) ) . '">',
+			'</a>'
+		);
+	} else {
+		printf(
+			/* translators: 1: link opening tag to the customer's account, 2: link closing tag, 3: link opening tag to the screen that uploads a plugin, 4: link closing tag */
+			esc_html__( 'Related Posts for WordPress 3.0 works together with Related Posts for WordPress Premium 3.0. WordPress only offers the update of Premium while its license is activated, so please download Premium 3.0 from %1$syour account%2$s and %3$supload it%4$s. Until then, your current version of Premium keeps working on its own.', 'related-posts-for-wp' ),
+			'<a href="https://www.relatedpostsforwp.com/my-account/?utm_source=plugin&amp;utm_medium=link&amp;utm_campaign=premium-update-notice" target="_blank" rel="noopener">',
+			'</a>',
+			'<a href="' . esc_url( self_admin_url( 'plugin-install.php?tab=upload' ) ) . '">',
+			'</a>'
+		);
+		echo ' <a href="https://docs.relatedpostsforwp.com/getting-started/installation-guide/#switching-from-premium-2x" target="_blank" rel="noopener">' . esc_html__( 'How to update Premium', 'related-posts-for-wp' ) . '</a>';
+	}
 	echo '</p></div>';
 }
 

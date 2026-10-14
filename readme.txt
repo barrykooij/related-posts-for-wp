@@ -134,6 +134,7 @@ On the first request after the update, the links move to the new tables. Then ev
 * Tweak: The readme says more precisely what the update to 3.0 does, which posts get better related posts and which filters were removed.
 * Fix: The Rebuild everything card and its confirmation on the Installer tab say that links you added by hand stay, as they do, instead of that they are removed. Translated in all 19 bundled languages.
 * Tweak: The documentation links on the settings screen and in the readme go to the new documentation site, docs.relatedpostsforwp.com.
+* Fix: Next to Premium 2.x, the notice that asks to update Premium no longer links to the Plugins screen when WordPress has no update for Premium, which only reloaded the page. Premium 2.x only offers its update while its license is activated, so the notice now asks to download Premium 3.0 from your account and upload it, with a link to the documentation. When the update is available, the notice links to Dashboard > Updates. Translated in all 19 bundled languages.
 
 = 3.0.0: October 11, 2026 =
 * Feature: A new settings screen, with the installer built in. The installer runs in the background, so the page can be closed while it works, and the screen shows its progress.

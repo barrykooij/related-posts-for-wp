@@ -93,12 +93,8 @@ final class LoaderTest extends TestCase {
 		$this->assertFalse( function_exists( 'RP4WP' ) );
 	}
 
-	public function test_the_premium_update_notice_links_to_the_plugins_screen(): void {
-		$this->stubTranslationFunctions();
-		$this->stubEscapeFunctions();
-		Functions\when( 'current_user_can' )->justReturn( true );
-		Functions\when( 'get_current_screen' )->justReturn( (object) [ 'id' => 'plugins' ] );
-		Functions\when( 'self_admin_url' )->justReturn( 'https://example.org/wp-admin/plugins.php' );
+	public function test_the_premium_update_notice_links_to_the_update_wordpress_offers(): void {
+		$this->stub_premium_update_notice( (object) [ 'response' => [ 'related-posts-for-wp-premium/related-posts-for-wp-premium.php' => (object) [] ] ] );
 
 		$this->include_main_file();
 		ob_start();
@@ -106,7 +102,35 @@ final class LoaderTest extends TestCase {
 		$html = (string) ob_get_clean();
 
 		$this->assertStringContainsString( 'Premium 3.0', $html );
-		$this->assertStringContainsString( '<a href="https://example.org/wp-admin/plugins.php">update Premium</a>', $html );
+		$this->assertStringContainsString( '<a href="https://example.org/wp-admin/update-core.php">update Premium</a>', $html );
+		$this->assertStringNotContainsString( 'upload it', $html );
+	}
+
+	public function test_the_premium_update_notice_asks_to_upload_premium_when_wordpress_offers_no_update(): void {
+		// Premium 2.x offers no update without an activated license; a link to the plugins screen only reloaded it.
+		$this->stub_premium_update_notice( (object) [ 'response' => [ 'akismet/akismet.php' => (object) [] ] ] );
+
+		$this->include_main_file();
+		ob_start();
+		rp4wp_premium_update_notice();
+		$html = (string) ob_get_clean();
+
+		$this->assertStringContainsString( 'only offers the update of Premium while its license is activated', $html );
+		$this->assertStringContainsString( '<a href="https://www.relatedpostsforwp.com/my-account/?utm_source=plugin', $html );
+		$this->assertStringContainsString( '<a href="https://example.org/wp-admin/plugin-install.php?tab=upload">upload it</a>', $html );
+		$this->assertStringContainsString( 'installation-guide/#switching-from-premium-2x', $html );
+		$this->assertStringNotContainsString( 'plugins.php"', $html );
+	}
+
+	public function test_the_premium_update_notice_asks_to_upload_premium_before_wordpress_checked_for_updates(): void {
+		$this->stub_premium_update_notice( false );
+
+		$this->include_main_file();
+		ob_start();
+		rp4wp_premium_update_notice();
+		$html = (string) ob_get_clean();
+
+		$this->assertStringContainsString( '>upload it</a>', $html );
 	}
 
 	public function test_the_premium_update_notice_stays_off_other_screens_and_from_other_users(): void {
@@ -161,6 +185,28 @@ final class LoaderTest extends TestCase {
 		$this->assertSame( RP4WP_PREMIUM_PLUGIN_FILE, RP4WP_PLUGIN_FILE );
 		$this->assertSame( dirname( __DIR__, 3 ) . '/related-posts-for-wp.php', RP4WP_FREE_PLUGIN_FILE );
 		$this->assertSame( RP4WP_FREE_PLUGIN_FILE, Main::file() );
+	}
+
+	/**
+	 * Stub what the notice about premium 2.x needs, on the plugins screen, next to premium 2.x.
+	 *
+	 * @param object|false $updates The update_plugins site transient.
+	 *
+	 * @return void
+	 */
+	private function stub_premium_update_notice( $updates ): void {
+		$this->stubTranslationFunctions();
+		$this->stubEscapeFunctions();
+		define( 'RP4WP_PLUGIN_FILE', '/wp-content/plugins/related-posts-for-wp-premium/related-posts-for-wp-premium.php' );
+		Functions\when( 'current_user_can' )->justReturn( true );
+		Functions\when( 'get_current_screen' )->justReturn( (object) [ 'id' => 'plugins' ] );
+		Functions\when( 'get_site_transient' )->justReturn( $updates );
+		Functions\when( 'plugin_basename' )->justReturn( 'related-posts-for-wp-premium/related-posts-for-wp-premium.php' );
+		Functions\when( 'self_admin_url' )->alias(
+			static function ( string $path ): string {
+				return 'https://example.org/wp-admin/' . $path;
+			}
+		);
 	}
 
 	/**
