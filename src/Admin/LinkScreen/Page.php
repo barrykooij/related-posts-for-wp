@@ -7,6 +7,7 @@
 
 namespace LV2\WordPress\RelatedPostsForWP\Admin\LinkScreen;
 
+use LV2\WordPress\RelatedPostsForWP\Admin\PostAccess;
 use LV2\WordPress\RelatedPostsForWP\Compat\LegacyHooks;
 use LV2\WordPress\RelatedPostsForWP\Links\LinkRepository;
 use LV2\WordPress\RelatedPostsForWP\Module;
@@ -159,10 +160,16 @@ class Page implements Module {
 			wp_die( 'There was a problem creating the links, please try again. (nonce failed)' );
 		}
 
+		$child = absint( $_GET['rp4wp_create_link'] );
+		// phpcs:enable
+
+		if ( ! PostAccess::can_read( $child ) ) {
+			wp_die( 'There was a problem creating the link, you may not have the necessary permissions.' );
+		}
+
 		self::check_if_writable();
 
-		static::add_link( $parent, absint( $_GET['rp4wp_create_link'] ) );
-		// phpcs:enable
+		static::add_link( $parent, $child );
 
 		wp_safe_redirect( self::edit_url( $parent ) );
 		exit;
@@ -190,8 +197,8 @@ class Page implements Module {
 
 		if ( is_array( $_POST['rp4wp_bulk'] ) ) {
 			foreach ( array_map( 'absint', wp_unslash( $_POST['rp4wp_bulk'] ) ) as $child_id ) {
-				// Only accept post IDs.
-				if ( $child_id > 0 ) {
+				// Only accept the IDs of posts the user can read, so the meta box never shows the title of a post they can't.
+				if ( PostAccess::can_read( $child_id ) ) {
 					static::add_link( $parent, $child_id );
 				}
 			}

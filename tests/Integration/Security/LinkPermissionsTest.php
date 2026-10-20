@@ -12,12 +12,19 @@ use LV2\WordPress\RelatedPostsForWP\Links\LinkRepository;
 use LV2\WordPress\RelatedPostsForWP\Tests\Integration\TestCase;
 
 /**
- * Regression tests for the 2.3.1 security fixes in link creation. The fixes in the 2.x link manager are covered by
- * Deprecated\PostLinkManagerTest.
+ * Regression tests for the 2.3.1 security fixes in link creation, and for the 3.0.1 fix that only links posts the user
+ * can read. The fixes in the 2.x link manager are covered by Deprecated\PostLinkManagerTest.
  *
  * @covers \LV2\WordPress\RelatedPostsForWP\Admin\LinkScreen\Page
  */
 final class LinkPermissionsTest extends TestCase {
+
+	/**
+	 * An administrator.
+	 *
+	 * @var int
+	 */
+	private int $admin;
 
 	/**
 	 * A post owned by an administrator.
@@ -36,8 +43,8 @@ final class LinkPermissionsTest extends TestCase {
 	public function set_up(): void {
 		parent::set_up();
 
-		$admin            = self::factory()->user->create( [ 'role' => 'administrator' ] );
-		$this->admin_post = self::factory()->post->create( [ 'post_author' => $admin ] );
+		$this->admin      = self::factory()->user->create( [ 'role' => 'administrator' ] );
+		$this->admin_post = self::factory()->post->create( [ 'post_author' => $this->admin ] );
 		$this->children   = self::factory()->post->create_many( 2 );
 
 		$_GET  = [];
@@ -118,6 +125,129 @@ final class LinkPermissionsTest extends TestCase {
 		}
 
 		$this->assertCount( 1, $this->get_link_ids( $this->admin_post ) );
+	}
+
+	/**
+	 * The statuses of posts of someone else that a contributor can't read.
+	 *
+	 * @return array<string, array{string}>
+	 */
+	public static function unreadable_statuses(): array {
+		return [
+			'draft'     => [ 'draft' ],
+			'pending'   => [ 'pending' ],
+			'private'   => [ 'private' ],
+			'scheduled' => [ 'future' ],
+			'trash'     => [ 'trash' ],
+		];
+	}
+
+	/**
+	 * @dataProvider unreadable_statuses
+	 *
+	 * @param string $status The status of the post to link.
+	 */
+	public function test_contributor_cannot_link_a_post_of_someone_else_they_cannot_read( string $status ): void {
+		$own_post = $this->own_draft( $this->act_as( 'contributor' ) );
+
+		$_GET = [
+			'rp4wp_parent'      => $own_post,
+			'rp4wp_create_link' => $this->admin_post_with_status( $status ),
+			'rp4wp_nonce'       => wp_create_nonce( 'rp4wp_link_nonce' ),
+		];
+
+		try {
+			$this->invoke_screen_method( 'handle_create_link' );
+			$this->fail( 'Expected wp_die() for a post the user cannot read.' );
+		} catch ( \WPDieException $e ) {
+			$this->assertStringContainsString( 'necessary permissions', $e->getMessage() );
+		}
+
+		$this->assertSame( [], $this->get_link_ids( $own_post ) );
+	}
+
+	public function test_linking_a_post_that_does_not_exist_is_refused(): void {
+		$this->act_as( 'administrator' );
+
+		$_GET = [
+			'rp4wp_parent'      => $this->admin_post,
+			'rp4wp_create_link' => PHP_INT_MAX,
+			'rp4wp_nonce'       => wp_create_nonce( 'rp4wp_link_nonce' ),
+		];
+
+		$this->expectException( \WPDieException::class );
+		$this->invoke_screen_method( 'handle_create_link' );
+	}
+
+	public function test_contributor_bulk_linking_skips_posts_they_cannot_read(): void {
+		$own_post   = $this->own_draft( $this->act_as( 'contributor' ) );
+		$unreadable = array_map( [ $this, 'admin_post_with_status' ], array_column( self::unreadable_statuses(), 0 ) );
+
+		$this->prepare_bulk_request( $own_post, array_merge( $unreadable, [ $this->children[0] ] ) );
+		$this->stop_at_redirect();
+
+		try {
+			$this->invoke_screen_method( 'handle_bulk_link' );
+			$this->fail( 'Expected a redirect after bulk linking.' );
+		} catch ( RedirectException $e ) {
+			unset( $e );
+		}
+
+		$this->assertSame( [ $this->children[0] ], array_values( ( new LinkRepository() )->child_ids( $own_post ) ) );
+	}
+
+	public function test_editor_can_link_a_private_post_of_someone_else(): void {
+		$this->act_as( 'editor' );
+		$private = $this->admin_post_with_status( 'private' );
+
+		$_GET = [
+			'rp4wp_parent'      => $this->admin_post,
+			'rp4wp_create_link' => $private,
+			'rp4wp_nonce'       => wp_create_nonce( 'rp4wp_link_nonce' ),
+		];
+		$this->stop_at_redirect();
+
+		try {
+			$this->invoke_screen_method( 'handle_create_link' );
+		} catch ( RedirectException $e ) {
+			unset( $e );
+		}
+
+		$this->assertSame( [ $private ], array_values( ( new LinkRepository() )->child_ids( $this->admin_post ) ) );
+	}
+
+	/**
+	 * A draft of a user.
+	 *
+	 * @param int $author The user.
+	 *
+	 * @return int
+	 */
+	private function own_draft( int $author ): int {
+		return self::factory()->post->create(
+			[
+				'post_author' => $author,
+				'post_status' => 'draft',
+			]
+		);
+	}
+
+	/**
+	 * A post of the administrator, with a status.
+	 *
+	 * @param string $status The status.
+	 *
+	 * @return int
+	 */
+	private function admin_post_with_status( string $status ): int {
+		return self::factory()->post->create(
+			[
+				'post_author' => $this->admin,
+				'post_status' => $status,
+				'post_title'  => "Secret {$status} post",
+				'post_date'   => 'future' === $status ? gmdate( 'Y-m-d H:i:s', time() + DAY_IN_SECONDS ) : '',
+			]
+		);
 	}
 
 	/**

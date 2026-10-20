@@ -54,9 +54,10 @@ final class LinkScreenSeamTest extends TestCase {
 	}
 
 	public function test_a_subclass_of_the_screen_adds_the_links(): void {
-		$_GET = [
+		$child = self::factory()->post->create();
+		$_GET  = [
 			'rp4wp_parent'      => (string) $this->parent,
-			'rp4wp_create_link' => '7',
+			'rp4wp_create_link' => (string) $child,
 			'rp4wp_nonce'       => wp_create_nonce( Page::NONCE_LINK ),
 		];
 
@@ -67,7 +68,7 @@ final class LinkScreenSeamTest extends TestCase {
 			$this->assertStringContainsString( "post={$this->parent}&action=edit", $e->getMessage() );
 		}
 
-		$this->assertSame( [ [ $this->parent, 7 ] ], RecordingPage::$links );
+		$this->assertSame( [ [ $this->parent, $child ] ], RecordingPage::$links );
 		$this->assertSame( [], get_posts( [ 'post_type' => LinkPostType::POST_TYPE ] ) );
 	}
 
@@ -223,9 +224,11 @@ class RecordingListTable extends ListTable {
 		return [
 			new \WP_Post(
 				(object) [
-					'ID'         => 1,
-					'post_title' => 'Suggested by the subclass',
-					'post_type'  => 'post',
+					'ID'          => 1,
+					'post_title'  => 'Suggested by the subclass',
+					'post_type'   => 'post',
+					'post_status' => 'publish',
+					'filter'      => 'raw',
 				]
 			),
 		];

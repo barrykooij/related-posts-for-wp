@@ -131,6 +131,8 @@ On the first request after the update, the links move to the new tables. Then ev
 == Changelog ==
 
 = 3.0.1: Unreleased =
+* Security: Fixed an exposure of post titles that could be abused by users with the Contributor role or higher: linking a draft, pending, scheduled, private or trashed post of another user to a post of their own showed its title in the Related Posts meta box. The screen to add related posts now only links posts the user can read, and the meta box leaves out related posts the user can't read, also those linked before this fix.
+* Security: The All Posts view of the screen to add related posts no longer lists the private posts of other users, with their titles and dates, to users who can't read them. It also leaves posts the user can't read out of its count and its search, including on sites that offer drafts or other statuses there with the rp4wp_manual_link_post_statuses filter.
 * Tweak: The readme says more precisely what the update to 3.0 does, which posts get better related posts and which filters were removed.
 * Fix: The Rebuild everything card and its confirmation on the Installer tab say that links you added by hand stay, as they do, instead of that they are removed. Translated in all 19 bundled languages.
 * Tweak: The documentation links on the settings screen and in the readme go to the new documentation site, docs.relatedpostsforwp.com.

@@ -7,6 +7,7 @@
 
 namespace LV2\WordPress\RelatedPostsForWP\Admin\LinkScreen;
 
+use LV2\WordPress\RelatedPostsForWP\Admin\PostAccess;
 use LV2\WordPress\RelatedPostsForWP\PostTypes;
 use LV2\WordPress\RelatedPostsForWP\Related\Finder;
 
@@ -42,6 +43,13 @@ class ListTable extends \WP_List_Table {
 	 * @var bool
 	 */
 	private $is_related = false;
+
+	/**
+	 * The condition that limits the "all" view to the posts the current user can read; see readable_where().
+	 *
+	 * @var string
+	 */
+	private $readable = '';
 
 	/**
 	 * Constructor.
@@ -151,9 +159,13 @@ class ListTable extends \WP_List_Table {
 		$query      = null;
 
 		if ( 'all' === $view ) {
+			$post_types     = $this->linkable_post_types();
+			$this->readable = $this->readable_where( $post_types );
+			add_filter( 'posts_where', [ $this, 'filter_readable_posts_where' ] );
+
 			$query = new \WP_Query(
 				[
-					'post_type'        => $this->linkable_post_types(),
+					'post_type'        => $post_types,
 					'posts_per_page'   => $per_page,
 					'paged'            => $paged,
 					'suppress_filters' => false,
@@ -170,6 +182,8 @@ class ListTable extends \WP_List_Table {
 				]
 			);
 
+			remove_filter( 'posts_where', [ $this, 'filter_readable_posts_where' ] );
+
 			$posts = $query->posts;
 		} else {
 			$posts = $this->suggested_posts( $parent );
@@ -181,7 +195,9 @@ class ListTable extends \WP_List_Table {
 				$post = get_post( is_object( $post ) ? $post->ID : $post );
 			}
 
-			if ( ! $post instanceof \WP_Post ) {
+			// The query of the "all" view reads only posts the user can read; this covers the suggestions and roles
+			// whose capabilities read_post maps differently.
+			if ( ! $post instanceof \WP_Post || ! PostAccess::can_read( $post ) ) {
 				continue;
 			}
 
@@ -209,6 +225,66 @@ class ListTable extends \WP_List_Table {
 	 */
 	protected function linkable_post_types(): array {
 		return PostTypes::supported();
+	}
+
+	/**
+	 * The condition that limits the "all" view to the posts the current user can read, the way `read_post` decides:
+	 * posts of a public status, private posts for users who can read the private posts of others, posts of other
+	 * statuses (drafts, for example, from rp4wp_manual_link_post_statuses) for users who can edit the posts of others,
+	 * and the posts of the user. The total and a search then only count those posts. Empty when the user can read all.
+	 *
+	 * WP_Query can't do this itself: its `perm` argument doesn't cover drafts, `any` skips it, and for more than one
+	 * post type it checks a capability nobody has.
+	 *
+	 * @param string[] $post_types The post types the view lists.
+	 *
+	 * @return string
+	 */
+	private function readable_where( array $post_types ): string {
+		global $wpdb;
+
+		$private  = $this->can_for_every( $post_types, 'read_private_posts' );
+		$others   = $this->can_for_every( $post_types, 'edit_others_posts' );
+		$statuses = get_post_stati( [ 'public' => true ] );
+
+		if ( $private && $others ) {
+			return '';
+		}
+
+		if ( $private ) {
+			$statuses = array_merge( $statuses, get_post_stati( [ 'private' => true ] ) );
+		}
+
+		if ( $others ) {
+			$statuses = array_merge( $statuses, array_diff( get_post_stati(), get_post_stati( [ 'private' => true ] ) ) );
+		}
+
+		$statuses = array_values( array_unique( $statuses ) );
+
+		return $wpdb->prepare(
+			" AND ( {$wpdb->posts}.post_status IN (" . implode( ',', array_fill( 0, count( $statuses ), '%s' ) ) . ") OR {$wpdb->posts}.post_author = %d )",
+			array_merge( $statuses, [ get_current_user_id() ] )
+		);
+	}
+
+	/**
+	 * Whether the current user has a capability of every post type.
+	 *
+	 * @param string[] $post_types The post types.
+	 * @param string   $cap        The capability, by its key in the capabilities of a post type.
+	 *
+	 * @return bool
+	 */
+	private function can_for_every( array $post_types, string $cap ): bool {
+		foreach ( $post_types as $post_type ) {
+			$object = get_post_type_object( $post_type );
+
+			if ( null === $object || ! isset( $object->cap->{$cap} ) || ! current_user_can( $object->cap->{$cap} ) ) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	/**
@@ -333,6 +409,17 @@ class ListTable extends \WP_List_Table {
 		return [
 			'link' => esc_html__( 'Link Posts', 'related-posts-for-wp' ),
 		];
+	}
+
+	/**
+	 * Limit the posts of the "all" view to those the current user can read.
+	 *
+	 * @param string $where The WHERE clause.
+	 *
+	 * @return string
+	 */
+	public function filter_readable_posts_where( $where ) {
+		return $where . $this->readable;
 	}
 
 	/**

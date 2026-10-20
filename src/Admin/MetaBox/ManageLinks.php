@@ -7,6 +7,7 @@
 
 namespace LV2\WordPress\RelatedPostsForWP\Admin\MetaBox;
 
+use LV2\WordPress\RelatedPostsForWP\Admin\PostAccess;
 use LV2\WordPress\RelatedPostsForWP\Compat\LegacyHooks;
 use LV2\WordPress\RelatedPostsForWP\Links\LinkRepository;
 use LV2\WordPress\RelatedPostsForWP\Main;
@@ -83,8 +84,9 @@ class ManageLinks implements Module {
 		echo "</span>\n";
 		echo "</div>\n";
 
-		// Links to deleted posts have no post (known issue K2).
-		$children = array_filter( $children );
+		// Links to deleted posts have no post (known issue K2), and posts the user can't read are left out, so their
+		// titles stay hidden; that also covers links that were added before the link screen checked this.
+		$children = array_filter( $children, [ PostAccess::class, 'can_read' ] );
 
 		if ( count( $children ) > 0 ) {
 			echo "<table class='wp-list-table widefat fixed pages rp4wp_table_manage sortable'>\n";
