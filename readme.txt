@@ -4,7 +4,7 @@ Donate link: https://www.barrykooij.com/donate/
 Tags: related, inline related posts, similar posts, contextual relations, seo bounce rate, internal links
 Requires at least: 6.8
 Tested up to: 7.1
-Stable tag: 3.0.0
+Stable tag: 3.0.1
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Requires PHP: 8.0
@@ -130,7 +130,7 @@ On the first request after the update, the links move to the new tables. Then ev
 
 == Changelog ==
 
-= 3.0.1: Unreleased =
+= 3.0.1: October 20, 2026 =
 * Security: Fixed an exposure of post titles that could be abused by users with the Contributor role or higher: linking a draft, pending, scheduled, private or trashed post of another user to a post of their own showed its title in the Related Posts meta box. The screen to add related posts now only links posts the user can read, and the meta box leaves out related posts the user can't read, also those linked before this fix.
 * Security: The All Posts view of the screen to add related posts no longer lists the private posts of other users, with their titles and dates, to users who can't read them. It also leaves posts the user can't read out of its count and its search, including on sites that offer drafts or other statuses there with the rp4wp_manual_link_post_statuses filter.
 * Tweak: The readme says more precisely what the update to 3.0 does, which posts get better related posts and which filters were removed.
