@@ -58,7 +58,7 @@
     "@wordpress/dom-ready": "4.19.1",
     "@wordpress/e2e-test-utils-playwright": "^2.1.0",
     "@wordpress/element": "6.19.1",
-    "@wordpress/env": "^11.16.0",
+    "@wordpress/env": "^12.0.0",
     "@wordpress/hooks": "4.19.1",
     "@wordpress/i18n": "5.19.1",
     "@wordpress/icons": "10.19.1",
@@ -71,16 +71,25 @@
     "sass": "^1.93.0",
     "terser": "^5.44.0",
     "typescript": "~6.0.3",
-    "vite": "^8.3.1",
+    "vite": "^8.3.5",
     "vitest": "^5.0.3"
   },
   "overrides": {
+    "@wordpress/components": {
+      "uuid": "^11.1.1"
+    },
+    "copy-webpack-plugin": {
+      "serialize-javascript": "^7.0.5"
+    },
     "markdownlint-cli": {
       "js-yaml": "^5.4.1",
       "smol-toml": "^1.9.0"
     },
     "micromark-extension-math": {
       "katex": "^0.18.2"
+    },
+    "sockjs": {
+      "uuid": "^11.1.1"
     }
   }
 }
