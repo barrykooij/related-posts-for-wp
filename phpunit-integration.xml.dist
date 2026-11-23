@@ -31,6 +31,7 @@
 		</include>
 		<report>
 			<html outputDirectory="coverage-integration"/>
+			<clover outputFile="coverage-integration.xml"/>
 			<text outputFile="php://stdout" showOnlySummary="true"/>
 		</report>
 	</coverage>

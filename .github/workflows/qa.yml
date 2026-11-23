@@ -68,6 +68,9 @@ jobs:
       - name: Unit tests with coverage
         if: matrix.php == '8.3'
         run: composer test:coverage
+      - name: Coverage summary
+        if: matrix.php == '8.3'
+        run: php scripts/coverage-summary.php coverage.xml 'Unit tests' >> "$GITHUB_STEP_SUMMARY"
       - name: Upload coverage
         if: matrix.php == '8.3'
         uses: actions/upload-artifact@v4
@@ -137,6 +140,40 @@ jobs:
       # The WordPress test suite leaves the ajax group out unless it is asked for.
       - name: Integration tests of the AJAX handlers
         run: npm run test:integration:ajax
+
+  # How much of the code the integration tests run. Measured only for now; a gate follows (the 3.1 plan, phase 1).
+  coverage:
+    name: Integration coverage
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          coverage: none
+          tools: composer:v2
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: composer install --no-interaction --no-progress
+      - run: npm ci --no-audit --no-fund
+      - name: Start wp-env with Xdebug
+        run: npx wp-env --config=.wp-env.test.json start --xdebug=coverage
+        env:
+          WP_ENV_PHP_VERSION: '8.0'
+      - name: Integration tests with coverage
+        run: npx wp-env --config=.wp-env.test.json run cli --env-cwd=wp-content/plugins/related-posts-for-wp vendor/bin/phpunit -c phpunit-integration.xml.dist
+      - name: Coverage summary
+        run: php scripts/coverage-summary.php coverage-integration.xml 'Integration tests' >> "$GITHUB_STEP_SUMMARY"
+      - name: Upload coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-integration
+          path: |
+            coverage-integration/
+            coverage-integration.xml
 
   e2e:
     name: E2E, WP ${{ matrix.wp }}

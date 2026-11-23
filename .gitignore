@@ -15,6 +15,7 @@
 /coverage/
 /coverage-integration/
 /coverage.xml
+/coverage-integration.xml
 /artifacts/
 /tests/e2e/.auth/
 
