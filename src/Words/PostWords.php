@@ -14,9 +14,10 @@ final class PostWords {
 
 	/**
 	 * Every word of the post that is not an ignored word, with how many times it counts (with the weights of the
-	 * sources: a title word counts 80 times), most first. The word cache picks the words it stores from these.
+	 * sources: a title word counts 5 times by default), most first. The word cache picks the words it stores from these;
+	 * the count saturates when they are weighed (see Statistics::saturate()).
 	 *
-	 * @var array<int|string, int>
+	 * @var array<int|string, float|int>
 	 */
 	public array $counts;
 
@@ -45,10 +46,10 @@ final class PostWords {
 	/**
 	 * Constructor.
 	 *
-	 * @param array<int|string, int> $counts   The words and how many times they count.
-	 * @param string                 $language The language.
-	 * @param int                    $tokens   How many words the sources have.
-	 * @param array<string, int>     $terms    The tokens for what it is part of and points to.
+	 * @param array<int|string, float|int> $counts   The words and how many times they count.
+	 * @param string                       $language The language.
+	 * @param int                          $tokens   How many words the sources have.
+	 * @param array<string, int>           $terms    The tokens for what it is part of and points to.
 	 */
 	public function __construct( array $counts, string $language, int $tokens, array $terms = [] ) {
 		$this->counts   = $counts;

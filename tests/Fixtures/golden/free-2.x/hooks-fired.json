@@ -95,6 +95,9 @@
     "rp4wp_supported_post_types": [
         1
     ],
+    "rp4wp_tf_saturation": [
+        1
+    ],
     "rp4wp_thumbnail_size": [
         1
     ],

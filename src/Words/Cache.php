@@ -92,7 +92,7 @@ class Cache {
 			array_push( $params, $post_id, (string) $word, 0, $post_type, $count, Tokenizer::VERSION );
 		}
 
-		$values = rtrim( str_repeat( '( %d, %s, %f, %s, %d, %d ),', count( $picked ) ), ',' );
+		$values = rtrim( str_repeat( '( %d, %s, %f, %s, %f, %d ),', count( $picked ) ), ',' );
 
 		try {
 			$had_words = Transaction::run(

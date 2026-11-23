@@ -28,12 +28,12 @@
                 "manual": false
             },
             {
-                "child": "homemade-pizza-dough",
+                "child": "focaccia-with-rosemary",
                 "position": 1,
                 "manual": false
             },
             {
-                "child": "focaccia-with-rosemary",
+                "child": "homemade-pizza-dough",
                 "position": 2,
                 "manual": false
             }
@@ -43,12 +43,12 @@
         "auto_linked": true,
         "children": [
             {
-                "child": "fresh-pasta-dough",
+                "child": "saving-tomato-seeds",
                 "position": 0,
                 "manual": false
             },
             {
-                "child": "saving-tomato-seeds",
+                "child": "fresh-pasta-dough",
                 "position": 1,
                 "manual": false
             },
@@ -108,12 +108,12 @@
                 "manual": false
             },
             {
-                "child": "banana-bread-recipe",
+                "child": "fresh-pasta-dough",
                 "position": 1,
                 "manual": false
             },
             {
-                "child": "fresh-pasta-dough",
+                "child": "banana-bread-recipe",
                 "position": 2,
                 "manual": false
             }
@@ -163,12 +163,12 @@
         "auto_linked": true,
         "children": [
             {
-                "child": "pour-over-coffee",
+                "child": "espresso-at-home",
                 "position": 0,
                 "manual": false
             },
             {
-                "child": "espresso-at-home",
+                "child": "pour-over-coffee",
                 "position": 1,
                 "manual": false
             },
@@ -203,17 +203,17 @@
         "auto_linked": true,
         "children": [
             {
-                "child": "hiking-gear-checklist",
+                "child": "rome-in-three-days",
                 "position": 0,
                 "manual": false
             },
             {
-                "child": "rome-in-three-days",
+                "child": "hiking-gear-checklist",
                 "position": 1,
                 "manual": false
             },
             {
-                "child": "tokyo-coffee-shops",
+                "child": "florence-food-tour",
                 "position": 2,
                 "manual": false
             }
@@ -233,7 +233,7 @@
                 "manual": false
             },
             {
-                "child": "tokyo-coffee-shops",
+                "child": "florence-food-tour",
                 "position": 2,
                 "manual": false
             }
@@ -253,7 +253,7 @@
                 "manual": false
             },
             {
-                "child": "rome-in-three-days",
+                "child": "osaka-street-food",
                 "position": 2,
                 "manual": false
             }
@@ -293,7 +293,7 @@
                 "manual": false
             },
             {
-                "child": "rome-in-three-days",
+                "child": "tokyo-coffee-shops",
                 "position": 2,
                 "manual": false
             }
@@ -343,12 +343,12 @@
         "auto_linked": true,
         "children": [
             {
-                "child": "hiking-the-dolomites",
+                "child": "packing-light",
                 "position": 0,
                 "manual": false
             },
             {
-                "child": "packing-light",
+                "child": "hiking-the-dolomites",
                 "position": 1,
                 "manual": false
             },
@@ -423,12 +423,12 @@
         "auto_linked": true,
         "children": [
             {
-                "child": "static-analysis-php",
+                "child": "wordpress-plugin-basics",
                 "position": 0,
                 "manual": false
             },
             {
-                "child": "wordpress-plugin-basics",
+                "child": "static-analysis-php",
                 "position": 1,
                 "manual": false
             },
@@ -468,12 +468,12 @@
                 "manual": false
             },
             {
-                "child": "unit-testing-wordpress",
+                "child": "php-8-features",
                 "position": 1,
                 "manual": false
             },
             {
-                "child": "php-8-features",
+                "child": "unit-testing-wordpress",
                 "position": 2,
                 "manual": false
             }
@@ -488,12 +488,12 @@
                 "manual": false
             },
             {
-                "child": "wordpress-plugin-basics",
+                "child": "unit-testing-wordpress",
                 "position": 1,
                 "manual": false
             },
             {
-                "child": "unit-testing-wordpress",
+                "child": "wordpress-plugin-basics",
                 "position": 2,
                 "manual": false
             }
@@ -553,7 +553,7 @@
                 "manual": false
             },
             {
-                "child": "static-analysis-php",
+                "child": "wordpress-hooks-explained",
                 "position": 2,
                 "manual": false
             }
@@ -583,12 +583,12 @@
         "auto_linked": true,
         "children": [
             {
-                "child": "wordpress-hooks-explained",
+                "child": "wordpress-plugin-basics",
                 "position": 0,
                 "manual": false
             },
             {
-                "child": "wordpress-plugin-basics",
+                "child": "wordpress-hooks-explained",
                 "position": 1,
                 "manual": false
             },
@@ -648,12 +648,12 @@
                 "manual": false
             },
             {
-                "child": "japanese-garden-design",
+                "child": "raised-vegetable-beds",
                 "position": 1,
                 "manual": false
             },
             {
-                "child": "raised-vegetable-beds",
+                "child": "japanese-garden-design",
                 "position": 2,
                 "manual": false
             }
@@ -668,12 +668,12 @@
                 "manual": false
             },
             {
-                "child": "growing-tomatoes",
+                "child": "lawn-care-autumn",
                 "position": 1,
                 "manual": false
             },
             {
-                "child": "lawn-care-autumn",
+                "child": "growing-tomatoes",
                 "position": 2,
                 "manual": false
             }
@@ -753,7 +753,7 @@
                 "manual": false
             },
             {
-                "child": "herb-garden-basil",
+                "child": "pruning-roses",
                 "position": 2,
                 "manual": false
             }

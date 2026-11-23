@@ -5,7 +5,7 @@
     "corpus_title": "Golden master corpus (40 posts, 4 topics)",
     "locale": "en_US",
     "order": 0,
-    "run": "2026-11-23 21:26:49",
+    "run": "2026-11-23 23:19:04",
     "environment": {
         "php": "8.0.30",
         "database": "12.3.3-MariaDB-ubu2404",
@@ -14,12 +14,12 @@
     },
     "metrics": {
         "evaluated": 40,
-        "precision_at_3": 0.725,
-        "precision_at_5": 0.62,
+        "precision_at_3": 0.7167,
+        "precision_at_5": 0.625,
         "success_at_3": 0.95,
         "random_precision_at_3": 0.2308,
         "full_lists": 0.925,
-        "coverage": 0.95,
+        "coverage": 0.925,
         "hub_share": 0.0609,
         "max_inbound": 7,
         "symmetry": 0.6783,
@@ -27,7 +27,7 @@
         "title_share": 0.2295,
         "words_per_post": 14.05,
         "posts": 40,
-        "index_ms_per_post": 9.03,
-        "related_ms_per_post": 1.31
+        "index_ms_per_post": 2.37,
+        "related_ms_per_post": 0.36
     }
 }

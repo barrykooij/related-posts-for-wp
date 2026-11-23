@@ -131,6 +131,7 @@ On the first request after the update, the links move to the new tables. Then ev
 == Changelog ==
 
 = 3.1.0: unreleased =
+* Feature: Related posts are found more precisely. A word that is in a post many times, or a word of its title, no longer outweighs the other words of the post as much, so posts about the same thing find each other more often. On the collections of posts we test with, up to 5 percent more of the related posts shown are about the same topic. After the update, a background job weighs the words of every post again and links your posts again; every post keeps its related posts until it gets its new ones, and the related posts you added by hand keep their place.
 * Tweak: Related posts load with fewer database queries: their authors, images and image details are loaded at once instead of one by one, so showing ten related posts costs as many queries as showing five. On a site without a persistent object cache, five related posts with images went from 26 queries to 10.
 * Fix: When a post stops being published, the posts that showed it get a new related post again, so they keep their number of related posts. In 3.0 only a post that was linked automatically itself was handled, and its place often stayed empty.
 * Fix: Related posts you added by hand to a post that stops being published stay, hidden while it isn't published, and show again in their place when it is. 3.0 removed them. A hidden related post takes no place, so the post still shows its number of related posts.

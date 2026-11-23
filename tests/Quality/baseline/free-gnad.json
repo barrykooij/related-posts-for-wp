@@ -5,7 +5,7 @@
     "corpus_title": "10kGNAD German news (222 per topic, 9 topics)",
     "locale": "de_DE",
     "order": 2,
-    "run": "2026-11-23 21:27:29",
+    "run": "2026-11-23 23:19:34",
     "environment": {
         "php": "8.0.30",
         "database": "12.3.3-MariaDB-ubu2404",
@@ -14,20 +14,20 @@
     },
     "metrics": {
         "evaluated": 1998,
-        "precision_at_3": 0.4535,
-        "precision_at_5": 0.4315,
-        "success_at_3": 0.7382,
+        "precision_at_3": 0.4771,
+        "precision_at_5": 0.4476,
+        "success_at_3": 0.7598,
         "random_precision_at_3": 0.1107,
         "full_lists": 1.0,
-        "coverage": 0.8789,
-        "hub_share": 0.0485,
-        "max_inbound": 32,
-        "symmetry": 0.5345,
+        "coverage": 0.8979,
+        "hub_share": 0.0372,
+        "max_inbound": 14,
+        "symmetry": 0.5572,
         "stop_word_leak": 0.0004,
         "title_share": 0.2825,
         "words_per_post": 24.77,
         "posts": 1998,
-        "index_ms_per_post": 5.33,
-        "related_ms_per_post": 0.71
+        "index_ms_per_post": 3.52,
+        "related_ms_per_post": 0.72
     }
 }

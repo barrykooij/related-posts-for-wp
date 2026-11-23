@@ -2,12 +2,12 @@
     "kind": "scale",
     "algorithm": "free",
     "corpus": "synthetic-50000",
-    "run": "2026-11-23 21:28:11",
+    "run": "2026-11-23 23:20:14",
     "metrics": {
         "posts": 50000,
-        "related_ms_median": 4.08,
-        "related_ms_p90": 6.37,
-        "related_ms_max": 6.84,
-        "seed_seconds": 24.5
+        "related_ms_median": 3.07,
+        "related_ms_p90": 4.51,
+        "related_ms_max": 4.74,
+        "seed_seconds": 22.1
     }
 }

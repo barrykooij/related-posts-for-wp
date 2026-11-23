@@ -154,7 +154,8 @@ class Extractor {
 		$language = $this->language_of( $post, $detection );
 		$ignored  = $this->ignored_words->lookup( $language );
 
-		// Count every word, as many times as the weight of its source.
+		// Count every word, as many times as the weight of its source. The count saturates when the words are weighed
+		// (see Statistics::saturate()).
 		$counts = [];
 		foreach ( $sources as [ $words, $weight ] ) {
 			if ( $weight <= 0 ) {
@@ -180,7 +181,9 @@ class Extractor {
 	 *
 	 * @param \WP_Post $post The post.
 	 *
-	 * @return array<int, array{text: string, weight: mixed, detect?: bool}>
+	 * @return array<int, array{text: string, weight: mixed, detect?: bool, type?: string}> The type says what the text
+	 *                                                                                    is: content, title, tag, cat
+	 *                                                                                    or link here.
 	 */
 	protected function sources( \WP_Post $post ): array {
 		$sources = [
@@ -188,11 +191,13 @@ class Extractor {
 				'text'   => (string) $post->post_content,
 				'weight' => 1,
 				'detect' => true,
+				'type'   => 'content',
 			],
 			[
 				'text'   => (string) $post->post_title,
 				'weight' => $this->weight( 'title' ),
 				'detect' => true,
+				'type'   => 'title',
 			],
 		];
 
@@ -201,6 +206,7 @@ class Extractor {
 			$sources[] = [
 				'text'   => (string) $name,
 				'weight' => $this->weight( 'tag' ),
+				'type'   => 'tag',
 			];
 		}
 
@@ -210,6 +216,7 @@ class Extractor {
 				$sources[] = [
 					'text'   => $category->name,
 					'weight' => $this->weight( 'cat' ),
+					'type'   => 'cat',
 				];
 			}
 		}
@@ -218,6 +225,7 @@ class Extractor {
 			$sources[] = [
 				'text'   => (string) get_post_field( 'post_title', $linked_post_id ),
 				'weight' => $this->weight( 'link' ),
+				'type'   => 'link',
 			];
 		}
 

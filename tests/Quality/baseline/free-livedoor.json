@@ -5,7 +5,7 @@
     "corpus_title": "livedoor news, Japanese (111 per topic, 9 topics)",
     "locale": "ja",
     "order": 3,
-    "run": "2026-11-23 21:27:44",
+    "run": "2026-11-23 23:19:50",
     "environment": {
         "php": "8.0.30",
         "database": "12.3.3-MariaDB-ubu2404",
@@ -14,20 +14,20 @@
     },
     "metrics": {
         "evaluated": 999,
-        "precision_at_3": 0.5232,
-        "precision_at_5": 0.4805,
-        "success_at_3": 0.7487,
+        "precision_at_3": 0.5309,
+        "precision_at_5": 0.4899,
+        "success_at_3": 0.7518,
         "random_precision_at_3": 0.1102,
         "full_lists": 0.8519,
-        "coverage": 0.8008,
-        "hub_share": 0.0535,
-        "max_inbound": 18,
-        "symmetry": 0.4932,
+        "coverage": 0.8148,
+        "hub_share": 0.0495,
+        "max_inbound": 17,
+        "symmetry": 0.4998,
         "stop_word_leak": 0.0013,
         "title_share": 0.1697,
         "words_per_post": 24.95,
         "posts": 999,
-        "index_ms_per_post": 10.87,
-        "related_ms_per_post": 0.46
+        "index_ms_per_post": 10.74,
+        "related_ms_per_post": 0.41
     }
 }

@@ -1,27 +1,27 @@
 {
     "publish": {
         "words": {
-            "cat:travel": "0.285905",
-            "coffee": "0.191179",
-            "espresso": "0.389817",
-            "fresh": "0.045416",
-            "italian": "0.191179",
-            "italy": "0.227080",
-            "pasta": "0.499576",
-            "plate": "0.079761",
-            "post:lifecycle-new-post": "0.079761",
-            "rome": "0.337901",
-            "tag:coffee": "0.207626",
-            "tag:italy": "0.227080",
-            "tag:pasta": "0.281584",
-            "taste": "0.064969",
-            "travel": "0.285905",
-            "walk": "0.056317"
+            "cat:travel": "0.240784",
+            "coffee": "0.214676",
+            "espresso": "0.410370",
+            "fresh": "0.069543",
+            "italian": "0.214676",
+            "italy": "0.254990",
+            "pasta": "0.400698",
+            "plate": "0.122133",
+            "post:lifecycle-new-post": "0.122133",
+            "rome": "0.355718",
+            "tag:coffee": "0.233145",
+            "tag:italy": "0.254990",
+            "tag:pasta": "0.316193",
+            "taste": "0.099484",
+            "travel": "0.240784",
+            "walk": "0.086235"
         },
         "children": [
             "rome-in-three-days",
-            "fresh-pasta-dough",
-            "espresso-at-home"
+            "espresso-at-home",
+            "fresh-pasta-dough"
         ]
     },
     "unpublish": {
@@ -33,8 +33,8 @@
         "children_of": {
             "fresh-pasta-dough": [
                 "lifecycle-new-post",
-                "homemade-pizza-dough",
-                "focaccia-with-rosemary"
+                "focaccia-with-rosemary",
+                "homemade-pizza-dough"
             ],
             "saving-tomato-seeds": [
                 "growing-tomatoes",

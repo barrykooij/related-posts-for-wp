@@ -37,6 +37,12 @@ final class Statistics {
 	public const AMOUNT = 25;
 
 	/**
+	 * How much term frequencies saturate by default (see saturate()): the best of the variants the quality harness
+	 * measured for 3.1 (`project/quality/tuning.md`).
+	 */
+	public const SATURATION = 10.0;
+
+	/**
 	 * The ceiling for the document frequency of the words the finder compares is at least this.
 	 */
 	private const CEILING_MINIMUM = 25;
@@ -80,19 +86,19 @@ final class Statistics {
 	 * The words a post stores: those with the highest `tf * idf`. On an empty words table every `idf` is the same, so
 	 * the words that count most are picked; words with the same `tf * idf` keep their order.
 	 *
-	 * @param array<int|string, int> $counts The words of the post and how many times each counts, most first.
-	 * @param array<string, int>     $df     In how many posts each word is.
-	 * @param int                    $posts  How many posts have words (`N`).
-	 * @param int                    $amount How many words to pick.
+	 * @param array<int|string, float|int> $counts The words of the post and how many times each counts, most first.
+	 * @param array<string, int>           $df     In how many posts each word is.
+	 * @param int                          $posts  How many posts have words (`N`).
+	 * @param int                          $amount How many words to pick.
 	 *
-	 * @return array<string, int> Word => how many times it counts.
+	 * @return array<string, float|int> Word => how many times it counts.
 	 */
 	public static function pick( array $counts, array $df, int $posts, int $amount ): array {
 		$scores = [];
 		$index  = 0;
 		foreach ( $counts as $word => $count ) {
 			$word     = (string) $word;
-			$scores[] = [ $word, (int) $count, $count * self::idf( $df[ $word ] ?? 0, $posts ), $index++ ];
+			$scores[] = [ $word, $count, $count * self::idf( $df[ $word ] ?? 0, $posts ), $index++ ];
 		}
 
 		usort(
@@ -113,16 +119,17 @@ final class Statistics {
 	/**
 	 * The weights of the words of a post: `tf * idf / norm`. Pass two does the same in the database.
 	 *
-	 * @param array<int|string, int> $counts The words of the post and how many times each counts.
-	 * @param array<string, int>     $df     In how many posts each word is.
-	 * @param int                    $posts  How many posts have words (`N`).
+	 * @param array<int|string, float|int> $counts The words of the post and how many times each counts.
+	 * @param array<string, int>           $df     In how many posts each word is.
+	 * @param int                          $posts  How many posts have words (`N`).
 	 *
 	 * @return array<string, float> Word => weight.
 	 */
 	public static function weights( array $counts, array $df, int $posts ): array {
+		$k       = self::saturation();
 		$weights = [];
 		foreach ( $counts as $word => $count ) {
-			$weights[ (string) $word ] = $count * self::idf( $df[ (string) $word ] ?? 1, $posts );
+			$weights[ (string) $word ] = self::saturate( (float) $count, $k ) * self::idf( $df[ (string) $word ] ?? 1, $posts );
 		}
 
 		$norm = sqrt(
@@ -278,26 +285,67 @@ final class Statistics {
 		$idf   = static function ( string $alias ) use ( $total ): string {
 			return sprintf( 'GREATEST( LN( %F / GREATEST( COALESCE( %s.df, 1 ), 1 ) ), 0 )', $total, $alias );
 		};
+		$k     = self::saturation();
+		$tf    = static function ( string $alias ) use ( $k ): string {
+			return $k > 0 ? sprintf( '( %1$s.tf * %2$F / ( %1$s.tf + %3$F ) )', $alias, $k + 1, $k ) : $alias . '.tf';
+		};
 
 		// phpcs:disable WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQL.NotPrepared -- The plugin's own tables; integers and a float from this class.
 		$wpdb->query(
 			$wpdb->prepare(
 				"UPDATE {$cache} C
 				INNER JOIN (
-					SELECT C2.post_id, SQRT( SUM( POW( C2.tf * {$idf( 'S2' )}, 2 ) ) ) AS norm
+					SELECT C2.post_id, SQRT( SUM( POW( {$tf( 'C2' )} * {$idf( 'S2' )}, 2 ) ) ) AS norm
 					FROM {$cache} C2
 					LEFT JOIN {$words} S2 ON S2.word = C2.word
 					WHERE C2.post_id IN ({$ids}) AND C2.version = %d
 					GROUP BY C2.post_id
 				) X ON X.post_id = C.post_id
 				LEFT JOIN {$words} S ON S.word = C.word
-				SET C.weight = IF( X.norm > 0, C.tf * {$idf( 'S' )} / X.norm, 0 )
+				SET C.weight = IF( X.norm > 0, {$tf( 'C' )} * {$idf( 'S' )} / X.norm, 0 )
 				WHERE C.post_id IN ({$ids}) AND C.version = %d",
 				Tokenizer::VERSION,
 				Tokenizer::VERSION
 			)
 		);
 		// phpcs:enable
+	}
+
+	/**
+	 * A term frequency, saturated: `tf * ( k + 1 ) / ( tf + k )`, as in BM25. A word that counts once still counts once;
+	 * one that counts forty times, or a title word that counts five times for every time it is there, no longer
+	 * outweighs the other words of the post as much. With `k` 0 the frequency stays as it is. The words a post stores
+	 * are picked by the frequency itself; it saturates when they are weighed (decision D66).
+	 *
+	 * @since 3.1.0
+	 *
+	 * @param float $tf The term frequency.
+	 * @param float $k  The saturation; 0 for none.
+	 *
+	 * @return float
+	 */
+	public static function saturate( float $tf, float $k ): float {
+		return $k > 0 && $tf > 0 ? $tf * ( $k + 1 ) / ( $tf + $k ) : $tf;
+	}
+
+	/**
+	 * How much term frequencies saturate: the `k` of saturate().
+	 *
+	 * @since 3.1.0
+	 *
+	 * @return float
+	 */
+	public static function saturation(): float {
+		/**
+		 * Filters how much the frequency of a word in a post saturates when the words are weighed:
+		 * `tf * ( k + 1 ) / ( tf + k )`. Higher values saturate less; 0 turns it off. A change applies to the words
+		 * weighed after it: rebuild everything (or, in Premium, refresh) to apply it to every post.
+		 *
+		 * @since 3.1.0
+		 *
+		 * @param float $k The saturation.
+		 */
+		return max( 0.0, (float) apply_filters( 'rp4wp_tf_saturation', self::SATURATION ) );
 	}
 
 	/**
