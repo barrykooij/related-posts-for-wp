@@ -116,6 +116,8 @@ abstract class QualityTestCase extends \WP_UnitTestCase {
 			$this->set_permalink_structure( $corpus->permalink_structure );
 		}
 
+		Variant::apply();
+
 		// The words a server without intl gets.
 		if ( '1' === getenv( 'RP4WP_QUALITY_NO_INTL' ) ) {
 			add_filter( 'rp4wp_tokenizer_use_intl', '__return_false' );

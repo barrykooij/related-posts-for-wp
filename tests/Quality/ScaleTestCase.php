@@ -131,6 +131,8 @@ abstract class ScaleTestCase extends \WP_UnitTestCase {
 			$this->markTestSkipped( 'RP4WP_QUALITY_SCALE is 0.' );
 		}
 
+		Variant::apply();
+
 		$algorithm = static::algorithm();
 		$count     = self::$count;
 		$first     = self::$first;

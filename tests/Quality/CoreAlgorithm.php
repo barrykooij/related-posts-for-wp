@@ -25,7 +25,7 @@ final class CoreAlgorithm implements Algorithm {
 	 * @return string
 	 */
 	public function name(): string {
-		return 'free';
+		return 'free' . Variant::suffix();
 	}
 
 	/**
@@ -90,7 +90,7 @@ final class CoreAlgorithm implements Algorithm {
 		$values = [];
 		foreach ( $vectors as $post_id => $words ) {
 			foreach ( $words as $word => $count ) {
-				$values[] = $wpdb->prepare( '(%d, %s, 0, %s, %d, %d)', $post_id, (string) $word, 'post', $count, Tokenizer::VERSION );
+				$values[] = $wpdb->prepare( '(%d, %s, 0, %s, %f, %d)', $post_id, (string) $word, 'post', $count, Tokenizer::VERSION );
 			}
 		}
 
