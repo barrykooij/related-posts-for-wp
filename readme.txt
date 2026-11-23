@@ -131,6 +131,7 @@ On the first request after the update, the links move to the new tables. Then ev
 == Changelog ==
 
 = 3.1.0: unreleased =
+* Tweak: Related posts load with fewer database queries: their authors, images and image details are loaded at once instead of one by one, so showing ten related posts costs as many queries as showing five. On a site without a persistent object cache, five related posts with images went from 26 queries to 10.
 * Fix: When a post stops being published, the posts that showed it get a new related post again, so they keep their number of related posts. In 3.0 only a post that was linked automatically itself was handled, and its place often stayed empty.
 * Fix: Related posts you added by hand to a post that stops being published stay, hidden while it isn't published, and show again in their place when it is. 3.0 removed them. A hidden related post takes no place, so the post still shows its number of related posts.
 * Fix: Deleting a post for good, also from the trash, with WP-CLI or by another plugin, removes its links, and the posts that showed it get a new related post. 3.0 kept those links, which pointed at nothing and left an empty place. The update removes the links that already point at nothing.

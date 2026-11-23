@@ -22,15 +22,15 @@ use LV2\WordPress\RelatedPostsForWP\Tests\Support\QueryLog;
 final class QueryBudgetTest extends TestCase {
 
 	/**
-	 * The most queries a render may send, by the number of related posts. These are the counts of 3.0.1: six, plus
-	 * four for every related post (its author and their meta, its thumbnail and the thumbnail's meta). Cache priming
-	 * (B1 in the 3.1 plan) lowers them and makes them independent of the number of related posts.
+	 * The most queries a render may send, by the number of related posts: the same for any number, because the
+	 * renderer loads the authors, the thumbnails and their meta of all related posts at once (B1 in the 3.1 plan).
+	 * 3.0.1 sent 26 for 5 related posts and 46 for 10: six, plus four for every related post.
 	 *
 	 * @var array<int, int>
 	 */
 	private const BUDGET = [
-		5  => 26,
-		10 => 46,
+		5  => 10,
+		10 => 10,
 	];
 
 	public function tear_down(): void {

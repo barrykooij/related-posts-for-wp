@@ -309,6 +309,9 @@ class LinkRepository {
 
 		// Without extra arguments, the related posts themselves in link order. 2.x returns null for links to deleted posts.
 		if ( count( $extra_args ) < 1 ) {
+			// One query for every related post that is not in the cache yet, instead of one each.
+			_prime_post_caches( array_values( $child_ids ) );
+
 			return array_map( 'get_post', $child_ids );
 		}
 

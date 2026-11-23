@@ -76,6 +76,8 @@ class Renderer implements RendererContract {
 			return '';
 		}
 
+		$this->prime( $related_posts );
+
 		// The markup is kept byte for byte from 2.x, including its escaping, because themes and caches depend on it.
 		// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped -- Output is buffered and returned; see above.
 		ob_start();
@@ -101,6 +103,7 @@ class Renderer implements RendererContract {
 
 		foreach ( $related_posts as $related_post ) {
 			setup_postdata( $related_post );
+			$link = $this->post_link( $related_post->ID );
 
 			/**
 			 * Fires before a related post is rendered.
@@ -133,7 +136,7 @@ class Renderer implements RendererContract {
 				do_action( 'rp4wp_before_image', $related_post );
 
 				echo "<div class='rp4wp-related-post-image'>" . PHP_EOL;
-				echo "<a href='" . $this->post_link( $related_post->ID ) . "'>";
+				echo "<a href='" . $link . "'>";
 				echo get_the_post_thumbnail( $related_post->ID, $thumb_size );
 				echo '</a>';
 				echo '</div>' . PHP_EOL;
@@ -170,7 +173,7 @@ class Renderer implements RendererContract {
 					 * @param \WP_Post $related_post The related post.
 					 */
 					apply_filters( 'rp4wp_post_title_html', "<a href='%s'>%s</a>", $related_post ),
-					$this->post_link( $related_post->ID ),
+					$link,
 					/**
 					 * Filters the title of a related post.
 					 *
@@ -258,6 +261,50 @@ class Renderer implements RendererContract {
 		);
 
 		return '<small><a href="https://www.relatedpostsforwp.com' . htmlentities( $query_string ) . '" target="_blank">Powered By Related Posts for WordPress</a></small>';
+	}
+
+	/**
+	 * Load what the related posts show in a few queries, before they render one by one: their authors, which
+	 * setup_postdata() reads, and with images their thumbnails and the meta of those (B1 in the 3.1 plan). Without this
+	 * every related post costs four queries on a site without a persistent object cache.
+	 *
+	 * @param array<int, \WP_Post|null> $related_posts The related posts.
+	 *
+	 * @return void
+	 */
+	private function prime( array $related_posts ): void {
+		$posts = array_filter(
+			$related_posts,
+			static function ( $post ): bool {
+				return $post instanceof \WP_Post;
+			}
+		);
+
+		cache_users(
+			array_map(
+				static function ( \WP_Post $post ): int {
+					return (int) $post->post_author;
+				},
+				$posts
+			)
+		);
+
+		if ( 1 != $this->settings->get( 'display_image' ) ) { // phpcs:ignore Universal.Operators.StrictComparisons.LooseNotEqual -- The option is stored as 1 or "1".
+			return;
+		}
+
+		$thumbnails = array_filter(
+			array_map(
+				static function ( \WP_Post $post ): int {
+					return (int) get_post_thumbnail_id( $post );
+				},
+				$posts
+			)
+		);
+
+		if ( [] !== $thumbnails ) {
+			_prime_post_caches( array_values( $thumbnails ), false, true );
+		}
 	}
 
 	/**
