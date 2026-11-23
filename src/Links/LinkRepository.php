@@ -293,9 +293,11 @@ class LinkRepository {
 	/**
 	 * The related posts of a post, in their order.
 	 *
-	 * Without extra arguments the result is keyed by link ID, with null for a link to a post that is gone (known issue
-	 * K2). With extra arguments, `posts_per_page`, `offset` and `order` apply to the links, and the related posts are
-	 * queried again with the rest and keyed by post ID; they keep the link order unless an `orderby` is given.
+	 * Without extra arguments the result is keyed by link ID, with null for a link to a post that is gone (2.x kept such
+	 * links, known issue K2). With extra arguments, `posts_per_page`, `offset` and `order` apply to the links to posts
+	 * that can show (published, or private for a logged-in user), so a link to a post that is not published takes no
+	 * place (known issue P20); the related posts are queried again with the rest and keyed by post ID, and keep the link
+	 * order unless an `orderby` is given.
 	 *
 	 * @param int                  $parent_id  The post.
 	 * @param array<string, mixed> $extra_args Extra WP_Query arguments.
@@ -303,7 +305,7 @@ class LinkRepository {
 	 * @return array<int, \WP_Post|null>
 	 */
 	public function get_children( int $parent_id, array $extra_args = [] ): array {
-		$child_ids = $this->child_ids( $parent_id, $extra_args );
+		$child_ids = $this->query( 'children', $parent_id, $extra_args, count( $extra_args ) > 0 );
 
 		// Without extra arguments, the related posts themselves in link order. 2.x returns null for links to deleted posts.
 		if ( count( $extra_args ) < 1 ) {
@@ -355,6 +357,71 @@ class LinkRepository {
 	 */
 	public function get_parents( int $child_id ): array {
 		return array_map( 'get_post', $this->query( 'parents', $child_id, [] ) );
+	}
+
+	/**
+	 * The posts that link to a post automatically: their automatic link goes when the post stops being published.
+	 *
+	 * @since 3.1.0
+	 *
+	 * @param int $child_id The related post.
+	 *
+	 * @return int[]
+	 */
+	public function automatic_parents( int $child_id ): array {
+		return $this->parent_ids( $child_id, false );
+	}
+
+	/**
+	 * The posts that link to a post by hand: their link stays while the post is not published, hidden.
+	 *
+	 * @since 3.1.0
+	 *
+	 * @param int $child_id The related post.
+	 *
+	 * @return int[]
+	 */
+	public function manual_parents( int $child_id ): array {
+		return $this->parent_ids( $child_id, true );
+	}
+
+	/**
+	 * The posts that link to a post, automatically or by hand.
+	 *
+	 * @param int  $child_id The related post.
+	 * @param bool $manual   Whether the links were added by hand.
+	 *
+	 * @return int[]
+	 */
+	private function parent_ids( int $child_id, bool $manual ): array {
+		global $wpdb;
+
+		if ( ! $this->can_write() ) {
+			return [];
+		}
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.NotPrepared -- The plugin's own table.
+		return array_map( 'intval', $wpdb->get_col( $wpdb->prepare( 'SELECT DISTINCT parent_id FROM ' . $this->table() . ' WHERE child_id = %d AND is_manual = %d ORDER BY parent_id', $child_id, $manual ? 1 : 0 ) ) );
+	}
+
+	/**
+	 * Remove the automatic links to a post; links added by hand stay. The link hooks fire per link.
+	 *
+	 * @since 3.1.0
+	 *
+	 * @param int $child_id The related post.
+	 *
+	 * @return void
+	 */
+	public function delete_automatic_to( int $child_id ): void {
+		global $wpdb;
+
+		if ( ! $this->can_write() ) {
+			return;
+		}
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.NotPrepared -- The plugin's own table.
+		$this->delete_many( array_map( 'intval', $wpdb->get_col( $wpdb->prepare( 'SELECT id FROM ' . $this->table() . ' WHERE child_id = %d AND is_manual = 0', $child_id ) ) ) );
 	}
 
 	/**
@@ -430,10 +497,12 @@ class LinkRepository {
 	 * @param string               $direction  `children`: the related posts of the post; `parents`: the posts that show it.
 	 * @param int                  $post_id    The post.
 	 * @param array<string, mixed> $extra_args `posts_per_page`, `offset` and `order` (without `orderby`).
+	 * @param bool                 $visible    For `children`: only links to posts that can show, before the limit and
+	 *                                         the offset apply.
 	 *
 	 * @return array<int, int> Link ID => the post at the other end.
 	 */
-	private function query( string $direction, int $post_id, array $extra_args ): array {
+	private function query( string $direction, int $post_id, array $extra_args, bool $visible = false ): array {
 		global $wpdb;
 
 		$query = [
@@ -462,11 +531,16 @@ class LinkRepository {
 		// Like the WP_Query of 2.x, an offset only counts with a limit.
 		$page = $limit > 0 ? $wpdb->prepare( ' LIMIT %d, %d', $offset, $limit ) : '';
 
+		// Published posts, and private posts for a logged-in user; WP_Query leaves out those the user can't read.
+		$statuses = "'" . implode( "','", is_user_logged_in() ? [ 'publish', 'private' ] : [ 'publish' ] ) . "'";
+		$visible  = $visible && 'children' === $direction;
+
 		// phpcs:disable WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQL.NotPrepared -- The plugin's tables; the values are prepared.
 		if ( Schema::has_links() ) {
 			[ $from, $to ] = 'children' === $direction ? [ 'parent_id', 'child_id' ] : [ 'child_id', 'parent_id' ];
 
-			$rows = $wpdb->get_results( $wpdb->prepare( "SELECT id, {$to} AS other FROM " . $this->table() . " WHERE {$from} = %d ORDER BY position {$order}, id {$order}", $post_id ) . $page );
+			$join = $visible ? " INNER JOIN {$wpdb->posts} V ON V.ID = K.child_id AND V.post_status IN ({$statuses})" : '';
+			$rows = $wpdb->get_results( $wpdb->prepare( "SELECT K.id, K.{$to} AS other FROM " . $this->table() . " K{$join} WHERE K.{$from} = %d ORDER BY K.position {$order}, K.id {$order}", $post_id ) . $page );
 		} else {
 			// The link posts of 2.x, while the migration moves them into the links table.
 			[ $from, $to ] = 'children' === $direction ? [ LinkPostType::META_PARENT, LinkPostType::META_CHILD ] : [ LinkPostType::META_CHILD, LinkPostType::META_PARENT ];
@@ -476,6 +550,7 @@ class LinkRepository {
 					"SELECT L.ID AS id, MIN( O.meta_value ) AS other FROM {$wpdb->posts} L
 					INNER JOIN {$wpdb->postmeta} F ON F.post_id = L.ID AND F.meta_key = %s AND F.meta_value = %s
 					LEFT JOIN {$wpdb->postmeta} O ON O.post_id = L.ID AND O.meta_key = %s
+					" . ( $visible ? "INNER JOIN {$wpdb->posts} V ON V.ID = O.meta_value AND V.post_status IN ({$statuses})" : '' ) . "
 					WHERE L.post_type = %s AND L.post_status = 'publish'
 					GROUP BY L.ID, L.menu_order ORDER BY L.menu_order {$order}, L.ID {$order}",
 					$from,

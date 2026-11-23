@@ -67,6 +67,11 @@ final class LegacyApiTest extends TestCase {
 		$file = $this->fixture( 'free-2.x-hooks.json' );
 
 		if ( Golden::is_recording() ) {
+			// The list holds the hooks of the 2.x code, which is gone; like the API snapshot, it is never recorded again.
+			if ( file_exists( $file ) ) {
+				$this->markTestSkipped( 'free-2.x-hooks.json already exists; the hooks of 2.x are never recorded again.' );
+			}
+
 			$root = dirname( __DIR__, 3 );
 			$this->write( $file, HookScanner::scan( [ $root . '/classes', $root . '/includes', $root . '/related-posts-for-wp.php' ] ) );
 			$this->assertFileExists( $file );

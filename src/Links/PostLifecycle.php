@@ -18,6 +18,10 @@ use LV2\WordPress\RelatedPostsForWP\Words\Cache;
 /**
  * Keeps words and links up to date when posts are published, unpublished and deleted.
  *
+ * A post that stops being published loses the automatic links to it, and the posts that showed it get a new related
+ * post; links added by hand to it stay, hidden until it is published again (known issue P20). A post that is deleted
+ * loses every link to and from it (known issue K2).
+ *
  * While the links can't be written (a migration moves them into the links table), a post that is published, or a
  * linked post that is unpublished, waits (see Deferred), and is handled on the first request after the move.
  */
@@ -35,6 +39,8 @@ class PostLifecycle implements Module {
 		LegacyHooks::add_action( 'RP4WP_Hook_Related_Save_Words', 'transition_post_status', [ self::class, 'save_words' ], 10, 3 );
 
 		add_action( 'transition_post_status', [ self::class, 'remove_words' ], 10, 3 );
+		// After the words are gone (priority 10), so the posts that showed the deleted post can't find it again.
+		add_action( 'delete_post', [ self::class, 'delete_links' ], 11, 1 );
 		add_action( 'init', [ self::class, 'run_deferred' ], 20 );
 	}
 
@@ -50,6 +56,12 @@ class PostLifecycle implements Module {
 		}
 
 		foreach ( Deferred::take() as $post_id => $what ) {
+			if ( Deferred::FORGET === $what ) {
+				self::forget_links( (int) $post_id );
+
+				continue;
+			}
+
 			$post = get_post( $post_id );
 			if ( ! $post instanceof \WP_Post ) {
 				continue;
@@ -127,11 +139,17 @@ class PostLifecycle implements Module {
 
 		// Marks the post as linked.
 		( new Linker( null, $links ) )->link_post( (int) $post->ID, (int) Main::get()->settings()->get( 'automatic_linking_post_amount' ) );
+
+		// A post published again shows in the posts that link to it by hand; they drop an automatic link to keep their
+		// amount (known issue P20).
+		self::relink( $links->manual_parents( (int) $post->ID ), $links );
 	}
 
 	/**
-	 * When an automatically linked post stops being published, remove its links and give each post that showed it a
-	 * new related post instead.
+	 * When a post stops being published, remove the automatic links to it and give each post that showed it a new
+	 * related post instead, by difference. Links added by hand to it stay: they are hidden while it is not published and
+	 * show again when it is (known issue P20; 2.x removed them, and only for a post that was linked automatically
+	 * itself). Its own links stay; it is linked again, by difference, when it is published again.
 	 *
 	 * @param string   $new_status The new status.
 	 * @param string   $old_status The old status.
@@ -151,23 +169,77 @@ class PostLifecycle implements Module {
 			return;
 		}
 
-		if ( ! PostState::is_linked( (int) $post->ID ) ) {
+		// The posts that link to it by hand show one related post fewer now, so they are relinked too.
+		$parents = array_values( array_unique( array_merge( $links->automatic_parents( (int) $post->ID ), $links->manual_parents( (int) $post->ID ) ) ) );
+		$links->delete_automatic_to( (int) $post->ID );
+		self::relink( $parents, $links );
+
+		PostState::unmark_linked( (int) $post->ID );
+	}
+
+	/**
+	 * When a post is deleted, whoever deletes it, remove every link to and from it and give each post that showed it a
+	 * new related post (known issue K2: 2.x kept the links, which then pointed at nothing).
+	 *
+	 * @param int $post_id The post.
+	 *
+	 * @return void
+	 */
+	public static function delete_links( $post_id ): void {
+		$post = get_post( (int) $post_id );
+		if ( ! $post instanceof \WP_Post || ! in_array( $post->post_type, PostTypes::supported(), true ) ) {
 			return;
 		}
 
-		$parents = $links->get_parents( (int) $post->ID );
+		if ( ! ( new LinkRepository() )->can_write() ) {
+			Deferred::add( (int) $post_id, Deferred::FORGET );
 
-		$links->delete_links_related_to( (int) $post->ID );
+			return;
+		}
 
-		$linker = new Linker( null, $links );
-		foreach ( $parents as $parent ) {
-			// 2.x keeps links to deleted posts (known issue K2); there is nothing to relink for those.
-			if ( null !== $parent ) {
-				$linker->link_post( (int) $parent->ID, 1 );
+		self::forget_links( (int) $post_id );
+	}
+
+	/**
+	 * Remove every link to and from a post, and relink the posts that showed it, by difference.
+	 *
+	 * @param int $post_id The post.
+	 *
+	 * @return void
+	 */
+	private static function forget_links( int $post_id ): void {
+		$links   = new LinkRepository();
+		$parents = [];
+		foreach ( $links->get_parents( $post_id ) as $parent ) {
+			if ( null !== $parent && $parent->ID !== $post_id ) {
+				$parents[] = (int) $parent->ID;
 			}
 		}
 
-		PostState::unmark_linked( (int) $post->ID );
+		$links->delete_links_related_to( $post_id );
+
+		if ( self::is_auto_linking_on() ) {
+			self::relink( array_values( array_unique( $parents ) ), $links );
+		}
+	}
+
+	/**
+	 * Relink posts that lost a related post, by difference, when they are published and were linked automatically.
+	 *
+	 * @param int[]          $post_ids The posts.
+	 * @param LinkRepository $links    The links.
+	 *
+	 * @return void
+	 */
+	private static function relink( array $post_ids, LinkRepository $links ): void {
+		$linker = new Linker( null, $links );
+		$amount = (int) Main::get()->settings()->get( 'automatic_linking_post_amount' );
+
+		foreach ( $post_ids as $post_id ) {
+			if ( 'publish' === get_post_status( $post_id ) && PostState::is_linked( $post_id ) ) {
+				$linker->relink_post( $post_id, $amount );
+			}
+		}
 	}
 
 	/**

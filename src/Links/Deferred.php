@@ -30,10 +30,15 @@ final class Deferred {
 	public const UNLINK = 'unlink';
 
 	/**
+	 * Remove the links to and from a post that was deleted.
+	 */
+	public const FORGET = 'forget';
+
+	/**
 	 * Remember what to do with a post; the latest wish counts.
 	 *
 	 * @param int    $post_id The post.
-	 * @param string $what    LINK or UNLINK.
+	 * @param string $what    LINK, UNLINK or FORGET.
 	 *
 	 * @return void
 	 */
@@ -56,7 +61,7 @@ final class Deferred {
 	/**
 	 * Take the posts that wait, so each is handled once.
 	 *
-	 * @return array<int, string> Post ID => LINK or UNLINK.
+	 * @return array<int, string> Post ID => LINK, UNLINK or FORGET.
 	 */
 	public static function take(): array {
 		$deferred = self::all();

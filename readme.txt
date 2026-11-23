@@ -130,6 +130,12 @@ On the first request after the update, the links move to the new tables. Then ev
 
 == Changelog ==
 
+= 3.1.0: unreleased =
+* Fix: When a post stops being published, the posts that showed it get a new related post again, so they keep their number of related posts. In 3.0 only a post that was linked automatically itself was handled, and its place often stayed empty.
+* Fix: Related posts you added by hand to a post that stops being published stay, hidden while it isn't published, and show again in their place when it is. 3.0 removed them. A hidden related post takes no place, so the post still shows its number of related posts.
+* Fix: Deleting a post for good, also from the trash, with WP-CLI or by another plugin, removes its links, and the posts that showed it get a new related post. 3.0 kept those links, which pointed at nothing and left an empty place. The update removes the links that already point at nothing.
+* Fix: With WPML, the screen to add related posts keeps the language when it goes back to the editor, and in its cancel link, its search and its Link Post links.
+
 = 3.0.1: October 20, 2026 =
 * Security: Fixed an exposure of post titles that could be abused by users with the Contributor role or higher: linking a draft, pending, scheduled, private or trashed post of another user to a post of their own showed its title in the Related Posts meta box. The screen to add related posts now only links posts the user can read, and the meta box leaves out related posts the user can't read, also those linked before this fix.
 * Security: The All Posts view of the screen to add related posts no longer lists the private posts of other users, with their titles and dates, to users who can't read them. It also leaves posts the user can't read out of its count and its search, including on sites that offer drafts or other statuses there with the rp4wp_manual_link_post_statuses filter.

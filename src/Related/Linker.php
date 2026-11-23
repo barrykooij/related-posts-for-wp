@@ -97,7 +97,9 @@ class Linker {
 	/**
 	 * Link a post to its most related posts again, without a moment in which it shows fewer of them.
 	 *
-	 * Links added by hand stay, with their place. The automatic links are compared with the related posts found now:
+	 * Links added by hand stay, with their place; one to a post that is not published takes no place of the amount
+	 * (known issue P20), and shows again when that post is published again. The automatic links are compared with the
+	 * related posts found now:
 	 * links to posts that are still related stay, links to the others are replaced. The new links are added before the
 	 * old ones go, all in one transaction, and the automatic links take the free places in order of relevance. When
 	 * nothing is found at all, for example because the words of the post are gone, the post keeps its links.
@@ -124,7 +126,13 @@ class Linker {
 			}
 		}
 
-		$wanted   = max( 0, $amount - count( $manual ) );
+		$shown    = array_filter(
+			$manual,
+			static function ( array $row ): bool {
+				return 'publish' === get_post_status( $row['child'] );
+			}
+		);
+		$wanted   = max( 0, $amount - count( $shown ) );
 		$children = $wanted > 0 ? $this->wanted_children( $post_id, $wanted, array_column( $manual, 'child' ), array_column( $automatic, 'child' ) ) : [];
 
 		if ( $wanted > 0 && count( $children ) < 1 && count( $automatic ) > 0 ) {

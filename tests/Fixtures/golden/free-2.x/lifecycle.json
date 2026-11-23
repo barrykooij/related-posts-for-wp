@@ -32,13 +32,14 @@
         "parents_after": [],
         "children_of": {
             "fresh-pasta-dough": [
+                "lifecycle-new-post",
                 "homemade-pizza-dough",
-                "focaccia-with-rosemary",
-                "lifecycle-new-post"
+                "focaccia-with-rosemary"
             ],
             "saving-tomato-seeds": [
                 "growing-tomatoes",
-                "herb-garden-basil"
+                "herb-garden-basil",
+                "pruning-roses"
             ]
         }
     },
