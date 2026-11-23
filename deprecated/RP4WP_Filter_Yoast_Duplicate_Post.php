@@ -36,9 +36,9 @@ class RP4WP_Filter_Yoast_Duplicate_Post extends RP4WP_Filter {
 	 *
 	 * @deprecated 3.0.0
 	 *
-	 * @param array $meta_excludelist The meta keys.
+	 * @param string[] $meta_excludelist The meta keys.
 	 *
-	 * @return array
+	 * @return string[]
 	 */
 	public function run( $meta_excludelist ) {
 		Deprecation::method( __METHOD__, YoastDuplicatePost::class . '::exclude_meta()' );

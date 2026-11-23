@@ -36,7 +36,7 @@ class RP4WP_Manager_Filter {
 	/**
 	 * Constructor.
 	 *
-	 * @param array $filter_names The filters to load, like "after_post".
+	 * @param string[] $filter_names The filters to load, like "after_post".
 	 */
 	public function __construct( array $filter_names ) {
 		Deprecation::class_used( __CLASS__, LegacyHooks::class );

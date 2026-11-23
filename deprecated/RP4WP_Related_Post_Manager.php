@@ -32,7 +32,7 @@ class RP4WP_Related_Post_Manager {
 	 * @param int $post_id The post.
 	 * @param int $limit   The maximum number of posts; -1 for all.
 	 *
-	 * @return array
+	 * @return object[]
 	 */
 	public function get_related_posts( $post_id, $limit = -1 ) {
 		Deprecation::method( __METHOD__, Finder::class . '::related_posts()' );
@@ -47,7 +47,7 @@ class RP4WP_Related_Post_Manager {
 	 *
 	 * @param int $limit The maximum number of IDs.
 	 *
-	 * @return array
+	 * @return int[]
 	 */
 	public function get_not_auto_linked_posts_ids( $limit ) {
 		Deprecation::method( __METHOD__, Finder::class . '::not_auto_linked_post_ids()' );
@@ -106,7 +106,7 @@ class RP4WP_Related_Post_Manager {
 	 *
 	 * @deprecated 3.0.0
 	 *
-	 * @param array $batch The batch data.
+	 * @param array<string, mixed> $batch The batch data.
 	 *
 	 * @return mixed
 	 */
@@ -121,7 +121,7 @@ class RP4WP_Related_Post_Manager {
 	 *
 	 * @deprecated 3.0.0
 	 *
-	 * @param array $batch The batch data.
+	 * @param array{meta: string[]} $batch The batch data.
 	 *
 	 * @return string
 	 */
@@ -170,7 +170,7 @@ class RP4WP_Related_Post_Manager {
 	 *
 	 * @deprecated 3.0.0
 	 *
-	 * @return array
+	 * @return string[]
 	 */
 	public static function get_supported_post_types() {
 		Deprecation::method( __METHOD__, PostTypes::class . '::supported()' );

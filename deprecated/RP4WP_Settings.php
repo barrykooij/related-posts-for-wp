@@ -53,7 +53,7 @@ class RP4WP_Settings {
 	 *
 	 * @deprecated 3.0.0
 	 *
-	 * @param array $section The section.
+	 * @param array<string, mixed> $section The section.
 	 *
 	 * @return void
 	 */
@@ -68,7 +68,7 @@ class RP4WP_Settings {
 	 *
 	 * @deprecated 3.0.0
 	 *
-	 * @param array $field The field.
+	 * @param array<string, mixed> $field The field.
 	 *
 	 * @return void
 	 */
@@ -83,9 +83,9 @@ class RP4WP_Settings {
 	 *
 	 * @deprecated 3.0.0
 	 *
-	 * @param array $post_data The posted settings.
+	 * @param array<string, mixed> $post_data The posted settings.
 	 *
-	 * @return array
+	 * @return array<string, mixed>
 	 */
 	public function sanitize_option( $post_data ) {
 		Deprecation::method( __METHOD__, Settings::class . '::sanitize()' );

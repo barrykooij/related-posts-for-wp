@@ -36,7 +36,7 @@ class RP4WP_Manager_Hook {
 	/**
 	 * Constructor.
 	 *
-	 * @param array $action_names The hooks to load, like "frontend_css".
+	 * @param string[] $action_names The hooks to load, like "frontend_css".
 	 */
 	public function __construct( array $action_names ) {
 		Deprecation::class_used( __CLASS__, LegacyHooks::class );

@@ -104,6 +104,7 @@ final class ApiSnapshot {
 	 * Describe a class.
 	 *
 	 * @param \ReflectionClass $class The class.
+	 * @phpstan-param \ReflectionClass<object> $class
 	 *
 	 * @return array<string, mixed>
 	 */
@@ -161,6 +162,7 @@ final class ApiSnapshot {
 	 * Whether a class belongs to the plugin (a 2.x class or one of its new classes), not to WordPress core.
 	 *
 	 * @param \ReflectionClass $class The class.
+	 * @phpstan-param \ReflectionClass<object> $class
 	 *
 	 * @return bool
 	 */

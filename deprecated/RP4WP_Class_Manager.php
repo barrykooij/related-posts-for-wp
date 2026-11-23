@@ -19,7 +19,7 @@ class RP4WP_Class_Manager {
 	 *
 	 * @deprecated 3.0.0
 	 *
-	 * @param array $part The match.
+	 * @param string[] $part The match.
 	 *
 	 * @return string
 	 */

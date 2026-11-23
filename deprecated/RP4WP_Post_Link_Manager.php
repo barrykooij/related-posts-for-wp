@@ -84,10 +84,10 @@ class RP4WP_Post_Link_Manager {
 	 *
 	 * @deprecated 3.0.0
 	 *
-	 * @param int   $parent_id  The parent post.
-	 * @param array $extra_args Extra WP_Query arguments.
+	 * @param int                  $parent_id  The parent post.
+	 * @param array<string, mixed> $extra_args Extra WP_Query arguments.
 	 *
-	 * @return array
+	 * @return array<int, \WP_Post|null>
 	 */
 	public function get_children( $parent_id, $extra_args = array() ) {
 		Deprecation::method( __METHOD__, LinkRepository::class . '::get_children()' );
@@ -102,7 +102,7 @@ class RP4WP_Post_Link_Manager {
 	 *
 	 * @param int $child_id The child post.
 	 *
-	 * @return array
+	 * @return array<int, \WP_Post|null>
 	 */
 	public function get_parents( $child_id ) {
 		Deprecation::method( __METHOD__, LinkRepository::class . '::get_parents()' );

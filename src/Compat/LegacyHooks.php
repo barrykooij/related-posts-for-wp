@@ -26,12 +26,12 @@ class LegacyHooks {
 	/**
 	 * Add an action under the name of its 2.x hook class.
 	 *
-	 * @param string   $legacy_class The 2.x class, for example RP4WP_Hook_Frontend_Css.
-	 * @param string   $tag          The WordPress action.
-	 * @param callable $callback     The callback.
-	 * @param int      $priority     The priority.
-	 * @param int      $args         The number of arguments.
-	 * @param array    $methods      Other public methods of the 2.x class: name => callable.
+	 * @param string                  $legacy_class The 2.x class, for example RP4WP_Hook_Frontend_Css.
+	 * @param string                  $tag          The WordPress action.
+	 * @param callable                $callback     The callback.
+	 * @param int                     $priority     The priority.
+	 * @param int                     $args         The number of arguments.
+	 * @param array<string, callable> $methods Other public methods of the 2.x class: name => callable.
 	 *
 	 * @return LegacyAction
 	 */
@@ -48,12 +48,12 @@ class LegacyHooks {
 	/**
 	 * Add a filter under the name of its 2.x filter class.
 	 *
-	 * @param string   $legacy_class The 2.x class, for example RP4WP_Filter_After_Post.
-	 * @param string   $tag          The WordPress filter.
-	 * @param callable $callback     The callback.
-	 * @param int      $priority     The priority.
-	 * @param int      $args         The number of arguments.
-	 * @param array    $methods      Other public methods of the 2.x class: name => callable.
+	 * @param string                  $legacy_class The 2.x class, for example RP4WP_Filter_After_Post.
+	 * @param string                  $tag          The WordPress filter.
+	 * @param callable                $callback     The callback.
+	 * @param int                     $priority     The priority.
+	 * @param int                     $args         The number of arguments.
+	 * @param array<string, callable> $methods Other public methods of the 2.x class: name => callable.
 	 *
 	 * @return LegacyFilter
 	 */

@@ -253,8 +253,8 @@ final class LinkPermissionsTest extends TestCase {
 	/**
 	 * Fill the request the way the bulk link form posts it.
 	 *
-	 * @param int   $parent_id The parent post ID.
-	 * @param array $children  The posted child values.
+	 * @param int     $parent_id The parent post ID.
+	 * @param mixed[] $children  The posted child values.
 	 *
 	 * @return void
 	 */

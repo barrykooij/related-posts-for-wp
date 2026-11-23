@@ -49,7 +49,7 @@ class RP4WP_Hook_Shortcode extends RP4WP_Hook {
 	 *
 	 * @deprecated 3.0.0
 	 *
-	 * @param array $atts The shortcode attributes.
+	 * @param array<string, mixed> $atts The shortcode attributes.
 	 *
 	 * @return string
 	 */

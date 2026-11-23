@@ -36,9 +36,9 @@ class RP4WP_Filter_Plugin_Links extends RP4WP_Filter {
 	 *
 	 * @deprecated 3.0.0
 	 *
-	 * @param array $links The links.
+	 * @param array<int|string, string> $links The links.
 	 *
-	 * @return array
+	 * @return array<int|string, string>
 	 */
 	public function run( $links ) {
 		Deprecation::method( __METHOD__, PluginLinks::class . '::add()' );

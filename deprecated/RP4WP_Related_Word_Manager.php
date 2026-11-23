@@ -90,7 +90,7 @@ class RP4WP_Related_Word_Manager {
 	 *
 	 * @param int $post_id The post.
 	 *
-	 * @return array
+	 * @return array<string, float>
 	 */
 	public function get_words_of_post( $post_id ) {
 		Deprecation::method( __METHOD__, Extractor::class . '::words_of_post()' );
@@ -120,7 +120,7 @@ class RP4WP_Related_Word_Manager {
 	 *
 	 * @param int $limit The maximum number of IDs; -1 for all.
 	 *
-	 * @return array
+	 * @return string[]
 	 */
 	public function get_uncached_post_ids( $limit = -1 ) {
 		Deprecation::method( __METHOD__, Cache::class . '::uncached_post_ids()' );

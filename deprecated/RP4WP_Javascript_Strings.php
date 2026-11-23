@@ -20,7 +20,7 @@ class RP4WP_Javascript_Strings {
 	 *
 	 * @deprecated 3.0.0
 	 *
-	 * @return array
+	 * @return array<string, string>
 	 */
 	public static function get() {
 		Deprecation::method( __METHOD__, Assets::class . '::javascript_strings()' );
