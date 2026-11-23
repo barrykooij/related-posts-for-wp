@@ -53,6 +53,7 @@
 /coverage-integration
 /coverage.xml
 /coverage-integration.xml
+/coverage-gate.json
 /artifacts
 
 # OS
