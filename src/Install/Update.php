@@ -15,14 +15,18 @@ use LV2\WordPress\RelatedPostsForWP\Install\Jobs\Queue;
 use LV2\WordPress\RelatedPostsForWP\Module;
 
 /**
- * The update to 3.0 (decision D55): once the migrations are through, a background job reads every post again with the
- * tokenizer of 3.0, weighs the words, and links every post that was linked automatically again, by difference, so no
- * post shows fewer related posts at any moment and links added by hand stay. Free and premium alike: premium's planner
- * plans the job per post type.
+ * The update job (decisions D55 and D72): once the migrations are through, a background job brings the related posts up
+ * to date with a new version, so no post shows fewer related posts at any moment and links added by hand stay. Free and
+ * premium alike: premium's planner plans the job per post type.
  *
- * A migration asks for the job on a site that has data from 2.x or an earlier 3.0 build; this module starts it on the
- * next request, when no other job runs. The job is no installation: it does not start the wizard. A notice tells the
- * admin what is happening, and when it is done.
+ * A migration of either plugin asks for the job with request(), saying how much has to be done (the scope):
+ * - `read`: read every post again (a new way of finding words), weigh the words and relink every post that was linked
+ *   automatically, by difference; the update to 3.0 was one;
+ * - `weigh`: weigh the words again and relink (a new way of weighing them);
+ * - `relink`: relink only, every post or some posts.
+ * Requests merge into one job that does the most any of them asked for. This module starts it on the next request,
+ * when no other job runs. The job is no installation: it does not start the wizard. A notice tells the admin what is
+ * happening, and when it is done, unless every request asked for no notice.
  *
  * With a persistent object cache, an autoloaded option can come back stale: every autoloaded option sits in one cached
  * entry, and a request that loaded it earlier can write its older copy back. So the notice keeps its state in an option
@@ -32,10 +36,16 @@ use LV2\WordPress\RelatedPostsForWP\Module;
 final class Update implements Module {
 
 	/**
-	 * The option that says whether the job of the update still has to start, as `pending`. Autoloaded, so the check on
-	 * every request costs nothing.
+	 * The option that says whether the job of the update still has to start, as `pending`, and what it does: `scope`,
+	 * `versions` (the versions that asked for it), `post_ids` (null for every post) and `notice`. Autoloaded, so the
+	 * check on every request costs nothing.
 	 */
 	public const OPTION = 'rp4wp_update';
+
+	/**
+	 * The scopes, from the least to the most work.
+	 */
+	public const SCOPES = [ 'relink', 'weigh', 'read' ];
 
 	/**
 	 * The option with what the notice shows: `running` or `done`; gone once the notice is dismissed. Not autoloaded, so
@@ -80,6 +90,68 @@ final class Update implements Module {
 	}
 
 	/**
+	 * Ask for the update job, from a migration. Requests merge with what is pending (see merge()); the job starts on a
+	 * request after the migrations, when no other job runs.
+	 *
+	 * @since 3.1.0
+	 *
+	 * @param string     $scope    What has to be done: `read`, `weigh` or `relink` (see SCOPES).
+	 * @param string     $version  The version that asks, for the notice, for example `3.1.0`.
+	 * @param int[]|null $post_ids For `relink`: the posts to relink; null for every post linked automatically.
+	 * @param bool       $notice   Whether the admin sees a notice while it runs and when it is done.
+	 *
+	 * @return void
+	 */
+	public static function request( string $scope, string $version, ?array $post_ids = null, bool $notice = true ): void {
+		update_option( self::OPTION, self::merge( self::state(), $scope, $version, $post_ids, $notice ), true );
+	}
+
+	/**
+	 * A request merged into the state of the update: the widest scope wins, the versions add up, a list of posts only
+	 * counts for `relink` (and every post wins over a list), and the notice shows when any request wants it. A state that
+	 * is not pending starts over.
+	 *
+	 * @param array<string, mixed> $state    The state, as stored (see state()).
+	 * @param string               $scope    The scope of the request.
+	 * @param string               $version  The version that asks.
+	 * @param int[]|null           $post_ids The posts to relink, or null for every post.
+	 * @param bool                 $notice   Whether the request wants the notice.
+	 *
+	 * @return array{pending: true, scope: string, versions: string[], post_ids: int[]|null, notice: bool}
+	 */
+	public static function merge( array $state, string $scope, string $version, ?array $post_ids, bool $notice ): array {
+		$scope = in_array( $scope, self::SCOPES, true ) ? $scope : 'read';
+		$ids   = null === $post_ids ? null : array_values( array_unique( array_map( 'intval', $post_ids ) ) );
+
+		if ( empty( $state['pending'] ) ) {
+			return [
+				'pending'  => true,
+				'scope'    => $scope,
+				'versions' => [ $version ],
+				'post_ids' => 'relink' === $scope ? $ids : null,
+				'notice'   => $notice,
+			];
+		}
+
+		$current = self::scope_of( $state );
+		$wider   = array_search( $scope, self::SCOPES, true ) > array_search( $current, self::SCOPES, true ) ? $scope : $current;
+		$before  = array_key_exists( 'post_ids', $state ) && is_array( $state['post_ids'] ) ? array_map( 'intval', $state['post_ids'] ) : null;
+
+		$merged_ids = null;
+		if ( 'relink' === $wider && null !== $before && null !== $ids ) {
+			$merged_ids = array_values( array_unique( array_merge( $before, $ids ) ) );
+		}
+
+		return [
+			'pending'  => true,
+			'scope'    => $wider,
+			'versions' => array_values( array_unique( array_merge( self::versions_of( $state ), [ $version ] ) ) ),
+			'post_ids' => $merged_ids,
+			'notice'   => $notice || ! array_key_exists( 'notice', $state ) || ! empty( $state['notice'] ),
+		];
+	}
+
+	/**
 	 * Start the job of the update when a migration asked for it, every migration is done (premium's reset of the
 	 * weights among them) and no other job runs. Until then, every post keeps the related posts it has.
 	 *
@@ -91,20 +163,42 @@ final class Update implements Module {
 		}
 
 		// The cache can say pending after the job started; only the database decides.
-		if ( ! self::pending_in_database() ) {
+		$state = self::stored_in_database();
+		if ( null === $state || empty( $state['pending'] ) ) {
 			wp_cache_delete( 'alloptions', 'options' );
 			wp_cache_delete( self::OPTION, 'options' );
 
 			return;
 		}
 
-		$job = ( new Queue() )->start( [ 'update' => true ] );
+		$scope  = self::scope_of( $state );
+		$notice = ! array_key_exists( 'notice', $state ) || ! empty( $state['notice'] );
+		$job    = ( new Queue() )->start(
+			[
+				'update'   => true,
+				'scope'    => $scope,
+				'versions' => self::versions_of( $state ),
+				'post_ids' => 'relink' === $scope && isset( $state['post_ids'] ) && is_array( $state['post_ids'] ) ? array_map( 'intval', $state['post_ids'] ) : null,
+				'notice'   => $notice,
+			]
+		);
 		if ( $job instanceof \WP_Error ) {
 			return;
 		}
 
-		update_option( self::OPTION, [ 'pending' => false ], true );
-		self::set_notice( 'running' );
+		// The versions stay, for the notice once the job is done.
+		update_option(
+			self::OPTION,
+			[
+				'pending'  => false,
+				'versions' => self::versions_of( $state ),
+			],
+			true
+		);
+
+		if ( $notice ) {
+			self::set_notice( 'running' );
+		}
 	}
 
 	/**
@@ -153,7 +247,7 @@ final class Update implements Module {
 	 * @return void
 	 */
 	public static function done( $job ): void {
-		if ( $job instanceof Job && self::is_update( $job ) ) {
+		if ( $job instanceof Job && self::is_update( $job ) && ( ! array_key_exists( 'notice', $job->request ) || ! empty( $job->request['notice'] ) ) ) {
 			self::set_notice( 'done' );
 		}
 	}
@@ -205,11 +299,21 @@ final class Update implements Module {
 		}
 
 		if ( 'done' === $notice ) {
+			$versions = self::versions_of( self::state() );
+			$version  = (string) end( $versions );
+			$message  = in_array( '3.0.0', $versions, true )
+				? __( 'Your related posts are up to date. Related Posts for WordPress 3.0 finds related posts in a new, more precise way, and linked your posts again; the related posts you added by hand kept their place.', 'related-posts-for-wp' )
+				: sprintf(
+					/* translators: %s: the version, for example 3.1 */
+					__( 'Your related posts are up to date. Related Posts for WordPress %s improved how it finds related posts and linked your posts again; the related posts you added by hand kept their place.', 'related-posts-for-wp' ),
+					self::short_version( $version )
+				);
+
 			self::print_notice(
 				'success',
-				__( 'Your related posts are up to date. Related Posts for WordPress 3.0 finds related posts in a new, more precise way, and linked your posts again; the related posts you added by hand kept their place.', 'related-posts-for-wp' ),
+				$message,
 				[
-					__( 'What changed', 'related-posts-for-wp' ) => self::notes_url(),
+					__( 'What changed', 'related-posts-for-wp' ) => self::notes_url( in_array( '3.0.0', $versions, true ) ? '3.0.0' : $version ),
 					__( 'Dismiss', 'related-posts-for-wp' )      => wp_nonce_url( admin_url( 'admin-post.php?action=' . self::DISMISS ), self::DISMISS ),
 				]
 			);
@@ -256,19 +360,77 @@ final class Update implements Module {
 	}
 
 	/**
-	 * Where the notice says what changed.
+	 * Where the notice says what changed in a version.
+	 *
+	 * @param string $version The version, for example 3.1.0.
 	 *
 	 * @return string
 	 */
-	private static function notes_url(): string {
+	private static function notes_url( string $version ): string {
+		$page = '3.0.0' === $version || '' === $version ? '3-0' : str_replace( '.', '-', self::short_version( $version ) );
+
 		/**
-		 * Filters where the notice about the update of 3.0 says what changed.
+		 * Filters where the notice about the update says what changed.
 		 *
 		 * @since 3.0.0
+		 * @since 3.1.0 The version that asked for the update.
 		 *
-		 * @param string $url The address. Default the page about version 3 on relatedpostsforwp.com.
+		 * @param string $url     The address. Default the page about the version on relatedpostsforwp.com.
+		 * @param string $version The version, for example 3.1.0.
 		 */
-		return (string) apply_filters( 'rp4wp_update_notes_url', 'https://www.relatedpostsforwp.com/related-posts-for-wordpress-version-3-0/?utm_source=plugin&utm_medium=link&utm_campaign=update-notice' );
+		return (string) apply_filters( 'rp4wp_update_notes_url', 'https://www.relatedpostsforwp.com/related-posts-for-wordpress-version-' . $page . '/?utm_source=plugin&utm_medium=link&utm_campaign=update-notice', $version );
+	}
+
+	/**
+	 * A version without its patch number: 3.1.0 gives 3.1.
+	 *
+	 * @param string $version The version.
+	 *
+	 * @return string
+	 */
+	private static function short_version( string $version ): string {
+		$parts = explode( '.', $version );
+
+		return implode( '.', array_slice( $parts, 0, 2 ) );
+	}
+
+	/**
+	 * The state of the update, as the options (and so the cache) say.
+	 *
+	 * @return array<string, mixed>
+	 */
+	private static function state(): array {
+		$state = get_option( self::OPTION, [] );
+
+		return is_array( $state ) ? $state : [];
+	}
+
+	/**
+	 * The scope of a state; a state of 3.0, which had none, reads every post again.
+	 *
+	 * @param array<string, mixed> $state The state.
+	 *
+	 * @return string
+	 */
+	private static function scope_of( array $state ): string {
+		$scope = $state['scope'] ?? 'read';
+
+		return is_string( $scope ) && in_array( $scope, self::SCOPES, true ) ? $scope : 'read';
+	}
+
+	/**
+	 * The versions of a state; a state of 3.0, which had none, is the update to 3.0.
+	 *
+	 * @param array<string, mixed> $state The state.
+	 *
+	 * @return string[]
+	 */
+	private static function versions_of( array $state ): array {
+		if ( ! isset( $state['versions'] ) || ! is_array( $state['versions'] ) || [] === $state['versions'] ) {
+			return [ '3.0.0' ];
+		}
+
+		return array_values( array_map( 'strval', $state['versions'] ) );
 	}
 
 	/**
@@ -277,22 +439,20 @@ final class Update implements Module {
 	 * @return bool
 	 */
 	private static function pending(): bool {
-		$state = get_option( self::OPTION, [] );
-
-		return is_array( $state ) && ! empty( $state['pending'] );
+		return ! empty( self::state()['pending'] );
 	}
 
 	/**
-	 * Whether the job of the update still has to start, as the database says.
+	 * The state of the update in the database, past the cache; null when there is none.
 	 *
-	 * @return bool
+	 * @return array<string, mixed>|null
 	 */
-	private static function pending_in_database(): bool {
+	private static function stored_in_database(): ?array {
 		global $wpdb;
 
-		$value = maybe_unserialize( (string) $wpdb->get_var( $wpdb->prepare( "SELECT option_value FROM {$wpdb->options} WHERE option_name = %s", self::OPTION ) ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- Past the cache on purpose.
+		$value = maybe_unserialize( (string) $wpdb->get_var( $wpdb->prepare( 'SELECT option_value FROM %i WHERE option_name = %s', $wpdb->options, self::OPTION ) ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- Past the cache on purpose.
 
-		return is_array( $value ) && ! empty( $value['pending'] );
+		return is_array( $value ) ? $value : null;
 	}
 
 	/**

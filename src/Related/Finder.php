@@ -114,31 +114,50 @@ class Finder {
 
 	/**
 	 * Published posts of the supported post types that were linked automatically before a time, newest first: the
-	 * posts the update of 3.0 links again.
+	 * posts the update job links again.
 	 *
-	 * @param int $since The time, in milliseconds.
-	 * @param int $limit The maximum number of posts.
+	 * @param int        $since    The time, in milliseconds.
+	 * @param int        $limit    The maximum number of posts.
+	 * @param int[]|null $post_ids Only these posts; null for every post.
 	 *
 	 * @return int[]
 	 */
-	public function linked_before_post_ids( int $since, int $limit ): array {
+	public function linked_before_post_ids( int $since, int $limit, ?array $post_ids = null ): array {
 		global $wpdb;
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.NotPrepared -- Escaped post types, a condition from PostState and an integer.
-		return array_map( 'intval', $wpdb->get_col( $this->posts_sql( 'P.ID', PostState::linked_before_sql( 'P', $since ) ) . ' ORDER BY P.ID DESC LIMIT ' . max( 1, $limit ) ) );
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.NotPrepared -- Escaped post types, conditions from PostState and of integers, and an integer.
+		return array_map( 'intval', $wpdb->get_col( $this->posts_sql( 'P.ID', PostState::linked_before_sql( 'P', $since ) . self::among( $post_ids ) ) . ' ORDER BY P.ID DESC LIMIT ' . max( 1, $limit ) ) );
 	}
 
 	/**
 	 * How many published posts of the supported post types were linked automatically before a time.
 	 *
-	 * @param int $since The time, in milliseconds.
+	 * @param int        $since    The time, in milliseconds.
+	 * @param int[]|null $post_ids Only these posts; null for every post.
 	 *
 	 * @return int
 	 */
-	public function linked_before_post_count( int $since ): int {
+	public function linked_before_post_count( int $since, ?array $post_ids = null ): int {
 		global $wpdb;
 
-		return (int) $wpdb->get_var( $this->posts_sql( 'COUNT(P.ID)', PostState::linked_before_sql( 'P', $since ) ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.NotPrepared -- See linked_before_post_ids().
+		return (int) $wpdb->get_var( $this->posts_sql( 'COUNT(P.ID)', PostState::linked_before_sql( 'P', $since ) . self::among( $post_ids ) ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.NotPrepared -- See linked_before_post_ids().
+	}
+
+	/**
+	 * An SQL condition, to add with AND: the post is one of these; nothing for null (every post).
+	 *
+	 * @param int[]|null $post_ids The posts, or null.
+	 *
+	 * @return string
+	 */
+	private static function among( ?array $post_ids ): string {
+		if ( null === $post_ids ) {
+			return '';
+		}
+
+		$ids = array_filter( array_map( 'intval', $post_ids ) );
+
+		return [] === $ids ? ' AND 1 = 0' : ' AND P.ID IN (' . implode( ',', $ids ) . ')';
 	}
 
 	/**

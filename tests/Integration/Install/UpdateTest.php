@@ -154,7 +154,15 @@ final class UpdateTest extends TestCase {
 		$this->assertSame( [ 'reindex_words', 'weigh_words', 'relink_posts' ], array_column( $job->steps, 'id' ) );
 		$this->assertFalse( $job->is_install() );
 		$this->assertFalse( get_option( 'rp4wp_is_installing' ) );
-		$this->assertSame( [ 'pending' => false ], get_option( Update::OPTION ) );
+		$this->assertSame(
+			[
+				'pending'  => false,
+				'versions' => [ '3.0.0' ],
+			],
+			get_option( Update::OPTION ),
+			'The state of 3.0, without a scope, is the update to 3.0.'
+		);
+		$this->assertSame( 'read', $job->request['scope'] );
 		$this->assertSame( 'running', get_option( Update::NOTICE_OPTION ) );
 
 		$status = $this->queue->status();
@@ -435,6 +443,96 @@ final class UpdateTest extends TestCase {
 		$this->assertFalse( get_option( Update::NOTICE_OPTION ) );
 	}
 
+	public function test_requests_of_migrations_merge_into_one_job_that_does_the_most(): void {
+		Update::request( 'relink', '3.1.0', [ $this->posts['bread'] ], false );
+		Update::request( 'weigh', '3.1.0' );
+
+		$this->assertSame(
+			[
+				'pending'  => true,
+				'scope'    => 'weigh',
+				'versions' => [ '3.1.0' ],
+				'post_ids' => null,
+				'notice'   => true,
+			],
+			$this->state()
+		);
+
+		Update::maybe_start();
+
+		$job = $this->queue->job();
+		$this->assertInstanceOf( Job::class, $job );
+		$this->assertSame( [ 'weigh_words', 'relink_posts' ], array_column( $job->steps, 'id' ), 'Weighing again needs no reading.' );
+	}
+
+	public function test_a_relink_of_some_posts_relinks_only_those_and_shows_no_notice(): void {
+		$this->act_as( 'administrator' );
+		$before = PostState::linked_at( $this->posts['garden'] );
+
+		Update::request( 'relink', '3.1.0', [ $this->posts['bread'], $this->posts['rolls'] ], false );
+		Update::maybe_start();
+
+		$job = $this->queue->job();
+		$this->assertInstanceOf( Job::class, $job );
+		$this->assertSame( [ 'relink_posts' ], array_column( $job->steps, 'id' ) );
+		$this->run_to_end( $job );
+
+		$generation = (int) $job->request['generation'];
+		$this->assertGreaterThanOrEqual( $generation, PostState::linked_at( $this->posts['bread'] ) );
+		$this->assertGreaterThanOrEqual( $generation, PostState::linked_at( $this->posts['rolls'] ) );
+		$this->assertSame( $before, PostState::linked_at( $this->posts['garden'] ), 'Other posts keep their links as they are.' );
+		$this->assertFalse( get_option( Update::NOTICE_OPTION ) );
+		$this->assertSame( '', $this->notice() );
+	}
+
+	public function test_the_notice_of_a_later_update_names_its_version_and_links_its_page(): void {
+		$this->act_as( 'administrator' );
+
+		Update::request( 'read', '3.1.0' );
+		Update::maybe_start();
+		$job = $this->queue->job();
+		$this->assertInstanceOf( Job::class, $job );
+		$this->assertSame( [ 'reindex_words', 'weigh_words', 'relink_posts' ], array_column( $job->steps, 'id' ) );
+		$this->run_to_end( $job );
+
+		$html = $this->notice();
+		$this->assertStringContainsString( 'Related Posts for WordPress 3.1 improved how it finds related posts', $html );
+		$this->assertStringContainsString( 'related-posts-for-wordpress-version-3-1/', $html );
+
+		$versions = null;
+		add_filter(
+			'rp4wp_update_notes_url',
+			static function ( $url, $version ) use ( &$versions ) {
+				$versions = $version;
+
+				return $url;
+			},
+			10,
+			2
+		);
+		$this->notice();
+		$this->assertSame( '3.1.0', $versions );
+	}
+
+	public function test_a_site_that_updates_from_2x_straight_to_a_later_version_gets_the_notice_of_3_0(): void {
+		$this->act_as( 'administrator' );
+
+		// What the migrations of 3.0 leave on a 2.x site, then the request of a later migration.
+		update_option( Update::OPTION, [ 'pending' => true ], true );
+		Update::request( 'weigh', '3.1.0' );
+		$this->assertSame( 'read', $this->state()['scope'], 'The update of 3.0 reads every post again.' );
+		$this->assertSame( [ '3.0.0', '3.1.0' ], $this->state()['versions'] );
+
+		Update::maybe_start();
+		$job = $this->queue->job();
+		$this->assertInstanceOf( Job::class, $job );
+		$this->run_to_end( $job );
+
+		$html = $this->notice();
+		$this->assertStringContainsString( 'Related Posts for WordPress 3.0 finds related posts in a new, more precise way', $html );
+		$this->assertStringContainsString( 'related-posts-for-wordpress-version-3-0/', $html );
+	}
+
 	public function test_another_job_keeps_its_own_labels(): void {
 		$this->queue->start( [ 'amount' => 2 ] );
 
@@ -456,6 +554,25 @@ final class UpdateTest extends TestCase {
 		throw new RedirectException( $location ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Test-only exception.
 	}
 	// phpcs:enable
+
+	/**
+	 * Run a job to its end, one batch per background request.
+	 *
+	 * @param Job $job The job.
+	 *
+	 * @return void
+	 */
+	private function run_to_end( Job $job ): void {
+		for ( $i = 0; $i < 50; $i++ ) {
+			if ( ! $this->queue->job()->is_running() ) {
+				break;
+			}
+
+			do_action( Queue::HOOK, $job->id );
+		}
+
+		$this->assertSame( Job::DONE, $this->queue->job()->status );
+	}
 
 	/**
 	 * Put an older copy of the state of the update in the cache of the autoloaded options, as an object cache can have

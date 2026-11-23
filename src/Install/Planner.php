@@ -74,7 +74,11 @@ class Planner implements InstallPlanner {
 	 */
 	public function plan( array $request ): array {
 		if ( ! empty( $request['update'] ) ) {
-			return $this->update_plan( (int) ( $request['generation'] ?? 0 ) );
+			return $this->update_plan(
+				(int) ( $request['generation'] ?? 0 ),
+				(string) ( $request['scope'] ?? 'read' ),
+				isset( $request['post_ids'] ) && is_array( $request['post_ids'] ) ? array_map( 'intval', $request['post_ids'] ) : null
+			);
 		}
 
 		$amount = max( 1, min( self::max_amount(), (int) ( $request['amount'] ?? 3 ) ) );
@@ -96,18 +100,31 @@ class Planner implements InstallPlanner {
 	}
 
 	/**
-	 * The tasks of the update of 3.0 (see Update): read every post again, weigh the words, and link every post that
-	 * was linked automatically again, by difference.
+	 * The tasks of the update job (see Update), by its scope: `read` reads every post again, weighs the words and links
+	 * every post that was linked automatically again, by difference; `weigh` leaves out the reading; `relink` only
+	 * relinks, every post or the given posts.
 	 *
-	 * @param int $generation When the update started, in milliseconds.
+	 * @param int        $generation When the update started, in milliseconds.
+	 * @param string     $scope      The scope: read, weigh or relink.
+	 * @param int[]|null $post_ids   For relink: the posts to relink; null for every post.
 	 *
 	 * @return \LV2\WordPress\RelatedPostsForWP\Contracts\InstallTask[]
 	 */
-	private function update_plan( int $generation ): array {
+	private function update_plan( int $generation, string $scope, ?array $post_ids ): array {
+		$relink = new RelinkPostsTask( self::current_amount(), $generation, 'relink' === $scope ? $post_ids : null );
+
+		if ( 'relink' === $scope ) {
+			return [ $relink ];
+		}
+
+		if ( 'weigh' === $scope ) {
+			return [ new WeighWordsTask( $generation ), $relink ];
+		}
+
 		return [
 			new ReindexWordsTask( $generation ),
 			new WeighWordsTask( $generation ),
-			new RelinkPostsTask( self::current_amount(), $generation ),
+			$relink,
 		];
 	}
 

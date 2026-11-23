@@ -17,6 +17,11 @@ namespace LV2\WordPress\RelatedPostsForWP\Database;
  * up() returns true when it is done. A migration that converts much data works in slices: it keeps its place in a
  * cursor, returns false when time_left() says the slice is over, and is called again, in the same request or a later
  * one, until it returns true. down() undoes up(); a migration that can't restore something says so in description().
+ *
+ * A migration that changes how related posts are found asks for the update job with
+ * `\LV2\WordPress\RelatedPostsForWP\Install\Update::request()`: `read` when the words of every post must be read
+ * again, `weigh` when only their weights change, `relink` when posts must be linked again. The job starts after the
+ * migrations, so every post keeps its related posts until it gets its new ones.
  */
 abstract class Migration {
 

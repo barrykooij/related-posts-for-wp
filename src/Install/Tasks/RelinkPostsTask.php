@@ -12,10 +12,10 @@ use LV2\WordPress\RelatedPostsForWP\Related\Finder;
 use LV2\WordPress\RelatedPostsForWP\Related\Linker;
 
 /**
- * In the update of 3.0 (decision D55): link every post that was linked automatically before again, by difference
- * (see Linker::relink_post()), newest first. Links added by hand keep their place, automatic links that are still
- * found stay, and no post shows fewer related posts at any moment. Posts that were never linked automatically stay as
- * they are.
+ * In the update job (decisions D55 and D72): link every post that was linked automatically before again, by difference
+ * (see Linker::relink_post()), newest first, or only some of them. Links added by hand keep their place, automatic links
+ * that are still found stay, and no post shows fewer related posts at any moment. Posts that were never linked
+ * automatically stay as they are.
  */
 class RelinkPostsTask implements InstallTask {
 
@@ -34,14 +34,23 @@ class RelinkPostsTask implements InstallTask {
 	private int $generation;
 
 	/**
+	 * The posts to relink; null for every post linked automatically.
+	 *
+	 * @var int[]|null
+	 */
+	private ?array $post_ids;
+
+	/**
 	 * Set up the task.
 	 *
-	 * @param int $amount     The number of related posts per post.
-	 * @param int $generation When the update started, in milliseconds.
+	 * @param int        $amount     The number of related posts per post.
+	 * @param int        $generation When the update started, in milliseconds.
+	 * @param int[]|null $post_ids   The posts to relink; null for every post linked automatically.
 	 */
-	public function __construct( int $amount, int $generation ) {
+	public function __construct( int $amount, int $generation, ?array $post_ids = null ) {
 		$this->amount     = $amount;
 		$this->generation = $generation;
+		$this->post_ids   = $post_ids;
 	}
 
 	/**
@@ -68,7 +77,7 @@ class RelinkPostsTask implements InstallTask {
 	 * @return int
 	 */
 	public function remaining(): int {
-		return ( new Finder() )->linked_before_post_count( $this->generation );
+		return ( new Finder() )->linked_before_post_count( $this->generation, $this->post_ids );
 	}
 
 	/**
@@ -79,7 +88,7 @@ class RelinkPostsTask implements InstallTask {
 	public function run_batch(): bool {
 		$linker = new Linker();
 
-		foreach ( ( new Finder() )->linked_before_post_ids( $this->generation, BatchSize::of( $this->id(), 5 ) ) as $post_id ) {
+		foreach ( ( new Finder() )->linked_before_post_ids( $this->generation, BatchSize::of( $this->id(), 5 ), $this->post_ids ) as $post_id ) {
 			$linker->relink_post( $post_id, $this->amount );
 		}
 
