@@ -376,7 +376,7 @@ class ListTable extends \WP_List_Table {
 		$actions = [
 			'link' => sprintf(
 				'<a href="%s">' . esc_html__( 'Link Post', 'related-posts-for-wp' ) . '</a>',
-				esc_attr( sprintf( '?page=%s&rp4wp_parent=%s&rp4wp_create_link=%s&rp4wp_nonce=%s', $page, $parent, (int) $item['ID'], wp_create_nonce( Page::NONCE_LINK ) ) )
+				esc_attr( sprintf( '?page=%s&rp4wp_parent=%s&rp4wp_create_link=%s&rp4wp_nonce=%s', $page, $parent, (int) $item['ID'], wp_create_nonce( Page::NONCE_LINK ) ) . ( [] === Page::language() ? '' : '&lang=' . Page::language()['lang'] ) )
 			),
 			'view' => sprintf(
 				'<a href="%s" target="_blank">%s</a>',

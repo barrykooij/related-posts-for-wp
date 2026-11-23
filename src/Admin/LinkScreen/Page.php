@@ -114,7 +114,7 @@ class Page implements Module {
 		$parent = absint( $_GET['rp4wp_parent'] );
 		self::check_if_allowed( $parent );
 
-		$cancel_url = get_admin_url() . 'post.php?post=' . $parent . '&action=edit';
+		$cancel_url = self::edit_url( $parent );
 
 		$search = null;
 		if ( isset( $_GET['s'] ) && '' !== $_GET['s'] ) {
@@ -125,7 +125,7 @@ class Page implements Module {
 		<div class="wrap">
 			<h2>
 				<?php esc_html_e( 'Posts', 'related-posts-for-wp' ); ?>
-				<a href="<?php echo esc_attr( $cancel_url ); ?>" class="add-new-h2"><?php esc_html_e( 'Cancel linking', 'related-posts-for-wp' ); ?></a>
+				<a href="<?php echo esc_url( $cancel_url ); ?>" class="add-new-h2"><?php esc_html_e( 'Cancel linking', 'related-posts-for-wp' ); ?></a>
 			</h2>
 
 			<form id="sp-list-table-form" method="post">
@@ -222,7 +222,7 @@ class Page implements Module {
 
 		$parent = isset( $_GET['rp4wp_parent'] ) ? absint( $_GET['rp4wp_parent'] ) : 0;
 		$view   = isset( $_GET['rp4wp_view'] ) ? sanitize_key( $_GET['rp4wp_view'] ) : '';
-		$base   = admin_url( sprintf( 'admin.php?page=%s&rp4wp_parent=%d&rp4wp_view=%s', self::SLUG, $parent, $view ) );
+		$base   = add_query_arg( self::language(), admin_url( sprintf( 'admin.php?page=%s&rp4wp_parent=%d&rp4wp_view=%s', self::SLUG, $parent, $view ) ) );
 		$search = sanitize_text_field( wp_unslash( $_POST['s'] ) );
 		// phpcs:enable
 
@@ -265,21 +265,36 @@ class Page implements Module {
 	}
 
 	/**
-	 * The editor URL of a post, keeping the WPML language.
+	 * The editor URL of a post, keeping the WPML language. A URL, not HTML: escape it where it is printed (known issue
+	 * P24: 2.x escaped it for HTML, which broke the language in the redirect back to the editor).
 	 *
 	 * @param int $parent_id The post.
 	 *
 	 * @return string
 	 */
 	private static function edit_url( int $parent_id ): string {
-		$url = get_admin_url() . "post.php?post={$parent_id}&action=edit";
+		return add_query_arg(
+			array_merge(
+				[
+					'post'   => $parent_id,
+					'action' => 'edit',
+				],
+				self::language()
+			),
+			admin_url( 'post.php' )
+		);
+	}
 
+	/**
+	 * The WPML language of the request, to pass along in a URL: `lang`, or nothing.
+	 *
+	 * @return array<string, string>
+	 */
+	public static function language(): array {
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Only passed along.
-		if ( isset( $_GET['lang'] ) ) {
-			$url .= '&amp;lang=' . esc_attr( sanitize_text_field( wp_unslash( $_GET['lang'] ) ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Only passed along.
-		}
+		$language = isset( $_GET['lang'] ) ? sanitize_key( wp_unslash( $_GET['lang'] ) ) : '';
 
-		return $url;
+		return '' === $language ? [] : [ 'lang' => $language ];
 	}
 
 	/**

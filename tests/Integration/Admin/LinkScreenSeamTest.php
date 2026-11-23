@@ -72,6 +72,40 @@ final class LinkScreenSeamTest extends TestCase {
 		$this->assertSame( [], get_posts( [ 'post_type' => LinkPostType::POST_TYPE ] ) );
 	}
 
+	public function test_the_redirect_back_to_the_editor_keeps_the_wpml_language(): void {
+		$child = self::factory()->post->create();
+		$_GET  = [
+			'rp4wp_parent'      => (string) $this->parent,
+			'rp4wp_create_link' => (string) $child,
+			'rp4wp_nonce'       => wp_create_nonce( Page::NONCE_LINK ),
+			'lang'              => 'nl',
+		];
+
+		try {
+			RecordingPage::register();
+			$this->fail( 'Expected a redirect after linking.' );
+		} catch ( RedirectException $e ) {
+			// A URL, not HTML: 2.x sent &amp;lang=, which lost the language (known issue P24).
+			$this->assertSame( admin_url( "post.php?post={$this->parent}&action=edit&lang=nl" ), $e->getMessage() );
+		}
+	}
+
+	public function test_the_links_of_the_table_keep_the_wpml_language(): void {
+		$_GET = [
+			'rp4wp_parent' => (string) $this->parent,
+			'lang'         => 'nl',
+		];
+
+		$html = ( new ListTable() )->column_title(
+			[
+				'ID'    => self::factory()->post->create(),
+				'title' => 'A post',
+			]
+		);
+
+		$this->assertStringContainsString( '&amp;lang=nl', $html, 'Escaped for HTML where it is printed.' );
+	}
+
 	public function test_a_subclass_of_the_screen_shows_its_own_table(): void {
 		$_GET     = [
 			'page'         => Page::SLUG,
