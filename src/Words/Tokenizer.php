@@ -293,7 +293,11 @@ class Tokenizer {
 	 * @return string
 	 */
 	private function decode( string $text ): string {
-		for ( $i = 0; $i < 2 && false !== strpos( $text, '&' ); $i++ ) {
+		for ( $i = 0; $i < 2; $i++ ) {
+			if ( false === strpos( $text, '&' ) ) {
+				break;
+			}
+
 			$text = html_entity_decode( $text, ENT_QUOTES | ENT_HTML5, 'UTF-8' );
 		}
 

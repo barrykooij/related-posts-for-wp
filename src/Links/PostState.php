@@ -352,7 +352,7 @@ final class PostState {
 			$names
 		);
 
-		// phpcs:disable WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare -- The plugin's own table; the columns come from this class.
+		// phpcs:disable WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare,WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber -- The plugin's own table; the columns come from this class, the values are one array.
 		$wpdb->query(
 			$wpdb->prepare(
 				'INSERT INTO ' . self::table() . ' ( post_id, post_type, ' . implode( ', ', $names ) . ' ) VALUES ( %d, %s, ' . implode( ', ', $formats ) . ' )

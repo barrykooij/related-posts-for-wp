@@ -157,8 +157,8 @@ abstract class Migration {
 	 * @return bool
 	 */
 	protected function has_index( string $table, string $index ): bool {
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Schema check; table names can't be placeholders.
-		return null !== $this->db->get_var( $this->db->prepare( "SHOW INDEX FROM `{$table}` WHERE Key_name = %s", $index ) );
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery -- Schema check.
+		return null !== $this->db->get_var( $this->db->prepare( 'SHOW INDEX FROM %i WHERE Key_name = %s', $table, $index ) );
 	}
 
 	/**
@@ -170,8 +170,8 @@ abstract class Migration {
 	 * @return bool
 	 */
 	protected function has_column( string $table, string $column ): bool {
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Schema check; table names can't be placeholders.
-		return null !== $this->db->get_var( $this->db->prepare( "SHOW COLUMNS FROM `{$table}` LIKE %s", $column ) );
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery -- Schema check.
+		return null !== $this->db->get_var( $this->db->prepare( 'SHOW COLUMNS FROM %i LIKE %s', $table, $column ) );
 	}
 
 	/**
@@ -209,15 +209,15 @@ abstract class Migration {
 	/**
 	 * A value the migration keeps between its slices, such as the last ID it converted.
 	 *
-	 * @param string $key     The key.
-	 * @param mixed  $default What to return when there is none.
+	 * @param string $key      The key.
+	 * @param mixed  $fallback What to return when there is none.
 	 *
 	 * @return mixed
 	 */
-	protected function cursor( string $key, $default = 0 ) {
+	protected function cursor( string $key, $fallback = 0 ) {
 		$cursors = get_option( $this->cursor_option(), [] );
 
-		return is_array( $cursors ) && array_key_exists( $key, $cursors ) ? $cursors[ $key ] : $default;
+		return is_array( $cursors ) && array_key_exists( $key, $cursors ) ? $cursors[ $key ] : $fallback;
 	}
 
 	/**

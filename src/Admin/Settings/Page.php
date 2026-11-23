@@ -54,7 +54,7 @@ class Page implements Module {
 			_x( 'Related Posts', 'page title', 'related-posts-for-wp' ),
 			/* translators: The label of the settings page in the Settings menu: the name of the plugin, best left as it is. */
 			_x( 'Related Posts', 'menu label', 'related-posts-for-wp' ),
-			Routes::capability(),
+			Routes::capability(), // phpcs:ignore WordPress.WP.Capabilities.Undetermined -- manage_options, or what the filter of capability() says.
 			self::SLUG,
 			[ self::class, 'render' ]
 		);

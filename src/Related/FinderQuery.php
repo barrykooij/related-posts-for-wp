@@ -25,10 +25,11 @@ final class FinderQuery {
 	/**
 	 * The query.
 	 *
-	 * @param int                                    $post_id    The post.
-	 * @param string[]                               $post_types The post types of the related posts.
-	 * @param array{join: string[], where: string[]} $clauses    Extra joins and conditions, as SQL that is safe already.
-	 * @param int                                    $limit      The maximum number of posts; -1 for all.
+	 * @param int                  $post_id    The post.
+	 * @param string[]             $post_types The post types of the related posts.
+	 * @param array<string, mixed> $clauses    Extra joins and conditions: `join` and `where`, lists of SQL that is safe
+	 *                                         already. Missing lists count as empty.
+	 * @param int                  $limit      The maximum number of posts; -1 for all.
 	 *
 	 * @return string
 	 */

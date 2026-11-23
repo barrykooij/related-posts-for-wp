@@ -79,7 +79,7 @@ function rp4wp_requirements_notice() {
  * @return void
  */
 function rp4wp_premium_update_notice() {
-	$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+	$screen         = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
 	$update_screens = array( 'dashboard', 'plugins', 'update-core', 'dashboard-network', 'plugins-network', 'update-core-network' );
 
 	if ( ! current_user_can( 'update_plugins' ) || null === $screen || ! in_array( $screen->id, $update_screens, true ) ) {

@@ -135,7 +135,8 @@ class Language {
 	 * @return string
 	 */
 	public static function code( string $locale ): string {
-		$code = strtolower( (string) preg_split( '/[_-]/', trim( $locale ) )[0] );
+		$parts = preg_split( '/[_-]/', trim( $locale ) );
+		$code  = strtolower( is_array( $parts ) ? $parts[0] : '' );
 		if ( 1 !== preg_match( '/^[a-z]{2,3}$/', $code ) ) {
 			return '';
 		}

@@ -26,7 +26,7 @@ class Finder {
 	 * @param int   $limit   The maximum number of posts; -1 for all.
 	 * @param int[] $exclude Posts to leave out, such as the posts a relink keeps.
 	 *
-	 * @return object[]
+	 * @return \stdClass[]
 	 */
 	public function related_posts( int $post_id, int $limit = -1, array $exclude = [] ): array {
 		global $wpdb;
@@ -64,9 +64,9 @@ class Finder {
 	 * The results with the title of each post. A second query: the title in the grouped query of the finder would make
 	 * the database sort on disk.
 	 *
-	 * @param object[] $results The results.
+	 * @param \stdClass[] $results The results.
 	 *
-	 * @return object[]
+	 * @return \stdClass[]
 	 */
 	private function with_titles( array $results ): array {
 		global $wpdb;

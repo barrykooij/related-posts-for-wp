@@ -141,8 +141,15 @@ final class Migrator {
 	 */
 	public function failure(): ?array {
 		$failure = $this->state()['failure'] ?? null;
+		if ( ! is_array( $failure ) || ! isset( $failure['migration'], $failure['message'], $failure['time'] ) ) {
+			return null;
+		}
 
-		return is_array( $failure ) ? $failure : null;
+		return [
+			'migration' => (string) $failure['migration'],
+			'message'   => (string) $failure['message'],
+			'time'      => (int) $failure['time'],
+		];
 	}
 
 	/**

@@ -48,7 +48,7 @@ class Assets {
 		// The first requests of the app are answered from the page, so it shows without waiting for them.
 		wp_add_inline_script( 'wp-api-fetch', sprintf( 'wp.apiFetch.use( wp.apiFetch.createPreloadingMiddleware( %s ) );', wp_json_encode( self::preloaded() ) ), 'after' );
 
-		$dependencies = array_values( array_unique( array_merge( $asset['dependencies'], [ 'wp-api-fetch' ] ) ) );
+		$dependencies = array_values( array_filter( array_unique( array_merge( $asset['dependencies'], [ 'wp-api-fetch' ] ) ) ) );
 		wp_enqueue_script( self::SCRIPT, self::url( 'index.js' ), $dependencies, $asset['version'], [ 'in_footer' => true ] );
 		wp_add_inline_script( self::SCRIPT, 'window.rp4wpAdminData = ' . wp_json_encode( self::data() ) . ';', 'before' );
 		// The translations in the plugin come first, like those of PHP (see TextDomain).

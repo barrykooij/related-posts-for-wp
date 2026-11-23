@@ -109,7 +109,7 @@ return new class() extends Migration {
 	private function copy(): bool {
 		$last = (int) $this->cursor( 'last', 0 );
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- A migration; the values are prepared.
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery -- A migration; the values are prepared.
 		$rows = $this->db->get_results(
 			$this->db->prepare(
 				"SELECT L.ID AS id, L.menu_order, L.post_date, L.post_date_gmt,
@@ -119,8 +119,8 @@ return new class() extends Migration {
 					MIN( CASE WHEN M.meta_key = %s THEN M.meta_value END ) AS manual,
 					MIN( CASE WHEN M.meta_key = %s THEN M.meta_value END ) AS parent_type,
 					MIN( CASE WHEN M.meta_key = %s THEN M.meta_id END ) AS type_meta
-				FROM {$this->db->posts} L
-				LEFT JOIN {$this->db->postmeta} M ON M.post_id = L.ID AND M.meta_key IN ( %s, %s, %s, %s )
+				FROM %i L
+				LEFT JOIN %i M ON M.post_id = L.ID AND M.meta_key IN ( %s, %s, %s, %s )
 				WHERE L.post_type = %s AND L.post_status = 'publish' AND L.ID > %d
 				GROUP BY L.ID, L.menu_order, L.post_date, L.post_date_gmt
 				ORDER BY L.ID
@@ -131,6 +131,8 @@ return new class() extends Migration {
 				LinkPostType::META_MANUAL,
 				LinkPostType::META_PARENT_POST_TYPE,
 				LinkPostType::META_PARENT_POST_TYPE,
+				$this->db->posts,
+				$this->db->postmeta,
 				LinkPostType::META_PARENT,
 				LinkPostType::META_CHILD,
 				LinkPostType::META_MANUAL,
@@ -199,9 +201,11 @@ return new class() extends Migration {
 			'intval',
 			$this->db->get_col(
 				$this->db->prepare(
-					"SELECT DISTINCT L.parent_id FROM `{$table}` L JOIN {$this->db->posts} P ON P.ID = L.id
+					'SELECT DISTINCT L.parent_id FROM %i L JOIN %i P ON P.ID = L.id
 					WHERE ( P.menu_order < 0 OR P.menu_order > 65535 ) AND L.parent_id > %d
-					ORDER BY L.parent_id LIMIT %d",
+					ORDER BY L.parent_id LIMIT %d',
+					$table,
+					$this->db->posts,
 					$last,
 					self::PARENTS
 				)
@@ -209,7 +213,7 @@ return new class() extends Migration {
 		);
 
 		foreach ( $parents as $parent_id ) {
-			$ids = array_map( 'intval', $this->db->get_col( $this->db->prepare( "SELECT L.id FROM `{$table}` L JOIN {$this->db->posts} P ON P.ID = L.id WHERE L.parent_id = %d ORDER BY P.menu_order, L.id", $parent_id ) ) );
+			$ids = array_map( 'intval', $this->db->get_col( $this->db->prepare( 'SELECT L.id FROM %i L JOIN %i P ON P.ID = L.id WHERE L.parent_id = %d ORDER BY P.menu_order, L.id', $table, $this->db->posts, $parent_id ) ) );
 
 			$cases = '';
 			foreach ( $ids as $position => $id ) {
@@ -240,14 +244,14 @@ return new class() extends Migration {
 	private function sort_out(): bool {
 		$table = $this->table( Schema::LINKS );
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- A migration; integers.
-		$parents = $this->db->get_col( $this->db->prepare( "SELECT DISTINCT parent_id FROM `{$table}` WHERE is_manual = %d LIMIT %d", self::UNDECIDED, self::PARENTS ) );
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery -- A migration; integers.
+		$parents = $this->db->get_col( $this->db->prepare( 'SELECT DISTINCT parent_id FROM %i WHERE is_manual = %d LIMIT %d', $table, self::UNDECIDED, self::PARENTS ) );
 
 		foreach ( $parents as $parent_id ) {
 			$parent_id = (int) $parent_id;
 
-			// phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- A migration.
-			$rows = $this->db->get_results( $this->db->prepare( "SELECT id, is_manual, created FROM `{$table}` WHERE parent_id = %d ORDER BY id", $parent_id ) );
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery -- A migration.
+			$rows = $this->db->get_results( $this->db->prepare( 'SELECT id, is_manual, created FROM %i WHERE parent_id = %d ORDER BY id', $table, $parent_id ) );
 
 			$automatic = $this->automatic_group( $parent_id, (array) $rows );
 			$set       = [
@@ -288,8 +292,8 @@ return new class() extends Migration {
 	/**
 	 * The links of a post that came from one automatic insert, if that is clear.
 	 *
-	 * @param int                $parent_id The post.
-	 * @param array<int, object> $rows      Its links, oldest first: id, is_manual and created.
+	 * @param int                   $parent_id The post.
+	 * @param array<int, \stdClass> $rows      Its links, oldest first: id, is_manual and created.
 	 *
 	 * @return int[] Link IDs.
 	 */

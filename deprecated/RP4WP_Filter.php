@@ -11,6 +11,8 @@ use LV2\WordPress\RelatedPostsForWP\Compat\Deprecation;
  * The 2.x base class of the plugin's filters. Code that extends it for its own filters keeps working.
  *
  * @deprecated 3.0.0 Use add_filter() directly.
+ *
+ * @method mixed run( mixed ...$args ) The callback; every subclass has one.
  */
 abstract class RP4WP_Filter {
 

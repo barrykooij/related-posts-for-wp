@@ -26,7 +26,7 @@ class RP4WP_Cap_Manager {
 	public static function get_capability( $post_id ) {
 		Deprecation::method( __METHOD__ );
 
-		$post_type     = ( isset( $post_id ) ) ? get_post_type( $post_id ) : 'post';
+		$post_type     = ( isset( $post_id ) ) ? (string) get_post_type( $post_id ) : 'post';
 		$post_type_obj = get_post_type_object( $post_type );
 
 		return ( ( null !== $post_type_obj ) ? $post_type_obj->cap->edit_posts : 'edit_posts' );

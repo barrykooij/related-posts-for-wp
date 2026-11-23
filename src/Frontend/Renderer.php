@@ -82,8 +82,9 @@ class Renderer implements RendererContract {
 
 		echo "<div class='rp4wp-related-posts'>\n";
 
-		$heading_text = $this->settings->get( 'heading_text' );
-		if ( '' != $heading_text ) { // phpcs:ignore Universal.Operators.StrictComparisons.LooseNotEqual -- Filters may return other types; 2.x compares loosely.
+		// Filters may return other types; as text they show the same as in 2.x, where an empty value showed no heading.
+		$heading_text = (string) $this->settings->get( 'heading_text' );
+		if ( '' !== $heading_text ) {
 			$heading_text = '<h3>' . esc_html( $heading_text ) . '</h3>' . PHP_EOL;
 		}
 
@@ -275,6 +276,6 @@ class Renderer implements RendererContract {
 		 * @param string $link    The link.
 		 * @param int    $post_id The related post.
 		 */
-		return (string) apply_filters( 'rp4wp_post_link', get_permalink( $post_id ), $post_id );
+		return (string) apply_filters( 'rp4wp_post_link', (string) get_permalink( $post_id ), $post_id );
 	}
 }

@@ -233,13 +233,13 @@ class Page implements Module {
 	/**
 	 * Link a post to a parent, by hand.
 	 *
-	 * @param int $parent The post links are added to.
-	 * @param int $child  The post to link.
+	 * @param int $parent_id The post links are added to.
+	 * @param int $child_id  The post to link.
 	 *
 	 * @return void
 	 */
-	protected static function add_link( int $parent, int $child ): void {
-		( new LinkRepository() )->add( $parent, $child );
+	protected static function add_link( int $parent_id, int $child_id ): void {
+		( new LinkRepository() )->add( $parent_id, $child_id );
 	}
 
 	/**
@@ -256,23 +256,23 @@ class Page implements Module {
 	/**
 	 * The table of posts to link to a parent.
 	 *
-	 * @param int $parent The post links are added to.
+	 * @param int $parent_id The post links are added to.
 	 *
 	 * @return ListTable
 	 */
-	protected static function list_table( int $parent ): ListTable { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found -- Subclasses use it.
+	protected static function list_table( int $parent_id ): ListTable { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found -- Subclasses use it.
 		return new ListTable();
 	}
 
 	/**
 	 * The editor URL of a post, keeping the WPML language.
 	 *
-	 * @param int $parent The post.
+	 * @param int $parent_id The post.
 	 *
 	 * @return string
 	 */
-	private static function edit_url( int $parent ): string {
-		$url = get_admin_url() . "post.php?post={$parent}&action=edit";
+	private static function edit_url( int $parent_id ): string {
+		$url = get_admin_url() . "post.php?post={$parent_id}&action=edit";
 
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Only passed along.
 		if ( isset( $_GET['lang'] ) ) {

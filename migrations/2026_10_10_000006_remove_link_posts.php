@@ -35,8 +35,8 @@ return new class() extends Migration {
 		$meta  = $this->db->postmeta;
 
 		while ( $this->time_left() ) {
-			// phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- A migration.
-			$ids = $this->db->get_col( $this->db->prepare( "SELECT ID FROM {$posts} WHERE post_type = %s ORDER BY ID LIMIT %d", LinkPostType::POST_TYPE, self::BATCH ) );
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery -- A migration.
+			$ids = $this->db->get_col( $this->db->prepare( 'SELECT ID FROM %i WHERE post_type = %s ORDER BY ID LIMIT %d', $posts, LinkPostType::POST_TYPE, self::BATCH ) );
 
 			if ( count( $ids ) > 0 ) {
 				$in = implode( ',', array_map( 'intval', $ids ) );
@@ -77,8 +77,9 @@ return new class() extends Migration {
 
 			$this->query(
 				$this->db->prepare(
-					"INSERT INTO {$this->db->posts} ( post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, menu_order, post_type )
+					"INSERT INTO %i ( post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, menu_order, post_type )
 					VALUES ( 0, %s, %s, '', %s, '', 'publish', 'closed', 'closed', '', '', '', %s, %s, '', %d, %s )",
+					$this->db->posts,
 					$local,
 					(string) $row->created,
 					LinkPostType::TITLE,

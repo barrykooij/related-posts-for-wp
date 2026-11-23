@@ -65,6 +65,7 @@ class LinkPostType implements Module {
 	 * @return void
 	 */
 	public static function register(): void {
+		// phpcs:ignore WordPress.NamingConventions.ValidPostTypeSlug.NotStringLiteral -- rp4wp_link, the post type of 2.x.
 		register_post_type(
 			self::POST_TYPE,
 			[

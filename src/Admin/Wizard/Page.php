@@ -75,7 +75,7 @@ class Page implements Module {
 			/* translators: The title of the settings page: the name of the plugin, best left as it is. */
 			_x( 'Related Posts', 'page title', 'related-posts-for-wp' ),
 			__( 'Related Posts', 'related-posts-for-wp' ),
-			Routes::capability(),
+			Routes::capability(), // phpcs:ignore WordPress.WP.Capabilities.Undetermined -- manage_options, or what the filter of capability() says.
 			self::SLUG,
 			[ self::class, 'render' ]
 		);

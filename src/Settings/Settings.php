@@ -273,14 +273,14 @@ class Settings {
 				'label'       => __( 'Misc', 'related-posts-for-wp' ),
 				'description' => __( "A shelter for options that just don't fit in anywhere else.", 'related-posts-for-wp' ),
 				'fields'      => [
-					'clean_on_uninstall'    => [
+					'clean_on_uninstall' => [
 						'id'          => 'clean_on_uninstall',
 						'label'       => __( 'Remove Data on Uninstall?', 'related-posts-for-wp' ),
 						'description' => __( 'Check this box if you would like to completely remove all of its data when the plugin is deleted.', 'related-posts-for-wp' ),
 						'type'        => 'checkbox',
 						'default'     => 0,
 					],
-					'show_love'             => [
+					'show_love'          => [
 						'id'          => 'show_love',
 						'label'       => __( 'Show love?', 'related-posts-for-wp' ),
 						'description' => __( "Display a 'Powered by' line under your related posts. <strong>BEWARE! Only for the real fans.</strong>", 'related-posts-for-wp' ),

@@ -136,11 +136,13 @@ class IgnoredWords {
 	 * @return string[]
 	 */
 	public static function languages(): array {
+		$files = glob( self::directory() . '/[a-z][a-z].php' );
+
 		return array_map(
-			static function ( $file ) {
+			static function ( string $file ): string {
 				return basename( $file, '.php' );
 			},
-			(array) glob( self::directory() . '/[a-z][a-z].php' )
+			false === $files ? [] : $files
 		);
 	}
 

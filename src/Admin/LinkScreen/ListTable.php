@@ -279,6 +279,7 @@ class ListTable extends \WP_List_Table {
 		foreach ( $post_types as $post_type ) {
 			$object = get_post_type_object( $post_type );
 
+			// phpcs:ignore WordPress.WP.Capabilities.Undetermined -- A capability of the post type, such as edit_posts.
 			if ( null === $object || ! isset( $object->cap->{$cap} ) || ! current_user_can( $object->cap->{$cap} ) ) {
 				return false;
 			}
@@ -290,12 +291,12 @@ class ListTable extends \WP_List_Table {
 	/**
 	 * The posts the "related" view suggests.
 	 *
-	 * @param int $parent The post links are added to.
+	 * @param int $parent_id The post links are added to.
 	 *
-	 * @return array<int, object> Posts, or objects with the ID of a post.
+	 * @return array<int, \WP_Post|\stdClass> Posts, or objects with the ID of a post.
 	 */
-	protected function suggested_posts( int $parent ): array {
-		return ( new Finder() )->related_posts( $parent, 25 );
+	protected function suggested_posts( int $parent_id ): array {
+		return ( new Finder() )->related_posts( $parent_id, 25 );
 	}
 
 	/**

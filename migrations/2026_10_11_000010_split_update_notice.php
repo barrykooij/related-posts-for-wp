@@ -69,7 +69,7 @@ return new class() extends Migration {
 	 */
 	private function stored(): ?array {
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery -- Past the cache on purpose.
-		$value = $this->db->get_var( $this->db->prepare( "SELECT option_value FROM {$this->db->options} WHERE option_name = %s", Update::OPTION ) );
+		$value = $this->db->get_var( $this->db->prepare( 'SELECT option_value FROM %i WHERE option_name = %s', $this->db->options, Update::OPTION ) );
 		$state = null === $value ? null : maybe_unserialize( (string) $value );
 
 		return is_array( $state ) ? $state : null;

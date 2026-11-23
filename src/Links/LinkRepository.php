@@ -326,7 +326,10 @@ class LinkRepository {
 		$child_args = apply_filters( 'rp4wp_get_children_child_args', $this->child_args( array_values( $child_ids ), $extra_args ), $parent_id );
 
 		foreach ( ( new \WP_Query() )->query( $child_args ) as $child ) {
-			$children[ $child->ID ] = $child;
+			// A filter that asks for IDs only gets no related posts; 2.x stopped with an error there.
+			if ( $child instanceof \WP_Post ) {
+				$children[ $child->ID ] = $child;
+			}
 		}
 
 		// Keep the link order, unless the caller asked for another order.
@@ -334,7 +337,7 @@ class LinkRepository {
 			$order = array_flip( array_values( $child_ids ) );
 			uasort(
 				$children,
-				static function ( $a, $b ) use ( $order ) {
+				static function ( \WP_Post $a, \WP_Post $b ) use ( $order ) {
 					return ( $order[ $a->ID ] ?? PHP_INT_MAX ) <=> ( $order[ $b->ID ] ?? PHP_INT_MAX );
 				}
 			);

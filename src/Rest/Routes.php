@@ -48,7 +48,7 @@ class Routes implements Module {
 	 * @return bool
 	 */
 	public static function can_manage(): bool {
-		return current_user_can( self::capability() );
+		return current_user_can( self::capability() ); // phpcs:ignore WordPress.WP.Capabilities.Undetermined -- manage_options, or what the filter of capability() says.
 	}
 
 	/**

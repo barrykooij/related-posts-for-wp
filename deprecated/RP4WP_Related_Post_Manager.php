@@ -32,7 +32,7 @@ class RP4WP_Related_Post_Manager {
 	 * @param int $post_id The post.
 	 * @param int $limit   The maximum number of posts; -1 for all.
 	 *
-	 * @return object[]
+	 * @return \stdClass[]
 	 */
 	public function get_related_posts( $post_id, $limit = -1 ) {
 		Deprecation::method( __METHOD__, Finder::class . '::related_posts()' );

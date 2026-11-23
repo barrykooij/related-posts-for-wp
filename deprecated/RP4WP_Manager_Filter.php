@@ -29,7 +29,7 @@ class RP4WP_Manager_Filter {
 	/**
 	 * The filters loaded by load_filter(), by class name.
 	 *
-	 * @var array<string, RP4WP_Filter>
+	 * @var array<string, object> Instances of RP4WP_Filter subclasses.
 	 */
 	private static $filters = array();
 

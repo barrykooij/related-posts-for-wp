@@ -29,7 +29,7 @@ class RP4WP_Manager_Hook {
 	/**
 	 * The hooks loaded by load_hook(), by class name.
 	 *
-	 * @var array<string, RP4WP_Hook>
+	 * @var array<string, object> Instances of RP4WP_Hook subclasses.
 	 */
 	private static $hooks = array();
 
