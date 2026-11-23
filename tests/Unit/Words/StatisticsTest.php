@@ -87,7 +87,9 @@ final class StatisticsTest extends TestCase {
 
 		$this->assertEqualsWithDelta( 1.0, array_sum( array_map( static fn( $weight ) => $weight * $weight, $weights ) ), 1e-9 );
 		$this->assertGreaterThan( $weights['oven'], $weights['bread'] );
-		$this->assertEqualsWithDelta( 80 * log( 21 / 3 ) / ( 2 * log( 21 / 10 ) ), $weights['bread'] / $weights['oven'], 1e-9 );
+		// The frequencies saturate (decision D66): 80 counts as about 9.8 times, 2 as about 1.8 times.
+		$k = Statistics::SATURATION;
+		$this->assertEqualsWithDelta( Statistics::saturate( 80.0, $k ) * log( 21 / 3 ) / ( Statistics::saturate( 2.0, $k ) * log( 21 / 10 ) ), $weights['bread'] / $weights['oven'], 1e-9 );
 	}
 
 	public function test_a_post_whose_words_weigh_nothing_gets_weights_of_0(): void {

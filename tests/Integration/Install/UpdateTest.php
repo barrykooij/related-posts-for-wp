@@ -15,6 +15,7 @@ use LV2\WordPress\RelatedPostsForWP\Install\Jobs\Job;
 use LV2\WordPress\RelatedPostsForWP\Install\Jobs\JobStore;
 use LV2\WordPress\RelatedPostsForWP\Install\Jobs\Queue;
 use LV2\WordPress\RelatedPostsForWP\Install\Planner;
+use LV2\WordPress\RelatedPostsForWP\Install\Table;
 use LV2\WordPress\RelatedPostsForWP\Install\Update;
 use LV2\WordPress\RelatedPostsForWP\Links\Deferred;
 use LV2\WordPress\RelatedPostsForWP\Links\LinkRepository;
@@ -441,6 +442,22 @@ final class UpdateTest extends TestCase {
 			get_option( Update::OPTION )
 		);
 		$this->assertFalse( get_option( Update::NOTICE_OPTION ) );
+	}
+
+	public function test_the_migration_of_3_1_asks_to_weigh_every_post_again_on_a_site_with_words(): void {
+		$migration = ( new Migrator( 'free', dirname( __DIR__, 3 ) . '/migrations' ) )->migration( '2026_11_24_000001_weigh_words_again' );
+
+		$this->assertTrue( $migration->up() );
+		$this->assertSame( 'weigh', $this->state()['scope'] );
+		$this->assertSame( [ '3.1.0' ], $this->state()['versions'] );
+
+		// DELETE, not TRUNCATE, which would end the transaction of the test.
+		global $wpdb;
+		delete_option( Update::OPTION );
+		$wpdb->query( $wpdb->prepare( 'DELETE FROM %i', Table::name() ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- The plugin's own table.
+
+		$this->assertTrue( $migration->up() );
+		$this->assertFalse( get_option( Update::OPTION ), 'A site without words weighs them when it installs.' );
 	}
 
 	public function test_requests_of_migrations_merge_into_one_job_that_does_the_most(): void {
