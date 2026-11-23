@@ -45,9 +45,9 @@ $statements = (int) $metrics['statements'];
 $covered    = (int) $metrics['coveredstatements'];
 $percent    = $statements > 0 ? 100 * $covered / $statements : 0.0;
 
-printf( "- %s: %.1f%% of lines (%d of %d); the minimum is %s%%\n", $label, $percent, $covered, $statements, $minimum );
+printf( "- %s: %.2f%% of lines (%d of %d); the minimum is %s%%\n", $label, $percent, $covered, $statements, $minimum );
 
 if ( $percent < $minimum ) {
-	fwrite( STDERR, sprintf( "::error::The coverage of the %s is %.1f%%, below the minimum of %s%% in coverage-gate.json.\n", $label, $percent, $minimum ) );
+	fwrite( STDERR, sprintf( "::error::The coverage of the %s is %.2f%%, below the minimum of %s%% in coverage-gate.json.\n", $label, $percent, $minimum ) );
 	exit( 1 );
 }
