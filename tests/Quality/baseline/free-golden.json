@@ -5,29 +5,29 @@
     "corpus_title": "Golden master corpus (40 posts, 4 topics)",
     "locale": "en_US",
     "order": 0,
-    "run": "2026-10-10 17:14:57",
+    "run": "2026-11-23 21:26:49",
     "environment": {
         "php": "8.0.30",
         "database": "12.3.3-MariaDB-ubu2404",
-        "wordpress": "7.1.3",
+        "wordpress": "7.1.5",
         "intl": true
     },
     "metrics": {
         "evaluated": 40,
-        "precision_at_3": 0.6583,
-        "precision_at_5": 0.51,
+        "precision_at_3": 0.725,
+        "precision_at_5": 0.62,
         "success_at_3": 0.95,
         "random_precision_at_3": 0.2308,
-        "full_lists": 0.75,
-        "coverage": 1.0,
-        "hub_share": 0.0571,
-        "max_inbound": 6,
-        "symmetry": 0.819,
-        "stop_word_leak": 0.0875,
-        "title_share": 0.5667,
-        "words_per_post": 6.0,
+        "full_lists": 0.925,
+        "coverage": 0.95,
+        "hub_share": 0.0609,
+        "max_inbound": 7,
+        "symmetry": 0.6783,
+        "stop_word_leak": 0.0,
+        "title_share": 0.2295,
+        "words_per_post": 14.05,
         "posts": 40,
-        "index_ms_per_post": 0.71,
-        "related_ms_per_post": 0.3
+        "index_ms_per_post": 9.03,
+        "related_ms_per_post": 1.31
     }
 }
