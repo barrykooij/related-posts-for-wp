@@ -40,7 +40,7 @@ final class StatisticsTest extends TestCase {
 			'air'       => 40,
 		];
 
-		// "wordpress" is in the title but in 90 of 100 posts: 81 * ln(101/90) is 9.3, less than 3 * ln(101/1) for "go".
+		// "WordPress" is in the title but in 90 of 100 posts: 81 * ln(101/90) is 9.3, less than 3 * ln(101/1) for "go".
 		$this->assertSame(
 			[
 				'reload' => 80,

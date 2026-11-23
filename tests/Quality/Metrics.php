@@ -86,10 +86,10 @@ final class Metrics {
 		}
 
 		return [
-			'evaluated'           => count( $p3 ),
-			'precision_at_3'      => self::mean( $p3 ),
-			'precision_at_5'      => self::mean( $p5 ),
-			'success_at_3'        => self::mean( $success ),
+			'evaluated'             => count( $p3 ),
+			'precision_at_3'        => self::mean( $p3 ),
+			'precision_at_5'        => self::mean( $p5 ),
+			'success_at_3'          => self::mean( $success ),
 			'random_precision_at_3' => self::mean( $random ),
 		];
 	}

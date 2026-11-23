@@ -176,8 +176,8 @@ final class Report {
 			$cells    = [];
 
 			foreach ( array_keys( $columns ) as $metric ) {
-				$value = $result['metrics'][ $metric ] ?? null;
-				$was   = null === $baseline ? null : ( $baseline['metrics'][ $metric ] ?? null );
+				$value   = $result['metrics'][ $metric ] ?? null;
+				$was     = null === $baseline ? null : ( $baseline['metrics'][ $metric ] ?? null );
 				$cells[] = self::cell( $value, $was );
 			}
 

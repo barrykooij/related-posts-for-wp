@@ -34,25 +34,25 @@ final class LegacyUnhookingTest extends TestCase {
 	 */
 	public static function legacy_hooks(): array {
 		$hooks = [
-			'RP4WP_Hook_Admin_Scripts'           => [ 'admin_enqueue_scripts', 10 ],
-			'RP4WP_Hook_Ajax_Delete_Link'        => [ 'wp_ajax_rp4wp_delete_link', 10 ],
-			'RP4WP_Hook_Delete_Words'            => [ 'delete_post', 10 ],
-			'RP4WP_Hook_Frontend_Css'            => [ 'wp_head', 10 ],
-			'RP4WP_Hook_Link_Related_Screen'     => [ 'admin_menu', 10 ],
-			'RP4WP_Hook_Meta_Box'                => [ 'admin_init', 10 ],
-			'RP4WP_Hook_Meta_Box_Ajax_Sort'      => [ 'wp_ajax_rp4wp_related_sort', 10 ],
-			'RP4WP_Hook_Page_Install'            => [ 'admin_menu', 10 ],
-			'RP4WP_Hook_Post_Type'               => [ 'init', 10 ],
-			'RP4WP_Hook_Related_Auto_Link'       => [ 'transition_post_status', 11 ],
-			'RP4WP_Hook_Related_Update_Link'     => [ 'transition_post_status', 11 ],
-			'RP4WP_Hook_Related_Save_Words'      => [ 'transition_post_status', 10 ],
-			'RP4WP_Hook_Settings_Page'           => [ 'admin_menu', 10 ],
-			'RP4WP_Hook_Shortcode'               => [ 'init', 10 ],
-			'RP4WP_Hook_Widget'                  => [ 'widgets_init', 10 ],
-			'RP4WP_Filter_After_Post'            => [ 'the_content', 99 ],
-			'RP4WP_Filter_Plugin_Links'          => [ 'plugin_action_links_related-posts-for-wp/related-posts-for-wp.php', 10 ],
-			'RP4WP_Filter_Set_Screen_Option'     => [ 'set-screen-option', 10 ],
-			'RP4WP_Filter_Yoast_Duplicate_Post'  => [ 'duplicate_post_excludelist_filter', 10 ],
+			'RP4WP_Hook_Admin_Scripts'          => [ 'admin_enqueue_scripts', 10 ],
+			'RP4WP_Hook_Ajax_Delete_Link'       => [ 'wp_ajax_rp4wp_delete_link', 10 ],
+			'RP4WP_Hook_Delete_Words'           => [ 'delete_post', 10 ],
+			'RP4WP_Hook_Frontend_Css'           => [ 'wp_head', 10 ],
+			'RP4WP_Hook_Link_Related_Screen'    => [ 'admin_menu', 10 ],
+			'RP4WP_Hook_Meta_Box'               => [ 'admin_init', 10 ],
+			'RP4WP_Hook_Meta_Box_Ajax_Sort'     => [ 'wp_ajax_rp4wp_related_sort', 10 ],
+			'RP4WP_Hook_Page_Install'           => [ 'admin_menu', 10 ],
+			'RP4WP_Hook_Post_Type'              => [ 'init', 10 ],
+			'RP4WP_Hook_Related_Auto_Link'      => [ 'transition_post_status', 11 ],
+			'RP4WP_Hook_Related_Update_Link'    => [ 'transition_post_status', 11 ],
+			'RP4WP_Hook_Related_Save_Words'     => [ 'transition_post_status', 10 ],
+			'RP4WP_Hook_Settings_Page'          => [ 'admin_menu', 10 ],
+			'RP4WP_Hook_Shortcode'              => [ 'init', 10 ],
+			'RP4WP_Hook_Widget'                 => [ 'widgets_init', 10 ],
+			'RP4WP_Filter_After_Post'           => [ 'the_content', 99 ],
+			'RP4WP_Filter_Plugin_Links'         => [ 'plugin_action_links_related-posts-for-wp/related-posts-for-wp.php', 10 ],
+			'RP4WP_Filter_Set_Screen_Option'    => [ 'set-screen-option', 10 ],
+			'RP4WP_Filter_Yoast_Duplicate_Post' => [ 'duplicate_post_excludelist_filter', 10 ],
 		];
 
 		$data = [];
@@ -68,19 +68,19 @@ final class LegacyUnhookingTest extends TestCase {
 	 *
 	 * @dataProvider legacy_hooks
 	 *
-	 * @param string $class    The 2.x class.
+	 * @param string $class_name    The 2.x class.
 	 * @param string $tag      The WordPress hook.
 	 * @param int    $priority The priority.
 	 */
-	public function test_can_be_unhooked_the_2x_way( string $class, string $tag, int $priority ): void {
-		$is_filter = 0 === strpos( $class, 'RP4WP_Filter_' );
+	public function test_can_be_unhooked_the_2x_way( string $class_name, string $tag, int $priority ): void {
+		$is_filter = 0 === strpos( $class_name, 'RP4WP_Filter_' );
 		$this->setExpectedDeprecated( $is_filter ? 'RP4WP_Manager_Filter::get_filter_object' : 'RP4WP_Manager_Hook::get_hook_object' );
 
 		$hook = $is_filter
-			? \RP4WP_Manager_Filter::get_filter_object( $class )
-			: \RP4WP_Manager_Hook::get_hook_object( $class );
+			? \RP4WP_Manager_Filter::get_filter_object( $class_name )
+			: \RP4WP_Manager_Hook::get_hook_object( $class_name );
 
-		$this->assertIsObject( $hook, "{$class} is not available from its manager." );
+		$this->assertIsObject( $hook, "{$class_name} is not available from its manager." );
 
 		/**
 		 * A 2.x object loaded by its manager, or the proxy that stands in for it.
@@ -89,7 +89,7 @@ final class LegacyUnhookingTest extends TestCase {
 		 */
 		$this->assertSame( $tag, $hook->get_tag() );
 		$this->assertSame( $priority, $hook->get_priority() );
-		$this->assertSame( $priority, has_filter( $hook->get_tag(), [ $hook, 'run' ] ), "{$class} is not the registered callback." );
+		$this->assertSame( $priority, has_filter( $hook->get_tag(), [ $hook, 'run' ] ), "{$class_name} is not the registered callback." );
 
 		remove_filter( $hook->get_tag(), [ $hook, 'run' ], $hook->get_priority() );
 

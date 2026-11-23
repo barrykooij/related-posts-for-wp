@@ -46,9 +46,9 @@ final class InstallRestTest extends RestTestCase {
 		unset( $job['request']['generation'] );
 		$this->assertSame(
 			[
-				'amount' => 2,
+				'amount'       => 2,
 				'skip_linking' => false,
-				'rebuild' => false,
+				'rebuild'      => false,
 			],
 			$job['request']
 		);
@@ -62,10 +62,10 @@ final class InstallRestTest extends RestTestCase {
 	 */
 	public function data_invalid_starts(): array {
 		return [
-			'no related posts'    => [ [ 'amount' => 0 ] ],
-			'too many'            => [ [ 'amount' => 51 ] ],
-			'not a number'        => [ [ 'amount' => 'three' ] ],
-			'rebuild as text'     => [ [ 'rebuild' => 'sure' ] ],
+			'no related posts' => [ [ 'amount' => 0 ] ],
+			'too many'         => [ [ 'amount' => 51 ] ],
+			'not a number'     => [ [ 'amount' => 'three' ] ],
+			'rebuild as text'  => [ [ 'rebuild' => 'sure' ] ],
 		];
 	}
 
@@ -128,7 +128,11 @@ final class InstallRestTest extends RestTestCase {
 
 		$job = $this->request( 'POST', '/install', [] )->get_data()['job'];
 
-		for ( $i = 0; $i < 10 && 'running' === ( new Queue() )->job()->status; $i++ ) {
+		for ( $i = 0; $i < 10; $i++ ) {
+			if ( 'running' !== ( new Queue() )->job()->status ) {
+				break;
+			}
+
 			do_action( Queue::HOOK, $job['id'] );
 		}
 

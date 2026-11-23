@@ -33,7 +33,7 @@ final class HooksTest extends ShimTestCase {
 	public function tear_down(): void {
 		// The managers keep what they loaded in a static property; start the next test without it.
 		foreach ( [
-			\RP4WP_Manager_Hook::class => 'hooks',
+			\RP4WP_Manager_Hook::class   => 'hooks',
 			\RP4WP_Manager_Filter::class => 'filters',
 		] as $class => $property ) {
 			$reflection = new \ReflectionProperty( $class, $property );
@@ -51,25 +51,25 @@ final class HooksTest extends ShimTestCase {
 	 */
 	public static function legacy_hooks(): array {
 		$hooks = [
-			'RP4WP_Hook_Admin_Scripts'           => [ 'admin_enqueue_scripts', 10, 1 ],
-			'RP4WP_Hook_Ajax_Delete_Link'        => [ 'wp_ajax_rp4wp_delete_link', 10, 1 ],
-			'RP4WP_Hook_Delete_Words'            => [ 'delete_post', 10, 1 ],
-			'RP4WP_Hook_Frontend_Css'            => [ 'wp_head', 10, 1 ],
-			'RP4WP_Hook_Link_Related_Screen'     => [ 'admin_menu', 10, 1 ],
-			'RP4WP_Hook_Meta_Box'                => [ 'admin_init', 10, 1 ],
-			'RP4WP_Hook_Meta_Box_Ajax_Sort'      => [ 'wp_ajax_rp4wp_related_sort', 10, 1 ],
-			'RP4WP_Hook_Page_Install'            => [ 'admin_menu', 10, 1 ],
-			'RP4WP_Hook_Post_Type'               => [ 'init', 10, 1 ],
-			'RP4WP_Hook_Related_Auto_Link'       => [ 'transition_post_status', 11, 3 ],
-			'RP4WP_Hook_Related_Update_Link'     => [ 'transition_post_status', 11, 3 ],
-			'RP4WP_Hook_Related_Save_Words'      => [ 'transition_post_status', 10, 3 ],
-			'RP4WP_Hook_Settings_Page'           => [ 'admin_menu', 10, 1 ],
-			'RP4WP_Hook_Shortcode'               => [ 'init', 10, 1 ],
-			'RP4WP_Hook_Widget'                  => [ 'widgets_init', 10, 1 ],
-			'RP4WP_Filter_After_Post'            => [ 'the_content', 99, 1 ],
-			'RP4WP_Filter_Plugin_Links'          => [ 'plugin_action_links_related-posts-for-wp/related-posts-for-wp.php', 10, 1 ],
-			'RP4WP_Filter_Set_Screen_Option'     => [ 'set-screen-option', 10, 3 ],
-			'RP4WP_Filter_Yoast_Duplicate_Post'  => [ 'duplicate_post_excludelist_filter', 10, 1 ],
+			'RP4WP_Hook_Admin_Scripts'          => [ 'admin_enqueue_scripts', 10, 1 ],
+			'RP4WP_Hook_Ajax_Delete_Link'       => [ 'wp_ajax_rp4wp_delete_link', 10, 1 ],
+			'RP4WP_Hook_Delete_Words'           => [ 'delete_post', 10, 1 ],
+			'RP4WP_Hook_Frontend_Css'           => [ 'wp_head', 10, 1 ],
+			'RP4WP_Hook_Link_Related_Screen'    => [ 'admin_menu', 10, 1 ],
+			'RP4WP_Hook_Meta_Box'               => [ 'admin_init', 10, 1 ],
+			'RP4WP_Hook_Meta_Box_Ajax_Sort'     => [ 'wp_ajax_rp4wp_related_sort', 10, 1 ],
+			'RP4WP_Hook_Page_Install'           => [ 'admin_menu', 10, 1 ],
+			'RP4WP_Hook_Post_Type'              => [ 'init', 10, 1 ],
+			'RP4WP_Hook_Related_Auto_Link'      => [ 'transition_post_status', 11, 3 ],
+			'RP4WP_Hook_Related_Update_Link'    => [ 'transition_post_status', 11, 3 ],
+			'RP4WP_Hook_Related_Save_Words'     => [ 'transition_post_status', 10, 3 ],
+			'RP4WP_Hook_Settings_Page'          => [ 'admin_menu', 10, 1 ],
+			'RP4WP_Hook_Shortcode'              => [ 'init', 10, 1 ],
+			'RP4WP_Hook_Widget'                 => [ 'widgets_init', 10, 1 ],
+			'RP4WP_Filter_After_Post'           => [ 'the_content', 99, 1 ],
+			'RP4WP_Filter_Plugin_Links'         => [ 'plugin_action_links_related-posts-for-wp/related-posts-for-wp.php', 10, 1 ],
+			'RP4WP_Filter_Set_Screen_Option'    => [ 'set-screen-option', 10, 3 ],
+			'RP4WP_Filter_Yoast_Duplicate_Post' => [ 'duplicate_post_excludelist_filter', 10, 1 ],
 		];
 
 		$data = [];
@@ -85,16 +85,16 @@ final class HooksTest extends ShimTestCase {
 	 *
 	 * @dataProvider legacy_hooks
 	 *
-	 * @param string $class    The 2.x class.
+	 * @param string $class_name    The 2.x class.
 	 * @param string $tag      The WordPress hook.
 	 * @param int    $priority The priority.
 	 * @param int    $args     The number of arguments.
 	 */
-	public function test_a_2x_hook_object_hooks_itself_in( string $class, string $tag, int $priority, int $args ): void {
-		$base = 0 === strpos( $class, 'RP4WP_Filter_' ) ? 'RP4WP_Filter' : 'RP4WP_Hook';
-		$this->expect_deprecated( $class, "{$base}::get_tag", "{$base}::get_priority", "{$base}::get_args" );
+	public function test_a_2x_hook_object_hooks_itself_in( string $class_name, string $tag, int $priority, int $args ): void {
+		$base = 0 === strpos( $class_name, 'RP4WP_Filter_' ) ? 'RP4WP_Filter' : 'RP4WP_Hook';
+		$this->expect_deprecated( $class_name, "{$base}::get_tag", "{$base}::get_priority", "{$base}::get_args" );
 
-		$hook = new $class();
+		$hook = new $class_name();
 
 		$this->assertInstanceOf( $base, $hook );
 		$this->assertSame( $tag, $hook->get_tag() );

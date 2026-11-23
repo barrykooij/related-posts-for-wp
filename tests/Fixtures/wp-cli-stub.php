@@ -49,12 +49,12 @@ if ( ! class_exists( 'WP_CLI' ) ) {
 		 * Register a command.
 		 *
 		 * @param string $name     The command name.
-		 * @param mixed  $callable The class or callable.
+		 * @param mixed  $callback The class or callable.
 		 *
 		 * @return bool
 		 */
-		public static function add_command( $name, $callable ) {
-			self::$commands[ $name ] = $callable;
+		public static function add_command( $name, $callback ) {
+			self::$commands[ $name ] = $callback;
 
 			return true;
 		}

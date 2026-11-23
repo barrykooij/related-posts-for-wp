@@ -103,19 +103,19 @@ final class ApiSnapshot {
 	/**
 	 * Describe a class.
 	 *
-	 * @param \ReflectionClass $class The class.
-	 * @phpstan-param \ReflectionClass<object> $class
+	 * @param \ReflectionClass $reflection The class.
+	 * @phpstan-param \ReflectionClass<object> $reflection
 	 *
 	 * @return array<string, mixed>
 	 */
-	private static function describe_class( \ReflectionClass $class ): array {
+	private static function describe_class( \ReflectionClass $reflection ): array {
 		$parents = [];
-		for ( $parent = $class->getParentClass(); $parent; $parent = $parent->getParentClass() ) {
+		for ( $parent = $reflection->getParentClass(); $parent; $parent = $parent->getParentClass() ) {
 			$parents[] = $parent->getName();
 		}
 
 		$constants = [];
-		foreach ( $class->getReflectionConstants() as $constant ) {
+		foreach ( $reflection->getReflectionConstants() as $constant ) {
 			if ( ! $constant->isPrivate() && self::is_own( $constant->getDeclaringClass() ) ) {
 				$constants[ $constant->getName() ] = $constant->getValue();
 			}
@@ -123,7 +123,7 @@ final class ApiSnapshot {
 		ksort( $constants );
 
 		$properties = [];
-		foreach ( $class->getProperties() as $property ) {
+		foreach ( $reflection->getProperties() as $property ) {
 			if ( ! $property->isPrivate() && self::is_own( $property->getDeclaringClass() ) ) {
 				$properties[ $property->getName() ] = [
 					'visibility' => $property->isPublic() ? 'public' : 'protected',
@@ -134,7 +134,7 @@ final class ApiSnapshot {
 		ksort( $properties );
 
 		$methods = [];
-		foreach ( $class->getMethods() as $method ) {
+		foreach ( $reflection->getMethods() as $method ) {
 			if ( $method->isPrivate() || ! self::is_own( $method->getDeclaringClass() ) ) {
 				continue;
 			}
@@ -149,9 +149,9 @@ final class ApiSnapshot {
 		ksort( $methods );
 
 		return [
-			'abstract'   => $class->isAbstract(),
+			'abstract'   => $reflection->isAbstract(),
 			'parents'    => $parents,
-			'magic_get'  => $class->hasMethod( '__get' ),
+			'magic_get'  => $reflection->hasMethod( '__get' ),
 			'constants'  => $constants,
 			'properties' => $properties,
 			'methods'    => $methods,
@@ -161,26 +161,26 @@ final class ApiSnapshot {
 	/**
 	 * Whether a class belongs to the plugin (a 2.x class or one of its new classes), not to WordPress core.
 	 *
-	 * @param \ReflectionClass $class The class.
-	 * @phpstan-param \ReflectionClass<object> $class
+	 * @param \ReflectionClass $reflection The class.
+	 * @phpstan-param \ReflectionClass<object> $reflection
 	 *
 	 * @return bool
 	 */
-	private static function is_own( \ReflectionClass $class ): bool {
-		return 0 !== strpos( $class->getName(), self::CORE_PREFIX );
+	private static function is_own( \ReflectionClass $reflection ): bool {
+		return 0 !== strpos( $reflection->getName(), self::CORE_PREFIX );
 	}
 
 	/**
 	 * Describe the parameters of a function or method.
 	 *
-	 * @param \ReflectionFunctionAbstract $function The function or method.
+	 * @param \ReflectionFunctionAbstract $reflection The function or method.
 	 *
 	 * @return array<int, array<string, mixed>>
 	 */
-	private static function describe_params( \ReflectionFunctionAbstract $function ): array {
+	private static function describe_params( \ReflectionFunctionAbstract $reflection ): array {
 		$params = [];
 
-		foreach ( $function->getParameters() as $param ) {
+		foreach ( $reflection->getParameters() as $param ) {
 			$default = null;
 			if ( $param->isDefaultValueAvailable() ) {
 				$default = $param->isDefaultValueConstant() ? $param->getDefaultValueConstantName() : var_export( $param->getDefaultValue(), true ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_var_export -- Serialises default values for comparison.
@@ -201,55 +201,55 @@ final class ApiSnapshot {
 	/**
 	 * Compare one class.
 	 *
-	 * @param string               $class The class name.
+	 * @param string               $class_name The class name.
 	 * @param array<string, mixed> $old   The recorded description.
-	 * @param array<string, mixed> $new   The current description.
+	 * @param array<string, mixed> $after   The current description.
 	 *
 	 * @return string[]
 	 */
-	private static function compare_class( string $class, array $old, array $new ): array {
+	private static function compare_class( string $class_name, array $old, array $after ): array {
 		$problems = [];
 
-		if ( ! $old['abstract'] && $new['abstract'] ) {
-			$problems[] = "Class {$class} became abstract.";
+		if ( ! $old['abstract'] && $after['abstract'] ) {
+			$problems[] = "Class {$class_name} became abstract.";
 		}
 
 		foreach ( $old['parents'] as $parent ) {
-			if ( ! in_array( $parent, $new['parents'], true ) ) {
-				$problems[] = "Class {$class} no longer extends {$parent}.";
+			if ( ! in_array( $parent, $after['parents'], true ) ) {
+				$problems[] = "Class {$class_name} no longer extends {$parent}.";
 			}
 		}
 
 		foreach ( $old['constants'] as $constant => $value ) {
-			if ( ! array_key_exists( $constant, $new['constants'] ) ) {
-				$problems[] = "Constant {$class}::{$constant} is missing.";
-			} elseif ( $new['constants'][ $constant ] !== $value && ! in_array( "{$class}::{$constant}", self::VOLATILE_CONSTANTS, true ) ) {
-				$problems[] = "Constant {$class}::{$constant} changed value.";
+			if ( ! array_key_exists( $constant, $after['constants'] ) ) {
+				$problems[] = "Constant {$class_name}::{$constant} is missing.";
+			} elseif ( $after['constants'][ $constant ] !== $value && ! in_array( "{$class_name}::{$constant}", self::VOLATILE_CONSTANTS, true ) ) {
+				$problems[] = "Constant {$class_name}::{$constant} changed value.";
 			}
 		}
 
 		foreach ( $old['properties'] as $property => $description ) {
-			$current = $new['properties'][ $property ] ?? null;
+			$current = $after['properties'][ $property ] ?? null;
 
 			if ( null === $current ) {
 				// A public property can live on as a magic getter; protected ones must stay real for subclasses.
-				if ( ! ( 'public' === $description['visibility'] && ! $description['static'] && $new['magic_get'] ) ) {
-					$problems[] = "Property {$class}::\${$property} is missing.";
+				if ( ! ( 'public' === $description['visibility'] && ! $description['static'] && $after['magic_get'] ) ) {
+					$problems[] = "Property {$class_name}::\${$property} is missing.";
 				}
 				continue;
 			}
 
 			if ( 'public' === $description['visibility'] && 'public' !== $current['visibility'] ) {
-				$problems[] = "Property {$class}::\${$property} is no longer public.";
+				$problems[] = "Property {$class_name}::\${$property} is no longer public.";
 			}
 			if ( $description['static'] !== $current['static'] ) {
-				$problems[] = "Property {$class}::\${$property} changed static-ness.";
+				$problems[] = "Property {$class_name}::\${$property} changed static-ness.";
 			}
 		}
 
 		foreach ( $old['methods'] as $method => $description ) {
-			$current = $new['methods'][ $method ] ?? null;
-			$label   = "{$class}::{$method}()";
+			$current = $after['methods'][ $method ] ?? null;
+			$label   = "{$class_name}::{$method}()";
 
 			if ( null === $current ) {
 				$problems[] = "Method {$label} is missing.";
@@ -277,20 +277,20 @@ final class ApiSnapshot {
 	 *
 	 * @param string                           $label The function label for messages.
 	 * @param array<int, array<string, mixed>> $old   The recorded parameters.
-	 * @param array<int, array<string, mixed>> $new   The current parameters.
+	 * @param array<int, array<string, mixed>> $after   The current parameters.
 	 *
 	 * @return string[]
 	 */
-	private static function compare_params( string $label, array $old, array $new ): array {
+	private static function compare_params( string $label, array $old, array $after ): array {
 		$problems = [];
 
 		foreach ( $old as $index => $param ) {
-			$current  = $new[ $index ] ?? null;
+			$current  = $after[ $index ] ?? null;
 			$position = $index + 1;
 
 			if ( null === $current ) {
 				// A trailing variadic can absorb removed parameters without breaking callers.
-				$last = end( $new );
+				$last = end( $after );
 				if ( false === $last || ! $last['variadic'] ) {
 					$problems[] = "{$label}: parameter {$position} (\${$param['name']}) was removed.";
 				}
@@ -311,7 +311,7 @@ final class ApiSnapshot {
 			}
 		}
 
-		foreach ( array_slice( $new, count( $old ) ) as $index => $param ) {
+		foreach ( array_slice( $after, count( $old ) ) as $index => $param ) {
 			if ( ! $param['optional'] ) {
 				$position   = count( $old ) + $index + 1;
 				$problems[] = "{$label}: new parameter {$position} (\${$param['name']}) is required.";

@@ -261,7 +261,7 @@ final class MoveToTablesTest extends TestCase {
 	/**
 	 * Write a link post the way 2.x did: one insert into the posts table, then the meta.
 	 *
-	 * @param int                   $parent     The post that shows the related post.
+	 * @param int                   $parent_id     The post that shows the related post.
 	 * @param int|null              $child      The related post; null for a broken link without one.
 	 * @param string                $date       The date, in UTC.
 	 * @param int                   $menu_order The place.
@@ -270,7 +270,7 @@ final class MoveToTablesTest extends TestCase {
 	 *
 	 * @return int The link post ID.
 	 */
-	private function legacy_link( int $parent, ?int $child, string $date, int $menu_order = 0, array $meta = [], bool $meta_first = false ): int {
+	private function legacy_link( int $parent_id, ?int $child, string $date, int $menu_order = 0, array $meta = [], bool $meta_first = false ): int {
 		global $wpdb;
 
 		// phpcs:disable WordPress.DB.DirectDatabaseQuery -- 2.x data, written the way 2.x wrote it.
@@ -292,7 +292,7 @@ final class MoveToTablesTest extends TestCase {
 		);
 		$link_id = (int) $wpdb->insert_id;
 
-		$rows = [ LinkPostType::META_PARENT => (string) $parent ];
+		$rows = [ LinkPostType::META_PARENT => (string) $parent_id ];
 		if ( null !== $child ) {
 			$rows[ LinkPostType::META_CHILD ] = (string) $child;
 		}
@@ -303,8 +303,8 @@ final class MoveToTablesTest extends TestCase {
 				$wpdb->postmeta,
 				[
 					'post_id'    => $link_id,
-					'meta_key'   => $key, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_query_meta_key -- Test data.
-					'meta_value' => $value, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_query_meta_value -- Test data.
+					'meta_key'   => $key, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- Test data.
+					'meta_value' => $value, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value -- Test data.
 				]
 			);
 		}

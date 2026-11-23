@@ -230,17 +230,17 @@ final class UnreadablePostTitlesTest extends TestCase {
 	 * What the "all" view of the link screen of a post shows: the titles of its posts, sorted by title, and how many
 	 * posts it says there are in total.
 	 *
-	 * @param int         $parent The post links are added to.
+	 * @param int         $parent_id The post links are added to.
 	 * @param string|null $search The search text, if any.
 	 *
 	 * @return array{titles: string[], total: int}
 	 */
-	private function all_view( int $parent, ?string $search = null ): array {
+	private function all_view( int $parent_id, ?string $search = null ): array {
 		set_current_screen( 'admin_page_' . Page::SLUG );
 		Page::add_screen_options();
 		$_GET     = [
 			'page'         => Page::SLUG,
-			'rp4wp_parent' => (string) $parent,
+			'rp4wp_parent' => (string) $parent_id,
 			'rp4wp_view'   => 'all',
 		];
 		$_REQUEST = $_GET;

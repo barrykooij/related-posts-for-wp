@@ -38,7 +38,7 @@ final class LinkScreenSeamTest extends TestCase {
 		require_once ABSPATH . 'wp-admin/includes/template.php';
 
 		$this->act_as( 'administrator' );
-		$this->parent        = self::factory()->post->create();
+		$this->parent         = self::factory()->post->create();
 		RecordingPage::$links = [];
 		set_current_screen( 'admin_page_' . Page::SLUG );
 		add_filter( 'wp_redirect', [ self::class, 'throw_on_redirect' ] );
@@ -176,23 +176,23 @@ class RecordingPage extends Page {
 	/**
 	 * Record a link.
 	 *
-	 * @param int $parent The parent.
-	 * @param int $child  The child.
+	 * @param int $parent_id The parent.
+	 * @param int $child_id  The child.
 	 *
 	 * @return void
 	 */
-	protected static function add_link( int $parent, int $child ): void {
-		self::$links[] = [ $parent, $child ];
+	protected static function add_link( int $parent_id, int $child_id ): void {
+		self::$links[] = [ $parent_id, $child_id ];
 	}
 
 	/**
 	 * A table of its own.
 	 *
-	 * @param int $parent The parent.
+	 * @param int $parent_id The parent.
 	 *
 	 * @return ListTable
 	 */
-	protected static function list_table( int $parent ): ListTable { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found -- The signature of the parent.
+	protected static function list_table( int $parent_id ): ListTable { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found -- The signature of the parent.
 		return new RecordingListTable();
 	}
 }
@@ -221,12 +221,12 @@ class RecordingListTable extends ListTable {
 	/**
 	 * A made-up suggestion.
 	 *
-	 * @param int $parent The parent.
+	 * @param int $parent_id The parent.
 	 *
 	 * @return array<int, object>
 	 */
-	protected function suggested_posts( int $parent ): array {
-		$this->parent = $parent;
+	protected function suggested_posts( int $parent_id ): array {
+		$this->parent = $parent_id;
 
 		return [
 			new \WP_Post(

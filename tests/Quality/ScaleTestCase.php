@@ -135,7 +135,7 @@ abstract class ScaleTestCase extends \WP_UnitTestCase {
 		$count     = self::$count;
 		$first     = self::$first;
 
-		mt_srand( 7 );
+		mt_srand( 7 ); // phpcs:ignore WordPress.WP.AlternativeFunctions.rand_seeding_mt_srand -- The same posts every run.
 		$samples = [];
 		for ( $i = 0; $i < self::SAMPLES; $i++ ) {
 			$samples[] = $first + mt_rand( 0, $count - 1 ); // phpcs:ignore WordPress.WP.AlternativeFunctions.rand_mt_rand -- Seeded, so the same posts every run.
@@ -193,7 +193,7 @@ abstract class ScaleTestCase extends \WP_UnitTestCase {
 
 		$first = (int) $wpdb->get_var( "SELECT COALESCE( MAX( ID ), 0 ) + 1000 FROM {$wpdb->posts}" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- Seeding.
 
-		mt_srand( 42 );
+		mt_srand( 42 ); // phpcs:ignore WordPress.WP.AlternativeFunctions.rand_seeding_mt_srand -- The same site every run.
 		$cumulative = [];
 		$sum        = 0.0;
 		for ( $rank = 1; $rank <= self::VOCABULARY; $rank++ ) {

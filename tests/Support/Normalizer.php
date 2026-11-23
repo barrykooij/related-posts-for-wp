@@ -101,8 +101,8 @@ final class Normalizer {
 
 		return (string) preg_replace_callback(
 			'/([?&](?:p|page_id|attachment_id)=|\bpost-|wp-image-)(\d+)\b/',
-			function ( array $match ) {
-				return $match[1] . '{' . $this->name( (int) $match[2] ) . '}';
+			function ( array $matches ) {
+				return $matches[1] . '{' . $this->name( (int) $matches[2] ) . '}';
 			},
 			$html
 		);
@@ -111,12 +111,12 @@ final class Normalizer {
 	/**
 	 * Keep only the image attributes the plugin controls, in a fixed order.
 	 *
-	 * @param array<int, string> $match The regex match.
+	 * @param array<int, string> $matches The regex match.
 	 *
 	 * @return string
 	 */
-	private function image( array $match ): string {
-		preg_match_all( '/([a-z-]+)="([^"]*)"/', $match[0], $attributes, PREG_SET_ORDER );
+	private function image( array $matches ): string {
+		preg_match_all( '/([a-z-]+)="([^"]*)"/', $matches[0], $attributes, PREG_SET_ORDER );
 
 		$kept = [];
 		foreach ( $attributes as [ , $name, $value ] ) {

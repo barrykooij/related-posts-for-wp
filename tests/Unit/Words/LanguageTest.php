@@ -68,16 +68,16 @@ final class LanguageTest extends TestCase {
 	 */
 	public static function codes(): array {
 		return [
-			'a locale'                => [ 'en_US', 'en' ],
-			'a language'              => [ 'de', 'de' ],
-			'a tag with a dash'       => [ 'pt-br', 'pt' ],
-			'a script variant'        => [ 'zh-hans', 'zh' ],
-			'upper case'              => [ 'NL_be', 'nl' ],
-			'Norwegian Bokmål'        => [ 'nb_NO', 'no' ],
-			'Norwegian Nynorsk'       => [ 'nn_NO', 'no' ],
-			'an old code for Hebrew'  => [ 'iw', 'he' ],
-			'nothing'                 => [ '', '' ],
-			'not a code'              => [ '../wp-config', '' ],
+			'a locale'               => [ 'en_US', 'en' ],
+			'a language'             => [ 'de', 'de' ],
+			'a tag with a dash'      => [ 'pt-br', 'pt' ],
+			'a script variant'       => [ 'zh-hans', 'zh' ],
+			'upper case'             => [ 'NL_be', 'nl' ],
+			'Norwegian Bokmål'       => [ 'nb_NO', 'no' ],
+			'Norwegian Nynorsk'      => [ 'nn_NO', 'no' ],
+			'an old code for Hebrew' => [ 'iw', 'he' ],
+			'nothing'                => [ '', '' ],
+			'not a code'             => [ '../wp-config', '' ],
 		];
 	}
 
@@ -100,12 +100,12 @@ final class LanguageTest extends TestCase {
 	 */
 	public static function texts(): array {
 		return [
-			'english'                  => [ 'The best way to bake bread is to give the dough all the time it needs.', 'en' ],
-			'german'                   => [ 'Der beste Weg, Brot zu backen, ist, dem Teig die Zeit zu geben, die er braucht.', 'de' ],
-			'dutch'                    => [ 'De beste manier om brood te bakken is het deeg de tijd te geven die het nodig heeft.', 'nl' ],
-			'french'                   => [ 'La meilleure façon de faire du pain est de laisser au pâton le temps dont il a besoin.', 'fr' ],
-			'too few ignored words'    => [ 'Sourdough starter hydration crumb oven spring', '' ],
-			'no words'                 => [ '', '' ],
+			'english'               => [ 'The best way to bake bread is to give the dough all the time it needs.', 'en' ],
+			'german'                => [ 'Der beste Weg, Brot zu backen, ist, dem Teig die Zeit zu geben, die er braucht.', 'de' ],
+			'dutch'                 => [ 'De beste manier om brood te bakken is het deeg de tijd te geven die het nodig heeft.', 'nl' ],
+			'french'                => [ 'La meilleure façon de faire du pain est de laisser au pâton le temps dont il a besoin.', 'fr' ],
+			'too few ignored words' => [ 'Sourdough starter hydration crumb oven spring', '' ],
+			'no words'              => [ '', '' ],
 		];
 	}
 

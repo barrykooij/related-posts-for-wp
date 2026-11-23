@@ -67,10 +67,10 @@ final class SettingsTest extends TestCase {
 	 */
 	public static function stored_legacy_defaults(): array {
 		return [
-			'left to right'             => [ Settings::LEGACY_DEFAULT_CSS['ltr'] ],
-			'right to left'             => [ Settings::LEGACY_DEFAULT_CSS['rtl'] ],
-			'posted from a textarea'    => [ str_replace( "\n", "\r\n", Settings::LEGACY_DEFAULT_CSS['ltr'] ) ],
-			'with trailing whitespace'  => [ "\n" . Settings::LEGACY_DEFAULT_CSS['rtl'] . "\n\n" ],
+			'left to right'            => [ Settings::LEGACY_DEFAULT_CSS['ltr'] ],
+			'right to left'            => [ Settings::LEGACY_DEFAULT_CSS['rtl'] ],
+			'posted from a textarea'   => [ str_replace( "\n", "\r\n", Settings::LEGACY_DEFAULT_CSS['ltr'] ) ],
+			'with trailing whitespace' => [ "\n" . Settings::LEGACY_DEFAULT_CSS['rtl'] . "\n\n" ],
 		];
 	}
 

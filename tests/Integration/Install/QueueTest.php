@@ -107,7 +107,7 @@ final class QueueTest extends TestCase {
 		$this->assertTrue( $status['install'] );
 		$this->assertEquals( (object) [], $status['labels'] );
 
-		$filter = static function ( array $labels, Job $job ): array {
+		$filter = static function ( array $labels, Job $job ): array { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- The arguments of the filter.
 			return [
 				'running' => 'Refreshing',
 				'ignored' => [ 'not', 'a', 'string' ],
@@ -142,7 +142,7 @@ final class QueueTest extends TestCase {
 			$this->ids(
 				$planner->plan(
 					[
-						'rebuild' => true,
+						'rebuild'      => true,
 						'skip_linking' => true,
 					]
 				)

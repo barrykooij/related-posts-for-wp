@@ -265,16 +265,16 @@ final class GoldenMasterTest extends TestCase {
 			$html .= $this->render_post(
 				$slug,
 				[
-					'the_content'                      => [ $this, 'appended_content' ],
-					'[rp4wp]'                          => $this->shortcode( '[rp4wp]' ),
-					'[rp4wp limit=1]'                  => $this->shortcode( '[rp4wp limit=1]' ),
-					'[rp4wp limit=2 offset=1]'         => $this->shortcode( '[rp4wp limit=2 offset=1]' ),
-					'[rp4wp id=growing-tomatoes]'      => $this->shortcode( "[rp4wp id={$other}]" ),
-					'rp4wp_children()'                 => static function () {
+					'the_content'                 => [ $this, 'appended_content' ],
+					'[rp4wp]'                     => $this->shortcode( '[rp4wp]' ),
+					'[rp4wp limit=1]'             => $this->shortcode( '[rp4wp limit=1]' ),
+					'[rp4wp limit=2 offset=1]'    => $this->shortcode( '[rp4wp limit=2 offset=1]' ),
+					'[rp4wp id=growing-tomatoes]' => $this->shortcode( "[rp4wp id={$other}]" ),
+					'rp4wp_children()'            => static function () {
 						return rp4wp_children( get_the_ID(), false );
 					},
-					'widget'                           => [ $this, 'widget' ],
-					'wp_head css'                      => [ $this, 'frontend_css' ],
+					'widget'                      => [ $this, 'widget' ],
+					'wp_head css'                 => [ $this, 'frontend_css' ],
 				]
 			);
 		}
@@ -449,7 +449,7 @@ final class GoldenMasterTest extends TestCase {
 		$parent = self::$ids['pruning-roses'];
 		$result = [ 'before' => $this->children_of( $parent, self::$ids ) ];
 
-		$link = $links->add( $parent, self::$ids['kyoto-temples'] );
+		$link                = $links->add( $parent, self::$ids['kyoto-temples'] );
 		$result['after_add'] = $this->children_of( $parent, self::$ids );
 
 		// Reverse the order, like the sort handler does.
@@ -628,8 +628,8 @@ final class GoldenMasterTest extends TestCase {
 	private function parents_of( int $post_id, array $names ): array {
 		$normalizer = ( new Normalizer() )->with_ids( $names );
 		$parents    = array_map(
-			static function ( $parent ) use ( $normalizer ) {
-				return $normalizer->name( (int) $parent->ID );
+			static function ( $parent_post ) use ( $normalizer ) {
+				return $normalizer->name( (int) $parent_post->ID );
 			},
 			array_values( ( new LinkRepository() )->get_parents( $post_id ) )
 		);

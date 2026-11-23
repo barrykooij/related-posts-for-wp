@@ -81,12 +81,12 @@ final class UpdateTest extends TestCase {
 		);
 
 		foreach ( [
-			'bread'     => 'sourdough bread oven flour',
-			'rolls'     => 'bread flour yeast oven',
-			'crust'     => 'oven bread crust flour',
-			'garden'    => 'garden tomato soil water',
-			'seeds'     => 'tomato garden seeds water',
-			'unlinked'  => 'soil water garden plants',
+			'bread'    => 'sourdough bread oven flour',
+			'rolls'    => 'bread flour yeast oven',
+			'crust'    => 'oven bread crust flour',
+			'garden'   => 'garden tomato soil water',
+			'seeds'    => 'tomato garden seeds water',
+			'unlinked' => 'soil water garden plants',
 		] as $name => $words ) {
 			$this->posts[ $name ] = self::factory()->post->create(
 				[
@@ -214,7 +214,11 @@ final class UpdateTest extends TestCase {
 		$job        = $this->queue->job();
 		$generation = (int) $job->request['generation'];
 
-		for ( $i = 0; $i < 50 && $this->queue->job()->is_running(); $i++ ) {
+		for ( $i = 0; $i < 50; $i++ ) {
+			if ( ! $this->queue->job()->is_running() ) {
+				break;
+			}
+
 			do_action( Queue::HOOK, $job->id );
 
 			foreach ( $this->link_counts() as $post_id => $count ) {
@@ -267,7 +271,11 @@ final class UpdateTest extends TestCase {
 		PostLifecycle::run_deferred();
 		$this->assertFalse( PostState::is_linked( $newer ), 'The posts that wait are not linked while the job runs.' );
 
-		for ( $i = 0; $i < 50 && $this->queue->job()->is_running(); $i++ ) {
+		for ( $i = 0; $i < 50; $i++ ) {
+			if ( ! $this->queue->job()->is_running() ) {
+				break;
+			}
+
 			do_action( Queue::HOOK, $job->id );
 		}
 
@@ -325,7 +333,11 @@ final class UpdateTest extends TestCase {
 		update_option( Update::OPTION, [ 'pending' => true ] );
 		Update::maybe_start();
 		$job = $this->queue->job();
-		for ( $i = 0; $i < 50 && $this->queue->job()->is_running(); $i++ ) {
+		for ( $i = 0; $i < 50; $i++ ) {
+			if ( ! $this->queue->job()->is_running() ) {
+				break;
+			}
+
 			do_action( Queue::HOOK, $job->id );
 		}
 
@@ -364,7 +376,11 @@ final class UpdateTest extends TestCase {
 		update_option( Update::OPTION, [ 'pending' => true ] );
 		Update::maybe_start();
 		$job = $this->queue->job();
-		for ( $i = 0; $i < 50 && $this->queue->job()->is_running(); $i++ ) {
+		for ( $i = 0; $i < 50; $i++ ) {
+			if ( ! $this->queue->job()->is_running() ) {
+				break;
+			}
+
 			do_action( Queue::HOOK, $job->id );
 		}
 

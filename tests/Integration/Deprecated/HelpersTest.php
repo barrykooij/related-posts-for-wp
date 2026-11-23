@@ -50,7 +50,7 @@ final class HelpersTest extends ShimTestCase {
 
 		$backup = $wp_meta_boxes;
 		$meta_box->add_meta_box();
-		$added = isset( $wp_meta_boxes['post']['normal']['core'][ ManageLinks::ID ] );
+		$added         = isset( $wp_meta_boxes['post']['normal']['core'][ ManageLinks::ID ] );
 		$wp_meta_boxes = $backup; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- Restores what the test changed.
 
 		$this->assertTrue( $added );

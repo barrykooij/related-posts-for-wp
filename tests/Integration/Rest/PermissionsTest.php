@@ -21,14 +21,14 @@ final class PermissionsTest extends RestTestCase {
 	 */
 	public function data_routes(): array {
 		return [
-			'read the settings'    => [ 'GET', '/settings', [] ],
-			'read a page'          => [ 'GET', '/settings/general', [] ],
-			'save a page'          => [ 'PUT', '/settings/general', [ 'values' => [ 'heading_text' => 'Hacked' ] ] ],
-			'read the installer'   => [ 'GET', '/install', [] ],
-			'start an install'     => [ 'POST', '/install', [ 'amount' => 3 ] ],
-			'cancel an install'    => [ 'DELETE', '/install', [] ],
-			'resume an install'    => [ 'POST', '/install/retry', [] ],
-			'tick an install'      => [ 'POST', '/install/tick', [] ],
+			'read the settings'  => [ 'GET', '/settings', [] ],
+			'read a page'        => [ 'GET', '/settings/general', [] ],
+			'save a page'        => [ 'PUT', '/settings/general', [ 'values' => [ 'heading_text' => 'Hacked' ] ] ],
+			'read the installer' => [ 'GET', '/install', [] ],
+			'start an install'   => [ 'POST', '/install', [ 'amount' => 3 ] ],
+			'cancel an install'  => [ 'DELETE', '/install', [] ],
+			'resume an install'  => [ 'POST', '/install/retry', [] ],
+			'tick an install'    => [ 'POST', '/install/tick', [] ],
 		];
 	}
 

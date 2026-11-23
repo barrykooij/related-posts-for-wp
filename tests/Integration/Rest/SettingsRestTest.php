@@ -100,12 +100,12 @@ final class SettingsRestTest extends RestTestCase {
 	 */
 	public function data_invalid_values(): array {
 		return [
-			'an unknown field'           => [ [ 'not_a_field' => 'x' ] ],
-			'a field of another page'    => [ [ 'css' => 'x' ] ],
-			'text for a number'          => [ [ 'excerpt_length' => 'ten' ] ],
-			'too few related posts'      => [ [ 'automatic_linking_post_amount' => 0 ] ],
-			'too many related posts'     => [ [ 'automatic_linking_post_amount' => 51 ] ],
-			'a number for a checkbox'    => [ [ 'automatic_linking' => 'yes please' ] ],
+			'an unknown field'        => [ [ 'not_a_field' => 'x' ] ],
+			'a field of another page' => [ [ 'css' => 'x' ] ],
+			'text for a number'       => [ [ 'excerpt_length' => 'ten' ] ],
+			'too few related posts'   => [ [ 'automatic_linking_post_amount' => 0 ] ],
+			'too many related posts'  => [ [ 'automatic_linking_post_amount' => 51 ] ],
+			'a number for a checkbox' => [ [ 'automatic_linking' => 'yes please' ] ],
 		];
 	}
 

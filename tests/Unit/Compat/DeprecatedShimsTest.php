@@ -21,12 +21,12 @@ final class DeprecatedShimsTest extends TestCase {
 	 * Methods that do not report themselves, with the reason.
 	 */
 	private const SILENT = [
-		'RP4WP::instance'                      => 'RP4WP() reports itself and then uses it.',
-		'RP4WP::__get'                         => 'Reading RP4WP()->settings; RP4WP_Settings reports itself when it is created.',
-		'RP4WP::__set'                         => 'Replacing RP4WP()->settings.',
-		'RP4WP::__isset'                       => 'Checking RP4WP()->settings.',
-		'RP4WP_Hook::attach_legacy_hook'       => 'Called by the constructor and register(), which report themselves.',
-		'RP4WP_Filter::attach_legacy_hook'     => 'Called by the constructor and register(), which report themselves.',
+		'RP4WP::instance'                  => 'RP4WP() reports itself and then uses it.',
+		'RP4WP::__get'                     => 'Reading RP4WP()->settings; RP4WP_Settings reports itself when it is created.',
+		'RP4WP::__set'                     => 'Replacing RP4WP()->settings.',
+		'RP4WP::__isset'                   => 'Checking RP4WP()->settings.',
+		'RP4WP_Hook::attach_legacy_hook'   => 'Called by the constructor and register(), which report themselves.',
+		'RP4WP_Filter::attach_legacy_hook' => 'Called by the constructor and register(), which report themselves.',
 	];
 
 	/**

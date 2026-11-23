@@ -243,7 +243,7 @@ add_action(
 						]
 					);
 
-					$sidebars                                  = (array) get_option( 'sidebars_widgets', [] );
+					$sidebars                                 = (array) get_option( 'sidebars_widgets', [] );
 					$sidebars[ (string) $request['sidebar'] ] = [ 'rp4wp_related_posts_widget-2' ];
 					update_option( 'sidebars_widgets', $sidebars );
 

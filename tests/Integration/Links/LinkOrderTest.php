@@ -57,7 +57,7 @@ final class LinkOrderTest extends TestCase {
 					$this->parent,
 					[
 						'posts_per_page' => 2,
-						'offset' => 1,
+						'offset'         => 1,
 					]
 				)
 			)
