@@ -109,8 +109,10 @@ final class InstallingNoticeTest extends TestCase {
 
 		$this->assertStringContainsString( 'Finish the installation', $html );
 		$this->assertSame( 1, preg_match( '/<a href="([^"]+)">Dismiss<\/a>/', $html, $matches ) );
+		$this->assertNotEmpty( $matches );
 
 		parse_str( (string) wp_parse_url( html_entity_decode( $matches[1] ), PHP_URL_QUERY ), $query );
+		$this->assertIsString( $query['_wpnonce'] );
 		$this->assertSame( 1, wp_verify_nonce( $query['_wpnonce'], Installing::NONCE ) );
 
 		// A dismiss link without the nonce, as 2.x made them (known issue K9), does nothing.

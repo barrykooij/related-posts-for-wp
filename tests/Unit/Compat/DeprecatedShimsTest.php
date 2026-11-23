@@ -35,8 +35,9 @@ final class DeprecatedShimsTest extends TestCase {
 	 * @return array<string, array{string}>
 	 */
 	public static function shims(): array {
-		$data = [];
-		foreach ( glob( dirname( __DIR__, 3 ) . '/deprecated/RP4WP*.php' ) as $file ) {
+		$data  = [];
+		$files = glob( dirname( __DIR__, 3 ) . '/deprecated/RP4WP*.php' );
+		foreach ( false === $files ? [] : $files as $file ) {
 			$data[ basename( $file, '.php' ) ] = [ $file ];
 		}
 

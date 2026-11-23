@@ -293,7 +293,7 @@ class ListTable extends \WP_List_Table {
 	 *
 	 * @param int $parent_id The post links are added to.
 	 *
-	 * @return array<int, \WP_Post|\stdClass> Posts, or objects with the ID of a post.
+	 * @return array<int, \WP_Post|\stdClass|object{ID: int|string}> Posts, or objects with the ID of a post.
 	 */
 	protected function suggested_posts( int $parent_id ): array {
 		return ( new Finder() )->related_posts( $parent_id, 25 );

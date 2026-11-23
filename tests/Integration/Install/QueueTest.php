@@ -86,6 +86,7 @@ final class QueueTest extends TestCase {
 		add_filter( 'rp4wp_job_is_install', $filter, 10, 2 );
 
 		$job = $this->queue->start( [ 'other' => true ] );
+		$this->assertInstanceOf( Job::class, $job );
 
 		$this->assertFalse( get_option( 'rp4wp_is_installing' ) );
 
@@ -172,7 +173,8 @@ final class QueueTest extends TestCase {
 			}
 		);
 
-		$job      = $this->queue->start( [ 'amount' => 2 ] );
+		$job = $this->queue->start( [ 'amount' => 2 ] );
+		$this->assertInstanceOf( Job::class, $job );
 		$requests = $this->run_until_done( $job->id );
 
 		$this->assertGreaterThan( 3, $requests, 'Six posts in batches of two take several requests.' );
@@ -192,6 +194,7 @@ final class QueueTest extends TestCase {
 	public function test_the_progress_counts_down_while_the_job_runs(): void {
 		$this->corpus();
 		$job = $this->queue->start( [ 'amount' => 2 ] );
+		$this->assertInstanceOf( Job::class, $job );
 
 		do_action( Queue::HOOK, $job->id );
 		$status = $this->queue->status();
@@ -214,6 +217,7 @@ final class QueueTest extends TestCase {
 		( new Cache() )->delete_post( $post_id );
 
 		$job = $this->queue->start( [ 'skip_linking' => true ] );
+		$this->assertInstanceOf( Job::class, $job );
 		$this->run_until_done( $job->id );
 
 		$this->assertSame( Job::DONE, $this->queue->job()->status );
@@ -225,6 +229,7 @@ final class QueueTest extends TestCase {
 		$old_one = ( new LinkRepository() )->add( $posts[0], $posts[5] );
 
 		$job = $this->queue->start( [ 'rebuild' => true ] );
+		$this->assertInstanceOf( Job::class, $job );
 		$this->run_until_done( $job->id );
 
 		$this->assertSame( Job::DONE, $this->queue->job()->status );
@@ -235,6 +240,7 @@ final class QueueTest extends TestCase {
 	public function test_cancelling_stops_the_job_and_removes_its_actions(): void {
 		$this->corpus();
 		$job = $this->queue->start( [] );
+		$this->assertInstanceOf( Job::class, $job );
 
 		$cancelled = $this->queue->cancel();
 
@@ -259,6 +265,7 @@ final class QueueTest extends TestCase {
 	public function test_while_another_request_holds_the_lock_the_action_waits_for_it(): void {
 		$this->corpus();
 		$job = $this->queue->start( [] );
+		$this->assertInstanceOf( Job::class, $job );
 		$this->queue->unschedule();
 		( new JobStore() )->lock( 60 );
 
@@ -280,6 +287,7 @@ final class QueueTest extends TestCase {
 		$queue = new Queue( new FixedPlanner( [ $task ] ) );
 
 		$job = $queue->start( [] );
+		$this->assertInstanceOf( Job::class, $job );
 		$queue->run( $job->id );
 
 		$this->assertSame( Job::FAILED, $queue->job()->status );
@@ -287,6 +295,7 @@ final class QueueTest extends TestCase {
 		$this->assertFalse( get_option( 'rp4wp_is_installing' ) );
 
 		$resumed = $queue->retry();
+		$this->assertInstanceOf( Job::class, $resumed );
 		$this->assertSame( Job::RUNNING, $resumed->status );
 		$this->assertSame( [ $job->id ], $this->pending_action_args() );
 
@@ -296,6 +305,7 @@ final class QueueTest extends TestCase {
 
 	public function test_a_finished_job_can_not_be_retried(): void {
 		$job = $this->queue->start( [ 'skip_linking' => true ] );
+		$this->assertInstanceOf( Job::class, $job );
 		$this->run_until_done( $job->id );
 
 		$this->assertWPError( $this->queue->retry() );

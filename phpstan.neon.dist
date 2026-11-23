@@ -1,6 +1,6 @@
 # Related Posts for WordPress PHPStan configuration.
 #
-# Starts at level 5; raise the level step by step towards 8 as the reported errors are fixed.
+# Runs at level 7 since 3.1; level 8 comes next, as the reported errors are fixed.
 #
 # The 2.x classes live in deprecated/ as shims. The deprecation rules report any use of them from new code; only the
 # tests that are about the 2.x API may use it.
@@ -12,7 +12,7 @@ includes:
     - phpstan-baseline.neon
 
 parameters:
-    level: 6
+    level: 7
     phpVersion: 80000
     paths:
         - src
@@ -43,6 +43,9 @@ parameters:
         - vendor/woocommerce/action-scheduler/lib
     scanFiles:
         - vendor/woocommerce/action-scheduler/functions.php
+    stubFiles:
+        # Narrows the WordPress test suite fixture factories to the IDs they return; see the file for why.
+        - tests/phpstan/factory.stub
     ignoreErrors:
         -
             # These tests are about the 2.x API, so they use it on purpose. Everywhere else, using it is an error.

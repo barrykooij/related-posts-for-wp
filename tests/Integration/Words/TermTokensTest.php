@@ -26,7 +26,9 @@ final class TermTokensTest extends TestCase {
 		$post_id  = $this->post( 'Sourdough bread', 'Read about the <a href="' . get_permalink( $linked ) . '">starter</a> first.' );
 		wp_set_post_categories( $post_id, [ $category, (int) get_option( 'default_category' ) ] );
 		wp_set_post_tags( $post_id, [ 'Bread' ] );
-		$tag = (int) get_term_by( 'name', 'Bread', 'post_tag' )->term_id;
+		$bread = get_term_by( 'name', 'Bread', 'post_tag' );
+		$this->assertInstanceOf( \WP_Term::class, $bread );
+		$tag = (int) $bread->term_id;
 		$this->save( $post_id );
 
 		$tf = array_map( 'intval', array_column( $this->rows( $post_id ), 'tf', 'word' ) );

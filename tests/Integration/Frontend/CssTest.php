@@ -7,6 +7,7 @@
 
 namespace LV2\WordPress\RelatedPostsForWP\Tests\Integration\Frontend;
 
+use LV2\WordPress\RelatedPostsForWP\Compat\LegacyAction;
 use LV2\WordPress\RelatedPostsForWP\Compat\LegacyHooks;
 use LV2\WordPress\RelatedPostsForWP\Frontend\Css;
 use LV2\WordPress\RelatedPostsForWP\Links\LinkRepository;
@@ -46,20 +47,20 @@ final class CssTest extends TestCase {
 	}
 
 	public function test_a_post_gets_the_new_default_in_the_head(): void {
-		$this->go_to( get_permalink( $this->post_id ) );
+		$this->go_to( (string) get_permalink( $this->post_id ) );
 
 		$this->assertSame( $this->style( $this->default_css() ), $this->head() );
 	}
 
 	public function test_a_page_gets_it_too(): void {
-		$this->go_to( get_permalink( self::factory()->post->create( [ 'post_type' => 'page' ] ) ) );
+		$this->go_to( (string) get_permalink( self::factory()->post->create( [ 'post_type' => 'page' ] ) ) );
 
 		$this->assertSame( $this->style( $this->default_css() ), $this->head() );
 	}
 
 	public function test_a_site_that_stored_the_2x_default_gets_the_new_default(): void {
 		update_option( Settings::OPTION, [ 'css' => str_replace( "\n", "\r\n", Settings::LEGACY_DEFAULT_CSS['ltr'] ) ] );
-		$this->go_to( get_permalink( $this->post_id ) );
+		$this->go_to( (string) get_permalink( $this->post_id ) );
 
 		$this->assertSame( $this->style( $this->default_css() ), $this->head() );
 		$this->assertSame( str_replace( "\n", "\r\n", Settings::LEGACY_DEFAULT_CSS['ltr'] ), get_option( Settings::OPTION )['css'], 'The option is not rewritten.' );
@@ -68,21 +69,21 @@ final class CssTest extends TestCase {
 	public function test_a_site_that_styles_the_related_posts_in_the_additional_css_keeps_the_2x_default(): void {
 		update_option( Settings::OPTION, [ 'css' => Settings::LEGACY_DEFAULT_CSS['ltr'] ] );
 		wp_update_custom_css_post( '.rp4wp-related-post-image img { border-radius: 50%; }' );
-		$this->go_to( get_permalink( $this->post_id ) );
+		$this->go_to( (string) get_permalink( $this->post_id ) );
 
 		$this->assertSame( $this->style( Settings::LEGACY_DEFAULT_CSS['ltr'] ), $this->head() );
 	}
 
 	public function test_custom_css_is_printed_as_stored(): void {
 		update_option( Settings::OPTION, [ 'css' => '.rp4wp-related-posts{display:none}' ] );
-		$this->go_to( get_permalink( $this->post_id ) );
+		$this->go_to( (string) get_permalink( $this->post_id ) );
 
 		$this->assertSame( $this->style( '.rp4wp-related-posts{display:none}' ), $this->head() );
 	}
 
 	public function test_empty_css_prints_nothing(): void {
 		update_option( Settings::OPTION, [ 'css' => '' ] );
-		$this->go_to( get_permalink( $this->post_id ) );
+		$this->go_to( (string) get_permalink( $this->post_id ) );
 		$this->render_related_posts();
 
 		$this->assertSame( '', $this->head() . $this->footer() );
@@ -90,7 +91,7 @@ final class CssTest extends TestCase {
 
 	public function test_the_filter_turns_the_css_off(): void {
 		add_filter( 'rp4wp_disable_css', '__return_true' );
-		$this->go_to( get_permalink( $this->post_id ) );
+		$this->go_to( (string) get_permalink( $this->post_id ) );
 		$this->render_related_posts();
 
 		$this->assertSame( '', $this->head() . $this->footer() );
@@ -112,7 +113,7 @@ final class CssTest extends TestCase {
 	}
 
 	public function test_the_footer_does_not_print_it_again(): void {
-		$this->go_to( get_permalink( $this->post_id ) );
+		$this->go_to( (string) get_permalink( $this->post_id ) );
 		$this->head();
 		$this->render_related_posts();
 
@@ -122,7 +123,7 @@ final class CssTest extends TestCase {
 	public function test_unhooking_the_css_from_the_head_also_keeps_it_out_of_the_footer(): void {
 		// The object 2.x code gets from RP4WP_Manager_Hook::get_hook_object() (see LegacyUnhookingTest).
 		$hook = LegacyHooks::get( 'RP4WP_Hook_Frontend_Css' );
-		$this->assertNotNull( $hook );
+		$this->assertInstanceOf( LegacyAction::class, $hook );
 		remove_action( $hook->get_tag(), [ $hook, 'run' ], $hook->get_priority() );
 
 		$this->go_to( home_url( '/' ) );

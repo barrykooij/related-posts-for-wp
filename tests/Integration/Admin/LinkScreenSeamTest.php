@@ -150,7 +150,14 @@ final class LinkScreenSeamTest extends TestCase {
 		$table->prepare_items();
 		ob_end_clean();
 
-		return $table->items;
+		/**
+		 * The rows of ListTable, which prepare_items() copies into the items of the core list table.
+		 *
+		 * @var array<int, array<string, mixed>> $items
+		 */
+		$items = $table->items;
+
+		return $items;
 	}
 }
 

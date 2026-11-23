@@ -89,7 +89,7 @@ final class Corpus {
 					'post_excerpt'  => '', // The factory fills in a numbered excerpt otherwise, and the plugin prefers it.
 					'post_status'   => 'publish',
 					'post_author'   => $author,
-					'post_date'     => gmdate( 'Y-m-d H:i:s', gmmktime( 9, 0, 0, 1, 1 + $index, 2024 ) ),
+					'post_date'     => gmdate( 'Y-m-d H:i:s', (int) gmmktime( 9, 0, 0, 1, 1 + $index, 2024 ) ),
 					'post_category' => [ self::category( $category ) ],
 					'tags_input'    => $tags,
 				]
@@ -105,12 +105,18 @@ final class Corpus {
 	 * @param string $name The category name.
 	 *
 	 * @return int The term ID.
+	 *
+	 * @throws \RuntimeException When the category can't be created.
 	 */
 	private static function category( string $name ): int {
 		$term = term_exists( $name, 'category' );
 
 		if ( ! $term ) {
 			$term = wp_insert_term( $name, 'category' );
+		}
+
+		if ( is_wp_error( $term ) ) {
+			throw new \RuntimeException( esc_html( "Category {$name} can't be created: " . $term->get_error_message() ) );
 		}
 
 		return (int) $term['term_id'];

@@ -20,7 +20,7 @@ final class DeprecationTest extends TestCase {
 	/**
 	 * The arguments of the core actions that report a deprecation.
 	 *
-	 * @var array<int, array<int, mixed>>
+	 * @var array<int, array<int|string, mixed>>
 	 */
 	private array $reported = [];
 

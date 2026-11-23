@@ -83,7 +83,7 @@ final class AdminAccessTest extends TestCase {
 	public function test_multisite_notice_renders_on_php_8(): void {
 		ob_start();
 		Multisite::display();
-		$output = ob_get_clean();
+		$output = (string) ob_get_clean();
 
 		$this->assertStringContainsString( 'upgrade-premium', $output );
 		$this->assertStringContainsString( 'Upgrade to the premium version</a>', $output );

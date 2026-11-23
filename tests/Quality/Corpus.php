@@ -160,6 +160,11 @@ final class Corpus {
 		foreach ( $lines as $line ) {
 			$post = json_decode( $line, true );
 			if ( is_array( $post ) ) {
+				/**
+				 * A post of the corpus file, which leaves out the fields that have a default.
+				 *
+				 * @var array{id: string, slug: string, title: string, content: string, excerpt?: string, date: string, label?: string|null, categories?: string[], tags?: string[]} $post
+				 */
 				$corpus->posts[] = $post + [
 					'excerpt'    => '',
 					'label'      => null,

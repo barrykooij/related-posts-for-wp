@@ -8,6 +8,7 @@
 namespace LV2\WordPress\RelatedPostsForWP\Tests\Integration\Contract;
 
 use LV2\WordPress\RelatedPostsForWP\Admin\App\Assets;
+use LV2\WordPress\RelatedPostsForWP\Compat\LegacyHook;
 use LV2\WordPress\RelatedPostsForWP\Links\LinkRepository;
 use LV2\WordPress\RelatedPostsForWP\Tests\Integration\TestCase;
 use LV2\WordPress\RelatedPostsForWP\Tests\Support\AdminAppBuild;
@@ -80,6 +81,12 @@ final class LegacyUnhookingTest extends TestCase {
 			: \RP4WP_Manager_Hook::get_hook_object( $class );
 
 		$this->assertIsObject( $hook, "{$class} is not available from its manager." );
+
+		/**
+		 * A 2.x object loaded by its manager, or the proxy that stands in for it.
+		 *
+		 * @var \RP4WP_Filter|\RP4WP_Hook|LegacyHook $hook
+		 */
 		$this->assertSame( $tag, $hook->get_tag() );
 		$this->assertSame( $priority, $hook->get_priority() );
 		$this->assertSame( $priority, has_filter( $hook->get_tag(), [ $hook, 'run' ] ), "{$class} is not the registered callback." );
@@ -97,6 +104,13 @@ final class LegacyUnhookingTest extends TestCase {
 
 		$this->setExpectedDeprecated( 'RP4WP_Manager_Filter::get_filter_object' );
 		$hook = \RP4WP_Manager_Filter::get_filter_object( 'RP4WP_Filter_After_Post' );
+		$this->assertIsObject( $hook, 'RP4WP_Filter_After_Post is not available from its manager.' );
+
+		/**
+		 * A 2.x object loaded by its manager, or the proxy that stands in for it.
+		 *
+		 * @var \RP4WP_Filter|LegacyHook $hook
+		 */
 		remove_filter( $hook->get_tag(), [ $hook, 'run' ], $hook->get_priority() );
 
 		$this->assertStringNotContainsString( 'rp4wp-related-posts', $this->content_of( $parent ) );
@@ -112,6 +126,12 @@ final class LegacyUnhookingTest extends TestCase {
 			$this->fail( 'The 2.x shortcode object is not available.' );
 		}
 
+		/**
+		 * The methods of the 2.x class: a 2.x object loaded by its manager has them, the proxy that stands in for it
+		 * answers them through __call().
+		 *
+		 * @var \RP4WP_Hook_Shortcode $hook
+		 */
 		$this->assertStringContainsString( 'A related post', $hook->output( [ 'id' => $parent ] ) );
 	}
 
@@ -125,6 +145,12 @@ final class LegacyUnhookingTest extends TestCase {
 			$this->fail( 'The 2.x settings page object is not available.' );
 		}
 
+		/**
+		 * The methods of the 2.x class: a 2.x object loaded by its manager has them, the proxy that stands in for it
+		 * answers them through __call().
+		 *
+		 * @var \RP4WP_Hook_Settings_Page $hook
+		 */
 		ob_start();
 		$hook->screen();
 		$this->assertStringContainsString( 'id="rp4wp-admin"', (string) ob_get_clean() );
@@ -180,7 +206,7 @@ final class LegacyUnhookingTest extends TestCase {
 	 * @return string
 	 */
 	private function content_of( int $post_id ): string {
-		$this->go_to( get_permalink( $post_id ) );
+		$this->go_to( (string) get_permalink( $post_id ) );
 
 		$content = '';
 		while ( have_posts() ) {

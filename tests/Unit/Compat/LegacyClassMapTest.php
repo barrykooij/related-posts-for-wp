@@ -19,8 +19,11 @@ final class LegacyClassMapTest extends TestCase {
 	public function test_the_map_lists_every_class_in_its_own_file(): void {
 		$directory = dirname( __DIR__, 3 ) . '/deprecated';
 
+		$files = glob( $directory . '/RP4WP*.php' );
+		$this->assertIsArray( $files );
+
 		$expected = [];
-		foreach ( glob( $directory . '/RP4WP*.php' ) as $file ) {
+		foreach ( $files as $file ) {
 			$class_name              = basename( $file, '.php' );
 			$expected[ $class_name ] = $file;
 

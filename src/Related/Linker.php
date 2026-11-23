@@ -240,7 +240,7 @@ class Linker {
 	/**
 	 * The post IDs of finder results, without duplicates.
 	 *
-	 * @param array<int, \stdClass> $results The results.
+	 * @param array<int, \stdClass|object{ID: int|string}> $results The results: rows of the finder.
 	 *
 	 * @return int[]
 	 */

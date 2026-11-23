@@ -1,0 +1,145 @@
+<?php
+/**
+ * PHPStan stub for the WordPress test suite fixture factories.
+ *
+ * The wp-phpunit factories declare `int|WP_Error` for the IDs they create, on the base class and again in the
+ * `@method` tags of every subclass. In these tests a factory that returns a WP_Error is a broken fixture, not a case a
+ * test handles, so the stub narrows `create()` and `create_many()` to the IDs. A stub class docblock replaces the real
+ * one, so each subclass repeats the `create_and_get()` tag of wp-phpunit unchanged. Only the phpDoc counts here.
+ *
+ * PHPStan validates a stub against the other stub files only, so it does not know the WordPress classes that the
+ * `create_and_get()` tags name. The empty classes at the end of the file name them for that check. A stub class
+ * without a docblock or members leaves the real class as it is, so they must stay without a comment of their own.
+ *
+ * @package RelatedPostsForWP
+ */
+
+/**
+ * The base class of every fixture factory.
+ */
+abstract class WP_UnitTest_Factory_For_Thing {
+
+	/**
+	 * Creates an object and returns its ID.
+	 *
+	 * @param array<string, mixed> $args                   Optional. The arguments for the object to create.
+	 * @param mixed                $generation_definitions Optional. The default values for the object.
+	 *
+	 * @return int The object ID.
+	 */
+	public function create( $args = array(), $generation_definitions = null ) {
+		return 0;
+	}
+
+	/**
+	 * Creates multiple objects.
+	 *
+	 * @param int                  $count                  Amount of objects to create.
+	 * @param array<string, mixed> $args                   Optional. The arguments for the object to create.
+	 * @param mixed                $generation_definitions Optional. The default values for the object.
+	 *
+	 * @return list<int> The object IDs.
+	 */
+	public function create_many( $count, $args = array(), $generation_definitions = null ) {
+		return array();
+	}
+}
+
+/**
+ * Unit test factory for posts.
+ *
+ * @method int              create( $args = array(), $generation_definitions = null )
+ * @method WP_Post|WP_Error create_and_get( $args = array(), $generation_definitions = null )
+ * @method list<int>        create_many( $count, $args = array(), $generation_definitions = null )
+ */
+class WP_UnitTest_Factory_For_Post extends WP_UnitTest_Factory_For_Thing {}
+
+/**
+ * Unit test factory for attachments.
+ *
+ * @method int              create( $args = array(), $generation_definitions = null )
+ * @method WP_Post|WP_Error create_and_get( $args = array(), $generation_definitions = null )
+ * @method list<int>        create_many( $count, $args = array(), $generation_definitions = null )
+ */
+class WP_UnitTest_Factory_For_Attachment extends WP_UnitTest_Factory_For_Post {
+
+	/**
+	 * Saves an attachment for a file on disk.
+	 *
+	 * @param string $file           Full path to the file to create an attachment object for.
+	 * @param int    $parent_post_id ID of the post to attach the file to.
+	 *
+	 * @return int The attachment ID.
+	 */
+	public function create_upload_object( $file, $parent_post_id = 0 ) {
+		return 0;
+	}
+}
+
+/**
+ * Unit test factory for users.
+ *
+ * @method int              create( $args = array(), $generation_definitions = null )
+ * @method WP_User|WP_Error create_and_get( $args = array(), $generation_definitions = null )
+ * @method list<int>        create_many( $count, $args = array(), $generation_definitions = null )
+ */
+class WP_UnitTest_Factory_For_User extends WP_UnitTest_Factory_For_Thing {}
+
+/**
+ * Unit test factory for terms (also used for categories and tags).
+ *
+ * @method int                   create( $args = array(), $generation_definitions = null )
+ * @method WP_Term|WP_Error|null create_and_get( $args = array(), $generation_definitions = null )
+ * @method list<int>             create_many( $count, $args = array(), $generation_definitions = null )
+ */
+class WP_UnitTest_Factory_For_Term extends WP_UnitTest_Factory_For_Thing {}
+
+/**
+ * Unit test factory for comments.
+ *
+ * @method int                 create( $args = array(), $generation_definitions = null )
+ * @method WP_Comment|WP_Error create_and_get( $args = array(), $generation_definitions = null )
+ * @method list<int>           create_many( $count, $args = array(), $generation_definitions = null )
+ */
+class WP_UnitTest_Factory_For_Comment extends WP_UnitTest_Factory_For_Thing {}
+
+/**
+ * Unit test factory for bookmarks (links).
+ *
+ * @method int             create( $args = array(), $generation_definitions = null )
+ * @method object|WP_Error create_and_get( $args = array(), $generation_definitions = null )
+ * @method list<int>       create_many( $count, $args = array(), $generation_definitions = null )
+ */
+class WP_UnitTest_Factory_For_Bookmark extends WP_UnitTest_Factory_For_Thing {}
+
+/**
+ * Unit test factory for sites on a multisite network.
+ *
+ * @method int              create( $args = array(), $generation_definitions = null )
+ * @method WP_Site|WP_Error create_and_get( $args = array(), $generation_definitions = null )
+ * @method list<int>        create_many( $count, $args = array(), $generation_definitions = null )
+ */
+class WP_UnitTest_Factory_For_Blog extends WP_UnitTest_Factory_For_Thing {}
+
+/**
+ * Unit test factory for networks.
+ *
+ * @method int                 create( $args = array(), $generation_definitions = null )
+ * @method WP_Network|WP_Error create_and_get( $args = array(), $generation_definitions = null )
+ * @method list<int>           create_many( $count, $args = array(), $generation_definitions = null )
+ */
+class WP_UnitTest_Factory_For_Network extends WP_UnitTest_Factory_For_Thing {}
+
+class WP_Error {}
+
+class WP_Post {}
+
+class WP_User {}
+
+class WP_Term {}
+
+class WP_Comment {}
+
+class WP_Site {}
+
+class WP_Network {}

@@ -96,6 +96,7 @@ final class HooksTest extends ShimTestCase {
 
 		$hook = new $class();
 
+		$this->assertInstanceOf( $base, $hook );
 		$this->assertSame( $tag, $hook->get_tag() );
 		$this->assertSame( $priority, $hook->get_priority() );
 		$this->assertSame( $args, $hook->get_args() );
@@ -123,7 +124,7 @@ final class HooksTest extends ShimTestCase {
 
 	public function test_the_css_hook_prints_the_css(): void {
 		$this->expect_deprecated( 'RP4WP_Hook_Frontend_Css', 'RP4WP_Hook_Frontend_Css::run' );
-		$this->go_to( get_permalink( self::factory()->post->create() ) );
+		$this->go_to( (string) get_permalink( self::factory()->post->create() ) );
 
 		$css = $this->output( [ new \RP4WP_Hook_Frontend_Css(), 'run' ] );
 
@@ -137,7 +138,7 @@ final class HooksTest extends ShimTestCase {
 		( new LinkRepository() )->add( $parent, self::factory()->post->create( [ 'post_title' => 'A related post' ] ) );
 		$filter = new \RP4WP_Filter_After_Post();
 
-		$this->go_to( get_permalink( $parent ) );
+		$this->go_to( (string) get_permalink( $parent ) );
 		$content = '';
 		while ( have_posts() ) {
 			the_post();

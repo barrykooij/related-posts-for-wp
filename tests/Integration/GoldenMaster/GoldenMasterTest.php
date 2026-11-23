@@ -7,6 +7,7 @@
 
 namespace LV2\WordPress\RelatedPostsForWP\Tests\Integration\GoldenMaster;
 
+use LV2\WordPress\RelatedPostsForWP\Compat\LegacyAction;
 use LV2\WordPress\RelatedPostsForWP\Compat\LegacyHooks;
 use LV2\WordPress\RelatedPostsForWP\Frontend\Css;
 use LV2\WordPress\RelatedPostsForWP\Install\Table;
@@ -492,7 +493,7 @@ final class GoldenMasterTest extends TestCase {
 	 * @return string
 	 */
 	private function render_post( string $slug, array $outputs ): string {
-		$this->go_to( get_permalink( self::$ids[ $slug ] ) );
+		$this->go_to( (string) get_permalink( self::$ids[ $slug ] ) );
 
 		$html = '';
 		while ( have_posts() ) {
@@ -679,8 +680,8 @@ final class GoldenMasterTest extends TestCase {
 	private static function toggle_lifecycle_hooks( bool $attach ): void {
 		foreach ( [ 'RP4WP_Hook_Related_Save_Words', 'RP4WP_Hook_Related_Auto_Link', 'RP4WP_Hook_Related_Update_Link' ] as $class ) {
 			$hook = LegacyHooks::get( $class );
-			if ( null === $hook ) {
-				throw new \RuntimeException( "The {$class} hook is not registered." );
+			if ( ! $hook instanceof LegacyAction ) {
+				throw new \RuntimeException( "The {$class} hook is not registered as an action." );
 			}
 
 			if ( $attach ) {

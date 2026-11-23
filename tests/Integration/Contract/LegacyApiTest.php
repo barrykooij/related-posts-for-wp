@@ -58,7 +58,7 @@ final class LegacyApiTest extends TestCase {
 		}
 
 		$expected = $this->read( $file );
-		$actual   = ApiSnapshot::build( array_keys( $expected['classes'] ), array_keys( $expected['functions'] ) );
+		$actual   = ApiSnapshot::build( array_map( 'strval', array_keys( $expected['classes'] ) ), array_map( 'strval', array_keys( $expected['functions'] ) ) );
 
 		$this->assertSame( [], ApiSnapshot::compare( $expected, $actual ), 'The 2.x API is no longer fully available.' );
 	}

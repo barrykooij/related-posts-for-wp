@@ -80,7 +80,7 @@ final class RendererSeamTest extends TestCase {
 	}
 
 	public function test_the_template_tag_prints_the_related_posts_of_the_current_post_by_default(): void {
-		$this->go_to( get_permalink( $this->post_id ) );
+		$this->go_to( (string) get_permalink( $this->post_id ) );
 		the_post();
 
 		ob_start();
@@ -128,7 +128,7 @@ final class RendererSeamTest extends TestCase {
 	}
 
 	public function test_the_content_of_a_single_post_ends_with_the_rendered_posts(): void {
-		$this->go_to( get_permalink( $this->post_id ) );
+		$this->go_to( (string) get_permalink( $this->post_id ) );
 		the_post();
 
 		$content = (string) apply_filters( 'the_content', 'Content' );
@@ -138,7 +138,7 @@ final class RendererSeamTest extends TestCase {
 	}
 
 	public function test_the_widget_shows_the_rendered_posts(): void {
-		$this->go_to( get_permalink( $this->post_id ) );
+		$this->go_to( (string) get_permalink( $this->post_id ) );
 		the_post();
 
 		ob_start();
