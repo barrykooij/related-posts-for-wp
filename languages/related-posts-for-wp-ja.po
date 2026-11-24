@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Related Posts for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/related-posts-for-wp\n"
-"POT-Creation-Date: 2026-10-14T17:38:55+00:00\n"
+"POT-Creation-Date: 2026-11-24T00:30:03+00:00\n"
 "PO-Revision-Date: 2026-10-01 12:00+0000\n"
 "Last-Translator: Barry Kooij <mail@barrykooij.nl>\n"
 "Language-Team: Japanese\n"
@@ -16,27 +16,23 @@ msgstr ""
 "X-Domain: related-posts-for-wp\n"
 
 #. Plugin Name of the plugin
-#: related-posts-for-wp.php src/Frontend/Widget.php:28
+#: src/Frontend/Widget.php:28
 msgid "Related Posts for WordPress"
 msgstr "Related Posts for WordPress"
 
 #. Plugin URI of the plugin
-#: related-posts-for-wp.php
 msgid "http://www.relatedpostsforwp.com/"
 msgstr "http://www.relatedpostsforwp.com/"
 
 #. Description of the plugin
-#: related-posts-for-wp.php
 msgid "Related Posts for WordPress, the best way to display related posts in WordPress."
 msgstr "Related Posts for WordPress は、WordPress で関連投稿を表示する最良の方法です。"
 
 #. Author of the plugin
-#: related-posts-for-wp.php
 msgid "Never5"
 msgstr "Never5"
 
 #. Author URI of the plugin
-#: related-posts-for-wp.php
 msgid "http://www.never5.com/"
 msgstr "http://www.never5.com/"
 
@@ -67,60 +63,60 @@ msgstr "Related Posts for WordPress の設定画面のスクリプトが見つ�
 msgid "Are you sure you want to delete this related post?"
 msgstr "この関連投稿を削除してもよろしいですか ?"
 
-#: src/Admin/LinkScreen/ListTable.php:63 src/Admin/MetaBox/ManageLinks.php:53
+#: src/Admin/LinkScreen/ListTable.php:71 src/Admin/MetaBox/ManageLinks.php:54
 #: src/Admin/Wizard/Page.php:77 src/Settings/Settings.php:231
 msgid "Related Posts"
 msgstr "関連投稿"
 
-#: src/Admin/LinkScreen/ListTable.php:64
+#: src/Admin/LinkScreen/ListTable.php:72
 msgid "All Posts"
 msgstr "すべての投稿"
 
-#: src/Admin/LinkScreen/ListTable.php:118
+#: src/Admin/LinkScreen/ListTable.php:126
 msgid "Title"
 msgstr "タイトル"
 
-#: src/Admin/LinkScreen/ListTable.php:119
+#: src/Admin/LinkScreen/ListTable.php:127
 msgid "Post Date"
 msgstr "投稿日"
 
-#: src/Admin/LinkScreen/ListTable.php:301
+#: src/Admin/LinkScreen/ListTable.php:378
 msgid "Link Post"
 msgstr "投稿を関連付け"
 
-#: src/Admin/LinkScreen/ListTable.php:334
+#: src/Admin/LinkScreen/ListTable.php:411
 msgid "Link Posts"
 msgstr "投稿を関連付け"
 
-#: src/Admin/LinkScreen/Page.php:126
+#: src/Admin/LinkScreen/Page.php:127
 msgid "Posts"
 msgstr "投稿"
 
-#: src/Admin/LinkScreen/Page.php:127
+#: src/Admin/LinkScreen/Page.php:128
 msgid "Cancel linking"
 msgstr "関連付けをキャンセル"
 
-#: src/Admin/LinkScreen/Page.php:136
+#: src/Admin/LinkScreen/Page.php:137
 msgid "Search"
 msgstr "検索"
 
-#: src/Admin/LinkScreen/Page.php:245 src/Admin/MetaBox/Ajax.php:113
+#: src/Admin/LinkScreen/Page.php:252 src/Admin/MetaBox/Ajax.php:113
 msgid "Related Posts for WordPress is moving its links to a new database table. Please try again in a moment."
 msgstr "Related Posts for WordPress はリンクを新しいデータベーステーブルに移動しています。しばらくしてからもう一度お試しください。"
 
-#: src/Admin/MetaBox/ManageLinks.php:81
+#: src/Admin/MetaBox/ManageLinks.php:82
 msgid "Add Related Posts"
 msgstr "関連投稿を追加"
 
-#: src/Admin/MetaBox/ManageLinks.php:100 src/Admin/MetaBox/ManageLinks.php:101
+#: src/Admin/MetaBox/ManageLinks.php:102 src/Admin/MetaBox/ManageLinks.php:103
 msgid "Edit Post"
 msgstr "投稿を編集"
 
-#: src/Admin/MetaBox/ManageLinks.php:103 src/Admin/MetaBox/ManageLinks.php:104
+#: src/Admin/MetaBox/ManageLinks.php:105 src/Admin/MetaBox/ManageLinks.php:106
 msgid "Unlink Related Post"
 msgstr "関連投稿の関連付けを解除"
 
-#: src/Admin/MetaBox/ManageLinks.php:115
+#: src/Admin/MetaBox/ManageLinks.php:117
 msgid "No related posts found."
 msgstr "関連投稿が見つかりませんでした。"
 
@@ -129,7 +125,7 @@ msgstr "関連投稿が見つかりませんでした。"
 msgid "Related Posts for WordPress is linking your posts in the background (%d%%)."
 msgstr "Related Posts for WordPress がバックグラウンドで投稿を関連付けています (%d%%)。"
 
-#: src/Admin/Notices/Installing.php:78 src/Install/Update.php:190
+#: src/Admin/Notices/Installing.php:78 src/Install/Update.php:284
 msgid "View progress"
 msgstr "進行状況を表示"
 
@@ -149,7 +145,7 @@ msgstr "Related Posts for WordPress のインストールウィザードが完�
 msgid "Finish the installation"
 msgstr "インストールを完了"
 
-#: src/Admin/Notices/Installing.php:150 src/Install/Update.php:213
+#: src/Admin/Notices/Installing.php:150 src/Install/Update.php:317
 msgid "Dismiss"
 msgstr "非表示"
 
@@ -243,8 +239,8 @@ msgstr "Related Posts for WordPress はデータベーステーブルを更新�
 msgid "Try again"
 msgstr "再試行"
 
-#: src/Database/Migrations.php:239 src/Install/Update.php:228
-#: src/Install/Update.php:249
+#: src/Database/Migrations.php:239 src/Install/Update.php:332
+#: src/Install/Update.php:353
 msgid "Sorry, you are not allowed to do that."
 msgstr "この操作を行う権限がありません。"
 
@@ -288,7 +284,7 @@ msgstr "投稿を関連付け中"
 msgid "Reading your posts again"
 msgstr "投稿を再読み込み中"
 
-#: src/Install/Tasks/RelinkPostsTask.php:62
+#: src/Install/Tasks/RelinkPostsTask.php:71
 msgid "Linking your posts again"
 msgstr "投稿を再度関連付け中"
 
@@ -304,48 +300,53 @@ msgstr "設定を保存中"
 msgid "Weighing the words"
 msgstr "単語の重みを計算中"
 
-#: src/Install/Update.php:138
+#: src/Install/Update.php:232
 msgid "Updating your related posts"
 msgstr "関連投稿を 3.0 に移行中"
 
-#: src/Install/Update.php:139
+#: src/Install/Update.php:233
 msgid "Your related posts are up to date."
 msgstr "関連投稿は最新の状態です。"
 
-#: src/Install/Update.php:140
+#: src/Install/Update.php:234
 msgid "The update of your related posts stopped"
 msgstr "関連投稿の 3.0 への移行が停止しました"
 
-#: src/Install/Update.php:141
+#: src/Install/Update.php:235
 msgid "The update of your related posts was cancelled"
 msgstr "関連投稿の 3.0 への移行がキャンセルされました"
 
-#: src/Install/Update.php:142
+#: src/Install/Update.php:236
 msgid "Cancel the update of your related posts? Posts it did not reach keep their old related posts."
 msgstr "関連投稿の 3.0 への移行をキャンセルしますか ? まだ処理されていない投稿は、以前の関連投稿を保持します。"
 
-#: src/Install/Update.php:143
+#: src/Install/Update.php:237
 msgid "Cancel update"
 msgstr "移行をキャンセル"
 
 #. translators: %d: how far the update is, in percent
-#: src/Install/Update.php:187
+#: src/Install/Update.php:281
 msgid "Related Posts for WordPress is updating your related posts in the background (%d%%). Every post keeps its related posts until it gets its new ones."
 msgstr "Related Posts for WordPress はバックグラウンドで関連投稿を 3.0 に移行しています (%d%%)。各投稿は新しい関連投稿を受け取るまで、現在の関連投稿を保持します。"
 
-#: src/Install/Update.php:200
+#: src/Install/Update.php:294
 msgid "The update of your related posts stopped. Posts it did not reach keep their old related posts until you resume it."
 msgstr "関連投稿の 3.0 への移行が停止しました。まだ処理されていない投稿は、再開するまで以前の関連投稿を保持します。"
 
-#: src/Install/Update.php:201 assets/build/admin/index.js:16
+#: src/Install/Update.php:295 assets/build/admin/index.js:16
 msgid "Resume"
 msgstr "再開"
 
-#: src/Install/Update.php:210
+#: src/Install/Update.php:305
 msgid "Your related posts are up to date. Related Posts for WordPress 3.0 finds related posts in a new, more precise way, and linked your posts again; the related posts you added by hand kept their place."
 msgstr "関連投稿は最新の状態です。Related Posts for WordPress 3.0 は新しい、より正確な方法で関連投稿を見つけ、投稿を再度関連付けました。手動で追加した関連投稿はその位置を保っています。"
 
-#: src/Install/Update.php:212
+#. translators: %s: the version, for example 3.1
+#: src/Install/Update.php:308
+msgid "Your related posts are up to date. Related Posts for WordPress %s improved how it finds related posts and linked your posts again; the related posts you added by hand kept their place."
+msgstr "関連投稿は最新の状態です。Related Posts for WordPress %s は関連投稿の見つけ方を改善し、投稿を再度関連付けました。手動で追加した関連投稿はその位置を保っています。"
+
+#: src/Install/Update.php:316
 msgid "What changed"
 msgstr "変更内容"
 
